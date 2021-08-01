@@ -1,4 +1,4 @@
 @echo off
 cd ..
-call Dependencies\Premake\premake5.exe vs2019
+call Dependencies\bin\premake5.exe vs2019
 PAUSE
