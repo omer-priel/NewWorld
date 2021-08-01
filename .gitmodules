@@ -1,3 +1,7 @@
+[submodule "Premake"]
+	path = Dependencies/Premake
+	url = https://github.com/premake/premake-core
+	branch = master
 [submodule "GLM"]
 	path = Dependencies/GLM
 	url = https://github.com/g-truc/glm
