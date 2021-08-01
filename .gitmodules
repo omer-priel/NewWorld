@@ -1,0 +1,4 @@
+[submodule "Premake"]
+	path = Dependencies/Premake
+	url = https://github.com/premake/premake-core
+	branch = master
