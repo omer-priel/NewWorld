@@ -1,5 +1,8 @@
 # TODO List
 
+# Solution
+Learn CMake, it will be more good then Premake
+
 # Engine
 Engine.h
 EntryPoint.h + ENTRY_POINT();
