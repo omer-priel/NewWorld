@@ -7,4 +7,5 @@ https://gitlab.com/omer2079/
 https://opensource.org/licenses/MIT
 
 ## Dependencies
-https://github.com/premake/premake-core
+Premake	: https://github.com/premake/premake-core
+GLM		: https://github.com/g-truc/glm
