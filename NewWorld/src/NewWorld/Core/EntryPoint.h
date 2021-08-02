@@ -1,9 +1,20 @@
 #pragma once
-#include "Dependencies.h"
+#include "NewWorld/Minimal.h"
+#include "NewWorld/Core/Application.h"
 
-void main()
+#if NW_PLATFORM_WINDOWS
+
+int main(int argc, char* argv[])
 {
-	std::cout << "MAIN\n";
-	// TEMP
-	while (true);
+	//TEMP: new ...
+	NewWorld::Application* application = new NewWorld::Application();
+	
+	application->Run();
+	
+	delete application;
+	return 0;
 }
+
+#else // Other PLATFORM
+#error New World do not support this platform.
+#endif

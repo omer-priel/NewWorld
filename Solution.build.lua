@@ -47,6 +47,7 @@ project "NewWorld"
 	}
 
 	filter "system:windows"
+		defines "NW_PLATFORM_WINDOWS"
 		systemversion "latest"
 
 	filter "configurations:Debug"
@@ -86,6 +87,7 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
+		defines "NW_PLATFORM_WINDOWS"
 		systemversion "latest"
 
 	filter "configurations:Debug"
