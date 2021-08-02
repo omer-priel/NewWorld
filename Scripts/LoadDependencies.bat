@@ -1,5 +1,5 @@
 @echo off
-cd ..
+PUSHD ..\
 echo Delete "Dependencies"
 rd /s /q .\Dependencies
 
@@ -14,3 +14,4 @@ cd .\Dependencies\Premake
 start /MIN /WAIT cmd /c ".\Bootstrap.bat&exit"
 cd ..
 copy /y .\Premake\bin\release\premake5.exe .\bin\premake5.exe
+POPD
