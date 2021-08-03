@@ -4,10 +4,16 @@
 
 3. Create a Logo
 
-## Scripts
+## DevOps
 1. Change CheckVersion to python script
 2. Settings.py - GitServer, GitLabProjectID
 4. Replace Premake with CMake or not?
+
+# DevOps.IDEPlugin
+Create IDEPlugin Project
+Create VisualStudioPlugin SubProject
+Create VSCodePlugin SubProject
+Create ExplorerPlugin SubProject
 
 ## NewWorld VisualStudio Plugin
 
