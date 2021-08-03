@@ -1,7 +1,7 @@
 # Links
 
 ## Git
-https://gitlab.com/omer-projects/gameengines/NewWorld
+https://gitlab.com/Omer-Projects/GameEngines/NewWorld
 
 ## LICENSE
 https://opensource.org/licenses/MIT

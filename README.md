@@ -4,7 +4,7 @@ New World is just my own World.
 
 ## Get Started
 Clone Solution:
-$ git clone https://gitlab.com/omer-projects/gameengines/NewWorld
+$ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld
 
 Load Dependencies:
 Scripts\LoadDependencies.bat
