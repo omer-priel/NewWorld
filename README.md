@@ -9,7 +9,7 @@ Clone Solution:
 $ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld
 
 Load Dependencies:
-Scripts\LoadDependencies.bat
+DevOps\LoadDependencies.bat
 
 Generate Projects:
-Scripts\Win-GenerateProjects.bat
+DevOps\Win-GenerateProjects.bat
