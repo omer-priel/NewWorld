@@ -1,6 +1,9 @@
 .vs
+.idea
 bin
 Dependencies/bin
+
+__pycache__
 
 *.sln
 *.vcxproj
