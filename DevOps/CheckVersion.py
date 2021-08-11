@@ -49,7 +49,7 @@ else:
 	if git_commited and res_object['id'] == commit_id:
 		print("The repository is uptodate\n")
 	else:
-		print("The repository is not updated!\n")
+		print("The repository is not uptodate!\n")
 		print(f"Server Last Commit  : {res_object['message']} | {res_object['author']}")
 	print(f"Commit URL: {res_object['url']}")
 
