@@ -1,7 +1,6 @@
 # CheckVersion - Show Solution code version info
  
 import os
-import sys
 import requests
 import json
 import git

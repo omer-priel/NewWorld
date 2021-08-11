@@ -9,6 +9,9 @@ pause
 goto :exit
 
 :stage_1
+pip install -r \PIP_Dependencies.txt
+
+:stage_2
 echo Delete "Dependencies"
 rd /s /q .\Dependencies
 
@@ -18,7 +21,7 @@ git submodule update
 
 md "Dependencies/bin"
 
-:stage_2
+:stage_3
 echo Create Premake
 cd .\Dependencies\Premake
 start /MIN /WAIT cmd /c ".\Bootstrap.bat&exit"
