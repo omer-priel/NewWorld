@@ -5,11 +5,11 @@ And i hope that this engine will contain all the consepts that real
 game engine need.
 
 ## Get Started
-Clone Solution:
-$ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld
+Clone Solution:<br />
+<bold>$ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld</bold>
 
-Load Dependencies:
-DevOps\LoadDependencies.bat
+Load Dependencies:<br />
+<bold>DevOps\LoadDependencies.bat</bold>
 
-Generate Projects:
-DevOps\Win-GenerateProjects.bat
+Generate Projects:<br />
+<bold>DevOps\Win-GenerateProjects.bat</bold>

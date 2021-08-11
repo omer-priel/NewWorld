@@ -9,7 +9,9 @@ pause
 goto :exit
 
 :stage_1
-pip install -r \PIP_Dependencies.txt
+echo Install pip Dependencies
+python.exe -m pip install --upgrade pip
+pip install -r DevOps\Scripts\PIP_Dependencies.txt
 
 :stage_2
 echo Delete "Dependencies"
