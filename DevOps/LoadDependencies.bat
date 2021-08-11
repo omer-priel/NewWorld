@@ -11,7 +11,8 @@ goto :exit
 :stage_1
 echo Install pip Dependencies
 python.exe -m pip install --upgrade pip
-pip install -r DevOps\Scripts\PIP_Dependencies.txt
+pip install requests
+pip install GitPython
 
 :stage_2
 echo Delete "Dependencies"
