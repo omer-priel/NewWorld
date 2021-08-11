@@ -1,6 +1,6 @@
 # New World
 
-![Logo](Logo.png)
+![Image description which will be the alt tag](/Documents/Documents/Logo.png)
 
 New World is just my own World.
 And i hope that this engine will contain all the consepts that real
