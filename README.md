@@ -1,10 +1,10 @@
 # New World
 
-![Image description which will be the alt tag](/Documents/Documents/Logo.png)
+New World is just my own World.<br />
+And i hope that this engine will contain all the consepts that real<br />
+game engine need.<br />
 
-New World is just my own World.
-And i hope that this engine will contain all the consepts that real
-game engine need.
+![Logo](Documents/Logo/Logo.png)
 
 ## Get Started
 Clone Solution:<br />
