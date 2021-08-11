@@ -1,5 +1,4 @@
-import sys
-import os
+import requests
 import git
 
 repo = git.Repo()
@@ -22,4 +21,26 @@ def git_commited():
 git_commited()
 
 
+print(f"---------------------------------------------")
+import subprocess
+import json
+
+from Scripts.Settings import Settings
+
+gitSettings = Settings['Git']
+
+request_url = 'https://' + gitSettings['Server'] + '/api/v4/projects/' + gitSettings['ProjectID'] + '/repository/commits/' + repo.active_branch.name
+res = requests.get(request_url)
+if res.status_code != 200:
+	print(f"The server {gitSettings['Server']} return status code: {res.status_code}")
+else:
+	output = json.loads(res.text)
+
+	data = {
+    	'id': output['short_id'],
+    	'message': output['message'],
+    	'author': output['author_name'],
+    	'url': output['web_url']
+	};
+	print(data)
 print(f"---------------------------------------------")
