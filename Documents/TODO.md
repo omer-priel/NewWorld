@@ -6,8 +6,6 @@
 5. Find another tool for local TODO list.
 
 ## DevOps
-1. Change CheckVersion to python script
-2. Settings.py - GitServer, GitLabProjectID
 3. Change all the .bat files to .py
 6. Replace Premake with CMake or not?
 

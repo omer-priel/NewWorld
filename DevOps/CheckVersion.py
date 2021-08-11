@@ -1,20 +1,16 @@
 # CheckVersion - Show Solution code version info
- 
-import os
+
+import Scripts.Utilities as Utilities
+
 import requests
 import json
 import git
 
-from Scripts.Settings import Settings
+Utilities.SetTitle("Check Version")
 
-gitSettings = Settings['Git']
+gitSettings = Utilities.Settings['Git']
 
-solutionPath = os.getcwd()
-
-while not os.path.isdir(solutionPath + "/.git"):
-	solutionPath = os.path.abspath(os.path.join(solutionPath, os.pardir))
-
-repo = git.Repo(solutionPath)
+repo = git.Repo(Utilities.Settings['SolutionPath'])
 
 commit_id = repo.head.object.hexsha
 
@@ -52,4 +48,4 @@ else:
 		print(f"Server Last Commit  : {res_object['message']} | {res_object['author']}")
 	print(f"Commit URL: {res_object['url']}")
 
-input("\n")
+Utilities.PresToConinue()
