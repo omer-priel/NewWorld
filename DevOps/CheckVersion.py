@@ -8,9 +8,7 @@ import git
 
 Utilities.SetTitle("Check Version")
 
-gitSettings = Utilities.Settings['Git']
-
-repo = git.Repo(Utilities.Settings['SolutionPath'])
+repo = git.Repo(Utilities.Settings.SolutionPath)
 
 commit_id = repo.head.object.hexsha
 
@@ -27,11 +25,11 @@ if not git_commited:
 	print(f"Exists {untracked_files_count} Untracked Files and {modifided_files_count} Modifided files.\n")
 
 # GitLab API: https://docs.gitlab.com/ee/api/commits.html
-request_url = 'https://' + gitSettings['Server'] + '/api/v4/projects/' + gitSettings['ProjectID'] + '/repository/commits/' + repo.active_branch.name
+request_url = f"https://{Utilities.Settings.Git.Server}/api/v4/projects/{Utilities.Settings.Git.ProjectID}/repository/commits/{repo.active_branch.name}"
 res = requests.get(request_url)
 
 if res.status_code != 200:
-	print(f"The server {gitSettings['Server']} return status code: {res.status_code}")
+	print(f"The server {Utilities.Settings.Git.Server} return status code: {res.status_code}")
 else:
 	res_object = json.loads(res.text)
 	res_object = {
