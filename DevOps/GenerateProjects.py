@@ -6,7 +6,9 @@ import os
 
 Utilities.SetTitle("Generate Projects")
 
-command = Utilities.GetSubPath("Dependencies\\bin\\premake5.exe") + ' vs2019 --file=Solution.build.lua'
+premake_path = Utilities.GetSubPath("Dependencies\\bin\\premake5.exe")
+build_config_path = Utilities.GetSubPath("Solution.build.lua")
+command = f"{premake_path} vs2019 --file={build_config_path}"
 os.system(command)
 
 Utilities.PresToConinue()
