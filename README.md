@@ -6,10 +6,10 @@ game engine need.
 
 ## Get Started
 Clone Solution:<br />
-<bold>$ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld</bold>
+$ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld
 
 Load Dependencies:<br />
-<bold>DevOps\LoadDependencies.bat</bold>
+DevOps\LoadDependencies.bat
 
 Generate Projects:<br />
-<bold>DevOps\Win-GenerateProjects.bat</bold>
+DevOps\Win-GenerateProjects.bat
