@@ -1,8 +1,10 @@
+# Solution
 .vs
 .idea
 bin
 Dependencies/bin
 
+# DevOps/Scripts
 __pycache__
 
 *.sln
@@ -11,3 +13,8 @@ __pycache__
 *.vcxproj.user
 
 **/imgui.ini
+
+# DevOps/IDEPlugin
+node_modules
+
+package-lock.json
