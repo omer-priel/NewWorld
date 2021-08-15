@@ -1,6 +1,6 @@
 # Win Build - Build all the applications
 
-import Scripts.Utilities as Utilities
+import Utilities.Utilities as Utilities
 
 import json
 

@@ -1,6 +1,6 @@
 # CheckVersion - Show Solution code version info
 
-import Scripts.Utilities as Utilities
+import Utilities.Utilities as Utilities
 
 import requests
 import json
