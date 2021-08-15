@@ -18,32 +18,73 @@
             "key": 1629042293490,
             "children": [
               {
-                "key": 1629042305844,
-                "children": [],
-                "todo": {
-                  "content": "Create IDEPlugin Project",
-                  "id": 1629042305844,
-                  "level": "warning",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629042317410,
                 "children": [],
                 "todo": {
                   "content": "Create a new file format NewWorld.nwe that the IDEs / explorer can control himfor DevOps action like 'Generate Projects', 'Build', 'Build and Run' ...this file will be the main file of the Solution",
                   "id": 1629042317410,
-                  "level": "warning",
+                  "level": "default",
                   "done": false
                 }
               },
               {
                 "key": 1629042337527,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1629065571958,
+                    "children": [],
+                    "todo": {
+                      "content": "Add Logo",
+                      "id": 1629065571958,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629065595159,
+                    "children": [],
+                    "todo": {
+                      "content": "Action: New File",
+                      "id": 1629065595159,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629065621447,
+                    "children": [],
+                    "todo": {
+                      "content": "Action: New Class",
+                      "id": 1629065621447,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629065621981,
+                    "children": [],
+                    "todo": {
+                      "content": "Action: Generate Projects",
+                      "id": 1629065621981,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629065659908,
+                    "children": [],
+                    "todo": {
+                      "content": "Action: Build",
+                      "id": 1629065659908,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
-                  "content": "Create VSCodePlugin SubProject",
+                  "content": "NewWorldVSCodePlugin",
                   "id": 1629042337527,
-                  "level": "warning",
+                  "level": "success",
                   "done": false
                 }
               },
@@ -51,7 +92,7 @@
                 "key": 1629042370589,
                 "children": [],
                 "todo": {
-                  "content": "Create ExplorerPlugin SubProject",
+                  "content": "Create NewWorldWindowsPlugin SubProject",
                   "id": 1629042370589,
                   "level": "default",
                   "done": false
@@ -61,7 +102,7 @@
                 "key": 1629042330484,
                 "children": [],
                 "todo": {
-                  "content": "Create VisualStudioPlugin SubProject",
+                  "content": "Create NewWorldVisualStudioPlugin SubProject",
                   "id": 1629042330484,
                   "level": "default",
                   "done": false
@@ -72,6 +113,16 @@
               "content": "IDEPlugin",
               "id": 1629042293490,
               "level": "success",
+              "done": false
+            }
+          },
+          {
+            "key": 1629065843655,
+            "children": [],
+            "todo": {
+              "content": "LoadDependencies.bat: Check is npm exist and install package.json",
+              "id": 1629065843655,
+              "level": "default",
               "done": false
             }
           }
@@ -220,11 +271,12 @@
     "expandKeys": [
       1629042215988,
       1629042284024,
-      1629042293490,
       1629042386980,
       1629042398630,
       1629042436829,
-      1629042438141
+      1629042438141,
+      1629065571958,
+      1629042293490
     ]
   }
 }
