@@ -1,6 +1,6 @@
 # GenerateProjects - Generate IDE Projects
 
-import Scripts.Utilities as Utilities
+import Utilities.Utilities as Utilities
 
 import os
 
