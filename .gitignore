@@ -1,11 +1,7 @@
-# Solution
 .vs
 .idea
 bin
 Dependencies/bin
-
-# DevOps/Scripts
-__pycache__
 
 *.sln
 *.vcxproj
@@ -14,7 +10,7 @@ __pycache__
 
 **/imgui.ini
 
-# DevOps/IDEPlugin
-node_modules
+# Other .gitignore files:
 
-package-lock.json
+# DevOps/Scripts
+# DevOps/IDEPlugin
