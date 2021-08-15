@@ -1,0 +1,230 @@
+{
+  "todotree": {
+    "tree": [
+      {
+        "key": 1629042215988,
+        "children": [],
+        "todo": {
+          "content": "Solution",
+          "id": 1629042215988,
+          "level": "success",
+          "done": false
+        }
+      },
+      {
+        "key": 1629042284024,
+        "children": [
+          {
+            "key": 1629042293490,
+            "children": [
+              {
+                "key": 1629042305844,
+                "children": [],
+                "todo": {
+                  "content": "Create IDEPlugin Project",
+                  "id": 1629042305844,
+                  "level": "warning",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042317410,
+                "children": [],
+                "todo": {
+                  "content": "Create a new file format NewWorld.nwe that the IDEs / explorer can control himfor DevOps action like 'Generate Projects', 'Build', 'Build and Run' ...this file will be the main file of the Solution",
+                  "id": 1629042317410,
+                  "level": "warning",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042337527,
+                "children": [],
+                "todo": {
+                  "content": "Create VSCodePlugin SubProject",
+                  "id": 1629042337527,
+                  "level": "warning",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042370589,
+                "children": [],
+                "todo": {
+                  "content": "Create ExplorerPlugin SubProject",
+                  "id": 1629042370589,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042330484,
+                "children": [],
+                "todo": {
+                  "content": "Create VisualStudioPlugin SubProject",
+                  "id": 1629042330484,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "IDEPlugin",
+              "id": 1629042293490,
+              "level": "success",
+              "done": false
+            }
+          }
+        ],
+        "todo": {
+          "content": "DevOps",
+          "id": 1629042284024,
+          "level": "success",
+          "done": false
+        }
+      },
+      {
+        "key": 1629042386980,
+        "children": [
+          {
+            "key": 1629042398630,
+            "children": [],
+            "todo": {
+              "content": "Engine.h",
+              "id": 1629042398630,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042408056,
+            "children": [],
+            "todo": {
+              "content": "EntryPoint.h + ENTRY_POINT();",
+              "id": 1629042408056,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042408881,
+            "children": [],
+            "todo": {
+              "content": "pch file",
+              "id": 1629042408881,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042409346,
+            "children": [],
+            "todo": {
+              "content": "Dependencies.h",
+              "id": 1629042409346,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042436829,
+            "children": [
+              {
+                "key": 1629042447885,
+                "children": [],
+                "todo": {
+                  "content": "Primitive",
+                  "id": 1629042447885,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042448364,
+                "children": [],
+                "todo": {
+                  "content": "Data Structures",
+                  "id": 1629042448364,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042460314,
+                "children": [],
+                "todo": {
+                  "content": "Pointers",
+                  "id": 1629042460314,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Data Types",
+              "id": 1629042436829,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042437646,
+            "children": [],
+            "todo": {
+              "content": "Math",
+              "id": 1629042437646,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042438141,
+            "children": [
+              {
+                "key": 1629042490497,
+                "children": [],
+                "todo": {
+                  "content": "Log System",
+                  "id": 1629042490497,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Debug",
+              "id": 1629042438141,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042438599,
+            "children": [],
+            "todo": {
+              "content": "Application",
+              "id": 1629042438599,
+              "level": "default",
+              "done": false
+            }
+          }
+        ],
+        "todo": {
+          "content": "Engine",
+          "id": 1629042386980,
+          "level": "success",
+          "done": false
+        }
+      }
+    ],
+    "expandKeys": [
+      1629042215988,
+      1629042284024,
+      1629042293490,
+      1629042386980,
+      1629042398630,
+      1629042436829,
+      1629042438141
+    ]
+  }
+}
