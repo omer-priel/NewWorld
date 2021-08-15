@@ -118,11 +118,42 @@
           },
           {
             "key": 1629065843655,
-            "children": [],
+            "children": [
+              {
+                "key": 1629066050965,
+                "children": [],
+                "todo": {
+                  "content": "Check is npm exist",
+                  "id": 1629066050965,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629066054788,
+                "children": [],
+                "todo": {
+                  "content": "Install package.json",
+                  "id": 1629066054788,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629066057727,
+                "children": [],
+                "todo": {
+                  "content": "Install Todo List Plugins",
+                  "id": 1629066057727,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
             "todo": {
-              "content": "LoadDependencies.bat: Check is npm exist and install package.json",
+              "content": "LoadDependencies.bat",
               "id": 1629065843655,
-              "level": "default",
+              "level": "warning",
               "done": false
             }
           }
@@ -276,7 +307,9 @@
       1629042436829,
       1629042438141,
       1629065571958,
-      1629042293490
+      1629065843655,
+      1629042293490,
+      1629042337527
     ]
   }
 }
