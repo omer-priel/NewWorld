@@ -1,8 +1,8 @@
 @echo off
-PUSHD ..\
+PUSHD .\
 
 :main
-python DevOps\Scripts\src\Actions\CheckVersion.py
+%cd%\DevOps\Scripts\venv\Scripts\python %cd%\DevOps\Scripts\src\Actions\CheckVersion.py
 
 :exit
 POPD
