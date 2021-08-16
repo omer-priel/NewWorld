@@ -14,6 +14,10 @@ def SetTitle(title):
 def PresToConinue():
 	input("\nPress any key to continue . . . ")
 
+def ExitAction():
+	PresToConinue()
+	exit()
+
 def Init():
 	global Settings
 	

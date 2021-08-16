@@ -32,7 +32,8 @@ Utilities.SetTitle("Load Dependencies")
 # Check is programs exists
 try:
     subprocess.call(["npm", "--version"])
-except FileNotFoundError:
-    # handle file not found error.
+except:
+	print("npm dos not exists!")
+	Utilities.ExitAction()
 
 Utilities.PresToConinue()
