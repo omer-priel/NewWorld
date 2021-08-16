@@ -25,15 +25,24 @@ import Utilities.Utilities as Utilities
 
 import json
 import git
-import subprocess
+import os
 
 Utilities.SetTitle("Load Dependencies")
 
 # Check is programs exists
 try:
-    subprocess.call(["npm", "--version"])
+    os.system('start /wait /min cmd /c "(npm --version)&exit"')
 except:
 	print("npm dos not exists!")
 	Utilities.ExitAction()
+
+os.system("title Load Dependencies")
+
+print("Install NewWorldVSCodePlugin Dependencies")
+newWorldVSCodePlugin_folder = Utilities.GetSubPath("DevOps\\IDEPlugin\\NewWorldVSCodePlugin");
+
+os.removedirs(f"{newWorldVSCodePlugin_folder}/node_modules")
+
+os.system(f"cd {newWorldVSCodePlugin_folder}& start /wait /min npm install")
 
 Utilities.PresToConinue()

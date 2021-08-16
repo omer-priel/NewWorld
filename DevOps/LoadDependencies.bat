@@ -1,6 +1,8 @@
 @echo off
 PUSHD .\
 
+goto :debug
+
 title LoadDependencies (.bat)
 :python_check
 python -V
@@ -12,19 +14,21 @@ goto :exit
 
 :python_venv
 echo Delete "venv"
-rd /s /q %cd%\DevOps\Scripts\venv
+rd /s /q %cd%\Scripts\venv
 
 echo Config "venv"
-python -m venv %cd%\DevOps\Scripts\venv
+python -m venv %cd%\Scripts\venv
 
 :python_pip_dependencies
 echo Install pip Dependencies
-%cd%\DevOps\Scripts\venv\Scripts\python.exe -m pip install --upgrade pip
-%cd%\DevOps\Scripts\venv\Scripts\pip install requests
-%cd%\DevOps\Scripts\venv\Scripts\pip install GitPython
+%cd%\Scripts\venv\Scripts\python.exe -m pip install --upgrade pip
+%cd%\Scripts\venv\Scripts\pip install requests
+%cd%\Scripts\venv\Scripts\pip install GitPython
+
+:debug
 
 :main
-%cd%\DevOps\Scripts\venv\Scripts\python %cd%\DevOps\Scripts\src\Actions\LoadDependencies.py
+%cd%\Scripts\venv\Scripts\python %cd%\Scripts\src\LoadDependencies.py
 
 :exit
 POPD

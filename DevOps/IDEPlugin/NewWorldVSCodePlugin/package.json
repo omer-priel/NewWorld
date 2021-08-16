@@ -10,26 +10,26 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:newworld.action1",
-        "onCommand:newworld.action2",
-        "onCommand:newworld.action3"
+		"onCommand:newworld.action1",
+		"onCommand:newworld.action2",
+		"onCommand:newworld.action3"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "newworld.action1",
-                "category": "New World",
+				"category": "New World",
 				"title": "Action 1"
 			},
-            {
+			{
 				"command": "newworld.action2",
-                "category": "New World",
+				"category": "New World",
 				"title": "Action 2"
 			},
-            {
+			{
 				"command": "newworld.action3",
-                "category": "New World",
+				"category": "New World",
 				"title": "Action 3"
 			}
 		]
