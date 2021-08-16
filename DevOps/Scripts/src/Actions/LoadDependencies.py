@@ -18,3 +18,21 @@ cd ..
 copy /y .\Premake\bin\release\premake5.exe .\bin\premake5.exe
 
 """
+
+# LoadDependencies - Load the basic solution dependencies
+
+import Utilities.Utilities as Utilities
+
+import json
+import git
+import subprocess
+
+Utilities.SetTitle("Load Dependencies")
+
+# Check is programs exists
+try:
+    subprocess.call(["npm", "--version"])
+except FileNotFoundError:
+    # handle file not found error.
+
+Utilities.PresToConinue()
