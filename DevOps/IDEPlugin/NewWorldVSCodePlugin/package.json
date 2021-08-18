@@ -1,8 +1,10 @@
 {
 	"name": "newworld",
 	"displayName": "New World VSCode Plugin",
-	"description": "VSCode Plugin for New World Engine",
 	"version": "0.0.1",
+	"license": "",
+	"description": "VSCode Plugin for New World Engine",
+	"icon": "assets/images/Logo.png",
 	"engines": {
 		"vscode": "^1.59.0"
 	},
@@ -15,6 +17,9 @@
 		"onCommand:newworld.action3"
 	],
 	"main": "./dist/extension.js",
+	"configuration": {
+		"title": "New World"
+	},
 	"contributes": {
 		"commands": [
 			{
