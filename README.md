@@ -14,4 +14,4 @@ Load Dependencies:<br />
 DevOps\LoadDependencies.bat
 
 Generate Projects:<br />
-DevOps\Win-GenerateProjects.bat
+DevOps\GenerateProjects.bat.bat
