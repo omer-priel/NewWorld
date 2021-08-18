@@ -29,8 +29,6 @@ echo Install pip Dependencies
 :main
 %cd%\Scripts\venv\Scripts\python %cd%\Scripts\src\LoadDependencies.py
 
-pause
-
 :exit
 POPD
 exit /b

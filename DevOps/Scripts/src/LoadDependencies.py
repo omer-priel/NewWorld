@@ -63,13 +63,9 @@ print('Delete "Dependencies"')
 
 cmd(f'rd /s /q Dependencies')
 
-Utilities.PresToConinue()
-
 print('Load Submodules')
 cmd(f'echo %cd%&git submodule init', True)
 cmd(f'echo %cd%&git submodule update', True)
-
-Utilities.PresToConinue()
 
 cmd(f'md "Dependencies\\bin"')
 
