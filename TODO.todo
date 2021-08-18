@@ -110,36 +110,6 @@
             "key": 1629065843655,
             "children": [
               {
-                "key": 1629122125020,
-                "children": [],
-                "todo": {
-                  "content": "change to python file",
-                  "id": 1629122125020,
-                  "level": "danger",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629066050965,
-                "children": [],
-                "todo": {
-                  "content": "Check is npm exist",
-                  "id": 1629066050965,
-                  "level": "danger",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629066054788,
-                "children": [],
-                "todo": {
-                  "content": "Install package.json",
-                  "id": 1629066054788,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629066057727,
                 "children": [],
                 "todo": {
@@ -153,17 +123,7 @@
             "todo": {
               "content": "LoadDependencies",
               "id": 1629065843655,
-              "level": "warning",
-              "done": false
-            }
-          },
-          {
-            "key": 1629123297635,
-            "children": [],
-            "todo": {
-              "content": "create venv",
-              "id": 1629123297635,
-              "level": "danger",
+              "level": "default",
               "done": false
             }
           }
@@ -317,7 +277,8 @@
       1629042436829,
       1629042438141,
       1629065571958,
-      1629042337527
+      1629042337527,
+      1629065843655
     ]
   }
 }
