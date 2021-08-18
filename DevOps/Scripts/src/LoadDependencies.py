@@ -1,3 +1,9 @@
+# LoadDependencies - Load the basic solution dependencies
+
+import Utilities.Utilities as Utilities
+
+import os
+
 """
 
 :stage_2
@@ -19,30 +25,57 @@ copy /y .\Premake\bin\release\premake5.exe .\bin\premake5.exe
 
 """
 
-# LoadDependencies - Load the basic solution dependencies
+Utilities.SetTitle('Load Dependencies')
 
-import Utilities.Utilities as Utilities
+def cmd(command, show = False, workingDirectory = False):
 
-import json
-import git
-import os
+	if (not workingDirectory):
+		workingDirectory = Utilities.Settings.SolutionPath
+	
+	os.chdir(workingDirectory)
+	ret = os.popen(command).read()
 
-Utilities.SetTitle("Load Dependencies")
+	if (show):
+		print(ret)
+	return ret
 
 # Check is programs exists
 try:
-    os.system('start /wait /min cmd /c "(npm --version)&exit"')
+	cmd('npm --version')
 except:
-	print("npm dos not exists!")
+	print('npm dos not exists!')
 	Utilities.ExitAction()
 
-os.system("title Load Dependencies")
+Utilities.SetTitle('Load Dependencies')
 
-print("Install NewWorldVSCodePlugin Dependencies")
-newWorldVSCodePlugin_folder = Utilities.GetSubPath("DevOps\\IDEPlugin\\NewWorldVSCodePlugin");
+rootFolder = Utilities.Settings.SolutionPath
 
-os.removedirs(f"{newWorldVSCodePlugin_folder}/node_modules")
+print('Install NewWorldVSCodePlugin Dependencies')
+folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin');
 
-os.system(f"cd {newWorldVSCodePlugin_folder}& start /wait /min npm install")
+cmd(f'rd /s /q node_modules', False, folder)
+
+cmd(f'npm install', True, folder)
+
+Utilities.SetTitle('Load Dependencies')
+
+print('Delete "Dependencies"')
+
+cmd(f'rd /s /q Dependencies')
+
+Utilities.PresToConinue()
+
+print('Load Submodules')
+cmd(f'echo %cd%&git submodule init', True)
+cmd(f'echo %cd%&git submodule update', True)
+
+Utilities.PresToConinue()
+
+cmd(f'md "Dependencies\\bin"')
+
+print(f'Create Premake')
+
+cmd(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, f"{rootFolder}\\Dependencies\\Premake")
+cmd(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dependencies\\bin\\premake5.exe"', True)
 
 Utilities.PresToConinue()

@@ -9,7 +9,7 @@ def GetSubPath(filename):
 	return f"{Settings.SolutionPath}\{filename}"
 
 def SetTitle(title):
-	os.system(f'title {title}')
+	os.popen(f'title {title}').read()
 
 def PresToConinue():
 	input("\nPress any key to continue . . . ")
