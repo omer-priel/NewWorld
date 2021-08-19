@@ -84,47 +84,88 @@ function newClass(folderUriPath: string) {
 	inputBox.title = "Class Name";
 	log(inputBox.title);
 
-	inputBox.onDidAccept(() => {
+	inputBox.onDidAccept(async () => {
 
 		inputBox.hide();
 		
-		let className: String = inputBox.value;
+		let inputClassName: String = inputBox.value;
 
-		if (className.length === 0) {
+		if (inputClassName.length === 0) {
 			vscode.window.showErrorMessage('Class must have a name!');
 			return;
 		}
 
-		className = className.replace(' ', '');
-
-		if ('a' <= className[0] && className[0] <= 'z' || 'A' <= className[0] && className[0] <= 'Z') {
+		let newWord = true;
+		let className = '';
+		for (let i = 0; i < inputClassName.length; i++) {
 			
-			className =  className[0].toUpperCase() + className.substring(1);
-		} else {
+			let inputChar = inputClassName[i];
+			if (inputChar === ' ') {
+
+				newWord = true;
+			} else if (inputChar === '_') {
+				
+				newWord = true;
+				className += inputChar;
+			} else {
+		
+				let flag = 'a' <= inputChar && inputChar <= 'z';
+				flag = flag || 'A' <= inputChar && inputChar <= 'Z';
+				flag = flag || '0' <= inputChar && inputChar <= '9';
+
+				if (!flag) {
+
+					vscode.window.showErrorMessage('Class names can contain letters, digits and underscores!');
+					return;
+				}
+
+				if (newWord) {
+					
+					className += inputChar.toUpperCase();
+					newWord = false;
+				} else {
+
+					className += inputChar;
+				}
+			}
+		}
+
+		
+		if (className[0] < 'A' || 'Z' < className[0]) {
 			
 			vscode.window.showErrorMessage('Class names must begin with upper letter!');
 			return;
 		}
 
-		for (let i = 1; i < className.length; i++) {
-			
-			let flag = 'a' <= className[i] && className[i] <= 'z';
-			flag = flag || 'A' <= className[i] && className[i] <= 'Z';
-			flag = flag || '0' <= className[i] && className[i] <= '9';
-			flag = flag || className[i] === '_';
-
-			if (!flag) {
-			
-				vscode.window.showErrorMessage('Class names can contain letters, digits and underscores!');
-				return;
-			}
-		}
-
 		log(folderUri.fsPath);
+		
 		let headerUri = vscode.Uri.joinPath(folderUri, './' + className + '.h');
+		let sourceUri = vscode.Uri.joinPath(folderUri, './' + className + '.cpp');
+
 		log(headerUri.fsPath);
-	
-		//vscode.workspace.fs.writeFile(folderUri)
+		log(sourceUri.fsPath);
+		
+		let headerContent = `#pragma once
+
+class ClasName
+{
+	public:
+
+};`;
+
+		let sourceContent = '#include "ClasName.h"\n';
+
+		log(headerContent);
+		headerContent.replace('ClasName', className);
+		log(headerContent);
+
+		headerContent = headerContent.replace('ClasName', className);
+		sourceContent = sourceContent.replace('ClasName', className);
+
+		await vscode.workspace.fs.writeFile(headerUri, Buffer.from(headerContent, 'utf8'));
+		await vscode.workspace.fs.writeFile(sourceUri, Buffer.from(sourceContent, 'utf8'));
+
+		vscode.window.showTextDocument(headerUri);
 	});
 	
 	inputBox.show();
