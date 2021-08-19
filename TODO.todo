@@ -18,59 +18,8 @@
             "key": 1629042293490,
             "children": [
               {
-                "key": 1629042317410,
-                "children": [],
-                "todo": {
-                  "content": "Create a new file format NewWorld.nwe that the IDEs / explorer can control himfor DevOps action like 'Generate Projects', 'Build', 'Build and Run' ...this file will be the main file of the Solution",
-                  "id": 1629042317410,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629042337527,
-                "children": [
-                  {
-                    "key": 1629065571958,
-                    "children": [],
-                    "todo": {
-                      "content": "Add Logo",
-                      "id": 1629065571958,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1629065621447,
-                    "children": [],
-                    "todo": {
-                      "content": "Action: New Class",
-                      "id": 1629065621447,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629065621981,
-                    "children": [],
-                    "todo": {
-                      "content": "Action: Generate Projects",
-                      "id": 1629065621981,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629065659908,
-                    "children": [],
-                    "todo": {
-                      "content": "Action: Build",
-                      "id": 1629065659908,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
+                "children": [],
                 "todo": {
                   "content": "NewWorldVSCodePlugin",
                   "id": 1629042337527,
@@ -80,17 +29,99 @@
               },
               {
                 "key": 1629042370589,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1629381651336,
+                    "children": [],
+                    "todo": {
+                      "content": "Create Project",
+                      "id": 1629381651336,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629042317410,
+                    "children": [],
+                    "todo": {
+                      "content": "Create a new file format NewWorld.nwe that the IDEs / explorer can control himfor DevOps action like 'Generate Projects', 'Build', 'Build and Run' ...this file will be the main file of the Solution",
+                      "id": 1629042317410,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629381658296,
+                    "children": [],
+                    "todo": {
+                      "content": "Command: Generate Projects",
+                      "id": 1629381658296,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629381658911,
+                    "children": [],
+                    "todo": {
+                      "content": "Command: Build",
+                      "id": 1629381658911,
+                      "level": "warning",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
-                  "content": "Create NewWorldWindowsPlugin SubProject",
+                  "content": "NewWorldWindowsPlugin",
                   "id": 1629042370589,
-                  "level": "default",
+                  "level": "success",
                   "done": false
                 }
               },
               {
                 "key": 1629042330484,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1629381481973,
+                    "children": [],
+                    "todo": {
+                      "content": "Create Project",
+                      "id": 1629381481973,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629381502991,
+                    "children": [],
+                    "todo": {
+                      "content": "Add Logo",
+                      "id": 1629381502991,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629381503797,
+                    "children": [],
+                    "todo": {
+                      "content": "Command: New File",
+                      "id": 1629381503797,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629381504134,
+                    "children": [],
+                    "todo": {
+                      "content": "Command: New Class",
+                      "id": 1629381504134,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "Create NewWorldVisualStudioPlugin SubProject",
                   "id": 1629042330484,
@@ -277,9 +308,12 @@
       1629042436829,
       1629042438141,
       1629065571958,
-      1629042337527,
       1629065843655,
-      1629042293490
+      1629042293490,
+      1629042337527,
+      1629042370589,
+      1629042330484,
+      1629381481973
     ]
   }
 }
