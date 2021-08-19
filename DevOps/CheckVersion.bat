@@ -2,7 +2,7 @@
 PUSHD .\
 
 :main
-%cd%\DevOps\Scripts\venv\Scripts\python %cd%\DevOps\Scripts\src\Actions\CheckVersion.py
+%cd%\Scripts\venv\Scripts\python %cd%\Scripts\src\CheckVersion.py
 
 :exit
 POPD

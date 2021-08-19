@@ -172,13 +172,27 @@ class ClasName
 }
 
 function generateProjects()  {
-
-	vscode.window.showInformationMessage('New World generateProjects!');
+	
+	let terminal = vscode.window.createTerminal({
+		name: "GenerateProjects",
+		cwd: solution.path
+	} as any);
+	
+	terminal.sendText('cd DevOps');
+	terminal.sendText('GenerateProjects.bat');
+	terminal.show();
 }
 
 function build() {
-
-	vscode.window.showInformationMessage('New World build!');
+	
+	let terminal = vscode.window.createTerminal({
+		name: "Build",
+		cwd: solution.path
+	} as any);
+	
+	terminal.sendText('cd DevOps');
+	terminal.sendText('Build.bat');
+	terminal.show();
 }
 
 // activate / deactivate

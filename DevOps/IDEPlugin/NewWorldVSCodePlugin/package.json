@@ -38,17 +38,17 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"when": "isNewWorldEngine || true && explorerResourceIsFolder",
+					"when": "isNewWorldEngine && explorerResourceIsFolder",
 					"command": "newworld.newClass",
 					"group": "navigation@7"
 				},
 				{
-					"when": "isNewWorldEngine || true && explorerResourceIsFolder",
+					"when": "isNewWorldEngine && explorerResourceIsFolder",
 					"command": "newworld.generateProjects",
 					"group": "2_workspace@1"
 				},
 				{
-					"when": "isNewWorldEngine || true && explorerResourceIsFolder",
+					"when": "isNewWorldEngine && explorerResourceIsFolder",
 					"command": "newworld.build",
 					"group": "2_workspace@2"
 				}
