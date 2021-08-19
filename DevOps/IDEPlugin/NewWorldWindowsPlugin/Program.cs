@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Diagnostics;
 
 namespace NewWorldWindowsPlugin
 {
@@ -37,15 +37,21 @@ namespace NewWorldWindowsPlugin
 		static string FilePath = null;
 		static FileInfo FileInfo = null;
 
+		static void ErrorMessage(string message)
+		{
+			Imoprt.ShowConsole(false);
+
+			MessageBox.Show(message, Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+
 		static void Main(string[] args)
 		{
 			Application.EnableVisualStyles();
+			Imoprt.ShowConsole(false);
 
-			if (1 <= args.Length && args.Length <= 2)
+			if (args.Length < 1 || 2 < args.Length)
 			{
-				Imoprt.ShowConsole(false);
-
-				MessageBox.Show("This application work only on single .nwe file!", Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ErrorMessage("This application work only on single .nwe file!");
 				return;
 			}
 
@@ -61,13 +67,13 @@ namespace NewWorldWindowsPlugin
 
 			if (!Program.FileInfo.Exists)
 			{
-				MessageBox.Show("The path " + FilePath + " does not exists!", Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ErrorMessage("The path " + FilePath + " does not exists!");
 				return;
 			}
 
 			if (Program.FileInfo.Extension != ".nwe")
 			{
-				MessageBox.Show("This application work only on single .nwe file!", Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ErrorMessage("This application work only on single .nwe file!");
 				return;
 			}
 
@@ -77,7 +83,7 @@ namespace NewWorldWindowsPlugin
 			}
 			else
 			{
-				switch (args[1])
+				switch (args[1]) // commands
 				{
 					case "--help":
 						{
@@ -96,22 +102,28 @@ namespace NewWorldWindowsPlugin
 						}
 				}
 
-				Console.WriteLine("Error: The command {0} does not exists!", args[0]);
+				Imoprt.ShowConsole(true);
+				Console.WriteLine("Error: The command \"{0}\" does not exists!", args[0]);
 				HelpCommand();
 			}
 		}
 
 		static void HelpCommand()
 		{
-			Console.WriteLine("");
+			Imoprt.ShowConsole(true);
 
-			Console.Write("Press any key to continue . . . ");
-			Console.ReadKey();
+			Console.WriteLine("NewWorldPlugin:");
+			Console.WriteLine("{0} - Open the .nwe with Visual Studio Code");
+			Console.WriteLine("NewWorldPlugin --help                    - Show this help");
+			Console.WriteLine("NewWorldPlugin path                      - Open the .nwe with Visual Studio Code");
+			Console.WriteLine("NewWorldPlugin path --help               - Show this help");
+			Console.WriteLine("NewWorldPlugin path --generate-projects  - Generate Projects");
+			Console.WriteLine("NewWorldPlugin path --build              - Build the applications");
 		}
 
 		static void OpenWith()
 		{
-
+			Process.Start("code", FilePath);
 		}
 
 		static void GenerateProjectsCommand()
