@@ -7,7 +7,8 @@ https://gitlab.com/Omer-Projects/GameEngines/NewWorld
 https://opensource.org/licenses/MIT
 
 ## Azure
-https://dev.azure.com/OmerPrielNewWorld
+* Project	 : https://dev.azure.com/OmerPrielNewWorld
+* Marketplace: https://marketplace.visualstudio.com/manage/publishers/newworld
 
 ## Logo
 https://www.canva.com/design/DAEm07pxUUk/oyicj5ii7maokDOFNL1bdQ/edit
