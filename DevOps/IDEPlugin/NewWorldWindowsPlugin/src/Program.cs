@@ -7,11 +7,13 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Diagnostics;
+using System.Management;
 
 namespace NewWorldWindowsPlugin
 {
 	class Imoprt
 	{
+		// Windows API
 		private const int SW_SHOW = 5;
 		private const int SW_HIDE = 0;
 
@@ -28,6 +30,30 @@ namespace NewWorldWindowsPlugin
 
 			ShowWindow(handle, show ? SW_SHOW : SW_HIDE);
 		}
+
+		static private bool isConsole = false;
+		static private bool isConsoleCache = false;
+
+		static public bool IsConsole()
+		{
+			if (!isConsoleCache)
+			{
+				try
+				{
+					var query = new ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId = " + Process.GetCurrentProcess().Id);
+
+					Process parent = query.Get().OfType<ManagementObject>().Select(p => Process.GetProcessById((int)(uint)p["ParentProcessId"])).FirstOrDefault();
+					isConsole = parent.ProcessName == "cmd";
+				}
+				catch
+				{
+					isConsole = false;
+				}
+				isConsoleCache = true;
+			}
+
+			return isConsole;
+		}
 	}
 
 	static class Program
@@ -39,15 +65,24 @@ namespace NewWorldWindowsPlugin
 
 		static void ErrorMessage(string message)
 		{
-			Imoprt.ShowConsole(false);
-
-			MessageBox.Show(message, Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if (!Imoprt.IsConsole())
+			{
+				MessageBox.Show(message, Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+            else
+            {
+				Console.WriteLine("Error: {0}\n", message);
+				HelpCommand();
+			}
 		}
 
 		static void Main(string[] args)
 		{
-			Application.EnableVisualStyles();
-			Imoprt.ShowConsole(false);
+			if (!Imoprt.IsConsole())
+            {
+				Application.EnableVisualStyles();
+				Imoprt.ShowConsole(false);
+			}
 
 			if (args.Length < 1 || 2 < args.Length)
 			{
@@ -67,7 +102,7 @@ namespace NewWorldWindowsPlugin
 
 			if (!Program.FileInfo.Exists)
 			{
-				ErrorMessage("The path " + FilePath + " does not exists!");
+				ErrorMessage("The path \"" + FilePath + "\" does not exists!");
 				return;
 			}
 
@@ -102,18 +137,13 @@ namespace NewWorldWindowsPlugin
 						}
 				}
 
-				Imoprt.ShowConsole(true);
-				Console.WriteLine("Error: The command \"{0}\" does not exists!", args[0]);
-				HelpCommand();
+				ErrorMessage("The command \"" + args[1] + "\" does not exists!");
 			}
 		}
 
 		static void HelpCommand()
 		{
-			Imoprt.ShowConsole(true);
-
 			Console.WriteLine("NewWorldPlugin:");
-			Console.WriteLine("{0} - Open the .nwe with Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin --help                    - Show this help");
 			Console.WriteLine("NewWorldPlugin path                      - Open the .nwe with Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin path --help               - Show this help");
@@ -123,7 +153,25 @@ namespace NewWorldWindowsPlugin
 
 		static void OpenWith()
 		{
-			Process.Start("code", FilePath);
+			try
+			{
+				string codePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+				codePath = codePath.Remove(codePath.Length - 8, 8);
+				codePath += "\\Local\\Programs\\Microsoft VS Code\\Code.exe";
+
+				if (!File.Exists(codePath))
+                {
+					ErrorMessage("Visual Studio Code does not installed!");
+					return;
+				}
+
+				var p = Process.Start(codePath, FilePath);
+				Environment.Exit(0);
+			}
+			catch
+			{
+				ErrorMessage("Can't open Visual Studio Code!");
+			}
 		}
 
 		static void GenerateProjectsCommand()
