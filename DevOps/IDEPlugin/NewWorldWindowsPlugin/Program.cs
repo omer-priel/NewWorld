@@ -15,6 +15,7 @@ namespace NewWorldWindowsPlugin
             {
                 Console.WriteLine(arg);
             }
+            Console.ReadKey();
         }
     }
 }
