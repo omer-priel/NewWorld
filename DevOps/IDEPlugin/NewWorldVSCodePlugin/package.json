@@ -1,7 +1,7 @@
 {
 	"name": "newworld",
 	"displayName": "New World",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "VSCode Plugin for New World Engine",
 	"publisher": "NewWorld",
 	"license": "MIT",
@@ -80,5 +80,8 @@
 		"ts-loader": "^9.2.2",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0"
+	},
+	"dependencies": {
+		"fs": "0.0.1-security"
 	}
 }

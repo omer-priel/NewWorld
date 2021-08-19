@@ -18,6 +18,12 @@ def ExitAction():
 	PresToConinue()
 	exit()
 
+def LoadJsonFile(path):
+	file = open(path, 'r')
+	obj = json.load(file, object_hook=lambda d: SimpleNamespace(**d))
+	file.close()
+	return obj
+
 def Init():
 	global Settings
 	
@@ -26,10 +32,8 @@ def Init():
 	while not os.path.isdir(solutionPath + "/.git"):
 		solutionPath = os.path.abspath(os.path.join(solutionPath, os.pardir))
 	
-	file = open(f"{solutionPath}\DevOps\Scripts\Settings.json",'r')
-	Settings = json.load(file, object_hook=lambda d: SimpleNamespace(**d))
+	Settings = LoadJsonFile(f"{solutionPath}\DevOps\Scripts\Settings.json")
 	Settings.SolutionPath = solutionPath
-	file.close()
 
 	sys.path.append(GetSubPath('DevOps'))
 

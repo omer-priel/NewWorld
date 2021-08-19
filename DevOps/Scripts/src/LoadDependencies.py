@@ -30,10 +30,11 @@ Utilities.SetTitle('Load Dependencies')
 rootFolder = Utilities.Settings.SolutionPath
 
 # Install NewWorldVSCodePlugin
-NewWorldVSCodePluginVersion = '0.0.3'
+jsonPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin\\package.json')
+NewWorldVSCodePluginVersion = Utilities.LoadJsonFile(jsonPath).version
 
 print('Install NewWorldVSCodePlugin Dependencies')
-folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin');
+folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin')
 
 cmd(f'rd /s /q node_modules', False, folder)
 

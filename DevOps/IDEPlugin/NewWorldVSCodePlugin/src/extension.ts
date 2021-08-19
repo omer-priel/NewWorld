@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as fs from 'fs';
 
 class Solution {
     name: string;
@@ -138,7 +139,25 @@ function newClass(folderUriPath: string) {
 		
 		let headerUri = vscode.Uri.joinPath(folderUri, './' + className + '.h');
 		let sourceUri = vscode.Uri.joinPath(folderUri, './' + className + '.cpp');
-		
+
+		if (fs.existsSync(headerUri.fsPath)) {
+			
+			if (fs.existsSync(sourceUri.fsPath)) {
+
+				vscode.window.showErrorMessage('The class ' + className + ' already exists!');	
+			} else {
+
+				vscode.window.showErrorMessage('The header ' + className + '.h already exists!');	
+			}
+			return;
+		}
+
+		if (fs.existsSync(sourceUri.fsPath)) {
+
+			vscode.window.showErrorMessage('The source ' + className + '.cpp already exists!');	
+			return;
+		}
+
 		let headerContent = `#pragma once
 
 class ClasName
