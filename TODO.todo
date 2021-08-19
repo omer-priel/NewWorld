@@ -31,16 +31,6 @@
                 "key": 1629042370589,
                 "children": [
                   {
-                    "key": 1629381651336,
-                    "children": [],
-                    "todo": {
-                      "content": "Create Project",
-                      "id": 1629381651336,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
                     "key": 1629042317410,
                     "children": [],
                     "todo": {

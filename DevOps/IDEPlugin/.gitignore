@@ -1,6 +1,15 @@
-out
-dist
-node_modules
-.vscode-test/
+# NewWorldVSCodePlugin
+NewWorldVSCodePlugin/out
+NewWorldVSCodePlugin/dist
+NewWorldVSCodePlugin/node_modules
+NewWorldVSCodePlugin/.vscode-test/
 
-package-lock.json
+NewWorldVSCodePlugin/package-lock.json
+
+# NewWorldWindowsPlugin
+NewWorldWindowsPlugin/obj
+
+!NewWorldWindowsPlugin/*.sln
+!NewWorldWindowsPlugin/*.csproj
+!NewWorldWindowsPlugin/*.vcxproj
+!NewWorldWindowsPlugin/*.vcxproj.filters
