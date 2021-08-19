@@ -1,3 +1,3 @@
-# New World VSCode Plugin
+# New World
 
 VSCode Plugin for New World Engine

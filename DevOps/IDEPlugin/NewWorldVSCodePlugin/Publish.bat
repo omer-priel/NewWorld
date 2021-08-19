@@ -1,6 +1,6 @@
 @echo off
 
-vsce package
+vsce publish
 
 :exit
 exit /b

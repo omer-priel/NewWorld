@@ -51,7 +51,7 @@ Utilities.SetTitle('Load Dependencies')
 rootFolder = Utilities.Settings.SolutionPath
 
 # Install NewWorldVSCodePlugin
-NewWorldVSCodePluginVersion = '0.0.2'
+NewWorldVSCodePluginVersion = '0.0.3'
 
 print('Install NewWorldVSCodePlugin Dependencies')
 folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin');
