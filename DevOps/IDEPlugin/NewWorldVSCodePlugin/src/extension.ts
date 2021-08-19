@@ -56,40 +56,102 @@ function dir(obj: any) {
     console.dir(obj);
 }
 
-// plugin commands
-function pushVSCodeCommand(name: String, callback: (...args: any[]) => any, thisArg?: any) {
-    if (!global.solution.isNewWorldEngine()) {
+// utilites
+function pushVSCodeCommand(name: String, callback: (...args: any[]) => any) {
+    
+	let commandId = global.plugin.name + "." + name;
+	
+	if (!global.solution.isNewWorldEngine()) {
         callback = (...args: any[]) => {
             vscode.window.showInformationMessage('Is not New World project!');
-        };    
+        };
     }
 
-    let command = vscode.commands.registerCommand(global.plugin.name + "." + name, callback);
+    let command = vscode.commands.registerCommand(commandId, callback);
     global.plugin.context.subscriptions.push(command);
 }
 
+// commands
+function newClass(folderUriPath: string) {
+
+	if (folderUriPath === undefined) {
+		vscode.window.showErrorMessage('Undefined folder path!');	
+		return;
+	}
+	let folderUri = vscode.Uri.parse(folderUriPath);
+
+	let inputBox = vscode.window.createInputBox();
+	inputBox.title = "Class Name";
+	log(inputBox.title);
+
+	inputBox.onDidAccept(() => {
+
+		inputBox.hide();
+		
+		let className: String = inputBox.value;
+
+		if (className.length === 0) {
+			vscode.window.showErrorMessage('Class must have a name!');
+			return;
+		}
+
+		className = className.replace(' ', '');
+
+		if ('a' <= className[0] && className[0] <= 'z' || 'A' <= className[0] && className[0] <= 'Z') {
+			
+			className =  className[0].toUpperCase() + className.substring(1);
+		} else {
+			
+			vscode.window.showErrorMessage('Class names must begin with upper letter!');
+			return;
+		}
+
+		for (let i = 1; i < className.length; i++) {
+			
+			let flag = 'a' <= className[i] && className[i] <= 'z';
+			flag = flag || 'A' <= className[i] && className[i] <= 'Z';
+			flag = flag || '0' <= className[i] && className[i] <= '9';
+			flag = flag || className[i] === '_';
+
+			if (!flag) {
+			
+				vscode.window.showErrorMessage('Class names can contain letters, digits and underscores!');
+				return;
+			}
+		}
+
+		log(folderUri.fsPath);
+		let headerUri = vscode.Uri.joinPath(folderUri, './' + className + '.h');
+		log(headerUri.fsPath);
+	
+		//vscode.workspace.fs.writeFile(folderUri)
+	});
+	
+	inputBox.show();
+}
+
+function generateProjects()  {
+
+	vscode.window.showInformationMessage('New World generateProjects!');
+}
+
+function build() {
+
+	vscode.window.showInformationMessage('New World build!');
+}
+
+// activate / deactivate
 export function activate(context: vscode.ExtensionContext) {
 
     global.plugin = new Plugin(context);
 
     loadSolution();
 
-	pushVSCodeCommand('action1' , () => {
+	vscode.commands.executeCommand('setContext', 'isNewWorldEngine', global.solution.isNewWorldEngine());
 
-		vscode.window.showInformationMessage('New World action1! ');
-	});
-
-    pushVSCodeCommand('action2' , () => {
-
-		vscode.window.showInformationMessage('New World action2! ');
-	});
-
-    pushVSCodeCommand('action3' , () => {
-        
-        dir(global.solution);
-        log(global.solution.name);
-        dir(global.plugin);
-	});
+	pushVSCodeCommand('newClass', newClass);
+	pushVSCodeCommand('generateProjects', generateProjects);
+	pushVSCodeCommand('build', build);
 }
 
 export function deactivate() {

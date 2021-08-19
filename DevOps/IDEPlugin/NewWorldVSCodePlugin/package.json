@@ -2,9 +2,9 @@
 	"name": "newworld",
 	"displayName": "New World VSCode Plugin",
 	"version": "0.0.1",
-	"license": "",
+	"license": "MIT",
 	"description": "VSCode Plugin for New World Engine",
-	"icon": "assets/images/Logo.png",
+	"icon": "https://gitlab.com/Omer-Projects/GameEngines/NewWorld/-/raw/master/Logo.ico",
 	"engines": {
 		"vscode": "^1.59.0"
 	},
@@ -12,32 +12,48 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:newworld.action1",
-		"onCommand:newworld.action2",
-		"onCommand:newworld.action3"
+		"onCommand:newworld.newClass",
+		"onCommand:newworld.generateProjects",
+		"onCommand:newworld.build"
 	],
 	"main": "./dist/extension.js",
-	"configuration": {
-		"title": "New World"
-	},
 	"contributes": {
 		"commands": [
 			{
-				"command": "newworld.action1",
+				"command": "newworld.newClass",
 				"category": "New World",
-				"title": "Action 1"
+				"title": "New Class"
 			},
 			{
-				"command": "newworld.action2",
+				"command": "newworld.generateProjects",
 				"category": "New World",
-				"title": "Action 2"
+				"title": "Generate Projects"
 			},
 			{
-				"command": "newworld.action3",
+				"command": "newworld.build",
 				"category": "New World",
-				"title": "Action 3"
+				"title": "Build"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "isNewWorldEngine || true && explorerResourceIsFolder",
+					"command": "newworld.newClass",
+					"group": "navigation@7"
+				},
+				{
+					"when": "isNewWorldEngine || true && explorerResourceIsFolder",
+					"command": "newworld.generateProjects",
+					"group": "2_workspace@1"
+				},
+				{
+					"when": "isNewWorldEngine || true && explorerResourceIsFolder",
+					"command": "newworld.build",
+					"group": "2_workspace@2"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
