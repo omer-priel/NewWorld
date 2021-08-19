@@ -1,7 +1,7 @@
 {
 	"name": "newworld",
 	"displayName": "New World",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "VSCode Plugin for New World Engine",
 	"publisher": "NewWorld",
 	"license": "MIT",

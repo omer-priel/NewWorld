@@ -51,6 +51,8 @@ Utilities.SetTitle('Load Dependencies')
 rootFolder = Utilities.Settings.SolutionPath
 
 # Install NewWorldVSCodePlugin
+NewWorldVSCodePluginVersion = '0.0.2'
+
 print('Install NewWorldVSCodePlugin Dependencies')
 folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin');
 
@@ -59,7 +61,7 @@ cmd(f'rd /s /q node_modules', False, folder)
 cmd(f'npm install', True, folder)
 
 print('Install NewWorldVSCodePlugin')
-cmd(f'code --install-extension newworld-0.0.1.vsix', True, folder)
+cmd(f'code --install-extension newworld-{NewWorldVSCodePluginVersion}.vsix', True, folder)
 
 Utilities.SetTitle('Load Dependencies')
 
