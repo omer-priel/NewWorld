@@ -12,7 +12,7 @@ class Solution {
     }
 
     isNewWorldEngine() {
-        return this.name !== '';
+        return this.name === 'NewWorld';
     }
 }
 
@@ -41,7 +41,7 @@ function loadSolution() {
     if (vscode.workspace.workspaceFolders !== undefined && vscode.workspace.workspaceFolders.length === 1) {
         
         global.solution.name = vscode.workspace.workspaceFolders[0].name;
-        global.solution.path = vscode.workspace.workspaceFolders[0].uri.fsPath;
+		global.solution.path = vscode.workspace.workspaceFolders[0].uri.fsPath;
         global.solution.uri = vscode.workspace.workspaceFolders[0].uri;
     }
 }
@@ -82,7 +82,6 @@ function newClass(folderUriPath: string) {
 
 	let inputBox = vscode.window.createInputBox();
 	inputBox.title = "Class Name";
-	log(inputBox.title);
 
 	inputBox.onDidAccept(async () => {
 
@@ -136,14 +135,9 @@ function newClass(folderUriPath: string) {
 			vscode.window.showErrorMessage('Class names must begin with upper letter!');
 			return;
 		}
-
-		log(folderUri.fsPath);
 		
 		let headerUri = vscode.Uri.joinPath(folderUri, './' + className + '.h');
 		let sourceUri = vscode.Uri.joinPath(folderUri, './' + className + '.cpp');
-
-		log(headerUri.fsPath);
-		log(sourceUri.fsPath);
 		
 		let headerContent = `#pragma once
 
@@ -154,10 +148,6 @@ class ClasName
 };`;
 
 		let sourceContent = '#include "ClasName.h"\n';
-
-		log(headerContent);
-		headerContent.replace('ClasName', className);
-		log(headerContent);
 
 		headerContent = headerContent.replace('ClasName', className);
 		sourceContent = sourceContent.replace('ClasName', className);

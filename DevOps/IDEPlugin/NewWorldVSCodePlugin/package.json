@@ -1,10 +1,11 @@
 {
 	"name": "newworld",
-	"displayName": "New World VSCode Plugin",
+	"displayName": "New World",
 	"version": "0.0.1",
-	"license": "MIT",
 	"description": "VSCode Plugin for New World Engine",
-	"icon": "https://gitlab.com/Omer-Projects/GameEngines/NewWorld/-/raw/master/Logo.ico",
+	"publisher": "NewWorld",
+	"license": "MIT",
+	"icon": "Logo.ico",
 	"engines": {
 		"vscode": "^1.59.0"
 	},
@@ -12,9 +13,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:newworld.newClass",
-		"onCommand:newworld.generateProjects",
-		"onCommand:newworld.build"
+		"onStartupFinished"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {

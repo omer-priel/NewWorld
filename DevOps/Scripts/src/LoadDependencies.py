@@ -50,6 +50,7 @@ Utilities.SetTitle('Load Dependencies')
 
 rootFolder = Utilities.Settings.SolutionPath
 
+# Install NewWorldVSCodePlugin
 print('Install NewWorldVSCodePlugin Dependencies')
 folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin');
 
@@ -57,8 +58,12 @@ cmd(f'rd /s /q node_modules', False, folder)
 
 cmd(f'npm install', True, folder)
 
+print('Install NewWorldVSCodePlugin')
+cmd(f'code --install-extension newworld-0.0.1.vsix', True, folder)
+
 Utilities.SetTitle('Load Dependencies')
 
+# git submodules
 print('Delete "Dependencies"')
 
 cmd(f'rd /s /q Dependencies')
@@ -69,6 +74,7 @@ cmd(f'echo %cd%&git submodule update', True)
 
 cmd(f'md "Dependencies\\bin"')
 
+# Premake
 print(f'Create Premake')
 
 cmd(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, f"{rootFolder}\\Dependencies\\Premake")
