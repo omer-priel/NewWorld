@@ -1,3 +1,13 @@
 {
-    
+    "name": "New World",
+    "projects": [
+        {
+            "name": "NewWorld",
+            "type": "engine"
+        },
+        {
+            "name": "Sandbox",
+            "type": "application"
+        }
+    ]
 }
