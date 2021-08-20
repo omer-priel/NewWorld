@@ -46,7 +46,7 @@
                     "todo": {
                       "content": "Create Project",
                       "id": 1629381481973,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   },
@@ -56,7 +56,7 @@
                     "todo": {
                       "content": "Add Logo",
                       "id": 1629381502991,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   },
@@ -66,7 +66,7 @@
                     "todo": {
                       "content": "Command: New File",
                       "id": 1629381503797,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   },
@@ -76,15 +76,25 @@
                     "todo": {
                       "content": "Command: New Class",
                       "id": 1629381504134,
-                      "level": "default",
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629471369207,
+                    "children": [],
+                    "todo": {
+                      "content": "Command: Open With VSCode",
+                      "id": 1629471369207,
+                      "level": "warning",
                       "done": false
                     }
                   }
                 ],
                 "todo": {
-                  "content": "Create NewWorldVisualStudioPlugin SubProject",
+                  "content": "NewWorldVisualStudioPlugin",
                   "id": 1629042330484,
-                  "level": "default",
+                  "level": "success",
                   "done": false
                 }
               }
@@ -98,18 +108,7 @@
           },
           {
             "key": 1629065843655,
-            "children": [
-              {
-                "key": 1629066057727,
-                "children": [],
-                "todo": {
-                  "content": "Install Todo List Plugins",
-                  "id": 1629066057727,
-                  "level": "default",
-                  "done": false
-                }
-              }
-            ],
+            "children": [],
             "todo": {
               "content": "LoadDependencies",
               "id": 1629065843655,
