@@ -6,94 +6,10 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Management;
-using System.Runtime.InteropServices;
 using Microsoft.Win32;
 
 namespace NewWorldWindowsPlugin
 {
-	class Import
-	{
-		// Windows API
-		private const int SW_SHOW = 5;
-		private const int SW_HIDE = 0;
-
-		[DllImport("kernel32.dll")]
-		static private extern IntPtr GetConsoleWindow();
-
-		[DllImport("user32.dll")]
-		static private extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-		[DllImport("Shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-		static private extern void SHChangeNotify(uint wEventId, uint uFlags, IntPtr dwItem1, IntPtr dwItem2);
-
-		// Actions
-		static public void ShowConsole(bool show)
-		{
-			IntPtr handle = Import.GetConsoleWindow();
-
-			ShowWindow(handle, show ? SW_SHOW : SW_HIDE);
-		}
-
-		static private bool isConsole = false;
-		static private bool isConsoleCache = false;
-
-		static public bool IsConsole()
-		{
-			if (!isConsoleCache)
-			{
-				try
-				{
-					var query = new ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId = " + Process.GetCurrentProcess().Id);
-
-					Process parent = query.Get().OfType<ManagementObject>().Select(p => Process.GetProcessById((int)(uint)p["ParentProcessId"])).FirstOrDefault();
-					isConsole = parent.ProcessName == "cmd";
-				}
-				catch
-				{
-					isConsole = false;
-				}
-				isConsoleCache = true;
-			}
-
-			return isConsole;
-		}
-
-		static public void UpdateRegistry()
-        {
-			SHChangeNotify(0x08000000, 0x0000, IntPtr.Zero, IntPtr.Zero);
-		}
-
-		static public void DeleteRegistrykey(RegistryKey root, string parentkey, string keyName)
-		{
-			RegistryKey reg;
-			if (parentkey == null)
-			{
-				reg = root.OpenSubKey(keyName, false);
-			}
-            else
-            {
-				reg = root.OpenSubKey(parentkey + "\\" + keyName, false);
-			}
-
-			if (reg != null)
-			{
-				reg.Close();
-
-				if (parentkey == null)
-				{
-					root.DeleteSubKeyTree(keyName);
-				}
-				else
-				{
-					RegistryKey parentReg = root.OpenSubKey(parentkey, true);
-					parentReg.DeleteSubKeyTree(keyName);
-					parentReg.Close();
-				}
-			}
-		}
-	}
-
 	static class Program
 	{
 		static string Title = "New World";
@@ -104,7 +20,7 @@ namespace NewWorldWindowsPlugin
 
 		static void ErrorMessage(string message)
 		{
-			if (!Import.IsConsole())
+			if (!WindowsAPI.IsConsole())
 			{
 				MessageBox.Show(message, Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
@@ -119,7 +35,7 @@ namespace NewWorldWindowsPlugin
 		{
 			try
 			{
-				Import.ShowConsole(true);
+				WindowsAPI.ShowConsole(true);
 
 				string applicationFolder = Application.StartupPath;
 				DirectoryInfo directory = new DirectoryInfo(applicationFolder);
@@ -150,10 +66,10 @@ namespace NewWorldWindowsPlugin
 		}
 		static void Main(string[] args)
 		{
-			if (!Import.IsConsole())
+			if (!WindowsAPI.IsConsole())
             {
 				Application.EnableVisualStyles();
-				Import.ShowConsole(false);
+				WindowsAPI.ShowConsole(false);
 			}
 
 			if (args.Length < 1 || 2 < args.Length)
@@ -240,12 +156,12 @@ namespace NewWorldWindowsPlugin
 				// Remove lass Registry data
 				try
 				{
-					Import.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
-					Import.DeleteRegistrykey(Registry.ClassesRoot, null, ApplicationName);
+					WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
+					WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ApplicationName);
 				}
 				catch { }
 
-				Import.UpdateRegistry();
+				WindowsAPI.UpdateRegistry();
 
 				// Get Application Path
 				string applicationPath = Application.ExecutablePath;
@@ -285,14 +201,14 @@ namespace NewWorldWindowsPlugin
 				fileReg.Close();
 				appReg.Close();
 
-				Import.UpdateRegistry();
+				WindowsAPI.UpdateRegistry();
 			}
 			catch (Exception ex)
 			{
 				ErrorMessage(ex.Message);
 			}
 
-			Import.UpdateRegistry();
+			WindowsAPI.UpdateRegistry();
 		}
 
 		static void OpenWith()
@@ -309,7 +225,7 @@ namespace NewWorldWindowsPlugin
 					return;
 				}
 
-				Process.Start(codePath, FilePath);
+				Process.Start(codePath, FileInfo.Directory.FullName);
 				Environment.Exit(0);
 			}
 			catch

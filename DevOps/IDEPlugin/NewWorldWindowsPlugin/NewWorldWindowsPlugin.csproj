@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\WindowsAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

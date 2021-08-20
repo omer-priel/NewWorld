@@ -29,6 +29,16 @@
                       "level": "warning",
                       "done": false
                     }
+                  },
+                  {
+                    "key": 1629464667717,
+                    "children": [],
+                    "todo": {
+                      "content": ".nwe icon in vscode",
+                      "id": 1629464667717,
+                      "level": "warning",
+                      "done": false
+                    }
                   }
                 ],
                 "todo": {
@@ -40,18 +50,7 @@
               },
               {
                 "key": 1629042370589,
-                "children": [
-                  {
-                    "key": 1629461184508,
-                    "children": [],
-                    "todo": {
-                      "content": ".nwe open: open NewWorld in vscode instead of the .nwe file",
-                      "id": 1629461184508,
-                      "level": "warning",
-                      "done": false
-                    }
-                  }
-                ],
+                "children": [],
                 "todo": {
                   "content": "NewWorldWindowsPlugin",
                   "id": 1629042370589,
@@ -294,7 +293,8 @@
       1629042337527,
       1629042370589,
       1629042330484,
-      1629381481973
+      1629381481973,
+      1629402662411
     ]
   }
 }
