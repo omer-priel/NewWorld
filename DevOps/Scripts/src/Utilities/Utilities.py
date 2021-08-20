@@ -25,6 +25,18 @@ def LoadJsonFile(path):
 	file.close()
 	return obj
 
+
+def CMD(command, show=False, workingDirectory=False):
+	if (not workingDirectory):
+		workingDirectory = Settings.SolutionPath
+
+	os.chdir(workingDirectory)
+	ret = os.popen(command).read()
+
+	if (show):
+		print(ret)
+	return ret
+
 def Init():
 	global Settings
 	

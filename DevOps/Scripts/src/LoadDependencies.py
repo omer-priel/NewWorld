@@ -1,26 +1,13 @@
 # LoadDependencies - Load the basic solution dependencies
 
 import Utilities.Utilities as Utilities
-
-import os
+import Utilities.MSBuild as MSBuild
 
 Utilities.SetTitle('Load Dependencies')
 
-def cmd(command, show = False, workingDirectory = False):
-
-	if (not workingDirectory):
-		workingDirectory = Utilities.Settings.SolutionPath
-	
-	os.chdir(workingDirectory)
-	ret = os.popen(command).read()
-
-	if (show):
-		print(ret)
-	return ret
-
 # Check is programs exists
 try:
-	cmd('npm --version')
+	Utilities.CMD('npm --version')
 except:
 	print('npm dos not exists!')
 	Utilities.ExitAction()
@@ -31,41 +18,40 @@ rootFolder = Utilities.Settings.SolutionPath
 
 # Install NewWorldVSCodePlugin
 jsonPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin\\package.json')
-NewWorldVSCodePluginVersion = Utilities.LoadJsonFile(jsonPath).version
+newWorldVSCodePluginVersion = Utilities.LoadJsonFile(jsonPath).version
 
 print('Install NewWorldVSCodePlugin Dependencies')
 folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin')
 
-cmd(f'rd /s /q node_modules', False, folder)
+Utilities.CMD(f'rd /s /q node_modules', False, folder)
 
-cmd(f'npm install', True, folder)
+Utilities.CMD(f'npm install', True, folder)
 
 print('Install NewWorldVSCodePlugin')
-cmd(f'code --install-extension newworld-{NewWorldVSCodePluginVersion}.vsix', True, folder)
+Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodePluginVersion}.vsix', True, folder)
 
-# Install NewWorldWindowsPlugin
+MSBuild.Build(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\NewWorldWindowsPlugin.sln'), "Release")
+newWorldWindowsPlugin = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\bin\\Release')
 
-# TODO: Build NewWorldPlugin
-# TODO: NewWorldPlugin --init-plugin
-
+Utilities.CMD(f'NewWorldPlugin --init-plugin', True, newWorldWindowsPlugin)
 
 Utilities.SetTitle('Load Dependencies')
 
 # git submodules
 print('Delete "Dependencies"')
 
-cmd(f'rd /s /q Dependencies')
+Utilities.CMD(f'rd /s /q Dependencies')
 
 print('Load Submodules')
-cmd(f'git submodule init', True)
-cmd(f'git submodule update', True)
+Utilities.CMD(f'git submodule init', True)
+Utilities.CMD(f'git submodule update', True)
 
-cmd(f'md "Dependencies\\bin"')
+Utilities.CMD(f'md "Dependencies\\bin"')
 
 # Premake
 print(f'Create Premake')
 
-cmd(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, f"{rootFolder}\\Dependencies\\Premake")
-cmd(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dependencies\\bin\\premake5.exe"', True)
+Utilities.CMD(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, f"{rootFolder}\\Dependencies\\Premake")
+Utilities.CMD(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dependencies\\bin\\premake5.exe"', True)
 
 Utilities.PresToConinue()
