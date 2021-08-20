@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
 using System.IO;
+using System.Windows.Forms;
 using System.Diagnostics;
 using System.Management;
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace NewWorldWindowsPlugin
 {
-	class Imoprt
+	class Import
 	{
 		// Windows API
 		private const int SW_SHOW = 5;
@@ -23,10 +24,13 @@ namespace NewWorldWindowsPlugin
 		[DllImport("user32.dll")]
 		static private extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
+		[DllImport("Shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		static private extern void SHChangeNotify(uint wEventId, uint uFlags, IntPtr dwItem1, IntPtr dwItem2);
+
 		// Actions
 		static public void ShowConsole(bool show)
 		{
-			IntPtr handle = Imoprt.GetConsoleWindow();
+			IntPtr handle = Import.GetConsoleWindow();
 
 			ShowWindow(handle, show ? SW_SHOW : SW_HIDE);
 		}
@@ -54,18 +58,53 @@ namespace NewWorldWindowsPlugin
 
 			return isConsole;
 		}
+
+		static public void UpdateRegistry()
+        {
+			SHChangeNotify(0x08000000, 0x0000, IntPtr.Zero, IntPtr.Zero);
+		}
+
+		static public void DeleteRegistrykey(RegistryKey root, string parentkey, string keyName)
+		{
+			RegistryKey reg;
+			if (parentkey == null)
+			{
+				reg = root.OpenSubKey(keyName, false);
+			}
+            else
+            {
+				reg = root.OpenSubKey(parentkey + "\\" + keyName, false);
+			}
+
+			if (reg != null)
+			{
+				reg.Close();
+
+				if (parentkey == null)
+				{
+					root.DeleteSubKeyTree(keyName);
+				}
+				else
+				{
+					RegistryKey parentReg = root.OpenSubKey(parentkey, true);
+					parentReg.DeleteSubKeyTree(keyName);
+					parentReg.Close();
+				}
+			}
+		}
 	}
 
 	static class Program
 	{
 		static string Title = "New World";
+		static string ApplicationName = "NewWorldPlugin";
 
 		static string FilePath = null;
 		static FileInfo FileInfo = null;
 
 		static void ErrorMessage(string message)
 		{
-			if (!Imoprt.IsConsole())
+			if (!Import.IsConsole())
 			{
 				MessageBox.Show(message, Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
@@ -78,10 +117,10 @@ namespace NewWorldWindowsPlugin
 
 		static void Main(string[] args)
 		{
-			if (!Imoprt.IsConsole())
+			if (!Import.IsConsole())
             {
 				Application.EnableVisualStyles();
-				Imoprt.ShowConsole(false);
+				Import.ShowConsole(false);
 			}
 
 			if (args.Length < 1 || 2 < args.Length)
@@ -90,11 +129,20 @@ namespace NewWorldWindowsPlugin
 				return;
 			}
 
-			if (args[0] == "--help")
+			switch (args[0])
 			{
-				HelpCommand();
-				return;
+				case "--help":
+					{
+						HelpCommand();
+						return;
+					}
+				case "--init-plugin":
+					{
+						InitPluginForWindows();
+						return;
+					}
 			}
+			
 
 			FilePath = args[0];
 
@@ -145,10 +193,61 @@ namespace NewWorldWindowsPlugin
 		{
 			Console.WriteLine("NewWorldPlugin:");
 			Console.WriteLine("NewWorldPlugin --help                    - Show this help");
+			Console.WriteLine("NewWorldPlugin --init-plugin             - Initialize the plugin for Windows");
 			Console.WriteLine("NewWorldPlugin path                      - Open the .nwe with Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin path --help               - Show this help");
 			Console.WriteLine("NewWorldPlugin path --generate-projects  - Generate Projects");
 			Console.WriteLine("NewWorldPlugin path --build              - Build the applications");
+		}
+
+		static void InitPluginForWindows()
+		{
+			try
+			{
+				// Remove lass Registry data
+				try
+				{
+					Import.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
+					Import.DeleteRegistrykey(Registry.ClassesRoot, null, ApplicationName);
+				}
+				catch { }
+
+				Import.UpdateRegistry();
+
+				// Get Application Path
+				string applicationPath = Application.ExecutablePath;
+
+				// Get Logo.ico path
+				string applicationFolder = Application.StartupPath;
+				DirectoryInfo directory = new DirectoryInfo(applicationFolder);
+
+				string logoPath = directory.Parent.Parent.FullName + "\\Logo.ico";
+
+				// Create Keys
+				RegistryKey fileReg = Registry.ClassesRoot.CreateSubKey(@".nwe");
+				RegistryKey appReg = Registry.ClassesRoot.CreateSubKey(ApplicationName);
+
+				fileReg.SetValue("", ApplicationName);
+				fileReg.SetValue("Content Type", "application/json");
+				fileReg.CreateSubKey("OpenWithList\\" + ApplicationName).SetValue("", "");
+				fileReg.CreateSubKey("OpenWithProgids").SetValue(ApplicationName, 0);
+				fileReg.CreateSubKey("PerceivedType").SetValue("", "Text");
+
+				appReg.SetValue("", "New World Engine");
+				appReg.CreateSubKey("DefualtIcon").SetValue("", logoPath);
+				appReg.CreateSubKey(@"shell\open\command").SetValue("", "\"" + applicationPath + "\" %1");
+
+				fileReg.Close();
+				appReg.Close();
+
+				Import.UpdateRegistry();
+			}
+			catch (Exception ex)
+			{
+				ErrorMessage(ex.Message);
+			}
+
+			Import.UpdateRegistry();
 		}
 
 		static void OpenWith()
