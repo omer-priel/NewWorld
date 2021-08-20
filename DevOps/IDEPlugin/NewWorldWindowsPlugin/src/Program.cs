@@ -236,6 +236,18 @@ namespace NewWorldWindowsPlugin
 				appReg.SetValue("", "New World Engine");
 				appReg.CreateSubKey("DefualtIcon").SetValue("", logoPath);
 				appReg.CreateSubKey(@"shell\open\command").SetValue("", "\"" + applicationPath + "\" %1");
+				
+				RegistryKey buildReg = appReg.CreateSubKey(@"shell\Build");
+				buildReg.SetValue("", "Build");
+				buildReg.SetValue("Icon", logoPath);
+				buildReg.CreateSubKey("command").SetValue("", "\"" + applicationPath + "\" %1 --build");
+				buildReg.Close();
+
+				RegistryKey generateProjectsReg = appReg.CreateSubKey(@"shell\GenerateProjects");
+				generateProjectsReg.SetValue("", "Generate Projects");
+				generateProjectsReg.SetValue("Icon", logoPath);
+				generateProjectsReg.CreateSubKey("command").SetValue("", "\"" + applicationPath + "\" %1 --generate-projects");
+				generateProjectsReg.Close();
 
 				fileReg.Close();
 				appReg.Close();
@@ -264,7 +276,7 @@ namespace NewWorldWindowsPlugin
 					return;
 				}
 
-				var p = Process.Start(codePath, FilePath);
+				Process.Start(codePath, FilePath);
 				Environment.Exit(0);
 			}
 			catch
@@ -275,12 +287,39 @@ namespace NewWorldWindowsPlugin
 
 		static void GenerateProjectsCommand()
 		{
+			string applicationFolder = Application.StartupPath;
+			DirectoryInfo directory = new DirectoryInfo(applicationFolder);
 
+			string devOpsPath = directory.Parent.Parent.Parent.Parent.FullName;
+			string scriptPath = devOpsPath + "\\GenerateProjects.bat";
+
+			Process process = new Process();
+			ProcessStartInfo startInfo = new ProcessStartInfo(scriptPath);
+
+			startInfo.WorkingDirectory = devOpsPath;
+			//startInfo.RedirectStandardOutput = true;
+			//startInfo.UseShellExecute = false;
+
+			process.StartInfo = startInfo;
+			process.OutputDataReceived += (sender, argsx) => Console.WriteLine(argsx.Data);
+
+			process.Start();
+			process.BeginOutputReadLine();
+			process.WaitForExit();
 		}
 
 		static void BuildCommand()
 		{
+			string applicationFolder = Application.StartupPath;
+			DirectoryInfo directory = new DirectoryInfo(applicationFolder);
 
+			string devOpsPath = directory.Parent.Parent.Parent.Parent.FullName;
+			string scriptPath = devOpsPath + "\\Build.bat";
+
+			ProcessStartInfo processInfo = new ProcessStartInfo(scriptPath);
+			processInfo.WorkingDirectory = devOpsPath;
+
+			Process.Start(processInfo);
 		}
 	}
 }
