@@ -12,7 +12,8 @@ def SetTitle(title):
 	os.popen(f'title {title}').read()
 
 def PresToConinue():
-	input("\nPress any key to continue . . . ")
+    print("\nPress any key to continue . . .\n")
+    input(" ")
 
 def ExitAction():
 	PresToConinue()

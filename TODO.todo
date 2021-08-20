@@ -40,48 +40,7 @@
               },
               {
                 "key": 1629042370589,
-                "children": [
-                  {
-                    "key": 1629042317410,
-                    "children": [],
-                    "todo": {
-                      "content": "Create a new file format NewWorld.nwe that the IDEs / explorer can control himfor DevOps action like 'Generate Projects', 'Build', 'Build and Run' ...this file will be the main file of the Solution",
-                      "id": 1629042317410,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629381658296,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: Generate Projects",
-                      "id": 1629381658296,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629381658911,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: Build",
-                      "id": 1629381658911,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629402590846,
-                    "children": [],
-                    "todo": {
-                      "content": "use .reg files",
-                      "id": 1629402590846,
-                      "level": "warning",
-                      "done": false
-                    }
-                  }
-                ],
+                "children": [],
                 "todo": {
                   "content": "NewWorldWindowsPlugin",
                   "id": 1629042370589,
@@ -151,6 +110,26 @@
           {
             "key": 1629065843655,
             "children": [
+              {
+                "key": 1629423141658,
+                "children": [],
+                "todo": {
+                  "content": "build NewWorldWindowsPlugin",
+                  "id": 1629423141658,
+                  "level": "danger",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629423142312,
+                "children": [],
+                "todo": {
+                  "content": "NewWorldPlugin --init-plugin",
+                  "id": 1629423142312,
+                  "level": "danger",
+                  "done": false
+                }
+              },
               {
                 "key": 1629066057727,
                 "children": [],

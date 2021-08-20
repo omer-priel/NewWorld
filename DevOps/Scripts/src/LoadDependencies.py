@@ -43,6 +43,12 @@ cmd(f'npm install', True, folder)
 print('Install NewWorldVSCodePlugin')
 cmd(f'code --install-extension newworld-{NewWorldVSCodePluginVersion}.vsix', True, folder)
 
+# Install NewWorldWindowsPlugin
+
+# TODO: Build NewWorldPlugin
+# TODO: NewWorldPlugin --init-plugin
+
+
 Utilities.SetTitle('Load Dependencies')
 
 # git submodules

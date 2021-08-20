@@ -108,13 +108,46 @@ namespace NewWorldWindowsPlugin
 			{
 				MessageBox.Show(message, Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-            else
-            {
+			else
+			{
 				Console.WriteLine("Error: {0}\n", message);
 				HelpCommand();
 			}
 		}
 
+		static void StartDevOpsScript(string name)
+		{
+			try
+			{
+				Import.ShowConsole(true);
+
+				string applicationFolder = Application.StartupPath;
+				DirectoryInfo directory = new DirectoryInfo(applicationFolder);
+
+				string devOpsPath = directory.Parent.Parent.Parent.Parent.FullName;
+				string pythonPath = devOpsPath + @"\Scripts\venv\Scripts\python.exe";
+				string scriptPath = devOpsPath + @"\Scripts\src\" + name + ".py";
+
+				Process process = new Process();
+				ProcessStartInfo startInfo = new ProcessStartInfo(pythonPath);
+				startInfo.Arguments = scriptPath;
+				startInfo.WorkingDirectory = devOpsPath;
+				startInfo.RedirectStandardOutput = true;
+				startInfo.UseShellExecute = false;
+
+				process.StartInfo = startInfo;
+
+				process.OutputDataReceived += (sender, argsx) => Console.WriteLine(argsx.Data);
+				process.Start();
+
+				process.BeginOutputReadLine();
+				process.WaitForExit();
+			}
+			catch (Exception ex)
+			{
+				ErrorMessage(ex.Message);
+			}
+		}
 		static void Main(string[] args)
 		{
 			if (!Import.IsConsole())
@@ -287,39 +320,12 @@ namespace NewWorldWindowsPlugin
 
 		static void GenerateProjectsCommand()
 		{
-			string applicationFolder = Application.StartupPath;
-			DirectoryInfo directory = new DirectoryInfo(applicationFolder);
-
-			string devOpsPath = directory.Parent.Parent.Parent.Parent.FullName;
-			string scriptPath = devOpsPath + "\\GenerateProjects.bat";
-
-			Process process = new Process();
-			ProcessStartInfo startInfo = new ProcessStartInfo(scriptPath);
-
-			startInfo.WorkingDirectory = devOpsPath;
-			//startInfo.RedirectStandardOutput = true;
-			//startInfo.UseShellExecute = false;
-
-			process.StartInfo = startInfo;
-			process.OutputDataReceived += (sender, argsx) => Console.WriteLine(argsx.Data);
-
-			process.Start();
-			process.BeginOutputReadLine();
-			process.WaitForExit();
+			StartDevOpsScript("GenerateProjects");
 		}
 
 		static void BuildCommand()
 		{
-			string applicationFolder = Application.StartupPath;
-			DirectoryInfo directory = new DirectoryInfo(applicationFolder);
-
-			string devOpsPath = directory.Parent.Parent.Parent.Parent.FullName;
-			string scriptPath = devOpsPath + "\\Build.bat";
-
-			ProcessStartInfo processInfo = new ProcessStartInfo(scriptPath);
-			processInfo.WorkingDirectory = devOpsPath;
-
-			Process.Start(processInfo);
+			StartDevOpsScript("Build");
 		}
 	}
 }
