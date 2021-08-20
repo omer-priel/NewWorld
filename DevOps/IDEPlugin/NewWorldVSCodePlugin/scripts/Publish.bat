@@ -1,7 +1,7 @@
 @echo off
 
 cd ..
-vsce publish
+npm run scripts:publish
 
 :exit
 POPD

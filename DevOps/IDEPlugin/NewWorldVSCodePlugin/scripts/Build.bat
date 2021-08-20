@@ -1,7 +1,7 @@
 @echo off
 
 cd ..
-vsce package
+npm run scripts:package
 
 :exit
 POPD

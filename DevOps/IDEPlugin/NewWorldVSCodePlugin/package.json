@@ -1,7 +1,7 @@
 {
 	"name": "newworld",
 	"displayName": "New World",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "VSCode Plugin for New World Engine",
 	"publisher": "NewWorld",
 	"license": "MIT",
@@ -17,7 +17,7 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
-        "languages": [
+		"languages": [
 			{
 				"id": "json",
 				"extensions": [
@@ -71,7 +71,9 @@
 		"test-watch": "tsc -watch -p ./",
 		"pretest": "npm run test-compile && npm run lint",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"test": "node ./out/test/runTest.js",
+        "scripts:package": "vsce package",
+        "scripts:publish": "vsce publish"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.59.0",
@@ -90,6 +92,7 @@
 		"webpack-cli": "^4.7.0"
 	},
 	"dependencies": {
-		"fs": "0.0.1-security"
+		"fs": "0.0.1-security",
+		"vsce": "^1.96.1"
 	}
 }

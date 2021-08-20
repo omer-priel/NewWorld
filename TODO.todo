@@ -19,28 +19,7 @@
             "children": [
               {
                 "key": 1629042337527,
-                "children": [
-                  {
-                    "key": 1629402662411,
-                    "children": [],
-                    "todo": {
-                      "content": "edit .nwe as json files",
-                      "id": 1629402662411,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629464667717,
-                    "children": [],
-                    "todo": {
-                      "content": ".nwe icon in vscode",
-                      "id": 1629464667717,
-                      "level": "warning",
-                      "done": false
-                    }
-                  }
-                ],
+                "children": [],
                 "todo": {
                   "content": "NewWorldVSCodePlugin",
                   "id": 1629042337527,
