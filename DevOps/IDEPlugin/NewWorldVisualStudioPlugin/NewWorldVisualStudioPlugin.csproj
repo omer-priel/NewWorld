@@ -51,7 +51,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="NewWorldPackage.cs" />
+    <Compile Include="src\Commands\NewClass.cs" />
+    <Compile Include="src\Commands\NewFile.cs" />
+    <Compile Include="src\NewWorldPackage.cs" />
+    <Compile Include="src\Commands\OpenWithVSCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,18 +69,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo.ico" />
+    <Content Include="Resources\NewClass.png" />
+    <Content Include="Resources\NewFile.png" />
+    <Content Include="Resources\OpenWithVSCode.png" />
+    <VSCTCompile Include="NewWorldPackage.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
     <Content Include="Resources\Icons.png" />
     <Content Include="Resources\NewWorldPackage.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Commands\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="VSPackage.resx">
-      <MergeWithCTO>true</MergeWithCTO>
-      <ManifestResourceName>VSPackage</ManifestResourceName>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

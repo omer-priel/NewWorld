@@ -18,6 +18,7 @@ namespace NewWorldVisualStudioPlugin
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(NewWorldPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class NewWorldPackage : AsyncPackage
     {
         public const string PackageGuidString = "7b70571c-601d-442d-8ac6-650bba89d678";
@@ -32,6 +33,9 @@ namespace NewWorldVisualStudioPlugin
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await Commands.NewFile.InitializeAsync(this);
+            await Commands.NewClass.InitializeAsync(this);
+            await Commands.OpenWithVSCode.InitializeAsync(this);
         }
 
         #endregion
