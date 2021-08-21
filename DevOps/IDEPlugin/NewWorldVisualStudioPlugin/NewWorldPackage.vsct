@@ -49,12 +49,6 @@
     <CommandPlacement guid="NewWorld_PackageCmdSet" id="NewWorld_MenuGroup" priority="0x0001">
       <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE"/>
     </CommandPlacement>
-    <CommandPlacement guid="NewWorld_PackageCmdSet" id="NewWorld_MenuGroup" priority="0x0001">
-      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_WEBREFFOLDER"/>
-    </CommandPlacement>
-    <CommandPlacement guid="NewWorld_PackageCmdSet" id="NewWorld_MenuGroup" priority="0x0001">
-      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_REFERENCE"/>
-    </CommandPlacement>
   </CommandPlacements>
 
   <Symbols>
