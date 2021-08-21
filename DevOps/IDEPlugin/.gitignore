@@ -1,3 +1,11 @@
+# NewWorldVisualStudioPlugin
+NewWorldVisualStudioPlugin/obj
+
+!NewWorldVisualStudioPlugin/*.sln
+!NewWorldVisualStudioPlugin/*.csproj
+!NewWorldVisualStudioPlugin/*.vcxproj
+!NewWorldVisualStudioPlugin/*.vcxproj.filters
+
 # NewWorldVSCodePlugin
 NewWorldVSCodePlugin/out
 NewWorldVSCodePlugin/dist

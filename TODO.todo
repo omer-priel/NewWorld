@@ -18,38 +18,8 @@
             "key": 1629042293490,
             "children": [
               {
-                "key": 1629042337527,
-                "children": [],
-                "todo": {
-                  "content": "NewWorldVSCodePlugin",
-                  "id": 1629042337527,
-                  "level": "success",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629042370589,
-                "children": [],
-                "todo": {
-                  "content": "NewWorldWindowsPlugin",
-                  "id": 1629042370589,
-                  "level": "success",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629042330484,
                 "children": [
-                  {
-                    "key": 1629381481973,
-                    "children": [],
-                    "todo": {
-                      "content": "Create Project",
-                      "id": 1629381481973,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
                   {
                     "key": 1629381502991,
                     "children": [],
@@ -97,6 +67,26 @@
                   "level": "success",
                   "done": false
                 }
+              },
+              {
+                "key": 1629042337527,
+                "children": [],
+                "todo": {
+                  "content": "NewWorldVSCodePlugin",
+                  "id": 1629042337527,
+                  "level": "success",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042370589,
+                "children": [],
+                "todo": {
+                  "content": "NewWorldWindowsPlugin",
+                  "id": 1629042370589,
+                  "level": "success",
+                  "done": false
+                }
               }
             ],
             "todo": {
@@ -108,7 +98,18 @@
           },
           {
             "key": 1629065843655,
-            "children": [],
+            "children": [
+              {
+                "key": 1629569587140,
+                "children": [],
+                "todo": {
+                  "content": "Build and install VisualStudioPlugin",
+                  "id": 1629569587140,
+                  "level": "warning",
+                  "done": false
+                }
+              }
+            ],
             "todo": {
               "content": "LoadDependencies",
               "id": 1629065843655,
@@ -260,19 +261,19 @@
     ],
     "expandKeys": [
       1629042215988,
-      1629042284024,
       1629042386980,
       1629042398630,
       1629042436829,
       1629042438141,
       1629065571958,
       1629065843655,
-      1629042293490,
       1629042337527,
       1629042370589,
-      1629042330484,
       1629381481973,
-      1629402662411
+      1629402662411,
+      1629042284024,
+      1629042293490,
+      1629042330484
     ]
   }
 }
