@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
+using EnvDTE;
+
 namespace NewWorldVisualStudioPlugin.Commands
 {
     /// <summary>
@@ -86,10 +88,28 @@ namespace NewWorldVisualStudioPlugin.Commands
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = "TODO: " + this.Name;
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(this.package, message, this.Name, OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            // TODO: Get Solution / Project / Folder path
+            string folderPath = System.Windows.Forms.Application.StartupPath;
+
+            try
+            {
+                string codePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                codePath = codePath.Remove(codePath.Length - 8, 8);
+                codePath += "\\Local\\Programs\\Microsoft VS Code\\Code.exe";
+
+                if (!System.IO.File.Exists(codePath))
+                {
+                    Utilities.ErrorMessage(this.package, "Visual Studio Code does not installed!");
+                    return;
+                }
+
+                System.Diagnostics.Process.Start(codePath, folderPath);
+            }
+            catch
+            {
+                Utilities.ErrorMessage(this.package, "Can't open Visual Studio Code!");
+            }
         }
     }
 }

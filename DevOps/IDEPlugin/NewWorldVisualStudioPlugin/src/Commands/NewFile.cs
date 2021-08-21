@@ -86,10 +86,8 @@ namespace NewWorldVisualStudioPlugin.Commands
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = "TODO: " + this.Name;
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(this.package, message, this.Name, OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            Utilities.ErrorMessage(this.package, "TODO: " + this.Name);
         }
     }
 }
