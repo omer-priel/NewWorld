@@ -57,8 +57,8 @@
     <GuidSymbol name="NewWorld_PackageCmdSet" value="{e2f2287e-ebb0-4eb0-850f-5c7de314a263}">
       <IDSymbol name="NewWorld_MenuGroup" value="0x1020" />
       <IDSymbol name="NewWorld_NewFile" value="0x0100" />
-      <IDSymbol value="4129" name="NewWorld_NewClass" />
-      <IDSymbol value="4130" name="NewWorld_OpenWithVSCode" />
+      <IDSymbol name="NewWorld_NewClass" value="0x0101" />
+      <IDSymbol name="NewWorld_OpenWithVSCode" value="0x0102" />
     </GuidSymbol>
 
     <GuidSymbol name="NewWorld_Icons" value="{99ed8989-9f9a-459d-b056-5ea899f0fef5}">
