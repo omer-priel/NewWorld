@@ -5,89 +5,67 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System;
-using System.ComponentModel.Design;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using Task = System.Threading.Tasks.Task;
-
-using EnvDTE;
-using EnvDTE80;
-using System.Reflection;
 
 namespace NewWorldVisualStudioPlugin
 {
     class GetItemFolder
     {
-        public static DTE2 applicationObject;
-
-        public static List<SelectionTypes> Load(DTE2 dte)
-        {
-            applicationObject = dte;
-            return GetSelectionTypes();
-        }
-
+        [Flags]
         public enum SelectionTypes
         {
             Other = 0,
-            InSubModules = 1,
-            IsAFolder = 2,
-            IsAProject = 4,
-            InAProject = 8
+            Solution = 1,
+            Folder = 2
         }
 
-        private static List<SelectionTypes> GetSelectionTypes()
+        public static SelectionTypes GetItemType(object item)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var selectionTypes = new List<SelectionTypes>();
 
-            EnvDTE.UIHierarchy solutionExplorer = applicationObject.ToolWindows.SolutionExplorer;
-            object[] items = solutionExplorer.SelectedItems as object[];
-            //{ Name = "WindowBase" FullName = "Microsoft.VisualStudio.Platform.WindowManagement.DTE.WindowBase"}
-            if (items.Length > 0)
+            EnvDTE.UIHierarchyItem currentItem = item as EnvDTE.UIHierarchyItem;
+            
+            if (currentItem == null)
             {
-                for (int i = 0; i < items.Length; i++)
-                {
-                    var selectionType = SelectionTypes.Other;
-                    var selectedItem = items[0] as EnvDTE.UIHierarchyItem;
-                    var currentItem = selectedItem;
-                    var subModulesParentsCount = 0;
-                    var countingSubModulesParents = false;
-                    var nbParents = -1;
-
-                    if (currentItem.Object.GetType().FullName == "Microsoft.VisualStudio.ProjectSystem.VS.Implementation.Package.Automation.OAProject") selectionType |= SelectionTypes.IsAProject;
-                    if (currentItem.Object.GetType().FullName == "Microsoft.VisualStudio.ProjectSystem.VS.Implementation.Package.Automation.OAFolderItem") selectionType |= SelectionTypes.IsAFolder;
-
-                    while (currentItem != null)
-                    {
-                        nbParents++;
-                        if (countingSubModulesParents) subModulesParentsCount++;
-
-                        if (currentItem.Name == "SubModules")
-                        {
-                            subModulesParentsCount = 0;
-                            countingSubModulesParents = true;
-                        }
-
-                        if (currentItem.Object.GetType().FullName == "Microsoft.VisualStudio.ProjectSystem.VS.Implementation.Package.Automation.OAProject") selectionType |= SelectionTypes.InAProject;
-
-                        currentItem = currentItem.Collection.Parent as EnvDTE.UIHierarchyItem;
-                    }
-
-                    if (selectionType == SelectionTypes.Other && nbParents != 0) selectionType |= SelectionTypes.IsAFolder;
-
-                    if (subModulesParentsCount == 1)
-                    {
-                        selectionType |= SelectionTypes.InSubModules;
-                    }
-
-                    selectionTypes.Add(selectionType);
-                }
+                return SelectionTypes.Other;
             }
 
-            return selectionTypes;
+            if (currentItem.Object as EnvDTE.Solution != null)
+            {
+                return SelectionTypes.Solution;
+            }
+
+            if (currentItem.Collection.Parent as EnvDTE.UIHierarchyItem != null)
+            {
+                return SelectionTypes.Folder;
+            }
+
+            return SelectionTypes.Other;
+        }
+
+        public static string GetPath(object item)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            string path = "";
+
+            EnvDTE.UIHierarchyItem currentItem = item as EnvDTE.UIHierarchyItem;
+
+            if (currentItem != null)
+            {
+                path = currentItem.Name;
+
+                currentItem = currentItem.Collection.Parent as EnvDTE.UIHierarchyItem;
+
+                while (currentItem != null)
+                {
+                    path = currentItem.Name + "\\" + path;
+                    currentItem = currentItem.Collection.Parent as EnvDTE.UIHierarchyItem;
+                }
+
+                return path;
+            }
+            
+            return null;
         }
     }
 }

@@ -7,6 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
+using EnvDTE;
+using EnvDTE80;
+
 namespace NewWorldVisualStudioPlugin.Commands
 {
     /// <summary>
@@ -82,6 +85,15 @@ namespace NewWorldVisualStudioPlugin.Commands
 
         // Members
         private string Name = "New Class";
+
+        // Getters
+        protected T GetService<T>()
+        {
+            var task = ServiceProvider.GetServiceAsync(typeof(T));
+            task.Wait();
+
+            return (T)task.Result;
+        }
 
         // Execute
         private void Execute(object sender, EventArgs e)

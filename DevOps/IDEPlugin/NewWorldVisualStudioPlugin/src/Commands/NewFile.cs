@@ -7,6 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
+using EnvDTE;
+using EnvDTE80;
+
 namespace NewWorldVisualStudioPlugin.Commands
 {
     /// <summary>
@@ -82,12 +85,40 @@ namespace NewWorldVisualStudioPlugin.Commands
         // Members
         private string Name = "New File";
 
+        // Getters
+        protected T GetService<T>()
+        {
+            var task = ServiceProvider.GetServiceAsync(typeof(T));
+            task.Wait();
+
+            return (T)task.Result;
+        }
+
         // Execute
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            Utilities.ErrorMessage(this.package, "TODO: " + this.Name);
+            DTE2 dte = (DTE2)GetService<SDTE>();
+
+            string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.Parent.FullName;
+
+            Array selectedItems = (Array)dte.ToolWindows.SolutionExplorer.SelectedItems;
+            if (null != selectedItems && selectedItems.Length > 0)
+            {
+                foreach (UIHierarchyItem selectedItem in selectedItems)
+                {
+                    folderPath += "\\" + GetItemFolder.GetPath(selectedItem);
+                    break;
+                }
+            }
+            else
+            {
+                Utilities.ErrorMessage(this.package, "Can't find the selected folder!");
+                return;
+            }
+
+            Utilities.ErrorMessage(package, folderPath);
         }
     }
 }
