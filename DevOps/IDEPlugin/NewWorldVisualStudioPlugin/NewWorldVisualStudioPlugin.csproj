@@ -56,6 +56,8 @@
     <Compile Include="src\NewWorldPackage.cs" />
     <Compile Include="src\Commands\OpenWithVSCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\GetItemFolder.cs" />
+    <Compile Include="src\Test.cs" />
     <Compile Include="src\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>

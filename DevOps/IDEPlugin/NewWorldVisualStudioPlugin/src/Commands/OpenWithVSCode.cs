@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
 using EnvDTE;
+using EnvDTE80;
+using System.Reflection;
 
 namespace NewWorldVisualStudioPlugin.Commands
 {
@@ -84,6 +86,66 @@ namespace NewWorldVisualStudioPlugin.Commands
         // Members
         private string Name = "Open With VS Code";
 
+        // TODO: 
+        private T GetService<T>()
+        {
+            var task = ServiceProvider.GetServiceAsync(typeof(T));
+            task.Wait();
+
+            return (T)task.Result;
+        }
+
+        // way 1
+        public void IdentifyInternalObjectTypes(UIHierarchyItem item)
+        {
+            if (item.Object is Solution)
+            {
+                Solution solution = item.Object as Solution;
+
+                Utilities.ErrorMessage(package, "<<Solution>>");
+
+            }
+            else if (item.Object is Project)
+            {
+                Utilities.ErrorMessage(package, "<<Project>>");
+            }
+            else if (item.Object is EnvDTE80.SolutionFolder)
+            {
+                Utilities.ErrorMessage(package, "<<SolutionFolder>>");
+            }
+            else
+            {
+                Assembly[] loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+                for (Int32 index = 0; index < loadedAssemblies.Length; index++)
+                {
+                    try
+                    {
+                        IdentifyInternalObjectTypes(item, loadedAssemblies[index]);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+                Utilities.ErrorMessage(package, "END");
+            }
+        }
+
+        public void IdentifyInternalObjectTypes(UIHierarchyItem item, Assembly assemblyToCheck)
+        {
+            Type[] exportedTypes = assemblyToCheck.GetExportedTypes();
+
+            for (Int32 index = 0; index < exportedTypes.Length; index++)
+            {
+                if (exportedTypes[index].IsInstanceOfType(item.Object))
+                {
+                    Utilities.ErrorMessage(package, exportedTypes[index].FullName);
+                }
+            }
+        }
+
         // Execute
         private void Execute(object sender, EventArgs e)
         {
@@ -91,6 +153,31 @@ namespace NewWorldVisualStudioPlugin.Commands
 
             // TODO: Get Solution / Project / Folder path
             string folderPath = System.Windows.Forms.Application.StartupPath;
+
+            DTE2 dte = (DTE2)GetService<SDTE>();
+
+            var arr = GetItemFolder.Load(dte);
+            foreach (var item in arr)
+            {
+                Utilities.ErrorMessage(package, Enum.GetName(typeof(Test.SelectionTypes), item));
+            }
+
+
+            return;
+            Array selectedItems = (Array)dte.ToolWindows.SolutionExplorer.SelectedItems;
+
+            if (null != selectedItems)
+            {
+                foreach (UIHierarchyItem selectedItem in selectedItems)
+                {
+                    IdentifyInternalObjectTypes(selectedItem);
+                }
+            }
+
+            return;
+
+            folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.FullName;
+            Utilities.ErrorMessage(package, folderPath);
 
             try
             {
