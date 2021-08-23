@@ -38,7 +38,7 @@
                       "content": "Add Logo",
                       "id": 1629381502991,
                       "level": "warning",
-                      "done": false
+                      "done": true
                     }
                   },
                   {
@@ -68,7 +68,7 @@
                       "content": "Command: Open With VSCode",
                       "id": 1629471369207,
                       "level": "warning",
-                      "done": false
+                      "done": true
                     }
                   }
                 ],
