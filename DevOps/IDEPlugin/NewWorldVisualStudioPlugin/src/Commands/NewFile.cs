@@ -101,23 +101,6 @@ namespace NewWorldVisualStudioPlugin.Commands
 
             DTE2 dte = (DTE2)GetService<SDTE>();
 
-            string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.Parent.FullName;
-
-            Array selectedItems = (Array)dte.ToolWindows.SolutionExplorer.SelectedItems;
-            if (null != selectedItems && selectedItems.Length > 0)
-            {
-                foreach (UIHierarchyItem selectedItem in selectedItems)
-                {
-                    folderPath += "\\" + GetItemFolder.GetPath(selectedItem);
-                    break;
-                }
-            }
-            else
-            {
-                Utilities.ErrorMessage(this.package, "Can't find the selected folder!");
-                return;
-            }
-
             // Get Folder Path
             string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.Parent.FullName;
 
@@ -139,8 +122,14 @@ namespace NewWorldVisualStudioPlugin.Commands
             // Get File Name
             Utilities.ErrorMessage(package, folderPath);
 
-            var window = dte.Windows.Item("{ID}");
-            window.Visible = true;
+            ToolWindowPane window = this.package.FindToolWindow(typeof(Windows.TextInputWindow), 0, true);
+            if ((null == window) || (null == window.Frame))
+            {
+                throw new NotSupportedException("Cannot create tool window");
+            }
+
+            IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
+            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
         }
     }
 }

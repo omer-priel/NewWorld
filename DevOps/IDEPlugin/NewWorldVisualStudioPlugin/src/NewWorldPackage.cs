@@ -19,6 +19,7 @@ namespace NewWorldVisualStudioPlugin
     [Guid(NewWorldPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideToolWindow(typeof(NewWorldVisualStudioPlugin.Windows.TextInputWindow))]
     public sealed class NewWorldPackage : AsyncPackage
     {
         public const string PackageGuidString = "7b70571c-601d-442d-8ac6-650bba89d678";
