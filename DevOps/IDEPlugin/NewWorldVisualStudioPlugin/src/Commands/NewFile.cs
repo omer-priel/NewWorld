@@ -120,16 +120,13 @@ namespace NewWorldVisualStudioPlugin.Commands
             }
 
             // Get File Name
-            Utilities.ErrorMessage(package, folderPath);
+            string fileName = Windows.TextInputWindow.GetValue("File Name");
 
-            ToolWindowPane window = this.package.FindToolWindow(typeof(Windows.TextInputWindow), 0, true);
-            if ((null == window) || (null == window.Frame))
+            if (fileName != null && fileName != "")
             {
-                throw new NotSupportedException("Cannot create tool window");
+                // CreateNew File
+                Utilities.ErrorMessage(package, folderPath + "\\" + fileName);
             }
-
-            IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
         }
     }
 }
