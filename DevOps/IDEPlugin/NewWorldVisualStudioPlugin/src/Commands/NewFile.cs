@@ -128,10 +128,16 @@ namespace NewWorldVisualStudioPlugin.Commands
                 string filePath = folderPath + "\\" + fileName;
                 if (!System.IO.File.Exists(filePath))
                 {
+                    dte.StatusBar.Text = "Create new file: " + filePath;
+
                     var sw = System.IO.File.CreateText(filePath);
                     sw.Close();
 
-                    //dte.Documents
+                    dte.StatusBar.ShowTextUpdates(false);
+
+                    dte.StatusBar.Text = "The file \"" + filePath + "\" Created ";
+
+                    dte.ItemOperations.OpenFile(filePath);
                 }
                 else
                 {
