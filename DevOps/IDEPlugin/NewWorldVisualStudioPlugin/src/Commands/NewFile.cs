@@ -118,7 +118,29 @@ namespace NewWorldVisualStudioPlugin.Commands
                 return;
             }
 
+            // Get Folder Path
+            string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.Parent.FullName;
+
+            Array selectedItems = (Array)dte.ToolWindows.SolutionExplorer.SelectedItems;
+            if (null != selectedItems && selectedItems.Length > 0)
+            {
+                foreach (UIHierarchyItem selectedItem in selectedItems)
+                {
+                    folderPath += "\\" + GetItemFolder.GetPath(selectedItem);
+                    break;
+                }
+            }
+            else
+            {
+                Utilities.ErrorMessage(this.package, "Can't find the selected folder!");
+                return;
+            }
+
+            // Get File Name
             Utilities.ErrorMessage(package, folderPath);
+
+            var window = dte.Windows.Item("{ID}");
+            window.Visible = true;
         }
     }
 }
