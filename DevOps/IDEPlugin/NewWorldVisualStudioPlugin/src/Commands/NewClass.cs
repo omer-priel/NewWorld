@@ -99,8 +99,35 @@ namespace NewWorldVisualStudioPlugin.Commands
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            
-            Utilities.ErrorMessage(this.package, "TODO: " + this.Name);
+
+            DTE2 dte = (DTE2)GetService<SDTE>();
+
+            // Get Folder Path
+            string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.Parent.FullName;
+
+            Array selectedItems = (Array)dte.ToolWindows.SolutionExplorer.SelectedItems;
+            if (null != selectedItems && selectedItems.Length > 0)
+            {
+                foreach (UIHierarchyItem selectedItem in selectedItems)
+                {
+                    folderPath += "\\" + GetItemFolder.GetPath(selectedItem);
+                    break;
+                }
+            }
+            else
+            {
+                Utilities.ErrorMessage(this.package, "Can't find the selected folder!");
+                return;
+            }
+
+            // Get File Name
+            string className = Windows.TextInputWindow.GetValue("Class Name");
+
+            if (className != null && className != "")
+            {
+                // CreateNew File
+                Utilities.ErrorMessage(package, folderPath + "\\" + className + ".h");
+            }
         }
     }
 }

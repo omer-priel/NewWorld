@@ -125,7 +125,19 @@ namespace NewWorldVisualStudioPlugin.Commands
             if (fileName != null && fileName != "")
             {
                 // CreateNew File
-                Utilities.ErrorMessage(package, folderPath + "\\" + fileName);
+                string filePath = folderPath + "\\" + fileName;
+                if (!System.IO.File.Exists(filePath))
+                {
+                    var sw = System.IO.File.CreateText(filePath);
+                    sw.Close();
+
+                    //dte.Documents
+                }
+                else
+                {
+                    Utilities.ErrorMessage(this.package, "The file \"" + fileName + "\" aleady exists!");
+                    return;
+                }
             }
         }
     }
