@@ -44,8 +44,19 @@ namespace NewWorldVisualStudioPlugin.Commands
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
-            commandService.AddCommand(menuItem);
+
+            if (Utilities.IsNewWorldSolution(package))
+            {
+                var menuItem = new MenuCommand(this.Execute, menuCommandID);
+                menuItem.Visible = true;
+                commandService.AddCommand(menuItem);
+            }
+            else
+            {
+                var menuItem = new MenuCommand(Utilities.EmptyExecute, menuCommandID);
+                menuItem.Visible = false;
+                commandService.AddCommand(menuItem);
+            }
         }
 
         /// <summary>

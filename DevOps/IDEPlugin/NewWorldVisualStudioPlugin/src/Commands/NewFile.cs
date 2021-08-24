@@ -44,8 +44,19 @@ namespace NewWorldVisualStudioPlugin.Commands
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
-            commandService.AddCommand(menuItem);
+
+            if (Utilities.IsNewWorldSolution(package))
+            {
+                var menuItem = new MenuCommand(this.Execute, menuCommandID);
+                menuItem.Visible = true;
+                commandService.AddCommand(menuItem);
+            }
+            else
+            {
+                var menuItem = new MenuCommand(Utilities.EmptyExecute, menuCommandID);
+                menuItem.Visible = false;
+                commandService.AddCommand(menuItem);
+            }
         }
 
         /// <summary>
@@ -74,8 +85,6 @@ namespace NewWorldVisualStudioPlugin.Commands
         /// <param name="package">Owner package, not null.</param>
         public static async Task InitializeAsync(AsyncPackage package)
         {
-            // Switch to the main thread - the call to AddCommand in NewFile's constructor requires
-            // the UI thread.
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;

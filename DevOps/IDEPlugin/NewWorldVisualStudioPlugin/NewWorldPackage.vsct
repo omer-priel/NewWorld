@@ -14,12 +14,14 @@
       <Button guid="NewWorld_PackageCmdSet" id="NewWorld_NewFile" priority="0x0100" type="Button">
         <Parent guid="NewWorld_PackageCmdSet" id="NewWorld_MenuGroup" />
         <Icon guid="NewWorld_Icons" id="NewFile" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>New File</ButtonText>
         </Strings>
       </Button>
       <Button guid="NewWorld_PackageCmdSet" id="NewWorld_NewClass" priority="0x0100" type="Button">
         <Parent guid="NewWorld_PackageCmdSet" id="NewWorld_MenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="NewWorld_Icons" id="NewClass" />
         <Strings>
           <ButtonText>New Class</ButtonText>
@@ -27,6 +29,7 @@
       </Button>
       <Button guid="NewWorld_PackageCmdSet" id="NewWorld_OpenWithVSCode" priority="0x0100" type="Button">
         <Parent guid="NewWorld_PackageCmdSet" id="NewWorld_MenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="NewWorld_Icons" id="OpenWithVSCode" />
         <Strings>
           <ButtonText>Open With VSCode</ButtonText>

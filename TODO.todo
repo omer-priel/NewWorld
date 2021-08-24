@@ -13,6 +13,16 @@
               "level": "warning",
               "done": false
             }
+          },
+          {
+            "key": 1629763605625,
+            "children": [],
+            "todo": {
+              "content": "Change \"Plugin\" to \"Extension\"",
+              "id": 1629763605625,
+              "level": "warning",
+              "done": false
+            }
           }
         ],
         "todo": {
@@ -70,6 +80,16 @@
                       "level": "warning",
                       "done": true
                     }
+                  },
+                  {
+                    "key": 1629765855992,
+                    "children": [],
+                    "todo": {
+                      "content": "install and uninstall scripts",
+                      "id": 1629765855992,
+                      "level": "warning",
+                      "done": false
+                    }
                   }
                 ],
                 "todo": {
@@ -81,7 +101,18 @@
               },
               {
                 "key": 1629042337527,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1629765895337,
+                    "children": [],
+                    "todo": {
+                      "content": "uninstall script",
+                      "id": 1629765895337,
+                      "level": "warning",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "NewWorldVSCodePlugin",
                   "id": 1629042337527,
@@ -91,7 +122,18 @@
               },
               {
                 "key": 1629042370589,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1629765926608,
+                    "children": [],
+                    "todo": {
+                      "content": "uninstall command and script",
+                      "id": 1629765926608,
+                      "level": "warning",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "NewWorldWindowsPlugin",
                   "id": 1629042370589,
