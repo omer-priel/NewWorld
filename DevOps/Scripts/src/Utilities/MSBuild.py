@@ -1,4 +1,4 @@
-# MSBuild - class that
+# MSBuild - Class for build projects
 
 import Utilities.Utilities as Utilities
 
