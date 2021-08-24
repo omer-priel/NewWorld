@@ -85,9 +85,14 @@ namespace NewWorldWindowsPlugin
 						HelpCommand();
 						return;
 					}
-				case "--init-plugin":
+				case "--install-extension":
 					{
-						InitPluginForWindows();
+						InstallExtension();
+						return;
+					}
+                case "--uninstall-extension":
+					{
+						UninstallExtension();
 						return;
 					}
 			}
@@ -149,20 +154,12 @@ namespace NewWorldWindowsPlugin
 			Console.WriteLine("NewWorldPlugin path --build              - Build the applications");
 		}
 
-		static void InitPluginForWindows()
+		static void InstallExtension()
 		{
+            UninstallExtension();
+            
 			try
 			{
-				// Remove lass Registry data
-				try
-				{
-					WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
-					WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ApplicationName);
-				}
-				catch { }
-
-				WindowsAPI.UpdateRegistry();
-
 				// Get Application Path
 				string applicationPath = Application.ExecutablePath;
 
@@ -210,6 +207,22 @@ namespace NewWorldWindowsPlugin
 
 			WindowsAPI.UpdateRegistry();
 		}
+
+        static void UninstallExtension()
+        {
+            // Remove lass Registry data
+			try
+			{
+				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
+				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ApplicationName);
+			}
+			catch
+            {
+
+            }
+
+			WindowsAPI.UpdateRegistry();
+        }
 
 		static void OpenWith()
 		{
