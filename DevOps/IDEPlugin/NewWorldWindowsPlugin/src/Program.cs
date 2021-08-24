@@ -147,7 +147,8 @@ namespace NewWorldWindowsPlugin
 		{
 			Console.WriteLine("NewWorldPlugin:");
 			Console.WriteLine("NewWorldPlugin --help                    - Show this help");
-			Console.WriteLine("NewWorldPlugin --init-plugin             - Initialize the plugin for Windows");
+			Console.WriteLine("NewWorldPlugin --install-extension       - Install the extension");
+            Console.WriteLine("NewWorldPlugin --uninstall-extension     - Uninstall the extension");
 			Console.WriteLine("NewWorldPlugin path                      - Open the .nwe with Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin path --help               - Show this help");
 			Console.WriteLine("NewWorldPlugin path --generate-projects  - Generate Projects");
