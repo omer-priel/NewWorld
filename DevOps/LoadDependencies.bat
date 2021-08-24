@@ -1,7 +1,7 @@
 @echo off
 PUSHD .\
 
-title LoadDependencies (.bat)
+title Load Dependencies (.bat)
 
 :ask_for_admin_access
 if not "%1"=="" goto :is_run_as_admin

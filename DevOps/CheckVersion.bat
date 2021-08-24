@@ -1,7 +1,7 @@
 @echo off
 PUSHD .\
 
-title CheckVersion (.bat)
+title Check Version (.bat)
 
 :main
 %cd%\Scripts\venv\Scripts\python %cd%\Scripts\src\CheckVersion.py
