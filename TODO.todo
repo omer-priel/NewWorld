@@ -8,7 +8,7 @@
             "key": 1629763605625,
             "children": [],
             "todo": {
-              "content": "Change \"Plugin\" to \"Extension\"",
+              "content": "Rename \"Plugin\" to \"Extension\"",
               "id": 1629763605625,
               "level": "warning",
               "done": false
