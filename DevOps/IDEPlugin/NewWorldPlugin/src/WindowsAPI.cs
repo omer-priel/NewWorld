@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Management;
 using Microsoft.Win32;
 
-namespace NewWorldWindowsPlugin
+namespace NewWorldPlugin
 {
 	public class WindowsAPI
 	{

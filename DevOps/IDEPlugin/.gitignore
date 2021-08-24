@@ -14,10 +14,10 @@ NewWorldVSCodeExtension/.vscode-test/
 
 NewWorldVSCodeExtension/package-lock.json
 
-# NewWorldWindowsPlugin
-NewWorldWindowsPlugin/obj
+# NewWorldPlugin
+NewWorldPlugin/obj
 
-!NewWorldWindowsPlugin/*.sln
-!NewWorldWindowsPlugin/*.csproj
-!NewWorldWindowsPlugin/*.vcxproj
-!NewWorldWindowsPlugin/*.vcxproj.filters
+!NewWorldPlugin/*.sln
+!NewWorldPlugin/*.csproj
+!NewWorldPlugin/*.vcxproj
+!NewWorldPlugin/*.vcxproj.filters

@@ -31,11 +31,11 @@ Utilities.CMD(f'npm install', True, folder)
 print('Install NewWorldVSCodeExtension')
 Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersion}.vsix', True, folder)
 
-# Install NewWorldWindowsPlugin
+# Install NewWorldPlugin
 print('Install NewWorldPlugin')
 
-MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldWindowsPlugin\\NewWorldWindowsPlugin.sln'), 'Release')
-newWorldPlugin = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldWindowsPlugin\\bin\\Release')
+MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
+newWorldPlugin = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldPlugin\\bin\\Release')
 
 Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
 
