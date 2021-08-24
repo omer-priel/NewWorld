@@ -130,8 +130,17 @@ namespace NewWorldVisualStudioPlugin.Commands
                 {
                     dte.StatusBar.Text = "Create new file: " + filePath;
 
-                    var sw = System.IO.File.CreateText(filePath);
-                    sw.Close();
+                    try
+                    {
+                        var file = System.IO.File.CreateText(filePath);
+                        file.Close();
+
+                    }
+                    catch
+                    {
+                        Utilities.ErrorMessage(this.package, "Can't create the file \"" + filePath + "\"!");
+                        return;
+                    }
 
                     dte.StatusBar.ShowTextUpdates(false);
 

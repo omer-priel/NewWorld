@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
+using System.Collections.Generic;
+
 using EnvDTE;
 using EnvDTE80;
 
@@ -123,11 +125,129 @@ namespace NewWorldVisualStudioPlugin.Commands
             // Get File Name
             string className = Windows.TextInputWindow.GetValue("Class Name");
 
-            if (className != null && className != "")
+            if (className != null)
             {
-                // CreateNew File
-                Utilities.ErrorMessage(package, folderPath + "\\" + className + ".h");
+                // Create New Class
+                CreateNewClass(dte, folderPath, className);
             }
+        }
+
+        private void CreateNewClass(DTE2 dte, string folderPath, string classNameInput)
+        {
+            bool newWord = true;
+            string className = "";
+            for (int i = 0; i < classNameInput.Length; i++)
+            {
+                char inputChar = classNameInput[i];
+                if (inputChar == ' ')
+                {
+                    newWord = true;
+                }
+                else if (inputChar == '_')
+                {
+                    newWord = true;
+                    className += inputChar;
+                }
+                else
+                {
+                    bool flag = 'a' <= inputChar && inputChar <= 'z';
+                    flag = flag || 'A' <= inputChar && inputChar <= 'Z';
+                    flag = flag || '0' <= inputChar && inputChar <= '9';
+
+                    if (!flag)
+                    {
+
+                        Utilities.ErrorMessage(this.package, "Class names can contain letters, digits and underscores!");
+                        return;
+                    }
+
+                    if (newWord)
+                    {
+                        if ('a' <= inputChar && inputChar <= 'z')
+                        {
+                            inputChar -= 'a';
+                            inputChar += 'A';
+                        }
+
+                        className += inputChar;
+                        newWord = false;
+                    }
+                    else
+                    {
+                        className += inputChar;
+                    }
+                }
+            }
+
+            if (className.Length == 0)
+            {
+                Utilities.ErrorMessage(this.package, "The class must have a name!");
+                return;
+            }
+
+            if (className[0] < 'A' || 'Z' < className[0])
+            {
+
+                Utilities.ErrorMessage(this.package, "Class names must begin with upper letter!");
+                return;
+            }
+
+            string headerPath = folderPath + "\\" + className + ".h";
+            string sourcePath = folderPath + "\\" + className + ".cpp";
+
+
+            if (System.IO.File.Exists(headerPath))
+            {
+
+                if (System.IO.File.Exists(sourcePath))
+                {
+
+                    Utilities.ErrorMessage(this.package, "The class " + className + " already exists!");
+                }
+                else
+                {
+
+                    Utilities.ErrorMessage(this.package, "The header " + className + ".h already exists!");
+                }
+                return;
+            }
+
+            if (System.IO.File.Exists(sourcePath))
+            {
+
+                Utilities.ErrorMessage(this.package, "The source " + className + ".cpp already exists!");
+                return;
+            }
+
+            dte.StatusBar.Text = "Create new Class: " + className;
+
+            try
+            {
+                var haederFile = System.IO.File.CreateText(headerPath);
+                haederFile.WriteLine("#pragma once");
+                haederFile.WriteLine("class " + className);
+                haederFile.WriteLine("{");
+                haederFile.WriteLine("\tpublic:");
+                haederFile.WriteLine("\t");
+                haederFile.WriteLine("}");
+                haederFile.Close();
+
+                var sourceFile = System.IO.File.CreateText(sourcePath);
+                sourceFile.WriteLine("#include \"" + className + ".h\"");
+                sourceFile.Close();
+            }
+            catch (Exception ex)
+            {
+                Utilities.ErrorMessage(this.package, "Can't create the class " + className + "!");
+                return;
+            }
+
+            dte.StatusBar.ShowTextUpdates(false);
+
+            dte.StatusBar.Text = "The class " + className + " Created ";
+
+            dte.ItemOperations.OpenFile(sourcePath);
+            dte.ItemOperations.OpenFile(headerPath);
         }
     }
 }
