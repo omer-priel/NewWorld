@@ -13,18 +13,18 @@ exit /b
 cd /d "%1"
 
 :python_check
-echo Check if Python installed
+echo Checks if Python is installed
 
 python -V
 if %errorlevel% EQU 0 goto :python_venv
-echo Python do not installed!
+echo Python does not installed!
 pause
 goto :exit
 
 :python_venv
 echo Load Dependencies
 
-echo Delete "venv" and "__pycache__"
+echo Deletes the folders "venv" and "__pycache__"
 rd /s /q %cd%\Scripts\venv
 rd /s /q %cd%\Scripts\src\Utilities\__pycache__
 
@@ -32,7 +32,7 @@ echo Config "venv"
 python -m venv %cd%\Scripts\venv
 
 :python_pip_dependencies
-echo Install pip Dependencies
+echo Install pip's Dependencies
 %cd%\Scripts\venv\Scripts\python.exe -m pip install --upgrade pip
 %cd%\Scripts\venv\Scripts\python.exe -m pip3 install --upgrade pip3
 %cd%\Scripts\venv\Scripts\pip3 install requests

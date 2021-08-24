@@ -1,6 +1,7 @@
 # DevOps
 
 ## Git
+
 Branchs Names:
 master - The Last Release
 	release-<release> - Example: release-1
