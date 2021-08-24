@@ -42,11 +42,10 @@ Utilities.CMD(f'NewWorldPlugin --init-plugin', True, newWorldWindowsPlugin)
 # Install NewWorldVisualStudioPlugin
 Utilities.SetTitle('Install NewWorldVisualStudioPlugin')
 
-MSBuild.Build(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVisualStudioPlugin\\NewWorldVisualStudioPlugin.sln'), "Release")
-newWorldVisualStudioPlugin = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVisualStudioPlugin\\bin\\Release')
+vsixPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVisualStudioPlugin\\NewWorldVisualStudioPlugin.vsix');
+VSIXInstallerPath = '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\VSIXInstaller.exe"'
 
-VSIXInstallerPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\VSIXInstaller";
-Utilities.CMD(f'{VSIXInstallerPath} /quiet NewWorldVisualStudioPlugin.vsix', True, newWorldVisualStudioPlugin)
+Utilities.CMD(f'{VSIXInstallerPath} /quiet "{vsixPath}"', True)
 
 # git submodules
 print('Delete "Dependencies"')
