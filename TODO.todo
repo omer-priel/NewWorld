@@ -100,18 +100,7 @@
           },
           {
             "key": 1629065843655,
-            "children": [
-              {
-                "key": 1629569587140,
-                "children": [],
-                "todo": {
-                  "content": "Build and install VisualStudioPlugin",
-                  "id": 1629569587140,
-                  "level": "warning",
-                  "done": false
-                }
-              }
-            ],
+            "children": [],
             "todo": {
               "content": "LoadDependencies",
               "id": 1629065843655,

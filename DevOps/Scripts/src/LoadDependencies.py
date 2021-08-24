@@ -42,8 +42,10 @@ Utilities.CMD(f'NewWorldPlugin --init-plugin', True, newWorldWindowsPlugin)
 # Install NewWorldVisualStudioPlugin
 print('Install NewWorldVisualStudioPlugin')
 
-vsixPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVisualStudioPlugin\\NewWorldVisualStudioPlugin.vsix');
+version = '0.0.2'
+
 VSIXInstallerPath = '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\VSIXInstaller.exe"'
+vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\NewWorldVisualStudioPlugin\\NewWorld-{version}.vsix');
 
 Utilities.CMD(f'{VSIXInstallerPath} /quiet "{vsixPath}"', True)
 

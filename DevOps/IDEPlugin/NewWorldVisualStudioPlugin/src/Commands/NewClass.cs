@@ -113,8 +113,6 @@ namespace NewWorldVisualStudioPlugin.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            Utilities.ErrorMessage(this.package, "Can't find the selected folder!");
-
             DTE2 dte = (DTE2)GetService<SDTE>();
 
             // Get Folder Path
@@ -238,6 +236,7 @@ namespace NewWorldVisualStudioPlugin.Commands
             {
                 var haederFile = System.IO.File.CreateText(headerPath);
                 haederFile.WriteLine("#pragma once");
+                haederFile.WriteLine("");
                 haederFile.WriteLine("class " + className);
                 haederFile.WriteLine("{");
                 haederFile.WriteLine("\tpublic:");
