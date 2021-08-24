@@ -13,5 +13,4 @@ cd ..\bin\Release
 NewWorldPlugin --init-plugin
 
 :exit
-POPD
 exit /b

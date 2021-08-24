@@ -3,7 +3,28 @@
     "tree": [
       {
         "key": 1629042215988,
-        "children": [],
+        "children": [
+          {
+            "key": 1629572635581,
+            "children": [],
+            "todo": {
+              "content": "Change Icons to be transperted",
+              "id": 1629572635581,
+              "level": "warning",
+              "done": false
+            }
+          },
+          {
+            "key": 1629763605625,
+            "children": [],
+            "todo": {
+              "content": "Change \"Plugin\" to \"Extension\"",
+              "id": 1629763605625,
+              "level": "warning",
+              "done": false
+            }
+          }
+        ],
         "todo": {
           "content": "Solution",
           "id": 1629042215988,
@@ -18,8 +39,29 @@
             "key": 1629042293490,
             "children": [
               {
-                "key": 1629042337527,
+                "key": 1629042330484,
                 "children": [],
+                "todo": {
+                  "content": "NewWorldVisualStudioPlugin",
+                  "id": 1629042330484,
+                  "level": "success",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629042337527,
+                "children": [
+                  {
+                    "key": 1629765895337,
+                    "children": [],
+                    "todo": {
+                      "content": "uninstall script",
+                      "id": 1629765895337,
+                      "level": "warning",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "NewWorldVSCodePlugin",
                   "id": 1629042337527,
@@ -29,71 +71,21 @@
               },
               {
                 "key": 1629042370589,
-                "children": [],
-                "todo": {
-                  "content": "NewWorldWindowsPlugin",
-                  "id": 1629042370589,
-                  "level": "success",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629042330484,
                 "children": [
                   {
-                    "key": 1629381481973,
+                    "key": 1629765926608,
                     "children": [],
                     "todo": {
-                      "content": "Create Project",
-                      "id": 1629381481973,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629381502991,
-                    "children": [],
-                    "todo": {
-                      "content": "Add Logo",
-                      "id": 1629381502991,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629381503797,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: New File",
-                      "id": 1629381503797,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629381504134,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: New Class",
-                      "id": 1629381504134,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629471369207,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: Open With VSCode",
-                      "id": 1629471369207,
+                      "content": "uninstall command and script",
+                      "id": 1629765926608,
                       "level": "warning",
                       "done": false
                     }
                   }
                 ],
                 "todo": {
-                  "content": "NewWorldVisualStudioPlugin",
-                  "id": 1629042330484,
+                  "content": "NewWorldWindowsPlugin",
+                  "id": 1629042370589,
                   "level": "success",
                   "done": false
                 }
@@ -260,19 +252,19 @@
     ],
     "expandKeys": [
       1629042215988,
-      1629042284024,
       1629042386980,
       1629042398630,
       1629042436829,
       1629042438141,
       1629065571958,
       1629065843655,
-      1629042293490,
       1629042337527,
       1629042370589,
-      1629042330484,
       1629381481973,
-      1629402662411
+      1629402662411,
+      1629042293490,
+      1629042330484,
+      1629042284024
     ]
   }
 }

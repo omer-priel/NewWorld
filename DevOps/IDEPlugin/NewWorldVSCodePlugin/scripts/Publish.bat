@@ -4,5 +4,4 @@ cd ..
 npm run scripts:publish
 
 :exit
-POPD
 exit /b
