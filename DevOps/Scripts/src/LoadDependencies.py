@@ -34,7 +34,7 @@ Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodePluginVersion}.
 # Install NewWorldWindowsPlugin
 print('Install NewWorldWindowsPlugin')
 
-MSBuild.Build(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\NewWorldWindowsPlugin.sln'), "Release")
+MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\NewWorldWindowsPlugin.sln'), 'Release')
 newWorldWindowsPlugin = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\bin\\Release')
 
 Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldWindowsPlugin)
