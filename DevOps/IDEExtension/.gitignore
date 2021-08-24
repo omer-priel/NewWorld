@@ -1,5 +1,15 @@
+# NewWorldPlugin
+NewWorldPlugin/obj
+
+!NewWorldPlugin/*.sln
+!NewWorldPlugin/*.csproj
+!NewWorldPlugin/*.vcxproj
+!NewWorldPlugin/*.vcxproj.filters
+
 # NewWorldVisualStudioExtension
 NewWorldVisualStudioExtension/obj
+
+!NewWorldVSCodeExtension/.vscode
 
 !NewWorldVisualStudioExtension/*.sln
 !NewWorldVisualStudioExtension/*.csproj
@@ -13,11 +23,3 @@ NewWorldVSCodeExtension/node_modules
 NewWorldVSCodeExtension/.vscode-test/
 
 NewWorldVSCodeExtension/package-lock.json
-
-# NewWorldPlugin
-NewWorldPlugin/obj
-
-!NewWorldPlugin/*.sln
-!NewWorldPlugin/*.csproj
-!NewWorldPlugin/*.vcxproj
-!NewWorldPlugin/*.vcxproj.filters
