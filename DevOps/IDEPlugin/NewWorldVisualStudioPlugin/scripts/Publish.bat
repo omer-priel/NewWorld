@@ -2,7 +2,7 @@
 
 cd ..
 set /p version=Version: 
-copy /y .\bin\Debug\NewWorldVisualStudioPlugin.vsix .\NewWorld-%version%.vsix
+copy /y .\bin\Release\NewWorldVisualStudioPlugin.vsix .\NewWorld-%version%.vsix
 
 :exit
 exit /b
