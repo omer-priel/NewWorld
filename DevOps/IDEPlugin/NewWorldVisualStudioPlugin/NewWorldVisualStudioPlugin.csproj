@@ -11,6 +11,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,10 +56,10 @@
   <ItemGroup>
     <Compile Include="src\Commands\NewClass.cs" />
     <Compile Include="src\Commands\NewFile.cs" />
+    <Compile Include="src\GetItemFolder.cs" />
     <Compile Include="src\NewWorldPackage.cs" />
     <Compile Include="src\Commands\OpenWithVSCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\GetItemFolder.cs" />
     <Compile Include="src\Utilities.cs" />
     <Compile Include="src\Windows\TextInputWindow.cs">
       <SubType>Form</SubType>
@@ -98,7 +101,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="scripts\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="src\Windows\TextInputWindow.resx">
       <DependentUpon>TextInputWindow.cs</DependentUpon>

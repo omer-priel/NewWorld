@@ -29,6 +29,7 @@ namespace NewWorldVisualStudioPlugin.Windows
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextInputWindow));
             this.BoxInput = new System.Windows.Forms.TextBox();
             this.BoxTitle = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -67,7 +68,10 @@ namespace NewWorldVisualStudioPlugin.Windows
             this.Controls.Add(this.BoxTitle);
             this.Controls.Add(this.BoxInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TextInputWindow";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TextInputWindow";
             this.Load += new System.EventHandler(this.TextInputWindow_Load);

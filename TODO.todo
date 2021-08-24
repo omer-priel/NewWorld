@@ -40,58 +40,7 @@
             "children": [
               {
                 "key": 1629042330484,
-                "children": [
-                  {
-                    "key": 1629381502991,
-                    "children": [],
-                    "todo": {
-                      "content": "Add Logo",
-                      "id": 1629381502991,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1629381503797,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: New File",
-                      "id": 1629381503797,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1629381504134,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: New Class",
-                      "id": 1629381504134,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1629471369207,
-                    "children": [],
-                    "todo": {
-                      "content": "Command: Open With VSCode",
-                      "id": 1629471369207,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1629765855992,
-                    "children": [],
-                    "todo": {
-                      "content": "install and uninstall scripts",
-                      "id": 1629765855992,
-                      "level": "warning",
-                      "done": false
-                    }
-                  }
-                ],
+                "children": [],
                 "todo": {
                   "content": "NewWorldVisualStudioPlugin",
                   "id": 1629042330484,
