@@ -5,7 +5,7 @@ import Utilities.MSBuild as MSBuild
 
 Utilities.SetTitle('Load Dependencies')
 
-# Check is programs exists
+# Check if npm exists
 try:
 	Utilities.CMD('npm --version')
 except:
@@ -16,11 +16,11 @@ Utilities.SetTitle('Load Dependencies')
 
 rootFolder = Utilities.Settings.SolutionPath
 
-# Install NewWorldVSCodePlugin
-print('Install NewWorldVSCodePlugin Dependencies')
+# Install NewWorldVSCodeExtension
+print('Install NewWorldVSCodeExtension Dependencies')
 
 jsonPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin\\package.json')
-newWorldVSCodePluginVersion = Utilities.LoadJsonFile(jsonPath).version
+newWorldVSCodeExtensionVersion = Utilities.LoadJsonFile(jsonPath).version
 
 folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin')
 
@@ -28,19 +28,19 @@ Utilities.CMD(f'rd /s /q node_modules', False, folder)
 
 Utilities.CMD(f'npm install', True, folder)
 
-print('Install NewWorldVSCodePlugin')
-Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodePluginVersion}.vsix', True, folder)
+print('Install NewWorldVSCodeExtension')
+Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersion}.vsix', True, folder)
 
-# Install NewWorldWindowsPlugin
-print('Install NewWorldWindowsPlugin')
+# Install NewWorldWindowsExtension
+print('Install NewWorldWindowsExtension')
 
 MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\NewWorldWindowsPlugin.sln'), 'Release')
-newWorldWindowsPlugin = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\bin\\Release')
+newWorldWindowsExtension = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\bin\\Release')
 
-Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldWindowsPlugin)
+Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldWindowsExtension)
 
-# Install NewWorldVisualStudioPlugin
-print('Install NewWorldVisualStudioPlugin')
+# Install NewWorldVisualStudioExtension
+print('Install NewWorldVisualStudioExtension')
 
 version = '0.0.2'
 
@@ -61,7 +61,7 @@ Utilities.CMD(f'git submodule update', True)
 Utilities.CMD(f'md "Dependencies\\bin"')
 
 # Premake
-print(f'Create Premake')
+print(f'Create the Premake Tool')
 
 Utilities.CMD(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, f"{rootFolder}\\Dependencies\\Premake")
 Utilities.CMD(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dependencies\\bin\\premake5.exe"', True)
