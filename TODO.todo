@@ -50,18 +50,7 @@
               },
               {
                 "key": 1629042337527,
-                "children": [
-                  {
-                    "key": 1629765895337,
-                    "children": [],
-                    "todo": {
-                      "content": "uninstall script",
-                      "id": 1629765895337,
-                      "level": "warning",
-                      "done": false
-                    }
-                  }
-                ],
+                "children": [],
                 "todo": {
                   "content": "NewWorldVSCodePlugin",
                   "id": 1629042337527,
@@ -71,18 +60,7 @@
               },
               {
                 "key": 1629042370589,
-                "children": [
-                  {
-                    "key": 1629765926608,
-                    "children": [],
-                    "todo": {
-                      "content": "uninstall command and script",
-                      "id": 1629765926608,
-                      "level": "warning",
-                      "done": false
-                    }
-                  }
-                ],
+                "children": [],
                 "todo": {
                   "content": "NewWorldWindowsPlugin",
                   "id": 1629042370589,
