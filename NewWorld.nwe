@@ -3,14 +3,11 @@
     "projects": [
         {
             "name": "NewWorld",
-            "type": "engine",
-			"location": "NewWorld"
+            "type": "engine"
         },
         {
             "name": "Sandbox",
-            "type": "application",
-			"location": "Sandbox",
-			"build": true
+            "type": "application"
         }
     ]
 }
