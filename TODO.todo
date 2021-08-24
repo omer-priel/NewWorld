@@ -32,7 +32,7 @@
                 "key": 1629042330484,
                 "children": [],
                 "todo": {
-                  "content": "NewWorldVisualStudioPlugin",
+                  "content": "NewWorldVisualStudioExtension",
                   "id": 1629042330484,
                   "level": "success",
                   "done": false
@@ -42,7 +42,7 @@
                 "key": 1629042337527,
                 "children": [],
                 "todo": {
-                  "content": "NewWorldVSCodePlugin",
+                  "content": "NewWorldVSCodeExtension",
                   "id": 1629042337527,
                   "level": "success",
                   "done": false
@@ -52,7 +52,7 @@
                 "key": 1629042370589,
                 "children": [],
                 "todo": {
-                  "content": "NewWorldWindowsPlugin",
+                  "content": "NewWorldWindowsExtension",
                   "id": 1629042370589,
                   "level": "success",
                   "done": false
