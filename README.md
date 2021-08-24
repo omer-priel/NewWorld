@@ -14,4 +14,4 @@ Load Dependencies:<br />
 DevOps\LoadDependencies.bat
 
 Generate Projects:<br />
-DevOps\GenerateProjects.bat
+NewWorld.nwe > "Generate Projects" command
