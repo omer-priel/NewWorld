@@ -32,7 +32,7 @@ print('Install NewWorldVSCodePlugin')
 Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodePluginVersion}.vsix', True, folder)
 
 # Install NewWorldWindowsPlugin
-Utilities.SetTitle('Install NewWorldWindowsPlugin')
+print('Install NewWorldWindowsPlugin')
 
 MSBuild.Build(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\NewWorldWindowsPlugin.sln'), "Release")
 newWorldWindowsPlugin = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\bin\\Release')
@@ -40,7 +40,7 @@ newWorldWindowsPlugin = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindows
 Utilities.CMD(f'NewWorldPlugin --init-plugin', True, newWorldWindowsPlugin)
 
 # Install NewWorldVisualStudioPlugin
-Utilities.SetTitle('Install NewWorldVisualStudioPlugin')
+print('Install NewWorldVisualStudioPlugin')
 
 vsixPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVisualStudioPlugin\\NewWorldVisualStudioPlugin.vsix');
 VSIXInstallerPath = '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\VSIXInstaller.exe"'
