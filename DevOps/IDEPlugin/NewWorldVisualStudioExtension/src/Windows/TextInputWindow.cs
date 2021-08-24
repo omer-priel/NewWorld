@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NewWorldVisualStudioPlugin.Windows
+namespace NewWorldVisualStudioExtension.Windows
 {
     public partial class TextInputWindow : Form
     {

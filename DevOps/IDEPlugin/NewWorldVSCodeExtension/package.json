@@ -2,7 +2,7 @@
 	"name": "newworld",
 	"displayName": "New World",
 	"version": "0.0.6",
-	"description": "VSCode Plugin for New World Engine",
+	"description": "VSCode Extension for New World Engine",
 	"publisher": "NewWorld",
 	"license": "MIT",
 	"icon": "Logo.ico",

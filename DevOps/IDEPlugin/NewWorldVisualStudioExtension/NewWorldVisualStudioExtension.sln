@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewWorldVisualStudioPlugin", "NewWorldVisualStudioPlugin.csproj", "{D8ECC397-FBC5-4F80-A1FA-BFB296A13684}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewWorldVisualStudioExtension", "NewWorldVisualStudioExtension.csproj", "{D8ECC397-FBC5-4F80-A1FA-BFB296A13684}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

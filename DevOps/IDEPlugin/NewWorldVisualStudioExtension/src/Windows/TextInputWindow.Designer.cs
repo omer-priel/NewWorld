@@ -1,5 +1,5 @@
 ﻿
-namespace NewWorldVisualStudioPlugin.Windows
+namespace NewWorldVisualStudioExtension.Windows
 {
     partial class TextInputWindow
     {

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using EnvDTE;
 using EnvDTE80;
 
-namespace NewWorldVisualStudioPlugin.Commands
+namespace NewWorldVisualStudioExtension.Commands
 {
     /// <summary>
     /// Command handler

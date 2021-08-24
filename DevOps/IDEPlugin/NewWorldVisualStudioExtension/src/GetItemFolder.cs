@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.Shell;
 
-namespace NewWorldVisualStudioPlugin
+namespace NewWorldVisualStudioExtension
 {
     class GetItemFolder
     {

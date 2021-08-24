@@ -23,8 +23,8 @@
     <ProjectGuid>{D8ECC397-FBC5-4F80-A1FA-BFB296A13684}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewWorldVisualStudioPlugin</RootNamespace>
-    <AssemblyName>NewWorldVisualStudioPlugin</AssemblyName>
+    <RootNamespace>NewWorldVisualStudioExtension</RootNamespace>
+    <AssemblyName>NewWorldVisualStudioExtension</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>

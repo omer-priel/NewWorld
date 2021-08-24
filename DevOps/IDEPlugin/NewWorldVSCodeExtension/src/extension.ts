@@ -17,7 +17,7 @@ class Solution {
     }
 }
 
-class Plugin {
+class Extension {
     title: String;
     name: String;
     context: vscode.ExtensionContext;
@@ -32,7 +32,7 @@ class Plugin {
 // global
 declare global {
     var solution: Solution;
-    var plugin: Plugin;
+    var extension: Extension;
 }
 
 // load Solution
@@ -49,7 +49,7 @@ function loadSolution() {
 
 // log funtions
 function log(message?: any, ...optionalParams: any[]) {
-    console.log(global.plugin.title + ": " + message);
+    console.log(global.extension.title + ": " + message);
 }
 
 function dir(obj: any) {
@@ -60,7 +60,7 @@ function dir(obj: any) {
 // utilites
 function pushVSCodeCommand(name: String, callback: (...args: any[]) => any) {
     
-	let commandId = global.plugin.name + "." + name;
+	let commandId = global.extension.name + "." + name;
 	
 	if (!global.solution.isNewWorldEngine()) {
         callback = (...args: any[]) => {
@@ -69,7 +69,7 @@ function pushVSCodeCommand(name: String, callback: (...args: any[]) => any) {
     }
 
     let command = vscode.commands.registerCommand(commandId, callback);
-    global.plugin.context.subscriptions.push(command);
+    global.extension.context.subscriptions.push(command);
 }
 
 // commands
@@ -207,7 +207,7 @@ function build() {
 // activate / deactivate
 export function activate(context: vscode.ExtensionContext) {
 
-    global.plugin = new Plugin(context);
+    global.extension = new Extension(context);
 
     loadSolution();
 

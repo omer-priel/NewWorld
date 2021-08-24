@@ -8,15 +8,15 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using EnvDTE80;
 
-namespace NewWorldVisualStudioPlugin
+namespace NewWorldVisualStudioExtension
 {
     class Utilities
     {
-        static string PluginName = "New World";
+        static string ExtensionName = "New World";
 
         static public void ErrorMessage(AsyncPackage package, object message)
         {
-            VsShellUtilities.ShowMessageBox(package, message.ToString(), PluginName
+            VsShellUtilities.ShowMessageBox(package, message.ToString(), ExtensionName
                 , OLEMSGICON.OLEMSGICON_CRITICAL, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
         }
 

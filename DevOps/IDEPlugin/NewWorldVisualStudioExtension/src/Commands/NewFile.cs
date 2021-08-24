@@ -10,7 +10,7 @@ using Task = System.Threading.Tasks.Task;
 using EnvDTE;
 using EnvDTE80;
 
-namespace NewWorldVisualStudioPlugin.Commands
+namespace NewWorldVisualStudioExtension.Commands
 {
     /// <summary>
     /// Command handler

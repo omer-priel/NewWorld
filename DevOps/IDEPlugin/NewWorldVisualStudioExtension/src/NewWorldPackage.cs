@@ -13,7 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
-namespace NewWorldVisualStudioPlugin
+namespace NewWorldVisualStudioExtension
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(NewWorldPackage.PackageGuidString)]
