@@ -19,10 +19,10 @@ rootFolder = Utilities.Settings.SolutionPath
 # Install NewWorldVSCodeExtension
 print('Install NewWorldVSCodeExtension Dependencies')
 
-jsonPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin\\package.json')
+jsonPath = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension\\package.json')
 newWorldVSCodeExtensionVersion = Utilities.LoadJsonFile(jsonPath).version
 
-folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodePlugin')
+folder = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension')
 
 Utilities.CMD(f'rd /s /q node_modules', False, folder)
 
@@ -31,8 +31,8 @@ Utilities.CMD(f'npm install', True, folder)
 print('Install NewWorldVSCodeExtension')
 Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersion}.vsix', True, folder)
 
-# Install NewWorldWindowsExtension
-print('Install NewWorldWindowsExtension')
+# Install NewWorldWindowsPlugin
+print('Install NewWorldWindowsPlugin')
 
 MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\NewWorldWindowsPlugin.sln'), 'Release')
 newWorldWindowsExtension = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldWindowsPlugin\\bin\\Release')
@@ -45,7 +45,7 @@ print('Install NewWorldVisualStudioExtension')
 version = '0.0.2'
 
 VSIXInstallerPath = '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\VSIXInstaller.exe"'
-vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\NewWorldVisualStudioPlugin\\NewWorld-{version}.vsix');
+vsixPath = Utilities.GetSubPath(f'DevOps\\IDEExtension\\NewWorldVisualStudioExtension\\NewWorld-{version}.vsix');
 
 Utilities.CMD(f'{VSIXInstallerPath} /quiet "{vsixPath}"', True)
 
