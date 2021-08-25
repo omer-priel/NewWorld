@@ -3,16 +3,19 @@
 import Utilities.Utilities as Utilities
 import Utilities.MSBuild as MSBuild
 
+# Utilities Functions
+def CallNPM(command, show = False, workingDirectory = False):
+	Utilities.CMD(command, show, workingDirectory)
+	Utilities.SetTitle('Load Dependencies')
+
 Utilities.SetTitle('Load Dependencies')
 
 # Check if npm exists
 try:
-	Utilities.CMD('npm --version')
+	CallNPM('npm --version')
 except:
 	print('npm dos not exists!')
 	Utilities.ExitAction()
-
-Utilities.SetTitle('Load Dependencies')
 
 rootFolder = Utilities.Settings.SolutionPath
 
@@ -26,7 +29,7 @@ folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodeExtension')
 
 Utilities.CMD(f'rd /s /q node_modules', False, folder)
 
-Utilities.CMD(f'npm install', True, folder)
+CallNPM(f'npm install', True, folder)
 
 print('Install NewWorldVSCodeExtension')
 Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersion}.vsix', True, folder)

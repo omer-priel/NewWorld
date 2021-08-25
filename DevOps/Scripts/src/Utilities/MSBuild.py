@@ -2,7 +2,7 @@
 
 import Utilities.Utilities as Utilities
 
-# Load MSBuild folder
+# Members
 MSBuildFolder = r'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'
 MSBuildPath = '"' + MSBuildFolder + r'\MSBuild.exe' + '"'
 

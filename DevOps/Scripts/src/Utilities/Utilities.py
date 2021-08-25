@@ -5,6 +5,7 @@ import sys
 import json
 from types import SimpleNamespace
 
+# Members
 Settings = None
 
 # Get path of folder or file in the Solution
@@ -44,7 +45,7 @@ def CMD(command, show=False, workingDirectory=False):
 
 	return ret
 
-# Load this module
+# Basic initialize for Script commands
 def Init():
 	global Settings
 	

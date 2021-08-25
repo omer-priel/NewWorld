@@ -25,7 +25,7 @@ git_commited = untracked_files_count == 0 and modifided_files_count == 0
 if not git_commited:
 	print(f"Exists {untracked_files_count} Untracked Files and {modifided_files_count} Modifided files.\n")
 
-# Set requests to gitlab server
+# Send request to gitlab's server
 request_url = f"https://{Utilities.Settings.Git.Server}/api/v4/projects/{Utilities.Settings.Git.ProjectID}/repository/commits/{repo.active_branch.name}"
 res = requests.get(request_url)
 
