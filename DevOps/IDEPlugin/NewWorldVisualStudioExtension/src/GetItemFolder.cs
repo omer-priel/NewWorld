@@ -42,6 +42,7 @@ namespace NewWorldVisualStudioExtension
             return SelectionTypes.Other;
         }
 
+        // Get File Path of item
         public static string GetPath(object item)
         {
             ThreadHelper.ThrowIfNotOnUIThread();

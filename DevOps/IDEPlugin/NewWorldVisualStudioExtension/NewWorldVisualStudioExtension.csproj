@@ -57,6 +57,7 @@
     <Compile Include="src\Commands\NewClass.cs" />
     <Compile Include="src\Commands\NewFile.cs" />
     <Compile Include="src\GetItemFolder.cs" />
+    <Compile Include="src\Command.cs" />
     <Compile Include="src\NewWorldPackage.cs" />
     <Compile Include="src\Commands\OpenWithVSCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
+    <None Include="scripts\Install.bat" />
+    <None Include="scripts\Publish.bat" />
+    <None Include="scripts\Uninstall.bat" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -101,9 +105,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="src\Windows\TextInputWindow.resx">
       <DependentUpon>TextInputWindow.cs</DependentUpon>

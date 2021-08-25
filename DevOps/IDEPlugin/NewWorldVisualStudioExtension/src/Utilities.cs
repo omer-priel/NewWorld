@@ -12,14 +12,17 @@ namespace NewWorldVisualStudioExtension
 {
     class Utilities
     {
+        // Extension Settings
         static string ExtensionName = "New World";
 
+        // Print Error Message
         static public void ErrorMessage(AsyncPackage package, object message)
         {
             VsShellUtilities.ShowMessageBox(package, message.ToString(), ExtensionName
                 , OLEMSGICON.OLEMSGICON_CRITICAL, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
         }
 
+        // Get Service from the Extension Package
         static public T GetService<T>(AsyncPackage package)
         {
             var task = package.GetServiceAsync(typeof(T));
@@ -28,6 +31,7 @@ namespace NewWorldVisualStudioExtension
             return (T)task.Result;
         }
 
+        // Check if is New World Solution
         static public bool IsNewWorldSolution(AsyncPackage package)
         {
             return true; // Add this Extension not only for NewWorld.
@@ -45,6 +49,7 @@ namespace NewWorldVisualStudioExtension
             return false;
         }
 
+        // If is not New World Solution this command run
         static public void EmptyExecute(object sender, EventArgs e)
         {
 

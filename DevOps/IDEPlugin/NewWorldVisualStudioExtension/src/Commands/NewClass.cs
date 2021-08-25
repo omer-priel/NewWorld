@@ -14,10 +14,7 @@ using EnvDTE80;
 
 namespace NewWorldVisualStudioExtension.Commands
 {
-    /// <summary>
-    /// Command handler
-    /// </summary>
-    internal sealed class NewClass
+    internal sealed class NewClass : Command
     {
         /// <summary>
         /// Command ID.
@@ -30,35 +27,15 @@ namespace NewWorldVisualStudioExtension.Commands
         public static readonly Guid CommandSet = new Guid("e2f2287e-ebb0-4eb0-850f-5c7de314a263");
 
         /// <summary>
-        /// VS Package that provides this command, not null.
-        /// </summary>
-        private readonly AsyncPackage package;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="NewClass"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
         private NewClass(AsyncPackage package, OleMenuCommandService commandService)
+            : base("New Class", package, commandService, CommandId, CommandSet)
         {
-            this.package = package ?? throw new ArgumentNullException(nameof(package));
-            commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
-
-            var menuCommandID = new CommandID(CommandSet, CommandId);
-
-            if (Utilities.IsNewWorldSolution(package))
-            {
-                var menuItem = new MenuCommand(this.Execute, menuCommandID);
-                menuItem.Visible = true;
-                commandService.AddCommand(menuItem);
-            }
-            else
-            {
-                var menuItem = new MenuCommand(Utilities.EmptyExecute, menuCommandID);
-                menuItem.Visible = false;
-                commandService.AddCommand(menuItem);
-            }
+            
         }
 
         /// <summary>
@@ -95,21 +72,8 @@ namespace NewWorldVisualStudioExtension.Commands
             Instance = new NewClass(package, commandService);
         }
 
-
-        // Members
-        private string Name = "New Class";
-
-        // Getters
-        protected T GetService<T>()
-        {
-            var task = ServiceProvider.GetServiceAsync(typeof(T));
-            task.Wait();
-
-            return (T)task.Result;
-        }
-
         // Execute
-        private void Execute(object sender, EventArgs e)
+        public override void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -145,8 +109,12 @@ namespace NewWorldVisualStudioExtension.Commands
 
         private void CreateNewClass(DTE2 dte, string folderPath, string classNameInput)
         {
-            bool newWord = true;
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            // Convert classNameInput to className
             string className = "";
+
+            bool newWord = true;
             for (int i = 0; i < classNameInput.Length; i++)
             {
                 char inputChar = classNameInput[i];
@@ -167,7 +135,6 @@ namespace NewWorldVisualStudioExtension.Commands
 
                     if (!flag)
                     {
-
                         Utilities.ErrorMessage(this.package, "Class names can contain letters, digits and underscores!");
                         return;
                     }
@@ -198,26 +165,22 @@ namespace NewWorldVisualStudioExtension.Commands
 
             if (className[0] < 'A' || 'Z' < className[0])
             {
-
                 Utilities.ErrorMessage(this.package, "Class names must begin with upper letter!");
                 return;
             }
 
+            // Create the class
             string headerPath = folderPath + "\\" + className + ".h";
             string sourcePath = folderPath + "\\" + className + ".cpp";
 
-
             if (System.IO.File.Exists(headerPath))
             {
-
                 if (System.IO.File.Exists(sourcePath))
                 {
-
                     Utilities.ErrorMessage(this.package, "The class " + className + " already exists!");
                 }
                 else
                 {
-
                     Utilities.ErrorMessage(this.package, "The header " + className + ".h already exists!");
                 }
                 return;
@@ -225,7 +188,6 @@ namespace NewWorldVisualStudioExtension.Commands
 
             if (System.IO.File.Exists(sourcePath))
             {
-
                 Utilities.ErrorMessage(this.package, "The source " + className + ".cpp already exists!");
                 return;
             }
@@ -248,7 +210,7 @@ namespace NewWorldVisualStudioExtension.Commands
                 sourceFile.WriteLine("#include \"" + className + ".h\"");
                 sourceFile.Close();
             }
-            catch (Exception ex)
+            catch
             {
                 Utilities.ErrorMessage(this.package, "Can't create the class " + className + "!");
                 return;
@@ -258,6 +220,7 @@ namespace NewWorldVisualStudioExtension.Commands
 
             dte.StatusBar.Text = "The class " + className + " Created ";
 
+            // Open the Class in the IDE
             dte.ItemOperations.OpenFile(sourcePath);
             dte.ItemOperations.OpenFile(headerPath);
         }

@@ -15,7 +15,7 @@ namespace NewWorldVisualStudioExtension.Commands
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class OpenWithVSCode
+    internal sealed class OpenWithVSCode : Command
     {
         /// <summary>
         /// Command ID.
@@ -28,35 +28,15 @@ namespace NewWorldVisualStudioExtension.Commands
         public static readonly Guid CommandSet = new Guid("e2f2287e-ebb0-4eb0-850f-5c7de314a263");
 
         /// <summary>
-        /// VS Package that provides this command, not null.
-        /// </summary>
-        private readonly AsyncPackage package;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="OpenWithVSCode"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
         private OpenWithVSCode(AsyncPackage package, OleMenuCommandService commandService)
+            : base("Open With VSCode", package, commandService, CommandId, CommandSet)
         {
-            this.package = package ?? throw new ArgumentNullException(nameof(package));
-            commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
-            var menuCommandID = new CommandID(CommandSet, CommandId);
-
-            if (Utilities.IsNewWorldSolution(package))
-            {
-                var menuItem = new MenuCommand(this.Execute, menuCommandID);
-                menuItem.Visible = true;
-                commandService.AddCommand(menuItem);
-            }
-            else
-            {
-                var menuItem = new MenuCommand(Utilities.EmptyExecute, menuCommandID);
-                menuItem.Visible = false;
-                commandService.AddCommand(menuItem);
-            }
         }
 
         /// <summary>
@@ -93,29 +73,19 @@ namespace NewWorldVisualStudioExtension.Commands
             Instance = new OpenWithVSCode(package, commandService);
         }
 
-        // Members
-        private string Name = "Open With VS Code";
-
-        // Getters
-        protected T GetService<T>()
-        {
-            var task = ServiceProvider.GetServiceAsync(typeof(T));
-            task.Wait();
-
-            return (T)task.Result;
-        }
-
         // Execute
-        private void Execute(object sender, EventArgs e)
+        public override void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
             DTE2 dte = (DTE2)GetService<SDTE>();
 
+            // Get Solution Path
             string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.FullName;
 
             try
             {
+                // Get VSCode Path
                 string codePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 codePath = codePath.Remove(codePath.Length - 8, 8);
                 codePath += "\\Local\\Programs\\Microsoft VS Code\\Code.exe";
@@ -126,6 +96,7 @@ namespace NewWorldVisualStudioExtension.Commands
                     return;
                 }
 
+                // Open Solution Folder with VSCode
                 System.Diagnostics.Process.Start(codePath, folderPath);
             }
             catch

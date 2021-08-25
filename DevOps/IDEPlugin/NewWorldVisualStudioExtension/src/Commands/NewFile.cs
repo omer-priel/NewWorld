@@ -15,7 +15,7 @@ namespace NewWorldVisualStudioExtension.Commands
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class NewFile
+    internal sealed class NewFile : Command
     {
         /// <summary>
         /// Command ID.
@@ -28,35 +28,15 @@ namespace NewWorldVisualStudioExtension.Commands
         public static readonly Guid CommandSet = new Guid("e2f2287e-ebb0-4eb0-850f-5c7de314a263");
 
         /// <summary>
-        /// VS Package that provides this command, not null.
-        /// </summary>
-        private readonly AsyncPackage package;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="NewFile"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
         private NewFile(AsyncPackage package, OleMenuCommandService commandService)
+            : base("New File", package, commandService, CommandId, CommandSet)
         {
-            this.package = package ?? throw new ArgumentNullException(nameof(package));
-            commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
-            var menuCommandID = new CommandID(CommandSet, CommandId);
-
-            if (Utilities.IsNewWorldSolution(package))
-            {
-                var menuItem = new MenuCommand(this.Execute, menuCommandID);
-                menuItem.Visible = true;
-                commandService.AddCommand(menuItem);
-            }
-            else
-            {
-                var menuItem = new MenuCommand(Utilities.EmptyExecute, menuCommandID);
-                menuItem.Visible = false;
-                commandService.AddCommand(menuItem);
-            }
         }
 
         /// <summary>
@@ -91,20 +71,8 @@ namespace NewWorldVisualStudioExtension.Commands
             Instance = new NewFile(package, commandService);
         }
 
-        // Members
-        private string Name = "New File";
-
-        // Getters
-        protected T GetService<T>()
-        {
-            var task = ServiceProvider.GetServiceAsync(typeof(T));
-            task.Wait();
-
-            return (T)task.Result;
-        }
-
         // Execute
-        private void Execute(object sender, EventArgs e)
+        public override void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -155,6 +123,7 @@ namespace NewWorldVisualStudioExtension.Commands
 
                     dte.StatusBar.Text = "The file \"" + filePath + "\" Created ";
 
+                    // Open the file in the IDE
                     dte.ItemOperations.OpenFile(filePath);
                 }
                 else

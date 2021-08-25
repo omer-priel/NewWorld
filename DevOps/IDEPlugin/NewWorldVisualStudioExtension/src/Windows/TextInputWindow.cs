@@ -12,12 +12,13 @@ namespace NewWorldVisualStudioExtension.Windows
 {
     public partial class TextInputWindow : Form
     {
-        public TextInputWindow()
+        private TextInputWindow()
         {
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
         }
 
+        // Open TextInputWindow window
         public static string GetValue(string title, string defualtValue = "")
         {
             var window = new TextInputWindow();
@@ -30,11 +31,7 @@ namespace NewWorldVisualStudioExtension.Windows
             return (window.DialogResult == DialogResult.OK) ? window.BoxInput.Text : null;
         }
 
-        private void TextInputWindow_Load(object sender, EventArgs e)
-        {
-            
-        }
-
+        // events
         private void BoxInput_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
