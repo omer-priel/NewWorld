@@ -30,7 +30,28 @@
             "children": [
               {
                 "key": 1629042370589,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1629911912297,
+                    "children": [],
+                    "todo": {
+                      "content": "Add bin folder for \"Windows Path\"",
+                      "id": 1629911912297,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629911948610,
+                    "children": [],
+                    "todo": {
+                      "content": "Add / Remove \"bin\" folder in the \"Windows Path\"",
+                      "id": 1629911948610,
+                      "level": "warning",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "NewWorldPlugin",
                   "id": 1629042370589,
@@ -252,7 +273,8 @@
       1629402662411,
       1629042330484,
       1629042293490,
-      1629042284024
+      1629042284024,
+      1629911912297
     ]
   }
 }
