@@ -12,7 +12,7 @@ namespace NewWorldPlugin
 	static public class Utilities
 	{
 		// Show Error Message
-		static public void ErrorMessage(string message)
+		static public void ShowErrorMessage(string message)
 		{
 			if (!WindowsAPI.IsConsole())
 			{
@@ -26,7 +26,7 @@ namespace NewWorldPlugin
 		}
 
 		// Call DevOps's Script
-		static public void StartDevOpsScript(string name)
+		static public void CallDevOpsScript(string name)
 		{
 			try
 			{
@@ -56,7 +56,7 @@ namespace NewWorldPlugin
 			}
 			catch (Exception ex)
 			{
-				ErrorMessage(ex.Message);
+				ShowErrorMessage(ex.Message);
 			}
 		}
 	}

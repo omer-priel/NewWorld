@@ -70,7 +70,7 @@ namespace NewWorldPlugin
 			}
 			catch (Exception ex)
 			{
-				Utilities.ErrorMessage(ex.Message);
+				Utilities.ShowErrorMessage(ex.Message);
 			}
 
 			WindowsAPI.UpdateRegistry();
@@ -78,7 +78,6 @@ namespace NewWorldPlugin
 
 		static public void UninstallExtension()
 		{
-			// Remove lass Registry data
 			try
 			{
 				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
@@ -91,12 +90,12 @@ namespace NewWorldPlugin
 
 		static public void GenerateProjects()
 		{
-			Utilities.StartDevOpsScript("GenerateProjects");
+			Utilities.CallDevOpsScript("GenerateProjects");
 		}
 
 		static public void Build()
 		{
-			Utilities.StartDevOpsScript("Build");
+			Utilities.CallDevOpsScript("Build");
 		}
 	}
 }

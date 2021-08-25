@@ -10,9 +10,11 @@ namespace NewWorldPlugin
 {
 	static public class Plugin
 	{
+		// Plugin settings
 		static public string Title = "New World";
 		static public string ApplicationName = "NewWorldPlugin";
 
+		// .nwe file info
 		static public string NewWorldFilePath = null;
 		static public FileInfo NewWorldFile = null;
 
@@ -26,6 +28,7 @@ namespace NewWorldPlugin
 			}
 		}
 
+		// load .nwe file
 		static public bool LoadNWEFile(string filePath)
 		{
 			NewWorldFilePath = filePath;
@@ -34,13 +37,13 @@ namespace NewWorldPlugin
 
 			if (!NewWorldFile.Exists)
 			{
-				Utilities.ErrorMessage("The path \"" + filePath + "\" does not exists!");
+				Utilities.ShowErrorMessage("The path \"" + filePath + "\" does not exists!");
 				return false;
 			}
 
 			if (NewWorldFile.Extension != ".nwe")
 			{
-				Utilities.ErrorMessage("This file is not a .nwe file!");
+				Utilities.ShowErrorMessage("This file is not a .nwe file!");
 				return false;
 			}
 

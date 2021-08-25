@@ -17,7 +17,7 @@ namespace NewWorldPlugin
 			
 			if (args.Length == 0)
 			{
-				Utilities.ErrorMessage("See NewWorldPlugin --help");
+				Utilities.ShowErrorMessage("See NewWorldPlugin --help");
 				return;
 			}
 
@@ -42,7 +42,7 @@ namespace NewWorldPlugin
 					{
 						if (args.Length < 2)
 						{
-							Utilities.ErrorMessage("The path of the file is missing!");
+							Utilities.ShowErrorMessage("The path of the file is missing!");
 						}
 						else if (Plugin.LoadNWEFile(args[1]))
 						{
@@ -54,7 +54,7 @@ namespace NewWorldPlugin
 					{
 						if (args.Length < 2)
 						{
-							Utilities.ErrorMessage("The path of the file is missing!");
+							Utilities.ShowErrorMessage("The path of the file is missing!");
 						}
 						else if (Plugin.LoadNWEFile(args[1]))
 						{
@@ -64,7 +64,6 @@ namespace NewWorldPlugin
 					}
 			}
 
-			// open .nwe file
 			if (!Plugin.LoadNWEFile(args[0]))
 			{
 				return;
@@ -75,26 +74,29 @@ namespace NewWorldPlugin
 			}
 		}
 
+		// Open .nwe file
 		static void OpenWith()
 		{
 			try
 			{
+				// get VSCode pathh
 				string codePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 				codePath = codePath.Remove(codePath.Length - 8, 8);
 				codePath += "\\Local\\Programs\\Microsoft VS Code\\Code.exe";
 
 				if (!File.Exists(codePath))
                 {
-					Utilities.ErrorMessage("Visual Studio Code does not installed!");
+					Utilities.ShowErrorMessage("Visual Studio Code does not installed!");
 					return;
 				}
 
+				// open New World Solution Folder with Vscode
 				Process.Start(codePath, Plugin.NewWorldFile.Directory.FullName);
 				Environment.Exit(0);
 			}
 			catch
 			{
-				Utilities.ErrorMessage("Can't open Visual Studio Code!");
+				Utilities.ShowErrorMessage("Can't open Visual Studio Code!");
 			}
 		}
 	}
