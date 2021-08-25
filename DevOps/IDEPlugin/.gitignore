@@ -9,8 +9,6 @@ NewWorldPlugin/obj
 # NewWorldVisualStudioExtension
 NewWorldVisualStudioExtension/obj
 
-!NewWorldVSCodeExtension/.vscode
-
 !NewWorldVisualStudioExtension/*.sln
 !NewWorldVisualStudioExtension/*.csproj
 !NewWorldVisualStudioExtension/*.vcxproj
@@ -21,5 +19,7 @@ NewWorldVSCodeExtension/out
 NewWorldVSCodeExtension/dist
 NewWorldVSCodeExtension/node_modules
 NewWorldVSCodeExtension/.vscode-test/
+
+!NewWorldVSCodeExtension/.vscode
 
 NewWorldVSCodeExtension/package-lock.json

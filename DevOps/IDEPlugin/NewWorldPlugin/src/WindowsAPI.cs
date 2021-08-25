@@ -14,7 +14,6 @@ namespace NewWorldPlugin
 	{
 		private class Import
 		{
-			// Windows API
 			public const int SW_SHOW = 5;
 			public const int SW_HIDE = 0;
 
@@ -29,6 +28,7 @@ namespace NewWorldPlugin
 		}
 
 		// Actions
+		// Show / Hide the console
 		static public void ShowConsole(bool show)
 		{
 			IntPtr handle = Import.GetConsoleWindow();
@@ -39,6 +39,7 @@ namespace NewWorldPlugin
 		static private bool isConsole = false;
 		static private bool isConsoleCache = false;
 
+		// Check is the app run on the Commnad Line
 		static public bool IsConsole()
 		{
 			if (!isConsoleCache)
@@ -60,11 +61,13 @@ namespace NewWorldPlugin
 			return isConsole;
 		}
 
+		// Update Windows Registry
 		static public void UpdateRegistry()
 		{
 			Import.SHChangeNotify(0x08000000, 0x0000, IntPtr.Zero, IntPtr.Zero);
 		}
 
+		// Delete Key from Windows Registry
 		static public void DeleteRegistrykey(RegistryKey root, string parentkey, string keyName)
 		{
 			RegistryKey reg;

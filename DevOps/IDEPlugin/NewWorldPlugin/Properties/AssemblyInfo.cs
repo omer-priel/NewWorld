@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("NewWorldPlugin")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("DevOps Plugin for New World")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("NewWorldPlugin")]
