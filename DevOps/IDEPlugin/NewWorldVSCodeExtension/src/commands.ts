@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import global = require('./global');
 import utilities = require('./utilities');
 
+// The "New Class" Command
 export function newClass(folderUriPath: string) {
 
 	if (folderUriPath === undefined) {
@@ -117,6 +118,7 @@ class ClasName
 	inputBox.show();
 }
 
+// The "Generate Projects" Command
 export function generateProjects()  {
 
 	let terminal = vscode.window.createTerminal({
@@ -129,6 +131,7 @@ export function generateProjects()  {
 	terminal.show();
 }
 
+// The "Build" Command
 export function build() {
 
 	let terminal = vscode.window.createTerminal({

@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 
 // Classes
+// Solution settings
 export class Solution {
     name: string;
     path: String;
@@ -19,6 +20,7 @@ export class Solution {
     }
 }
 
+// Extension settings
 export class Extension {
     title: String;
     name: String;
@@ -52,6 +54,7 @@ export let solution: Solution;
 export let extension: Extension;
 
 // Functions
+// Load Solution
 export function loadSolution(context: vscode.ExtensionContext) {
 	solution = new Solution();
 
@@ -65,7 +68,8 @@ export function loadSolution(context: vscode.ExtensionContext) {
 	extension.setContext(context);
 }
 
-export function clearSolution() {
+// Unload Solution
+export function unloadSolution() {
 	solution = new Solution();
 
 	extension = new Extension();

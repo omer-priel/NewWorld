@@ -5,7 +5,7 @@ import global = require('./global');
 import utilities = require('./utilities');
 import commands = require('./commands');
 
-// actions
+// Extension actions
 function pushVSCodeCommand(name: String, callback: (...args: any[]) => any) {
     
 	let commandId = global.extension.name + "." + name;
@@ -20,7 +20,7 @@ function pushVSCodeCommand(name: String, callback: (...args: any[]) => any) {
     global.extension.context().subscriptions.push(command);
 }
 
-// activate / deactivate
+// activate the Extension
 export function activate(context: vscode.ExtensionContext) {
 
     global.loadSolution(context);
@@ -32,7 +32,8 @@ export function activate(context: vscode.ExtensionContext) {
 	pushVSCodeCommand('build', commands.build);
 }
 
+// deactivate the Extension
 export function deactivate() {
 
-    global.clearSolution();
+    global.unloadSolution();
 }
