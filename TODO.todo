@@ -139,26 +139,6 @@
             }
           },
           {
-            "key": 1629779457105,
-            "children": [],
-            "todo": {
-              "content": "cleen and order all the code",
-              "id": 1629779457105,
-              "level": "danger",
-              "done": false
-            }
-          },
-          {
-            "key": 1629782199218,
-            "children": [],
-            "todo": {
-              "content": "Add documentation",
-              "id": 1629782199218,
-              "level": "danger",
-              "done": false
-            }
-          },
-          {
             "key": 1629972561440,
             "children": [
               {
