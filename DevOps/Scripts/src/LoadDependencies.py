@@ -38,8 +38,8 @@ Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersio
 # Install NewWorldPlugin
 print('Install NewWorldPlugin')
 
-MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
-newWorldPlugin = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldPlugin\\bin\\Release')
+MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
+newWorldPlugin = Utilities.GetSubPath('DevOps\\NewWorldPlugin\\bin\\Release')
 
 Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
 
