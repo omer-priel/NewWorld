@@ -2,6 +2,7 @@
 
 import Utilities.Utilities as Utilities
 import Utilities.MSBuild as MSBuild
+import Utilities.VSIXBuilder as VSIXBuilder
 
 # Utilities Functions
 def CallNPM(command, show = False, workingDirectory = False):
@@ -47,10 +48,15 @@ print('Install NewWorldVisualStudioExtension')
 
 version = '0.0.2'
 
-VSIXInstallerPath = '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\VSIXInstaller.exe"'
 vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\NewWorldVisualStudioExtension\\NewWorld-{version}.vsix');
 
-Utilities.CMD(f'{VSIXInstallerPath} /quiet "{vsixPath}"', True)
+VSIXBuilder.Install(f'{vsixPath}', True)
+
+# Install OtherExtensions
+print('Install Todo List Extension')
+vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\OtherExtensions\\saber2pr.todolist-0.1.6.vsix');
+
+VSIXBuilder.Install(f'{vsixPath}', True)
 
 # git submodules
 print('Delete "Dependencies"')
