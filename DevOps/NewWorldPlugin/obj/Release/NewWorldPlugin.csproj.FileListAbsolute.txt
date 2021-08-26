@@ -1,6 +1,0 @@
-D:\Projects\GameEngines\NewWorld\DevOps\IDEPlugin\NewWorldPlugin\obj\Release\NewWorldPlugin.csproj.CoreCompileInputs.cache
-D:\Projects\GameEngines\NewWorld\DevOps\IDEPlugin\NewWorldPlugin\bin\Release\NewWorldPlugin.exe.config
-D:\Projects\GameEngines\NewWorld\DevOps\IDEPlugin\NewWorldPlugin\bin\Release\NewWorldPlugin.exe
-D:\Projects\GameEngines\NewWorld\DevOps\IDEPlugin\NewWorldPlugin\bin\Release\NewWorldPlugin.pdb
-D:\Projects\GameEngines\NewWorld\DevOps\IDEPlugin\NewWorldPlugin\obj\Release\NewWorldPlugin.exe
-D:\Projects\GameEngines\NewWorld\DevOps\IDEPlugin\NewWorldPlugin\obj\Release\NewWorldPlugin.pdb

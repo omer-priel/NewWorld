@@ -1,7 +1,9 @@
 # Scripts
 
-Scripts/venv/
-Scripts/**/__pycache__/
+Scripts/venv
+Scripts/**/venv
+Scripts/__pycache__
+Scripts/**/__pycache__
 
 # NewWorldPlugin
 NewWorldPlugin/obj
