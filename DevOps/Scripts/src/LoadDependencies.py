@@ -54,7 +54,7 @@ VSIXBuilder.Install(f'{vsixPath}', True)
 
 # Install OtherExtensions
 print('Install Todo List Extension')
-vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\OtherExtensions\\saber2pr.todolist-0.1.6.vsix');
+vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\OtherExtensions\\TodoList\\saber2pr.todolist-0.1.6.vsix');
 
 VSIXBuilder.Install(f'{vsixPath}', True)
 

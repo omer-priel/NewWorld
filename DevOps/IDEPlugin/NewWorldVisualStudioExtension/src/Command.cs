@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 
 namespace NewWorldVisualStudioExtension
-{ 
+{
 	public abstract class Command
 	{
 		public string Name;
