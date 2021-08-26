@@ -9,7 +9,7 @@ const config = {
   target: 'node',
 	mode: 'none',
 
-  entry: './src/extension.ts',
+  entry: './src/main.ts',
   output: {
 
     path: path.resolve(__dirname, 'dist'),
