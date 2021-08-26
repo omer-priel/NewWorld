@@ -13,6 +13,16 @@
               "level": "warning",
               "done": true
             }
+          },
+          {
+            "key": 1629973298430,
+            "children": [],
+            "todo": {
+              "content": "Create ToDo.md documentation file",
+              "id": 1629973298430,
+              "level": "default",
+              "done": false
+            }
           }
         ],
         "todo": {
@@ -26,39 +36,90 @@
         "key": 1629042284024,
         "children": [
           {
-            "key": 1629042293490,
+            "key": 1629042370589,
             "children": [
               {
-                "key": 1629042370589,
+                "key": 1629972486150,
+                "children": [],
+                "todo": {
+                  "content": "Change it to python.",
+                  "id": 1629972486150,
+                  "level": "danger",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629972722793,
                 "children": [
                   {
-                    "key": 1629911912297,
+                    "key": 1629972688555,
                     "children": [],
                     "todo": {
-                      "content": "Add bin folder for \"Windows Path\"",
-                      "id": 1629911912297,
-                      "level": "warning",
+                      "content": "Add --as-console",
+                      "id": 1629972688555,
+                      "level": "default",
                       "done": false
                     }
                   },
                   {
-                    "key": 1629911948610,
+                    "key": 1629972777131,
                     "children": [],
                     "todo": {
-                      "content": "Add / Remove \"bin\" folder in the \"Windows Path\"",
-                      "id": 1629911948610,
-                      "level": "warning",
+                      "content": "Add --as-window",
+                      "id": 1629972777131,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629972836201,
+                    "children": [],
+                    "todo": {
+                      "content": "update help",
+                      "id": 1629972836201,
+                      "level": "default",
                       "done": false
                     }
                   }
                 ],
                 "todo": {
-                  "content": "NewWorldPlugin",
-                  "id": 1629042370589,
-                  "level": "success",
+                  "content": "Add router / options System",
+                  "id": 1629972722793,
+                  "level": "warning",
                   "done": false
                 }
               },
+              {
+                "key": 1629911912297,
+                "children": [],
+                "todo": {
+                  "content": "Add bin folder for \"Windows Path\"",
+                  "id": 1629911912297,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629911948610,
+                "children": [],
+                "todo": {
+                  "content": "Add / Remove \"bin\" folder in the \"Windows Path\"",
+                  "id": 1629911948610,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "NewWorldPlugin",
+              "id": 1629042370589,
+              "level": "success",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042293490,
+            "children": [
               {
                 "key": 1629042330484,
                 "children": [],
@@ -88,22 +149,12 @@
             }
           },
           {
-            "key": 1629065843655,
-            "children": [],
-            "todo": {
-              "content": "LoadDependencies",
-              "id": 1629065843655,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
             "key": 1629779457105,
             "children": [],
             "todo": {
               "content": "cleen and order all the code",
               "id": 1629779457105,
-              "level": "warning",
+              "level": "danger",
               "done": false
             }
           },
@@ -113,6 +164,47 @@
             "todo": {
               "content": "Add documentation",
               "id": 1629782199218,
+              "level": "danger",
+              "done": false
+            }
+          },
+          {
+            "key": 1629972561440,
+            "children": [
+              {
+                "key": 1629972930915,
+                "children": [],
+                "todo": {
+                  "content": "Build.bat - Call NewWorldPlugin",
+                  "id": 1629972930915,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629973132499,
+                "children": [],
+                "todo": {
+                  "content": "GenerateProjects.bat - Call NewWorldPlugin",
+                  "id": 1629973132499,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629973205534,
+                "children": [],
+                "todo": {
+                  "content": "Update and clean \"Scripts\"",
+                  "id": 1629973205534,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Make NewWorldPlugin as main project of IDEPlugin",
+              "id": 1629972561440,
               "level": "warning",
               "done": false
             }
@@ -132,7 +224,7 @@
             "key": 1629042398630,
             "children": [],
             "todo": {
-              "content": "Engine.h",
+              "content": "Engine.h [dev-0.2.1-EngineTemplate]",
               "id": 1629042398630,
               "level": "default",
               "done": false
@@ -152,7 +244,7 @@
             "key": 1629042408881,
             "children": [],
             "todo": {
-              "content": "pch file",
+              "content": "pch.h file",
               "id": 1629042408881,
               "level": "default",
               "done": false
@@ -162,8 +254,18 @@
             "key": 1629042409346,
             "children": [],
             "todo": {
-              "content": "Dependencies.h",
+              "content": "TEMP: Dependencies.h",
               "id": 1629042409346,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1629973709579,
+            "children": [],
+            "todo": {
+              "content": "TEMP: Logger.h file",
+              "id": 1629973709579,
               "level": "default",
               "done": false
             }
@@ -182,16 +284,6 @@
                 }
               },
               {
-                "key": 1629042448364,
-                "children": [],
-                "todo": {
-                  "content": "Data Structures",
-                  "id": 1629042448364,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629042460314,
                 "children": [],
                 "todo": {
@@ -200,10 +292,20 @@
                   "level": "default",
                   "done": false
                 }
+              },
+              {
+                "key": 1629042448364,
+                "children": [],
+                "todo": {
+                  "content": "Data Structures",
+                  "id": 1629042448364,
+                  "level": "default",
+                  "done": false
+                }
               }
             ],
             "todo": {
-              "content": "Data Types",
+              "content": "Data Types [dev-0.2.2-BasicTypes]",
               "id": 1629042436829,
               "level": "default",
               "done": false
@@ -211,9 +313,30 @@
           },
           {
             "key": 1629042437646,
-            "children": [],
+            "children": [
+              {
+                "key": 1629973637810,
+                "children": [],
+                "todo": {
+                  "content": "Vector",
+                  "id": 1629973637810,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629973657513,
+                "children": [],
+                "todo": {
+                  "content": "Matrix",
+                  "id": 1629973657513,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
             "todo": {
-              "content": "Math",
+              "content": "Math [dev-0.3-Math]",
               "id": 1629042437646,
               "level": "default",
               "done": false
@@ -224,17 +347,130 @@
             "children": [
               {
                 "key": 1629042490497,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1629973943751,
+                    "children": [
+                      {
+                        "key": 1629974019072,
+                        "children": [],
+                        "todo": {
+                          "content": "String m_Name",
+                          "id": 1629974019072,
+                          "level": "default",
+                          "done": false
+                        }
+                      },
+                      {
+                        "key": 1629974055568,
+                        "children": [],
+                        "todo": {
+                          "content": "Enum m_DisplayLavel",
+                          "id": 1629974055568,
+                          "level": "default",
+                          "done": false
+                        }
+                      },
+                      {
+                        "key": 1629974032112,
+                        "children": [],
+                        "todo": {
+                          "content": "Log, Info, Warn, Error",
+                          "id": 1629974032112,
+                          "level": "default",
+                          "done": false
+                        }
+                      },
+                      {
+                        "key": 1629974126023,
+                        "children": [],
+                        "todo": {
+                          "content": "Message Format",
+                          "id": 1629974126023,
+                          "level": "default",
+                          "done": false
+                        }
+                      },
+                      {
+                        "key": 1629974174127,
+                        "children": [],
+                        "todo": {
+                          "content": "Save in .log format [Need Files System]",
+                          "id": 1629974174127,
+                          "level": "default",
+                          "done": false
+                        }
+                      }
+                    ],
+                    "todo": {
+                      "content": "Logger class with Logger.m_Name",
+                      "id": 1629973943751,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "Log System",
                   "id": 1629042490497,
                   "level": "default",
                   "done": false
                 }
+              },
+              {
+                "key": 1629973912329,
+                "children": [
+                  {
+                    "key": 1629974227234,
+                    "children": [],
+                    "todo": {
+                      "content": "ProfileBlock class",
+                      "id": 1629974227234,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629974245112,
+                    "children": [],
+                    "todo": {
+                      "content": "Open ProfileBlock",
+                      "id": 1629974245112,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629974245895,
+                    "children": [],
+                    "todo": {
+                      "content": "Close ProfileBlock",
+                      "id": 1629974245895,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1629974309233,
+                    "children": [],
+                    "todo": {
+                      "content": "Inline ProfileBlock",
+                      "id": 1629974309233,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
+                "todo": {
+                  "content": "Profile System",
+                  "id": 1629973912329,
+                  "level": "default",
+                  "done": false
+                }
               }
             ],
             "todo": {
-              "content": "Debug",
+              "content": "Debug [dev-0.4-DebugSystem]",
               "id": 1629042438141,
               "level": "default",
               "done": false
@@ -244,7 +480,7 @@
             "key": 1629042438599,
             "children": [],
             "todo": {
-              "content": "Application",
+              "content": "Application [Need Math namespace]",
               "id": 1629042438599,
               "level": "default",
               "done": false
@@ -252,7 +488,7 @@
           }
         ],
         "todo": {
-          "content": "Engine",
+          "content": "Engine [dev-0.2-DataTypes]",
           "id": 1629042386980,
           "level": "success",
           "done": false
@@ -263,18 +499,28 @@
       1629042215988,
       1629042386980,
       1629042398630,
-      1629042436829,
       1629042438141,
       1629065571958,
       1629065843655,
       1629042337527,
-      1629042370589,
       1629381481973,
       1629402662411,
       1629042330484,
-      1629042293490,
       1629042284024,
-      1629911912297
+      1629911912297,
+      1629042293490,
+      1629042370589,
+      1629972486150,
+      1629972722793,
+      1629972561440,
+      1629042436829,
+      1629042437646,
+      1629042409346,
+      1629042490497,
+      1629974032112,
+      1629974019072,
+      1629973943751,
+      1629973912329
     ]
   }
 }
