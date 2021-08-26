@@ -13,16 +13,6 @@
               "level": "warning",
               "done": true
             }
-          },
-          {
-            "key": 1629973298430,
-            "children": [],
-            "todo": {
-              "content": "Create ToDo.md documentation file",
-              "id": 1629973298430,
-              "level": "default",
-              "done": false
-            }
           }
         ],
         "todo": {
@@ -395,7 +385,7 @@
                         "key": 1629974174127,
                         "children": [],
                         "todo": {
-                          "content": "Save in .log format [Need Files System]",
+                          "content": "Save in .log format [File System]",
                           "id": 1629974174127,
                           "level": "default",
                           "done": false
@@ -403,7 +393,7 @@
                       }
                     ],
                     "todo": {
-                      "content": "Logger class with Logger.m_Name",
+                      "content": "Logger class",
                       "id": 1629973943751,
                       "level": "default",
                       "done": false
@@ -480,7 +470,7 @@
             "key": 1629042438599,
             "children": [],
             "todo": {
-              "content": "Application [Need Math namespace]",
+              "content": "Application [Debug System]",
               "id": 1629042438599,
               "level": "default",
               "done": false
