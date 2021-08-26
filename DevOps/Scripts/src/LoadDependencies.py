@@ -4,6 +4,20 @@ import Utilities.Utilities as Utilities
 import Utilities.MSBuild as MSBuild
 import Utilities.VSIXBuilder as VSIXBuilder
 
+# "Progress Bar"
+lsatStage = 8
+
+debugMode = False
+stage = 0
+def StartStage(title):
+	global stage
+	stage = stage + 1
+	Utilities.SetTitle(f'Load Dependencies [{stage}\\{lsatStage}]')
+	print(title)
+	if (debugMode):
+		print(f'------------{stage}------------')
+		input('')
+
 # Utilities Functions
 def CallNPM(command, show = False, workingDirectory = False):
 	Utilities.CMD(command, show, workingDirectory)
@@ -18,10 +32,16 @@ except:
 	print('npm dos not exists!')
 	Utilities.ExitAction()
 
-rootFolder = Utilities.Settings.SolutionPath
+# Install NewWorldPlugin
+StartStage('Install NewWorldPlugin')
+
+MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
+newWorldPlugin = Utilities.GetSubPath('DevOps\\NewWorldPlugin\\bin\\Release')
+
+Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
 
 # Install NewWorldVSCodeExtension
-print('Install NewWorldVSCodeExtension Dependencies')
+StartStage('Install NewWorldVSCodeExtension Dependencies')
 
 jsonPath = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension\\package.json')
 newWorldVSCodeExtensionVersion = Utilities.LoadJsonFile(jsonPath).version
@@ -32,47 +52,39 @@ Utilities.CMD(f'rd /s /q node_modules', False, folder)
 
 CallNPM(f'npm install', True, folder)
 
-print('Install NewWorldVSCodeExtension')
+StartStage('Install NewWorldVSCodeExtension')
 Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersion}.vsix', True, folder)
 
-# Install NewWorldPlugin
-print('Install NewWorldPlugin')
-
-MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
-newWorldPlugin = Utilities.GetSubPath('DevOps\\NewWorldPlugin\\bin\\Release')
-
-Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
-
 # Install NewWorldVisualStudioExtension
-print('Install NewWorldVisualStudioExtension')
+StartStage('Install NewWorldVisualStudioExtension')
 
-version = '0.0.2'
+version = '0.0.4'
 
 vsixPath = Utilities.GetSubPath(f'DevOps\\IDEExtension\\NewWorldVisualStudioExtension\\NewWorld-{version}.vsix');
 
-VSIXBuilder.Install(f'{vsixPath}', True)
+VSIXBuilder.Install(vsixPath)
 
 # Install OtherExtensions
-print('Install Todo List Extension')
+StartStage('Install Todo List Extension')
 vsixPath = Utilities.GetSubPath(f'DevOps\\IDEExtension\\OtherExtensions\\TodoList\\saber2pr.todolist-0.1.6.vsix');
 
-VSIXBuilder.Install(f'{vsixPath}', True)
+VSIXBuilder.Install(vsixPath)
 
 # git submodules
-print('Delete "Dependencies"')
+StartStage('Delete "Dependencies"')
 
 Utilities.CMD(f'rd /s /q Dependencies')
 
-print('Load Submodules')
+StartStage('Load Submodules')
 Utilities.CMD(f'git submodule init', True)
 Utilities.CMD(f'git submodule update', True)
 
 Utilities.CMD(f'md "Dependencies\\bin"')
 
 # Premake
-print(f'Create the Premake Tool')
+StartStage(f'Create the Premake Tool')
 
-Utilities.CMD(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, f"{rootFolder}\\Dependencies\\Premake")
+Utilities.CMD(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, Utilities.GetSubPath(f'\Dependencies\\Premake'))
 Utilities.CMD(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dependencies\\bin\\premake5.exe"', True)
 
 Utilities.PresToConinue()

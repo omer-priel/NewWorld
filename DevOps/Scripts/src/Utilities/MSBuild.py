@@ -4,7 +4,7 @@ import Utilities.Utilities as Utilities
 
 # Members
 MSBuildFolder = r'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'
-MSBuildPath = '"' + MSBuildFolder + r'\MSBuild.exe' + '"'
+MSBuildPath = '\"' + MSBuildFolder + r'\MSBuild.exe' + '\"'
 
 # Rebuild Solution or project
 def Rebuild(projectPath, configurationName):
