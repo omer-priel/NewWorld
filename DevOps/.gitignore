@@ -1,0 +1,12 @@
+# Scripts
+
+Scripts/venv
+Scripts/__pycache__
+
+# NewWorldPlugin
+NewWorldPlugin/obj
+
+!NewWorldPlugin/*.sln
+!NewWorldPlugin/*.csproj
+!NewWorldPlugin/*.vcxproj
+!NewWorldPlugin/*.vcxproj.filters

@@ -132,7 +132,7 @@
               }
             ],
             "todo": {
-              "content": "IDEPlugin",
+              "content": "IDEExtension",
               "id": 1629042293490,
               "level": "success",
               "done": false
@@ -173,7 +173,7 @@
               }
             ],
             "todo": {
-              "content": "Make NewWorldPlugin as main project of IDEPlugin",
+              "content": "Make NewWorldPlugin as main project of IDEExtension",
               "id": 1629972561440,
               "level": "warning",
               "done": false
@@ -479,7 +479,6 @@
       1629042284024,
       1629911912297,
       1629042293490,
-      1629042370589,
       1629972486150,
       1629972722793,
       1629972561440,

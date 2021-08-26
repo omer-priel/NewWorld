@@ -23,10 +23,10 @@ rootFolder = Utilities.Settings.SolutionPath
 # Install NewWorldVSCodeExtension
 print('Install NewWorldVSCodeExtension Dependencies')
 
-jsonPath = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodeExtension\\package.json')
+jsonPath = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension\\package.json')
 newWorldVSCodeExtensionVersion = Utilities.LoadJsonFile(jsonPath).version
 
-folder = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldVSCodeExtension')
+folder = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension')
 
 Utilities.CMD(f'rd /s /q node_modules', False, folder)
 
@@ -38,8 +38,8 @@ Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersio
 # Install NewWorldPlugin
 print('Install NewWorldPlugin')
 
-MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
-newWorldPlugin = Utilities.GetSubPath('DevOps\\IDEPlugin\\NewWorldPlugin\\bin\\Release')
+MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
+newWorldPlugin = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldPlugin\\bin\\Release')
 
 Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
 
@@ -48,13 +48,13 @@ print('Install NewWorldVisualStudioExtension')
 
 version = '0.0.2'
 
-vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\NewWorldVisualStudioExtension\\NewWorld-{version}.vsix');
+vsixPath = Utilities.GetSubPath(f'DevOps\\IDEExtension\\NewWorldVisualStudioExtension\\NewWorld-{version}.vsix');
 
 VSIXBuilder.Install(f'{vsixPath}', True)
 
 # Install OtherExtensions
 print('Install Todo List Extension')
-vsixPath = Utilities.GetSubPath(f'DevOps\\IDEPlugin\\OtherExtensions\\TodoList\\saber2pr.todolist-0.1.6.vsix');
+vsixPath = Utilities.GetSubPath(f'DevOps\\IDEExtension\\OtherExtensions\\TodoList\\saber2pr.todolist-0.1.6.vsix');
 
 VSIXBuilder.Install(f'{vsixPath}', True)
 
