@@ -5,7 +5,6 @@ title Fix Git Indexs
 
 :main
 cd ..
-echo %cd%
 git rm --cached -r .
 git add .
 
