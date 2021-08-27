@@ -59,20 +59,10 @@
                 }
               },
               {
-                "key": 1629911912297,
-                "children": [],
-                "todo": {
-                  "content": "Add bin folder for \"Windows Path\"",
-                  "id": 1629911912297,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629911948610,
                 "children": [],
                 "todo": {
-                  "content": "Add / Remove \"bin\" folder in the \"Windows Path\"",
+                  "content": "Add / Remove bin folder from the \"Windows PATH\"",
                   "id": 1629911948610,
                   "level": "default",
                   "done": false
