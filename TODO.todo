@@ -29,16 +29,6 @@
             "key": 1629042370589,
             "children": [
               {
-                "key": 1629972486150,
-                "children": [],
-                "todo": {
-                  "content": "Change it to python.",
-                  "id": 1629972486150,
-                  "level": "danger",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629972722793,
                 "children": [
                   {
@@ -157,16 +147,6 @@
                 "todo": {
                   "content": "GenerateProjects.bat - Call NewWorldPlugin",
                   "id": 1629973132499,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629973205534,
-                "children": [],
-                "todo": {
-                  "content": "Update and clean \"Scripts\"",
-                  "id": 1629973205534,
                   "level": "default",
                   "done": false
                 }
@@ -489,7 +469,8 @@
       1629974032112,
       1629974019072,
       1629973943751,
-      1629973912329
+      1629973912329,
+      1629042370589
     ]
   }
 }

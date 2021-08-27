@@ -16,30 +16,28 @@ cd /d "%1"
 echo Checks if Python is installed
 
 python -V
-if %errorlevel% EQU 0 goto :python_venv
+if %errorlevel% EQU 0 goto :python_env
 echo Python does not installed!
 pause
 goto :exit
 
-:python_venv
-echo Load Dependencies
+:python_env
+set folder=%cd%\Scripts
 
-echo Deletes the folders "venv" and "__pycache__"
-rd /s /q %cd%\Scripts\venv
-rd /s /q %cd%\Scripts\src\Utilities\__pycache__
+echo Clean Scripts
+rd /s /q %folder%\env
+rd /s /q %folder%\src\Utilities\__pycache__
 
-echo Config "venv"
-python -m venv %cd%\Scripts\venv
+echo Create Virtual Environment of Scripts
+python -m venv %folder%\env
 
-:python_pip_dependencies
 echo Install pip's Dependencies
-%cd%\Scripts\venv\Scripts\python.exe -m pip install --upgrade pip
-%cd%\Scripts\venv\Scripts\python.exe -m pip3 install --upgrade pip3
-%cd%\Scripts\venv\Scripts\pip3 install requests
-%cd%\Scripts\venv\Scripts\pip3 install GitPython
+%folder%\env\Scripts\python.exe -m pip install --upgrade pip
+
+%folder%\env\Scripts\python.exe -m pip install -r %folder%\requirements.txt
 
 :main
-%cd%\Scripts\venv\Scripts\python %cd%\Scripts\src\LoadDependencies.py
+%cd%\Scripts\env\Scripts\python %cd%\Scripts\src\LoadDependencies.py
 
 :exit
 POPD

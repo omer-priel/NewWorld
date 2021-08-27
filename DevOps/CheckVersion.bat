@@ -4,7 +4,7 @@ PUSHD .\
 title Check Version (.bat)
 
 :main
-%cd%\Scripts\venv\Scripts\python %cd%\Scripts\src\CheckVersion.py
+%cd%\Scripts\env\Scripts\python %cd%\Scripts\src\CheckVersion.py
 
 :exit
 POPD

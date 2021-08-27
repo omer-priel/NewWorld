@@ -5,6 +5,9 @@
 bin
 Dependencies/bin
 
+__pycache__
+env
+
 *.sln
 *.vcxproj
 *.vcxproj.filters
