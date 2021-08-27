@@ -28,7 +28,13 @@ namespace NewWorldPlugin
 			}
 		}
 
-		// load .nwe file
+		// Get subpath of the solution
+		static public string GetPath(string subpath)
+		{
+			return NewWorldFile.DirectoryName + "\\" + subpath;
+		}
+
+		// Load .nwe file
 		static public bool LoadNWEFile(string filePath)
 		{
 			NewWorldFilePath = filePath;

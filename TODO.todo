@@ -3,18 +3,7 @@
     "tree": [
       {
         "key": 1629042215988,
-        "children": [
-          {
-            "key": 1629763605625,
-            "children": [],
-            "todo": {
-              "content": "Rename \"Plugin\" to \"Extension\"",
-              "id": 1629763605625,
-              "level": "warning",
-              "done": true
-            }
-          }
-        ],
+        "children": [],
         "todo": {
           "content": "Solution",
           "id": 1629042215988,
@@ -135,7 +124,7 @@
                 "key": 1629972930915,
                 "children": [],
                 "todo": {
-                  "content": "Build.bat - Call NewWorldPlugin",
+                  "content": "Build - Call NewWorldPlugin",
                   "id": 1629972930915,
                   "level": "default",
                   "done": false
@@ -145,7 +134,7 @@
                 "key": 1629973132499,
                 "children": [],
                 "todo": {
-                  "content": "GenerateProjects.bat - Call NewWorldPlugin",
+                  "content": "GenerateProjects - Call NewWorldPlugin",
                   "id": 1629973132499,
                   "level": "default",
                   "done": false
@@ -153,7 +142,7 @@
               }
             ],
             "todo": {
-              "content": "Make NewWorldPlugin as main project of IDEExtension",
+              "content": "Make NewWorldPlugin as main project of IDEExtension projects",
               "id": 1629972561440,
               "level": "warning",
               "done": false

@@ -32,12 +32,9 @@ namespace NewWorldPlugin
 			{
 				WindowsAPI.ShowConsole(true);
 
-				string applicationFolder = Application.StartupPath;
-				DirectoryInfo directory = new DirectoryInfo(applicationFolder);
-
-				string devOpsPath = directory.Parent.Parent.Parent.Parent.FullName;
-				string pythonPath = devOpsPath + @"\Scripts\venv\Scripts\python.exe";
-				string scriptPath = devOpsPath + @"\Scripts\src\" + name + ".py";
+				string devOpsPath = Plugin.GetPath(@"DevOps");
+				string pythonPath = Plugin.GetPath(@"DevOps\Scripts\env\Scripts\python.exe");
+				string scriptPath = Plugin.GetPath(@"DevOps\Scripts\src\" + name + ".py");
 
 				Process process = new Process();
 				ProcessStartInfo startInfo = new ProcessStartInfo(pythonPath);
