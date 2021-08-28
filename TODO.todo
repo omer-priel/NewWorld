@@ -18,54 +18,13 @@
             "key": 1629042370589,
             "children": [
               {
-                "key": 1629972722793,
-                "children": [
-                  {
-                    "key": 1629972688555,
-                    "children": [],
-                    "todo": {
-                      "content": "Add --as-console",
-                      "id": 1629972688555,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629972777131,
-                    "children": [],
-                    "todo": {
-                      "content": "Add --as-window",
-                      "id": 1629972777131,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629972836201,
-                    "children": [],
-                    "todo": {
-                      "content": "update help",
-                      "id": 1629972836201,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Add router / options System",
-                  "id": 1629972722793,
-                  "level": "warning",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629911948610,
                 "children": [],
                 "todo": {
                   "content": "Add / Remove bin folder from the \"Windows PATH\"",
                   "id": 1629911948610,
                   "level": "default",
-                  "done": false
+                  "done": true
                 }
               }
             ],
@@ -81,7 +40,18 @@
             "children": [
               {
                 "key": 1629042330484,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1630178294474,
+                    "children": [],
+                    "todo": {
+                      "content": "Open with VSCode need to be on the New World root folder",
+                      "id": 1630178294474,
+                      "level": "danger",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "NewWorldVisualStudioExtension",
                   "id": 1629042330484,
@@ -439,7 +409,6 @@
       1629911912297,
       1629042293490,
       1629972486150,
-      1629972722793,
       1629972561440,
       1629042436829,
       1629042437646,

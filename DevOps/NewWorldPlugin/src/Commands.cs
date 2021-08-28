@@ -67,6 +67,15 @@ namespace NewWorldPlugin
 				appReg.Close();
 
 				WindowsAPI.UpdateRegistry();
+
+				// Add Application Folder to Windows PATH
+				string pathVariable = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
+				
+				if (Array.IndexOf(pathVariable.Split(';'), applicationFolder) == -1)
+				{
+					pathVariable += ";" + applicationFolder;
+					Environment.SetEnvironmentVariable("PATH", pathVariable, EnvironmentVariableTarget.Machine);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -80,8 +89,30 @@ namespace NewWorldPlugin
 		{
 			try
 			{
+				// Remove plugin from the Registry
 				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
 				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, Plugin.ApplicationName);
+			}
+			catch { }
+
+			try
+			{
+				// Get Application Folder
+				string applicationFolder = Application.StartupPath;
+
+				// Remove Application Folder to Windows PATH
+				string pathVariable = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
+
+				List<string> list = pathVariable.Split(';').ToList();
+				list.Remove(applicationFolder);
+
+				pathVariable = "";
+				foreach (string path in list)
+				{
+					pathVariable += path + ";";
+				}
+
+				Environment.SetEnvironmentVariable("PATH", pathVariable, EnvironmentVariableTarget.Machine);
 			}
 			catch { }
 
