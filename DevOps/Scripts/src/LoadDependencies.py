@@ -5,7 +5,7 @@ import Utilities.MSBuild as MSBuild
 import Utilities.VSIXBuilder as VSIXBuilder
 
 # "Progress Bar"
-lsatStage = 8
+lsatStage = 9
 
 debugMode = False
 stage = 0
@@ -87,4 +87,8 @@ StartStage(f'Create the Premake Tool')
 Utilities.CMD(f'start /MIN /WAIT cmd /c ".\\Bootstrap.bat&exit"', True, Utilities.GetSubPath(f'\Dependencies\\Premake'))
 Utilities.CMD(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dependencies\\bin\\premake5.exe"', True)
 
-Utilities.PresToConinue()
+# Generate Projects
+StartStage(f'Generate Projects')
+
+newWorldFilePath = Utilities.GetSubPath('NewWorld.nwe')
+Utilities.CMD(f'NewWorldPlugin --generate-projects {newWorldFilePath}')
