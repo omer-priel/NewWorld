@@ -33,7 +33,7 @@ namespace NewWorldVisualStudioExtension.Commands
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
         private NewClass(AsyncPackage package, OleMenuCommandService commandService)
-            : base("New Class", package, commandService, CommandId, CommandSet)
+            : base("New Class", false, package, commandService, CommandId, CommandSet)
         {
             
         }

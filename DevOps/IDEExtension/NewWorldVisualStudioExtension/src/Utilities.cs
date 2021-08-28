@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using System.IO;
 using EnvDTE80;
 
 namespace NewWorldVisualStudioExtension
@@ -34,14 +35,12 @@ namespace NewWorldVisualStudioExtension
         // Check if is New World Solution
         static public bool IsNewWorldSolution(AsyncPackage package)
         {
-            return true; // Add this Extension not only for NewWorld.
-
             try
             {
                 DTE2 dte = (DTE2)GetService<SDTE>(package);
                 if (dte.Solution != null)
                 {
-                    return new System.IO.FileInfo(dte.Solution.FullName).Name == "NewWorld.sln";
+                    return new FileInfo(dte.Solution.FullName).Name == "NewWorld.sln";
                 }
             }
             catch { }
@@ -53,6 +52,30 @@ namespace NewWorldVisualStudioExtension
         static public void EmptyExecute(object sender, EventArgs e)
         {
 
+        }
+
+        // Get Path of the file NewWorld.nwe
+        static public string GetNewWorldFilePath(AsyncPackage package)
+		{
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            DTE2 dte = (DTE2)GetService<SDTE>(package);
+
+            DirectoryInfo directory = new FileInfo(dte.Solution.FullName).Directory;
+
+            do
+            {
+                string filePath = directory.FullName + "\\NewWorld.nwe";
+                if (File.Exists(filePath))
+				{
+                    return filePath;
+				}
+
+                directory = directory.Parent;
+            }
+            while (directory != directory.Root);
+
+            return null;
         }
     }
 }

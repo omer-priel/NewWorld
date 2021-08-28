@@ -34,7 +34,7 @@ namespace NewWorldVisualStudioExtension.Commands
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
         private OpenWithVSCode(AsyncPackage package, OleMenuCommandService commandService)
-            : base("Open With VSCode", package, commandService, CommandId, CommandSet)
+            : base("Open With VSCode", true, package, commandService, CommandId, CommandSet)
         {
 
         }
@@ -78,30 +78,11 @@ namespace NewWorldVisualStudioExtension.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            DTE2 dte = (DTE2)GetService<SDTE>();
+            string filePath = Utilities.GetNewWorldFilePath(package);
 
-            // Get Solution Path
-            string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.FullName;
-
-            try
-            {
-                // Get VSCode Path
-                string codePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                codePath = codePath.Remove(codePath.Length - 8, 8);
-                codePath += "\\Local\\Programs\\Microsoft VS Code\\Code.exe";
-
-                if (!System.IO.File.Exists(codePath))
-                {
-                    Utilities.ErrorMessage(this.package, "Visual Studio Code does not installed!");
-                    return;
-                }
-
-                // Open Solution Folder with VSCode
-                System.Diagnostics.Process.Start(codePath, folderPath);
-            }
-            catch
-            {
-                Utilities.ErrorMessage(this.package, "Can't open Visual Studio Code!");
+            if (filePath != null)
+			{
+                System.Diagnostics.Process.Start("NewWorldPlugin", filePath);
             }
         }
     }
