@@ -12,6 +12,3 @@ $ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld.git
 
 Load Dependencies:<br />
 DevOps\LoadDependencies.bat
-
-Generate Projects:<br />
-NewWorld.nwe > "Generate Projects" command
