@@ -15,5 +15,6 @@ NewWorldVSCodeExtension/.vscode-test/
 !NewWorldVSCodeExtension/.vscode
 
 NewWorldVSCodeExtension/package-lock.json
+NewWorldVSCodeExtension/**.vsix
 
 # OtherExtensions

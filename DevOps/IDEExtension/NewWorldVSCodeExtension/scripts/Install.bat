@@ -1,8 +1,7 @@
 @echo off
 
 cd ..
-set /p version=Version: 
-code --install-extension newworld-%version%.vsix
+code --install-extension newworld.vsix
 
 :exit
 exit /b

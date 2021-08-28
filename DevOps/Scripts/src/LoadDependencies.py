@@ -40,21 +40,6 @@ newWorldPlugin = Utilities.GetSubPath('DevOps\\NewWorldPlugin\\bin\\Release')
 
 Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
 
-# Install NewWorldVSCodeExtension
-StartStage('Install NewWorldVSCodeExtension Dependencies')
-
-jsonPath = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension\\package.json')
-newWorldVSCodeExtensionVersion = Utilities.LoadJsonFile(jsonPath).version
-
-folder = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension')
-
-Utilities.CMD(f'rd /s /q node_modules', False, folder)
-
-CallNPM(f'npm install', True, folder)
-
-StartStage('Install NewWorldVSCodeExtension')
-Utilities.CMD(f'code --install-extension newworld-{newWorldVSCodeExtensionVersion}.vsix', True, folder)
-
 # Install NewWorldVisualStudioExtension
 StartStage('Install NewWorldVisualStudioExtension')
 
@@ -63,6 +48,21 @@ version = '0.0.4'
 vsixPath = Utilities.GetSubPath(f'DevOps\\IDEExtension\\NewWorldVisualStudioExtension\\NewWorld-{version}.vsix');
 
 VSIXBuilder.Install(vsixPath)
+
+# Install NewWorldVSCodeExtension
+StartStage('Build NewWorldVSCodeExtension')
+
+jsonPath = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension\\package.json')
+
+folder = Utilities.GetSubPath('DevOps\\IDEExtension\\NewWorldVSCodeExtension')
+
+Utilities.CMD(f'rd /s /q node_modules', False, folder)
+
+CallNPM(f'npm install', True, folder)
+CallNPM(f'npm run scripts:package', True, folder)
+
+StartStage('Install NewWorldVSCodeExtension')
+Utilities.CMD(f'code --install-extension newworld.vsix', True, folder)
 
 # Install OtherExtensions
 StartStage('Install Todo List Extension')
