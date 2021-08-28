@@ -1,0 +1,9 @@
+# Scripts
+
+# NewWorldPlugin
+NewWorldPlugin/obj
+
+!NewWorldPlugin/*.sln
+!NewWorldPlugin/*.csproj
+!NewWorldPlugin/*.vcxproj
+!NewWorldPlugin/*.vcxproj.filters

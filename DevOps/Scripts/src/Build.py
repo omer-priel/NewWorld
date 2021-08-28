@@ -1,11 +1,13 @@
-# Win Build - Build all the applications
+# Build - Build all the applications
 
 import Utilities.Utilities as Utilities
+import Utilities.MSBuild as MSBuild
 
-import json
+Utilities.SetTitle("Build")
 
-Utilities.SetTitle("Win-Build")
-
-# TODO: Need code
+# Build the Solution
+projectFilePath = Utilities.GetSubPath('NewWorld.sln')
+MSBuild.Clean(projectFilePath, 'Release')
+MSBuild.Build(projectFilePath, 'Release')
 
 Utilities.PresToConinue()

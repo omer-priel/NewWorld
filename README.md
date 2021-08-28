@@ -4,7 +4,7 @@ New World is just my own World.<br />
 And i hope that this engine will contain all the consepts that real<br />
 game engine need.<br />
 
-![Logo](Documents/Logo/Logo.png)
+![Logo](Resources/Logo/Logo128.png)
 
 ## Get Started
 Clone Solution:<br />
@@ -14,4 +14,4 @@ Load Dependencies:<br />
 DevOps\LoadDependencies.bat
 
 Generate Projects:<br />
-DevOps\GenerateProjects.bat
+NewWorld.nwe > "Generate Projects" command

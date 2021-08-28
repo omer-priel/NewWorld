@@ -16,7 +16,7 @@ https://www.canva.com/design/DAEm07pxUUk/oyicj5ii7maokDOFNL1bdQ/edit
 ## Dependencies
 * Tools
 	Premake	 : https://github.com/premake/premake-core
-* Plugins
+* Extensions
 	Todo List: https://marketplace.visualstudio.com/items?itemName=saber2pr.todolist
 
 * Libraries
