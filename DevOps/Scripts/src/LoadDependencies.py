@@ -92,3 +92,5 @@ StartStage(f'Generate Projects')
 
 newWorldFilePath = Utilities.GetSubPath('NewWorld.nwe')
 Utilities.CMD(f'NewWorldPlugin --generate-projects {newWorldFilePath}')
+
+Utilities.PresToConinue()
