@@ -101,7 +101,10 @@ namespace NewWorldVisualStudioExtension.Commands
 
             if (fileName != null && fileName != "")
             {
-                // CreateNew File
+                fileName = fileName.Replace('/', '\\');
+
+                // Create New File
+
                 string filePath = folderPath + "\\" + fileName;
                 if (!System.IO.File.Exists(filePath))
                 {
@@ -109,6 +112,12 @@ namespace NewWorldVisualStudioExtension.Commands
 
                     try
                     {
+                        if (fileName.IndexOf('\\') != -1) // subfolder
+						{
+                            string subFolder = fileName.Substring(0, fileName.LastIndexOf('\\'));
+                            System.IO.Directory.CreateDirectory(folderPath + "\\" + subFolder);
+                        }
+
                         var file = System.IO.File.CreateText(filePath);
                         file.Close();
 
