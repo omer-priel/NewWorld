@@ -13,13 +13,14 @@ namespace NewWorldPlugin
 	{
 		static public void Help()
 		{
-			Console.WriteLine("NewWorldPlugin:");
-			Console.WriteLine("NewWorldPlugin path                      - Open the .nwe with Visual Studio Code");
-			Console.WriteLine("NewWorldPlugin --help                    - Show this help");
-			Console.WriteLine("NewWorldPlugin --install-extension       - Install the extension");
-			Console.WriteLine("NewWorldPlugin --uninstall-extension     - Uninstall the extension");
-			Console.WriteLine("NewWorldPlugin --generate-projects path  - Generate Projects");
-			Console.WriteLine("NewWorldPlugin --build path              - Build the applications");
+			Console.WriteLine("");
+			Console.WriteLine("NewWorldPlugin [option] path");
+			Console.WriteLine("\tpath                     - Open the.nwe with Visual Studio Code");
+			Console.WriteLine("\t--help                   - Show this help");
+			Console.WriteLine("\t--install-extension      - Install the extension");
+			Console.WriteLine("\t--uninstall-extension    - Uninstall the extension");
+			Console.WriteLine("\t--generate-projects path - Generate Projects");
+			Console.WriteLine("\t--build path             - Build the applications");
 		}
 
 		static public void InstallExtension()
@@ -28,13 +29,22 @@ namespace NewWorldPlugin
 
 			try
 			{
-				// Get Application Path
-				string applicationPath = Application.ExecutablePath;
+				// Get Application Folder
+				string applicationFolder = Application.StartupPath;
+
+				// Add Application Folder to Windows PATH
+				string pathVariable = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
+
+				if (Array.IndexOf(pathVariable.Split(';'), applicationFolder) == -1)
+				{
+					pathVariable += ";" + applicationFolder;
+					Environment.SetEnvironmentVariable("PATH", pathVariable, EnvironmentVariableTarget.Machine);
+				}
 
 				// Get Logo.ico path
-				string applicationFolder = Application.StartupPath;
 				DirectoryInfo directory = new DirectoryInfo(applicationFolder);
 
+				string pluginPath = "\"" + Application.ExecutablePath + "\"";
 				string logoPath = directory.Parent.Parent.FullName + "\\Logo.ico";
 
 				// Create Keys
@@ -49,33 +59,24 @@ namespace NewWorldPlugin
 
 				appReg.SetValue("", "New World Engine");
 				appReg.CreateSubKey("DefualtIcon").SetValue("", logoPath);
-				appReg.CreateSubKey(@"shell\open\command").SetValue("", "\"" + applicationPath + "\" %1");
+				appReg.CreateSubKey(@"shell\open\command").SetValue("", pluginPath + " %1");
 
 				RegistryKey buildReg = appReg.CreateSubKey(@"shell\Build");
 				buildReg.SetValue("", "Build");
 				buildReg.SetValue("Icon", logoPath);
-				buildReg.CreateSubKey("command").SetValue("", "\"" + applicationPath + "\" --build %1");
+				buildReg.CreateSubKey("command").SetValue("", pluginPath + " --build %1");
 				buildReg.Close();
 
 				RegistryKey generateProjectsReg = appReg.CreateSubKey(@"shell\GenerateProjects");
 				generateProjectsReg.SetValue("", "Generate Projects");
 				generateProjectsReg.SetValue("Icon", logoPath);
-				generateProjectsReg.CreateSubKey("command").SetValue("", "\"" + applicationPath + "\" --generate-projects %1");
+				generateProjectsReg.CreateSubKey("command").SetValue("", pluginPath + " --generate-projects %1");
 				generateProjectsReg.Close();
 
 				fileReg.Close();
 				appReg.Close();
 
 				WindowsAPI.UpdateRegistry();
-
-				// Add Application Folder to Windows PATH
-				string pathVariable = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
-				
-				if (Array.IndexOf(pathVariable.Split(';'), applicationFolder) == -1)
-				{
-					pathVariable += ";" + applicationFolder;
-					Environment.SetEnvironmentVariable("PATH", pathVariable, EnvironmentVariableTarget.Machine);
-				}
 			}
 			catch (Exception ex)
 			{
@@ -87,14 +88,6 @@ namespace NewWorldPlugin
 
 		static public void UninstallExtension()
 		{
-			try
-			{
-				// Remove plugin from the Registry
-				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
-				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, Plugin.ApplicationName);
-			}
-			catch { }
-
 			try
 			{
 				// Get Application Folder
@@ -113,6 +106,14 @@ namespace NewWorldPlugin
 				}
 
 				Environment.SetEnvironmentVariable("PATH", pathVariable, EnvironmentVariableTarget.Machine);
+			}
+			catch { }
+
+			try
+			{
+				// Remove plugin from the Registry
+				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, ".nwe");
+				WindowsAPI.DeleteRegistrykey(Registry.ClassesRoot, null, Plugin.ApplicationName);
 			}
 			catch { }
 

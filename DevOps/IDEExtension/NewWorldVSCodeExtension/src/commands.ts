@@ -122,12 +122,13 @@ class ClasName
 export function generateProjects()  {
 
 	let terminal = vscode.window.createTerminal({
-		name: "GenerateProjects",
+		name: "Generate Projects",
 		cwd: global.solution.path
 	} as any);
 
-	terminal.sendText('cd DevOps');
-	terminal.sendText('GenerateProjects.bat');
+	//terminal.sendText('cd DevOps');
+	//terminal.sendText('GenerateProjects.bat');
+	terminal.sendText('NewWorldPlugin --generate-projects ' + global.solution.getNewWorldEngineFile());
 	terminal.show();
 }
 
@@ -139,7 +140,8 @@ export function build() {
 		cwd: global.solution.path
 	} as any);
 
-	terminal.sendText('cd DevOps');
-	terminal.sendText('Build.bat');
+	//terminal.sendText('cd DevOps');
+	//terminal.sendText('Build.bat');
+	terminal.sendText('NewWorldPlugin --build ' + global.solution.getNewWorldEngineFile());
 	terminal.show();
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 using System.Diagnostics;
 
 namespace NewWorldPlugin
@@ -20,7 +19,7 @@ namespace NewWorldPlugin
 			}
 			else
 			{
-				Console.WriteLine("Error: {0}\n", message);
+				Console.WriteLine("Error: {0}", message);
 				Commands.Help();
 			}
 		}

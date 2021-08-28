@@ -18,6 +18,14 @@ export class Solution {
     isNewWorldEngine() {
         return this.name === 'NewWorld';
     }
+
+	getNewWorldEngineFile() {
+		
+		if (this.isNewWorldEngine()) {
+			return vscode.Uri.joinPath(this.uri, './NewWorld.nwe').fsPath;
+		}
+		return null;
+	}
 }
 
 // Extension settings

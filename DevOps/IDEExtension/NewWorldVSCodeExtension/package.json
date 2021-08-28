@@ -1,7 +1,7 @@
 {
 	"name": "newworld",
 	"displayName": "New World",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "VSCode Extension for New World Engine",
 	"publisher": "NewWorld",
 	"license": "MIT",
