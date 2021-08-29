@@ -2,11 +2,15 @@
 
 namespace NewWorld
 {
-	/*
-	* Defualt types:
-	* char, short, int, float, double
-	*/
+	/// Defualt types:
+	/// bool, char, short, int, float, double
+	///
 
-	using byte = unsigned char;
+	using Byte = unsigned char;
+	using ushort = unsigned short;
 	using uint = unsigned int;
+	using Long = long long;
+	using Ulong = unsigned long long;
+
+	using SizeT = uint;
 }
