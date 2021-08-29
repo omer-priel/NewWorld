@@ -13,49 +13,7 @@
       },
       {
         "key": 1629042284024,
-        "children": [
-          {
-            "key": 1629042370589,
-            "children": [],
-            "todo": {
-              "content": "NewWorldPlugin",
-              "id": 1629042370589,
-              "level": "success",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042293490,
-            "children": [
-              {
-                "key": 1629042330484,
-                "children": [],
-                "todo": {
-                  "content": "NewWorldVisualStudioExtension",
-                  "id": 1629042330484,
-                  "level": "success",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629042337527,
-                "children": [],
-                "todo": {
-                  "content": "NewWorldVSCodeExtension",
-                  "id": 1629042337527,
-                  "level": "success",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "IDEExtension",
-              "id": 1629042293490,
-              "level": "success",
-              "done": false
-            }
-          }
-        ],
+        "children": [],
         "todo": {
           "content": "DevOps",
           "id": 1629042284024,
@@ -66,56 +24,6 @@
       {
         "key": 1629042386980,
         "children": [
-          {
-            "key": 1629042398630,
-            "children": [],
-            "todo": {
-              "content": "Engine.h [dev-0.2.1-EngineTemplate]",
-              "id": 1629042398630,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042408056,
-            "children": [],
-            "todo": {
-              "content": "EntryPoint.h + ENTRY_POINT();",
-              "id": 1629042408056,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042408881,
-            "children": [],
-            "todo": {
-              "content": "pch.h file",
-              "id": 1629042408881,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042409346,
-            "children": [],
-            "todo": {
-              "content": "TEMP: Dependencies.h",
-              "id": 1629042409346,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629973709579,
-            "children": [],
-            "todo": {
-              "content": "TEMP: Logger.h file",
-              "id": 1629973709579,
-              "level": "default",
-              "done": false
-            }
-          },
           {
             "key": 1629042436829,
             "children": [
@@ -334,7 +242,7 @@
           }
         ],
         "todo": {
-          "content": "Engine [dev-0.2-DataTypes]",
+          "content": "Engine",
           "id": 1629042386980,
           "level": "success",
           "done": false

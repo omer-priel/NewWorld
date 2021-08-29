@@ -1,16 +1,19 @@
 #include <NewWorld.h>
+#include <NewWorld/EntryPoint.h>
 
-// TEMP
-#define SELECT_APPLICATION(x);
-
-SELECT_APPLICATION(App);
+#include "Tests/Main.h"
 
 class Application : NewWorld::Application
 {
-	Application()
-	{
+public:
+	Application() { }
 
+	void Init() override { }
+
+	void Test() override // TEMP
+	{
+		Tests::TestsRoot();
 	}
 };
 
-#include "NewWorld/Core/EntryPoint.h"
+ENTRYPOINT_APPLICATION(Application);
