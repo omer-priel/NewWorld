@@ -76,8 +76,8 @@ StartStage('Delete "Dependencies"')
 Utilities.CMD(f'rd /s /q Dependencies')
 
 StartStage('Load Submodules')
-Utilities.CMD(f'git -c http.sslVerify=false submodule init', True)
-Utilities.CMD(f'git -c http.sslVerify=false submodule update', True)
+Utilities.CMD(f'git submodule init', True)
+Utilities.CMD(f'git submodule update', True)
 
 Utilities.CMD(f'md "Dependencies\\bin"')
 

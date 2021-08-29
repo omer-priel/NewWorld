@@ -8,7 +8,7 @@ game engine need.<br />
 
 ## Get Started
 Clone Solution:<br />
-$ git clone -c http.sslVerify=false https://gitlab.com/Omer-Projects/GameEngines/NewWorld.git
+$ git clone https://gitlab.com/Omer-Projects/GameEngines/NewWorld.git
 
 Load Dependencies:<br />
 DevOps\LoadDependencies.bat
