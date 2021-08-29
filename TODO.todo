@@ -33,13 +33,74 @@
                 "todo": {
                   "content": "Primitive",
                   "id": 1629042447885,
+                  "level": "warning",
+                  "done": false
+                }
+              },
+              {
+                "key": 1630241966032,
+                "children": [],
+                "todo": {
+                  "content": "Object and IObject",
+                  "id": 1630241966032,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1630241971566,
+                "children": [],
+                "todo": {
+                  "content": "Type and TypeID",
+                  "id": 1630241971566,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1630242047303,
+                "children": [],
+                "todo": {
+                  "content": "basic String class",
+                  "id": 1630242047303,
                   "level": "default",
                   "done": false
                 }
               },
               {
                 "key": 1629042460314,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1630242075124,
+                    "children": [],
+                    "todo": {
+                      "content": "ScopePointer",
+                      "id": 1630242075124,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1630242075756,
+                    "children": [],
+                    "todo": {
+                      "content": "SharedPointer",
+                      "id": 1630242075756,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1630242076820,
+                    "children": [],
+                    "todo": {
+                      "content": "RollPointer",
+                      "id": 1630242076820,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "Pointers",
                   "id": 1629042460314,
@@ -51,7 +112,7 @@
                 "key": 1629042448364,
                 "children": [],
                 "todo": {
-                  "content": "Data Structures",
+                  "content": "Collections",
                   "id": 1629042448364,
                   "level": "default",
                   "done": false
@@ -59,7 +120,7 @@
               }
             ],
             "todo": {
-              "content": "Data Types [dev-0.2.2-BasicTypes]",
+              "content": "Data Types",
               "id": 1629042436829,
               "level": "default",
               "done": false
@@ -273,7 +334,10 @@
       1629973912329,
       1629042370589,
       1629042284024,
-      1629042293490
+      1629042293490,
+      1630241971566,
+      1629042447885,
+      1629042460314
     ]
   }
 }
