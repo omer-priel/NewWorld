@@ -25,36 +25,6 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1629042398630,
-            "children": [],
-            "todo": {
-              "content": "NewWorld.h",
-              "id": 1629042398630,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042408056,
-            "children": [],
-            "todo": {
-              "content": "EntryPoint.h + ENTRY_POINT();",
-              "id": 1629042408056,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042408881,
-            "children": [],
-            "todo": {
-              "content": "nwpch.h file",
-              "id": 1629042408881,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
             "key": 1629042409346,
             "children": [],
             "todo": {

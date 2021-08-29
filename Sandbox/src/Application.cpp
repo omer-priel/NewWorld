@@ -1,14 +1,18 @@
 #include <NewWorld.h>
 #include <NewWorld/EntryPoint.h>
 
-#include <iostream>
+#include "Tests/Main.h"
 
 class Application : NewWorld::Application
 {
 public:
-	Application()
+	Application() { }
+
+	void Init() override { }
+
+	void Test() override // TEMP
 	{
-		std::cout << "Application\n" << "\n";
+		Tests::TestsRoot();
 	}
 };
 

@@ -17,6 +17,8 @@ namespace NewWorld
 
 		// Actions
 	public:
+		virtual void Init() = 0;
+
 		void Run()
 		{
 			// The Game Loop
@@ -27,5 +29,7 @@ namespace NewWorld
 				// EndFrame()
 			}
 		}
+
+		virtual void Test() = 0; 
 	};
 }

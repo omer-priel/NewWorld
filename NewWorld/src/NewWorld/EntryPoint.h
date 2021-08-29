@@ -2,7 +2,7 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Core/Application.h"
 
-#define ENTRYPOINT_APPLICATION(className) NewWorld::Application* CreateApplication() { return (NewWorld::Application*)new className();
+#define ENTRYPOINT_APPLICATION(className) NewWorld::Application* CreateApplication() { return (NewWorld::Application*)new className(); }
 
 NewWorld::Application* CreateApplication();
 
@@ -12,7 +12,10 @@ int main(int argc, char* argv[])
 {
 	NewWorld::Application* application = CreateApplication();
 	
-	application->Run();
+	application->Init();
+
+	application->Test();  // TEMP
+	//application->Run(); // TEMP
 	
 	delete application;
 	return 0;
