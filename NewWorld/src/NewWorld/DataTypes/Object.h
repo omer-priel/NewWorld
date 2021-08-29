@@ -1,9 +1,15 @@
 #pragma once
 
-namespace NewWorld::DataTypes
+// This is Core class
+
+#include "Engine/DataTypes/Primitives.h"
+#include "Engine/DataTypes/IObject.h"
+#include "Engine/DataTypes/Collections/String.h"
+
+namespace Engine::DataTypes
 {
-	using String = NewWorld::DataTypes::Collections::String;
-	
+	using String = Engine::DataTypes::Collections::String;
+
 	class Object : DataTypes::IObject
 	{
 	// Static

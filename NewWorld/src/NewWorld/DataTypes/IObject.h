@@ -1,15 +1,17 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Primitives.h"
+// This is Core class
 
-namespace NewWorld::DataTypes
+#include "Engine/DataTypes/Primitives.h"
+
+namespace Engine::DataTypes
 {
 	namespace Collections
 	{
 		class String;
 	}
 
-	using String = NewWorld::DataTypes::Collections::String;
+	using String = Engine::DataTypes::Collections::String;
 
 	class IObject abstract
 	{

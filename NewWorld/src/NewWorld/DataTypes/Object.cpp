@@ -1,8 +1,6 @@
-#include "nwpch.h"
-
 #include "Object.h"
 
-namespace NewWorld::DataTypes
+namespace Engine::DataTypes
 {
-    
+
 }

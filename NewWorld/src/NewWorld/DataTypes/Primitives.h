@@ -1,11 +1,13 @@
 #pragma once
 
-namespace NewWorld
-{
-	/// Defualt types:
-	/// bool, char, short, int, float, double
-	///
+// This is Core class
 
+/// Not need to define:
+/// bool, char, short, int, float, double
+///
+
+namespace Engine::DataTypes
+{
 	using Byte = unsigned char;
 	using ushort = unsigned short;
 	using uint = unsigned int;
