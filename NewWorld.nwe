@@ -1,0 +1,12 @@
+{
+	"name": "New World",
+	"engine": {
+		"name": "NewWorld",
+		"version": "0.1.3"
+	},
+	"applications": [
+		{
+			"name": "Sandbox"
+		}
+	]
+}

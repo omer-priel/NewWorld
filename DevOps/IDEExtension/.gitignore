@@ -1,0 +1,20 @@
+# NewWorldVisualStudioExtension
+NewWorldVisualStudioExtension/obj
+
+!NewWorldVisualStudioExtension/*.sln
+!NewWorldVisualStudioExtension/*.csproj
+!NewWorldVisualStudioExtension/*.vcxproj
+!NewWorldVisualStudioExtension/*.vcxproj.filters
+
+# NewWorldVSCodeExtension
+NewWorldVSCodeExtension/out
+NewWorldVSCodeExtension/dist
+NewWorldVSCodeExtension/node_modules
+NewWorldVSCodeExtension/.vscode-test/
+
+!NewWorldVSCodeExtension/.vscode
+
+NewWorldVSCodeExtension/package-lock.json
+NewWorldVSCodeExtension/**.vsix
+
+# OtherExtensions

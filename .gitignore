@@ -1,7 +1,12 @@
 .vs
 .idea
+.vscode
+
 bin
 Dependencies/bin
+
+__pycache__
+env
 
 *.sln
 *.vcxproj
@@ -12,5 +17,5 @@ Dependencies/bin
 
 # Other .gitignore files:
 
-# DevOps/Scripts
-# DevOps/IDEPlugin
+# DevOps
+# DevOps/IDEExtension
