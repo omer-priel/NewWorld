@@ -1,16 +1,15 @@
 #include <NewWorld.h>
+#include <NewWorld/EntryPoint.h>
 
-// TEMP
-#define SELECT_APPLICATION(x);
-
-SELECT_APPLICATION(App);
+#include <iostream>
 
 class Application : NewWorld::Application
 {
+public:
 	Application()
 	{
-
+		std::cout << "Application\n" << "\n";
 	}
 };
 
-#include "NewWorld/Core/EntryPoint.h"
+ENTRYPOINT_APPLICATION(Application);

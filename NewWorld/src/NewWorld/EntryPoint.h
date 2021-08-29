@@ -2,12 +2,15 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Core/Application.h"
 
+#define ENTRYPOINT_APPLICATION(className) NewWorld::Application* CreateApplication() { return (NewWorld::Application*)new className();
+
+NewWorld::Application* CreateApplication();
+
 #if NW_PLATFORM_WINDOWS
 
 int main(int argc, char* argv[])
 {
-	//TEMP: new ...
-	NewWorld::Application* application = new NewWorld::Application();
+	NewWorld::Application* application = CreateApplication();
 	
 	application->Run();
 	
