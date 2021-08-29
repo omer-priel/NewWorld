@@ -1,4 +1,5 @@
 #pragma once
+
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Core/Application.h"
 

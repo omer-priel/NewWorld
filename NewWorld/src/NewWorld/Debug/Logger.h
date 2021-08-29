@@ -1,33 +1,40 @@
-#include "nwpch.h"
+#pragma once
 
-#define LOG(message) Debug::Log(message)
-#define INFO(message) Debug::Info(message)
-#define WARN(message) Debug::Warn(message)
-#define ERROR(message) Debug::Error(message)
+#include "Dependencies.h"
+
+#define NW_LOG(message) Debug::Log("Engine", message)
+#define NW_INFO(message) Debug::Info("Engine", message)
+#define NW_WARN(message) Debug::Warn("Engine", message)
+#define NW_ERROR(message) Debug::Error("Engine", message)
+
+#define LOG(message) Debug::Log("App", message)
+#define INFO(message) Debug::Info("App", message)
+#define WARN(message) Debug::Warn("App", message)
+#define ERROR(message) Debug::Error("App", message)
 
 namespace Debug
 {
 	template<typename T>
-	void Log(T obj)
+	void Log(const char* system, T obj)
 	{
 		std::cout << obj << "\n";
 	}
 
 	template<typename T>
-	void Info(T obj)
+	void Info(const char* system, T obj)
 	{
-		std::cout << "[Info]: " << obj << "\n";
+		std::cout << "[INFO] " << system << ": " << obj << "\n";
 	}
 
 	template<typename T>
-	void Warn(T obj)
+	void Warn(const char* system, T obj)
 	{
-		std::cout << "[Warn]: " << obj << "\n";
+		std::cout << "[WARN] " << system << ": " << obj << "\n";
 	}
 
 	template<typename T>
-	void Error(T obj)
+	void Error(const char* system, T obj)
 	{
-		std::cout << "[Error]: " << obj << "\n";
+		std::cout << "[ERROR] " << system << ": " << obj << "\n";
 	}
 }
