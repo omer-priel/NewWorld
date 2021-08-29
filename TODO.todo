@@ -25,26 +25,6 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1629042409346,
-            "children": [],
-            "todo": {
-              "content": "TEMP: Dependencies.h",
-              "id": 1629042409346,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629973709579,
-            "children": [],
-            "todo": {
-              "content": "TEMP: Logger.h file",
-              "id": 1629973709579,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
             "key": 1629042436829,
             "children": [
               {
