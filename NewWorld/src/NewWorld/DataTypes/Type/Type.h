@@ -1,6 +1,6 @@
 #pragma once
 
-namespace NewWorld::DataTypes
+namespace NewWorld::DataTypes::Type
 {
 	class Type
 	{
