@@ -1,20 +1,22 @@
 #pragma once
 
-// This is Core class
+#include "NewWorld/DataTypes/Primitives.h"
 
-#include "Engine/DataTypes/Primitives.h"
-
-namespace Engine::DataTypes
+namespace NewWorld::DataTypes
 {
+	// Declarations
 	namespace Collections
 	{
 		class String;
 	}
 
-	using String = Engine::DataTypes::Collections::String;
+	// Aliases
+	using String = NewWorld::DataTypes::Collections::String;
 
+	// IObject
 	class IObject abstract
 	{
+		// Pure functions
 	public:
 		virtual String ToString() const = 0;
 	};

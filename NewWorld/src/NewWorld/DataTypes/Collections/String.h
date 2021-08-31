@@ -4,7 +4,7 @@
 
 #include "BasicString.h"
 
-namespace Engine::DataTypes::Collections
+namespace NewWorld::DataTypes::Collections
 {
 	class String : public BasicString<char>
 	{

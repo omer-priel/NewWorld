@@ -4,6 +4,6 @@ namespace Tests
 {
 	void TestsRoot()
 	{
-
+		INFO("TestsRoot");
 	}
 }
