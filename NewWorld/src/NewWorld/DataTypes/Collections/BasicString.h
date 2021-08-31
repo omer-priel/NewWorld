@@ -10,7 +10,7 @@ namespace NewWorld::DataTypes::Collections
 	{
 	// Members
 	public:
-		const T* m_Value = "DEFUALT";
+		const T* m_Value = "DEFAULT";
 
 	public:
 		BasicString() {}

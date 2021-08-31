@@ -1,8 +1,8 @@
 #pragma once
 
-// This is Core class
-
 #include "BasicString.h"
+
+#include <Dependencies.h>
 
 namespace NewWorld::DataTypes::Collections
 {
@@ -15,4 +15,11 @@ namespace NewWorld::DataTypes::Collections
 			return *this;
 		}
 	};
+
+	// TODO: Replace with proper code
+	std::ostream& operator<<(std::ostream& os, const String& obj)
+	{
+		os << obj.m_Value;
+		return os;
+	}
 }

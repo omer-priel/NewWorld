@@ -1,7 +1,5 @@
 #pragma once
 
-// This is Core class
-
 /// Not need to define:
 /// bool, char, short, int, float, double
 ///
