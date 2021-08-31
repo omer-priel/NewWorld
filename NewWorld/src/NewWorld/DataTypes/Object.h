@@ -12,7 +12,7 @@ namespace NewWorld::DataTypes
 
 	class Object : DataTypes::IObject
 	{
-	protected:
+	public:
 		virtual ~Object() { };
 	
 	// Override

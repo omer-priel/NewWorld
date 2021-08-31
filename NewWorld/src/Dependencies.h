@@ -8,3 +8,6 @@
 // Data Structures
 #include <string>
 #include <vector>
+
+// Variadic functions
+#include <cstdarg>

@@ -6,14 +6,14 @@
 #define NW_PLATFORM_WINDOWS 0
 #endif
 
-#ifdef NW_DEBUG
-#define NW_DEBUG 1
+#ifdef NW_CONFIG_DEBUG
+#define NW_CONFIG_DEBUG 1
 #else
-#define NW_DEBUG 0
+#define NW_CONFIG_DEBUG 0
 #endif
 
-#ifdef NW_RELEASE
-#define NW_RELEASE 1
+#ifdef NW_CONFIG_RELEASE
+#define NW_CONFIG_RELEASE 1
 #else
-#define NW_RELEASE 0
+#define NW_CONFIG_RELEASE 0
 #endif
