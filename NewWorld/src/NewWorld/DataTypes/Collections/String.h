@@ -11,8 +11,15 @@ namespace NewWorld::DataTypes::Collections
 		// Com
 	public:
 		String()
+			: BasicString("DEFAULT", strlen("DEFAULT"))
 		{
-			m_Value = "DEFALT";
+
+		}
+
+		String(const char* value)
+			: BasicString<char>(value, strlen(value))
+		{
+
 		}
 
 		// Override
@@ -26,7 +33,7 @@ namespace NewWorld::DataTypes::Collections
 	// TODO: Replace with proper code
 	std::ostream& operator<<(std::ostream& os, const String& obj)
 	{
-		os << obj.m_Value;
+		os << obj.GetPointer();
 		return os;
 	}
 }

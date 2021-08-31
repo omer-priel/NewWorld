@@ -23,19 +23,19 @@ namespace NewWorld::Debug
 	template<typename T>
 	void Info(const char* system, T obj)
 	{
-		//Log("[INFO] ", system, ": ", obj, "\n");
+		Log("[INFO] ", system, ": ", obj, "\n");
 	}
 
 	template<typename T>
 	void Warn(const char* system, T obj)
 	{
-		//Log("[WARN] ", system, ": ", obj, "\n");
+		Log("[WARN] ", system, ": ", obj, "\n");
 	}
 
 	template<typename T>
 	void Error(const char* system, T obj)
 	{
-		//Log("[ERROR] ", system, ": ", obj, "\n")
+		Log("[ERROR] ", system, ": ", obj, "\n")
 	}
 
 	// Log Variadic types
@@ -59,7 +59,7 @@ namespace NewWorld::Debug
 	template <typename... Types>
 	void Log(const String& str, Types... args)
 	{
-		std::cout << str.m_Value;
+		std::cout.write(str.GetPointer(), str.GetSize());
 
 		Log(args...);
 	}
@@ -67,7 +67,9 @@ namespace NewWorld::Debug
 	template <typename... Types>
 	void Log(const IObject& obj, Types... args)
 	{
-		std::cout << obj.ToString();
+		String str = obj.ToString();
+
+		std::cout.write(str.GetPointer(), str.GetSize());
 
 		Log(args...);
 	}
@@ -75,7 +77,12 @@ namespace NewWorld::Debug
 	template <typename... Types>
 	void Log(const Object& obj, Types... args)
 	{
-		std::cout << obj.ToString();
+		String str = obj.ToString();
+
+		char* arr = str.GetPointer();
+		long long size = (long long)str.GetSize();
+
+		std::cout.write(str.GetPointer(), (long long)str.GetSize());
 
 		Log(args...);
 	}

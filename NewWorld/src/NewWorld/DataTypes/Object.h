@@ -20,10 +20,10 @@ namespace NewWorld::DataTypes
 	
 	// Override
 	public:
-		virtual String ToString() const override
-		{
-			// TODO if (T is IObject) else if (T Is primitive) else ERROR
-			return String();
+		
+		//NW_DEFUALT_TO_STRING()
+		public: NewWorld::DataTypes::Collections::String ToString() const override {
+			return NewWorld::DataTypes::Collections::String(GetType().GetFullName());
 		}
 	};
 }

@@ -4,7 +4,7 @@
 
 #include "Dependencies.h"
 
-#define NW_CLASS(className, namespaceFullName) NewWorld::DataTypes::Type GetType() const override { return NewWorld::DataTypes::Type::GetType(#className, #namespaceFullName); }
+#define NW_CLASS(className, namespaceFullName) public: NewWorld::DataTypes::Type GetType() const override { return NewWorld::DataTypes::Type::GetType(#className, #namespaceFullName); }
 
 namespace NewWorld::DataTypes
 {
