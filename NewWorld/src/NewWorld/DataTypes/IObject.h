@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NewWorld/DataTypes/Primitives.h"
+#include "NewWorld/DataTypes/Type.h"
 
 namespace NewWorld::DataTypes
 {
@@ -10,14 +11,13 @@ namespace NewWorld::DataTypes
 		class String;
 	}
 
-	// Aliases
-	using String = NewWorld::DataTypes::Collections::String;
-
 	// IObject
 	class IObject abstract
 	{
 		// Pure functions
 	public:
-		virtual String ToString() const = 0;
+		virtual Collections::String ToString() const = 0;
+		
+		virtual Type GetType() const = 0;
 	};
 }

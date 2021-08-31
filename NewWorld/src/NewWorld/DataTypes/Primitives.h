@@ -4,7 +4,7 @@
 /// bool, char, short, int, float, double
 ///
 
-namespace Engine::DataTypes
+namespace NewWorld::DataTypes
 {
 	using Byte = unsigned char;
 	using ushort = unsigned short;

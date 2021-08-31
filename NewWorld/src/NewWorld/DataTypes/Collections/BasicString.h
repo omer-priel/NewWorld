@@ -3,16 +3,30 @@
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/IObject.h"
 
+#include "Dependencies.h"
+
 namespace NewWorld::DataTypes::Collections
 {
 	template <typename T>
-	class BasicString : public DataTypes::IObject
+	class BasicString // : public DataTypes::IObject
 	{
 	// Members
 	public:
-		const T* m_Value = "DEFAULT";
+		T* m_Value;
 
 	public:
-		BasicString() {}
+		BasicString()
+			: m_Value(nullptr)
+		{
+
+		}
+
+		BasicString(const T* value) // TEMP
+		{
+			Ulong size = sizeof(value) * sizeof(T);
+			m_Value = (T*)alloca(size); // TEMP
+			
+			std::memcpy(m_Value, value, size); // TEMP
+		}
 	};
 }

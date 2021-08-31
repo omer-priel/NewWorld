@@ -5,9 +5,11 @@ namespace Tests
 	void TestsRoot()
 	{
 		INFO("TestsRoot");
-		
-		NewWorld::Object obj;
-		DEBUG(obj);
+
+		NewWorld::Object a;
+
+		//NewWorld::Object obj;
+		//DEBUG(obj);
 
 		system("PAUSE");
 	}

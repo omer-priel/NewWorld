@@ -13,6 +13,9 @@ namespace NewWorld::DataTypes
 	class Object : DataTypes::IObject
 	{
 	public:
+		NW_CLASS(Object, NewWorld::DataTypes)
+
+	public:
 		virtual ~Object() { };
 	
 	// Override

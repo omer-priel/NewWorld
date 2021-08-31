@@ -8,9 +8,16 @@ namespace NewWorld::DataTypes::Collections
 {
 	class String : public BasicString<char>
 	{
+		// Com
+	public:
+		String()
+		{
+			m_Value = "DEFALT";
+		}
+
 		// Override
 	public:
-		virtual String ToString() const override
+		virtual String ToString() const // override
 		{
 			return *this;
 		}
