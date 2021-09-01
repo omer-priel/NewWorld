@@ -4,7 +4,7 @@
 /// bool, char, short, int, float, double
 ///
 
-namespace NewWorld::DataTypes
+namespace NewWorld
 {
 	using Byte = unsigned char;
 	using ushort = unsigned short;

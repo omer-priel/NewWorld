@@ -1,5 +1,7 @@
 #pragma once
 
+#include "NewWorld/DataTypes/Primitives.h"
+
 #include "Dependencies.h"
 
 #define NW_DEBUG(message) NewWorld::Debug::Debug("Engine", message)
@@ -59,7 +61,7 @@ namespace NewWorld::Debug
 	template <typename... Types>
 	void Log(const String& str, Types... args)
 	{
-		std::cout.write(str.GetPointer(), str.GetSize());
+		std::cout.write(str.GetPointer(), str.GetLength());
 
 		Log(args...);
 	}
@@ -67,23 +69,12 @@ namespace NewWorld::Debug
 	template <typename... Types>
 	void Log(const IObject& obj, Types... args)
 	{
-		String str = obj.ToString();
-
-		std::cout.write(str.GetPointer(), str.GetSize());
-
-		Log(args...);
+		Log(obj.ToString(), args...);
 	}
 
 	template <typename... Types>
 	void Log(const Object& obj, Types... args)
 	{
-		String str = obj.ToString();
-
-		char* arr = str.GetPointer();
-		long long size = (long long)str.GetSize();
-
-		std::cout.write(str.GetPointer(), (long long)str.GetSize());
-
-		Log(args...);
+		Log((const IObject&)obj, args...);
 	}
 }

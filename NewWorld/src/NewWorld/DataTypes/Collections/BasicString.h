@@ -12,40 +12,40 @@ namespace NewWorld::DataTypes::Collections
 	{
 	// Members
 	private:
-		Ulong m_Size;
+		Ulong m_Length;
 		T* m_Value; // TEMP
 
 	public:
 		BasicString()
-			: m_Value(nullptr), m_Size(0)
+			: m_Value(nullptr), m_Length(0)
 		{
 
 		}
 
-		BasicString(const T* value, Ulong size) // TEMP
-			: m_Size(size)
+		BasicString(const T* value, Ulong length) // TEMP
+			: m_Length(length)
 		{
-			m_Value = (T*)alloca(m_Size); // TEMP
+			m_Value = new T[m_Length]; // TEMP
 
-			std::memcpy(m_Value, value, m_Size); // TEMP
+			std::memcpy(m_Value, value, m_Length); // TEMP
 		}
 
 		// Operators
 	public:
 		BasicString& operator=(const BasicString& other)
 		{			
-			m_Size = other.m_Size;
-			m_Value = (T*)alloca(m_Size); // TEMP
+			m_Length = other.m_Length;
+			m_Value = new T[m_Length]; // TEMP
 
-			std::memcpy(m_Value, other.m_Value, m_Size); // TEMP
+			std::memcpy(m_Value, other.m_Value, m_Length); // TEMP
 			return *this;
 		}
 
 		// Getters
 	public:
-		Ulong GetSize() const
+		Ulong GetLength() const
 		{
-			return m_Size;
+			return m_Length;
 		}
 
 		T* GetPointer() const // TEMP
