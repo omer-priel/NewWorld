@@ -70,5 +70,7 @@ namespace Tests
 		NewWorld::DataTypes::Type type = example2.GetType();
 
 		DEBUG(type.GetType().GetFullName());
+
+		system("pause");
 	}
 }
