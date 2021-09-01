@@ -12,7 +12,6 @@ namespace NewWorld::DataTypes
 
 	class Object : DataTypes::IObject
 	{
-	public:
 		NW_CLASS(Object, NewWorld::DataTypes)
 
 	public:
@@ -21,9 +20,6 @@ namespace NewWorld::DataTypes
 	// Override
 	public:
 		
-		//NW_DEFUALT_TO_STRING()
-		public: NewWorld::DataTypes::Collections::String ToString() const override {
-			return NewWorld::DataTypes::Collections::String(GetType().GetFullName());
-		}
+		NW_DEFUALT_TO_STRING()
 	};
 }

@@ -1,43 +1,51 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Primitives.h"
+#include "NewWorld/Minimal.h"
 
 #include "Dependencies.h"
 
-#define NW_DEBUG(message) NewWorld::Debug::Debug("Engine", message)
-#define NW_INFO(message) NewWorld::Debug::Info("Engine", message)
-#define NW_WARN(message) NewWorld::Debug::Warn("Engine", message)
-#define NW_ERROR(message) NewWorld::Debug::Error("Engine", message)
+#define NW_DEBUG(...) NewWorld::Debug::Debug("Engine", ##__VA_ARGS__)
+#define NW_INFO(...) NewWorld::Debug::Info("Engine", __VA_ARGS__)
+#define NW_WARN(...) NewWorld::Debug::Warn("Engine", __VA_ARGS__)
+#define NW_ERROR(...) NewWorld::Debug::Error("Engine", __VA_ARGS__)
 
-#define DEBUG(message) NewWorld::Debug::Debug("App", message)
-#define INFO(message) NewWorld::Debug::Info("App", message)
-#define WARN(message) NewWorld::Debug::Warn("App", message)
-#define ERROR(message) NewWorld::Debug::Error("App", message)
+#define DEBUG(...) NewWorld::Debug::Debug("App", ##__VA_ARGS__)
+#define INFO(...) NewWorld::Debug::Info("App", __VA_ARGS__)
+#define WARN(...) NewWorld::Debug::Warn("App", __VA_ARGS__)
+#define ERROR(...) NewWorld::Debug::Error("App", __VA_ARGS__)
 
 namespace NewWorld::Debug
-{
-	template<typename T>
-	void Debug(const char* system, T obj)
+{	
+	template<typename... Types>
+	void Debug(const char* system, Types... args)
 	{
-		Log("[DEBUG] ", system, ": ", obj, "\n");
+		Log("[DEBUG] ", system, ": ");
+		Log(args...);
+		Log("\n");
 	}
 	
-	template<typename T>
-	void Info(const char* system, T obj)
+	template<typename... Types>
+	void Info(const char* system, Types... args)
 	{
-		Log("[INFO] ", system, ": ", obj, "\n");
+		Log("[INFO] ", system, ": ");
+		Log(args...);
+		Log("\n");
 	}
 
-	template<typename T>
-	void Warn(const char* system, T obj)
+	template<typename... Types>
+	void Warn(const char* system, Types... args)
 	{
-		Log("[WARN] ", system, ": ", obj, "\n");
+		Log("[WARN] ", system, ": ");
+		Log(args...);
+		Log("\n");
 	}
 
-	template<typename T>
-	void Error(const char* system, T obj)
+	template<typename... Types>
+	void Error(const char* system, Types... args)
 	{
-		Log("[ERROR] ", system, ": ", obj, "\n")
+		Log("[ERROR] ", system, ": ");
+		Log(args...);
+		Log("\n");
 	}
 
 	// Log Variadic types
