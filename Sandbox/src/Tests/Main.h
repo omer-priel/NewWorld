@@ -8,7 +8,7 @@ namespace Tests
 
 		NW_DEFUALT_TO_STRING()
 
-			// Members
+		// Members
 	public:
 		NewWorld::String m_Name;
 		NewWorld::uint m_Age;

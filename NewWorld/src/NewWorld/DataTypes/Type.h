@@ -15,6 +15,7 @@ namespace NewWorld::DataTypes
 		static const Type GetType(const char* className, const char* namespaceFullName)
 		{
 			// TODO: Need Type Cash System to save all the Types
+			// TODO: Generate Type IDs
 			SizeT id = 0;
 			return Type(id, className, namespaceFullName);
 		}
