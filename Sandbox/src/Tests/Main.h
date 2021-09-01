@@ -9,7 +9,5 @@ namespace Tests
 		NewWorld::Object obj;
 
 		DEBUG(obj);
-
-		system("PAUSE");
 	}
 }
