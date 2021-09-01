@@ -6,8 +6,6 @@ namespace Tests
 	{
 		NW_CLASS(Example, Tests)
 
-		NW_DEFUALT_TO_STRING()
-
 		// Members
 	public:
 		NewWorld::String m_Name;

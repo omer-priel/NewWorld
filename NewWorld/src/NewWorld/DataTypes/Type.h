@@ -8,8 +8,13 @@
 
 namespace NewWorld::DataTypes
 {
-	class Type
+	//class IObject;
+
+	class Type //: public NewWorld::IObject
 	{
+		//NW_CLASS(Type, NewWorld::DataTypes)
+		//public: NewWorld::DataTypes::Type GetType() const { return NewWorld::DataTypes::Type::GetType("Type", "NewWorld::DataTypes"); }
+
 		// Static
 	public:
 		static const Type GetType(const char* className, const char* namespaceFullName)

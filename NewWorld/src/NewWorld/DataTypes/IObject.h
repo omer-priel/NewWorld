@@ -3,8 +3,6 @@
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/Type.h"
 
-#define NW_DEFUALT_TO_STRING() public: NewWorld::DataTypes::Collections::String ToString() const override { return NewWorld::DataTypes::Collections::String(GetType().GetFullName()); }
-
 namespace NewWorld::DataTypes
 {
 	// Declarations
