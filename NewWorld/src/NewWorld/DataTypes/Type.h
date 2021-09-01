@@ -1,19 +1,23 @@
 #pragma once
 
 #include "NewWorld/DataTypes/Primitives.h"
+#include "NewWorld/DataTypes/IObject.h"
 
 #include "Dependencies.h"
 
 namespace NewWorld::DataTypes
 {
-	class Type //: public IObject
+	namespace Collections
 	{
-	//NW_CLASS(Type, NewWorld::DataTypes)
-	public: NewWorld::DataTypes::Type GetType() const { return NewWorld::DataTypes::Type::GetType("Type", "NewWorld::DataTypes"); }
-		  
+		class String;
+	}
+
+	class Type : public IObject
+	{
+	NW_CLASS(Type, NewWorld::DataTypes)		  
 		// Static
 	public:
-		static const Type GetType(const char* className, const char* namespaceFullName)
+		static const Type GetTypeByName(const char* className, const char* namespaceFullName)
 		{
 			// TODO: Need Type Cash System to save all the Types
 			// TODO: Generate Type IDs
@@ -34,6 +38,10 @@ namespace NewWorld::DataTypes
 		{
 
 		}
+
+		// Override
+	public:
+		Collections::String ToString() const override;
 
 		// Getters
 	public:
@@ -56,8 +64,8 @@ namespace NewWorld::DataTypes
 		{
 			std::string str = ((std::string)m_NamespaceFullName + (std::string)"::" + (std::string)m_Name);
 			
-			char* fullName = new char[str.length() + 1];
-			std::strcpy(fullName, str.c_str());
+			char* fullName = new char[str.length()];
+			std::memcpy(fullName, str.c_str(), str.length());
 			
 			// FIX: Memory Leak
 

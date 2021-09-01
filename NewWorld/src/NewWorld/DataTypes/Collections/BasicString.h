@@ -15,7 +15,7 @@ namespace NewWorld::DataTypes::Collections
 	template <typename T>
 	class BasicString : public IObject
 	{
-	NW_CLASS(BasicString, NewWorld::DataTypes::Collections)
+	//NW_CLASS(BasicString, NewWorld::DataTypes::Collections)
 
 	// Members
 	private:

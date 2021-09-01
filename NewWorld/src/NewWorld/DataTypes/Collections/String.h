@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BasicString.h"
+#include "NewWorld/DataTypes/Type.h"
 
 #include <Dependencies.h>
 
@@ -8,7 +9,9 @@ namespace NewWorld::DataTypes::Collections
 {
 	class String : public BasicString<char>
 	{
-		NW_CLASS(String, NewWorld::DataTypes::Collections)
+	//NW_CLASS(String, NewWorld::DataTypes::Collections)
+	public: NewWorld::DataTypes::Type GetType() const override;
+
 
 	public:
 		String()
