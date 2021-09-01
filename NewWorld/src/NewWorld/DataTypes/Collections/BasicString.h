@@ -5,6 +5,11 @@
 
 #include "Dependencies.h"
 
+namespace NewWorld::DataTypes
+{
+	class Type;
+}
+
 namespace NewWorld::DataTypes::Collections
 {
 	template <typename T>

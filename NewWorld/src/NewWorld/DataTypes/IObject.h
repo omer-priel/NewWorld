@@ -1,11 +1,12 @@
 #pragma once
 
 #include "NewWorld/DataTypes/Primitives.h"
-#include "NewWorld/DataTypes/Type.h"
 
 namespace NewWorld::DataTypes
 {
 	// Declarations
+	class Type;
+	
 	namespace Collections
 	{
 		class String;
