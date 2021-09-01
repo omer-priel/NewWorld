@@ -4,7 +4,7 @@ namespace Tests
 {
 	class Example : public NewWorld::Object
 	{
-		NW_CLASS(Example, Tests)
+	NW_CLASS(Example, Tests)
 
 		// Members
 	public:
@@ -28,7 +28,7 @@ namespace Tests
 
 	class Example2 : public Example
 	{
-		NW_CLASS(Example2, Tests)
+	NW_CLASS(Example2, Tests)
 
 	public:
 		Example2(const char* name, NewWorld::uint age)
@@ -58,9 +58,17 @@ namespace Tests
 		DEBUG(example);
 		example.Print();
 
+		NewWorld::String str = example.ToString();
+
+		DEBUG(str.GetType().GetFullName());
+
 		Example2 example2("unit2", 4);
 
 		DEBUG(example2);
 		example2.Print();
+
+		NewWorld::DataTypes::Type type = example2.GetType();
+
+		DEBUG(type.GetType().GetFullName());
 	}
 }

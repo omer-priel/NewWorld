@@ -8,8 +8,10 @@
 namespace NewWorld::DataTypes::Collections
 {
 	template <typename T>
-	class BasicString // : public DataTypes::IObject
+	class BasicString : public IObject
 	{
+	NW_CLASS(BasicString, NewWorld::DataTypes::Collections)
+
 	// Members
 	private:
 		Ulong m_Length;

@@ -8,7 +8,8 @@ namespace NewWorld::DataTypes::Collections
 {
 	class String : public BasicString<char>
 	{
-		// Com
+		NW_CLASS(String, NewWorld::DataTypes::Collections)
+
 	public:
 		String()
 			: BasicString("DEFAULT", strlen("DEFAULT"))
@@ -24,7 +25,7 @@ namespace NewWorld::DataTypes::Collections
 
 		// Override
 	public:
-		virtual String ToString() const // override
+		virtual String ToString() const override
 		{
 			return *this;
 		}
