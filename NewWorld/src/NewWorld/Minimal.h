@@ -18,7 +18,6 @@ namespace NewWorld
 
 	using IObject = DataTypes::IObject;
 	using Object = DataTypes::Object;
-	using String = DataTypes::Collections::String;
 }
 
 // Debug

@@ -38,3 +38,8 @@ namespace NewWorld::DataTypes::Collections
 		return os;
 	}
 }
+
+namespace NewWorld
+{
+	using String = NewWorld::DataTypes::Collections::String;
+}
