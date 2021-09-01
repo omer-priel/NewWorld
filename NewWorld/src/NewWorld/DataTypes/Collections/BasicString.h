@@ -13,7 +13,7 @@ namespace NewWorld::DataTypes
 namespace NewWorld::DataTypes::Collections
 {
 	template <typename T>
-	class BasicString : public IObject
+	class BasicString abstract : public IObject
 	{
 	//NW_CLASS(BasicString, NewWorld::DataTypes::Collections)
 
