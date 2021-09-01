@@ -7,8 +7,6 @@
 
 namespace NewWorld::DataTypes
 {
-	using String = NewWorld::DataTypes::Collections::String;
-
 	class Object : DataTypes::IObject
 	{
 	NW_CLASS(Object, NewWorld::DataTypes)
@@ -18,9 +16,9 @@ namespace NewWorld::DataTypes
 	
 	// Override
 	public:
-		String ToString() const override
+		Collections::String ToString() const override
 		{
-			return String(GetType().GetFullName());
+			return Collections::String(GetType().GetFullName());
 		}
 	};
 }
