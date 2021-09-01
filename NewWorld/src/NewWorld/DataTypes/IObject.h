@@ -2,6 +2,8 @@
 
 #include "NewWorld/DataTypes/Primitives.h"
 
+#define NW_CLASS(className, namespaceFullName) public: NewWorld::DataTypes::Type GetType() const override { return NewWorld::DataTypes::Type::GetType(#className, #namespaceFullName); }
+
 namespace NewWorld::DataTypes
 {
 	// Declarations
