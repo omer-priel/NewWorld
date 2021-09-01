@@ -34,7 +34,7 @@
                   "content": "Primitive",
                   "id": 1629042447885,
                   "level": "warning",
-                  "done": false
+                  "done": true
                 }
               },
               {
@@ -43,7 +43,7 @@
                 "todo": {
                   "content": "Object and IObject",
                   "id": 1630241966032,
-                  "level": "default",
+                  "level": "warning",
                   "done": false
                 }
               },
@@ -51,9 +51,9 @@
                 "key": 1630241971566,
                 "children": [],
                 "todo": {
-                  "content": "Type and TypeID",
+                  "content": "Type",
                   "id": 1630241971566,
-                  "level": "default",
+                  "level": "warning",
                   "done": false
                 }
               },
@@ -63,7 +63,7 @@
                 "todo": {
                   "content": "basic String class",
                   "id": 1630242047303,
-                  "level": "default",
+                  "level": "warning",
                   "done": false
                 }
               },
@@ -297,6 +297,16 @@
             "todo": {
               "content": "Application [Debug System]",
               "id": 1629042438599,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1630503190003,
+            "children": [],
+            "todo": {
+              "content": "edit todo.",
+              "id": 1630503190003,
               "level": "default",
               "done": false
             }
