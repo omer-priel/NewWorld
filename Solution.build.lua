@@ -52,12 +52,12 @@ project "NewWorld"
 		systemversion "latest"
 
 	filter "configurations:Debug"
-		defines "NW_DEBUG"
+		defines "NW_CONFIG_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "NW_RELEASE"
+		defines "NW_CONFIG_RELEASE"
 		runtime "Release"
 		optimize "on"
 
@@ -93,11 +93,11 @@ project "Sandbox"
 		systemversion "latest"
 
 	filter "configurations:Debug"
-		defines "NW_DEBUG"
+		defines "NW_CONFIG_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "NW_RELEASE"
+		defines "NW_CONFIG_RELEASE"
 		runtime "Release"
 		optimize "on"

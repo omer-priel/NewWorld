@@ -3,17 +3,20 @@
 
 #include "Tests/Main.h"
 
-class Application : NewWorld::Application
+namespace Sandbox
 {
-public:
-	Application() { }
-
-	void Init() override { }
-
-	void Test() override // TEMP
+	class Application : NewWorld::Application
 	{
-		Tests::TestsRoot();
-	}
-};
+	public:
+		Application() { }
 
-ENTRYPOINT_APPLICATION(Application);
+		void Init() override { }
+
+		void Test() override // TEMP
+		{
+			Tests::TestsRoot();
+		}
+	};
+}
+
+ENTRYPOINT_APPLICATION(Sandbox::Application);
