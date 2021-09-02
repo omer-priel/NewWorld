@@ -2,6 +2,7 @@
 
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/IObject.h"
+#include "NewWorld/DataTypes/Type.h"
 
 #include "Dependencies.h"
 
@@ -15,7 +16,7 @@ namespace NewWorld::DataTypes::Collections
 	template <typename T>
 	class BasicString abstract : public IObject
 	{
-	//NW_CLASS(BasicString, NewWorld::DataTypes::Collections)
+	NW_CLASS(BasicString, NewWorld::DataTypes::Collections)
 
 	// Members
 	private:

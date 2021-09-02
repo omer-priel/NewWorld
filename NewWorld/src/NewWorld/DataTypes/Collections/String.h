@@ -9,9 +9,7 @@ namespace NewWorld::DataTypes::Collections
 {
 	class String : public BasicString<char>
 	{
-	//NW_CLASS(String, NewWorld::DataTypes::Collections)
-	public: NewWorld::DataTypes::Type GetType() const override;
-
+	NW_CLASS(String, NewWorld::DataTypes::Collections)
 
 	public:
 		String()
