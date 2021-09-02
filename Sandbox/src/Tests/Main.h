@@ -71,6 +71,10 @@ namespace Sandbox::Tests
 
 		DEBUG(type.GetType().GetFullName());
 
+		NewWorld::RawPointer<int> x;
+
+		DEBUG(x);
+
 		system("pause");
 	}
 }
