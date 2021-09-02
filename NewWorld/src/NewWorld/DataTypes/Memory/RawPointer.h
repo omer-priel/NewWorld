@@ -5,9 +5,9 @@
 namespace NewWorld::DataTypes::Memory
 {
 	template <typename T>
-	class RollPointer : public Object
+	class RawPointer : public Object
 	{
-	NW_CLASS(RollPointer, NewWorld::DataTypes::Memory)
+	NW_CLASS(RawPointer, NewWorld::DataTypes::Memory)
 
 
 	};

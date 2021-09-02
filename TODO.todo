@@ -31,6 +31,16 @@
                 "key": 1629042460314,
                 "children": [
                   {
+                    "key": 1630242076820,
+                    "children": [],
+                    "todo": {
+                      "content": "RawPointer",
+                      "id": 1630242076820,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
                     "key": 1630242075124,
                     "children": [],
                     "todo": {
@@ -46,16 +56,6 @@
                     "todo": {
                       "content": "SharedPointer",
                       "id": 1630242075756,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1630242076820,
-                    "children": [],
-                    "todo": {
-                      "content": "RollPointer",
-                      "id": 1630242076820,
                       "level": "default",
                       "done": false
                     }
