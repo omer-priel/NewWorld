@@ -16,9 +16,6 @@ namespace NewWorld::DataTypes
 	
 	// Override
 	public:
-		Collections::String ToString() const override
-		{
-			return Collections::String(GetType().GetFullName());
-		}
+		Collections::String ToString() const override;
 	};
 }
