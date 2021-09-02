@@ -13,7 +13,7 @@ namespace NewWorld::DataTypes::Collections
 
 	public:
 		String()
-			: BasicString("DEFAULT", strlen("DEFAULT"))
+			: BasicString("", 0)
 		{
 
 		}

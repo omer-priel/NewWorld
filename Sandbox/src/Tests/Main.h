@@ -1,6 +1,6 @@
 #include <NewWorld.h>
 
-namespace Tests
+namespace Sandbox::Tests
 {
 	class Example : public NewWorld::Object
 	{

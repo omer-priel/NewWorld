@@ -14,14 +14,12 @@ namespace NewWorld::DataTypes
 
 	class Type : public IObject
 	{
-	NW_CLASS(Type, NewWorld::DataTypes)		  
+	NW_CLASS(Type, NewWorld::DataTypes)
 		
 		// Static
 	public:
 		static const Type GetTypeByName(const char* className, const char* namespaceFullName)
 		{
-			// TODO: Need Type Cash System to save all the Types
-			// TODO: Generate Type IDs
 			SizeT id = 0;
 			return Type(id, className, namespaceFullName);
 		}
