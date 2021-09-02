@@ -64,8 +64,9 @@ namespace NewWorld::DataTypes
 		{
 			std::string str = ((std::string)m_NamespaceFullName + (std::string)"::" + (std::string)m_Name);
 			
-			char* fullName = new char[str.length()];
+			char* fullName = new char[str.length() + 1];
 			std::memcpy(fullName, str.c_str(), str.length());
+			fullName[str.length()] = '\0';
 			
 			// FIX: Memory Leak
 
