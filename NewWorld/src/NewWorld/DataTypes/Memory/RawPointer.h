@@ -1,11 +1,11 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/DataTypes/Memory/IPointer.h"
 
 namespace NewWorld::DataTypes::Memory
 {
 	template <typename T>
-	class RawPointer : public Object
+	class RawPointer : public IPointer
 	{
 	NW_CLASS(RawPointer, NewWorld::DataTypes::Memory)
 

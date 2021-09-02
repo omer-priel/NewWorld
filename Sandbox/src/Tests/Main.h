@@ -71,9 +71,11 @@ namespace Sandbox::Tests
 
 		DEBUG(type.GetType().GetFullName());
 
-		NewWorld::RawPointer<int> x;
+		NewWorld::RawPointer<int> rawPointer;
+		NewWorld::DataTypes::Memory::IPointer* ptr = &rawPointer;
 
-		DEBUG(x);
+		DEBUG(rawPointer);
+		DEBUG(ptr->GetType());
 
 		system("pause");
 	}
