@@ -1,4 +1,5 @@
 #include <NewWorld.h>
+#include <memory>
 
 namespace Sandbox::Tests
 {
@@ -82,6 +83,8 @@ namespace Sandbox::Tests
 			DEBUG(scopePointer);
 			DEBUG(ptr->GetType());
 		}
+
+		std::unique_ptr<int> a;
 
 		system("pause");
 	}
