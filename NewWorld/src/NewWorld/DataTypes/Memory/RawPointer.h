@@ -5,10 +5,5 @@
 namespace NewWorld::DataTypes::Memory
 {
 	template <typename T>
-	class RawPointer : public IPointer
-	{
-	NW_CLASS(RawPointer, NewWorld::DataTypes::Memory)
-
-
-	};
+	using RawPointer = T*;
 }

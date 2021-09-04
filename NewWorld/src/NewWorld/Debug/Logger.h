@@ -135,11 +135,27 @@ namespace NewWorld::Debug
 	}
 
 	template <typename T, typename... Types>
+	void Log(RawPointer<T> ptr, Types... args)
+	{
+		if (ptr == nullptr)
+		{
+			Log("null");
+		}
+		else
+		{
+			Log((T)*ptr);
+		}
+
+		Log(args...);
+	}
+
+	template <typename T, typename... Types>
 	void Log(const T& obj, Types... args)
 	{
 		if (std::is_base_of<IObject, T>::value)
 		{
 			Log((const IObject&)obj);
+			Log(args...);
 		}
 		else
 		{
