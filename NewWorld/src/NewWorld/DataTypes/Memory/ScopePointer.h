@@ -20,15 +20,13 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		ScopePointer(const T& value)
-			: m_Value(value)
 		{
-
+			m_Value = new T(value);
 		}
 
 		ScopePointer(T&& value)
-			: m_Value(value)
 		{
-
+			m_Value = new T(value);
 		}
 
 		~ScopePointer()
@@ -38,5 +36,27 @@ namespace NewWorld::DataTypes::Memory
 				delete m_Value;
 			}
 		}
+
+		// Getters
+		inline bool HasValue() const { return m_Value != nullptr; }
+
+		const T& GetValue() const
+		{
+#if NW_CONFIG_DEBUG
+			if (!HasValue())
+			{
+				throw "Can't get the Value";
+			}
+#endif
+
+			return *m_Value;
+		}
+
+		// Setters
+
+		// Operators
+
+		// Actions
+
 	};
 }

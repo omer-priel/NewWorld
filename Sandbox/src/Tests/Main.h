@@ -82,6 +82,9 @@ namespace Sandbox::Tests
 
 			DEBUG(scopePointer);
 			DEBUG(ptr->GetType());
+
+			const int& value = scopePointer.GetValue();
+			DEBUG(value);
 		}
 
 		std::unique_ptr<int> a;
