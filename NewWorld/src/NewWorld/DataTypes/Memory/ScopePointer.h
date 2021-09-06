@@ -1,5 +1,11 @@
 #pragma once
 
+#if NW_CONFIG_DEBUG
+#define NW_ASSERT_TEMP(condition, message) if (!condition) { __debugbreak(); }
+#else
+#define NW_ASSERT_TEMP(condition, message)
+#endif
+
 #include "NewWorld/DataTypes/Memory/IPointer.h"
 
 namespace NewWorld::DataTypes::Memory
@@ -42,12 +48,7 @@ namespace NewWorld::DataTypes::Memory
 
 		const T& GetValue() const
 		{
-#if NW_CONFIG_DEBUG
-			if (!HasValue())
-			{
-				throw "Can't get the Value";
-			}
-#endif
+			NW_ASSERT_TEMP(HasValue(), "Can't get the Value");
 
 			return *m_Value;
 		}

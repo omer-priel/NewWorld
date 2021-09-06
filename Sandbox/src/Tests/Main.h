@@ -1,6 +1,10 @@
 #include <NewWorld.h>
 #include <memory>
 
+#include <NewWorld/DataTypes/Memory/RawPointer.h>
+#include <NewWorld/DataTypes/Memory/ScopePointer.h>
+#include <NewWorld/DataTypes/Memory/SharedPointer.h>
+
 namespace Sandbox::Tests
 {
 	class Example : public NewWorld::Object
@@ -72,13 +76,15 @@ namespace Sandbox::Tests
 
 		DEBUG(type.GetType().GetFullName());
 
-		NewWorld::RawPointer<int> rawPointer = nullptr;
+		NewWorld::DataTypes::Memory::RawPointer<int> rawPointer = nullptr;
 		
+		using namespace NewWorld::DataTypes::Memory;
+
 		DEBUG(rawPointer);
 		
 		{
-			NewWorld::ScopePointer<int> scopePointer;
-			NewWorld::DataTypes::Memory::IPointer* ptr = &scopePointer;
+			ScopePointer<int> scopePointer;
+			IPointer* ptr = &scopePointer;
 
 			DEBUG(scopePointer);
 			DEBUG(ptr->GetType());
