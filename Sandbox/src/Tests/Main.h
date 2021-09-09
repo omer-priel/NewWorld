@@ -1,9 +1,6 @@
 #include <NewWorld.h>
-#include <memory>
 
-#include <NewWorld/DataTypes/Memory/RawPointer.h>
-#include <NewWorld/DataTypes/Memory/ScopePointer.h>
-#include <NewWorld/DataTypes/Memory/SharedPointer.h>
+#include <memory>
 
 namespace Sandbox::Tests
 {
