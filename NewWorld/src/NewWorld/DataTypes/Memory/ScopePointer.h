@@ -14,9 +14,8 @@ namespace NewWorld::DataTypes::Memory
 
 	public:
 		ScopePointer()
-			: m_Value(nullptr)
 		{
-
+			m_Value = new T();
 		}
 
 		ScopePointer(const T& value)
@@ -33,50 +32,14 @@ namespace NewWorld::DataTypes::Memory
 
 		~ScopePointer()
 		{
-			if (m_Value != nullptr)
-			{
-				delete m_Value;
-			}
-		}
-
-		// Getters
-		inline bool HasValue() const { return m_Value != nullptr; }
-
-		const T& GetValue() const
-		{
-			NW_ASSERT(HasValue(), "Can't read nullptr!");
-
-			return *m_Value;
-		}
-
-		// Setters
-		void SetValue(const T& value)
-		{
-			if (HasValue())
-			{
-				*m_Value = value;
-			}
-			else
-			{
-				m_Value = new T(value);
-			}
-		}
-
-		void SetValue(T&& value)
-		{
-			if (HasValue())
-			{
-				*m_Value = value;
-			}
-			else
-			{
-				m_Value = new T(value);
-			}
+			delete m_Value;
 		}
 
 		// Operators
-		inline operator T& () { return *m_Value; };
+		T* operator->() const { return m_Value; }
 
-		inline operator const T& () const { return *m_Value; };
+		T& operator*() { return *m_Value; }
+
+		const T& operator*() const { return *m_Value; }
 	};
 }

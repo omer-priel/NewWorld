@@ -58,14 +58,36 @@ namespace Sandbox::Tests
 			DEBUG(scopePointer);
 			DEBUG(ptr->GetType());
 
-			DEBUG(scopePointer.GetValue());
+			DEBUG(*scopePointer);
 
-			int value = scopePointer.GetValue();
+			int value = *scopePointer;
 			DEBUG(value);
 
-			((int&)scopePointer) *= 10;
+			*scopePointer *= 10;
 
-			DEBUG(scopePointer.GetValue());
+			DEBUG(*scopePointer);
+		}
+
+		INFO("--------------------");
+
+		{
+			SharedPointer<int> sharedPointer(16);
+			IPointer* ptr = &sharedPointer;
+
+			DEBUG(sharedPointer);
+			DEBUG(ptr->GetType());
+
+			DEBUG(*sharedPointer);
+
+			SharedPointer<int> sharedPointerCopy = sharedPointer;
+
+			int value = *sharedPointerCopy;
+			DEBUG(sharedPointerCopy);
+
+			*sharedPointerCopy *= 10;
+
+			DEBUG(*sharedPointer);
+			DEBUG(*sharedPointerCopy);
 		}
 
 		system("pause");
