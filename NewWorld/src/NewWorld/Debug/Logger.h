@@ -7,7 +7,7 @@
 namespace NewWorld::Debug
 {	
 	template<typename... Types>
-	void Debug(const char* system, Types... args)
+	void Debug(const char* system, const Types&... args)
 	{
 		Log("[DEBUG] ", system, ": ");
 		Log(args...);
@@ -15,7 +15,7 @@ namespace NewWorld::Debug
 	}
 	
 	template<typename... Types>
-	void Info(const char* system, Types... args)
+	void Info(const char* system, const Types&... args)
 	{
 		Log("[INFO] ", system, ": ");
 		Log(args...);
@@ -23,7 +23,7 @@ namespace NewWorld::Debug
 	}
 
 	template<typename... Types>
-	void Warn(const char* system, Types... args)
+	void Warn(const char* system, const Types&... args)
 	{
 		Log("[WARN] ", system, ": ");
 		Log(args...);
@@ -31,7 +31,7 @@ namespace NewWorld::Debug
 	}
 
 	template<typename... Types>
-	void Error(const char* system, Types... args)
+	void Error(const char* system, const Types&... args)
 	{
 		Log("[ERROR] ", system, ": ");
 		Log(args...);
@@ -42,90 +42,90 @@ namespace NewWorld::Debug
 	void Log() { }
 
 	template <typename... Types>
-	void Log(char value, Types... args)
+	void Log(char value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(Byte value, Types... args)
+	void Log(Byte value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(short value, Types... args)
+	void Log(short value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(ushort value, Types... args)
+	void Log(ushort value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(int value, Types... args)
+	void Log(int value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(uint value, Types... args)
+	void Log(uint value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(Long value, Types... args)
+	void Log(Long value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(Ulong value, Types... args)
+	void Log(Ulong value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(float value, Types... args)
+	void Log(float value, const Types&... args)
 	{
 		std::cout << value;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(const char* str, Types... args)
+	void Log(const char* str, const Types&... args)
 	{
 		std::cout << str;
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(const String& str, Types... args)
+	void Log(const String& str, const Types&... args)
 	{
 		std::cout.write(str.GetPointer(), str.GetLength());
 		Log(args...);
 	}
 
 	template <typename... Types>
-	void Log(const IObject& obj, Types... args)
+	void Log(const IObject& obj, const Types&... args)
 	{
 		Log(obj.ToString(), args...);
 	}
 
 	template <typename T, typename... Types>
-	void Log(RawPointer<T> ptr, Types... args)
+	void Log(RawPointer<T> ptr, const Types&... args)
 	{
 		if (ptr == nullptr)
 		{
@@ -140,7 +140,7 @@ namespace NewWorld::Debug
 	}
 
 	template <typename T, typename... Types>
-	void Log(const T& obj, Types... args)
+	void Log(const T& obj, const Types&... args)
 	{
 		if (std::is_base_of<IObject, T>::value)
 		{
