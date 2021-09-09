@@ -52,38 +52,10 @@ namespace Sandbox::Tests
 
 	void TestsRoot()
 	{
-		INFO("TestsRoot");
-
-		NewWorld::Object obj;
-
-		DEBUG(obj);
-
-		Example example("unit1", 2);
-
-		DEBUG(example);
-		example.Print();
-
-		NewWorld::String str = example.ToString();
-
-		DEBUG(str.GetType().GetFullName());
-
-		Example2 example2("unit2", 4);
-
-		DEBUG(example2);
-		example2.Print();
-
-		NewWorld::DataTypes::Type type = example2.GetType();
-
-		DEBUG(type.GetType().GetFullName());
-
-		NewWorld::DataTypes::Memory::RawPointer<int> rawPointer = nullptr;
-		
 		using namespace NewWorld::DataTypes::Memory;
-
-		DEBUG(rawPointer);
 		
 		{
-			ScopePointer<int> scopePointer(55);
+			ScopePointer<int> scopePointer(16);
 			IPointer* ptr = &scopePointer;
 
 			
@@ -93,8 +65,6 @@ namespace Sandbox::Tests
 			const int& value = scopePointer.GetValue();
 			DEBUG(value);
 		}
-
-		std::unique_ptr<int> a;
 
 		system("pause");
 	}
