@@ -12,62 +12,11 @@
         }
       },
       {
-        "key": 1629042284024,
-        "children": [],
-        "todo": {
-          "content": "DevOps",
-          "id": 1629042284024,
-          "level": "success",
-          "done": false
-        }
-      },
-      {
         "key": 1629042386980,
         "children": [
           {
             "key": 1629042436829,
             "children": [
-              {
-                "key": 1629042460314,
-                "children": [
-                  {
-                    "key": 1630242075124,
-                    "children": [],
-                    "todo": {
-                      "content": "ScopePointer",
-                      "id": 1630242075124,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1630242075756,
-                    "children": [],
-                    "todo": {
-                      "content": "SharedPointer",
-                      "id": 1630242075756,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1630242076820,
-                    "children": [],
-                    "todo": {
-                      "content": "RollPointer",
-                      "id": 1630242076820,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Pointers",
-                  "id": 1629042460314,
-                  "level": "default",
-                  "done": false
-                }
-              },
               {
                 "key": 1629042448364,
                 "children": [],
@@ -320,11 +269,41 @@
           "level": "success",
           "done": false
         }
+      },
+      {
+        "key": 1629042284024,
+        "children": [
+          {
+            "key": 1631141775561,
+            "children": [],
+            "todo": {
+              "content": "NewWorldPlugin Not need .nwe path, use Working Directory as folder location like GIT",
+              "id": 1631141775561,
+              "level": "secondary",
+              "done": false
+            }
+          },
+          {
+            "key": 1631141697146,
+            "children": [],
+            "todo": {
+              "content": "Make the NewWorld the main commands application",
+              "id": 1631141697146,
+              "level": "secondary",
+              "done": false
+            }
+          }
+        ],
+        "todo": {
+          "content": "DevOps",
+          "id": 1629042284024,
+          "level": "success",
+          "done": false
+        }
       }
     ],
     "expandKeys": [
       1629042215988,
-      1629042386980,
       1629042398630,
       1629042438141,
       1629065571958,
@@ -345,13 +324,15 @@
       1629973943751,
       1629973912329,
       1629042370589,
-      1629042284024,
       1629042293490,
       1630241971566,
       1629042447885,
       1629042460314,
       1630590936027,
-      1629042438599
+      1629042438599,
+      1630242075124,
+      1629042284024,
+      1629042386980
     ]
   }
 }

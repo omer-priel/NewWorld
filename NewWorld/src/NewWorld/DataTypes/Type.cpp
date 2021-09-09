@@ -7,7 +7,7 @@ namespace NewWorld::DataTypes
 {
 	Collections::String Type::ToString() const
 	{
-		return Collections::String(GetType().GetFullName());
+		return Collections::String(GetFullName());
 	}
 
 	const char* Type::GetFullName() const

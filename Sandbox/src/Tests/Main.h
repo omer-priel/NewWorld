@@ -1,5 +1,7 @@
 #include <NewWorld.h>
 
+#include <memory>
+
 namespace Sandbox::Tests
 {
 	class Example : public NewWorld::Object
@@ -15,7 +17,18 @@ namespace Sandbox::Tests
 		Example(const char* name, NewWorld::uint age)
 			: m_Name(name), m_Age(age)
 		{
+			DEBUG(m_Name, " created");
+		}
 
+		Example(Example& obj)
+			: m_Name(obj.m_Name), m_Age(obj.m_Age)
+		{
+			DEBUG(m_Name, " coped");
+		}
+
+		~Example()
+		{
+			DEBUG(m_Name, " destroyed");
 		}
 
 		// Actions
@@ -47,29 +60,52 @@ namespace Sandbox::Tests
 
 	void TestsRoot()
 	{
-		INFO("TestsRoot");
+		using namespace NewWorld::DataTypes::Memory;
+		
+		{
+			ScopePointer<Example> scopePointer("scopePointer", 21);
+			IPointer<Example>& ptr = scopePointer;
 
-		NewWorld::Object obj;
+			INFO(scopePointer);
+			INFO(ptr.GetType());
 
-		DEBUG(obj);
+			INFO(*scopePointer);
 
-		Example example("unit1", 2);
+			Example value = *scopePointer;
+			INFO(value);
 
-		DEBUG(example);
-		example.Print();
+			scopePointer->m_Age += 10;
 
-		NewWorld::String str = example.ToString();
+			INFO(*scopePointer);
+			scopePointer->Print();
+		}
 
-		DEBUG(str.GetType().GetFullName());
+		INFO("--------------------");
 
-		Example2 example2("unit2", 4);
+		{
+			SharedPointer<Example> sharedPointer("sharedPointer", 22);
+			IPointer<Example>& ptr = sharedPointer;
 
-		DEBUG(example2);
-		example2.Print();
+			INFO(sharedPointer);
+			INFO(ptr.GetType());
 
-		NewWorld::DataTypes::Type type = example2.GetType();
+			INFO(*sharedPointer);
 
-		DEBUG(type.GetType().GetFullName());
+			SharedPointer<Example> sharedPointerCopy = sharedPointer;
+
+			Example value = *sharedPointerCopy;
+			INFO(value);
+
+			Example& refValue = *sharedPointerCopy;
+			INFO(refValue);
+
+			sharedPointerCopy->m_Age += 10;
+
+			INFO(*sharedPointer);
+			sharedPointer->Print();
+			INFO(*sharedPointerCopy);
+			sharedPointerCopy->Print();
+		}
 
 		system("pause");
 	}

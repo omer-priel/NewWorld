@@ -1,11 +1,14 @@
 #pragma once
 
-// BuildFlags
-#include "NewWorld/Core/BuildFlags.h"
+// Macros
+#include "NewWorld/Macros.h"
 
 // DataTypes
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/DataTypes/Memory/RawPointer.h"
+#include "NewWorld/DataTypes/Memory/ScopePointer.h"
+#include "NewWorld/DataTypes/Memory/SharedPointer.h"
 
 namespace NewWorld
 {
@@ -18,6 +21,13 @@ namespace NewWorld
 
 	using IObject = DataTypes::IObject;
 	using Object = DataTypes::Object;
+
+	template <typename T>
+    using RawPointer = DataTypes::Memory::RawPointer<T>;
+	template <typename T>
+	using ScopePointer = DataTypes::Memory::ScopePointer<T>;
+	template <typename T>
+	using SharedPointer = DataTypes::Memory::SharedPointer<T>;
 }
 
 // Debug

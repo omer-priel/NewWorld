@@ -1,9 +1,7 @@
 #pragma once
 
+#include "NewWorld/Macros.h"
 #include "NewWorld/DataTypes/Primitives.h"
-
-// IObject properties
-#define NW_CLASS(className, namespaceFullName) public: NewWorld::DataTypes::Type GetType() const override { return NewWorld::DataTypes::Type::GetTypeByName(#className, #namespaceFullName); }
 
 namespace NewWorld::DataTypes
 {
@@ -18,7 +16,7 @@ namespace NewWorld::DataTypes
 	// IObject
 	class IObject abstract
 	{
-		// Pure functions
+		// Pure virtual functions
 	public:
 		virtual Collections::String ToString() const = 0;
 		
