@@ -22,6 +22,9 @@
 
 #pragma endregion
 
+// EntryPoint.h
+// ENTRYPOINT_APPLICATION
+
 #pragma region DataTypes::IObject
 
 #define NW_CLASS(className, namespaceFullName) public: NewWorld::DataTypes::Type GetType() const override { return NewWorld::DataTypes::Type::GetTypeByName(#className, #namespaceFullName); }
