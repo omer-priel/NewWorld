@@ -141,7 +141,7 @@ namespace NewWorld::Debug
 	}
 
 	template <typename T, typename... Types>
-	void Log(T* ptr, Types... args)
+	void Log(RawPointer<T> ptr, Types... args)
 	{
 		if (ptr == nullptr)
 		{
