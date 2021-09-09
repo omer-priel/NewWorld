@@ -55,12 +55,17 @@ namespace Sandbox::Tests
 			ScopePointer<int> scopePointer(16);
 			IPointer* ptr = &scopePointer;
 
-			
 			DEBUG(scopePointer);
 			DEBUG(ptr->GetType());
 
-			const int& value = scopePointer.GetValue();
+			DEBUG(scopePointer.GetValue());
+
+			int value = scopePointer.GetValue();
 			DEBUG(value);
+
+			((int&)scopePointer) *= 10;
+
+			DEBUG(scopePointer.GetValue());
 		}
 
 		system("pause");

@@ -50,11 +50,33 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		// Setters
+		void SetValue(const T& value)
+		{
+			if (HasValue())
+			{
+				*m_Value = value;
+			}
+			else
+			{
+				m_Value = new T(value);
+			}
+		}
+
+		void SetValue(T&& value)
+		{
+			if (HasValue())
+			{
+				*m_Value = value;
+			}
+			else
+			{
+				m_Value = new T(value);
+			}
+		}
 
 		// Operators
-		ScopePointer& operator=(const ScopePointer& obj) = delete;
+		inline operator T& () { return *m_Value; };
 
-		// Actions
-
+		inline operator const T& () const { return *m_Value; };
 	};
 }
