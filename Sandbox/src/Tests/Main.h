@@ -83,9 +83,11 @@ namespace Sandbox::Tests
 		DEBUG(rawPointer);
 		
 		{
-			ScopePointer<int> scopePointer;
+			ScopePointer<int> scopePointer(55);
+			int* p = scopePointer.m_Value;
 			IPointer* ptr = &scopePointer;
 
+			
 			DEBUG(scopePointer);
 			DEBUG(ptr->GetType());
 

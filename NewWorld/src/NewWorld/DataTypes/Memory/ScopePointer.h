@@ -9,7 +9,7 @@ namespace NewWorld::DataTypes::Memory
 	{
 	NW_CLASS(ScopePointer, NewWorld::DataTypes::Memory)
 
-	private:
+	public: // private:
 		T* m_Value;
 
 	public:
@@ -29,6 +29,8 @@ namespace NewWorld::DataTypes::Memory
 			m_Value = new T(value);
 		}
 
+		ScopePointer(ScopePointer& obj) = delete;
+
 		~ScopePointer()
 		{
 			if (m_Value != nullptr)
@@ -42,7 +44,7 @@ namespace NewWorld::DataTypes::Memory
 
 		const T& GetValue() const
 		{
-			NW_ASSERT(HasValue(), "Can't get the Value");
+			NW_ASSERT(HasValue(), "Can't read nullptr!");
 
 			return *m_Value;
 		}
@@ -50,6 +52,7 @@ namespace NewWorld::DataTypes::Memory
 		// Setters
 
 		// Operators
+		ScopePointer& operator=(const ScopePointer& obj) = delete;
 
 		// Actions
 
