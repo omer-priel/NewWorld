@@ -1,7 +1,7 @@
 #pragma once
 
-// BuildFlags
-#include "NewWorld/Core/BuildFlags.h"
+// Macros
+#include "NewWorld/Macros.h"
 
 // DataTypes
 #include "NewWorld/DataTypes/Primitives.h"
