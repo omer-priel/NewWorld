@@ -9,7 +9,7 @@ namespace NewWorld::DataTypes::Memory
 	{
 	NW_CLASS(ScopePointer, NewWorld::DataTypes::Memory)
 
-	public: // private:
+	private:
 		T* m_Value;
 
 	public:

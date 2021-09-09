@@ -152,5 +152,4 @@ namespace NewWorld::Debug
 			throw "ERROR";
 		}
 	}
-
 }

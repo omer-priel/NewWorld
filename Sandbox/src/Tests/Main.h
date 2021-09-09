@@ -84,7 +84,6 @@ namespace Sandbox::Tests
 		
 		{
 			ScopePointer<int> scopePointer(55);
-			int* p = scopePointer.m_Value;
 			IPointer* ptr = &scopePointer;
 
 			
