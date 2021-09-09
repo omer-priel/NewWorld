@@ -17,7 +17,18 @@ namespace Sandbox::Tests
 		Example(const char* name, NewWorld::uint age)
 			: m_Name(name), m_Age(age)
 		{
+			DEBUG(m_Name, " created");
+		}
 
+		Example(Example& obj)
+			: m_Name(obj.m_Name), m_Age(obj.m_Age)
+		{
+			DEBUG(m_Name, " coped");
+		}
+
+		~Example()
+		{
+			DEBUG(m_Name, " destroyed");
 		}
 
 		// Actions
@@ -52,42 +63,45 @@ namespace Sandbox::Tests
 		using namespace NewWorld::DataTypes::Memory;
 		
 		{
-			ScopePointer<int> scopePointer(16);
-			IPointer* ptr = &scopePointer;
+			ScopePointer<Example> scopePointer(Example("example 1", 21));
+			IPointer<Example>& ptr = scopePointer;
 
 			DEBUG(scopePointer);
-			DEBUG(ptr->GetType());
+			DEBUG(ptr.GetType());
 
 			DEBUG(*scopePointer);
 
-			int value = *scopePointer;
+			Example value = *scopePointer;
 			DEBUG(value);
 
-			*scopePointer *= 10;
+			scopePointer->m_Age += 10;
 
 			DEBUG(*scopePointer);
+			scopePointer->Print();
 		}
 
 		INFO("--------------------");
 
 		{
-			SharedPointer<int> sharedPointer(16);
-			IPointer* ptr = &sharedPointer;
+			SharedPointer<Example> sharedPointer(Example("example 2", 22));
+			IPointer<Example>& ptr = sharedPointer;
 
 			DEBUG(sharedPointer);
-			DEBUG(ptr->GetType());
+			DEBUG(ptr.GetType());
 
 			DEBUG(*sharedPointer);
 
-			SharedPointer<int> sharedPointerCopy = sharedPointer;
+			SharedPointer<Example> sharedPointerCopy = sharedPointer;
 
-			int value = *sharedPointerCopy;
+			Example value = *sharedPointerCopy;
 			DEBUG(sharedPointerCopy);
 
-			*sharedPointerCopy *= 10;
+			sharedPointerCopy->m_Age += 10;
 
 			DEBUG(*sharedPointer);
+			sharedPointer->Print();
 			DEBUG(*sharedPointerCopy);
+			sharedPointerCopy->Print();
 		}
 
 		system("pause");

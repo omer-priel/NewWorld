@@ -5,7 +5,7 @@
 namespace NewWorld::DataTypes::Memory
 {
 	template <typename T>
-	class SharedPointer : public IPointer
+	class SharedPointer : public IPointer<T>
 	{
 	NW_CLASS(SharedPointer, NewWorld::DataTypes::Memory)
 
@@ -51,10 +51,10 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		// Operators
-		T* operator->() const { return m_Value; }
+		virtual T* operator->() const override { return m_Value; }
 
-		T& operator*() { return *m_Value; }
+		virtual T& operator*() override { return *m_Value; }
 
-		const T& operator*() const { return *m_Value; }
+		virtual const T& operator*() const override { return *m_Value; }
 	};
 }

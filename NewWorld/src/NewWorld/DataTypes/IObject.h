@@ -16,7 +16,7 @@ namespace NewWorld::DataTypes
 	// IObject
 	class IObject abstract
 	{
-		// Pure functions
+		// Pure virtual functions
 	public:
 		virtual Collections::String ToString() const = 0;
 		
