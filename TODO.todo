@@ -19,7 +19,108 @@
             "children": [
               {
                 "key": 1629042448364,
-                "children": [],
+                "children": [
+                  {
+                    "key": 1631203878581,
+                    "children": [],
+                    "todo": {
+                      "content": "Array",
+                      "id": 1631203878581,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203937109,
+                    "children": [],
+                    "todo": {
+                      "content": "DynamicArray",
+                      "id": 1631203937109,
+                      "level": "warning",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203816701,
+                    "children": [],
+                    "todo": {
+                      "content": "Create all the Iterators",
+                      "id": 1631203816701,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203937767,
+                    "children": [],
+                    "todo": {
+                      "content": "Stack",
+                      "id": 1631203937767,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938162,
+                    "children": [],
+                    "todo": {
+                      "content": "Queue and Deque",
+                      "id": 1631203938162,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938434,
+                    "children": [],
+                    "todo": {
+                      "content": "CircularLinkedList",
+                      "id": 1631203938434,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938793,
+                    "children": [],
+                    "todo": {
+                      "content": "Heep",
+                      "id": 1631203938793,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203939218,
+                    "children": [],
+                    "todo": {
+                      "content": "Map",
+                      "id": 1631203939218,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203939470,
+                    "children": [],
+                    "todo": {
+                      "content": "String",
+                      "id": 1631203939470,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203802416,
+                    "children": [],
+                    "todo": {
+                      "content": "Remove all the .temp",
+                      "id": 1631203802416,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
                 "todo": {
                   "content": "Collections",
                   "id": 1629042448364,
@@ -332,7 +433,8 @@
       1629042438599,
       1630242075124,
       1629042284024,
-      1629042386980
+      1629042386980,
+      1629042448364
     ]
   }
 }
