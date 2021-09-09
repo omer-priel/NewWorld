@@ -63,44 +63,47 @@ namespace Sandbox::Tests
 		using namespace NewWorld::DataTypes::Memory;
 		
 		{
-			ScopePointer<Example> scopePointer(Example("example 1", 21));
+			ScopePointer<Example> scopePointer("scopePointer", 21);
 			IPointer<Example>& ptr = scopePointer;
 
-			DEBUG(scopePointer);
-			DEBUG(ptr.GetType());
+			INFO(scopePointer);
+			INFO(ptr.GetType());
 
-			DEBUG(*scopePointer);
+			INFO(*scopePointer);
 
 			Example value = *scopePointer;
-			DEBUG(value);
+			INFO(value);
 
 			scopePointer->m_Age += 10;
 
-			DEBUG(*scopePointer);
+			INFO(*scopePointer);
 			scopePointer->Print();
 		}
 
 		INFO("--------------------");
 
 		{
-			SharedPointer<Example> sharedPointer(Example("example 2", 22));
+			SharedPointer<Example> sharedPointer("sharedPointer", 22);
 			IPointer<Example>& ptr = sharedPointer;
 
-			DEBUG(sharedPointer);
-			DEBUG(ptr.GetType());
+			INFO(sharedPointer);
+			INFO(ptr.GetType());
 
-			DEBUG(*sharedPointer);
+			INFO(*sharedPointer);
 
 			SharedPointer<Example> sharedPointerCopy = sharedPointer;
 
 			Example value = *sharedPointerCopy;
-			DEBUG(sharedPointerCopy);
+			INFO(value);
+
+			Example& refValue = *sharedPointerCopy;
+			INFO(refValue);
 
 			sharedPointerCopy->m_Age += 10;
 
-			DEBUG(*sharedPointer);
+			INFO(*sharedPointer);
 			sharedPointer->Print();
-			DEBUG(*sharedPointerCopy);
+			INFO(*sharedPointerCopy);
 			sharedPointerCopy->Print();
 		}
 

@@ -28,6 +28,12 @@ namespace NewWorld::DataTypes::Memory
 			m_Value = new T(value);
 		}
 
+		template <typename... Types>
+		ScopePointer(Types&&... args)
+		{
+			m_Value = new T(std::forward<Types>(args)...);
+		}
+
 		ScopePointer(ScopePointer& obj) = delete;
 
 		~ScopePointer()

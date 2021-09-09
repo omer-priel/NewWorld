@@ -18,57 +18,6 @@
             "key": 1629042436829,
             "children": [
               {
-                "key": 1629042460314,
-                "children": [
-                  {
-                    "key": 1630594313859,
-                    "children": [],
-                    "todo": {
-                      "content": "IPointer abstract class",
-                      "id": 1630594313859,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1630242076820,
-                    "children": [],
-                    "todo": {
-                      "content": "RawPointer",
-                      "id": 1630242076820,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1630242075124,
-                    "children": [],
-                    "todo": {
-                      "content": "ScopePointer",
-                      "id": 1630242075124,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1630242075756,
-                    "children": [],
-                    "todo": {
-                      "content": "SharedPointer",
-                      "id": 1630242075756,
-                      "level": "warning",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Pointers",
-                  "id": 1629042460314,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
                 "key": 1629042448364,
                 "children": [],
                 "todo": {

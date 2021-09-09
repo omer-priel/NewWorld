@@ -33,6 +33,13 @@ namespace NewWorld::DataTypes::Memory
 			m_Counter = new SizeT(1);
 		}
 
+		template <typename... Types>
+		SharedPointer(Types&&... args)
+		{
+			m_Value = new T(std::forward<Types>(args)...);
+			m_Counter = new SizeT(1);
+		}
+
 		SharedPointer(SharedPointer& obj)
 		{
 			m_Value = obj.m_Value;
@@ -43,7 +50,7 @@ namespace NewWorld::DataTypes::Memory
 		~SharedPointer()
 		{
 			(*m_Counter)--;
-			if (m_Counter == 0)
+			if (*m_Counter == 0)
 			{
 				delete m_Value;
 				delete m_Counter;
