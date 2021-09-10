@@ -16,19 +16,6 @@ namespace NewWorld::DataTypes::Collections
 		T m_Elements[LENGTH];
 
 	public:
-		BasicArray()
-		{
-
-		}
-
-		BasicArray(const T& value)
-		{
-			for (LENGTH_T i = 0; i < LENGTH; i++)
-			{
-				m_Elements[i] = value;
-			}
-		}
-
 		BasicArray(T&& value)
 		{
 			for (LENGTH_T i = 0; i < LENGTH; i++)

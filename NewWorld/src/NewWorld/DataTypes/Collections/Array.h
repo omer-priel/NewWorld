@@ -5,5 +5,19 @@
 namespace NewWorld::DataTypes::Collections
 {
 	template <typename T, const SizeT LENGTH>
-	using Array = BasicArray<T, SizeT, LENGTH>;
+	class Array : public BasicArray<T, SizeT, LENGTH>
+	{
+		NW_CLASS(Array, NewWorld::DataTypes::Collections)
+
+	public:
+		Array(T&& value)
+			: BasicArray<T, SizeT, LENGTH>((T&&)value) { }
+
+		template <typename... Types>
+		Array(Types&&... args)
+			: BasicArray<T, SizeT, LENGTH>(args...)
+		{
+			
+		}
+	};
 }

@@ -51,7 +51,7 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 		
 		{
-			Array<Example, 10> arr(Example("arr cell", 1));
+			Array<Example, 10> arr;
 
 			for (uint i = 0; i < arr.GetLength(); i++)
 			{
