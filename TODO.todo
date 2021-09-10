@@ -84,7 +84,7 @@
                     "key": 1631203938793,
                     "children": [],
                     "todo": {
-                      "content": "Heep",
+                      "content": "Heap",
                       "id": 1631203938793,
                       "level": "default",
                       "done": false
@@ -134,6 +134,16 @@
                 "todo": {
                   "content": "Streams",
                   "id": 1631204432583,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1631262545372,
+                "children": [],
+                "todo": {
+                  "content": "Override the ToString() for all the classes",
+                  "id": 1631262545372,
                   "level": "default",
                   "done": false
                 }
@@ -444,7 +454,8 @@
       1630242075124,
       1629042284024,
       1629042386980,
-      1629042448364
+      1629042448364,
+      1631204432583
     ]
   }
 }

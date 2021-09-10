@@ -39,73 +39,10 @@ namespace Sandbox::Tests
 		}
 	};
 
-	class Example2 : public Example
-	{
-	NW_CLASS(Example2, Tests)
-
-	public:
-		Example2(const char* name, NewWorld::uint age)
-			: Example(name, age)
-		{
-
-		}
-
-		// Override
-	public:
-		virtual NewWorld::String ToString() const override
-		{
-			return "Example2";
-		}
-	};
-
 	void TestsRoot()
 	{
-		using namespace NewWorld::DataTypes::Memory;
+		using namespace NewWorld::DataTypes::Collections;
 		
-		{
-			ScopePointer<Example> scopePointer("scopePointer", 21);
-			IPointer<Example>& ptr = scopePointer;
-
-			INFO(scopePointer);
-			INFO(ptr.GetType());
-
-			INFO(*scopePointer);
-
-			Example value = *scopePointer;
-			INFO(value);
-
-			scopePointer->m_Age += 10;
-
-			INFO(*scopePointer);
-			scopePointer->Print();
-		}
-
-		INFO("--------------------");
-
-		{
-			SharedPointer<Example> sharedPointer("sharedPointer", 22);
-			IPointer<Example>& ptr = sharedPointer;
-
-			INFO(sharedPointer);
-			INFO(ptr.GetType());
-
-			INFO(*sharedPointer);
-
-			SharedPointer<Example> sharedPointerCopy = sharedPointer;
-
-			Example value = *sharedPointerCopy;
-			INFO(value);
-
-			Example& refValue = *sharedPointerCopy;
-			INFO(refValue);
-
-			sharedPointerCopy->m_Age += 10;
-
-			INFO(*sharedPointer);
-			sharedPointer->Print();
-			INFO(*sharedPointerCopy);
-			sharedPointerCopy->Print();
-		}
 
 		system("pause");
 	}

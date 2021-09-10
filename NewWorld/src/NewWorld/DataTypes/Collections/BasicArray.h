@@ -1,15 +1,16 @@
 #pragma once
 
-// TODO Remove this
-#include <utility>
+#include "NewWorld/DataTypes/Object.h"
 
-#include "Engine/Core.h"
+#include "Dependencies.h"
 
-namespace Engine::DataTypes::Collections
+namespace NewWorld::DataTypes::Collections
 {
 	template <typename T, typename LENGTH_T, const LENGTH_T LENGTH>
 	class BasicArray : public Object
 	{
+	NW_CLASS(BasicArray, NewWorld::DataTypes::Collections)
+
 		// Members
 	private:
 		T m_Elements[LENGTH];
@@ -18,28 +19,6 @@ namespace Engine::DataTypes::Collections
 		BasicArray()
 		{
 
-		}
-
-		// Override
-	public:
-		virtual String ToString() const override
-		{
-			if (LENGTH == 0)
-			{
-				// TODO return String("{}");
-				return String();
-			}
-
-			// TODO Replace with stream string
-			String text; // = "{ "
-			for (LENGTH_T i = 0; i < LENGTH - 1; i++)
-			{
-				const T& item = m_Elements[i];
-				// text += Object::ToString(item) + ", ";
-			}
-
-			// text += Object::ToString(m_Elements[LENGTH - 1]) + "}";
-			return text;
 		}
 
 		// Getters
@@ -61,33 +40,33 @@ namespace Engine::DataTypes::Collections
 
 		const T& Get(LENGTH_T index) const
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
 			return m_Elements[index];
 		}
 
 		// Setters
 		void Set(LENGTH_T index, const T& value)
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
 			m_Elements[index] = value;
 		}
 
 		void Set(LENGTH_T index, T&& value)
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
 			m_Elements[index] = std::move(value);
 		}
 
 		// Operators
 		const T& operator[](LENGTH_T index) const
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
 			return m_Elements[index];
 		}
 
 		T& operator[](LENGTH_T index)
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
 			return m_Elements[index];
 		}
 
