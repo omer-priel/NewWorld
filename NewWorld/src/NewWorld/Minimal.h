@@ -9,6 +9,7 @@
 #include "NewWorld/DataTypes/Memory/RawPointer.h"
 #include "NewWorld/DataTypes/Memory/ScopePointer.h"
 #include "NewWorld/DataTypes/Memory/SharedPointer.h"
+#include "NewWorld/DataTypes/Collections/Array.h"
 
 namespace NewWorld
 {
@@ -28,6 +29,9 @@ namespace NewWorld
 	using ScopePointer = DataTypes::Memory::ScopePointer<T>;
 	template <typename T>
 	using SharedPointer = DataTypes::Memory::SharedPointer<T>;
+
+	template <typename T, const SizeT LENGTH>
+	using Array = DataTypes::Collections::Array<T, LENGTH>;
 }
 
 // Debug

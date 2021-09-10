@@ -1,13 +1,9 @@
 #pragma once
 
-#include "Engine/Core.h"
-#include "Engine/DataTypes/Collections/BasicArray.h"
+#include "NewWorld/DataTypes/Collections/BasicArray.h"
 
-namespace Engine::DataTypes::Collections
+namespace NewWorld::DataTypes::Collections
 {
 	template <typename T, const SizeT LENGTH>
-	class Array : public BasicArray<T, SizeT, LENGTH>
-	{
-
-	};
+	using Array = BasicArray<T, SizeT, LENGTH>;
 }

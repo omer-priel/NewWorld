@@ -21,6 +21,31 @@ namespace NewWorld::DataTypes::Collections
 
 		}
 
+		BasicArray(const T& value)
+		{
+			for (LENGTH_T i = 0; i < LENGTH; i++)
+			{
+				m_Elements[i] = value;
+			}
+		}
+
+		BasicArray(T&& value)
+		{
+			for (LENGTH_T i = 0; i < LENGTH; i++)
+			{
+				m_Elements[i] = std::move(value);
+			}
+		}
+
+		template <typename... Types>
+		BasicArray(Types&&... args)
+		{
+			for (LENGTH_T i = 0; i < LENGTH; i++)
+			{
+				m_Elements[i] = T(std::forward<Types>(args)...);
+			}
+		}
+
 		// Getters
 	public:
 		constexpr LENGTH_T GetLength() const
@@ -85,6 +110,15 @@ namespace NewWorld::DataTypes::Collections
 			for (LENGTH_T i = 0; i < LENGTH; i++)
 			{
 				m_Elements[i] = std::move(value);
+			}
+		}
+
+		template <typename... Types>
+		void Fill(Types&&... args)
+		{
+			for (LENGTH_T i = 0; i < LENGTH; i++)
+			{
+				m_Elements[i] = T(std::forward<Types>(args)...);
 			}
 		}
 	};

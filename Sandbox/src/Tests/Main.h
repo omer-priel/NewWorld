@@ -14,6 +14,13 @@ namespace Sandbox::Tests
 		NewWorld::uint m_Age;
 
 	public:
+		Example()
+			: m_Name("default"), m_Age(13)
+		{
+			
+		}
+
+
 		Example(const char* name, NewWorld::uint age)
 			: m_Name(name), m_Age(age)
 		{
@@ -35,14 +42,45 @@ namespace Sandbox::Tests
 	public:
 		void Print()
 		{
-			DEBUG("{ Name: ", m_Name, ", Age: ", m_Age, " }");
+			INFO("{ Name: ", m_Name, ", Age: ", m_Age, " }");
 		}
 	};
 
 	void TestsRoot()
 	{
-		using namespace NewWorld::DataTypes::Collections;
+		using namespace NewWorld;
 		
+		{
+			Array<Example, 10> arr(Example("arr cell", 1));
+
+			for (uint i = 0; i < arr.GetLength(); i++)
+			{
+				arr[i] = Example((std::string("value ") + (char)('0' + i)).c_str(), 20 + i);
+			}
+
+			Example& sp = arr[4];
+
+			for (uint i = 0; i < arr.GetLength(); i++)
+			{
+				arr[i].Print();
+			}
+
+			sp = Example("sp", 23);
+
+			for (uint i = 0; i < arr.GetLength(); i++)
+			{
+				arr[i].Print();
+			}
+
+			arr.Fill("Fill", 23);
+
+			for (uint i = 0; i < arr.GetLength(); i++)
+			{
+				arr[i].Print();
+			}
+
+			INFO(arr.GetType().GetName());
+		}
 
 		system("pause");
 	}
