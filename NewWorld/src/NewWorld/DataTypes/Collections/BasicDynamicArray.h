@@ -1,25 +1,27 @@
 #pragma once
 
-// TODO Remove this
-#include <utility>
+#include "NewWorld/DataTypes/Object.h"
 
-#include "Engine/Core.h"
+#include "Dependencies.h"
 
-namespace Engine::DataTypes::Collections
+namespace NewWorld::DataTypes::Collections
 {
 	template <typename T, typename LENGTH_T, const LENGTH_T CHANK_SIZE>
 	class BasicDynamicArray : public Object
 	{
-		// Members
-	private:
-		T* m_Elements = nullptr;
+	NW_CLASS(BasicDynamicArray, NewWorld::DataTypes::Collections)
 
-		LENGTH_T m_Length = 0;
-		LENGTH_T m_Capacity = 0;
+			// Members
+	private:
+		T* m_Elements;
+
+		LENGTH_T m_Length;
+		LENGTH_T m_Capacity;
 
 		// Constructors
 	public:
 		BasicDynamicArray()
+			: m_Elements(nullptr), m_Length(0), m_Capacity(0)
 		{
 
 		}
@@ -36,20 +38,12 @@ namespace Engine::DataTypes::Collections
 			delete[] m_Elements;
 		}
 
-		// Override
-	public:
-		virtual String ToString() const override
-		{
-			return String();
-		}
-
-		// Getters
 	public:
 		inline LENGTH_T GetLength() const
 		{
 			return m_Length;
 		}
-		
+
 		inline LENGTH_T GetCapacity() const
 		{
 			return m_Capacity;

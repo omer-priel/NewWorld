@@ -9,6 +9,7 @@ namespace NewWorld::DataTypes::Collections
 	{
 		NW_CLASS(Array, NewWorld::DataTypes::Collections)
 
+		// Constructors
 	public:
 		Array(T&& value)
 			: BasicArray<T, SizeT, LENGTH>((T&&)value) { }

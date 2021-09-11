@@ -51,35 +51,7 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 		
 		{
-			Array<Example, 10> arr;
-
-			for (uint i = 0; i < arr.GetLength(); i++)
-			{
-				arr[i] = Example((std::string("value ") + (char)('0' + i)).c_str(), 20 + i);
-			}
-
-			Example& sp = arr[4];
-
-			for (uint i = 0; i < arr.GetLength(); i++)
-			{
-				arr[i].Print();
-			}
-
-			sp = Example("sp", 23);
-
-			for (uint i = 0; i < arr.GetLength(); i++)
-			{
-				arr[i].Print();
-			}
-
-			arr.Fill("Fill", 23);
-
-			for (uint i = 0; i < arr.GetLength(); i++)
-			{
-				arr[i].Print();
-			}
-
-			INFO(arr.GetType().GetName());
+			DynamicArray<int> arr;
 		}
 
 		system("pause");

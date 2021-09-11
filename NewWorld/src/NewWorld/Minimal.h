@@ -10,6 +10,7 @@
 #include "NewWorld/DataTypes/Memory/ScopePointer.h"
 #include "NewWorld/DataTypes/Memory/SharedPointer.h"
 #include "NewWorld/DataTypes/Collections/Array.h"
+#include "NewWorld/DataTypes/Collections/DynamicArray.h"
 
 namespace NewWorld
 {
@@ -32,6 +33,8 @@ namespace NewWorld
 
 	template <typename T, const SizeT LENGTH>
 	using Array = DataTypes::Collections::Array<T, LENGTH>;
+	template <typename T>
+	using DynamicArray = DataTypes::Collections::DynamicArray<T>;
 }
 
 // Debug

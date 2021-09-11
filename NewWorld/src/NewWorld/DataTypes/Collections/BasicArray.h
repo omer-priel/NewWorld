@@ -15,6 +15,7 @@ namespace NewWorld::DataTypes::Collections
 	private:
 		T m_Elements[LENGTH];
 
+		// Constructors
 	public:
 		BasicArray(T&& value)
 		{
