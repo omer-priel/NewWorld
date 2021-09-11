@@ -38,6 +38,7 @@ namespace NewWorld::DataTypes::Collections
 			delete[] m_Elements;
 		}
 
+		// Getters
 	public:
 		inline LENGTH_T GetLength() const
 		{
@@ -61,37 +62,40 @@ namespace NewWorld::DataTypes::Collections
 
 		const T& Get(LENGTH_T index) const
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
-			return m_Elements[index];
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+				return m_Elements[index];
 		}
 
 		// Setters
+	public:
 		void Set(LENGTH_T index, const T& value)
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
-			m_Elements[index] = value;
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+				m_Elements[index] = value;
 		}
 
 		void Set(LENGTH_T index, T&& value)
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
-			m_Elements[index] = std::move(value);
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+				m_Elements[index] = std::move(value);
 		}
 
 		// Operators
+	public:
 		const T& operator[](LENGTH_T index) const
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
-			return m_Elements[index];
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+				return m_Elements[index];
 		}
 
 		T& operator[](LENGTH_T index)
 		{
-			// TODO Check if the index is bigger than length (in DEBUG CONFIG)
-			return m_Elements[index];
+			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+				return m_Elements[index];
 		}
 
 		// Actions
+	public:
 		void Push(const T& value)
 		{
 			if (m_Length >= m_Capacity)
@@ -128,7 +132,6 @@ namespace NewWorld::DataTypes::Collections
 			return m_Elements[m_Length];
 		}
 
-	public:
 		void Clear()
 		{
 			for (LENGTH_T i = 0; i < m_Length; i++)

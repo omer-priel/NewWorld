@@ -58,6 +58,7 @@ namespace NewWorld::DataTypes::Collections
 		}
 
 		// Setters
+	public:
 		void Set(LENGTH_T index, const T& value)
 		{
 			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
@@ -71,6 +72,7 @@ namespace NewWorld::DataTypes::Collections
 		}
 
 		// Operators
+	public:
 		const T& operator[](LENGTH_T index) const
 		{
 			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
