@@ -46,7 +46,7 @@
                     "todo": {
                       "content": "Create all the Iterators",
                       "id": 1631203816701,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   },
@@ -137,7 +137,7 @@
                     "todo": {
                       "content": "Create Maloc, Realoc and Free functions",
                       "id": 1631386973860,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   },
@@ -147,7 +147,7 @@
                     "todo": {
                       "content": "Override \"new\" and \"delete\"",
                       "id": 1631386947539,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   }
@@ -155,7 +155,7 @@
                 "todo": {
                   "content": "Memory",
                   "id": 1631386932678,
-                  "level": "warning",
+                  "level": "default",
                   "done": false
                 }
               },
