@@ -44,7 +44,7 @@
 #define ERROR(...) NewWorld::Debug::Error("App", ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
-#define NW_ASSERT(condition, ...) if (!condition) { NW_ERROR(##__VA_ARGS__); __debugbreak(); }
+#define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(##__VA_ARGS__); __debugbreak(); }
 #else
 #define NW_ASSERT(condition, ...)
 #endif

@@ -34,7 +34,7 @@ namespace NewWorld::DataTypes::Memory
 			m_Value = new T(std::forward<Types>(args)...);
 		}
 
-		ScopePointer(ScopePointer& obj) = delete;
+		ScopePointer(const ScopePointer& obj) = delete;
 
 		~ScopePointer()
 		{
@@ -42,6 +42,8 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		// Operators
+		ScopePointer& operator= (const ScopePointer&) = delete;
+
 		virtual T* operator->() const override { return m_Value; }
 
 		virtual T& operator*() override { return *m_Value; }

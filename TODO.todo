@@ -37,7 +37,7 @@
                       "content": "DynamicArray",
                       "id": 1631203937109,
                       "level": "warning",
-                      "done": false
+                      "done": true
                     }
                   },
                   {
@@ -125,6 +125,37 @@
                   "content": "Collections",
                   "id": 1629042448364,
                   "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1631386932678,
+                "children": [
+                  {
+                    "key": 1631386973860,
+                    "children": [],
+                    "todo": {
+                      "content": "Create Maloc, Realoc and Free functions",
+                      "id": 1631386973860,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631386947539,
+                    "children": [],
+                    "todo": {
+                      "content": "Override \"new\" and \"delete\"",
+                      "id": 1631386947539,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
+                "todo": {
+                  "content": "Memory",
+                  "id": 1631386932678,
+                  "level": "warning",
                   "done": false
                 }
               },
@@ -455,7 +486,8 @@
       1629042284024,
       1629042386980,
       1629042448364,
-      1631204432583
+      1631204432583,
+      1631386932678
     ]
   }
 }

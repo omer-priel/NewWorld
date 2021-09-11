@@ -53,7 +53,7 @@ namespace NewWorld::DataTypes::Collections
 
 		const T& Get(LENGTH_T index) const
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+			NW_ASSERT(index < LENGTH, "Index cannot be bigger than the Length!")
 			return m_Elements[index];
 		}
 
@@ -61,13 +61,13 @@ namespace NewWorld::DataTypes::Collections
 	public:
 		void Set(LENGTH_T index, const T& value)
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+			NW_ASSERT(index < LENGTH, "Index cannot be bigger than the Length!")
 			m_Elements[index] = value;
 		}
 
 		void Set(LENGTH_T index, T&& value)
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+			NW_ASSERT(index < LENGTH, "Index cannot be bigger than the Length!")
 			m_Elements[index] = std::move(value);
 		}
 
@@ -75,13 +75,13 @@ namespace NewWorld::DataTypes::Collections
 	public:
 		const T& operator[](LENGTH_T index) const
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+			NW_ASSERT(index < LENGTH, "Index cannot be bigger than the Length!")
 			return m_Elements[index];
 		}
 
 		T& operator[](LENGTH_T index)
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
+			NW_ASSERT(index < LENGTH, "Index cannot be bigger than the Length!")
 			return m_Elements[index];
 		}
 

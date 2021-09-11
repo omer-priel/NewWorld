@@ -40,7 +40,7 @@ namespace NewWorld::DataTypes::Memory
 			m_Counter = new SizeT(1);
 		}
 
-		SharedPointer(SharedPointer& obj)
+		SharedPointer(const SharedPointer& obj)
 		{
 			m_Value = obj.m_Value;
 			m_Counter = obj.m_Counter;

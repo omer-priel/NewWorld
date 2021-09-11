@@ -10,7 +10,8 @@ namespace Sandbox::Tests
 
 		// Members
 	public:
-		NewWorld::String m_Name;
+		//NewWorld::String m_Name;
+		const char* m_Name;
 		NewWorld::uint m_Age;
 
 	public:
@@ -27,7 +28,7 @@ namespace Sandbox::Tests
 			DEBUG(m_Name, " created");
 		}
 
-		Example(Example& obj)
+		Example(const Example& obj)
 			: m_Name(obj.m_Name), m_Age(obj.m_Age)
 		{
 			DEBUG(m_Name, " coped");
@@ -37,6 +38,8 @@ namespace Sandbox::Tests
 		{
 			DEBUG(m_Name, " destroyed");
 		}
+
+		//Example& operator= (const Example&) = delete;
 
 		// Actions
 	public:
@@ -49,9 +52,22 @@ namespace Sandbox::Tests
 	void TestsRoot()
 	{
 		using namespace NewWorld;
-		
+
 		{
-			DynamicArray<int> arr;
+			DynamicArray<Example>arr;
+			Example& cell = arr.Emplace("arr 0", 22);
+			cell.Print();
+			arr[0].Print();
+			arr.Emplace("arr 1", 23);
+			arr[1].Print();
+			arr.Emplace("arr 2", 23);
+			arr[2].Print();
+			arr.Emplace("arr 3", 23);
+			arr[3].Print();
+			arr.Emplace("arr 4", 23);
+			arr[4].Print();
+			arr.Push(Example("arr 5", 24));
+			arr[5].Print();
 		}
 
 		system("pause");

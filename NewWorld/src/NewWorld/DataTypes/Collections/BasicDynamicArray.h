@@ -27,6 +27,7 @@ namespace NewWorld::DataTypes::Collections
 		}
 
 		BasicDynamicArray(LENGTH_T capacity)
+			: m_Elements(nullptr), m_Length(0), m_Capacity(0)
 		{
 			Reallocate(capacity);
 		}
@@ -62,36 +63,44 @@ namespace NewWorld::DataTypes::Collections
 
 		const T& Get(LENGTH_T index) const
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
-				return m_Elements[index];
+			NW_ASSERT(index >= m_Length, "Index cannot be bigger than the Length!")
+			return m_Elements[index];
 		}
 
 		// Setters
 	public:
+		void SetCapacity(LENGTH_T capacity)
+		{
+			if (capacity > m_Length)
+			{
+				Reallocate(capacity);
+			}
+		}
+		
 		void Set(LENGTH_T index, const T& value)
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
-				m_Elements[index] = value;
+			NW_ASSERT(index < m_Length, "Index cannot be bigger than the Length!")
+			m_Elements[index] = value;
 		}
 
 		void Set(LENGTH_T index, T&& value)
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
-				m_Elements[index] = std::move(value);
+			NW_ASSERT(index < m_Length, "Index cannot be bigger than the Length!")
+			m_Elements[index] = std::move(value);
 		}
 
 		// Operators
 	public:
 		const T& operator[](LENGTH_T index) const
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
-				return m_Elements[index];
+			NW_ASSERT(index < m_Length, "Index cannot be bigger than the Length!")
+			return m_Elements[index];
 		}
 
 		T& operator[](LENGTH_T index)
 		{
-			NW_ASSERT(index >= LENGTH, "Index cannot be bigger than the Length!")
-				return m_Elements[index];
+			NW_ASSERT(index < m_Length, "Index cannot be bigger than the Length!")
+			return m_Elements[index];
 		}
 
 		// Actions
@@ -103,7 +112,7 @@ namespace NewWorld::DataTypes::Collections
 				Reallocate(m_Capacity + CHANK_SIZE);
 			}
 
-			m_Elements[m_Length] = value;
+			new(&m_Elements[m_Length]) T(value);
 			m_Length++;
 		}
 
@@ -114,22 +123,22 @@ namespace NewWorld::DataTypes::Collections
 				Reallocate(m_Capacity + CHANK_SIZE);
 			}
 
-			m_Elements[m_Length] = std::move(value);
+			new(&m_Elements[m_Length]) T(value);
 			m_Length++;
 		}
 
-		template <typename... Args>
-		T& Emplace(Args&&... args)
+		template <typename... Types>
+		T& Emplace(Types&&... args)
 		{
 			if (m_Length >= m_Capacity)
 			{
 				Reallocate(m_Capacity + CHANK_SIZE);
 			}
 
-			new(&m_Elements[m_Length]) T(std::forward<Args>(args)...);
+			new(&m_Elements[m_Length]) T(std::forward<Types>(args)...);
 			m_Length++;
 
-			return m_Elements[m_Length];
+			return m_Elements[m_Length - 1];
 		}
 
 		void Clear()
@@ -145,16 +154,7 @@ namespace NewWorld::DataTypes::Collections
 	private:
 		void Reallocate(LENGTH_T newCapacity)
 		{
-			T* newBlock = new T[newCapacity];
-
-			// TODO Check if the newCapacity is smaller than the Capacity 
-			for (LENGTH_T i = 0; i < m_Length; i++)
-			{
-				newBlock[i] = std::move(m_Elements[i]);
-			}
-
-			delete[] m_Elements;
-			m_Elements = newBlock;
+			m_Elements = (T*)std::realloc(m_Elements, newCapacity * sizeof(T));
 			m_Capacity = newCapacity;
 		}
 	};
