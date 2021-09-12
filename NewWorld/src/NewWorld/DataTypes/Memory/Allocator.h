@@ -61,8 +61,10 @@ namespace NewWorld::DataTypes::Memory
 
 namespace NewWorld
 {
+	// Classes
 	using uint = DataTypes::uint;
 
+	// Actions
 	inline void* Allocate(uint size)
 	{
 		return DataTypes::Memory::GetActiveAllocator().Allocate(size);
@@ -95,4 +97,15 @@ namespace NewWorld
 	{
 		return DataTypes::Memory::GetActiveAllocator().Reallocate<T>(ptr);
 	}
+}
+
+// Override
+void* operator new(size_t size)
+{
+	return NewWorld::Allocate(size);
+}
+
+void operator delete(void* ptr)
+{
+	NewWorld::Deallocate(ptr);
 }

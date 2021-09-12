@@ -52,6 +52,10 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		{
+			ScopePointer<Example>("new", 23);
+		}
+
+		{
 			DynamicArray<Example>arr;
 			Example& cell = arr.Emplace("arr 0", 22);
 			cell.Print();
