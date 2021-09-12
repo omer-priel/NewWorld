@@ -129,16 +129,6 @@
                 }
               },
               {
-                "key": 1631424323791,
-                "children": [],
-                "todo": {
-                  "content": "Utility",
-                  "id": 1631424323791,
-                  "level": "warning",
-                  "done": false
-                }
-              },
-              {
                 "key": 1631204432583,
                 "children": [],
                 "todo": {

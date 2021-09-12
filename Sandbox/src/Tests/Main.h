@@ -8,10 +8,12 @@ namespace Sandbox::Tests
 	{
 	NW_CLASS(Example, Tests)
 
+	public:
+		using String = NewWorld::String; //const char*;
+
 		// Members
 	public:
-		//NewWorld::String m_Name;
-		const char* m_Name;
+		String m_Name;
 		NewWorld::uint m_Age;
 
 	public:
@@ -52,7 +54,12 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		{
-			ScopePointer<Example>("new", 23);
+			Array<SharedPointer<Example>, 5> arr;
+			arr[0] = SharedPointer<Example>("so 0", 22);
+			arr[1] = SharedPointer<Example>("so 1", 22);
+			arr[2] = SharedPointer<Example>("so 2", 22);
+			arr[3] = SharedPointer<Example>("so 3", 22);
+			arr[4] = SharedPointer<Example>("so 4", 22);
 		}
 
 		{

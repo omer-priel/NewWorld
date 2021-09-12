@@ -2,7 +2,7 @@
 
 #include "NewWorld/Minimal.h"
 
-#include "Dependencies.h"
+#include <iostream>
 
 namespace NewWorld::Debug
 {	

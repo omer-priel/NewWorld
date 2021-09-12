@@ -1,8 +1,8 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Object.h"
+#include <utility>
 
-#include "Dependencies.h"
+#include "NewWorld/DataTypes/Object.h"
 
 namespace NewWorld::DataTypes::Collections
 {

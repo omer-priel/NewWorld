@@ -3,6 +3,9 @@
 // Macros
 #include "NewWorld/Macros.h"
 
+// Standard Template Library
+#include <utility>
+
 // DataTypes
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/Object.h"

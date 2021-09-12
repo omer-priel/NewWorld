@@ -42,7 +42,7 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		// Operators
-		ScopePointer& operator= (const ScopePointer&) = delete;
+		ScopePointer& operator= (const ScopePointer& obj) = delete;
 
 		virtual T* operator->() const override { return m_Value; }
 

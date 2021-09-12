@@ -3,8 +3,6 @@
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/IObject.h"
 
-#include "Dependencies.h"
-
 namespace NewWorld::DataTypes
 {
 	namespace Collections
