@@ -6,6 +6,7 @@
 // DataTypes
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/DataTypes/Memory/Allocator.h"
 #include "NewWorld/DataTypes/Memory/RawPointer.h"
 #include "NewWorld/DataTypes/Memory/ScopePointer.h"
 #include "NewWorld/DataTypes/Memory/SharedPointer.h"

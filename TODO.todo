@@ -132,16 +132,6 @@
                 "key": 1631386932678,
                 "children": [
                   {
-                    "key": 1631386973860,
-                    "children": [],
-                    "todo": {
-                      "content": "Create Maloc, Realoc and Free functions",
-                      "id": 1631386973860,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
                     "key": 1631386947539,
                     "children": [],
                     "todo": {
