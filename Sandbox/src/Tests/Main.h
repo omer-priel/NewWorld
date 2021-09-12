@@ -39,8 +39,6 @@ namespace Sandbox::Tests
 			DEBUG(m_Name, " destroyed");
 		}
 
-		//Example& operator= (const Example&) = delete;
-
 		// Actions
 	public:
 		void Print()
