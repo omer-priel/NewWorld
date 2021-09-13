@@ -16,15 +16,15 @@ namespace NewWorld::DataTypes::Memory
 
 		// Actions
 	public:
-		void* Allocate(uint size)
+		void* Allocate(Ulong size)
 		{
 			return std::malloc(size);
 		}
 
 		template <typename T>
-		T* Allocate()
+		T* Allocate(Ulong length = 1)
 		{
-			return (T*)Allocate(sizeof(T));
+			return (T*)Allocate(length * sizeof(T));
 		}
 
 		void Deallocate(void* ptr)
@@ -38,7 +38,7 @@ namespace NewWorld::DataTypes::Memory
 			Deallocate((void*)ptr);
 		}
 
-		void* Reallocate(void* ptr, uint size)
+		void* Reallocate(void* ptr, Ulong size)
 		{
 			return std::realloc(ptr, size);
 		}
@@ -62,16 +62,16 @@ namespace NewWorld::DataTypes::Memory
 namespace NewWorld
 {
 	// Classes
-	using uint = DataTypes::uint;
+	using Ulong = DataTypes::Ulong;
 
 	// Actions
-	inline void* Allocate(uint size)
+	inline void* Allocate(Ulong size)
 	{
 		return DataTypes::Memory::GetActiveAllocator().Allocate(size);
 	}
 
 	template <typename T>
-	inline T* Allocate()
+	inline T* Allocate(Ulong length = 1)
 	{
 		return DataTypes::Memory::GetActiveAllocator().Allocate<T>();
 	}
@@ -87,7 +87,7 @@ namespace NewWorld
 		return DataTypes::Memory::GetActiveAllocator().Deallocate<T>(ptr);
 	}
 
-	inline void* Reallocate(void* ptr, uint size)
+	inline void* Reallocate(void* ptr, Ulong size)
 	{
 		return DataTypes::Memory::GetActiveAllocator().Reallocate(ptr, size);
 	}

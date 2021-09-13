@@ -1,6 +1,9 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/DataTypes/Object.h";
+#include "NewWorld/DataTypes/Memory/ScopePointer.h";
+
+#include "NewWorld/DataTypes/Memory/Allocator.h";
 
 #include "Dependencies.h"
 
@@ -26,17 +29,22 @@ namespace NewWorld::DataTypes::Collections
 
 		}
 
-		BasicDynamicArray(LENGTH_T capacity)
-			: m_Elements(nullptr), m_Length(0), m_Capacity(0)
+		template <typename... Types>
+		BasicDynamicArray(LENGTH_T length, Types&&... args)
+			: m_Elements(nullptr), m_Length(length), m_Capacity(length)
 		{
-			Reallocate(capacity);
+			m_Elements = Allocate<T>(m_Capacity);
+
+			for (LENGTH_T i = 0; i < m_Length; i++)
+			{
+				new(&m_Elements[i]) T(args...);
+			}
 		}
 
 		// Destructor
 		~BasicDynamicArray()
 		{
-			Clear();
-			delete[] m_Elements;
+			Deallocate(m_Elements);
 		}
 
 		// Getters
@@ -141,21 +149,19 @@ namespace NewWorld::DataTypes::Collections
 			return m_Elements[m_Length - 1];
 		}
 
-		void Clear()
-		{
-			for (LENGTH_T i = 0; i < m_Length; i++)
-			{
-				m_Elements[i].~T();
-			}
-
-			m_Length = 0;
-		}
-
 	private:
 		void Reallocate(LENGTH_T newCapacity)
 		{
-			m_Elements = (T*)std::realloc(m_Elements, newCapacity * sizeof(T));
 			m_Capacity = newCapacity;
+
+			T* ptr = Allocate<T>(m_Capacity);
+			
+			for (LENGTH_T i = 0; i < m_Length; i++)
+			{
+				ptr[i] = std::move(m_Elements[i]);
+			}
+
+			m_Elements = ptr;
 		}
 	};
 }

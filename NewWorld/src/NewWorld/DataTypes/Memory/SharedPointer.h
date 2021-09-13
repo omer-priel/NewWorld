@@ -15,12 +15,6 @@ namespace NewWorld::DataTypes::Memory
 		uint* m_Counter;
 
 	public:
-		SharedPointer()
-		{
-			m_Value = new T();
-			m_Counter = new SizeT(1);
-		}
-
 		SharedPointer(const T& value)
 		{
 			m_Value = new T(value);
@@ -42,17 +36,12 @@ namespace NewWorld::DataTypes::Memory
 
 		SharedPointer(const SharedPointer& obj)
 		{
-			if (m_Counter != nulptr)
-			{
-
-			}
-
 			m_Value = obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 		}
 
-		~SharedPointer()
+		virtual ~SharedPointer()
 		{
 			(*m_Counter)--;
 			if (*m_Counter == 0)
@@ -63,9 +52,16 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		// Operators
-		SharedPointer& operator= (const SharedPointer& obj)
+		SharedPointer<T>& operator= (const SharedPointer<T>& obj)
 		{
-			return SharedPointer(obj);
+			if (m_Counter != nullptr)
+			{
+				this->~SharedPointer();
+			}
+			m_Value = obj.m_Value;
+			m_Counter = obj.m_Counter;
+			(*m_Counter)++;
+			return *this;
 		}
 
 		virtual T* operator->() const override { return m_Value; }

@@ -17,21 +17,9 @@ namespace NewWorld::DataTypes::Collections
 
 		// Constructors
 	public:
-		BasicArray(T&& value)
+		BasicArray()
 		{
-			for (LENGTH_T i = 0; i < LENGTH; i++)
-			{
-				m_Elements[i] = std::move(value);
-			}
-		}
-
-		template <typename... Types>
-		BasicArray(Types&&... args)
-		{
-			for (LENGTH_T i = 0; i < LENGTH; i++)
-			{
-				m_Elements[i] = T(std::forward<Types>(args)...);
-			}
+			
 		}
 
 		// Getters

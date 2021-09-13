@@ -14,7 +14,8 @@ namespace NewWorld::DataTypes::Collections
 		DynamicArray()
 			: BasicDynamicArray<T, SizeT, 1>() { }
 
-		DynamicArray(SizeT capacity)
-			: BasicDynamicArray<T, SizeT, 1>(capacity) { }
+		template <typename... Types>
+		DynamicArray(SizeT length, Types&&... args)
+			: BasicDynamicArray<T, SizeT, 1>(length, args...) { }
 	};
 }
