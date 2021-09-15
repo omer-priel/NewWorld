@@ -412,6 +412,16 @@
         }
       },
       {
+        "key": 1631710827931,
+        "children": [],
+        "todo": {
+          "content": "Tests / Test Units System [Debug]",
+          "id": 1631710827931,
+          "level": "default",
+          "done": false
+        }
+      },
+      {
         "key": 1629042284024,
         "children": [
           {
@@ -431,6 +441,16 @@
               "content": "Make the NewWorld the main commands application",
               "id": 1631141697146,
               "level": "secondary",
+              "done": false
+            }
+          },
+          {
+            "key": 1631710771908,
+            "children": [],
+            "todo": {
+              "content": "CI-CD pipline for Build and Test Units [Debug]",
+              "id": 1631710771908,
+              "level": "default",
               "done": false
             }
           }
