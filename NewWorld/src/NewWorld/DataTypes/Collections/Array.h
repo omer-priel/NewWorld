@@ -11,14 +11,8 @@ namespace NewWorld::DataTypes::Collections
 
 		// Constructors
 	public:
-		Array(T&& value)
-			: BasicArray<T, SizeT, LENGTH>((T&&)value) { }
-
-		template <typename... Types>
-		Array(Types&&... args)
-			: BasicArray<T, SizeT, LENGTH>(args...)
-		{
-			
-		}
+		template<typename... Types>
+		Array(Types&&... elements)
+			: BasicArray<T, SizeT, LENGTH>(elements...) { }
 	};
 }

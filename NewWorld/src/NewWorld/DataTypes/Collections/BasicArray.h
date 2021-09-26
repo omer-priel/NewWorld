@@ -17,10 +17,9 @@ namespace NewWorld::DataTypes::Collections
 
 		// Constructors
 	public:
-		BasicArray()
-		{
-			
-		}
+		template<typename... Types>
+		BasicArray(Types&&... elements)
+			: m_Elements{ elements... } { }
 
 		// Getters
 	public:

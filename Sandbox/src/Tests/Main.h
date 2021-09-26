@@ -2,6 +2,9 @@
 
 #include "Example.h"
 
+#include <array>
+#include <initializer_list>
+
 namespace Sandbox::Tests
 {
 
