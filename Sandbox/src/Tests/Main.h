@@ -61,12 +61,7 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		{
-			ScopePointer<Example> example;
 
-			DEBUG(example);
-			DEBUG(*example);
-
-			example->Print();
 		}
 	}
 
