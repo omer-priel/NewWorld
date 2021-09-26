@@ -63,9 +63,7 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		{
 
-		}
 	}
 
 	void TestsRoot()

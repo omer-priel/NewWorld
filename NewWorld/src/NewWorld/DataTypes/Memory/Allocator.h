@@ -42,12 +42,6 @@ namespace NewWorld::DataTypes::Memory
 		{
 			return std::realloc(ptr, size);
 		}
-
-		template <typename T>
-		T* Reallocate(void* ptr)
-		{
-			return (T*)Reallocate(ptr, sizeof(T));
-		}
 	};
 
 	// Static
@@ -91,15 +85,10 @@ namespace NewWorld
 	{
 		return DataTypes::Memory::GetActiveAllocator().Reallocate(ptr, size);
 	}
-
-	template <typename T>
-	inline T* Reallocate(void* ptr)
-	{
-		return DataTypes::Memory::GetActiveAllocator().Reallocate<T>(ptr);
-	}
 }
 
 // Override
+/*
 void* operator new(size_t size)
 {
 	return NewWorld::Allocate(size);
@@ -108,4 +97,4 @@ void* operator new(size_t size)
 void operator delete(void* ptr)
 {
 	NewWorld::Deallocate(ptr);
-}
+}*/

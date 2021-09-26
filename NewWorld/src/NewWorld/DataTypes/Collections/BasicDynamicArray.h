@@ -1,20 +1,17 @@
 #pragma once
 
 #include "NewWorld/DataTypes/Object.h";
-#include "NewWorld/DataTypes/Memory/ScopePointer.h";
-
-#include "NewWorld/DataTypes/Memory/Allocator.h";
 
 #include "Dependencies.h"
 
 namespace NewWorld::DataTypes::Collections
 {
-	template <typename T, typename LENGTH_T, const LENGTH_T CHANK_SIZE>
+	template <typename T, typename LENGTH_T, const LENGTH_T CAPACITY_BLOCK_LENGTH>
 	class BasicDynamicArray : public Object
 	{
 	NW_CLASS(BasicDynamicArray, NewWorld::DataTypes::Collections)
 
-			// Members
+		// Members
 	private:
 		T* m_Elements;
 
@@ -29,22 +26,18 @@ namespace NewWorld::DataTypes::Collections
 
 		}
 
-		template <typename... Types>
-		BasicDynamicArray(LENGTH_T length, Types&&... args)
-			: m_Elements(nullptr), m_Length(length), m_Capacity(length)
+		template<typename... Types>
+		BasicDynamicArray(Types&&... elements)
+			: m_Elements(new T[]{elements...}), m_Length(sizeof...(Types)), m_Capacity(sizeof...(Types))
 		{
-			m_Elements = Allocate<T>(m_Capacity);
-
-			for (LENGTH_T i = 0; i < m_Length; i++)
-			{
-				new(&m_Elements[i]) T(args...);
-			}
+			
 		}
 
 		// Destructor
 		~BasicDynamicArray()
-		{
-			Deallocate(m_Elements);
+		{		
+			delete[] m_Elements;
+			//Deallocate(m_Elements);
 		}
 
 		// Getters
@@ -81,7 +74,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			if (capacity > m_Length)
 			{
-				Reallocate(capacity);
+				ChangeCapacity(capacity);
 			}
 		}
 		
@@ -117,7 +110,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			if (m_Length >= m_Capacity)
 			{
-				Reallocate(m_Capacity + CHANK_SIZE);
+				Reallocate(m_Capacity + CAPACITY_BLOCK_LENGTH);
 			}
 
 			new(&m_Elements[m_Length]) T(value);
@@ -128,7 +121,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			if (m_Length >= m_Capacity)
 			{
-				Reallocate(m_Capacity + CHANK_SIZE);
+				ChangeCapacity(m_Capacity + CAPACITY_BLOCK_LENGTH);
 			}
 
 			new(&m_Elements[m_Length]) T(value);
@@ -140,7 +133,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			if (m_Length >= m_Capacity)
 			{
-				Reallocate(m_Capacity + CHANK_SIZE);
+				ChangeCapacity(m_Capacity + CAPACITY_BLOCK_LENGTH);
 			}
 
 			new(&m_Elements[m_Length]) T(std::forward<Types>(args)...);
@@ -150,17 +143,20 @@ namespace NewWorld::DataTypes::Collections
 		}
 
 	private:
-		void Reallocate(LENGTH_T newCapacity)
+		void ChangeCapacity(LENGTH_T newCapacity)
 		{
 			m_Capacity = newCapacity;
 
-			T* ptr = Allocate<T>(m_Capacity);
-			
-			for (LENGTH_T i = 0; i < m_Length; i++)
+			T* ptr = (T*)Reallocate((void*)m_Elements, newCapacity * sizeof(T));
+
+			/*std::memcpy(ptr, m_Elements, m_Length * sizeof(T));
+
+			/*for (LENGTH_T i = 0; i < m_Length; i++)
 			{
 				ptr[i] = std::move(m_Elements[i]);
 			}
 
+			Deallocate(m_Elements);*/
 			m_Elements = ptr;
 		}
 	};

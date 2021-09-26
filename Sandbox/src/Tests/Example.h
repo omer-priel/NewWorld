@@ -2,6 +2,8 @@
 
 namespace Sandbox::Tests
 {
+	static NewWorld::uint s_LastID = 0;
+
 	class Example : public NewWorld::Object
 	{
 		NW_CLASS(Example, Tests)
@@ -11,39 +13,40 @@ namespace Sandbox::Tests
 
 		// Members
 	public:
+		NewWorld::uint m_ID;
 		String m_Name;
 		NewWorld::uint m_Age;
 
 	public:
 		Example()
-			: m_Name("default"), m_Age(13)
+			: m_ID(s_LastID++), m_Name("default"), m_Age(13)
 		{
-			DEBUG(m_Name, " created");
+			DEBUG(m_Name, " (", m_ID, ") created");
 		}
 
 
 		Example(const char* name, NewWorld::uint age)
-			: m_Name(name), m_Age(age)
+			: m_ID(s_LastID++), m_Age(age)
 		{
-			DEBUG(m_Name, " created");
+			DEBUG(m_Name, " (", m_ID, ") created");
 		}
 
 		Example(const Example& obj)
-			: m_Name(obj.m_Name), m_Age(obj.m_Age)
+			: m_ID(s_LastID++), m_Name(obj.m_Name), m_Age(obj.m_Age)
 		{
-			DEBUG(m_Name, " coped");
+			DEBUG(m_Name, " (", m_ID, ") coped");
 		}
 
 		virtual ~Example()
 		{
-			DEBUG(m_Name, " destroyed");
+			DEBUG(m_Name, " (", m_ID, ") destroyed");
 		}
 
 		// Actions
 	public:
 		void Print()
 		{
-			INFO("{ Name: ", m_Name, ", Age: ", m_Age, " }");
+			INFO("{ ID: ", m_ID, " Name: ", m_Name, ", Age : ", m_Age, " }");
 		}
 	};
 }

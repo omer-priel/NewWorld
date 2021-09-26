@@ -21,129 +21,29 @@
                 "key": 1631485833296,
                 "children": [],
                 "todo": {
-                  "content": "Memory - std::memcopy",
+                  "content": "Memory",
                   "id": 1631485833296,
                   "level": "warning",
-                  "done": false
+                  "done": true
                 }
               },
               {
-                "key": 1629042448364,
+                "key": 1632661921573,
                 "children": [
                   {
-                    "key": 1631203878581,
+                    "key": 1632661938296,
                     "children": [],
                     "todo": {
-                      "content": "Array",
-                      "id": 1631203878581,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1631203937109,
-                    "children": [],
-                    "todo": {
-                      "content": "DynamicArray",
-                      "id": 1631203937109,
-                      "level": "warning",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1631203816701,
-                    "children": [],
-                    "todo": {
-                      "content": "Create all the Iterators",
-                      "id": 1631203816701,
-                      "level": "warning",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1631203937767,
-                    "children": [],
-                    "todo": {
-                      "content": "Stack",
-                      "id": 1631203937767,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1631203938162,
-                    "children": [],
-                    "todo": {
-                      "content": "Queue and Deque",
-                      "id": 1631203938162,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1631203938434,
-                    "children": [],
-                    "todo": {
-                      "content": "CircularLinkedList",
-                      "id": 1631203938434,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1631203938793,
-                    "children": [],
-                    "todo": {
-                      "content": "Heap",
-                      "id": 1631203938793,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1631203939218,
-                    "children": [],
-                    "todo": {
-                      "content": "Map",
-                      "id": 1631203939218,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1631203939470,
-                    "children": [],
-                    "todo": {
-                      "content": "String",
-                      "id": 1631203939470,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1631203802416,
-                    "children": [],
-                    "todo": {
-                      "content": "Remove all the .temp",
-                      "id": 1631203802416,
+                      "content": "Array, DynamicArray, String",
+                      "id": 1632661938296,
                       "level": "default",
                       "done": false
                     }
                   }
                 ],
                 "todo": {
-                  "content": "Collections",
-                  "id": 1629042448364,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1631204432583,
-                "children": [],
-                "todo": {
-                  "content": "Streams",
-                  "id": 1631204432583,
+                  "content": "Temp Collections",
+                  "id": 1632661921573,
                   "level": "default",
                   "done": false
                 }
@@ -195,16 +95,6 @@
                 "todo": {
                   "content": "Type",
                   "id": 1630590936027,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1631485789682,
-                "children": [],
-                "todo": {
-                  "content": "Test Units in Sandbox",
-                  "id": 1631485789682,
                   "level": "default",
                   "done": false
                 }
@@ -402,6 +292,128 @@
               "level": "default",
               "done": false
             }
+          },
+          {
+            "key": 1632661708378,
+            "children": [
+              {
+                "key": 1629042448364,
+                "children": [
+                  {
+                    "key": 1631203878581,
+                    "children": [],
+                    "todo": {
+                      "content": "Array",
+                      "id": 1631203878581,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203937109,
+                    "children": [],
+                    "todo": {
+                      "content": "DynamicArray",
+                      "id": 1631203937109,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203937767,
+                    "children": [],
+                    "todo": {
+                      "content": "Stack",
+                      "id": 1631203937767,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938162,
+                    "children": [],
+                    "todo": {
+                      "content": "Queue and Deque",
+                      "id": 1631203938162,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938434,
+                    "children": [],
+                    "todo": {
+                      "content": "CircularLinkedList",
+                      "id": 1631203938434,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938793,
+                    "children": [],
+                    "todo": {
+                      "content": "Heap",
+                      "id": 1631203938793,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203939218,
+                    "children": [],
+                    "todo": {
+                      "content": "Map",
+                      "id": 1631203939218,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203939470,
+                    "children": [],
+                    "todo": {
+                      "content": "String",
+                      "id": 1631203939470,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
+                "todo": {
+                  "content": "Collections",
+                  "id": 1629042448364,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1632661965196,
+                "children": [],
+                "todo": {
+                  "content": "Iterators",
+                  "id": 1632661965196,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1631204432583,
+                "children": [],
+                "todo": {
+                  "content": "Streams",
+                  "id": 1631204432583,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Data Types Final",
+              "id": 1632661708378,
+              "level": "secondary",
+              "done": false
+            }
           }
         ],
         "todo": {
@@ -412,12 +424,23 @@
         }
       },
       {
-        "key": 1631710827931,
-        "children": [],
+        "key": 1632661744371,
+        "children": [
+          {
+            "key": 1631710827931,
+            "children": [],
+            "todo": {
+              "content": "Tests / Test Units System [Debug]",
+              "id": 1631710827931,
+              "level": "default",
+              "done": false
+            }
+          }
+        ],
         "todo": {
-          "content": "Tests / Test Units System [Debug]",
-          "id": 1631710827931,
-          "level": "default",
+          "content": "SandBox",
+          "id": 1632661744371,
+          "level": "success",
           "done": false
         }
       },
@@ -466,7 +489,6 @@
     "expandKeys": [
       1629042215988,
       1629042398630,
-      1629042438141,
       1629065571958,
       1629065843655,
       1629042337527,
@@ -476,8 +498,6 @@
       1629911912297,
       1629972486150,
       1629972561440,
-      1629042436829,
-      1629042437646,
       1629042409346,
       1629042490497,
       1629974032112,
@@ -489,15 +509,19 @@
       1630241971566,
       1629042447885,
       1629042460314,
-      1629042438599,
       1630242075124,
       1629042284024,
       1629042386980,
-      1629042448364,
       1631204432583,
       1631386932678,
       1631424323791,
-      1630590936027
+      1630590936027,
+      1631710827931,
+      1632661744371,
+      1629042436829,
+      1632661708378,
+      1629042448364,
+      1632661921573
     ]
   }
 }
