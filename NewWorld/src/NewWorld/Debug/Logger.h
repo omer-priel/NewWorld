@@ -49,6 +49,12 @@ namespace NewWorld::Debug
 	}
 
 	template <typename... Types>
+	void Log(bool value, const Types&... args)
+	{
+		Log((value) ? "true" : "false", args...);
+	}
+	
+	template <typename... Types>
 	void Log(Byte value, const Types&... args)
 	{
 		std::cout << value;

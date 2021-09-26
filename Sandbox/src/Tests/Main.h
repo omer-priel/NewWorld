@@ -7,68 +7,41 @@
 
 namespace Sandbox::Tests
 {
-
-#if 0
 	void Test1()
 	{
 		using namespace NewWorld;
 
-		/*{
-			Array<SharedPointer<Example>, 5> arr;
+		const String name = "Omer Priel";
 
-			arr[0] = SharedPointer<Example>("so 0", 22);
-			arr[1] = SharedPointer<Example>("so 1", 22);
-			arr[2] = SharedPointer<Example>("so 2", 22);
-			arr[3] = SharedPointer<Example>("so 3", 22);
-			arr[4] = SharedPointer<Example>("so 4", 22);
-		}*/
+		DEBUG(name);
 
+		for (size_t i = 0; i < name.GetLength(); i++)
 		{
-			DataTypes::Collections::BasicDynamicArray<Example, SizeT, 3>arr(5);
-
-			arr[0] = Example("so 0", 22);
-			arr[1] = Example("so 1", 22);
-			arr[2] = Example("so 2", 22);
-			arr[3] = Example("so 3", 22);
-			arr[4] = Example("so 4", 22);
-			arr.Push(Example("Push", 23));
-			arr.Push(Example("Push", 23));
-			arr.Push(Example("Push", 23));
-			arr.Push(Example("Push", 23));
-			arr.Push(Example("Push", 23));
-			arr[0].Print();
+			DEBUG(name[i]);
 		}
 
+		String name2 = "OMER PRIEL";
+
+		DEBUG(name2);
+
+		DEBUG(name == String("Omer Priel"), " ", name == name2, " ", name != name2);
+
+		DEBUG('-' + name + " " + name2 + " " + name + name);
+
+		for (size_t i = 0; i < name2.GetLength(); i++)
 		{
-			DataTypes::Collections::BasicDynamicArray<SharedPointer<Example>, SizeT, 3>arr(5);
-
-			arr[0] = SharedPointer<Example>("so 0", 22);
-			arr[1] = SharedPointer<Example>("so 1", 22);
-			arr[2] = SharedPointer<Example>("so 2", 22);
-			arr[3] = SharedPointer<Example>("so 3", 22);
-			arr[4] = SharedPointer<Example>("so 4", 22);
-			SharedPointer<Example> a("Push", 23);
-			arr.Push(a);
-			/*arr.Push(SharedPointer<Example>("Push", 23));
-			arr.Push(SharedPointer<Example>("Push", 23));
-			arr.Push(SharedPointer<Example>("Push", 23));
-			arr.Push(SharedPointer<Example>("Push", 23));
-			*/
+			name2[i] = (char)((int)name2[i] - (int)'A' + (int)'a');
 		}
-	}
 
-#endif
-
-	void Test2()
-	{
-		using namespace NewWorld;
-
-
+		for (size_t i = 0; i < name2.GetLength(); i++)
+		{
+			DEBUG(name2[i]);
+		}
 	}
 
 	void TestsRoot()
 	{
-		Test2();
+		Test1();
 
 		system("pause");
 	}

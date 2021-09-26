@@ -37,7 +37,7 @@
                       "content": "Array, DynamicArray, String",
                       "id": 1632661938296,
                       "level": "default",
-                      "done": false
+                      "done": true
                     }
                   }
                 ],
@@ -45,7 +45,7 @@
                   "content": "Temp Collections",
                   "id": 1632661921573,
                   "level": "default",
-                  "done": false
+                  "done": true
                 }
               },
               {
