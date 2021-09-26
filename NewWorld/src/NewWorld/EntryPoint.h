@@ -7,7 +7,7 @@
 
 NewWorld::Application* CreateApplication();
 
-#if NW_PLATFORM_WINDOWS
+#if NW_PLATFORM_WINDOWS // Windows
 
 int main(int argc, char* argv[])
 {
@@ -22,6 +22,6 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-#else // Other PLATFORM
+#else // Other platforms
 #error New World do not support this platform.
 #endif

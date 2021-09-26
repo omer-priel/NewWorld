@@ -1,55 +1,12 @@
 #include <NewWorld.h>
 
-#include <memory>
+#include "Example.h"
 
 namespace Sandbox::Tests
 {
-	class Example : public NewWorld::Object
-	{
-	NW_CLASS(Example, Tests)
 
-	public:
-		using String = NewWorld::String; //const char*;
-
-		// Members
-	public:
-		String m_Name;
-		NewWorld::uint m_Age;
-
-	public:
-		Example()
-			: m_Name("default"), m_Age(13)
-		{
-			DEBUG(m_Name, " created");
-		}
-
-
-		Example(const char* name, NewWorld::uint age)
-			: m_Name(name), m_Age(age)
-		{
-			DEBUG(m_Name, " created");
-		}
-
-		Example(const Example& obj)
-			: m_Name(obj.m_Name), m_Age(obj.m_Age)
-		{
-			DEBUG(m_Name, " coped");
-		}
-
-		virtual ~Example()
-		{
-			DEBUG(m_Name, " destroyed");
-		}
-
-		// Actions
-	public:
-		void Print()
-		{
-			INFO("{ Name: ", m_Name, ", Age: ", m_Age, " }");
-		}
-	};
-
-	void TestsRoot()
+#if 0
+	void Test1()
 	{
 		using namespace NewWorld;
 
@@ -62,7 +19,7 @@ namespace Sandbox::Tests
 			arr[3] = SharedPointer<Example>("so 3", 22);
 			arr[4] = SharedPointer<Example>("so 4", 22);
 		}*/
-		
+
 		{
 			DataTypes::Collections::BasicDynamicArray<Example, SizeT, 3>arr(5);
 
@@ -78,10 +35,10 @@ namespace Sandbox::Tests
 			arr.Push(Example("Push", 23));
 			arr[0].Print();
 		}
-		
+
 		{
 			DataTypes::Collections::BasicDynamicArray<SharedPointer<Example>, SizeT, 3>arr(5);
-			
+
 			arr[0] = SharedPointer<Example>("so 0", 22);
 			arr[1] = SharedPointer<Example>("so 1", 22);
 			arr[2] = SharedPointer<Example>("so 2", 22);
@@ -95,6 +52,27 @@ namespace Sandbox::Tests
 			arr.Push(SharedPointer<Example>("Push", 23));
 			*/
 		}
+	}
+
+#endif
+
+	void Test2()
+	{
+		using namespace NewWorld;
+
+		{
+			ScopePointer<Example> example;
+
+			DEBUG(example);
+			DEBUG(*example);
+
+			example->Print();
+		}
+	}
+
+	void TestsRoot()
+	{
+		Test2();
 
 		system("pause");
 	}

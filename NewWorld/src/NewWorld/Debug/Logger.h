@@ -133,7 +133,7 @@ namespace NewWorld::Debug
 		}
 		else
 		{
-			Log((T)*ptr);
+			Log((const T&)*ptr);
 		}
 
 		Log(args...);

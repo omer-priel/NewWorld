@@ -13,28 +13,15 @@ namespace NewWorld::DataTypes::Memory
 		T* m_Value;
 
 	public:
-		ScopePointer()
-		{
-			m_Value = new T();
-		}
+		ScopePointer(const ScopePointer& obj) = delete;
 
-		ScopePointer(const T& value)
-		{
-			m_Value = new T(value);
-		}
-
-		ScopePointer(T&& value)
-		{
-			m_Value = new T(value);
-		}
+		ScopePointer(ScopePointer& obj) = delete;
 
 		template <typename... Types>
 		ScopePointer(Types&&... args)
 		{
 			m_Value = new T(std::forward<Types>(args)...);
 		}
-
-		ScopePointer(const ScopePointer& obj) = delete;
 
 		~ScopePointer()
 		{
