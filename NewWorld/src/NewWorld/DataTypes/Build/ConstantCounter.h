@@ -12,6 +12,7 @@ struct writer {
 
     static constexpr int value = N;
 };
+
 template<int N, int = adl_flag(flag<N> {}) >
 int constexpr reader(int, flag<N>) {
     return N;
