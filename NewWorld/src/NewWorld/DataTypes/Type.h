@@ -16,7 +16,7 @@ namespace NewWorld::DataTypes
 		
 		// Static
 	public:
-		static const Type GetTypeByName(const char* className, const char* namespaceFullName)
+		static const Type& GetTypeByName(const char* className, const char* namespaceFullName)
 		{
 			SizeT id = 0;
 			return Type(id, className, namespaceFullName);

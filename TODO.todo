@@ -62,16 +62,6 @@
                 "key": 1630590936027,
                 "children": [
                   {
-                    "key": 1630590300480,
-                    "children": [],
-                    "todo": {
-                      "content": "const char* to String",
-                      "id": 1630590300480,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
                     "key": 1630590963420,
                     "children": [],
                     "todo": {
