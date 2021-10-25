@@ -55,7 +55,7 @@
                   "content": "Override the ToString() for all the classes",
                   "id": 1631262545372,
                   "level": "default",
-                  "done": false
+                  "done": true
                 }
               },
               {
@@ -522,6 +522,7 @@
       1632661708378,
       1629042448364,
       1632661921573
-    ]
+    ],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L26"
   }
 }

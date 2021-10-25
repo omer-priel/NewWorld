@@ -3,6 +3,9 @@
 #include "NewWorld/DataTypes/Memory/IPointer.h"
 #include "NewWorld/DataTypes/Memory/Allocator.h"
 
+#include <iostream>
+#include <string>
+
 namespace NewWorld::DataTypes::Memory
 {
 	template <typename T>
@@ -44,6 +47,18 @@ namespace NewWorld::DataTypes::Memory
 				delete m_Value;
 				delete m_Counter;
 			}
+		}
+
+		// Override
+	public:
+		String ToString() const override
+		{
+			if (std::is_base_of<IObject, T>())
+			{
+				RawPointer<IObject> obj = (RawPointer<IObject>)m_Value;
+				return obj->ToString();
+			}
+			return "";
 		}
 
 		// Operators

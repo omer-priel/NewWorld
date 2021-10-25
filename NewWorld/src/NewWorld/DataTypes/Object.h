@@ -7,7 +7,7 @@
 
 namespace NewWorld::DataTypes
 {
-	class Object : DataTypes::IObject
+	class Object : public DataTypes::IObject
 	{
 	NW_CLASS(Object, NewWorld::DataTypes)
 	

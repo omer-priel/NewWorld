@@ -24,9 +24,21 @@ namespace NewWorld::DataTypes::Memory
 			m_Value = new T(std::forward<Types>(args)...);
 		}
 
-		~ScopePointer()
+		virtual ~ScopePointer()
 		{
 			delete m_Value;
+		}
+
+		// Override
+	public:
+		String ToString() const override
+		{
+			if (std::is_base_of<IObject, T>())
+			{
+				RawPointer<IObject> obj = (RawPointer<IObject>)m_Value;
+				return obj->ToString();
+			}
+			return "";
 		}
 
 		// Operators
