@@ -59,7 +59,7 @@ namespace NewWorld::DataTypes::Collections
 	public:
 		inline SizeT GetLength() const
 		{
-			return m_Value.length();
+			return (SizeT)m_Value.length();
 		}
 
 		inline const char* GetPointer() const

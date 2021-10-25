@@ -1,7 +1,5 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Object.h"
-
 #include <array>
 
 namespace NewWorld::DataTypes::Collections
