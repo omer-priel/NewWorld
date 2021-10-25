@@ -26,7 +26,8 @@ namespace NewWorld::DataTypes
 
 		// Constractors
 	public:
-		Type() {}
+		Type()
+			: m_StaticID(0), m_Name(""), m_NamespaceFullName("") { }
 
 		Type(uint staticId, const char* name, const char* namespaceFullName)
 			: m_StaticID(staticId), m_Name(name), m_NamespaceFullName(namespaceFullName)
