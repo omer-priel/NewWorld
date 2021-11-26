@@ -27,7 +27,7 @@ int constexpr reader(float, flag<0>) {
 
 template<typename T, int N = 0>
 struct Generator {
-    static constexpr int ID = writer<reader(N, flag<32>{}) + 1>::value; // 32 implies maximum UUID of 32
+    static constexpr int ID = writer<reader(N, flag<256>{}) + 1>::value; // 256
 };
 
 /*
