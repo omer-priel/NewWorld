@@ -4,6 +4,7 @@
 
 bin
 Dependencies/bin
+Dependencies/Workspace
 
 __pycache__
 env
