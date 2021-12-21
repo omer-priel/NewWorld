@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NewWorld/Macros.h"
+#include "NewWorld/DataTypes/Build/TypeID.h"
 #include "NewWorld/DataTypes/Primitives.h"
 
 namespace NewWorld::DataTypes
