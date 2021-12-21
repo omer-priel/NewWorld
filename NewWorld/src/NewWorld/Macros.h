@@ -25,6 +25,12 @@
 // EntryPoint.h
 // ENTRYPOINT_APPLICATION
 
+#pragma region DataTypes::Build
+
+#define NW_TYPE_ID(...) NewWorld::DataTypes::Build::TypeIDStorage<##__VA_ARGS__>
+
+#pragma endregion
+
 #pragma region DataTypes::IObject
 
 #define NW_CLASS(className, namespaceFullName) public: const NewWorld::DataTypes::Type& GetType() const override { return NewWorld::DataTypes::TypeManager::GetType(0, #className, #namespaceFullName); }
