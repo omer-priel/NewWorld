@@ -13,9 +13,14 @@ namespace Sandbox::Tests
 		{
 			NW_DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
 
-			NW_DEBUG(Application::GetTypeStatic().GetStaticID());
+			Vector2 a(1, 2);
+			Vector2 b(3, 4);
+			Vector3 c(1, 2, 3);
+			Vector4 d(a, b);
 
-			Math::Vector2 a;
+			NW_DEBUG(a, " ", b, " ", c, " ", d);
+			NW_DEBUG(d * d);
+			NW_DEBUG(a + b);
 		}
 	}
 

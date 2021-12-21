@@ -41,9 +41,6 @@ namespace NewWorld
 	using DynamicArray = DataTypes::Collections::DynamicArray<T>;
 }
 
-// Debug
-#include "NewWorld/Debug/Logger.h"
-
 // Math
 #include "NewWorld/Math/Vector2.h"
 #include "NewWorld/Math/Vector3.h"
@@ -55,3 +52,6 @@ namespace NewWorld
 	using Vector3 = Math::Vector3;
 	using Vector4 = Math::Vector4;
 }
+
+// Debug
+#include "NewWorld/Debug/Logger.h"

@@ -110,6 +110,28 @@ namespace NewWorld::Debug
 		Log(args...);
 	}
 
+	//TEMP: Vector2 Vector3 Vector4
+	template <typename... Types>
+	void Log(Vector2 value, const Types&... args)
+	{
+		std::cout << "(" << value.x << ", " << value.y << ")";
+		Log(args...);
+	}
+
+	template <typename... Types>
+	void Log(Vector3 value, const Types&... args)
+	{
+		std::cout << "(" << value.x << ", " << value.y << ", " << value.z << ")";
+		Log(args...);
+	}
+
+	template <typename... Types>
+	void Log(Vector4 value, const Types&... args)
+	{
+		std::cout << "(" << value.x << ", " << value.y << ", " << value.z << ", " << value.w << ")";
+		Log(args...);
+	}
+
 	template <typename... Types>
 	void Log(const char* str, const Types&... args)
 	{
