@@ -2,7 +2,7 @@
 
 #include "NewWorld/Minimal.h"
 
-#include "Dependencies.h"
+#include <iostream>
 
 namespace NewWorld::Debug
 {	
@@ -48,6 +48,12 @@ namespace NewWorld::Debug
 		Log(args...);
 	}
 
+	template <typename... Types>
+	void Log(bool value, const Types&... args)
+	{
+		Log((value) ? "true" : "false", args...);
+	}
+	
 	template <typename... Types>
 	void Log(Byte value, const Types&... args)
 	{
@@ -133,7 +139,7 @@ namespace NewWorld::Debug
 		}
 		else
 		{
-			Log((T)*ptr);
+			Log((const T&)*ptr);
 		}
 
 		Log(args...);

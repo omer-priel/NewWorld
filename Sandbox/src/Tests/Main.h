@@ -1,111 +1,66 @@
 #include <NewWorld.h>
 
-#include <memory>
+#include "Example.h"
 
 namespace Sandbox::Tests
 {
-	class Example : public NewWorld::Object
+	class Example2 : public NewWorld::Object
 	{
-	NW_CLASS(Example, Tests)
-
-		// Members
-	public:
-		NewWorld::String m_Name;
-		NewWorld::uint m_Age;
-
-	public:
-		Example(const char* name, NewWorld::uint age)
-			: m_Name(name), m_Age(age)
-		{
-			DEBUG(m_Name, " created");
-		}
-
-		Example(Example& obj)
-			: m_Name(obj.m_Name), m_Age(obj.m_Age)
-		{
-			DEBUG(m_Name, " coped");
-		}
-
-		~Example()
-		{
-			DEBUG(m_Name, " destroyed");
-		}
-
-		// Actions
-	public:
-		void Print()
-		{
-			DEBUG("{ Name: ", m_Name, ", Age: ", m_Age, " }");
-		}
+		NW_CLASS(Example2, Sandbox::Tests)
 	};
 
-	class Example2 : public Example
+	class Example3 : public NewWorld::Object
 	{
-	NW_CLASS(Example2, Tests)
-
-	public:
-		Example2(const char* name, NewWorld::uint age)
-			: Example(name, age)
-		{
-
-		}
-
-		// Override
-	public:
-		virtual NewWorld::String ToString() const override
-		{
-			return "Example2";
-		}
+		NW_CLASS(Example3, Sandbox::Tests)
 	};
+
+	class Example4 : public NewWorld::Object
+	{
+		NW_CLASS(Example4, Sandbox::Tests)
+	};
+
+	class Example5 : public NewWorld::Object
+	{
+		NW_CLASS(Example5, Sandbox::Tests)
+	};
+}
+
+namespace Sandbox::Tests
+{
+
+	void PrintType(NewWorld::DataTypes::Type type)
+	{
+		NW_DEBUG(type.GetStaticID(), " is from the class ", type.GetName());
+	}
+
+	void Test1()
+	{
+		using namespace NewWorld;
+
+		{
+			NW_DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
+
+			SharedPointer<String> ptr("Test1");
+			ScopePointer<String> ptr2("Test2");
+
+			NW_DEBUG(ptr, " ", ptr2, "\n", ptr.GetType());
+
+			PrintType(Object::GetTypeStatic());
+			PrintType(String::GetTypeStatic());
+			PrintType(Example::GetTypeStatic());
+			PrintType(SharedPointer<String>::GetTypeStatic());
+			PrintType(ScopePointer<String>::GetTypeStatic());
+			PrintType(SharedPointer<Example>::GetTypeStatic());
+			PrintType(ScopePointer<ScopePointer<Example>>::GetTypeStatic());
+
+			PrintType(ptr.GetType());
+			PrintType(ptr2.GetType());
+		}
+	}
 
 	void TestsRoot()
 	{
-		using namespace NewWorld::DataTypes::Memory;
-		
-		{
-			ScopePointer<Example> scopePointer("scopePointer", 21);
-			IPointer<Example>& ptr = scopePointer;
-
-			INFO(scopePointer);
-			INFO(ptr.GetType());
-
-			INFO(*scopePointer);
-
-			Example value = *scopePointer;
-			INFO(value);
-
-			scopePointer->m_Age += 10;
-
-			INFO(*scopePointer);
-			scopePointer->Print();
-		}
-
-		INFO("--------------------");
-
-		{
-			SharedPointer<Example> sharedPointer("sharedPointer", 22);
-			IPointer<Example>& ptr = sharedPointer;
-
-			INFO(sharedPointer);
-			INFO(ptr.GetType());
-
-			INFO(*sharedPointer);
-
-			SharedPointer<Example> sharedPointerCopy = sharedPointer;
-
-			Example value = *sharedPointerCopy;
-			INFO(value);
-
-			Example& refValue = *sharedPointerCopy;
-			INFO(refValue);
-
-			sharedPointerCopy->m_Age += 10;
-
-			INFO(*sharedPointer);
-			sharedPointer->Print();
-			INFO(*sharedPointerCopy);
-			sharedPointerCopy->Print();
-		}
+		Test1();
 
 		system("pause");
 	}

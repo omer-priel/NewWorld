@@ -1,9 +1,7 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/IObject.h"
-
-#include "Dependencies.h"
+#include "NewWorld/DataTypes/Collections/Map.h"
 
 namespace NewWorld::DataTypes
 {
@@ -13,27 +11,23 @@ namespace NewWorld::DataTypes
 	}
 
 	class Type : public IObject
-	{
-	NW_CLASS(Type, NewWorld::DataTypes)
-		
-		// Static
+	{	
 	public:
-		static const Type GetTypeByName(const char* className, const char* namespaceFullName)
-		{
-			SizeT id = 0;
-			return Type(id, className, namespaceFullName);
-		}
-
+		const NewWorld::DataTypes::Type& GetType() const override;
+		
 		// Members
 	private:
-		SizeT m_ID;
+		uint m_StaticID;
 		const char* m_Name;
 		const char* m_NamespaceFullName;
 
 		// Constractors
-	private:
-		Type(SizeT id, const char* name, const char* namespaceFullName)
-			: m_ID(id), m_Name(name), m_NamespaceFullName(namespaceFullName)
+	public:
+		Type()
+			: m_StaticID(0), m_Name(""), m_NamespaceFullName("") { }
+
+		Type(uint staticId, const char* name, const char* namespaceFullName)
+			: m_StaticID(staticId), m_Name(name), m_NamespaceFullName(namespaceFullName)
 		{
 
 		}
@@ -44,9 +38,9 @@ namespace NewWorld::DataTypes
 
 		// Getters
 	public:
-		inline SizeT GetID() const
+		inline SizeT GetStaticID() const
 		{
-			return m_ID;
+			return m_StaticID;
 		}
 
 		inline const char* GetName() const
@@ -60,5 +54,27 @@ namespace NewWorld::DataTypes
 		}
 
 		const char* GetFullName() const;
+	};
+
+	class TypeManager
+	{
+		// Static Members
+	private:
+		static Collections::Map<uint, Type> s_Types;
+
+		// Static Getters
+	public:
+		static const Type& GetType(uint staticId, const char* className, const char* namespaceFullName);
+
+		static const Type& GetTypeByStaticID(const uint staticId)
+		{
+			return s_Types[staticId];
+		}
+
+		template<typename T>
+		static const Type& GetType()
+		{
+			return s_Types[NW_TYPE_ID(T)];
+		}
 	};
 }

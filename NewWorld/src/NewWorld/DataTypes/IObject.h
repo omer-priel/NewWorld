@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NewWorld/Macros.h"
+#include "NewWorld/DataTypes/Build/TypeID.h"
 #include "NewWorld/DataTypes/Primitives.h"
 
 namespace NewWorld::DataTypes
@@ -20,6 +21,6 @@ namespace NewWorld::DataTypes
 	public:
 		virtual Collections::String ToString() const = 0;
 		
-		virtual Type GetType() const = 0;
+		virtual const Type& GetType() const = 0;
 	};
 }

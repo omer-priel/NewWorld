@@ -3,12 +3,18 @@
 // Macros
 #include "NewWorld/Macros.h"
 
+// Standard Template Library
+#include <utility>
+
 // DataTypes
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/DataTypes/Memory/Allocator.h"
 #include "NewWorld/DataTypes/Memory/RawPointer.h"
 #include "NewWorld/DataTypes/Memory/ScopePointer.h"
 #include "NewWorld/DataTypes/Memory/SharedPointer.h"
+#include "NewWorld/DataTypes/Collections/Array.h"
+#include "NewWorld/DataTypes/Collections/DynamicArray.h"
 
 namespace NewWorld
 {
@@ -28,6 +34,11 @@ namespace NewWorld
 	using ScopePointer = DataTypes::Memory::ScopePointer<T>;
 	template <typename T>
 	using SharedPointer = DataTypes::Memory::SharedPointer<T>;
+
+	template <typename T, const SizeT LENGTH>
+	using Array = DataTypes::Collections::Array<T, LENGTH>;
+	template <typename T>
+	using DynamicArray = DataTypes::Collections::DynamicArray<T>;
 }
 
 // Debug

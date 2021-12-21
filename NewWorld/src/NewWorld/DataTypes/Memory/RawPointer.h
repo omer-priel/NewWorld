@@ -1,6 +1,6 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Memory/IPointer.h"
+#include "NewWorld/DataTypes/Memory/Allocator.h"
 
 namespace NewWorld::DataTypes::Memory
 {

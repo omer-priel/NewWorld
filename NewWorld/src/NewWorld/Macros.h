@@ -25,9 +25,18 @@
 // EntryPoint.h
 // ENTRYPOINT_APPLICATION
 
+#pragma region DataTypes::Build
+
+#define NW_TYPE_ID(...) NewWorld::DataTypes::Build::TypeIDStorage<##__VA_ARGS__>
+
+#pragma endregion
+
 #pragma region DataTypes::IObject
 
-#define NW_CLASS(className, namespaceFullName) public: NewWorld::DataTypes::Type GetType() const override { return NewWorld::DataTypes::Type::GetTypeByName(#className, #namespaceFullName); }
+#define NW_CLASS(className, namespaceFullName) 	public: static const NewWorld::DataTypes::Type& GetTypeStatic() {\
+												return NewWorld::DataTypes::TypeManager::GetType(NW_TYPE_ID(namespaceFullName::className), #className, #namespaceFullName); }\
+												public: const NewWorld::DataTypes::Type& GetType() const override {\
+												return NewWorld::DataTypes::TypeManager::GetType(NW_TYPE_ID(namespaceFullName::className), #className, #namespaceFullName); }
 
 #pragma endregion
 
@@ -44,7 +53,7 @@
 #define ERROR(...) NewWorld::Debug::Error("App", ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
-#define NW_ASSERT(condition, ...) if (!condition) { NW_ERROR(##__VA_ARGS__); __debugbreak(); }
+#define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(##__VA_ARGS__); __debugbreak(); }
 #else
 #define NW_ASSERT(condition, ...)
 #endif
