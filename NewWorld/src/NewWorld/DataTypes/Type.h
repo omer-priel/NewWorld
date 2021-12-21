@@ -11,8 +11,6 @@ namespace NewWorld::DataTypes
 		class String;
 	}
 
-	class TypeManager;
-
 	class Type : public IObject
 	{	
 	public:
@@ -72,6 +70,12 @@ namespace NewWorld::DataTypes
 		static const Type& GetTypeByStaticID(const uint staticId)
 		{
 			return s_Types[staticId];
+		}
+
+		template<typename T>
+		static const Type& GetType()
+		{
+			return s_Types[NW_TYPE_ID(T)];
 		}
 	};
 }
