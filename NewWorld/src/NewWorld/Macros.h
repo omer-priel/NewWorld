@@ -33,7 +33,7 @@
 
 #pragma region DataTypes::IObject
 
-#define NW_CLASS(className, namespaceFullName) public: const NewWorld::DataTypes::Type& GetType() const override { return NewWorld::DataTypes::TypeManager::GetType(0, #className, #namespaceFullName); }
+#define NW_CLASS(className, namespaceFullName) public: const NewWorld::DataTypes::Type& GetType() const override { return NewWorld::DataTypes::TypeManager::GetType(NW_TYPE_ID(namespaceFullName::className), #className, #namespaceFullName); }
 
 #pragma endregion
 

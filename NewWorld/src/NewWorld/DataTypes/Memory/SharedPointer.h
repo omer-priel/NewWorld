@@ -11,7 +11,7 @@ namespace NewWorld::DataTypes::Memory
 	template <typename T>
 	class SharedPointer : public IPointer<T>
 	{
-	NW_CLASS(SharedPointer, NewWorld::DataTypes::Memory)
+	NW_CLASS(SharedPointer<T>, NewWorld::DataTypes::Memory)
 
 	private:
 		T* m_Value;
