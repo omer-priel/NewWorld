@@ -6,7 +6,7 @@ namespace Sandbox::Tests
 
 	class Example : public NewWorld::Object
 	{
-		NW_CLASS(Example, Tests)
+		NW_CLASS(Example, Sandbox::Tests)
 
 	public:
 		using String = NewWorld::String; //const char*;

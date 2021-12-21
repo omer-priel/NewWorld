@@ -4,6 +4,30 @@
 
 namespace Sandbox::Tests
 {
+	class Example2 : public NewWorld::Object
+	{
+		NW_CLASS(Example2, Sandbox::Tests)
+	};
+
+	class Example3 : public NewWorld::Object
+	{
+		NW_CLASS(Example3, Sandbox::Tests)
+	};
+
+	class Example4 : public NewWorld::Object
+	{
+		NW_CLASS(Example4, Sandbox::Tests)
+	};
+
+	class Example5 : public NewWorld::Object
+	{
+		NW_CLASS(Example5, Sandbox::Tests)
+	};
+}
+
+namespace Sandbox::Tests
+{
+
 	void PrintType(NewWorld::DataTypes::Type type)
 	{
 		NW_DEBUG(type.GetStaticID(), " is from the class ", type.GetName());
