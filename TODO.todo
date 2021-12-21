@@ -15,89 +15,6 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1629042436829,
-            "children": [
-              {
-                "key": 1631485833296,
-                "children": [],
-                "todo": {
-                  "content": "Memory",
-                  "id": 1631485833296,
-                  "level": "warning",
-                  "done": true
-                }
-              },
-              {
-                "key": 1632661921573,
-                "children": [
-                  {
-                    "key": 1632661938296,
-                    "children": [],
-                    "todo": {
-                      "content": "Array, DynamicArray, String",
-                      "id": 1632661938296,
-                      "level": "default",
-                      "done": true
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Temp Collections",
-                  "id": 1632661921573,
-                  "level": "default",
-                  "done": true
-                }
-              },
-              {
-                "key": 1631262545372,
-                "children": [],
-                "todo": {
-                  "content": "Override the ToString() for all the classes",
-                  "id": 1631262545372,
-                  "level": "default",
-                  "done": true
-                }
-              },
-              {
-                "key": 1630590936027,
-                "children": [
-                  {
-                    "key": 1630590963420,
-                    "children": [],
-                    "todo": {
-                      "content": "Create  Generator for Type ID",
-                      "id": 1630590963420,
-                      "level": "default",
-                      "done": true
-                    }
-                  },
-                  {
-                    "key": 1630591016383,
-                    "children": [],
-                    "todo": {
-                      "content": "Type Cash System",
-                      "id": 1630591016383,
-                      "level": "default",
-                      "done": true
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Type",
-                  "id": 1630590936027,
-                  "level": "default",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "Data Types",
-              "id": 1629042436829,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
             "key": 1629042437646,
             "children": [
               {
@@ -122,7 +39,7 @@
               }
             ],
             "todo": {
-              "content": "Math [dev-0.3-Math]",
+              "content": "Math",
               "id": 1629042437646,
               "level": "default",
               "done": false
@@ -508,7 +425,6 @@
       1630590936027,
       1631710827931,
       1632661744371,
-      1629042436829,
       1629042448364,
       1632661921573,
       1632661708378
