@@ -1,5 +1,7 @@
 #pragma once
 
+#include "NewWorld/DataTypes/Primitives.h"
+
 namespace NewWorld::DataTypes::Build
 {
 	inline uint c_LastTypeId = 0;

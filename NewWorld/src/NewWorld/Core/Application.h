@@ -1,9 +1,13 @@
 #pragma once
 
+#include "NewWorld/DataTypes/Object.h"
+
 namespace NewWorld
 {
-	class Application
+	class Application : public Object
 	{
+	NW_CLASS(Application, NewWorld)
+
 		// Members
 	private:
 		bool m_Running;

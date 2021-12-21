@@ -68,7 +68,7 @@
                       "content": "Create  Generator for Type ID",
                       "id": 1630590963420,
                       "level": "default",
-                      "done": false
+                      "done": true
                     }
                   },
                   {
@@ -78,7 +78,7 @@
                       "content": "Type Cash System",
                       "id": 1630591016383,
                       "level": "default",
-                      "done": false
+                      "done": true
                     }
                   }
                 ],
@@ -509,9 +509,9 @@
       1631710827931,
       1632661744371,
       1629042436829,
-      1632661708378,
       1629042448364,
-      1632661921573
+      1632661921573,
+      1632661708378
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L26"
   }
