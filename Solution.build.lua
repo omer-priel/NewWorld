@@ -8,11 +8,11 @@ workspace "NewWorld"
 		"Release"
 	}
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+DependenciesDir = "Dependencies"
 
 group "Dependencies"
---	include "Dependencies/GLFW"
---	include "Dependencies/imgui"
+    include "./Dependencies.build"
 group ""
 
 project "NewWorld"
@@ -23,8 +23,8 @@ project "NewWorld"
 	cppdialect "C++17"
 	staticruntime "on"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin/int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
 
 	pchheader "nwpch.h"
 	pchsource "NewWorld/src/nwpch.cpp"
@@ -37,7 +37,8 @@ project "NewWorld"
 
 	includedirs
 	{
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+        "%{DependenciesDir}/GLM"
 	}
 
 	links 
@@ -69,8 +70,8 @@ project "Sandbox"
 	cppdialect "C++17"
 	staticruntime "on"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin/int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
 
 	files
 	{
