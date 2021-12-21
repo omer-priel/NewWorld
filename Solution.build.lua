@@ -32,7 +32,7 @@ project "NewWorld"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
 	}
 
 	includedirs
@@ -81,7 +81,8 @@ project "Sandbox"
 
 	includedirs
 	{
-		"NewWorld/src"
+		"NewWorld/src",
+        "%{DependenciesDir}/GLM"
 	}
 
 	links

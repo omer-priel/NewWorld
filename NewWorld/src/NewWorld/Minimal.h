@@ -43,3 +43,15 @@ namespace NewWorld
 
 // Debug
 #include "NewWorld/Debug/Logger.h"
+
+// Math
+#include "NewWorld/Math/Vector2.h"
+#include "NewWorld/Math/Vector3.h"
+#include "NewWorld/Math/Vector4.h"
+
+namespace NewWorld
+{
+	using Vector2 = Math::Vector2;
+	using Vector3 = Math::Vector3;
+	using Vector4 = Math::Vector4;
+}

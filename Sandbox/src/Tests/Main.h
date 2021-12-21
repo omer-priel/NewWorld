@@ -1,4 +1,5 @@
 #include <NewWorld.h>
+#include <NewWorld/Math/Vector2.h>
 
 #include "Example.h"
 
@@ -14,6 +15,7 @@ namespace Sandbox::Tests
 
 			NW_DEBUG(Application::GetTypeStatic().GetStaticID());
 
+			Math::Vector2 a;
 		}
 	}
 
