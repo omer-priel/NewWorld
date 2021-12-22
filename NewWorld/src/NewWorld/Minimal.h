@@ -62,4 +62,5 @@ namespace NewWorld
 }
 
 // Debug
+#include "NewWorld/Debug/LoggerOld.h"
 #include "NewWorld/Debug/Logger.h"

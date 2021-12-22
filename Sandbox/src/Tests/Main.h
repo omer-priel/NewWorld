@@ -59,11 +59,20 @@ namespace Sandbox::Tests
 		}
 	}
 
+	void Test2()
+	{
+		using namespace NewWorld;
+
+		Debug::Logger logger;
+
+		INFO(logger.GetType().GetStaticID());
+	}
+
 	void TestsRoot()
 	{
 		TestCore();
 
-		Test1();
+		Test2();
 
 		system("pause");
 	}

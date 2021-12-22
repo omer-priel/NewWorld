@@ -77,7 +77,7 @@
                     "todo": {
                       "content": "Logger class",
                       "id": 1629973943751,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   }
@@ -142,7 +142,7 @@
               }
             ],
             "todo": {
-              "content": "Debug [dev-0.3-DebugSystem]",
+              "content": "Debug",
               "id": 1629042438141,
               "level": "default",
               "done": false
