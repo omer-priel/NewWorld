@@ -33,7 +33,7 @@ namespace NewWorld::DataTypes::Memory
 		}
 		
 		template <typename... Types>
-		SharedPointer(Types&&... args)
+		SharedPointer(Types... args)
 		{
 			m_Value = new T(std::forward<Types>(args)...);
 			m_Counter = new SizeT(1);

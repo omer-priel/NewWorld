@@ -12,9 +12,7 @@ namespace Sandbox
 	public:
 		Application() { }
 
-		void Init() override { }
-
-		void Test() override // TEMP
+		void Init() override
 		{
 			Tests::TestsRoot();
 		}

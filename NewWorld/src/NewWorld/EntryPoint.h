@@ -15,8 +15,7 @@ int main(int argc, char* argv[])
 	
 	application->Init();
 
-	application->Test(); // TEMP
-	//application->Run();// TEMP
+	application->Run();
 	
 	delete application;
 	return 0;

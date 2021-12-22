@@ -16,6 +16,7 @@ namespace NewWorld
 		Application()
 			: m_Running(false) {}
 
+		// Getters
 	public:
 		inline bool IsRunning() const { return m_Running; }
 
@@ -25,15 +26,14 @@ namespace NewWorld
 
 		void Run()
 		{
+			m_Running = true;
 			// The Game Loop
-			while (true)
+			while (m_Running)
 			{
 				// BeginFrame()
-
+				m_Running = false;
 				// EndFrame()
 			}
 		}
-
-		virtual void Test() = 0; 
 	};
 }
