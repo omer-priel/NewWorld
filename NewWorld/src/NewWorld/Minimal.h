@@ -41,5 +41,25 @@ namespace NewWorld
 	using DynamicArray = DataTypes::Collections::DynamicArray<T>;
 }
 
+// Math
+// TODO: Move affter Debug
+#include "NewWorld/Math/Vector2.h"
+#include "NewWorld/Math/Vector3.h"
+#include "NewWorld/Math/Vector4.h"
+#include "NewWorld/Math/Matrix2.h"
+#include "NewWorld/Math/Matrix3.h"
+#include "NewWorld/Math/Matrix4.h"
+
+namespace NewWorld
+{
+	using Vector2 = Math::Vector2;
+	using Vector3 = Math::Vector3;
+	using Vector4 = Math::Vector4;
+
+	using Matrix2 = Math::Matrix2;
+	using Matrix3 = Math::Matrix3;
+	using Matrix4 = Math::Matrix4;
+}
+
 // Debug
 #include "NewWorld/Debug/Logger.h"

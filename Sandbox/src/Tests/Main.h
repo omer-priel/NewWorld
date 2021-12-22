@@ -1,36 +1,18 @@
 #include <NewWorld.h>
+#include <NewWorld/Math/Vector2.h>
 
-#include "Example.h"
-
-namespace Sandbox::Tests
-{
-	class Example2 : public NewWorld::Object
-	{
-		NW_CLASS(Example2, Sandbox::Tests)
-	};
-
-	class Example3 : public NewWorld::Object
-	{
-		NW_CLASS(Example3, Sandbox::Tests)
-	};
-
-	class Example4 : public NewWorld::Object
-	{
-		NW_CLASS(Example4, Sandbox::Tests)
-	};
-
-	class Example5 : public NewWorld::Object
-	{
-		NW_CLASS(Example5, Sandbox::Tests)
-	};
-}
+#include "Group.h"
 
 namespace Sandbox::Tests
 {
 
-	void PrintType(NewWorld::DataTypes::Type type)
+	void TestCore()
 	{
-		NW_DEBUG(type.GetStaticID(), " is from the class ", type.GetName());
+		using namespace NewWorld;
+
+		{
+			NW_DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
+		}
 	}
 
 	void Test1()
@@ -38,28 +20,49 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		{
-			NW_DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
+			SharedPointer<Group> world("World");
+			
+			SharedPointer<Entity> user("User", 0.0f, 0.0f, 0.0f);
 
-			SharedPointer<String> ptr("Test1");
-			ScopePointer<String> ptr2("Test2");
+			SharedPointer<Group> enemies("Enemies");
 
-			NW_DEBUG(ptr, " ", ptr2, "\n", ptr.GetType());
+			SharedPointer<Group> wolfs("Wolfs");
+			for (uint i = 0; i < 5; i++)
+			{
+				SharedPointer<Entity> wolf(String("Wolf_") + std::to_string(i).c_str(), 1.0f, 1.0f, (float)i);
+				wolfs->AddEntity(wolf);
+			}
 
-			PrintType(Object::GetTypeStatic());
-			PrintType(String::GetTypeStatic());
-			PrintType(Example::GetTypeStatic());
-			PrintType(SharedPointer<String>::GetTypeStatic());
-			PrintType(ScopePointer<String>::GetTypeStatic());
-			PrintType(SharedPointer<Example>::GetTypeStatic());
-			PrintType(ScopePointer<ScopePointer<Example>>::GetTypeStatic());
+			SharedPointer<Group> robbers("Robbers");
+			for (uint i = 0; i < 10; i++)
+			{
+				SharedPointer<Entity> robber(String("Robber_") + std::to_string(i).c_str(), 2.0f, 1.0f, (float)i);
+				robbers->AddEntity(robber);
+			}
 
-			PrintType(ptr.GetType());
-			PrintType(ptr2.GetType());
+			for (uint i = 1; i < robbers->m_Entitys.size(); i += 2)
+			{
+				robbers->m_Entitys[i]->m_Location += Vector3(0.5f, 0, 10.5f);
+			}
+
+			SharedPointer<Entity> boss("Boss", 3.0f, 1.0f, 0.0f);
+						
+			enemies->AddEntity(boss);
+			enemies->AddSubGroup(wolfs);
+			enemies->AddSubGroup(robbers);
+
+			world->AddEntity(user);
+			world->AddSubGroup(enemies);
+
+			world->Print();
+			INFO(world);
 		}
 	}
 
 	void TestsRoot()
 	{
+		TestCore();
+
 		Test1();
 
 		system("pause");

@@ -15,37 +15,6 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1629042437646,
-            "children": [
-              {
-                "key": 1629973637810,
-                "children": [],
-                "todo": {
-                  "content": "Vector",
-                  "id": 1629973637810,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629973657513,
-                "children": [],
-                "todo": {
-                  "content": "Matrix",
-                  "id": 1629973657513,
-                  "level": "default",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "Math",
-              "id": 1629042437646,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
             "key": 1629042438141,
             "children": [
               {
@@ -173,7 +142,7 @@
               }
             ],
             "todo": {
-              "content": "Debug [dev-0.4-DebugSystem]",
+              "content": "Debug [dev-0.3-DebugSystem]",
               "id": 1629042438141,
               "level": "default",
               "done": false
@@ -321,6 +290,37 @@
               "level": "secondary",
               "done": false
             }
+          },
+          {
+            "key": 1629042437646,
+            "children": [
+              {
+                "key": 1629973637810,
+                "children": [],
+                "todo": {
+                  "content": "Vectors",
+                  "id": 1629973637810,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629973657513,
+                "children": [],
+                "todo": {
+                  "content": "Matries",
+                  "id": 1629973657513,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Math Final",
+              "id": 1629042437646,
+              "level": "secondary",
+              "done": false
+            }
           }
         ],
         "todo": {
@@ -427,7 +427,7 @@
       1632661744371,
       1629042448364,
       1632661921573,
-      1632661708378
+      1629042438141
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L26"
   }
