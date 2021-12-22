@@ -8,6 +8,16 @@ namespace NewWorld::DataTypes::Memory
 	{
 		NW_CLASS(NewWorld::DataTypes::Memory, Allocator)
 
+		// Static
+	private:
+		static Allocator s_Defualt;
+
+	public:
+		static Allocator& GetActiveAllocator()
+		{
+			return s_Defualt;
+		}
+
 	public:
 		Allocator()
 		{
@@ -43,14 +53,6 @@ namespace NewWorld::DataTypes::Memory
 			return std::realloc(ptr, size);
 		}
 	};
-
-	// Static
-	Allocator s_Defualt;
-
-	Allocator& GetActiveAllocator()
-	{
-		return s_Defualt;
-	}
 }
 
 namespace NewWorld
@@ -61,7 +63,7 @@ namespace NewWorld
 	// Actions
 	inline void* Allocate(Ulong size)
 	{
-		return DataTypes::Memory::GetActiveAllocator().Allocate(size);
+		return DataTypes::Memory::Allocator::GetActiveAllocator().Allocate(size);
 	}
 
 	template <typename T>
@@ -72,7 +74,7 @@ namespace NewWorld
 
 	inline void Deallocate(void* ptr)
 	{
-		return DataTypes::Memory::GetActiveAllocator().Deallocate(ptr);
+		return DataTypes::Memory::Allocator::GetActiveAllocator().Deallocate(ptr);
 	}
 
 	template <typename T>
@@ -83,7 +85,7 @@ namespace NewWorld
 
 	inline void* Reallocate(void* ptr, Ulong size)
 	{
-		return DataTypes::Memory::GetActiveAllocator().Reallocate(ptr, size);
+		return DataTypes::Memory::Allocator::GetActiveAllocator().Reallocate(ptr, size);
 	}
 }
 

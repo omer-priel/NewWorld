@@ -3,5 +3,5 @@
 
 namespace NewWorld::DataTypes::Memory
 {
-
+	Allocator Allocator::s_Defualt;
 }

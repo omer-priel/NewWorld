@@ -8,11 +8,7 @@ namespace Sandbox::Tests
 
 	void TestCore()
 	{
-		using namespace NewWorld;
-
-		{
-			DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
-		}
+		DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
 	}
 
 	void Test1()
@@ -64,6 +60,23 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		Debug::Logger logger("Tests");
+
+		for (uint i = 0; i < 5; i++)
+		{
+			logger.Critical("------------------------------------------");
+
+			Debug::Logger::SetGeneralShowLevel((Debug::LogLevel)i);
+
+			logger.Critical(i);
+
+			logger.Critical("my name ", "is not ", "for ", 35, " dolars");
+			logger.Error("my name ", "is not ", "for ", 35, " dolars");
+			logger.Warn("my name ", "is not ", "for ", 35, " dolars");
+			logger.Info("my name ", "is not ", "for ", 35, " dolars");
+			logger.Debug("my name ", "is not ", "for ", 35, " dolars");
+
+			logger.Critical("------------------------------------------");
+		}
 
 		INFO(logger.GetType().GetStaticID());
 	}

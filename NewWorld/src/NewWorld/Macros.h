@@ -48,15 +48,15 @@
 #define NW_SETTINGS_LOGGERS_COUNT 2
 #endif
 
-#define NW_DEBUG(...) NewWorld::Debug::Debug("Engine", ##__VA_ARGS__)
-#define NW_INFO(...) NewWorld::Debug::Info("Engine", ##__VA_ARGS__)
-#define NW_WARN(...) NewWorld::Debug::Warn("Engine", ##__VA_ARGS__)
-#define NW_ERROR(...) NewWorld::Debug::Error("Engine", ##__VA_ARGS__)
+#define NW_DEBUG(...) //NewWorld::Debug::A::Debug("Engine", ##__VA_ARGS__)
+#define NW_INFO(...) //NewWorld::Debug::A::Info("Engine", ##__VA_ARGS__)
+#define NW_WARN(...) //NewWorld::Debug::A::Warn("Engine", ##__VA_ARGS__)
+#define NW_ERROR(...) //NewWorld::Debug::A::Error("Engine", ##__VA_ARGS__)
 
-#define DEBUG(...) NewWorld::Debug::Debug("App", ##__VA_ARGS__)
-#define INFO(...) NewWorld::Debug::Info("App", ##__VA_ARGS__)
-#define WARN(...) NewWorld::Debug::Warn("App", ##__VA_ARGS__)
-#define ERROR(...) NewWorld::Debug::Error("App", ##__VA_ARGS__)
+#define DEBUG(...) //NewWorld::Debug::A::Debug("App", ##__VA_ARGS__)
+#define INFO(...) //NewWorld::Debug::A::Info("App", ##__VA_ARGS__)
+#define WARN(...) //NewWorld::Debug::A::Warn("App", ##__VA_ARGS__)
+#define ERROR(...) //NewWorld::Debug::A::Error("App", ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
 #define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(##__VA_ARGS__); __debugbreak(); }

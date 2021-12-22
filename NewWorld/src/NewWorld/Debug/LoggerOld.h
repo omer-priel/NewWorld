@@ -4,7 +4,8 @@
 
 #include <iostream>
 
-namespace NewWorld::Debug
+/*
+namespace NewWorld::Debug::A
 {	
 	template<typename... Types>
 	void Debug(const char* system, const Types&... args)
@@ -181,3 +182,4 @@ namespace NewWorld::Debug
 		}
 	}
 }
+*/
