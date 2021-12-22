@@ -24,31 +24,11 @@
                     "key": 1629973943751,
                     "children": [
                       {
-                        "key": 1629974019072,
+                        "key": 1640210355482,
                         "children": [],
                         "todo": {
-                          "content": "String m_Name",
-                          "id": 1629974019072,
-                          "level": "default",
-                          "done": false
-                        }
-                      },
-                      {
-                        "key": 1629974055568,
-                        "children": [],
-                        "todo": {
-                          "content": "Enum m_DisplayLavel",
-                          "id": 1629974055568,
-                          "level": "default",
-                          "done": false
-                        }
-                      },
-                      {
-                        "key": 1629974032112,
-                        "children": [],
-                        "todo": {
-                          "content": "Log, Info, Warn, Error",
-                          "id": 1629974032112,
+                          "content": "Add as Macros",
+                          "id": 1640210355482,
                           "level": "default",
                           "done": false
                         }

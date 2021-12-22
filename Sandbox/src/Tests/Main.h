@@ -61,6 +61,8 @@ namespace Sandbox::Tests
 
 		Debug::Logger logger("Tests");
 
+		logger.Info("Loggers Count: ", Debug::Logger::GetLoggersCount());
+
 		for (uint i = 0; i < 5; i++)
 		{
 			logger.Critical("------------------------------------------");

@@ -22,8 +22,19 @@
 
 #pragma endregion
 
+#pragma region Build Settings
+
+#define NW_SETTINGS_ENGINE_LOGGERS_COUNT 2
+
+#ifndef NW_SETTINGS_LOGGERS_COUNT
+#define NW_SETTINGS_LOGGERS_COUNT 1
+#endif
+
+#pragma endregion
+
 // EntryPoint.h
 // ENTRYPOINT_APPLICATION
+// NW_SETTINGS_LOGGERS_COUNT
 
 #pragma region DataTypes::Build
 
@@ -43,10 +54,6 @@
 #pragma endregion
 
 #pragma region Debug::Logger
-
-#ifndef NW_SETTINGS_LOGGERS_COUNT
-#define NW_SETTINGS_LOGGERS_COUNT 2
-#endif
 
 #define NW_DEBUG(...) //NewWorld::Debug::A::Debug("Engine", ##__VA_ARGS__)
 #define NW_INFO(...) //NewWorld::Debug::A::Info("Engine", ##__VA_ARGS__)

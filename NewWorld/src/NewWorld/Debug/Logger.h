@@ -12,10 +12,12 @@ namespace NewWorld::Debug
 	
 		// Static
 	private:
-		static Array<SharedPointer<Logger, true>, NW_SETTINGS_LOGGERS_COUNT> s_Loggers;
+		static Array<SharedPointer<Logger, true>, NW_SETTINGS_LOGGERS_COUNT + NW_SETTINGS_ENGINE_LOGGERS_COUNT> s_Loggers;
 		static LogLevel s_ShowLevel;
 
 	public:
+		static uint GetLoggersCount() { return s_Loggers.size(); }
+
 		static LogLevel GetGeneralShowLevel() { return s_ShowLevel; }
 		static void SetGeneralShowLevel(LogLevel level) { s_ShowLevel = level; }
 
