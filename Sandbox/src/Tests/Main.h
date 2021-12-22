@@ -11,7 +11,7 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		{
-			NW_DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
+			DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
 		}
 	}
 
@@ -63,7 +63,7 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		Debug::Logger logger;
+		Debug::Logger logger("Tests");
 
 		INFO(logger.GetType().GetStaticID());
 	}

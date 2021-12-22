@@ -7,7 +7,7 @@ namespace Sandbox::Tests
 
 	class Entity : public NewWorld::Object
 	{
-		NW_CLASS(Entity, Sandbox::Tests)
+		NW_CLASS(Sandbox::Tests, Entity)
 
 	public:
 		using String = NewWorld::String; //const char*;

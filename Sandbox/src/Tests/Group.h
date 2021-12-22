@@ -6,7 +6,7 @@ namespace Sandbox::Tests
 {
 	class Group : public NewWorld::Object
 	{
-		NW_CLASS(Group, Sandbox::Tests)
+		NW_CLASS(Sandbox::Tests, Group)
 	public:
 
 		// Members

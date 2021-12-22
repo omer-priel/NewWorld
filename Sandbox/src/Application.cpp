@@ -7,7 +7,7 @@ namespace Sandbox
 {
 	class Application : NewWorld::Application
 	{
-		NW_CLASS(Application, Sandbox)
+		NW_CLASS(Sandbox, Application)
 
 	public:
 		Application() { }

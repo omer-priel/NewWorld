@@ -32,8 +32,8 @@ namespace NewWorld
     using RawPointer = DataTypes::Memory::RawPointer<T>;
 	template <typename T>
 	using ScopePointer = DataTypes::Memory::ScopePointer<T>;
-	template <typename T>
-	using SharedPointer = DataTypes::Memory::SharedPointer<T>;
+	template <typename T, const bool NULLABLE = false>
+	using SharedPointer = DataTypes::Memory::SharedPointer<T, NULLABLE>;
 
 	template <typename T, const SizeT LENGTH>
 	using Array = DataTypes::Collections::Array<T, LENGTH>;

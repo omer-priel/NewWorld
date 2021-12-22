@@ -6,7 +6,7 @@ namespace NewWorld::DataTypes::Memory
 {
 	class Allocator : public Object
 	{
-		NW_CLASS(Allocator, NewWorld::DataTypes::Memory)
+		NW_CLASS(NewWorld::DataTypes::Memory, Allocator)
 
 	public:
 		Allocator()

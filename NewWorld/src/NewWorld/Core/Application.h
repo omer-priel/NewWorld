@@ -6,7 +6,7 @@ namespace NewWorld
 {
 	class Application : public Object
 	{
-	NW_CLASS(Application, NewWorld)
+	NW_CLASS(NewWorld, Application)
 
 		// Members
 	private:

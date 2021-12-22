@@ -9,7 +9,7 @@ namespace NewWorld::DataTypes::Collections
 {
 	class String : public IObject
 	{
-	NW_CLASS(String, NewWorld::DataTypes::Collections)
+	NW_CLASS(NewWorld::DataTypes::Collections, String)
 
 		// Members
 	private:

@@ -8,7 +8,7 @@ namespace NewWorld::DataTypes::Memory
 	template <typename T>
 	class ScopePointer : public IPointer<T>
 	{
-	NW_CLASS(ScopePointer<T>, NewWorld::DataTypes::Memory)
+	NW_CLASS(NewWorld::DataTypes::Memory, ScopePointer<T>)
 
 	private:
 		T* m_Value;
