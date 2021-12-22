@@ -12,182 +12,8 @@
         }
       },
       {
-        "key": 1629042284024,
-        "children": [
-          {
-            "key": 1629042370589,
-            "children": [],
-            "todo": {
-              "content": "NewWorldPlugin",
-              "id": 1629042370589,
-              "level": "success",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042293490,
-            "children": [
-              {
-                "key": 1629042330484,
-                "children": [],
-                "todo": {
-                  "content": "NewWorldVisualStudioExtension",
-                  "id": 1629042330484,
-                  "level": "success",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629042337527,
-                "children": [],
-                "todo": {
-                  "content": "NewWorldVSCodeExtension",
-                  "id": 1629042337527,
-                  "level": "success",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "IDEExtension",
-              "id": 1629042293490,
-              "level": "success",
-              "done": false
-            }
-          }
-        ],
-        "todo": {
-          "content": "DevOps",
-          "id": 1629042284024,
-          "level": "success",
-          "done": false
-        }
-      },
-      {
         "key": 1629042386980,
         "children": [
-          {
-            "key": 1629042398630,
-            "children": [],
-            "todo": {
-              "content": "Engine.h [dev-0.2.1-EngineTemplate]",
-              "id": 1629042398630,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042408056,
-            "children": [],
-            "todo": {
-              "content": "EntryPoint.h + ENTRY_POINT();",
-              "id": 1629042408056,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042408881,
-            "children": [],
-            "todo": {
-              "content": "pch.h file",
-              "id": 1629042408881,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042409346,
-            "children": [],
-            "todo": {
-              "content": "TEMP: Dependencies.h",
-              "id": 1629042409346,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629973709579,
-            "children": [],
-            "todo": {
-              "content": "TEMP: Logger.h file",
-              "id": 1629973709579,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042436829,
-            "children": [
-              {
-                "key": 1629042447885,
-                "children": [],
-                "todo": {
-                  "content": "Primitive",
-                  "id": 1629042447885,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629042460314,
-                "children": [],
-                "todo": {
-                  "content": "Pointers",
-                  "id": 1629042460314,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629042448364,
-                "children": [],
-                "todo": {
-                  "content": "Data Structures",
-                  "id": 1629042448364,
-                  "level": "default",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "Data Types [dev-0.2.2-BasicTypes]",
-              "id": 1629042436829,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
-            "key": 1629042437646,
-            "children": [
-              {
-                "key": 1629973637810,
-                "children": [],
-                "todo": {
-                  "content": "Vector",
-                  "id": 1629973637810,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1629973657513,
-                "children": [],
-                "todo": {
-                  "content": "Matrix",
-                  "id": 1629973657513,
-                  "level": "default",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "Math [dev-0.3-Math]",
-              "id": 1629042437646,
-              "level": "default",
-              "done": false
-            }
-          },
           {
             "key": 1629042438141,
             "children": [
@@ -316,7 +142,7 @@
               }
             ],
             "todo": {
-              "content": "Debug [dev-0.4-DebugSystem]",
+              "content": "Debug [dev-0.3-DebugSystem]",
               "id": 1629042438141,
               "level": "default",
               "done": false
@@ -324,18 +150,244 @@
           },
           {
             "key": 1629042438599,
-            "children": [],
+            "children": [
+              {
+                "key": 1630503190003,
+                "children": [],
+                "todo": {
+                  "content": "Remove Test function",
+                  "id": 1630503190003,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
             "todo": {
               "content": "Application [Debug System]",
               "id": 1629042438599,
               "level": "default",
               "done": false
             }
+          },
+          {
+            "key": 1632661708378,
+            "children": [
+              {
+                "key": 1629042448364,
+                "children": [
+                  {
+                    "key": 1631203878581,
+                    "children": [],
+                    "todo": {
+                      "content": "Array",
+                      "id": 1631203878581,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203937109,
+                    "children": [],
+                    "todo": {
+                      "content": "DynamicArray",
+                      "id": 1631203937109,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203937767,
+                    "children": [],
+                    "todo": {
+                      "content": "Stack",
+                      "id": 1631203937767,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938162,
+                    "children": [],
+                    "todo": {
+                      "content": "Queue and Deque",
+                      "id": 1631203938162,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938434,
+                    "children": [],
+                    "todo": {
+                      "content": "CircularLinkedList",
+                      "id": 1631203938434,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203938793,
+                    "children": [],
+                    "todo": {
+                      "content": "Heap",
+                      "id": 1631203938793,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203939218,
+                    "children": [],
+                    "todo": {
+                      "content": "Map",
+                      "id": 1631203939218,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1631203939470,
+                    "children": [],
+                    "todo": {
+                      "content": "String",
+                      "id": 1631203939470,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
+                "todo": {
+                  "content": "Collections",
+                  "id": 1629042448364,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1632661965196,
+                "children": [],
+                "todo": {
+                  "content": "Iterators",
+                  "id": 1632661965196,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1631204432583,
+                "children": [],
+                "todo": {
+                  "content": "Streams",
+                  "id": 1631204432583,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Data Types Final",
+              "id": 1632661708378,
+              "level": "secondary",
+              "done": false
+            }
+          },
+          {
+            "key": 1629042437646,
+            "children": [
+              {
+                "key": 1629973637810,
+                "children": [],
+                "todo": {
+                  "content": "Vectors",
+                  "id": 1629973637810,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1629973657513,
+                "children": [],
+                "todo": {
+                  "content": "Matries",
+                  "id": 1629973657513,
+                  "level": "default",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Math Final",
+              "id": 1629042437646,
+              "level": "secondary",
+              "done": false
+            }
           }
         ],
         "todo": {
-          "content": "Engine [dev-0.2-DataTypes]",
+          "content": "Engine",
           "id": 1629042386980,
+          "level": "success",
+          "done": false
+        }
+      },
+      {
+        "key": 1632661744371,
+        "children": [
+          {
+            "key": 1631710827931,
+            "children": [],
+            "todo": {
+              "content": "Tests / Test Units System [Debug]",
+              "id": 1631710827931,
+              "level": "default",
+              "done": false
+            }
+          }
+        ],
+        "todo": {
+          "content": "SandBox",
+          "id": 1632661744371,
+          "level": "success",
+          "done": false
+        }
+      },
+      {
+        "key": 1629042284024,
+        "children": [
+          {
+            "key": 1631141775561,
+            "children": [],
+            "todo": {
+              "content": "NewWorldPlugin Not need .nwe path, use Working Directory as folder location like GIT",
+              "id": 1631141775561,
+              "level": "secondary",
+              "done": false
+            }
+          },
+          {
+            "key": 1631141697146,
+            "children": [],
+            "todo": {
+              "content": "Make the NewWorld the main commands application",
+              "id": 1631141697146,
+              "level": "secondary",
+              "done": false
+            }
+          },
+          {
+            "key": 1631710771908,
+            "children": [],
+            "todo": {
+              "content": "CI-CD pipline for Build and Test Units [Debug]",
+              "id": 1631710771908,
+              "level": "default",
+              "done": false
+            }
+          }
+        ],
+        "todo": {
+          "content": "DevOps",
+          "id": 1629042284024,
           "level": "success",
           "done": false
         }
@@ -343,9 +395,7 @@
     ],
     "expandKeys": [
       1629042215988,
-      1629042386980,
       1629042398630,
-      1629042438141,
       1629065571958,
       1629065843655,
       1629042337527,
@@ -355,8 +405,6 @@
       1629911912297,
       1629972486150,
       1629972561440,
-      1629042436829,
-      1629042437646,
       1629042409346,
       1629042490497,
       1629974032112,
@@ -364,8 +412,23 @@
       1629973943751,
       1629973912329,
       1629042370589,
+      1629042293490,
+      1630241971566,
+      1629042447885,
+      1629042460314,
+      1630242075124,
       1629042284024,
-      1629042293490
-    ]
+      1629042386980,
+      1631204432583,
+      1631386932678,
+      1631424323791,
+      1630590936027,
+      1631710827931,
+      1632661744371,
+      1629042448364,
+      1632661921573,
+      1629042438141
+    ],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L26"
   }
 }

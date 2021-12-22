@@ -8,11 +8,11 @@ workspace "NewWorld"
 		"Release"
 	}
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+DependenciesDir = "Dependencies"
 
 group "Dependencies"
---	include "Dependencies/GLFW"
---	include "Dependencies/imgui"
+    include "./Dependencies.build"
 group ""
 
 project "NewWorld"
@@ -23,8 +23,8 @@ project "NewWorld"
 	cppdialect "C++17"
 	staticruntime "on"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin/int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
 
 	pchheader "nwpch.h"
 	pchsource "NewWorld/src/nwpch.cpp"
@@ -32,12 +32,13 @@ project "NewWorld"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
 	}
 
 	includedirs
 	{
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+        "%{DependenciesDir}/GLM"
 	}
 
 	links 
@@ -52,12 +53,12 @@ project "NewWorld"
 		systemversion "latest"
 
 	filter "configurations:Debug"
-		defines "NW_DEBUG"
+		defines "NW_CONFIG_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "NW_RELEASE"
+		defines "NW_CONFIG_RELEASE"
 		runtime "Release"
 		optimize "on"
 
@@ -69,8 +70,8 @@ project "Sandbox"
 	cppdialect "C++17"
 	staticruntime "on"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin/int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
 
 	files
 	{
@@ -80,7 +81,8 @@ project "Sandbox"
 
 	includedirs
 	{
-		"NewWorld/src"
+		"NewWorld/src",
+        "%{DependenciesDir}/GLM"
 	}
 
 	links
@@ -93,11 +95,11 @@ project "Sandbox"
 		systemversion "latest"
 
 	filter "configurations:Debug"
-		defines "NW_DEBUG"
+		defines "NW_CONFIG_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "NW_RELEASE"
+		defines "NW_CONFIG_RELEASE"
 		runtime "Release"
 		optimize "on"
