@@ -2,39 +2,43 @@
 
 #include "NewWorld/Minimal.h"
 
+#include <iostream>
+
 #include "NewWorld/Debug/LogLevel.h"
 
 namespace NewWorld::Debug
 {
+	class ILoggerManager abstract : public Object
+	{
+	public:
+		virtual LogLevel GetDisplayLevel() const = 0;
+	};
+
 	class Logger : public Object
 	{
 	NW_CLASS(NewWorld::Debug, Logger)
-	
-		// Static
-	private:
-		static Array<SharedPointer<Logger, true>, NW_SETTINGS_LOGGERS_COUNT + 2> s_Loggers;
-		static LogLevel s_ShowLevel;
-
-	public:
-		static uint GetLoggersCount() { return s_Loggers.size(); }
-
-		static LogLevel GetGeneralShowLevel() { return s_ShowLevel; }
-		static void SetGeneralShowLevel(LogLevel level) { s_ShowLevel = level; }
 
 		// Members
 	private:
+		ILoggerManager& m_LoggerManager;
 		const String m_Name;
-		const LogLevel m_ShowLevel;
+		LogLevel m_DisplayLevel;
 
 	public:
-		Logger(const String& name)
-			: m_Name(name), m_ShowLevel(LogLevel::Debug) { }
+		Logger(ILoggerManager& loggerManager, const String& name, const LogLevel& displayLevel = LogLevel::Debug)
+			: m_LoggerManager(loggerManager), m_Name(name), m_DisplayLevel(displayLevel){ }
 
 
+		// Getters
 	private:
 		inline bool HasLevel(LogLevel&& level) const {
-			return level <= s_ShowLevel && level <= m_ShowLevel;
+			return level <= m_LoggerManager.GetDisplayLevel() && level <= m_DisplayLevel;
 		}
+
+		// Actions
+	public:
+		LogLevel GetDisplayLevel() const { return m_DisplayLevel; }
+		void SetDisplayLevel(LogLevel level) { m_DisplayLevel = level; }
 
 		// Log Types
 	public:
@@ -237,5 +241,34 @@ namespace NewWorld::Debug
 				throw "ERROR";
 			}
 		}
+	};
+
+	class LoggerManager : public ILoggerManager
+	{
+		NW_CLASS(NewWorld::Debug, LoggerManager)
+
+			// Members
+	private:
+		Array<Logger, 2> m_EngineLoggers;
+		Array<SharedPointer<Logger, true>, NW_SETTINGS_LOGGERS_COUNT> m_Loggers;
+		LogLevel m_DisplayLevel;
+
+	public:
+		LoggerManager()
+			: m_DisplayLevel(LogLevel::Debug), m_EngineLoggers(Array<Logger, 2>{
+			Logger(*this, "Engine/Core"),
+				Logger(*this, "Engin/Graphics")}) { }
+
+			// Override
+	public:
+		LogLevel GetDisplayLevel() const override { return m_DisplayLevel; }
+
+		// Getters
+	public:
+		uint GetLoggersCount() { return m_Loggers.size(); }
+
+		// Setters
+	public:
+		void SetDisplayLevel(LogLevel level) { m_DisplayLevel = level; }
 	};
 }

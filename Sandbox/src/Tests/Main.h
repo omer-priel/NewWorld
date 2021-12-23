@@ -59,28 +59,10 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		Debug::Logger logger("Tests");
-
-		logger.Info("Loggers Count: ", Debug::Logger::GetLoggersCount());
-
 		for (uint i = 0; i < 5; i++)
 		{
-			logger.Critical("------------------------------------------");
 
-			Debug::Logger::SetGeneralShowLevel((Debug::LogLevel)i);
-
-			logger.Critical(i);
-
-			logger.Critical("my name ", "is not ", "for ", 35, " dolars");
-			logger.Error("my name ", "is not ", "for ", 35, " dolars");
-			logger.Warn("my name ", "is not ", "for ", 35, " dolars");
-			logger.Info("my name ", "is not ", "for ", 35, " dolars");
-			logger.Debug("my name ", "is not ", "for ", 35, " dolars");
-
-			logger.Critical("------------------------------------------");
 		}
-
-		INFO(logger.GetType().GetStaticID());
 	}
 
 	void TestsRoot()

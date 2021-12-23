@@ -53,6 +53,9 @@
 
 #pragma region Debug::Logger
 
+#define NW_LOGGER_CORE 0
+#define NW_LOGGER_GRAPHICS 1
+
 #define NW_DEBUG(...) //NewWorld::Debug::A::Debug("Engine", ##__VA_ARGS__)
 #define NW_INFO(...) //NewWorld::Debug::A::Info("Engine", ##__VA_ARGS__)
 #define NW_WARN(...) //NewWorld::Debug::A::Warn("Engine", ##__VA_ARGS__)
