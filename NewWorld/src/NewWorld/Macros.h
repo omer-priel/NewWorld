@@ -24,8 +24,6 @@
 
 #pragma region Build Settings
 
-#define NW_SETTINGS_ENGINE_LOGGERS_COUNT 2
-
 #ifndef NW_SETTINGS_LOGGERS_COUNT
 #define NW_SETTINGS_LOGGERS_COUNT 1
 #endif

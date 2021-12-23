@@ -1,6 +1,6 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/Minimal.h"
 
 namespace NewWorld
 {
@@ -11,6 +11,7 @@ namespace NewWorld
 		// Members
 	private:
 		bool m_Running;
+		//NewWorld::Debug::Logger m_EngineLoggerManager;
 
 	public:
 		Application()

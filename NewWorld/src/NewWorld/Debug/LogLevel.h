@@ -1,3 +1,5 @@
+#pragma once
+
 #include "NewWorld/Minimal.h"
 
 namespace NewWorld::Debug
