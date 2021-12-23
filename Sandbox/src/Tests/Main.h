@@ -61,7 +61,7 @@ namespace Sandbox::Tests
 
 		for (uint i = 0; i < 5; i++)
 		{
-
+			NW_DEBUG(NW_LOGGER_CORE, 'A');
 		}
 	}
 

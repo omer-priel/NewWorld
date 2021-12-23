@@ -245,9 +245,15 @@ namespace NewWorld::Debug
 
 	class LoggerManager : public ILoggerManager
 	{
-		NW_CLASS(NewWorld::Debug, LoggerManager)
+	NW_CLASS(NewWorld::Debug, LoggerManager)
 
-			// Members
+		// Static
+	public:
+		static RawPointer<LoggerManager> s_LoggerManager;
+	public:
+		static LoggerManager& GetLoggerManager() { return *s_LoggerManager; }
+
+		// Members
 	private:
 		Array<Logger, 2> m_EngineLoggers;
 		Array<SharedPointer<Logger, true>, NW_SETTINGS_LOGGERS_COUNT> m_Loggers;
@@ -256,8 +262,11 @@ namespace NewWorld::Debug
 	public:
 		LoggerManager()
 			: m_DisplayLevel(LogLevel::Debug), m_EngineLoggers(Array<Logger, 2>{
-			Logger(*this, "Engine/Core"),
-				Logger(*this, "Engin/Graphics")}) { }
+				Logger(*this, "Engine/Core"),
+				Logger(*this, "Engin/Graphics")})
+		{
+			s_LoggerManager = this;
+		}
 
 			// Override
 	public:
@@ -266,6 +275,9 @@ namespace NewWorld::Debug
 		// Getters
 	public:
 		uint GetLoggersCount() { return m_Loggers.size(); }
+
+		inline Logger& GetEngineLogger(uint loggerID) { return m_EngineLoggers[loggerID]; }
+		inline Logger& GetLogger(uint loggerID) { return *m_Loggers[loggerID]; }
 
 		// Setters
 	public:

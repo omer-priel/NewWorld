@@ -3,5 +3,5 @@
 
 namespace NewWorld::Debug
 {
-
+	RawPointer<LoggerManager> LoggerManager::s_LoggerManager = nullptr;
 }
