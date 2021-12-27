@@ -32,18 +32,6 @@ namespace NewWorld
 	public:
 		virtual void Init() = 0;
 
-		void Run()
-		{
-			m_Running = true;
-			// The Game Loop
-			while (m_Running)
-			{
-				// BeginFrame()
-				m_Running = false;
-				// EndFrame()
-			}
-		}
+		void Run();
 	};
-
-	RawPointer<Application> Application::s_Application = nullptr;
 }
