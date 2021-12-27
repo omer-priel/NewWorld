@@ -1,5 +1,7 @@
 #include <NewWorld.h>
 
+#include "Settings.h"
+
 namespace Sandbox::Tests
 {
 	static NewWorld::uint s_LastID = 0;
@@ -24,7 +26,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") created");
 			}
 		}
 
@@ -34,7 +36,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") created");
 			}
 		}
 
@@ -43,7 +45,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") created");
 			}
 		}
 
@@ -52,7 +54,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") coped");
+				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") coped");
 			}
 		}
 
@@ -60,7 +62,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") destroyed");
+				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") destroyed");
 			}
 		}
 
@@ -68,7 +70,7 @@ namespace Sandbox::Tests
 	public:
 		void Print()
 		{
-			INFO("{ ID: ", m_ID, " Name: ", m_Name, ", Location : (", m_Location.x, ", ", m_Location.y, ", ", m_Location.z, ") }");
+			INFO(MAIN_LOGGER, "{ ID: ", m_ID, " Name: ", m_Name, ", Location : (", m_Location.x, ", ", m_Location.y, ", ", m_Location.z, ") }");
 		}
 
 		// Overide

@@ -20,7 +20,8 @@ namespace NewWorld
 
 	public:
 		Application()
-			: m_Running(false) {
+			: m_Running(false)
+		{
 			s_Application = this;
 		}
 

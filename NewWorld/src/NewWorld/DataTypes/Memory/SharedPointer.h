@@ -108,7 +108,7 @@ namespace NewWorld::DataTypes::Memory
 		template <typename... Types>
 		void SetValue(Types... args)
 		{
-			NW_ASSERT(m_Value != nullptr, "This pointer already has allocated!");
+			NW_ASSERT(m_Value == nullptr, "This pointer already has allocated!");
 			m_Value = new T(std::forward<Types>(args)...);
 			m_Counter = new SizeT(1);
 		}

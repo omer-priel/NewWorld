@@ -1,6 +1,7 @@
 #include <NewWorld.h>
 #include <NewWorld/EntryPoint.h>
 
+#include "Settings.h"
 #include "Tests/Main.h"
 
 namespace Sandbox
@@ -10,7 +11,11 @@ namespace Sandbox
 		NW_CLASS(Sandbox, Application)
 
 	public:
-		Application() { }
+		Application()
+		{
+			GetLoggerManager().SetLogger(MAIN_LOGGER, "SandBox");
+			GetLoggerManager().SetLogger(TESTS_LOGGER, "Tests");
+		}
 
 		void Init() override
 		{

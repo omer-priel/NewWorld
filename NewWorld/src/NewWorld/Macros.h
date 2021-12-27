@@ -61,7 +61,7 @@
 #define NW_WARN(...) //NewWorld::Debug::A::Warn("Engine", ##__VA_ARGS__)
 #define NW_ERROR(...) //NewWorld::Debug::A::Error("Engine", ##__VA_ARGS__)
 
-#define DEBUG(...) // NewWorld::Application::GetApplication().GetLoggerManager().GetEngineLogger(LoggerID).Debug(##__VA_ARGS__)
+#define DEBUG(LoggerID, ...) NewWorld::Application::GetApplication().GetLoggerManager().GetLogger(LoggerID).Debug(##__VA_ARGS__)
 #define INFO(...) //NewWorld::Debug::A::Info("App", ##__VA_ARGS__)
 #define WARN(...) //NewWorld::Debug::A::Warn("App", ##__VA_ARGS__)
 #define ERROR(...) //NewWorld::Debug::A::Error("App", ##__VA_ARGS__)

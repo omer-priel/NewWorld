@@ -26,8 +26,7 @@ namespace NewWorld::Debug
 
 	public:
 		Logger(ILoggerManager& loggerManager, const String& name, const LogLevel& displayLevel = LogLevel::Debug)
-			: m_LoggerManager(loggerManager), m_Name(name), m_DisplayLevel(displayLevel){ }
-
+			: m_LoggerManager(loggerManager), m_Name(m_Name), m_DisplayLevel(m_DisplayLevel) { }
 
 		// Getters
 	private:
@@ -248,7 +247,7 @@ namespace NewWorld::Debug
 	NW_CLASS(NewWorld::Debug, LoggerManager)
 
 		// Static
-	public:
+	private:
 		static RawPointer<LoggerManager> s_LoggerManager;
 	public:
 		static LoggerManager& GetLoggerManager() { return *s_LoggerManager; }
@@ -263,14 +262,22 @@ namespace NewWorld::Debug
 		LoggerManager()
 			: m_DisplayLevel(LogLevel::Debug), m_EngineLoggers(Array<Logger, 2>{
 				Logger(*this, "Engine/Core"),
-				Logger(*this, "Engin/Graphics")})
+				Logger(*this, "Engine/Graphics")})
+			, m_Loggers()
 		{
 			s_LoggerManager = this;
 		}
 
-			// Override
+		// Override
 	public:
 		LogLevel GetDisplayLevel() const override { return m_DisplayLevel; }
+
+		// Init Acrions
+	public:
+		void SetLogger(uint loggerID, const String& name, const LogLevel& displayLevel = LogLevel::Debug)
+		{
+			m_Loggers[loggerID].SetValue(*this, name, displayLevel);
+		}
 
 		// Getters
 	public:

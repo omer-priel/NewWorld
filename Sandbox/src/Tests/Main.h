@@ -1,6 +1,7 @@
 #include <NewWorld.h>
 #include <NewWorld/Math/Vector2.h>
 
+#include "Settings.h"
 #include "Group.h"
 
 namespace Sandbox::Tests
@@ -8,7 +9,7 @@ namespace Sandbox::Tests
 
 	void TestCore()
 	{
-		DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
+		DEBUG(TESTS_LOGGER ,"IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
 	}
 
 	void Test1()
@@ -62,6 +63,7 @@ namespace Sandbox::Tests
 		for (uint i = 0; i < 5; i++)
 		{
 			NW_DEBUG(NW_LOGGER_CORE, 'A');
+			//DEBUG(, 'B', "C");
 		}
 	}
 

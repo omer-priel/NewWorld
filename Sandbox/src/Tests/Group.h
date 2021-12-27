@@ -1,5 +1,6 @@
 #include <NewWorld.h>
 
+#include "Settings.h"
 #include "Entity.h"
 
 namespace Sandbox::Tests
