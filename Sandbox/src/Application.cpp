@@ -13,8 +13,8 @@ namespace Sandbox
 	public:
 		Application()
 		{
-			GetLoggerManager().SetLogger(MAIN_LOGGER, "SandBox");
-			GetLoggerManager().SetLogger(TESTS_LOGGER, "Tests");
+			//GetLoggerManager().SetLogger(MAIN_LOGGER, "SandBox");
+			//GetLoggerManager().SetLogger(TESTS_LOGGER, "Tests");
 		}
 
 		void Init() override

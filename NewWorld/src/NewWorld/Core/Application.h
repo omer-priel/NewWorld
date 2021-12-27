@@ -16,7 +16,6 @@ namespace NewWorld
 		// Members
 	private:
 		bool m_Running;
-		Debug::LoggerManager m_LoggerManager;
 
 	public:
 		Application()
@@ -28,9 +27,6 @@ namespace NewWorld
 		// Getters
 	public:
 		inline bool IsRunning() const { return m_Running; }
-
-	public:
-		inline Debug::LoggerManager& GetLoggerManager() { return m_LoggerManager; }
 
 		// Actions
 	public:
