@@ -29,6 +29,11 @@ namespace NewWorld::DataTypes::Collections
 
 		}
 
+		String(const String& other)
+		{
+			m_Value = other.m_Value + "";
+		}
+
 		// Override
 	public:
 		virtual String ToString() const override

@@ -18,15 +18,17 @@ namespace NewWorld::Debug
 	{
 	NW_CLASS(NewWorld::Debug, Logger)
 
+	public:
+		friend class LoggerManager;
+
 		// Members
 	private:
 		ILoggerManager& m_LoggerManager;
-		const String m_Name;
+		String m_Name;
 		LogLevel m_DisplayLevel;
 
 	public:
-		Logger(ILoggerManager& loggerManager, const String& name, const LogLevel& displayLevel = LogLevel::Debug)
-			: m_LoggerManager(loggerManager), m_Name(m_Name), m_DisplayLevel(m_DisplayLevel) { }
+		Logger() {}
 
 		// Getters
 	private:
@@ -260,12 +262,13 @@ namespace NewWorld::Debug
 
 	public:
 		LoggerManager()
-			: m_DisplayLevel(LogLevel::Debug), m_EngineLoggers(Array<Logger, 2>{
-				Logger(*this, "Engine/Core"),
-				Logger(*this, "Engine/Graphics")})
-			, m_Loggers()
+			: m_DisplayLevel(LogLevel::Debug)
 		{
+			
 			s_LoggerManager = this;
+
+			SetEngineLogger(NW_LOGGER_CORE, "Engine/Core");
+			SetEngineLogger(NW_LOGGER_GRAPHICS, "Engine/Graphics");
 		}
 
 		// Override
@@ -273,6 +276,13 @@ namespace NewWorld::Debug
 		LogLevel GetDisplayLevel() const override { return m_DisplayLevel; }
 
 		// Init Acrions
+	private:
+		void SetEngineLogger(uint loggerID, const String& name, const LogLevel& displayLevel = LogLevel::Debug)
+		{
+			m_EngineLoggers[loggerID].m_LoggerManager = *this;
+			m_EngineLoggers[loggerID].m_Name = name;
+			m_EngineLoggers[loggerID].m_DisplayLevel = displayLevel;
+		}
 	public:
 		void SetLogger(uint loggerID, const String& name, const LogLevel& displayLevel = LogLevel::Debug)
 		{
