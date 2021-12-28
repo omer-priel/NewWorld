@@ -4,7 +4,6 @@
 
 namespace NewWorld::Debug
 {
-	/*
 	enum class LogLevel : Byte
 	{
 		Critical = 0,
@@ -13,5 +12,4 @@ namespace NewWorld::Debug
 		Info = 3,
 		Debug = 4
 	};
-	*/
 }

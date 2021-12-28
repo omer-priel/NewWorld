@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+#include "NewWorld/Debug/LogLevel.h"
 
 #include <iostream>
 

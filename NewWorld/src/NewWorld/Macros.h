@@ -59,6 +59,7 @@
 #define NW_LOGGER_CORE 0
 #define NW_LOGGER_GRAPHICS 1
 
+#if NW_CONFIG_DEBUG
 #define NW_DEBUG(loggerID, ...) NewWorld::Debug::Debug(loggerID, ##__VA_ARGS__)
 #define NW_INFO(loggerID, ...) NewWorld::Debug::Info(loggerID, ##__VA_ARGS__)
 #define NW_WARN(loggerID, ...) NewWorld::Debug::Warn(loggerID, ##__VA_ARGS__)
@@ -68,9 +69,20 @@
 #define INFO(loggerID, ...) NewWorld::Debug::Info(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
 #define WARN(loggerID, ...) NewWorld::Debug::Warn(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
 #define ERROR(loggerID, ...) NewWorld::Debug::Error(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
+#else
+#define NW_DEBUG(loggerID, ...)
+#define NW_INFO(loggerID, ...)
+#define NW_WARN(loggerID, ...)
+#define NW_ERROR(loggerID, ...)
+
+#define DEBUG(loggerID, ...)
+#define INFO(loggerID, ...)
+#define WARN(loggerID, ...)
+#define ERROR(loggerID, ...)
+#endif
 
 #if NW_CONFIG_DEBUG
-#define NW_ASSERT(condition, ...) if (!(condition)) { NW _ERROR(0, ##__VA_ARGS__); __debugbreak(); }
+#define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(0, ##__VA_ARGS__); __debugbreak(); }
 #else
 #define NW_ASSERT(condition, ...)
 #endif
