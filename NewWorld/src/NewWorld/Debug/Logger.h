@@ -23,15 +23,15 @@ namespace NewWorld::Debug
 	};
 
 	template<typename... Types>
-	void Debug(const char* loggerName, const Types&... args)
+	void Debug(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
-		Log("[DEBUG] ", loggerName, ": ");
+		Log("[DEBUG] ", loggerName, displayLevel, ": ");
 		Log(args...);
 		Log("\n");
 	}
 	
 	template<typename... Types>
-	void Info(const char* loggerName, const Types&... args)
+	void Info(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
 		Log("[INFO] ", loggerName, ": ");
 		Log(args...);
@@ -39,7 +39,7 @@ namespace NewWorld::Debug
 	}
 
 	template<typename... Types>
-	void Warn(const char* loggerName, const Types&... args)
+	void Warn(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
 		Log("[WARN] ", loggerName, ": ");
 		Log(args...);
@@ -47,7 +47,7 @@ namespace NewWorld::Debug
 	}
 
 	template<typename... Types>
-	void Error(const char* loggerName, const Types&... args)
+	void Error(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
 		Log("[ERROR] ", loggerName, ": ");
 		Log(args...);

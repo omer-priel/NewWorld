@@ -63,15 +63,23 @@
 #define NW_GET_LOGGER_NAME(loggerID) NW_CONST_LOGGER_##loggerID
 
 #if NW_CONFIG_DEBUG
-#define NW_DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_GET_LOGGER_NAME(loggerID)_NAME, ##__VA_ARGS__)
-#define NW_INFO_BYID(loggerID, ...) //NewWorld::Debug::Info(NW_TEXT_ENGINE_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
-#define NW_WARN_BYID(loggerID, ...) //NewWorld::Debug::Warn(NW_TEXT_ENGINE_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
-#define NW_ERROR_BYID(loggerID, ...) //NewWorld::Debug::Error(NW_TEXT_ENGINE_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
+#define NW_DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define NW_INFO_BYID(loggerID, ...) NewWorld::Debug::Info\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define NW_WARN_BYID(loggerID, ...) NewWorld::Debug::Warn\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define NW_ERROR_BYID(loggerID, ...) NewWorld::Debug::Error\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
 
-#define DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_GET_LOGGER_NAME(loggerID)_NAME, ##__VA_ARGS__)
-#define INFO_BYID(loggerID, ...) //NewWorld::Debug::Info(NW_TEXT_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
-#define WARN_BYID(loggerID, ...) //NewWorld::Debug::Warn(NW_TEXT_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
-#define ERROR_BYID(loggerID, ...) //NewWorld::Debug::Error(NW_TEXT_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
+#define DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define INFO_BYID(loggerID, ...) NewWorld::Debug::Info\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define WARN_BYID(loggerID, ...) NewWorld::Debug::Warn\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define ERROR_BYID(loggerID, ...) NewWorld::Debug::Error\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
 #else
 #define NW_DEBUG_BYID(loggerID, ...)
 #define NW_INFO_BYID(loggerID, ...)
