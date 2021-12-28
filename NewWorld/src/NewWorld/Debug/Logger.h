@@ -30,25 +30,25 @@ namespace NewWorld::Debug
 	}
 	
 	template<typename... Types>
-	void Info(uint logger, const Types&... args)
+	void Info(const char* loggerName, const Types&... args)
 	{
-		Log("[INFO] ", logger, ": ");
+		Log("[INFO] ", loggerName, ": ");
 		Log(args...);
 		Log("\n");
 	}
 
 	template<typename... Types>
-	void Warn(uint logger, const Types&... args)
+	void Warn(const char* loggerName, const Types&... args)
 	{
-		Log("[WARN] ", logger, ": ");
+		Log("[WARN] ", loggerName, ": ");
 		Log(args...);
 		Log("\n");
 	}
 
 	template<typename... Types>
-	void Error(uint logger, const Types&... args)
+	void Error(const char* loggerName, const Types&... args)
 	{
-		Log("[ERROR] ", logger, ": ");
+		Log("[ERROR] ", loggerName, ": ");
 		Log(args...);
 		Log("\n");
 	}

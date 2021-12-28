@@ -61,26 +61,36 @@
 #define NW_LOGGER_GRAPHICS 1
 
 #if NW_CONFIG_DEBUG
-#define NW_DEBUG(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_LOGGER_NAME##loggerID, ##__VA_ARGS__)
-#define NW_INFO(loggerID, ...) NewWorld::Debug::Info(loggerID, ##__VA_ARGS__)
-#define NW_WARN(loggerID, ...) NewWorld::Debug::Warn(loggerID, ##__VA_ARGS__)
-#define NW_ERROR(loggerID, ...) NewWorld::Debug::Error(loggerID, ##__VA_ARGS__)
+#define NW_DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#define NW_INFO_BYID(loggerID, ...) NewWorld::Debug::Info(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#define NW_WARN_BYID(loggerID, ...) NewWorld::Debug::Warn(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#define NW_ERROR_BYID(loggerID, ...) NewWorld::Debug::Error(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
 
-#define DEBUG(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_LOGGER_NAME##loggerID, ##__VA_ARGS__)
-#define INFO(loggerID, ...) NewWorld::Debug::Info(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
-#define WARN(loggerID, ...) NewWorld::Debug::Warn(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
-#define ERROR(loggerID, ...) NewWorld::Debug::Error(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
+#define DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#define INFO_BYID(loggerID, ...) NewWorld::Debug::Info(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#define WARN_BYID(loggerID, ...) NewWorld::Debug::Warn(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#define ERROR_BYID(loggerID, ...) NewWorld::Debug::Error(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
 #else
-#define NW_DEBUG(loggerID, ...)
-#define NW_INFO(loggerID, ...)
-#define NW_WARN(loggerID, ...)
-#define NW_ERROR(loggerID, ...)
+#define NW_DEBUG_BYID(loggerID, ...)
+#define NW_INFO_BYID(loggerID, ...)
+#define NW_WARN_BYID(loggerID, ...)
+#define NW_ERROR_BYID(loggerID, ...)
 
-#define DEBUG(loggerID, ...)
-#define INFO(loggerID, ...)
-#define WARN(loggerID, ...)
-#define ERROR(loggerID, ...)
+#define DEBUG_BYID(loggerID, ...)
+#define INFO_BYID(loggerID, ...)
+#define WARN_BYID(loggerID, ...)
+#define ERROR_BYID(loggerID, ...)
 #endif
+
+#define NW_DEBUG(loggerID, ...) NW_DEBUG_BYID(loggerID, ##__VA_ARGS__)
+#define NW_INFO(loggerID, ...) NW_INFO_BYID(loggerID, ##__VA_ARGS__)
+#define NW_WARN(loggerID, ...) NW_WARN_BYID(loggerID, ##__VA_ARGS__)
+#define NW_ERROR(loggerID, ...) NW_ERROR_BYID(loggerID, ##__VA_ARGS__)
+
+#define DEBUG(loggerID, ...) DEBUG_BYID(loggerID, ##__VA_ARGS__)
+#define INFO(loggerID, ...) INFO_BYID(loggerID, ##__VA_ARGS__)
+#define WARN(loggerID, ...) WARN_BYID(loggerID, ##__VA_ARGS__)
+#define ERROR(loggerID, ...) ERROR_BYID(loggerID, ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
 #define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(0, ##__VA_ARGS__); __debugbreak(); }
