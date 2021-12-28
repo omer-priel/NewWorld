@@ -7,10 +7,24 @@
 
 namespace NewWorld::Debug
 {	
-	template<typename... Types>
-	void Debug(uint logger, const Types&... args)
+	class Logger : public Object
 	{
-		Log("[DEBUG] ", logger, ": ");
+	NW_CLASS(NewWorld::Debug, Logger)
+
+	public:
+		String m_Name;
+		LogLevel m_DisplayLevel;
+
+	public:
+		Logger() {}
+
+		Logger(String name, LogLevel displayLevel) {}
+	};
+
+	template<typename... Types>
+	void Debug(const char* loggerName, const Types&... args)
+	{
+		Log("[DEBUG] ", loggerName, ": ");
 		Log(args...);
 		Log("\n");
 	}

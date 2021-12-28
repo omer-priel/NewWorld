@@ -2,11 +2,13 @@
 #include <NewWorld/Math/Vector2.h>
 
 #include "Settings.h"
-#include "Group.h"
+//#include "Group.h"
+#include <NewWorld/DataTypes/Build/ConstStrings.h>
 
 namespace Sandbox::Tests
 {
 
+	/*
 	void TestCore()
 	{
 		DEBUG(TESTS_LOGGER ,"IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
@@ -55,23 +57,23 @@ namespace Sandbox::Tests
 			INFO(TESTS_LOGGER, world);
 		}
 	}
-
+	*/
 	void Test2()
 	{
 		using namespace NewWorld;
 
 		for (uint i = 0; i < 5; i++)
 		{
-			NW_DEBUG(NW_LOGGER_CORE, 'A');
-			DEBUG(TESTS_LOGGER, 'B', "C");
+			NW_DEBUG(0, 'A');
+			//DEBUG(TESTS_LOGGER, 'B', "C");
 		}
 	}
-
+	
 	void TestsRoot()
 	{
-		TestCore();
+		//TestCore();
 
-		Test1();
+		//Test1();
 		Test2();
 
 		system("pause");

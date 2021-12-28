@@ -40,6 +40,7 @@
 #pragma region DataTypes::Build
 
 #define NW_TYPE_ID(...) NewWorld::DataTypes::Build::TypeIDStorage<##__VA_ARGS__>
+#include "NewWorld/DataTypes/Build/ConstStrings.h"
 
 #pragma endregion
 
@@ -60,12 +61,12 @@
 #define NW_LOGGER_GRAPHICS 1
 
 #if NW_CONFIG_DEBUG
-#define NW_DEBUG(loggerID, ...) NewWorld::Debug::Debug(loggerID, ##__VA_ARGS__)
+#define NW_DEBUG(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_LOGGER_NAME##loggerID, ##__VA_ARGS__)
 #define NW_INFO(loggerID, ...) NewWorld::Debug::Info(loggerID, ##__VA_ARGS__)
 #define NW_WARN(loggerID, ...) NewWorld::Debug::Warn(loggerID, ##__VA_ARGS__)
 #define NW_ERROR(loggerID, ...) NewWorld::Debug::Error(loggerID, ##__VA_ARGS__)
 
-#define DEBUG(loggerID, ...) NewWorld::Debug::Debug(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
+#define DEBUG(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_LOGGER_NAME##loggerID, ##__VA_ARGS__)
 #define INFO(loggerID, ...) NewWorld::Debug::Info(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
 #define WARN(loggerID, ...) NewWorld::Debug::Warn(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
 #define ERROR(loggerID, ...) NewWorld::Debug::Error(NW_CONSTANTS_ENGINE_LOGGERS_COUNT + loggerID, ##__VA_ARGS__)
