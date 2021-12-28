@@ -40,7 +40,6 @@
 #pragma region DataTypes::Build
 
 #define NW_TYPE_ID(...) NewWorld::DataTypes::Build::TypeIDStorage<##__VA_ARGS__>
-#include "NewWorld/DataTypes/Build/ConstStrings.h"
 
 #pragma endregion
 
@@ -60,16 +59,19 @@
 #define NW_LOGGER_CORE 0
 #define NW_LOGGER_GRAPHICS 1
 
-#if NW_CONFIG_DEBUG
-#define NW_DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
-#define NW_INFO_BYID(loggerID, ...) NewWorld::Debug::Info(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
-#define NW_WARN_BYID(loggerID, ...) NewWorld::Debug::Warn(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
-#define NW_ERROR_BYID(loggerID, ...) NewWorld::Debug::Error(NW_TEXT_ENGINE_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#define NW_GET_ENGINE_LOGGER_NAME(loggerID) NW_CONST_ENGINE_LOGGER_##loggerID
+#define NW_GET_LOGGER_NAME(loggerID) NW_CONST_LOGGER_##loggerID
 
-#define DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
-#define INFO_BYID(loggerID, ...) NewWorld::Debug::Info(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
-#define WARN_BYID(loggerID, ...) NewWorld::Debug::Warn(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
-#define ERROR_BYID(loggerID, ...) NewWorld::Debug::Error(NW_TEXT_LOGGER_NAME_##loggerID, ##__VA_ARGS__)
+#if NW_CONFIG_DEBUG
+#define NW_DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_GET_LOGGER_NAME(loggerID)_NAME, ##__VA_ARGS__)
+#define NW_INFO_BYID(loggerID, ...) //NewWorld::Debug::Info(NW_TEXT_ENGINE_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
+#define NW_WARN_BYID(loggerID, ...) //NewWorld::Debug::Warn(NW_TEXT_ENGINE_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
+#define NW_ERROR_BYID(loggerID, ...) //NewWorld::Debug::Error(NW_TEXT_ENGINE_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
+
+#define DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug(NW_GET_LOGGER_NAME(loggerID)_NAME, ##__VA_ARGS__)
+#define INFO_BYID(loggerID, ...) //NewWorld::Debug::Info(NW_TEXT_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
+#define WARN_BYID(loggerID, ...) //NewWorld::Debug::Warn(NW_TEXT_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
+#define ERROR_BYID(loggerID, ...) //NewWorld::Debug::Error(NW_TEXT_LOGGER_##loggerID_NAME, ##__VA_ARGS__)
 #else
 #define NW_DEBUG_BYID(loggerID, ...)
 #define NW_INFO_BYID(loggerID, ...)
@@ -93,7 +95,7 @@
 #define ERROR(loggerID, ...) ERROR_BYID(loggerID, ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
-#define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(0, ##__VA_ARGS__); __debugbreak(); }
+#define NW_ASSERT(condition, ...) //if (!(condition)) { NW_ERROR(0, ##__VA_ARGS__); __debugbreak(); }
 #else
 #define NW_ASSERT(condition, ...)
 #endif

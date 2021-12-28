@@ -3,13 +3,12 @@
 
 #include "Settings.h"
 #include "Group.h"
-#include <NewWorld/DataTypes/Build/ConstStrings.h>
 
 namespace Sandbox::Tests
 {	
 	void TestCore()
 	{
-		DEBUG(TESTS_LOGGER ,"IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
+		DEBUG(MAIN_LOGGER ,"IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
 	}
 
 	void Test1()
@@ -62,7 +61,7 @@ namespace Sandbox::Tests
 
 		for (uint i = 0; i < 5; i++)
 		{
-			NW_DEBUG(NW_LOGGER_CORE, 'A');
+			NW_DEBUG_BYID(0, 'A');
 			DEBUG(TESTS_LOGGER, 'B', "C");
 		}
 	}
