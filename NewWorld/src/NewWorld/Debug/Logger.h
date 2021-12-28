@@ -7,33 +7,33 @@
 namespace NewWorld::Debug
 {	
 	template<typename... Types>
-	void Debug(const char* system, const Types&... args)
+	void Debug(uint logger, const Types&... args)
 	{
-		Log("[DEBUG] ", system, ": ");
+		Log("[DEBUG] ", logger, ": ");
 		Log(args...);
 		Log("\n");
 	}
 	
 	template<typename... Types>
-	void Info(const char* system, const Types&... args)
+	void Info(uint logger, const Types&... args)
 	{
-		Log("[INFO] ", system, ": ");
+		Log("[INFO] ", logger, ": ");
 		Log(args...);
 		Log("\n");
 	}
 
 	template<typename... Types>
-	void Warn(const char* system, const Types&... args)
+	void Warn(uint logger, const Types&... args)
 	{
-		Log("[WARN] ", system, ": ");
+		Log("[WARN] ", logger, ": ");
 		Log(args...);
 		Log("\n");
 	}
 
 	template<typename... Types>
-	void Error(const char* system, const Types&... args)
+	void Error(uint logger, const Types&... args)
 	{
-		Log("[ERROR] ", system, ": ");
+		Log("[ERROR] ", logger, ": ");
 		Log(args...);
 		Log("\n");
 	}

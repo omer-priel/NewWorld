@@ -43,12 +43,12 @@ namespace Sandbox::Tests
 	private:
 		void Print(NewWorld::String tabs)
 		{
-			INFO(tabs, m_Name, ":");
+			INFO(MAIN_LOGGER ,tabs, m_Name, ":");
 			tabs += "\t";
 
 			for each (NewWorld::SharedPointer<Entity> entity in m_Entitys)
 			{
-				INFO(tabs, entity);
+				INFO(MAIN_LOGGER, tabs, entity);
 			}
 
 			for each (NewWorld::SharedPointer<Group> group in m_SubGroups)

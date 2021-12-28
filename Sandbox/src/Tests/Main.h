@@ -52,7 +52,7 @@ namespace Sandbox::Tests
 			world->AddSubGroup(enemies);
 
 			world->Print();
-			INFO(world);
+			INFO(TESTS_LOGGER, world);
 		}
 	}
 
@@ -63,7 +63,7 @@ namespace Sandbox::Tests
 		for (uint i = 0; i < 5; i++)
 		{
 			NW_DEBUG(NW_LOGGER_CORE, 'A');
-			//DEBUG(, 'B', "C");
+			DEBUG(TESTS_LOGGER, 'B', "C");
 		}
 	}
 
@@ -71,6 +71,7 @@ namespace Sandbox::Tests
 	{
 		TestCore();
 
+		Test1();
 		Test2();
 
 		system("pause");
