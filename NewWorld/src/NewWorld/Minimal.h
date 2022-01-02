@@ -15,7 +15,7 @@
 #include "NewWorld/DataTypes/Memory/SharedPointer.h"
 #include "NewWorld/DataTypes/Collections/Array.h"
 #include "NewWorld/DataTypes/Collections/DynamicArray.h"
-
+#include "NewWorld/DataTypes/Time/Time.h"
 namespace NewWorld
 {
 	using Byte = DataTypes::Byte;
@@ -39,6 +39,8 @@ namespace NewWorld
 	using Array = DataTypes::Collections::Array<T, LENGTH>;
 	template <typename T>
 	using DynamicArray = DataTypes::Collections::DynamicArray<T>;
+
+	using Time = DataTypes::Time::Time;
 }
 
 // Math

@@ -14,6 +14,7 @@ namespace NewWorld::Debug
 		if (displayLevel >= LogLevel::Debug)
 		{
 			Log("[DEBUG] ", loggerName, ": ");
+			std::cout << GetCurrentTime().min();
 			Log(args...);
 			Log("\n");
 		}
@@ -124,6 +125,7 @@ namespace NewWorld::Debug
 		Log(args...);
 	}
 
+	// TEMP: Enums
 	template <typename... Types>
 	void Log(LogLevel value, const Types&... args)
 	{
@@ -131,7 +133,7 @@ namespace NewWorld::Debug
 		Log(args...);
 	}
 
-	//TEMP: Vector2 Vector3 Vector4
+	// TEMP: Vector2 Vector3 Vector4
 	template <typename... Types>
 	void Log(Vector2 value, const Types&... args)
 	{
