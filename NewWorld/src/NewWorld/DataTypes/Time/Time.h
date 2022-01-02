@@ -57,6 +57,62 @@ namespace NewWorld::DataTypes::Time
 		{
 			m_Ticks = hour * 3600 + minute * 60 + secound;
 		}
+
+		// Operators
+	public:
+		operator uint() const { return m_Ticks; }
+
+		Time& operator +=(const Time& other)
+		{
+			m_Ticks += other.m_Ticks;
+			return *this;
+		}
+
+		Time operator+(const Time& other) const
+		{
+			return Time(m_Ticks + other.m_Ticks);
+		}
+
+		Time& operator -=(const Time& other)
+		{
+			m_Ticks += other.m_Ticks;
+			return *this;
+		}
+
+		Time operator-(const Time& other) const
+		{
+			return Time(m_Ticks - other.m_Ticks);
+		}
+
+		bool operator==(Time& other) const
+		{
+			return m_Ticks == other.m_Ticks;
+		}
+
+		bool operator!=(Time& other) const
+		{
+			return m_Ticks != other.m_Ticks;
+		}
+
+		bool operator<(Time& other) const
+		{
+			return m_Ticks < other.m_Ticks;
+		}
+
+		bool operator<=(Time& other) const
+		{
+			return m_Ticks <= other.m_Ticks;
+		}
+
+		bool operator>(Time& other) const
+		{
+			return m_Ticks > other.m_Ticks;
+		}
+
+		bool operator>=(Time& other) const
+		{
+			return m_Ticks >= other.m_Ticks;
+		}
 	};
 }
 

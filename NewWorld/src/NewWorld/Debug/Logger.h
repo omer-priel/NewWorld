@@ -14,7 +14,6 @@ namespace NewWorld::Debug
 		if (displayLevel >= LogLevel::Debug)
 		{
 			Log("[DEBUG] ", loggerName, ": ");
-			std::cout << GetCurrentTime().min();
 			Log(args...);
 			Log("\n");
 		}
