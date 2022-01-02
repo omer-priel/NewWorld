@@ -61,8 +61,14 @@ namespace Sandbox::Tests
 
 		for (uint i = 0; i < 5; i++)
 		{
-			NW_DEBUG(NW_LOGGER_CORE, 'A');
-			DEBUG(TESTS_LOGGER, 'B', "C");
+			NW_DEBUG(NW_LOGGER_CORE, i);
+			DEBUG(TESTS_LOGGER, i);
+			NW_INFO(NW_LOGGER_CORE, i);
+			INFO(TESTS_LOGGER, i);
+			NW_WARN(NW_LOGGER_CORE, i);
+			WARN(TESTS_LOGGER, i);
+			NW_ERROR(NW_LOGGER_CORE, i);
+			ERROR(TESTS_LOGGER, i);
 		}
 	}
 	
