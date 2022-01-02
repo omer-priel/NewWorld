@@ -103,9 +103,15 @@
 #define ERROR(loggerID, ...) ERROR_BYID(loggerID, ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
-#define NW_ASSERT(condition, ...) //if (!(condition)) { NW_ERROR(0, ##__VA_ARGS__); __debugbreak(); }
+#define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(NW_LOGGER_CORE, ##__VA_ARGS__); __debugbreak(); }
 #else
 #define NW_ASSERT(condition, ...)
 #endif
 
+#pragma endregion
+
+#pragma region Constants
+
+#define NW_BUILD_DEFINE_LOGGER(id, name, displayLevel) constexpr char* NW_GET_LOGGER_NAME(id)_NAME = name;\
+														constexpr NewWorld::Debug::LogLevel NW_GET_LOGGER_NAME(id)_DISPLAY_LEVEL = NewWorld::Debug::displayLevel;
 #pragma endregion

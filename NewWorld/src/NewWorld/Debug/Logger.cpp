@@ -3,5 +3,5 @@
 
 namespace NewWorld::Debug
 {
-	//LogLevel LoggerManager::s_DisplayLevel = LogLevel::Debug;
+
 }
