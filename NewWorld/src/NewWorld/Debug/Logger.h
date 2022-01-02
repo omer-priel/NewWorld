@@ -126,6 +126,13 @@ namespace NewWorld::Debug
 		Log(args...);
 	}
 
+	template <typename... Types>
+	void Log(LogLevel value, const Types&... args)
+	{
+		std::cout << (int)value;
+		Log(args...);
+	}
+
 	//TEMP: Vector2 Vector3 Vector4
 	template <typename... Types>
 	void Log(Vector2 value, const Types&... args)
