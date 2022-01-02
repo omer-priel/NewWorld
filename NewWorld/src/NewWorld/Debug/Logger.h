@@ -7,51 +7,49 @@
 #include <iostream>
 
 namespace NewWorld::Debug
-{	
-	class Logger : public Object
-	{
-	NW_CLASS(NewWorld::Debug, Logger)
-
-	public:
-		String m_Name;
-		LogLevel m_DisplayLevel;
-
-	public:
-		Logger() {}
-
-		Logger(String name, LogLevel displayLevel) {}
-	};
-
+{
 	template<typename... Types>
 	void Debug(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
-		Log("[DEBUG] ", loggerName, displayLevel, ": ");
-		Log(args...);
-		Log("\n");
+		if (displayLevel >= LogLevel::Debug)
+		{
+			Log("[DEBUG] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
+		}
 	}
 	
 	template<typename... Types>
 	void Info(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
-		Log("[INFO] ", loggerName, ": ");
-		Log(args...);
-		Log("\n");
+		if (displayLevel >= LogLevel::Info)
+		{
+			Log("[INFO] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
+		}
 	}
 
 	template<typename... Types>
 	void Warn(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
-		Log("[WARN] ", loggerName, ": ");
-		Log(args...);
-		Log("\n");
+		if (displayLevel >= LogLevel::Warning)
+		{
+			Log("[WARN] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
+		}
 	}
 
 	template<typename... Types>
 	void Error(const char* loggerName, const LogLevel displayLevel, const Types&... args)
 	{
-		Log("[ERROR] ", loggerName, ": ");
-		Log(args...);
-		Log("\n");
+		if (displayLevel >= LogLevel::Error)
+		{
+			Log("[ERROR] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
+		}
 	}
 
 	// Log Types
