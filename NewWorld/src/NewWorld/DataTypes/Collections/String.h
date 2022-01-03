@@ -119,12 +119,12 @@ namespace NewWorld::DataTypes::Collections
 		{
 			return str;
 		}
-
-		inline String ConverToString(const IObject& obj)
+		*/
+		static inline String ConverToString(const IObject& obj)
 		{
 			return obj.ToString();
 		}
-
+		/*
 		template <typename T>
 		inline String ConverToString(T* ptr)
 		{
@@ -145,33 +145,32 @@ namespace NewWorld::DataTypes::Collections
 			const SizeT LENGTH = (SizeT)sizeof...(Types);
 			Array<String, LENGTH> arr;
 
-			ConverToStringLoader<LENGTH, Types...>(args...);
+			ConverToStringLoader<LENGTH, Types...>(arr, args...);
 
 			return arr;
 		}
 
 		template<const SizeT LENGTH>
-		static void ConverToStringLoader()
+		static void ConverToStringLoader(Array<String, LENGTH>& arr)
 		{
 
 		}
 		
 		template<const SizeT LENGTH, typename T, typename... Types>
-		static void ConverToStringLoader(const T& arg, const Types&... args)
+		static void ConverToStringLoader(Array<String, LENGTH>& arr, const T& arg, const Types&... args)
 		{
-			SizeT index = LENGTH - ((SizeT)sizeof...(Types));
+			SizeT index = LENGTH - ((SizeT)sizeof...(Types)) - 1;
 			if (std::is_base_of<IObject, T>::value)
 			{
-				//arr[index] = "a";
-				//arr[index] = ConverToString((const IObject&)args[i]);
+				arr[index] = ConverToString((const IObject&)arg);
 			}
 			else
 			{
-				//arr[index] = "b";
+				arr[index] = "b";
 				//arr[index] = ConverToString(args[i]);
 			}
 
-			ConverToStringLoader<LENGTH, Types...>(args...);
+			ConverToStringLoader<LENGTH, Types...>(arr, args...);
 		}
 		
 		// Static
@@ -180,7 +179,7 @@ namespace NewWorld::DataTypes::Collections
 		static String Format(String format, const Types&... args)
 		{
 			Array<String, (SizeT)sizeof...(Types)> values = ConverToString(args...);
-			/*std::ostringstream stream;
+			std::ostringstream stream;
 			uint index = 0;
 			uint valuesIndex = 0;
 			uint nextArg = 0;
@@ -201,8 +200,6 @@ namespace NewWorld::DataTypes::Collections
 				stream.write(&(format[index]), format.GetLength() - index);
 			}
 			return String(stream.str().c_str());
-			*/
-			return "";
 		}
 
 		// Members
