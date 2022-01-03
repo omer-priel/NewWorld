@@ -3,7 +3,6 @@
 #include "NewWorld/DataTypes/IObject.h"
 #include "NewWorld/DataTypes/Type.h"
 #include "NewWorld/DataTypes/Collections/Array.h"
-#include "NewWorld/DataTypes/Memory/RawPointer.h"
 
 #include <string>
 #include <format>
@@ -127,7 +126,7 @@ namespace NewWorld::DataTypes::Collections
 		}
 
 		template <typename T>
-		inline String ConverToString(Memory::RawPointer<T> ptr)
+		inline String ConverToString(T* ptr)
 		{
 			if (ptr == nullptr)
 			{
