@@ -3,9 +3,6 @@
 #include "NewWorld/DataTypes/Object.h"
 
 #include <chrono>
-// TEMP
-#include <string>
-#include <format>
 
 namespace NewWorld::DataTypes::Time
 {
@@ -54,11 +51,11 @@ namespace NewWorld::DataTypes::Time
 		{
 			if (withMillisecond)
 			{
-				return String(std::format("{}:{}:{}:{}", GetHour(), GetMinute(), GetSecound(), GetMillisecond()).c_str());
+				return String::Format("{}:{}:{}:{}", GetHour(), GetMinute(), GetSecound(), GetMillisecond());
 			}
 			else
 			{
-				return String(std::format("{}:{}:{}", GetHour(), GetMinute(), GetSecound()).c_str());
+				return String::Format("{}:{}:{}", GetHour(), GetMinute(), GetSecound());
 			}
 		}
 
