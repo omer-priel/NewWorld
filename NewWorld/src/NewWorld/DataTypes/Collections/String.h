@@ -36,6 +36,7 @@ namespace NewWorld::DataTypes::Collections
 
 		// Static Convert To String
 	public:
+		/*
 		inline String ConverToString() { return ""; }
 
 		inline String ConverToString(char value)
@@ -137,7 +138,7 @@ namespace NewWorld::DataTypes::Collections
 				return ConverToString((const T&)*ptr);
 			}
 		}
-
+		*/
 		template<typename... Types>
 		static Array<String, (SizeT)sizeof...(Types)> ConverToString(const Types&... args)
 		{
@@ -145,14 +146,15 @@ namespace NewWorld::DataTypes::Collections
 			Array<String, LENGTH> arr;
 			for (size_t i = 0; i < LENGTH; i++)
 			{
-				if (std::is_base_of<IObject, Types[i]>::value)
+				arr[i] = "a";
+				/*if (std::is_base_of<IObject, Types[i]>::value)
 				{
 					arr[i] = ConverToString((const IObject&)args[i]);
 				}
 				else
 				{
 					arr[i] = ConverToString(args[i]);
-				}
+				}*/
 			}
 
 			return arr;
@@ -163,7 +165,28 @@ namespace NewWorld::DataTypes::Collections
 		template<typename... Types>
 		static String Format(String format, const Types&... args)
 		{
-			return String(std::format(format.m_Value.c_str(), args...).c_str());
+			Array<String, (SizeT)sizeof...(Types)> values = ConverToString(args...);
+			std::ostringstream stream;
+			uint index = 0;
+			uint valuesIndex = 0;
+			uint nextArg = 0;
+			while (index < format.GetLength() && nextArg != -1) {
+				nextArg = format.Find("{}", index);
+				if (nextArg != -1)
+				{
+					if (valuesIndex < values.size())
+					{
+						stream.write(values[valuesIndex].GetPointer(), values[valuesIndex].GetLength());
+					}
+					stream.write(&(format[index]), nextArg - index);
+					index = nextArg + 2;
+				}
+			}
+			if (format.GetLength() - index > 0)
+			{
+				stream.write(&(format[index]), format.GetLength() - index);
+			}
+			return String(stream.str().c_str());
 		}
 
 		// Members
@@ -234,6 +257,51 @@ namespace NewWorld::DataTypes::Collections
 		void Clear()
 		{
 			m_Value.clear();
+		}
+
+		int Find(char value, SizeT from = 0) const
+		{
+			SizeT to = GetLength();
+			return Find(value, from, to);
+		}
+
+		int Find(char value, SizeT from, SizeT to) const
+		{
+			to = (to < GetLength()) ? to : GetLength() - 1;
+			for (SizeT i = from; i <= to; i++)
+			{
+				if (m_Value[i] == value)
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		int Find(const String& value, SizeT from = 0) const
+		{
+			SizeT to = GetLength();
+			return Find(value, from, to);
+		}
+
+		int Find(const String& value, SizeT from, SizeT to) const
+		{
+			to = (to < GetLength()) ? to : GetLength() - 1;
+			to -= value.GetLength() - 1;
+
+			for (SizeT i = from; i <= to; i++)
+			{
+				bool found = m_Value[i] == value[0];
+				for (SizeT j = 1; j < value.GetLength() && found; j++)
+				{
+					found = m_Value[i + j] == value[j];
+				}
+				if (found)
+				{
+					return i;
+				}
+			}
+			return -1;
 		}
 	};
 

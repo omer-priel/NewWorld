@@ -43,11 +43,11 @@ namespace Sandbox::Tests
 	private:
 		void Print(NewWorld::String tabs)
 		{
-			INFO(MAIN_LOGGER ,tabs, m_Name, ":");
+			INFO(MAIN_LOGGER, "{}{}:", tabs, m_Name, ":");
 			tabs += "\t";
 
 			for (auto&& entity : m_Entitys) {
-				INFO(MAIN_LOGGER, tabs, entity);
+				INFO(MAIN_LOGGER, "{}{}", tabs, entity);
 			}
 
 			for (auto&& group : m_SubGroups) {
