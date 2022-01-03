@@ -36,7 +36,7 @@ namespace NewWorld::DataTypes::Collections
 
 		// Static Convert To String
 	public:
-		inline String ConverToString() { return ""; }
+		/*inline String ConverToString() { return ""; }
 
 		inline String ConverToString(char value)
 		{
@@ -137,6 +137,7 @@ namespace NewWorld::DataTypes::Collections
 				return ConverToString((const T&)*ptr);
 			}
 		}
+		*/
 		
 		template<typename... Types>
 		static Array<String, (SizeT)sizeof...(Types)> ConverToString(const Types&... args)
@@ -144,27 +145,33 @@ namespace NewWorld::DataTypes::Collections
 			const SizeT LENGTH = (SizeT)sizeof...(Types);
 			Array<String, LENGTH> arr;
 
-			ConverToStringLoader(arr, args...);
+			ConverToStringLoader<LENGTH, Types...>(args...);
 
 			return arr;
 		}
 
+		template<const SizeT LENGTH>
+		static void ConverToStringLoader()
+		{
+
+		}
+		
 		template<const SizeT LENGTH, typename T, typename... Types>
-		static void ConverToStringLoader(Array<String, LENGTH>& arr, const T& arg, Types&... args)
+		static void ConverToStringLoader(const T& arg, const Types&... args)
 		{
 			SizeT index = LENGTH - ((SizeT)sizeof...(Types));
 			if (std::is_base_of<IObject, T>::value)
 			{
-				arr[index] = "a";
+				//arr[index] = "a";
 				//arr[index] = ConverToString((const IObject&)args[i]);
 			}
 			else
 			{
-				arr[index] = "b";
+				//arr[index] = "b";
 				//arr[index] = ConverToString(args[i]);
 			}
 
-			ConverToStringLoader(args...);
+			ConverToStringLoader<LENGTH, Types...>(args...);
 		}
 		
 		// Static
