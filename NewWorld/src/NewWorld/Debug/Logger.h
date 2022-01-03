@@ -9,129 +9,97 @@
 namespace NewWorld::Debug
 {
 	// Logs
-	void Log() { }
+	inline void Log() {}
 
-	template <typename... Types>
-	void Log(char value, const Types&... args)
+	void Log(char value)
 	{
 		std::cout << value;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(bool value, const Types&... args)
-	{
-		Log((value) ? "true" : "false", args...);
-	}
-	
-	template <typename... Types>
-	void Log(Byte value, const Types&... args)
+	void Log(Byte value)
 	{
 		std::cout << value;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(short value, const Types&... args)
+	inline void Log(bool value)
 	{
-		std::cout << value;
-		Log(args...);
+		Log((value) ? "true" : "false");
 	}
 
-	template <typename... Types>
-	void Log(ushort value, const Types&... args)
+	void Log(short value)
 	{
 		std::cout << value;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(int value, const Types&... args)
+	void Log(ushort value)
 	{
 		std::cout << value;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(uint value, const Types&... args)
+	void Log(int value)
 	{
 		std::cout << value;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(Long value, const Types&... args)
+	void Log(uint value)
 	{
 		std::cout << value;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(Ulong value, const Types&... args)
+	void Log(Long value)
 	{
 		std::cout << value;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(float value, const Types&... args)
+	void Log(Ulong value)
 	{
 		std::cout << value;
-		Log(args...);
+	}
+
+	void Log(float value)
+	{
+		std::cout << value;
 	}
 
 	// TEMP: Enums
-	template <typename... Types>
-	void Log(LogLevel value, const Types&... args)
+	void Log(LogLevel value)
 	{
 		std::cout << (int)value;
-		Log(args...);
 	}
 
 	// TEMP: Vector2 Vector3 Vector4
-	template <typename... Types>
-	void Log(Vector2 value, const Types&... args)
+	void Log(Vector2 value)
 	{
 		std::cout << "(" << value.x << ", " << value.y << ")";
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(Vector3 value, const Types&... args)
+	void Log(Vector3 value)
 	{
 		std::cout << "(" << value.x << ", " << value.y << ", " << value.z << ")";
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(Vector4 value, const Types&... args)
+	void Log(Vector4 value)
 	{
 		std::cout << "(" << value.x << ", " << value.y << ", " << value.z << ", " << value.w << ")";
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(const char* str, const Types&... args)
+	void Log(const char* str)
 	{
 		std::cout << str;
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(const String& str, const Types&... args)
+	void Log(const String& str)
 	{
 		std::cout.write(str.GetPointer(), str.GetLength());
-		Log(args...);
 	}
 
-	template <typename... Types>
-	void Log(const IObject& obj, const Types&... args)
+	void Log(const IObject& obj)
 	{
-		Log(obj.ToString(), args...);
+		Log(obj.ToString());
 	}
 
-	template <typename T, typename... Types>
-	void Log(RawPointer<T> ptr, const Types&... args)
+	template <typename T>
+	void Log(RawPointer<T> ptr)
 	{
 		if (ptr == nullptr)
 		{
@@ -141,8 +109,6 @@ namespace NewWorld::Debug
 		{
 			Log((const T&)*ptr);
 		}
-
-		Log(args...);
 	}
 
 	template <typename T, typename... Types>
@@ -155,7 +121,8 @@ namespace NewWorld::Debug
 		}
 		else
 		{
-			throw "ERROR";
+			Log(obj);
+			Log(args...);
 		}
 	}
 
