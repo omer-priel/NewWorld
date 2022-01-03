@@ -8,7 +8,7 @@ namespace Sandbox::Tests
 {	
 	void TestCore()
 	{
-		DEBUG(MAIN_LOGGER ,"IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
+		DEBUG(MAIN_LOGGER , "IDs: {}", NewWorld::DataTypes::Build::c_LastTypeId);
 	}
 
 	void Test1()
@@ -51,7 +51,7 @@ namespace Sandbox::Tests
 			world->AddSubGroup(enemies);
 
 			world->Print();
-			INFO(TESTS_LOGGER, world);
+			INFO(TESTS_LOGGER, "{}", world);
 		}
 	}
 	

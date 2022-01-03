@@ -63,51 +63,51 @@
 #define NW_GET_LOGGER_NAME(loggerID) NW_CONST_LOGGER_##loggerID
 
 #if NW_CONFIG_DEBUG
-#define NW_DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug\
-	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
-#define NW_INFO_BYID(loggerID, ...) NewWorld::Debug::Info\
-	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
-#define NW_WARN_BYID(loggerID, ...) NewWorld::Debug::Warn\
-	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
-#define NW_ERROR_BYID(loggerID, ...) NewWorld::Debug::Error\
-	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define NW_DEBUG_BYID(loggerID, format, ...) NewWorld::Debug::Debug\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define NW_INFO_BYID(loggerID, format, ...) NewWorld::Debug::Info\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define NW_WARN_BYID(loggerID, format, ...) NewWorld::Debug::Warn\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define NW_ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Error\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 
-#define DEBUG_BYID(loggerID, ...) NewWorld::Debug::Debug\
-	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
-#define INFO_BYID(loggerID, ...) NewWorld::Debug::Info\
-	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
-#define WARN_BYID(loggerID, ...) NewWorld::Debug::Warn\
-	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
-#define ERROR_BYID(loggerID, ...) NewWorld::Debug::Error\
-	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, ##__VA_ARGS__)
+#define DEBUG_BYID(loggerID, format, ...) NewWorld::Debug::Debug\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define INFO_BYID(loggerID, format, ...) NewWorld::Debug::Info\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define WARN_BYID(loggerID, format, ...) NewWorld::Debug::Warn\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Error\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 #else
-#define NW_DEBUG_BYID(loggerID, ...)
-#define NW_INFO_BYID(loggerID, ...)
-#define NW_WARN_BYID(loggerID, ...)
-#define NW_ERROR_BYID(loggerID, ...)
+#define NW_DEBUG_BYID(loggerID, format, ...)
+#define NW_INFO_BYID(loggerID, format, ...)
+#define NW_WARN_BYID(loggerID, format, ...)
+#define NW_ERROR_BYID(loggerID, format, ...)
 
-#define DEBUG_BYID(loggerID, ...)
-#define INFO_BYID(loggerID, ...)
-#define WARN_BYID(loggerID, ...)
-#define ERROR_BYID(loggerID, ...)
+#define DEBUG_BYID(loggerID, format, ...)
+#define INFO_BYID(loggerID, format, ...)
+#define WARN_BYID(loggerID, format, ...)
+#define ERROR_BYID(loggerID, format, ...)
 #endif
 
-#define NW_DEBUG(loggerID, ...) NW_DEBUG_BYID(loggerID, ##__VA_ARGS__)
-#define NW_INFO(loggerID, ...) NW_INFO_BYID(loggerID, ##__VA_ARGS__)
-#define NW_WARN(loggerID, ...) NW_WARN_BYID(loggerID, ##__VA_ARGS__)
-#define NW_ERROR(loggerID, ...) NW_ERROR_BYID(loggerID, ##__VA_ARGS__)
+#define NW_DEBUG(loggerID, format, ...) NW_DEBUG_BYID(loggerID, format, ##__VA_ARGS__)
+#define NW_INFO(loggerID, format, ...) NW_INFO_BYID(loggerID, format, ##__VA_ARGS__)
+#define NW_WARN(loggerID, format, ...) NW_WARN_BYID(loggerID, format, ##__VA_ARGS__)
+#define NW_ERROR(loggerID, format, ...) NW_ERROR_BYID(loggerID, format, ##__VA_ARGS__)
 
-#define DEBUG(loggerID, ...) DEBUG_BYID(loggerID, ##__VA_ARGS__)
-#define INFO(loggerID, ...) INFO_BYID(loggerID, ##__VA_ARGS__)
-#define WARN(loggerID, ...) WARN_BYID(loggerID, ##__VA_ARGS__)
-#define ERROR(loggerID, ...) ERROR_BYID(loggerID, ##__VA_ARGS__)
+#define DEBUG(loggerID, format, ...) DEBUG_BYID(loggerID, format, ##__VA_ARGS__)
+#define INFO(loggerID, format, ...) INFO_BYID(loggerID, format, ##__VA_ARGS__)
+#define WARN(loggerID, format, ...) WARN_BYID(loggerID, format, ##__VA_ARGS__)
+#define ERROR(loggerID, format, ...) ERROR_BYID(loggerID, format, ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
-#define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(NW_LOGGER_CORE, ##__VA_ARGS__); __debugbreak(); }
-#define NW_ASSERT_WITHOUT_LOG(condition, ...) if (!(condition)) { __debugbreak(); }
+#define NW_ASSERT(condition, format, ...) if (!(condition)) { NW_ERROR(NW_LOGGER_CORE, format, ##__VA_ARGS__); __debugbreak(); }
+#define NW_ASSERT_WITHOUT_LOG(condition, format, ...) if (!(condition)) { __debugbreak(); }
 #else
-#define NW_ASSERT(condition, ...)
-#define NW_ASSERT_WITHOUT_LOG(condition, ...)
+#define NW_ASSERT(condition, format, ...)
+#define NW_ASSERT_WITHOUT_LOG(condition, format, ...)
 #endif
 
 #pragma endregion
