@@ -69,7 +69,7 @@ namespace NewWorld
 	template <typename T>
 	inline T* Allocate(Ulong length = 1)
 	{
-		return DataTypes::Memory::GetActiveAllocator().Allocate<T>();
+		return DataTypes::Memory::Allocator::GetActiveAllocator().Allocate<T>();
 	}
 
 	inline void Deallocate(void* ptr)
@@ -80,7 +80,7 @@ namespace NewWorld
 	template <typename T>
 	inline void Deallocate(T* ptr)
 	{
-		return DataTypes::Memory::GetActiveAllocator().Deallocate<T>(ptr);
+		return DataTypes::Memory::Allocator::GetActiveAllocator().Deallocate<T>(ptr);
 	}
 
 	inline void* Reallocate(void* ptr, Ulong size)

@@ -91,7 +91,7 @@ namespace NewWorld::DataTypes::Memory
 		// Actions
 		void SetValue(const SharedPointer& obj)
 		{
-			NW_ASSERT(m_Value != nullptr, "This pointer already has allocated!");
+			NW_ASSERT_WITHOUT_LOG(m_Value != nullptr, "This pointer already has allocated!");
 			m_Value = obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
@@ -99,7 +99,7 @@ namespace NewWorld::DataTypes::Memory
 
 		void SetValue(SharedPointer& obj)
 		{
-			NW_ASSERT(m_Value != nullptr, "This pointer already has allocated!");
+			NW_ASSERT_WITHOUT_LOG(m_Value != nullptr, "This pointer already has allocated!");
 			m_Value = obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
@@ -108,7 +108,7 @@ namespace NewWorld::DataTypes::Memory
 		template <typename... Types>
 		void SetValue(Types... args)
 		{
-			NW_ASSERT(m_Value == nullptr, "This pointer already has allocated!");
+			NW_ASSERT_WITHOUT_LOG(m_Value == nullptr, "This pointer already has allocated!");
 			m_Value = new T(std::forward<Types>(args)...);
 			m_Counter = new SizeT(1);
 		}

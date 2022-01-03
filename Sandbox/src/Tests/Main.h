@@ -91,7 +91,7 @@ namespace Sandbox::Tests
 		PrintTime(t1 + t2);
 		PrintTime(t1 + t2 + t3);
 		PrintTime(t1 - t2);
-		PrintTime((t1 + t2 + t3) + Time(3600 * 2 + 60 * 5));
+		PrintTime((t1 + t2 + t3) + (Time)(360000 * 2 + 6000 * 7 + 2 * 100 + 5));
 	}
 	
 	void TestsRoot()

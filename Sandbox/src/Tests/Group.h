@@ -46,13 +46,11 @@ namespace Sandbox::Tests
 			INFO(MAIN_LOGGER ,tabs, m_Name, ":");
 			tabs += "\t";
 
-			for each (NewWorld::SharedPointer<Entity> entity in m_Entitys)
-			{
+			for (auto&& entity : m_Entitys) {
 				INFO(MAIN_LOGGER, tabs, entity);
 			}
 
-			for each (NewWorld::SharedPointer<Group> group in m_SubGroups)
-			{
+			for (auto&& group : m_SubGroups) {
 				group->Print(tabs);
 			}
 		}

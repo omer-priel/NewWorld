@@ -104,14 +104,16 @@
 
 #if NW_CONFIG_DEBUG
 #define NW_ASSERT(condition, ...) if (!(condition)) { NW_ERROR(NW_LOGGER_CORE, ##__VA_ARGS__); __debugbreak(); }
+#define NW_ASSERT_WITHOUT_LOG(condition, ...) if (!(condition)) { __debugbreak(); }
 #else
 #define NW_ASSERT(condition, ...)
+#define NW_ASSERT_WITHOUT_LOG(condition, ...)
 #endif
 
 #pragma endregion
 
 #pragma region Constants
 
-#define NW_BUILD_DEFINE_LOGGER(id, name, displayLevel) constexpr char* NW_GET_LOGGER_NAME(id)_NAME = name;\
+#define NW_BUILD_DEFINE_LOGGER(id, name, displayLevel) constexpr char NW_GET_LOGGER_NAME(id)_NAME[] = name;\
 														constexpr NewWorld::Debug::LogLevel NW_GET_LOGGER_NAME(id)_DISPLAY_LEVEL = NewWorld::Debug::displayLevel;
 #pragma endregion

@@ -8,51 +8,7 @@
 
 namespace NewWorld::Debug
 {
-	template<typename... Types>
-	void Debug(const char* loggerName, const LogLevel displayLevel, const Types&... args)
-	{
-		if (displayLevel >= LogLevel::Debug)
-		{
-			Log("[DEBUG] ", loggerName, ": ");
-			Log(args...);
-			Log("\n");
-		}
-	}
-	
-	template<typename... Types>
-	void Info(const char* loggerName, const LogLevel displayLevel, const Types&... args)
-	{
-		if (displayLevel >= LogLevel::Info)
-		{
-			Log("[INFO] ", loggerName, ": ");
-			Log(args...);
-			Log("\n");
-		}
-	}
-
-	template<typename... Types>
-	void Warn(const char* loggerName, const LogLevel displayLevel, const Types&... args)
-	{
-		if (displayLevel >= LogLevel::Warning)
-		{
-			Log("[WARN] ", loggerName, ": ");
-			Log(args...);
-			Log("\n");
-		}
-	}
-
-	template<typename... Types>
-	void Error(const char* loggerName, const LogLevel displayLevel, const Types&... args)
-	{
-		if (displayLevel >= LogLevel::Error)
-		{
-			Log("[ERROR] ", loggerName, ": ");
-			Log(args...);
-			Log("\n");
-		}
-	}
-
-	// Log Types
+	// Logs
 	void Log() { }
 
 	template <typename... Types>
@@ -200,6 +156,51 @@ namespace NewWorld::Debug
 		else
 		{
 			throw "ERROR";
+		}
+	}
+
+	// Log Types
+	template<typename... Types>
+	void Debug(const char* loggerName, const LogLevel displayLevel, const Types&... args)
+	{
+		if (displayLevel >= LogLevel::Debug)
+		{
+			Log("[DEBUG] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
+		}
+	}
+
+	template<typename... Types>
+	void Info(const char* loggerName, const LogLevel displayLevel, const Types&... args)
+	{
+		if (displayLevel >= LogLevel::Info)
+		{
+			Log("[INFO] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
+		}
+	}
+
+	template<typename... Types>
+	void Warn(const char* loggerName, const LogLevel displayLevel, const Types&... args)
+	{
+		if (displayLevel >= LogLevel::Warning)
+		{
+			Log("[WARN] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
+		}
+	}
+
+	template<typename... Types>
+	void Error(const char* loggerName, const LogLevel displayLevel, const Types&... args)
+	{
+		if (displayLevel >= LogLevel::Error)
+		{
+			Log("[ERROR] ", loggerName, ": ");
+			Log(args...);
+			Log("\n");
 		}
 	}
 }

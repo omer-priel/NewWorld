@@ -23,7 +23,7 @@ project "NewWorld"
 	icon "Logo.ico"
 	kind "StaticLib"
 	language "C++"
-	cppdialect "C++17"
+	cppdialect "C++20"
 	staticruntime "on"
 
 	targetdir ("bin/" .. OutputDir .. "/%{prj.name}")
@@ -72,7 +72,7 @@ project "Sandbox"
 	icon "Logo.ico"
 	kind "ConsoleApp"
 	language "C++"
-	cppdialect "C++17"
+	cppdialect "C++20"
 	staticruntime "on"
 
 	targetdir ("bin/" .. OutputDir .. "/%{prj.name}")

@@ -2,6 +2,9 @@
 
 #include "NewWorld/DataTypes/Object.h"
 
+#include <string>
+#include <format>
+
 namespace NewWorld::DataTypes::Time
 {
 	class Time : public Object
@@ -19,11 +22,18 @@ namespace NewWorld::DataTypes::Time
 		Time()
 			: m_Ticks(0) { }
 		
-		Time(ushort ticks)
+		Time(uint ticks)
 			: m_Ticks(ticks) { }
 		
 		Time(Byte hour, Byte minute, Byte secound, ushort millisecond = 0)
 			: m_Ticks((hour * 3600 + minute * 60 + secound) * 100 + millisecond) { }
+
+		// Overide
+	public:
+		String ToString() const override
+		{
+			return String(std::format("{}:{}:{}:{}", GetHour(), GetMinute(), GetSecound(), GetMillisecond()).c_str());
+		}
 
 		// Getters and Setters
 	public:
