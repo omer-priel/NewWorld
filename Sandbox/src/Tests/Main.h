@@ -78,7 +78,7 @@ namespace Sandbox::Tests
 			ERROR(TESTS_LOGGER, i);
 		}
 
-		Time t1(1, 0, 0);
+		Time t1(1, 0, 0, 10);
 		Time t2(1, 30, 0);
 		Time t3(2, 45, 30);
 

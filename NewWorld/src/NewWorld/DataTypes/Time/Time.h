@@ -13,8 +13,7 @@ namespace NewWorld::DataTypes::Time
 
 		// Members
 	private:
-		uint m_Ticks;
-		//m_Hour m_Minute m_Second;
+		uint m_Ticks; // Time in millisecond
 
 	public:
 		Time()
@@ -23,8 +22,8 @@ namespace NewWorld::DataTypes::Time
 		Time(ushort ticks)
 			: m_Ticks(ticks) { }
 		
-		Time(Byte hour, Byte minute, Byte secound)
-			: m_Ticks(hour * 3600 + minute * 60 + secound) { }
+		Time(Byte hour, Byte minute, Byte secound, ushort millisecond = 0)
+			: m_Ticks((hour * 3600 + minute * 60 + secound) * 100 + millisecond) { }
 
 		// Getters and Setters
 	public:
@@ -32,30 +31,45 @@ namespace NewWorld::DataTypes::Time
 
 		inline void SetTicks(uint value) { m_Ticks = value; }
 
-		inline Byte GetHour() const { return m_Ticks / 3600; }
+		inline Byte GetHour() const { return (m_Ticks / 100) / 3600; }
 
 		void SetHour(Byte value)
 		{
-			m_Ticks = (m_Ticks % 3600) + value * 3600;
+			m_Ticks -= GetHour() * 3600 * 100;
+			m_Ticks += value * 3600 * 100;
 		}
 
-		inline Byte GetMinute() const { return m_Ticks % 3600 / 60; }
-
+		inline Byte GetMinute() const { return m_Ticks / (60 * 100) % 60; }
+		
 		void SetMinute(Byte value)
 		{
-			m_Ticks = (m_Ticks - GetMinute()) + value * 60;
+			m_Ticks -= GetMinute() * 3600 * 100;
+			m_Ticks += value * 60 * 100;
 		}
 
-		inline Byte GetSecound() const { return m_Ticks % 60; }
+		inline Byte GetSecound() const { return m_Ticks / 100 % 60; }
 
 		void SetSecound(Byte value)
 		{
-			m_Ticks = (m_Ticks - GetSecound()) + value;
+			m_Ticks -= GetMinute() * 60 * 100;
+			m_Ticks += value * 100;
+		}
+
+		inline ushort GetMillisecond() const { return m_Ticks % 100; }
+
+		void SetMillisecon(ushort value)
+		{
+			m_Ticks = (m_Ticks - GetMillisecond()) + value;
 		}
 
 		void SetTime(Byte hour, Byte minute, Byte secound)
 		{
-			m_Ticks = hour * 3600 + minute * 60 + secound;
+			SetTime(hour, minute, secound, 0);
+		}
+
+		void SetTime(Byte hour, Byte minute, Byte secound, ushort millisecond)
+		{
+			m_Ticks = (hour * 3600 + minute * 60 + secound) * 100 + millisecond;
 		}
 
 		// Operators
