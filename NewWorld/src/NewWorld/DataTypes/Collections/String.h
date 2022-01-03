@@ -36,86 +36,86 @@ namespace NewWorld::DataTypes::Collections
 
 		// Static Convert To String
 	public:
-		/*inline String ConverToString() { return ""; }
-
-		inline String ConverToString(char value)
+		static inline String ConverToString() { return ""; }
+		
+		static inline String ConverToString(char value)
 		{
 			return String(value + "");
 		}
 
-		inline String ConverToString(Byte value)
+		static inline String ConverToString(Byte value)
 		{
 			return String(value + "");
 		}
-
-		inline String ConverToString(bool value)
+		
+		static inline String ConverToString(bool value)
 		{
 			return String((value) ? "true" : "false");
 		}
-
-		inline String ConverToString(short value)
+		
+		static inline String ConverToString(short value)
 		{
 			return String(value + "");
 		}
-
-		inline String ConverToString(ushort value)
+		
+		static inline String ConverToString(ushort value)
 		{
 			return String(value + "");
 		}
-
-		inline String ConverToString(int value)
+		
+		static inline String ConverToString(int value)
 		{
 			return String(value + "");
 		}
-
-		inline String ConverToString(uint value)
+		/*
+		static inline String ConverToString(uint value)
 		{
 			return String(value + "");
 		}
-
-		inline String ConverToString(Long value)
+		
+		static inline String ConverToString(Long value)
 		{
 			return String(value + "");
 		}
-
-		inline String ConverToString(Ulong value)
+		
+		static inline String ConverToString(Ulong value)
 		{
 			return String(value + "");
 		}
-
-		inline String ConverToString(float value)
+		
+		static inline String ConverToString(float value)
 		{
 			return String(std::to_string(value).c_str());
 		}
 
 		// TEMP: Enums
-		inline String ConverToString(Debug::LogLevel value)
+		static inline String ConverToString(Debug::LogLevel value)
 		{
 			return String((int)value + "");
 		}
 
 		// TEMP: Vector2 Vector3 Vector4
-		inline String ConverToString(Vector2 value)
+		static inline String ConverToString(Vector2 value)
 		{
 			return String::Format("({}, {})", value.x, value.y);
 		}
 
-		inline String ConverToString(Vector3 value)
+		static inline String ConverToString(Vector3 value)
 		{
 			return String::Format("({}, {}, {}, {})", value.x, value.y, value.z);
 		}
 
-		inline String ConverToString(Vector4 value)
+		static inline String ConverToString(Vector4 value)
 		{
 			return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
 		}
 
-		inline String ConverToString(const char* str)
+		static inline String ConverToString(const char* str)
 		{
 			return String(str);
 		}
 
-		inline String ConverToString(const String& str)
+		static inline String ConverToString(const String& str)
 		{
 			return str;
 		}
@@ -124,9 +124,9 @@ namespace NewWorld::DataTypes::Collections
 		{
 			return obj.ToString();
 		}
-		/*
+		
 		template <typename T>
-		inline String ConverToString(T* ptr)
+		static inline String ConverToString(T* ptr)
 		{
 			if (ptr == nullptr)
 			{
@@ -137,7 +137,6 @@ namespace NewWorld::DataTypes::Collections
 				return ConverToString((const T&)*ptr);
 			}
 		}
-		*/
 		
 		template<typename... Types>
 		static Array<String, (SizeT)sizeof...(Types)> ConverToString(const Types&... args)
@@ -166,8 +165,8 @@ namespace NewWorld::DataTypes::Collections
 			}
 			else
 			{
-				arr[index] = "b";
-				//arr[index] = ConverToString(args[i]);
+				arr[index] = "a";
+				//arr[index] = ConverToString(arg);
 			}
 
 			ConverToStringLoader<LENGTH, Types...>(arr, args...);
