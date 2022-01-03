@@ -36,7 +36,6 @@ namespace NewWorld::DataTypes::Collections
 
 		// Static Convert To String
 	public:
-		/*
 		inline String ConverToString() { return ""; }
 
 		inline String ConverToString(char value)
@@ -138,26 +137,34 @@ namespace NewWorld::DataTypes::Collections
 				return ConverToString((const T&)*ptr);
 			}
 		}
-		*/
+		
 		template<typename... Types>
 		static Array<String, (SizeT)sizeof...(Types)> ConverToString(const Types&... args)
 		{
 			const SizeT LENGTH = (SizeT)sizeof...(Types);
 			Array<String, LENGTH> arr;
-			for (size_t i = 0; i < LENGTH; i++)
-			{
-				arr[i] = "a";
-				/*if (std::is_base_of<IObject, Types[i]>::value)
-				{
-					arr[i] = ConverToString((const IObject&)args[i]);
-				}
-				else
-				{
-					arr[i] = ConverToString(args[i]);
-				}*/
-			}
+
+			ConverToStringLoader(arr, args...);
 
 			return arr;
+		}
+
+		template<const SizeT LENGTH, typename T, typename... Types>
+		static void ConverToStringLoader(Array<String, LENGTH>& arr, const T& arg, Types&... args)
+		{
+			SizeT index = LENGTH - ((SizeT)sizeof...(Types));
+			if (std::is_base_of<IObject, T>::value)
+			{
+				arr[index] = "a";
+				//arr[index] = ConverToString((const IObject&)args[i]);
+			}
+			else
+			{
+				arr[index] = "b";
+				//arr[index] = ConverToString(args[i]);
+			}
+
+			ConverToStringLoader(args...);
 		}
 		
 		// Static
@@ -166,7 +173,7 @@ namespace NewWorld::DataTypes::Collections
 		static String Format(String format, const Types&... args)
 		{
 			Array<String, (SizeT)sizeof...(Types)> values = ConverToString(args...);
-			std::ostringstream stream;
+			/*std::ostringstream stream;
 			uint index = 0;
 			uint valuesIndex = 0;
 			uint nextArg = 0;
@@ -187,6 +194,8 @@ namespace NewWorld::DataTypes::Collections
 				stream.write(&(format[index]), format.GetLength() - index);
 			}
 			return String(stream.str().c_str());
+			*/
+			return "";
 		}
 
 		// Members
