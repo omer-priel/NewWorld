@@ -132,7 +132,7 @@ namespace NewWorld::Debug
 	{
 		if (displayLevel >= LogLevel::Debug)
 		{
-			Log("[DEBUG] ", loggerName, ": ");
+			Log(Time::Now(), " [DEBUG] ", loggerName, ": ");
 			Log(args...);
 			Log("\n");
 		}
