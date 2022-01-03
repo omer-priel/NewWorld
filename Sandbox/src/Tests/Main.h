@@ -54,13 +54,6 @@ namespace Sandbox::Tests
 			INFO(TESTS_LOGGER, world);
 		}
 	}
-
-	void PrintTime(const NewWorld::Time& time)
-	{
-		ERROR(TESTS_LOGGER, (NewWorld::uint)time.GetHour(), ":"
-			, (NewWorld::uint)time.GetMinute(), ":"
-			, (NewWorld::uint)time.GetSecound());
-	}
 	
 	void Test2()
 	{
@@ -82,16 +75,14 @@ namespace Sandbox::Tests
 		Time t2(1, 30, 0);
 		Time t3(2, 45, 30);
 
-		PrintTime(t1);
-		PrintTime(t2);
-		PrintTime(t3);
+		ERROR(TESTS_LOGGER, t1, " ", t2, " ", t3);
 
 		t1 += t1;
-		PrintTime(t1);
-		PrintTime(t1 + t2);
-		PrintTime(t1 + t2 + t3);
-		PrintTime(t1 - t2);
-		PrintTime((t1 + t2 + t3) + (Time)(360000 * 2 + 6000 * 7 + 2 * 100 + 5));
+		ERROR(TESTS_LOGGER, t1);
+		ERROR(TESTS_LOGGER, t1 + t2);
+		ERROR(TESTS_LOGGER, t1 + t2 + t3);
+		ERROR(TESTS_LOGGER, t1 - t2);
+		ERROR(TESTS_LOGGER, (t1 + t2 + t3) + (Time)(360000 * 2 + 6000 * 7 + 2 * 100 + 5));
 	}
 	
 	void TestsRoot()
