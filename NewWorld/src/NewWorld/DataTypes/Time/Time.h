@@ -2,6 +2,8 @@
 
 #include "NewWorld/DataTypes/Object.h"
 
+#include <chrono>
+// TEMP
 #include <string>
 #include <format>
 
@@ -13,6 +15,19 @@ namespace NewWorld::DataTypes::Time
 
 		// Static
 	public:
+		static constexpr uint TICKS_IN_DAY = 24 * 60 * 60 * 1000;
+		static constexpr uint TICKS_IN_HOUR = 60 * 60 * 1000;
+		static constexpr uint TICKS_IN_MINUTE = 60 * 1000;
+		static constexpr uint TICKS_IN_SECOUND = 1000;
+		static constexpr uint TICKS_IN_MILLISECOND = 1;
+
+		static Time Now()
+		{
+			using namespace std::chrono;
+
+			Long millisec_since_epoch = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			return Time(millisec_since_epoch % TICKS_IN_DAY);
+		}
 
 		// Members
 	private:
@@ -26,7 +41,7 @@ namespace NewWorld::DataTypes::Time
 			: m_Ticks(ticks) { }
 		
 		Time(Byte hour, Byte minute, Byte secound, ushort millisecond = 0)
-			: m_Ticks((hour * 3600 + minute * 60 + secound) * 100 + millisecond) { }
+			: m_Ticks(hour * TICKS_IN_HOUR + minute * TICKS_IN_MINUTE + secound * TICKS_IN_SECOUND + millisecond) { }
 
 		// Overide
 	public:
@@ -41,31 +56,31 @@ namespace NewWorld::DataTypes::Time
 
 		inline void SetTicks(uint value) { m_Ticks = value; }
 
-		inline Byte GetHour() const { return (m_Ticks / 100) / 3600; }
+		inline Byte GetHour() const { return m_Ticks / TICKS_IN_HOUR; }
 
 		void SetHour(Byte value)
 		{
-			m_Ticks -= GetHour() * 3600 * 100;
-			m_Ticks += value * 3600 * 100;
+			m_Ticks -= GetHour() * TICKS_IN_HOUR;
+			m_Ticks += value * TICKS_IN_HOUR;
 		}
 
-		inline Byte GetMinute() const { return m_Ticks / (60 * 100) % 60; }
+		inline Byte GetMinute() const { return m_Ticks % TICKS_IN_HOUR / TICKS_IN_MINUTE; }
 		
 		void SetMinute(Byte value)
 		{
-			m_Ticks -= GetMinute() * 3600 * 100;
-			m_Ticks += value * 60 * 100;
+			m_Ticks -= GetMinute() * TICKS_IN_MINUTE;
+			m_Ticks += value * TICKS_IN_MINUTE;
 		}
 
-		inline Byte GetSecound() const { return m_Ticks / 100 % 60; }
+		inline Byte GetSecound() const { return m_Ticks % TICKS_IN_MINUTE / TICKS_IN_SECOUND; }
 
 		void SetSecound(Byte value)
 		{
-			m_Ticks -= GetMinute() * 60 * 100;
-			m_Ticks += value * 100;
+			m_Ticks -= GetMinute() * TICKS_IN_SECOUND;
+			m_Ticks += value * TICKS_IN_SECOUND;
 		}
 
-		inline ushort GetMillisecond() const { return m_Ticks % 100; }
+		inline ushort GetMillisecond() const { return m_Ticks % TICKS_IN_SECOUND; }
 
 		void SetMillisecon(ushort value)
 		{
@@ -139,5 +154,3 @@ namespace NewWorld::DataTypes::Time
 		}
 	};
 }
-
-// std::chrono::system_clock

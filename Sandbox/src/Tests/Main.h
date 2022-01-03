@@ -71,18 +71,15 @@ namespace Sandbox::Tests
 			ERROR(TESTS_LOGGER, i);
 		}
 
-		Time t1(1, 0, 0, 10);
+		Time t1(1, 0, 0);
 		Time t2(1, 30, 0);
 		Time t3(2, 45, 30);
 
-		ERROR(TESTS_LOGGER, t1, " ", t2, " ", t3);
-
-		t1 += t1;
 		ERROR(TESTS_LOGGER, t1);
-		ERROR(TESTS_LOGGER, t1 + t2);
-		ERROR(TESTS_LOGGER, t1 + t2 + t3);
-		ERROR(TESTS_LOGGER, t1 - t2);
-		ERROR(TESTS_LOGGER, (t1 + t2 + t3) + (Time)(360000 * 2 + 6000 * 7 + 2 * 100 + 5));
+		ERROR(TESTS_LOGGER, t2);
+		ERROR(TESTS_LOGGER, t3);
+
+		ERROR(TESTS_LOGGER, Time::Now());
 	}
 	
 	void TestsRoot()
