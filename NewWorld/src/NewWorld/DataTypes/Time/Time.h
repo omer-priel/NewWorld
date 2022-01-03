@@ -47,7 +47,19 @@ namespace NewWorld::DataTypes::Time
 	public:
 		String ToString() const override
 		{
-			return String(std::format("{}:{}:{}:{}", GetHour(), GetMinute(), GetSecound(), GetMillisecond()).c_str());
+			return ToString(false);
+		}
+
+		String ToString(bool withMillisecond) const
+		{
+			if (withMillisecond)
+			{
+				return String(std::format("{}:{}:{}:{}", GetHour(), GetMinute(), GetSecound(), GetMillisecond()).c_str());
+			}
+			else
+			{
+				return String(std::format("{}:{}:{}", GetHour(), GetMinute(), GetSecound()).c_str());
+			}
 		}
 
 		// Getters and Setters
