@@ -83,7 +83,7 @@ namespace Sandbox::Tests
 
 		short num = -1;
 		ushort unum = 1;
-		//ERROR(TESTS_LOGGER, "{} {}", unum, num);
+		ERROR(TESTS_LOGGER, "{} {}", unum, num);
 
 		int num2 = -1;
 		uint unum2 = 1;

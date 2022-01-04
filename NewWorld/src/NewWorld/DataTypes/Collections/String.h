@@ -57,11 +57,12 @@ namespace NewWorld::DataTypes::Collections
 		{
 			return String(value + "");
 		}
-		
+		/*
 		static inline String ConverToString(ushort value)
 		{
 			return String(value + "");
 		}
+		*/
 		
 		static inline String ConverToString(int value)
 		{
