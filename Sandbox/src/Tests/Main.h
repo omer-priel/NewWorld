@@ -94,7 +94,7 @@ namespace Sandbox::Tests
 	{
 		TestCore();
 
-		Test1();
+		//Test1();
 		Test2();
 
 		system("pause");
