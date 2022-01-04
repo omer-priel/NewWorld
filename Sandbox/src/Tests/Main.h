@@ -82,8 +82,12 @@ namespace Sandbox::Tests
 		ERROR(TESTS_LOGGER, Time::Now());
 
 		short num = -1;
-		short unum = 1;
-		ERROR(TESTS_LOGGER, '{} {}', unum, num);
+		ushort unum = 1;
+		//ERROR(TESTS_LOGGER, "{} {}", unum, num);
+
+		int num2 = -1;
+		uint unum2 = 1;
+		ERROR(TESTS_LOGGER, "{} {}", unum2, num2);
 	}
 	
 	void TestsRoot()

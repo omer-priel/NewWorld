@@ -72,54 +72,57 @@ namespace NewWorld::DataTypes::Collections
 		{
 			return String(value + "");
 		}
-		
+		*/
 		static inline String ConverToString(Long value)
 		{
 			return String(value + "");
 		}
-		
+		/*
 		static inline String ConverToString(Ulong value)
 		{
 			return String(value + "");
 		}
-		
+		*/
 		static inline String ConverToString(float value)
 		{
 			return String(std::to_string(value).c_str());
 		}
-
+		
 		// TEMP: Enums
 		static inline String ConverToString(Debug::LogLevel value)
 		{
 			return String((int)value + "");
 		}
-
+		
 		// TEMP: Vector2 Vector3 Vector4
 		static inline String ConverToString(Vector2 value)
 		{
-			return String::Format("({}, {})", value.x, value.y);
+			return "(0,0)";
+			//return String::Format("({}, {})", value.x, value.y);
 		}
-
+		
 		static inline String ConverToString(Vector3 value)
 		{
-			return String::Format("({}, {}, {}, {})", value.x, value.y, value.z);
+			return "(0,0,0)";
+			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z);
 		}
 
 		static inline String ConverToString(Vector4 value)
 		{
-			return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
+			return "(0,0,0,0)";
+			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
 		}
-
+		
 		static inline String ConverToString(const char* str)
 		{
 			return String(str);
 		}
-
+		
 		static inline String ConverToString(const String& str)
 		{
 			return str;
 		}
-		*/
+		
 		static inline String ConverToString(const IObject& obj)
 		{
 			return obj.ToString();
