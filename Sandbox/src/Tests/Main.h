@@ -59,6 +59,11 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
+		int num = -1;
+		uint unum = 1;
+		ERROR(TESTS_LOGGER, "{}", num);
+
+		/*
 		for (uint i = 0; i < 5; i++)
 		{
 			NW_DEBUG(NW_LOGGER_CORE, i);
@@ -88,11 +93,12 @@ namespace Sandbox::Tests
 		int num2 = -1;
 		uint unum2 = 1;
 		ERROR(TESTS_LOGGER, "{} {}", unum2, num2);
+		*/
 	}
 	
 	void TestsRoot()
 	{
-		TestCore();
+		//TestCore();
 
 		//Test1();
 		Test2();

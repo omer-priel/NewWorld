@@ -85,7 +85,8 @@ namespace NewWorld::Debug
 		if (displayLevel >= LogLevel::Error)
 		{
 			String msg = String::Format(format, args...);
-			String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, msg);
+			//String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, msg);
+			String log = msg;
 			std::cout.write(log.GetPointer(), log.GetLength());
 		}
 	}

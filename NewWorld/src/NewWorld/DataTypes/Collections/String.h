@@ -36,6 +36,22 @@ namespace NewWorld::DataTypes::Collections
 
 		// Static Convert To String
 	public:
+		template <typename T>
+		static String ConverToString(const T& a) { return ""; }
+		
+		template <typename T>
+		static String ConverToString(const T*& ptr)
+		{
+			if (ptr == nullptr)
+			{
+				return String("null");
+			}
+			else
+			{
+				return ConverToString((const T&)*ptr);
+			}
+		}
+
 		static String ConverToString() { return ""; }
 		
 		static String ConverToString(char value)
@@ -64,9 +80,10 @@ namespace NewWorld::DataTypes::Collections
 		}
 		*/
 		
-		static String ConverToString(int value)
+		template <>
+		static String ConverToString<int>(const int& value)
 		{
-			return String(value + "");
+			return String("1");
 		}
 		/*
 		static String ConverToString(uint value)
@@ -129,21 +146,8 @@ namespace NewWorld::DataTypes::Collections
 			return obj.ToString();
 		}
 		
-		template <typename T>
-		static String ConverToString(T* ptr)
-		{
-			if (ptr == nullptr)
-			{
-				return String("null");
-			}
-			else
-			{
-				return ConverToString((const T&)*ptr);
-			}
-		}
-		
 		template<typename... Types>
-		static Array<String, (SizeT)sizeof...(Types)> ConverToString(const Types&... args)
+		static Array<String, (SizeT)sizeof...(Types)> ConverToStringArray(const Types&... args)
 		{
 			const SizeT LENGTH = (SizeT)sizeof...(Types);
 			Array<String, LENGTH> arr;
@@ -171,7 +175,7 @@ namespace NewWorld::DataTypes::Collections
 			else
 			{
 				arr[index] = "F";
-				//arr[index] = ConverToString(arg);
+				arr[index] = String::ConverToString(arg);
 			}
 
 			ConverToStringLoader<LENGTH, Types...>(arr, args...);
@@ -182,7 +186,7 @@ namespace NewWorld::DataTypes::Collections
 		template<typename... Types>
 		static String Format(String format, const Types&... args)
 		{
-			Array<String, (SizeT)sizeof...(Types)> values = ConverToString(args...);
+			Array<String, (SizeT)sizeof...(Types)> values = ConverToStringArray(args...);
 			std::ostringstream stream;
 			uint index = 0;
 			uint valuesIndex = 0;
