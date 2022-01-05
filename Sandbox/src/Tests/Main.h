@@ -60,8 +60,8 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		int num = -1;
-		uint unum = 1;
-		ERROR(TESTS_LOGGER, "{}", num);
+		uint unum = 5;
+		ERROR(TESTS_LOGGER, "{}{}{}", num, " ", unum);
 
 		/*
 		for (uint i = 0; i < 5; i++)
