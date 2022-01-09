@@ -43,7 +43,7 @@ namespace Sandbox::Tests
 	private:
 		void Print(NewWorld::String tabs)
 		{
-			INFO(MAIN_LOGGER, "{}{}:", tabs, m_Name, ":");
+			INFO(MAIN_LOGGER, "{}{}:", tabs, m_Name);
 			tabs += "\t";
 
 			for (auto&& entity : m_Entitys) {

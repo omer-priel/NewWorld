@@ -26,7 +26,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, "{} ({}) created", m_Name, m_ID);
 			}
 		}
 
@@ -36,7 +36,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, "{} ({}) created", m_Name, m_ID);
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, "{} ({}) created", m_Name, m_ID);
 			}
 		}
 
@@ -54,7 +54,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") coped");
+				DEBUG(MAIN_LOGGER, "{} ({}) coped", m_Name, m_ID);
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(MAIN_LOGGER, m_Name, " (", m_ID, ") destroyed");
+				DEBUG(MAIN_LOGGER, "{} ({}) destroyed", m_Name, m_ID);
 			}
 		}
 
@@ -70,15 +70,14 @@ namespace Sandbox::Tests
 	public:
 		void Print()
 		{
-			INFO(MAIN_LOGGER, "{ ID: ", m_ID, " Name: ", m_Name, ", Location : (", m_Location.x, ", ", m_Location.y, ", ", m_Location.z, ") }");
+			INFO(MAIN_LOGGER, "{ ID: {} Name: {}, Location: {} }", m_ID, m_Name, m_Location);
 		}
 
 		// Overide
 	public:
 		NewWorld::String ToString() const override
 		{
-			return ("{ Name: " + m_Name + ", Location : (" + std::to_string(m_Location.x).c_str() + ", "
-				+ std::to_string(m_Location.y).c_str() + ", " + std::to_string(m_Location.z).c_str() + ") }");
+			return String::Format("{ ID: {} Name: {}, Location: {} }", m_ID, m_Name, m_Location);
 		}
 	};
 }
