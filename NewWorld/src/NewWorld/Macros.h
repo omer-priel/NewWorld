@@ -8,6 +8,12 @@
 #define NW_PLATFORM_WINDOWS 0
 #endif
 
+#ifdef NW_PLATFORM_LINUX
+#define NW_PLATFORM_WINDOWS 1
+#else
+#define NW_PLATFORM_LINUX 0
+#endif
+
 #ifdef NW_CONFIG_DEBUG
 #define NW_CONFIG_DEBUG 1
 #else
@@ -71,6 +77,8 @@
 	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 #define NW_ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Error\
 	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define NW_CRITICAL_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Critical\
+	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 
 #define DEBUG_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Debug\
 	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
@@ -80,27 +88,33 @@
 	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 #define ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Error\
 	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
+#define CRITICAL_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Critical\
+	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 #else
 #define NW_DEBUG_BYID(loggerID, format, ...)
 #define NW_INFO_BYID(loggerID, format, ...)
 #define NW_WARN_BYID(loggerID, format, ...)
 #define NW_ERROR_BYID(loggerID, format, ...)
+#define NW_CRITICAL_BYID(loggerID, format, ...)
 
 #define DEBUG_BYID(loggerID, format, ...)
 #define INFO_BYID(loggerID, format, ...)
 #define WARN_BYID(loggerID, format, ...)
 #define ERROR_BYID(loggerID, format, ...)
+#define CRITICAL_BYID(loggerID, format, ...)
 #endif
 
 #define NW_DEBUG(loggerID, format, ...) NW_DEBUG_BYID(loggerID, format, ##__VA_ARGS__)
 #define NW_INFO(loggerID, format, ...) NW_INFO_BYID(loggerID, format, ##__VA_ARGS__)
 #define NW_WARN(loggerID, format, ...) NW_WARN_BYID(loggerID, format, ##__VA_ARGS__)
 #define NW_ERROR(loggerID, format, ...) NW_ERROR_BYID(loggerID, format, ##__VA_ARGS__)
+#define NW_CRITICAL(loggerID, format, ...) NW_CRITICAL_BYID(loggerID, format, ##__VA_ARGS__)
 
 #define DEBUG(loggerID, format, ...) DEBUG_BYID(loggerID, format, ##__VA_ARGS__)
 #define INFO(loggerID, format, ...) INFO_BYID(loggerID, format, ##__VA_ARGS__)
 #define WARN(loggerID, format, ...) WARN_BYID(loggerID, format, ##__VA_ARGS__)
 #define ERROR(loggerID, format, ...) ERROR_BYID(loggerID, format, ##__VA_ARGS__)
+#define CRITICAL(loggerID, format, ...) CRITICAL_BYID(loggerID, format, ##__VA_ARGS__)
 
 #if NW_CONFIG_DEBUG
 #define NW_ASSERT(condition, format, ...) if (!(condition)) { NW_ERROR(NW_LOGGER_CORE, format, ##__VA_ARGS__); __debugbreak(); }

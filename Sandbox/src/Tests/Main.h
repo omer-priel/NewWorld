@@ -69,6 +69,8 @@ namespace Sandbox::Tests
 			WARN(TESTS_LOGGER, i);
 			ERROR(MAIN_LOGGER, i);
 			ERROR(TESTS_LOGGER, i);
+			CRITICAL(MAIN_LOGGER, i);
+			CRITICAL(TESTS_LOGGER, i);
 			
 			NW_DEBUG(NW_LOGGER_CORE, i);
 			NW_DEBUG(NW_LOGGER_GRAPHICS, i);
@@ -78,6 +80,8 @@ namespace Sandbox::Tests
 			NW_WARN(NW_LOGGER_GRAPHICS, i);
 			NW_ERROR(NW_LOGGER_CORE, i);
 			NW_ERROR(NW_LOGGER_GRAPHICS, i);
+			NW_CRITICAL(NW_LOGGER_CORE, i);
+			NW_CRITICAL(NW_LOGGER_GRAPHICS, i);
 
 			DEBUG(MAIN_LOGGER, "-------------------");
 		}
