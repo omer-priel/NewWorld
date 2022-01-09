@@ -32,7 +32,7 @@ namespace NewWorld::Debug
 	template<typename T>
 	void Info(const char* loggerName, const LogLevel displayLevel, const T& arg)
 	{
-		if (displayLevel >= LogLevel::Debug)
+		if (displayLevel >= LogLevel::Info)
 		{
 			String log = String::Format("{} [INFO] {}: {}\n", Time::Now(), loggerName, arg);
 			std::cout.write(log.GetPointer(), log.GetLength());
@@ -52,7 +52,7 @@ namespace NewWorld::Debug
 	template<typename T>
 	void Warn(const char* loggerName, const LogLevel displayLevel, const T& arg)
 	{
-		if (displayLevel >= LogLevel::Debug)
+		if (displayLevel >= LogLevel::Warning)
 		{
 			String log = String::Format("{} [WARN] {}: {}\n", Time::Now(), loggerName, arg);
 			std::cout.write(log.GetPointer(), log.GetLength());
@@ -72,7 +72,7 @@ namespace NewWorld::Debug
 	template<typename T>
 	void Error(const char* loggerName, const LogLevel displayLevel, const T& arg)
 	{
-		if (displayLevel >= LogLevel::Debug)
+		if (displayLevel >= LogLevel::Error)
 		{
 			String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, arg);
 			std::cout.write(log.GetPointer(), log.GetLength());
