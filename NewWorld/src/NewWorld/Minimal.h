@@ -1,5 +1,13 @@
 #pragma once
 
+// TEMP: Find better place For remove ERROR Define
+#ifdef NW_PLATFORM_WINDOWS
+#include <windows.h>
+	#ifdef ERROR
+	#undef ERROR
+	#endif
+#endif
+
 // Macros
 #include "NewWorld/Macros.h"
 

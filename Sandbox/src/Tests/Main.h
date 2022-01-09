@@ -51,7 +51,7 @@ namespace Sandbox::Tests
 			world->AddSubGroup(enemies);
 
 			world->Print();
-			INFO(TESTS_LOGGER, "{}", world);
+			INFO(TESTS_LOGGER, world);
 		}
 	}
 	
@@ -59,7 +59,7 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		
+		DEBUG(TESTS_LOGGER, "This debug log");
 	}
 	
 	void TestsRoot()
@@ -69,6 +69,7 @@ namespace Sandbox::Tests
 		Test1();
 		Test2();
 
-		system("pause");
+		ERROR(MAIN_LOGGER, "Press any key to continue . . .");
+		std::cin.get();
 	}
 }

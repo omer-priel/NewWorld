@@ -26,20 +26,6 @@
 #define NW_CONFIG_RELEASE 0
 #endif
 
-#pragma endregion
-#pragma region Constants
-
-#define NW_CONSTANTS_ENGINE_LOGGERS_COUNT 2
-
-#pragma endregion
-#pragma region Build Settings
-
-#ifndef NW_SETTINGS_LOGGERS_COUNT
-#define NW_SETTINGS_LOGGERS_COUNT 1
-#endif
-
-#pragma endregion
-
 // EntryPoint.h
 // ENTRYPOINT_APPLICATION
 
