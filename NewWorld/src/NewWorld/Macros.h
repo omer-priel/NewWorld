@@ -63,22 +63,22 @@
 #define NW_GET_LOGGER_NAME(loggerID) NW_CONST_LOGGER_##loggerID
 
 #if NW_CONFIG_DEBUG
-#define NW_DEBUG_BYID(loggerID, format, ...) NewWorld::Debug::Debug\
+#define NW_DEBUG_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Debug\
 	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
-#define NW_INFO_BYID(loggerID, format, ...) NewWorld::Debug::Info\
+#define NW_INFO_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Info\
 	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
-#define NW_WARN_BYID(loggerID, format, ...) NewWorld::Debug::Warn\
+#define NW_WARN_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Warn\
 	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
-#define NW_ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Error\
+#define NW_ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Error\
 	(NW_GET_ENGINE_LOGGER_NAME(loggerID)_NAME, NW_GET_ENGINE_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 
-#define DEBUG_BYID(loggerID, format, ...) NewWorld::Debug::Debug\
+#define DEBUG_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Debug\
 	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
-#define INFO_BYID(loggerID, format, ...) NewWorld::Debug::Info\
+#define INFO_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Info\
 	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
-#define WARN_BYID(loggerID, format, ...) NewWorld::Debug::Warn\
+#define WARN_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Warn\
 	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
-#define ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Error\
+#define ERROR_BYID(loggerID, format, ...) NewWorld::Debug::Logger::Error\
 	(NW_GET_LOGGER_NAME(loggerID)_NAME, NW_GET_LOGGER_NAME(loggerID)_DISPLAY_LEVEL, format, ##__VA_ARGS__)
 #else
 #define NW_DEBUG_BYID(loggerID, format, ...)
