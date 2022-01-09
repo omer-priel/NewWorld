@@ -89,8 +89,11 @@ namespace Sandbox::Tests
 		uint unum2 = 1;
 		ERROR(TESTS_LOGGER, "{} {}", unum2, num2);
 
-		Vector3 v(1, 1, 1);
-		ERROR(TESTS_LOGGER, "v: {}", v);
+		Vector3 v(1.5f, 1, 331.11145f);
+		ERROR(TESTS_LOGGER, "v : {}", v);
+
+		Vector3 v2(1.7, 0, 111.12345f);
+		ERROR(TESTS_LOGGER, "v2: {}", v2);
 	}
 	
 	void TestsRoot()

@@ -4,6 +4,7 @@
 #include "NewWorld/DataTypes/Type.h"
 #include "NewWorld/DataTypes/Collections/Array.h"
 
+#include <sstream>
 #include <string>
 #include <format>
 
@@ -16,8 +17,6 @@
 #include "NewWorld/Math/Matrix2.h"
 #include "NewWorld/Math/Matrix3.h"
 #include "NewWorld/Math/Matrix4.h"
-
-#include <iostream>
 
 namespace NewWorld
 {
@@ -41,7 +40,6 @@ namespace NewWorld::DataTypes::Collections
 		template <typename T>
 		static String ConverToString(T value)
 		{
-			std::cout << typeid(T).name();
 			throw "Error";
 		}
 
@@ -115,7 +113,29 @@ namespace NewWorld::DataTypes::Collections
 		template <>
 		static String ConverToString(float value)
 		{
-			return String(std::to_string(value).c_str());
+			// Remove the zeros before the first numbers
+			String str = String(std::to_string(value).c_str());
+			int firstNumber = str.GetLength() - 1;
+			while (firstNumber > 2 && str[firstNumber] == '0')
+			{
+				firstNumber--;
+			}
+
+			return str.Substring(0, firstNumber+1);
+		}
+
+		template <>
+		static String ConverToString(double value)
+		{
+			// Remove the zeros before the first numbers
+			String str = String(std::to_string(value).c_str());
+			int firstNumber = str.GetLength() - 1;
+			while (firstNumber > 2 && str[firstNumber] == '0')
+			{
+				firstNumber--;
+			}
+
+			return str.Substring(0, firstNumber + 1);
 		}
 		
 		// TEMP: Enums
@@ -129,22 +149,19 @@ namespace NewWorld::DataTypes::Collections
 		template <>
 		static String ConverToString(Vector2 value)
 		{
-			return String("(0,0)");
-			//return String::Format("({}, {})", value.x, value.y);
+			return String::Format("({}, {})", value.x, value.y);
 		}
 		
 		template <>
 		static String ConverToString(Vector3 value)
 		{
-			return String("(0,0,0)");
-			//return String::Format("({}, {}, {})", value.x, value.y, value.z);
+			return String::Format("({}, {}, {})", value.x, value.y, value.z);
 		}
 
 		template <>
 		static String ConverToString(Vector4 value)
 		{
-			return String("(0,0,0,0)");
-			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
+			return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
 		}
 		
 		template <>
@@ -341,6 +358,25 @@ namespace NewWorld::DataTypes::Collections
 				}
 			}
 			return -1;
+		}
+
+		String Substring(SizeT index) const
+		{
+			return Substring(index, GetLength() - index);
+		}
+		
+		String Substring(SizeT index, SizeT count) const
+		{
+			if (count == 0 || index >= GetLength())
+			{
+				return String("");
+			}
+
+			char* ret = new char[count+1];
+			std::memcpy(ret, m_Value.c_str() + index, count);
+			ret[count] = '\0';
+
+			return String(ret);
 		}
 	};
 
