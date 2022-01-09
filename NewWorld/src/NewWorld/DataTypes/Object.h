@@ -8,7 +8,7 @@ namespace NewWorld::DataTypes
 {
 	class Object : public DataTypes::IObject
 	{
-	NW_CLASS(Object, NewWorld::DataTypes)
+	NW_CLASS(NewWorld::DataTypes, Object)
 	
 	// Override
 	public:

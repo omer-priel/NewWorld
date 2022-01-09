@@ -8,23 +8,26 @@ workspace "NewWorld"
 		"Release"
 	}
 
-outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+OutputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 DependenciesDir = "Dependencies"
 
 group "Dependencies"
     include "./Dependencies.build"
 group ""
 
+ProjectSettings = {}
+ProjectSettings["LoggersCount"] = "2"
+
 project "NewWorld"
 	location "NewWorld"
 	icon "Logo.ico"
 	kind "StaticLib"
 	language "C++"
-	cppdialect "C++17"
+	cppdialect "C++20"
 	staticruntime "on"
 
-	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
-	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
+	targetdir ("bin/" .. OutputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. OutputDir .. "/%{prj.name}")
 
 	pchheader "nwpch.h"
 	pchsource "NewWorld/src/nwpch.cpp"
@@ -48,6 +51,8 @@ project "NewWorld"
 		"opengl32.lib"
 	}
 
+    defines {"NW_SETTINGS_LOGGERS_COUNT=%{ProjectSettings.LoggersCount}" }
+
 	filter "system:windows"
 		defines "NW_PLATFORM_WINDOWS"
 		systemversion "latest"
@@ -67,11 +72,11 @@ project "Sandbox"
 	icon "Logo.ico"
 	kind "ConsoleApp"
 	language "C++"
-	cppdialect "C++17"
+	cppdialect "C++20"
 	staticruntime "on"
 
-	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
-	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
+	targetdir ("bin/" .. OutputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. OutputDir .. "/%{prj.name}")
 
 	files
 	{
@@ -89,6 +94,8 @@ project "Sandbox"
 	{
 		"NewWorld"
 	}
+
+    defines {"NW_SETTINGS_LOGGERS_COUNT=%{ProjectSettings.LoggersCount}" }
 
 	filter "system:windows"
 		defines "NW_PLATFORM_WINDOWS"

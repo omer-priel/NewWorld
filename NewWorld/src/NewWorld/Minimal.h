@@ -15,7 +15,7 @@
 #include "NewWorld/DataTypes/Memory/SharedPointer.h"
 #include "NewWorld/DataTypes/Collections/Array.h"
 #include "NewWorld/DataTypes/Collections/DynamicArray.h"
-
+#include "NewWorld/DataTypes/Time/Time.h"
 namespace NewWorld
 {
 	using Byte = DataTypes::Byte;
@@ -32,13 +32,15 @@ namespace NewWorld
     using RawPointer = DataTypes::Memory::RawPointer<T>;
 	template <typename T>
 	using ScopePointer = DataTypes::Memory::ScopePointer<T>;
-	template <typename T>
-	using SharedPointer = DataTypes::Memory::SharedPointer<T>;
+	template <typename T, const bool NULLABLE = false>
+	using SharedPointer = DataTypes::Memory::SharedPointer<T, NULLABLE>;
 
 	template <typename T, const SizeT LENGTH>
 	using Array = DataTypes::Collections::Array<T, LENGTH>;
 	template <typename T>
 	using DynamicArray = DataTypes::Collections::DynamicArray<T>;
+
+	using Time = DataTypes::Time::Time;
 }
 
 // Math
@@ -61,5 +63,10 @@ namespace NewWorld
 	using Matrix4 = Math::Matrix4;
 }
 
+// Files
+#include "NewWorld/Files/File.h"
+#include "NewWorld/Files/Formats/Json.h"
+
 // Debug
 #include "NewWorld/Debug/Logger.h"
+#include "NewWorld/Debug/ProfileBlock.h"

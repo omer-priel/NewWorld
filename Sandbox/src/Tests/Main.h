@@ -1,18 +1,14 @@
 #include <NewWorld.h>
 #include <NewWorld/Math/Vector2.h>
 
+#include "Settings.h"
 #include "Group.h"
 
 namespace Sandbox::Tests
-{
-
+{	
 	void TestCore()
 	{
-		using namespace NewWorld;
-
-		{
-			NW_DEBUG("IDs: ", NewWorld::DataTypes::Build::c_LastTypeId);
-		}
+		DEBUG(TESTS_LOGGER , "IDs: {}", NewWorld::DataTypes::Build::c_LastTypeId);
 	}
 
 	void Test1()
@@ -55,15 +51,23 @@ namespace Sandbox::Tests
 			world->AddSubGroup(enemies);
 
 			world->Print();
-			INFO(world);
+			INFO(TESTS_LOGGER, "{}", world);
 		}
 	}
+	
+	void Test2()
+	{
+		using namespace NewWorld;
 
+		
+	}
+	
 	void TestsRoot()
 	{
 		TestCore();
 
 		Test1();
+		Test2();
 
 		system("pause");
 	}

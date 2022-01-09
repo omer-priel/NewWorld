@@ -1,12 +1,17 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/Minimal.h"
 
 namespace NewWorld
 {
 	class Application : public Object
 	{
-	NW_CLASS(Application, NewWorld)
+	NW_CLASS(NewWorld, Application)
+
+		// Static
+	public:
+		static RawPointer<Application> s_Application;
+		static inline Application& GetApplication() { return *s_Application; }
 
 		// Members
 	private:
@@ -14,7 +19,10 @@ namespace NewWorld
 
 	public:
 		Application()
-			: m_Running(false) {}
+			: m_Running(false)
+		{
+			s_Application = this;
+		}
 
 		// Getters
 	public:
@@ -36,4 +44,6 @@ namespace NewWorld
 			}
 		}
 	};
+
+	RawPointer<Application> Application::s_Application = nullptr;
 }

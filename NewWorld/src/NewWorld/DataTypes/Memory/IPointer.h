@@ -7,7 +7,7 @@ namespace NewWorld::DataTypes::Memory
 	template<typename T>
 	class IPointer abstract : public Object
 	{
-	NW_CLASS(IPointer<T>, NewWorld::DataTypes::Memory)
+	NW_CLASS(NewWorld::DataTypes::Memory, IPointer<T>)
 
 		// Pure virtual functions
 	public:

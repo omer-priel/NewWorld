@@ -1,5 +1,7 @@
 #include <NewWorld.h>
 
+#include "Settings.h"
+
 namespace Sandbox::Tests
 {
 	static NewWorld::uint s_LastID = 0;
@@ -7,7 +9,7 @@ namespace Sandbox::Tests
 
 	class Entity : public NewWorld::Object
 	{
-		NW_CLASS(Entity, Sandbox::Tests)
+		NW_CLASS(Sandbox::Tests, Entity)
 
 	public:
 		using String = NewWorld::String; //const char*;
@@ -24,7 +26,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, "{} ({}) created", m_Name, m_ID);
 			}
 		}
 
@@ -34,7 +36,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, "{} ({}) created", m_Name, m_ID);
 			}
 		}
 
@@ -43,7 +45,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") created");
+				DEBUG(MAIN_LOGGER, "{} ({}) created", m_Name, m_ID);
 			}
 		}
 
@@ -52,7 +54,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") coped");
+				DEBUG(MAIN_LOGGER, "{} ({}) coped", m_Name, m_ID);
 			}
 		}
 
@@ -60,7 +62,7 @@ namespace Sandbox::Tests
 		{
 			if (s_DebugMode)
 			{
-				DEBUG(m_Name, " (", m_ID, ") destroyed");
+				DEBUG(MAIN_LOGGER, "{} ({}) destroyed", m_Name, m_ID);
 			}
 		}
 
@@ -68,15 +70,14 @@ namespace Sandbox::Tests
 	public:
 		void Print()
 		{
-			INFO("{ ID: ", m_ID, " Name: ", m_Name, ", Location : (", m_Location.x, ", ", m_Location.y, ", ", m_Location.z, ") }");
+			INFO(MAIN_LOGGER, "{ ID: {} Name: {}, Location: {} }", m_ID, m_Name, m_Location);
 		}
 
 		// Overide
 	public:
 		NewWorld::String ToString() const override
 		{
-			return ("{ Name: " + m_Name + ", Location : (" + std::to_string(m_Location.x).c_str() + ", "
-				+ std::to_string(m_Location.y).c_str() + ", " + std::to_string(m_Location.z).c_str() + ") }");
+			return String::Format("{ ID: {} Name: {}, Location: {} }", m_ID, m_Name, m_Location);
 		}
 	};
 }

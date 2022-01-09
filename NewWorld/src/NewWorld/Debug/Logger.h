@@ -1,183 +1,157 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+#include "NewWorld/Debug/Constants.h"
+#include "NewWorld/Debug/LogLevel.h"
 
 #include <iostream>
 
+#if NW_PLATFORM_WINDOWS
+#include <windows.h>
+#endif
+
 namespace NewWorld::Debug
-{	
-	template<typename... Types>
-	void Debug(const char* system, const Types&... args)
+{
+	// This is Static class
+	class Logger : public Object
 	{
-		Log("[DEBUG] ", system, ": ");
-		Log(args...);
-		Log("\n");
-	}
-	
-	template<typename... Types>
-	void Info(const char* system, const Types&... args)
-	{
-		Log("[INFO] ", system, ": ");
-		Log(args...);
-		Log("\n");
-	}
+		NW_CLASS(NewWorld::Debug, Logger)
 
-	template<typename... Types>
-	void Warn(const char* system, const Types&... args)
-	{
-		Log("[WARN] ", system, ": ");
-		Log(args...);
-		Log("\n");
-	}
-
-	template<typename... Types>
-	void Error(const char* system, const Types&... args)
-	{
-		Log("[ERROR] ", system, ": ");
-		Log(args...);
-		Log("\n");
-	}
-
-	// Log Types
-	void Log() { }
-
-	template <typename... Types>
-	void Log(char value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(bool value, const Types&... args)
-	{
-		Log((value) ? "true" : "false", args...);
-	}
-	
-	template <typename... Types>
-	void Log(Byte value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(short value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(ushort value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(int value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(uint value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(Long value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(Ulong value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(float value, const Types&... args)
-	{
-		std::cout << value;
-		Log(args...);
-	}
-
-	//TEMP: Vector2 Vector3 Vector4
-	template <typename... Types>
-	void Log(Vector2 value, const Types&... args)
-	{
-		std::cout << "(" << value.x << ", " << value.y << ")";
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(Vector3 value, const Types&... args)
-	{
-		std::cout << "(" << value.x << ", " << value.y << ", " << value.z << ")";
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(Vector4 value, const Types&... args)
-	{
-		std::cout << "(" << value.x << ", " << value.y << ", " << value.z << ", " << value.w << ")";
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(const char* str, const Types&... args)
-	{
-		std::cout << str;
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(const String& str, const Types&... args)
-	{
-		std::cout.write(str.GetPointer(), str.GetLength());
-		Log(args...);
-	}
-
-	template <typename... Types>
-	void Log(const IObject& obj, const Types&... args)
-	{
-		Log(obj.ToString(), args...);
-	}
-
-	template <typename T, typename... Types>
-	void Log(RawPointer<T> ptr, const Types&... args)
-	{
-		if (ptr == nullptr)
+	public:
+		// Log Types
+		template<typename T>
+		static void Debug(const char* loggerName, const LogLevel displayLevel, const T& arg)
 		{
-			Log("null");
-		}
-		else
-		{
-			Log((const T&)*ptr);
+			if (displayLevel >= LogLevel::Debug)
+			{
+				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now(), loggerName, arg);
+				Logger::Log(log, LogLevel::Debug);
+			}
 		}
 
-		Log(args...);
-	}
+		template<typename... Types>
+		static void Debug(const char* loggerName, const LogLevel displayLevel, const String& format, const Types&... args)
+		{
+			if (displayLevel >= LogLevel::Debug)
+			{
+				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				Logger::Log(log, LogLevel::Debug);
+			}
+		}
 
-	template <typename T, typename... Types>
-	void Log(const T& obj, const Types&... args)
-	{
-		if (std::is_base_of<IObject, T>::value)
+		template<typename T>
+		static void Info(const char* loggerName, const LogLevel displayLevel, const T& arg)
 		{
-			Log((const IObject&)obj);
-			Log(args...);
+			if (displayLevel >= LogLevel::Info)
+			{
+				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, arg);
+				Logger::Log(log, LogLevel::Info);
+			}
 		}
-		else
+
+		template<typename... Types>
+		static void Info(const char* loggerName, const LogLevel displayLevel, const String& format, const Types&... args)
 		{
-			throw "ERROR";
+			if (displayLevel >= LogLevel::Info)
+			{
+				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				Logger::Log(log, LogLevel::Info);
+			}
 		}
+
+		template<typename T>
+		static void Warn(const char* loggerName, const LogLevel displayLevel, const T& arg)
+		{
+			if (displayLevel >= LogLevel::Warning)
+			{
+				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, arg);
+				Logger::Log(log, LogLevel::Warning);
+			}
+		}
+
+		template<typename... Types>
+		static void Warn(const char* loggerName, const LogLevel displayLevel, const String& format, const Types&... args)
+		{
+			if (displayLevel >= LogLevel::Warning)
+			{
+				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				Logger::Log(log, LogLevel::Warning);
+			}
+		}
+
+		template<typename T>
+		static void Error(const char* loggerName, const LogLevel displayLevel, const T& arg)
+		{
+			if (displayLevel >= LogLevel::Error)
+			{
+				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, arg);
+				Logger::Log(log, LogLevel::Error);
+			}
+		}
+
+		template<typename... Types>
+		static void Error(const char* loggerName, const LogLevel displayLevel, const String& format, const Types&... args)
+		{
+			if (displayLevel >= LogLevel::Error)
+			{
+				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				Logger::Log(log, LogLevel::Error);
+			}
+		}
+
+		template<typename T>
+		static void Critical(const char* loggerName, const LogLevel displayLevel, const T& arg)
+		{
+			if (displayLevel >= LogLevel::Critical)
+			{
+				String log = String::Format("{} [CRITICAL] {}: {}\n", Time::Now(), loggerName, arg);
+				Logger::Log(log, LogLevel::Critical);
+			}
+		}
+
+		template<typename... Types>
+		static void Critical(const char* loggerName, const LogLevel displayLevel, const String& format, const Types&... args)
+		{
+			if (displayLevel >= LogLevel::Critical)
+			{
+				String log = String::Format("{} [CRITICAL] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				Logger::Log(log, LogLevel::Critical);
+			}
+		}
+
+	private:
+		static inline void Log(const String& log, const LogLevel level)
+		{
+			Logger::SetColor(level);
+			std::cout.write(log.GetPointer(), log.GetLength());
+			// Save Log
+		}
+
+		static inline void SetColor(const LogLevel level)
+		{
+#if NW_PLATFORM_WINDOWS
+			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+			switch (level)
+			{
+			case LogLevel::Critical:
+				SetConsoleTextAttribute(hConsole, 0xF4); // Dark Red on White
+				break;
+			case LogLevel::Error:
+				SetConsoleTextAttribute(hConsole, 0x04); // Dark Red
+				break;
+			case LogLevel::Warning:
+				SetConsoleTextAttribute(hConsole, 0x06); // Orange
+				break;
+			case LogLevel::Info:
+				SetConsoleTextAttribute(hConsole, 0x02); // Dark Green
+				break;
+			case LogLevel::Debug:
+				SetConsoleTextAttribute(hConsole, 0x0F); // White
+				break;
+		}
+#elif NW_PLATFORM_LINUX
+#error TODO
+#endif
 	}
+	};
 }
