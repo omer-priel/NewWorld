@@ -98,6 +98,7 @@ namespace NewWorld::Debug
 	private:
 		static inline void Log(const String& log)
 		{
+			// TODO: Color
 			std::cout.write(log.GetPointer(), log.GetLength());
 		}
 	};
