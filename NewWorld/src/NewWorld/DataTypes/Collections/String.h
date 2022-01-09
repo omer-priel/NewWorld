@@ -127,23 +127,23 @@ namespace NewWorld::DataTypes::Collections
 		
 		// TEMP: Vector2 Vector3 Vector4
 		template <>
-		static String ConverToString(const Vector2& value)
+		static String ConverToString(Vector2 value)
 		{
-			return "(0,0)";
+			return String("(0,0)");
 			//return String::Format("({}, {})", value.x, value.y);
 		}
 		
 		template <>
-		static String ConverToString(const Vector3& value)
+		static String ConverToString(Vector3 value)
 		{
-			return "(0,0,0)";
-			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z);
+			return String("(0,0,0)");
+			//return String::Format("({}, {}, {})", value.x, value.y, value.z);
 		}
 
 		template <>
-		static String ConverToString(const Vector4& value)
+		static String ConverToString(Vector4 value)
 		{
-			return "(0,0,0,0)";
+			return String("(0,0,0,0)");
 			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
 		}
 		

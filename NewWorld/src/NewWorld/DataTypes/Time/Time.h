@@ -66,7 +66,7 @@ namespace NewWorld::DataTypes::Time
 			if (withMillisecond)
 			{
 				String millisecond = String::ConverToString(GetMillisecond());
-				if (millisecond.GetLength() == 1) {
+				while (millisecond.GetLength() < 3) {
 					millisecond = "0" + millisecond;
 				}
 
@@ -74,7 +74,7 @@ namespace NewWorld::DataTypes::Time
 			}
 			else
 			{
-				return String::Format("{}:{}:{}:{}", hour, minute, secound);
+				return String::Format("{}:{}:{}", hour, minute, secound);
 			}
 		}
 
