@@ -17,6 +17,8 @@
 #include "NewWorld/Math/Matrix3.h"
 #include "NewWorld/Math/Matrix4.h"
 
+#include <iostream>
+
 namespace NewWorld
 {
 	using Vector2 = Math::Vector2;
@@ -37,114 +39,14 @@ namespace NewWorld::DataTypes::Collections
 		// Static Convert To String
 	public:
 		template <typename T>
-		static String ConverToString(const T& value) { throw "Error"; }
-
-		static String ConverToString() { return ""; }
-		
-		template <>
-		static String ConverToString<char>(const char& value)
+		static String ConverToString(T value)
 		{
-			return String(std::to_string(value).c_str());
+			std::cout << typeid(T).name();
+			throw "Error";
 		}
 
-		template <>
-		static String ConverToString<Byte>(const Byte& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-		
-		template <>
-		static String ConverToString<bool>(const bool& value)
-		{
-			return String((value) ? "true" : "false");
-		}
-		
-		template <>
-		static String ConverToString<short>(const short& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-
-		template <>
-		static String ConverToString<ushort>(const ushort& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-		
-		template <>
-		static String ConverToString<int>(const int& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-
-		template <>
-		static String ConverToString<uint>(const uint& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-		
-		template <>
-		static String ConverToString<Long>(const Long& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-		
-		template <>
-		static String ConverToString<Ulong>(const Ulong& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-		
-		template <>
-		static String ConverToString<float>(const float& value)
-		{
-			return String(std::to_string(value).c_str());
-		}
-		
-		// TEMP: Enums
-		template <>
-		static String ConverToString<Debug::LogLevel>(const Debug::LogLevel& value)
-		{
-			return ConverToString<Byte>((Byte)value);
-		}
-		
-		// TEMP: Vector2 Vector3 Vector4
-		template <>
-		static String ConverToString<Vector2>(const Vector2& value)
-		{
-			return "(0,0)";
-			//return String::Format("({}, {})", value.x, value.y);
-		}
-		
-		template <>
-		static String ConverToString<Vector3>(const Vector3& value)
-		{
-			return "(0,0,0)";
-			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z);
-		}
-
-		template <>
-		static String ConverToString<Vector4>(const Vector4& value)
-		{
-			return "(0,0,0,0)";
-			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
-		}
-		
-		template <>
-		static String ConverToString<String>(const String& str)
-		{
-			return str;
-		}
-		
-		template <>
-		static String ConverToString<IObject>(const IObject& obj)
-		{
-			return obj.ToString();
-		}
-
-		/*
 		template <typename T>
-		static String ConverToString<T*>(const T*& ptr)
+		static String ConverToString(T* ptr)
 		{
 			if (ptr == nullptr)
 			{
@@ -152,10 +54,117 @@ namespace NewWorld::DataTypes::Collections
 			}
 			else
 			{
-				return ConverToString((const T&)*ptr);
+				return ConverToString(*ptr);
 			}
-		}*/
+		}
 		
+		template <>
+		static String ConverToString(char value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+
+		template <>
+		static String ConverToString(Byte value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+		
+		template <>
+		static String ConverToString(bool value)
+		{
+			return String((value) ? "true" : "false");
+		}
+		
+		template <>
+		static String ConverToString(short value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+
+		template <>
+		static String ConverToString(ushort value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+		
+		template <>
+		static String ConverToString(int value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+
+		template <>
+		static String ConverToString(uint value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+		
+		template <>
+		static String ConverToString(Long value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+		
+		template <>
+		static String ConverToString(Ulong value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+		
+		template <>
+		static String ConverToString(float value)
+		{
+			return String(std::to_string(value).c_str());
+		}
+		
+		// TEMP: Enums
+		template <>
+		static String ConverToString(const Debug::LogLevel& value)
+		{
+			return ConverToString((Byte)value);
+		}
+		
+		// TEMP: Vector2 Vector3 Vector4
+		template <>
+		static String ConverToString(const Vector2& value)
+		{
+			return "(0,0)";
+			//return String::Format("({}, {})", value.x, value.y);
+		}
+		
+		template <>
+		static String ConverToString(const Vector3& value)
+		{
+			return "(0,0,0)";
+			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z);
+		}
+
+		template <>
+		static String ConverToString(const Vector4& value)
+		{
+			return "(0,0,0,0)";
+			//return String::Format("({}, {}, {}, {})", value.x, value.y, value.z, value.w);
+		}
+		
+		template <>
+		static String ConverToString(const String& str)
+		{
+			return str;
+		}
+
+		template <>
+		static String ConverToString(const char* str)
+		{
+			return String(str);
+		}
+		
+		template <>
+		static String ConverToString(const IObject& obj)
+		{
+			return obj.ToString();
+		}
+
 		template<typename... Types>
 		static Array<String, (SizeT)sizeof...(Types)> ConverToStringArray(const Types&... args)
 		{
@@ -177,18 +186,12 @@ namespace NewWorld::DataTypes::Collections
 		static void ConverToStringLoader(Array<String, LENGTH>& arr, const T& arg, const Types&... args)
 		{
 			SizeT index = LENGTH - ((SizeT)sizeof...(Types)) - 1;
-			if (std::is_same<const char*, T>::value)
+			if (std::is_base_of<IObject, T>::value)
 			{
-				arr[index] = String(arg);
-			}
-			else if (std::is_base_of<IObject, T>::value)
-			{
-				arr[index] = "T";
-				//arr[index] = ConverToString((const IObject&)arg);
+				arr[index] = ((const IObject&)arg).ToString();
 			}
 			else
 			{
-				arr[index] = "F";
 				arr[index] = String::ConverToString(arg);
 			}
 

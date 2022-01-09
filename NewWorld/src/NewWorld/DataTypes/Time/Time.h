@@ -49,13 +49,32 @@ namespace NewWorld::DataTypes::Time
 
 		String ToString(bool withMillisecond) const
 		{
+			String hour = String::ConverToString(GetHour());
+			String minute = String::ConverToString(GetMinute());
+			String secound = String::ConverToString(GetSecound());
+
+			if (hour.GetLength() == 1) {
+				hour = "0" + hour;
+			}
+			if (minute.GetLength() == 1) {
+				minute = "0" + minute;
+			}
+			if (secound.GetLength() == 1) {
+				secound = "0" + secound;
+			}
+
 			if (withMillisecond)
 			{
-				return String::Format("{}:{}:{}:{}", GetHour(), GetMinute(), GetSecound(), GetMillisecond());
+				String millisecond = String::ConverToString(GetMillisecond());
+				if (millisecond.GetLength() == 1) {
+					millisecond = "0" + millisecond;
+				}
+
+				return String::Format("{}:{}:{}:{}", hour, minute, secound, millisecond);
 			}
 			else
 			{
-				return String::Format("{}:{}:{}", GetHour(), GetMinute(), GetSecound());
+				return String::Format("{}:{}:{}:{}", hour, minute, secound);
 			}
 		}
 
