@@ -6,7 +6,7 @@ namespace NewWorld::Files::Formats
 {
 	class Json : public Object
 	{
-		NW_CLASS(NewWorld::Files::Formats, Json)
+	NW_CLASS(NewWorld::Files::Formats, Json)
 
 	public:
 		// TODO: Need File Class

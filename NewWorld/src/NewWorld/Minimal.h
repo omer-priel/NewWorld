@@ -64,7 +64,7 @@ namespace NewWorld
 }
 
 // Files
-#include "NewWorld/Files/File.h"
+#include "NewWorld/Files/FileManger.h"
 #include "NewWorld/Files/Formats/Json.h"
 
 // Debug

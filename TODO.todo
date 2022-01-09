@@ -125,6 +125,16 @@
                           "level": "default",
                           "done": false
                         }
+                      },
+                      {
+                        "key": 1641747738113,
+                        "children": [],
+                        "todo": {
+                          "content": "Create ,log file on startup",
+                          "id": 1641747738113,
+                          "level": "default",
+                          "done": false
+                        }
                       }
                     ],
                     "todo": {
