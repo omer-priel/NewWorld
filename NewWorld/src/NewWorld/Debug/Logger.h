@@ -21,7 +21,7 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Debug)
 			{
 				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now(), loggerName, arg);
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
 		}
 
@@ -31,7 +31,7 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Debug)
 			{
 				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Info)
 			{
 				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, arg);
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
 		}
 
@@ -51,7 +51,7 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Info)
 			{
 				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Warning)
 			{
 				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, arg);
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
 		}
 
@@ -71,7 +71,7 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Warning)
 			{
 				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
 		}
 
@@ -81,7 +81,7 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Error)
 			{
 				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, arg);
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
 		}
 
@@ -91,8 +91,14 @@ namespace NewWorld::Debug
 			if (displayLevel >= LogLevel::Error)
 			{
 				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
-				std::cout.write(log.GetPointer(), log.GetLength());
+				Logger::Log(log);
 			}
+		}
+
+	private:
+		static inline void Log(const String& log)
+		{
+			std::cout.write(log.GetPointer(), log.GetLength());
 		}
 	};
 }
