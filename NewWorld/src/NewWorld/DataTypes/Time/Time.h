@@ -23,6 +23,7 @@ namespace NewWorld::DataTypes::Time
 			using namespace std::chrono;
 
 			Long millisec_since_epoch = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			millisec_since_epoch += 2 * TICKS_IN_HOUR; // Convert to Israel Time Zone 
 			return Time(millisec_since_epoch % TICKS_IN_DAY);
 		}
 
