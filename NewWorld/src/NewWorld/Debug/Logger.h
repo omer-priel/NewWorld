@@ -40,7 +40,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Info)
 			{
-				String log = String::Format("{} [INFO] {}: {}\n", Time::Now(), loggerName, arg);
+				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, arg);
 				std::cout.write(log.GetPointer(), log.GetLength());
 			}
 		}
@@ -50,7 +50,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Info)
 			{
-				String log = String::Format("{} [INFO] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
 				std::cout.write(log.GetPointer(), log.GetLength());
 			}
 		}
@@ -60,7 +60,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Warning)
 			{
-				String log = String::Format("{} [WARN] {}: {}\n", Time::Now(), loggerName, arg);
+				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, arg);
 				std::cout.write(log.GetPointer(), log.GetLength());
 			}
 		}
@@ -70,7 +70,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Warning)
 			{
-				String log = String::Format("{} [WARN] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
 				std::cout.write(log.GetPointer(), log.GetLength());
 			}
 		}

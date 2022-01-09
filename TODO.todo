@@ -24,12 +24,12 @@
                     "key": 1629973943751,
                     "children": [
                       {
-                        "key": 1629974126023,
+                        "key": 1641206081108,
                         "children": [],
                         "todo": {
-                          "content": "Message Format",
-                          "id": 1629974126023,
-                          "level": "secondary",
+                          "content": "Log with color",
+                          "id": 1641206081108,
+                          "level": "default",
                           "done": false
                         }
                       },
@@ -40,26 +40,6 @@
                           "content": "Save in .log format [File System]",
                           "id": 1629974174127,
                           "level": "secondary",
-                          "done": false
-                        }
-                      },
-                      {
-                        "key": 1641206124966,
-                        "children": [],
-                        "todo": {
-                          "content": "Log with time",
-                          "id": 1641206124966,
-                          "level": "default",
-                          "done": false
-                        }
-                      },
-                      {
-                        "key": 1641206081108,
-                        "children": [],
-                        "todo": {
-                          "content": "Log with color",
-                          "id": 1641206081108,
-                          "level": "default",
                           "done": false
                         }
                       }

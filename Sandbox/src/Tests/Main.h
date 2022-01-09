@@ -59,47 +59,28 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		for (uint i = 0; i < 5; i++)
+		for (uint i = 0; i < 10; i++)
 		{
-			NW_DEBUG(NW_LOGGER_CORE, i);
+			DEBUG(MAIN_LOGGER, i);
 			DEBUG(TESTS_LOGGER, i);
-			NW_INFO(NW_LOGGER_CORE, i);
+			INFO(MAIN_LOGGER, i);
 			INFO(TESTS_LOGGER, i);
-			NW_WARN(NW_LOGGER_CORE, i);
+			WARN(MAIN_LOGGER, i);
 			WARN(TESTS_LOGGER, i);
-			NW_ERROR(NW_LOGGER_CORE, i);
+			ERROR(MAIN_LOGGER, i);
 			ERROR(TESTS_LOGGER, i);
+			
+			NW_DEBUG(NW_LOGGER_CORE, i);
+			NW_DEBUG(NW_LOGGER_GRAPHICS, i);
+			NW_INFO(NW_LOGGER_CORE, i);
+			NW_INFO(NW_LOGGER_GRAPHICS, i);
+			NW_WARN(NW_LOGGER_CORE, i);
+			NW_WARN(NW_LOGGER_GRAPHICS, i);
+			NW_ERROR(NW_LOGGER_CORE, i);
+			NW_ERROR(NW_LOGGER_GRAPHICS, i);
+
+			DEBUG(MAIN_LOGGER, "-------------------");
 		}
-
-		Time t1(1, 0, 0);
-		Time t2(1, 30, 0);
-		Time t3(2, 45, 30);
-
-		ERROR(TESTS_LOGGER, t1);
-		ERROR(TESTS_LOGGER, t2);
-		ERROR(TESTS_LOGGER, t3);
-
-		ERROR(TESTS_LOGGER, Time::Now());
-
-		short num = -1;
-		ushort unum = 1;
-		ERROR(TESTS_LOGGER, "{} {}", unum, num);
-
-		int num2 = -1;
-		uint unum2 = 1;
-		ERROR(TESTS_LOGGER, "{} {}", unum2, num2);
-
-		Vector2 v2(1.5f, 1);
-		ERROR(TESTS_LOGGER, "v2  : {}", v2);
-
-		Vector3 v31(1.5f, 1, 331.11145f);
-		ERROR(TESTS_LOGGER, "v31 : {}", v31);
-
-		Vector3 v32(1.7, 0, 111.12345f);
-		ERROR(TESTS_LOGGER, "v32: {}", v32);
-
-		Vector4 v4(0, 0.001, 1.0f, 12345.1);
-		ERROR(TESTS_LOGGER, "v4 : {}", v4);
 	}
 	
 	void TestsRoot()
