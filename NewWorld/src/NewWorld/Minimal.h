@@ -63,5 +63,10 @@ namespace NewWorld
 	using Matrix4 = Math::Matrix4;
 }
 
+// Files
+#include "NewWorld/Files/File.h"
+#include "NewWorld/Files/Formats/Json.h"
+
 // Debug
 #include "NewWorld/Debug/Logger.h"
+#include "NewWorld/Debug/ProfileBlock.h"
