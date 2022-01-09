@@ -8,7 +8,7 @@ namespace Sandbox::Tests
 {	
 	void TestCore()
 	{
-		DEBUG(MAIN_LOGGER , "IDs: {}", NewWorld::DataTypes::Build::c_LastTypeId);
+		DEBUG(TESTS_LOGGER , "IDs: {}", NewWorld::DataTypes::Build::c_LastTypeId);
 	}
 
 	void Test1()

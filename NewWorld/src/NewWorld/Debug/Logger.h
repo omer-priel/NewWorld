@@ -124,6 +124,7 @@ namespace NewWorld::Debug
 		{
 			Logger::SetColor(level);
 			std::cout.write(log.GetPointer(), log.GetLength());
+			// Save Log
 		}
 
 		static inline void SetColor(const LogLevel level)
