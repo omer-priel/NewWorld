@@ -24,16 +24,6 @@
                     "key": 1629973943751,
                     "children": [
                       {
-                        "key": 1641206081108,
-                        "children": [],
-                        "todo": {
-                          "content": "Log with color",
-                          "id": 1641206081108,
-                          "level": "default",
-                          "done": false
-                        }
-                      },
-                      {
                         "key": 1629974174127,
                         "children": [],
                         "todo": {
@@ -47,7 +37,7 @@
                     "todo": {
                       "content": "Logger class",
                       "id": 1629973943751,
-                      "level": "warning",
+                      "level": "default",
                       "done": false
                     }
                   }
