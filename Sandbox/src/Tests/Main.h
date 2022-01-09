@@ -59,32 +59,7 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		for (uint i = 0; i < 10; i++)
-		{
-			DEBUG(MAIN_LOGGER, i);
-			DEBUG(TESTS_LOGGER, i);
-			INFO(MAIN_LOGGER, i);
-			INFO(TESTS_LOGGER, i);
-			WARN(MAIN_LOGGER, i);
-			WARN(TESTS_LOGGER, i);
-			ERROR(MAIN_LOGGER, i);
-			ERROR(TESTS_LOGGER, i);
-			CRITICAL(MAIN_LOGGER, i);
-			CRITICAL(TESTS_LOGGER, i);
-			
-			NW_DEBUG(NW_LOGGER_CORE, i);
-			NW_DEBUG(NW_LOGGER_GRAPHICS, i);
-			NW_INFO(NW_LOGGER_CORE, i);
-			NW_INFO(NW_LOGGER_GRAPHICS, i);
-			NW_WARN(NW_LOGGER_CORE, i);
-			NW_WARN(NW_LOGGER_GRAPHICS, i);
-			NW_ERROR(NW_LOGGER_CORE, i);
-			NW_ERROR(NW_LOGGER_GRAPHICS, i);
-			NW_CRITICAL(NW_LOGGER_CORE, i);
-			NW_CRITICAL(NW_LOGGER_GRAPHICS, i);
-
-			DEBUG(MAIN_LOGGER, "-------------------");
-		}
+		
 	}
 	
 	void TestsRoot()

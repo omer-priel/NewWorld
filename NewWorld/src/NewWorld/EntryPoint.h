@@ -21,6 +21,8 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
+#elif NW_PLATFORM_LINUX
+#error New World do not support this Linux platform.
 #else // Other platforms
 #error New World do not support this platform.
 #endif
