@@ -11,13 +11,16 @@ namespace NewWorld::Files
 	{
 	NW_CLASS(NewWorld::Files, FileManger)
 
-			// Members
+		// Members
 	private:
 		static String m_RootDirectory;
 
-		// Setters
+		// Init
 	public:
-		// void SetRootDirectory(String path)
+		static void Initialize()
+		{
+
+		}
 
 		// Getters
 	public:

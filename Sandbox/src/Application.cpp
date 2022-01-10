@@ -16,7 +16,7 @@ namespace Sandbox
 			
 		}
 
-		void Init() override
+		void Initialize() override
 		{
 			Tests::TestsRoot();
 		}
