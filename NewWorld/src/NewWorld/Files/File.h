@@ -2,6 +2,8 @@
 
 #include "NewWorld/Minimal.h"
 
+#include <filesystem>
+
 namespace NewWorld::Files
 {
 	class File : public Object
@@ -10,6 +12,11 @@ namespace NewWorld::Files
 
 		// Static Functions
 	public:
+		static inline bool Exists(const String& path)
+		{
+			std::error_code errorCode;
+			return (std::filesystem::status(path.GetPointer(), errorCode).type()) == std::filesystem::file_type::regular;
+		}
 
 		// Members
 	private:

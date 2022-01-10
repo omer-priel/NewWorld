@@ -26,12 +26,17 @@ namespace NewWorld::Files
 
 		// Getters
 	public:
-		static String GetRootDirectory(String subPath = "")
+		static inline bool Exists(const String& path)
+		{
+			return std::filesystem::exists(path.GetPointer());
+		}
+
+		static String GetRootDirectory(const String& subPath = "")
 		{
 			return s_RootDirectory + subPath;
 		}
 
-		static String GetLogsDirectory(String subPath = "")
+		static String GetLogsDirectory(const String& subPath = "")
 		{
 			return GetRootDirectory("logs\\" + subPath);
 		}

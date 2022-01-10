@@ -60,7 +60,8 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		DEBUG(TESTS_LOGGER, "This debug log");
+		String filename = "Sandbox.exe";
+		DEBUG(TESTS_LOGGER, "The file {} {}exists.", filename, (Files::File::Exists(Files::FileManger::GetRootDirectory(filename))) ? "" : "not ");
 	}
 	
 	void TestsRoot()
