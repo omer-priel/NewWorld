@@ -14,8 +14,12 @@ namespace NewWorld::Files
 	public:
 		static inline bool Exists(const String& path)
 		{
-			std::error_code errorCode;
-			return (std::filesystem::status(path.GetPointer(), errorCode).type()) == std::filesystem::file_type::directory;
+			return std::filesystem::is_directory(path.GetPointer());
+		}
+
+		static inline bool Create(const String& path)
+		{
+			return std::filesystem::create_directory(path.GetPointer());
 		}
 	};
 }

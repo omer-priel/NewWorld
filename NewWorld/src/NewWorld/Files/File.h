@@ -3,6 +3,7 @@
 #include "NewWorld/Minimal.h"
 
 #include <filesystem>
+#include <fstream>
 
 namespace NewWorld::Files
 {
@@ -14,12 +15,26 @@ namespace NewWorld::Files
 	public:
 		static inline bool Exists(const String& path)
 		{
-			std::error_code errorCode;
-			return (std::filesystem::status(path.GetPointer(), errorCode).type()) == std::filesystem::file_type::regular;
+			return std::filesystem::is_regular_file(path.GetPointer());
 		}
 
 		// Members
 	private:
+		std::fstream m_Stream;
+		const String& m_Path;
+
+	public:
+		File(const String& path)
+			: m_Path(path)
+		{
+
+		}
+
+		File(const String& path)
+			: m_Path(path)
+		{
+
+		}
 
 		// Actions
 	public:
