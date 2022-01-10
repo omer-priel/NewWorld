@@ -9,7 +9,7 @@ namespace Sandbox::Tests
 	void TestCore()
 	{
 		DEBUG(TESTS_LOGGER, "IDs: {}", NewWorld::DataTypes::Build::c_LastTypeId);
-		DEBUG(TESTS_LOGGER, "Root Directory: {}", NewWorld::Files::FileManger::GetRootDirectory("logs\\"));
+		DEBUG(TESTS_LOGGER, "Root Directory: {}", NewWorld::Files::FileManger::GetLogsDirectory());
 	}
 
 	void Test1()

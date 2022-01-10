@@ -26,14 +26,18 @@ namespace NewWorld::Files
 
 		// Getters
 	public:
-		static const String GetRootDirectory(String subPath = "")
+		static String GetRootDirectory(String subPath = "")
 		{
 			return s_RootDirectory + subPath;
 		}
 
-		// String GetLogsDirectory()
-		// String GetTemporaryDirectory(uint& outId)
-		// String GetTemporaryDirectory(uint id)
+		static String GetLogsDirectory(String subPath = "")
+		{
+			return GetRootDirectory("logs\\" + subPath);
+		}
+
+		// static String GetTemporaryDirectory(uint& outId)
+		// static String GetTemporaryDirectory(uint id)
 	};
 
 	String FileManger::s_RootDirectory = "";
