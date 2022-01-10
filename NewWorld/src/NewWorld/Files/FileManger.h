@@ -30,6 +30,7 @@ namespace NewWorld::Files
 		{
 			return s_RootDirectory + subPath;
 		}
+
 		// String GetLogsDirectory()
 		// String GetTemporaryDirectory(uint& outId)
 		// String GetTemporaryDirectory(uint id)
