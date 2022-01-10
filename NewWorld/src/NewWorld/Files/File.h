@@ -9,16 +9,16 @@ namespace NewWorld::Files
 {
 	class File : public Object
 	{
-		NW_CLASS(NewWorld::Files, File)
+	NW_CLASS(NewWorld::Files, File)
 
-			// Static Functions
+		// Static Functions
 	public:
 		static inline bool Exists(const String& path);
 
 		static bool Delete(const String& path);
 
 		// Members
-	private:
+	protected:
 		std::fstream m_Stream;
 		SizeT m_Index = 0; // TODO: Remove this member if not nead it in in the tests.
 

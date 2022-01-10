@@ -62,6 +62,21 @@ namespace Sandbox::Tests
 
 		String filename = "Sandbox.exe";
 		DEBUG(TESTS_LOGGER, "The file {} {}exists.", filename, (Files::File::Exists(Files::FileManger::GetRootDirectory(filename))) ? "" : "not ");
+
+		String logFile = Files::FileManger::GetLogsDirectory("file.log");
+		DEBUG(TESTS_LOGGER, "Log File Path: {}", logFile);
+
+		for (uint i = 0; i < 5; i++)
+		{
+			uint id = Files::FileManger::CreateTemporaryDirectory();
+			String textPath = Files::FileManger::GetTemporaryDirectory(id, "data.txt");
+			String imagePath = Files::FileManger::GetTemporaryDirectory(id, "icon.png");
+			String folderCopedPath = Files::FileManger::GetTemporaryDirectory(id, "clone");
+
+			DEBUG(TESTS_LOGGER, "Text: {}", textPath);
+			DEBUG(TESTS_LOGGER, "Image: {}", imagePath);
+			DEBUG(TESTS_LOGGER, "Coped: {}", folderCopedPath);
+		}
 	}
 	
 	void TestsRoot()

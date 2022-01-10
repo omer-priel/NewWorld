@@ -14,6 +14,7 @@ namespace NewWorld::Files
 		// Members
 	private:
 		static String s_RootDirectory;
+		static uint s_LastTemporaryDirectoryID;
 
 		// Init
 	public:
@@ -22,6 +23,10 @@ namespace NewWorld::Files
 			String buffer(MAX_PATH);
 			GetModuleFileNameA(NULL, (char*)buffer.GetPointer(), MAX_PATH);
 			s_RootDirectory = buffer.Substring(0, buffer.FindLast('\\')+1);
+
+			// Temporary Directory
+			Directory::Delete(GetRootDirectory("temp"));
+			Directory::Create(GetRootDirectory("temp"));
 		}
 
 		// Getters
@@ -41,9 +46,19 @@ namespace NewWorld::Files
 			return GetRootDirectory("logs\\" + subPath);
 		}
 
-		// static String GetTemporaryDirectory(uint& outId)
-		// static String GetTemporaryDirectory(uint id)
-	};
+		static uint CreateTemporaryDirectory()
+		{
+			uint id = s_LastTemporaryDirectoryID;
+			s_LastTemporaryDirectoryID++;
 
-	String FileManger::s_RootDirectory = "";
+			Directory::Create(GetTemporaryDirectory((uint)id));
+			
+			return id;
+		}
+
+		static String GetTemporaryDirectory(uint id, const String& subPath = "")
+		{
+			return String::Format("{}temp\\{}\\{}", GetRootDirectory(), id, subPath);
+		}
+	};
 }
