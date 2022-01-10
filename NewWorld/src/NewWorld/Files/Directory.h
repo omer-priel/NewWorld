@@ -21,5 +21,13 @@ namespace NewWorld::Files
 		{
 			return std::filesystem::create_directory(path.GetPointer());
 		}
+
+		static bool Delete(const String& path)
+		{
+			if (Exists(path)) {
+				return std::filesystem::remove_all(path.GetPointer());
+			}
+			return true;
+		}
 	};
 }
