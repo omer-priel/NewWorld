@@ -13,20 +13,27 @@ namespace NewWorld::Files
 
 		// Members
 	private:
-		static String m_RootDirectory;
+		static String s_RootDirectory;
 
 		// Init
 	public:
 		static void Initialize()
 		{
-
+			String buffer(MAX_PATH);
+			GetModuleFileNameA(NULL, (char*)buffer.GetPointer(), MAX_PATH);
+			s_RootDirectory = buffer.Substring(0, buffer.FindLast('\\')+1);
 		}
 
 		// Getters
 	public:
-		// String GetRootDirectory(String subPath)
+		static const String GetRootDirectory(String subPath = "")
+		{
+			return s_RootDirectory + subPath;
+		}
 		// String GetLogsDirectory()
 		// String GetTemporaryDirectory(uint& outId)
 		// String GetTemporaryDirectory(uint id)
 	};
+
+	String FileManger::s_RootDirectory = "";
 }
