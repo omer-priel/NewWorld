@@ -120,6 +120,39 @@ namespace Sandbox::Tests
 		}
 	}
 
+	void Test4()
+	{
+		using namespace NewWorld;
+
+		uint id = Files::FileManger::CreateTemporaryDirectory();
+		//String filePath = Files::FileManger::GetTemporaryDirectory(id, "output.txt");
+		String filePath = Files::FileManger::GetRootDirectory("files/output.txt");
+		Files::File file(filePath, true);
+
+		SizeT size = file.GetSize();
+		INFO(TESTS_LOGGER, "Size: {}", size);
+
+		for (uint i = 0; i < 10; i++)
+		{
+			file.Write((int)'A');
+			Array<Byte, 9> word({ (int)' ', (int)'a', (int)'n', (int)'d', (int)' ', (int)'t', (int)'h', (int)'i', (int)'s' });
+			file.WriteArray(word);
+
+			file.Write((int)'A');
+			file.Write((int)'A');
+			file.Write((int)'A');
+
+			INFO(TESTS_LOGGER, "Index: {}", file.GetIndex());
+
+			Array<Byte, 3> empty({ (int)' ', (int)' ',(int)'-' });
+			//file -= 3;
+			//file.WriteArray(empty);
+			file.WriteArray(file.GetIndex()-3, empty);
+
+			file.Write((int)'\n');
+		}
+	}
+
 	void TestsRoot()
 	{
 		TestCore();
@@ -127,6 +160,7 @@ namespace Sandbox::Tests
 		Test1();
 		Test2();
 		Test3();
+		Test4();
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

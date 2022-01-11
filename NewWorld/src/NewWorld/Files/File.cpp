@@ -18,14 +18,16 @@ namespace NewWorld::Files
 	}
 
 	// Getters
-	SizeT File::GetSize()
+	Long File::GetSize()
 	{
 		m_Stream.clear();
 
-		m_Stream.seekg(0, std::ios::end);
-		SizeT size = m_Stream.tellg();
+		Long index = GetIndex();
 
-		m_Stream.seekg(m_Index, std::ios::beg);
+		m_Stream.seekg(0, std::ios::end);
+		Long size = m_Stream.tellg();
+
+		m_Stream.seekg(index, std::ios::beg);
 
 		return size;
 	}
@@ -33,37 +35,31 @@ namespace NewWorld::Files
 	// Actions
 	void File::operator++()
 	{
-		m_Index++;
 		m_Stream.seekg(1, std::ios::cur);
 	}
 
 	void File::operator++(int)
 	{
-		m_Index++;
 		m_Stream.seekg(1, std::ios::cur);
 	}
 
-	void File::operator+=(SizeT value)
+	void File::operator+=(Long value)
 	{
-		m_Index += value;
 		m_Stream.seekg(value, std::ios::cur);
 	}
 
 	void File::operator--()
 	{
-		m_Index--;
 		m_Stream.seekg(-1, std::ios::cur);
 	}
 
 	void File::operator--(int)
 	{
-		m_Index--;
 		m_Stream.seekg(1, std::ios::cur);
 	}
 
-	void File::operator-=(SizeT value)
+	void File::operator-=(Long value)
 	{
-		m_Index -= value;
 		m_Stream.seekg(0 - value, std::ios::cur);
 	}
 
@@ -76,9 +72,9 @@ namespace NewWorld::Files
 		return ret;
 	}
 
-	Byte File::Read(SizeT index)
+	Byte File::Read(Long index)
 	{
-		m_Stream.seekg(index, std::ios::beg);
+		SetIndex(index);
 
 		Byte ret;
 		m_Stream.read((char*)&ret, 1);
@@ -88,4 +84,16 @@ namespace NewWorld::Files
 
 	// Write
 
+	void File::Write(Byte value)
+	{
+		m_Stream.clear();
+		m_Stream.write((const char*)&value, 1);
+	}
+
+	void File::Write(Long index, Byte value)
+	{
+		SetIndex(index);
+
+		m_Stream.write((const char*)&value, 1);
+	}
 }

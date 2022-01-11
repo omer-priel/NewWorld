@@ -18,15 +18,31 @@ namespace NewWorld::Files
 		static bool Delete(const String& path);
 
 		// Members
-	protected:
+	//protected:
 		std::fstream m_Stream;
-		SizeT m_Index = 0; // TODO: Remove this member if not nead it in in the tests.
+		//Long m_Index = 0; // TODO: Remove this member if not nead it in in the tests.
 
 	public:
-		File(const String& path, bool create = false, bool textMode = true)
-			: m_Stream(path.GetPointer(), (textMode) ? (std::fstream::in | std::fstream::out) : (std::fstream::in | std::fstream::out | std::fstream::binary))
+		File(const String& path, bool create = false, bool textMode = true, bool readOnly = false)
+			: m_Stream()
 		{
+			auto openMode = ((textMode) ? (std::fstream::in) : (std::fstream::in | std::fstream::binary));
+			
+			if (!readOnly)
+			{
+				openMode = openMode | std::fstream::out;
 
+				if (create && !Exists(path))
+				{
+					m_Stream.open(path.GetPointer(), openMode | std::fstream::app);
+					m_Stream.put(0);
+					m_Stream.close();
+				}
+			}
+
+			m_Stream.open(path.GetPointer(), openMode);
+
+			SetIndex(0);
 		}
 
 		virtual ~File()
@@ -46,32 +62,33 @@ namespace NewWorld::Files
 			return m_Stream.eof();
 		}
 
-		inline SizeT GetIndex()
+		inline Long GetIndex()
 		{
-			return m_Index;
+			m_Stream.clear();
+			return m_Stream.tellp();
 		}
 
-		SizeT GetSize();
+		Long GetSize();
 
 		// Setters
 	public:
-		void SetIndex(SizeT value)
+		void SetIndex(Long value)
 		{
-			m_Index = value;
-			m_Stream.seekg(m_Index, std::ios::beg);
+			m_Stream.clear();
+			m_Stream.seekg(value, std::ios::beg);
 		}
 
 		void operator++();
 
 		void operator++(int);
 
-		void operator+=(SizeT value);
+		void operator+=(Long value);
 
 		void operator--();
 
 		void operator--(int);
 
-		void operator-=(SizeT value);
+		void operator-=(Long value);
 
 		// Actions
 	public:
@@ -90,21 +107,38 @@ namespace NewWorld::Files
 		template<const SizeT LENGTH>
 		void ReadArray(Array<Byte, LENGTH>& buffer)
 		{
+			m_Stream.clear();
 			m_Stream.read((char*)&buffer, LENGTH);
 		}
 
-		Byte Read(SizeT index);
+		Byte Read(Long index);
 
 		template<const SizeT LENGTH>
-		void ReadArray(SizeT index, Array<Byte, LENGTH>& buffer)
+		void ReadArray(Long index, Array<Byte, LENGTH>& buffer)
 		{
-			m_Stream.seekg(index, std::ios::beg);
+			SetIndex(index);
 
 			m_Stream.read((char*)&buffer, LENGTH);
 		}
 
 		// Write
 	public:
+		void Write(Byte value);
 
+		template<const SizeT LENGTH>
+		void WriteArray(const Array<Byte, LENGTH>& buffer)
+		{
+			m_Stream.write((const char*)&buffer, LENGTH);
+		}
+
+		void Write(Long index, Byte value);
+
+		template<const SizeT LENGTH>
+		void WriteArray(Long index, const Array<Byte, LENGTH>& buffer)
+		{
+			SetIndex(index);
+
+			m_Stream.write((const char*)&buffer, LENGTH);
+		}
 	};
 }
