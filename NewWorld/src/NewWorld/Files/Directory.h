@@ -17,9 +17,16 @@ namespace NewWorld::Files
 			return std::filesystem::is_directory(path.GetPointer());
 		}
 
-		static inline bool Create(const String& path)
+		// Create Only the last directory
+		static inline bool CreateSingle(const String& path)
 		{
 			return std::filesystem::create_directory(path.GetPointer());
+		}
+		
+		// Create Full Directory path
+		static inline bool Create(const String& path)
+		{
+			return std::filesystem::create_directories(path.GetPointer());
 		}
 
 		static bool Delete(const String& path)
@@ -28,6 +35,11 @@ namespace NewWorld::Files
 				return std::filesystem::remove_all(path.GetPointer());
 			}
 			return true;
+		}
+
+		static String GetDirectoryOfFile(const String& path)
+		{
+			return path.Substring(0, path.FindLast('\\') + 1);
 		}
 	};
 }

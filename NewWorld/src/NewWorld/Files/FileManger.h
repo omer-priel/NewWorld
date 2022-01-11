@@ -1,8 +1,8 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Files/File.h"
 #include "NewWorld/Files/Directory.h"
+#include "NewWorld/Files/File.h"
 
 namespace NewWorld::Files
 {
@@ -22,11 +22,10 @@ namespace NewWorld::Files
 		{
 			String buffer(MAX_PATH);
 			GetModuleFileNameA(NULL, (char*)buffer.GetPointer(), MAX_PATH);
-			s_RootDirectory = buffer.Substring(0, buffer.FindLast('\\')+1);
+			s_RootDirectory = Directory::GetDirectoryOfFile(buffer);
 
 			// Temporary Directory
 			Directory::Delete(GetRootDirectory("temp"));
-			Directory::Create(GetRootDirectory("temp"));
 		}
 
 		// Getters
