@@ -79,12 +79,14 @@ namespace Sandbox::Tests
 		}
 	}
 
-	void Test3()
+	void TestOnlyRead()
 	{
 		using namespace NewWorld;
 
-		String filePath = Files::FileManger::GetRootDirectory("files/file.txt");
+		String filePath = Files::FileManger::GetRootDirectory("files\\read.txt");
 		Files::File file(filePath);
+
+		INFO(TESTS_LOGGER, "Test File: {}", filePath);
 
 		if (!file.IsOpened())
 		{
@@ -93,13 +95,13 @@ namespace Sandbox::Tests
 		}
 
 		SizeT size = file.GetSize();
-		INFO(TESTS_LOGGER, "Size: {}", size);
+		DEBUG(TESTS_LOGGER, "Size: {}", size);
 
 		Array<Byte, 10> arr;
 		for (SizeT i = 0; i < size / arr.size()-1; i++)
 		{
 			file.ReadArray(arr);
-			INFO(TESTS_LOGGER, "{}{}{}{}{}{}{}{}{}{}"
+			DEBUG(TESTS_LOGGER, "{}{}{}{}{}{}{}{}{}{}"
 				, String::ConverToString((char)arr[0])
 				, String::ConverToString((char)arr[1])
 				, String::ConverToString((char)arr[2])
@@ -115,22 +117,22 @@ namespace Sandbox::Tests
 		char tv = (char)file.Read();
 		while (!file.IsLastByte())
 		{
-			INFO(TESTS_LOGGER, "{}", String::ConverToString(tv));
+			DEBUG(TESTS_LOGGER, "{}", String::ConverToString(tv));
 			tv = (char)file.Read();
 		}
 	}
 
-	void Test4()
+	void TestOnlyWrite()
 	{
 		using namespace NewWorld;
 
 		uint id = Files::FileManger::CreateTemporaryDirectory();
-		//String filePath = Files::FileManger::GetTemporaryDirectory(id, "output.txt");
-		String filePath = Files::FileManger::GetRootDirectory("files/output.txt");
+		String filePath = Files::FileManger::GetTemporaryDirectory(id, "output.txt");
 		Files::File file(filePath, true);
 
-		SizeT size = file.GetSize();
-		INFO(TESTS_LOGGER, "Size: {}", size);
+		INFO(TESTS_LOGGER, "Test File: {}", filePath);
+
+		DEBUG(TESTS_LOGGER, "Size: {}", file.GetSize());
 
 		for (uint i = 0; i < 10; i++)
 		{
@@ -141,16 +143,33 @@ namespace Sandbox::Tests
 			file.Write((int)'A');
 			file.Write((int)'A');
 			file.Write((int)'A');
+			file.Write((int)'A');
 
-			INFO(TESTS_LOGGER, "Index: {}", file.GetIndex());
+			Array<Byte, 4> empty({ (int)' ', (int)' ',(int)'-',(int)'-' });
+			file.WriteArray(file.GetIndex()-4, empty);
 
-			Array<Byte, 3> empty({ (int)' ', (int)' ',(int)'-' });
-			//file -= 3;
-			//file.WriteArray(empty);
-			file.WriteArray(file.GetIndex()-3, empty);
+			Array<Byte, 2> endLine({(int)'|',(int)'|' });
+			file -= 4;
+			file.WriteArray(endLine);
+			file += 2;
 
 			file.Write((int)'\n');
 		}
+
+		DEBUG(TESTS_LOGGER, "Size: {}", file.GetSize());
+	}
+
+	void TestReadAndWrite()
+	{
+		using namespace NewWorld;
+
+		String filePath = Files::FileManger::GetRootDirectory("files\\file.txt");
+		Files::File file(filePath, true);
+
+		INFO(TESTS_LOGGER, "Test File: {}", filePath);
+
+		SizeT size = file.GetSize();
+		DEBUG(TESTS_LOGGER, "Size: {}", size);
 	}
 
 	void TestsRoot()
@@ -159,8 +178,10 @@ namespace Sandbox::Tests
 
 		Test1();
 		Test2();
-		Test3();
-		Test4();
+		
+		TestOnlyRead();
+		TestOnlyWrite();
+		TestReadAndWrite();
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

@@ -20,8 +20,6 @@ namespace NewWorld::Files
 	// Getters
 	Long File::GetSize()
 	{
-		m_Stream.clear();
-
 		Long index = GetIndex();
 
 		m_Stream.seekg(0, std::ios::end);

@@ -18,9 +18,8 @@ namespace NewWorld::Files
 		static bool Delete(const String& path);
 
 		// Members
-	//protected:
+	protected:
 		std::fstream m_Stream;
-		//Long m_Index = 0; // TODO: Remove this member if not nead it in in the tests.
 
 	public:
 		File(const String& path, bool create = false, bool textMode = true, bool readOnly = false)
@@ -65,7 +64,7 @@ namespace NewWorld::Files
 		inline Long GetIndex()
 		{
 			m_Stream.clear();
-			return m_Stream.tellp();
+			return m_Stream.tellg();
 		}
 
 		Long GetSize();
@@ -107,7 +106,6 @@ namespace NewWorld::Files
 		template<const SizeT LENGTH>
 		void ReadArray(Array<Byte, LENGTH>& buffer)
 		{
-			m_Stream.clear();
 			m_Stream.read((char*)&buffer, LENGTH);
 		}
 
@@ -117,7 +115,6 @@ namespace NewWorld::Files
 		void ReadArray(Long index, Array<Byte, LENGTH>& buffer)
 		{
 			SetIndex(index);
-
 			m_Stream.read((char*)&buffer, LENGTH);
 		}
 
@@ -137,7 +134,6 @@ namespace NewWorld::Files
 		void WriteArray(Long index, const Array<Byte, LENGTH>& buffer)
 		{
 			SetIndex(index);
-
 			m_Stream.write((const char*)&buffer, LENGTH);
 		}
 	};
