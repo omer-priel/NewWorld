@@ -31,14 +31,6 @@ namespace NewWorld::Files
 	}
 
 	// Actions
-	void File::Close()
-	{
-		if (!IsOpened())
-		{
-			m_Stream.close();
-		}
-	}
-
 	void File::operator++()
 	{
 		m_Index++;
@@ -76,6 +68,23 @@ namespace NewWorld::Files
 	}
 
 	// Read
+	Byte File::Read()
+	{
+		Byte ret;
+		m_Stream.read((char*)&ret, 1);
+		
+		return ret;
+	}
+
+	Byte File::Read(SizeT index)
+	{
+		m_Stream.seekg(index, std::ios::beg);
+
+		Byte ret;
+		m_Stream.read((char*)&ret, 1);
+
+		return ret;
+	}
 
 	// Write
 

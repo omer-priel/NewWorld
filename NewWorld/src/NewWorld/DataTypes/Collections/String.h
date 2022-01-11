@@ -59,7 +59,9 @@ namespace NewWorld::DataTypes::Collections
 		template <>
 		static String ConverToString(char value)
 		{
-			return String(std::to_string(value).c_str());
+			String str;
+			str.m_Value.push_back(value);
+			return str;
 		}
 
 		template <>

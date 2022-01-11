@@ -41,6 +41,11 @@ namespace NewWorld::Files
 			return m_Stream.is_open();
 		}
 
+		inline bool IsLastByte()
+		{
+			return m_Stream.eof();
+		}
+
 		inline SizeT GetIndex()
 		{
 			return m_Index;
@@ -70,10 +75,33 @@ namespace NewWorld::Files
 
 		// Actions
 	public:
-		inline void Close();
+		inline void Close()
+		{
+			if (!IsOpened())
+			{
+				m_Stream.close();
+			}
+		}
 
 		// Read
 	public:
+		Byte Read();
+
+		template<const SizeT LENGTH>
+		void ReadArray(Array<Byte, LENGTH>& buffer)
+		{
+			m_Stream.read((char*)&buffer, LENGTH);
+		}
+
+		Byte Read(SizeT index);
+
+		template<const SizeT LENGTH>
+		void ReadArray(SizeT index, Array<Byte, LENGTH>& buffer)
+		{
+			m_Stream.seekg(index, std::ios::beg);
+
+			m_Stream.read((char*)&buffer, LENGTH);
+		}
 
 		// Write
 	public:

@@ -78,14 +78,34 @@ namespace Sandbox::Tests
 			DEBUG(TESTS_LOGGER, "Coped: {}", folderCopedPath);
 		}
 	}
-	
+
+	void Test3()
+	{
+		using namespace NewWorld;
+
+		String filePath = Files::FileManger::GetRootDirectory("files/file.txt");
+		Files::File file(filePath);
+
+		INFO(TESTS_LOGGER, "Size: {}", file.GetSize());
+
+		char tv = (char)file.Read();
+		while (!file.IsLastByte())
+		{
+			INFO(TESTS_LOGGER, "{}", String::ConverToString(tv));
+			file += 3;
+			tv = (char)file.Read();
+		}
+	}
+
 	void TestsRoot()
 	{
 		TestCore();
 
 		Test1();
 		Test2();
+		Test3();
 
+		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");
 		std::cin.get();
 	}
