@@ -86,13 +86,36 @@ namespace Sandbox::Tests
 		String filePath = Files::FileManger::GetRootDirectory("files/file.txt");
 		Files::File file(filePath);
 
-		INFO(TESTS_LOGGER, "Size: {}", file.GetSize());
+		if (!file.IsOpened())
+		{
+			WARN(TESTS_LOGGER, "The file not exists!");
+			return;
+		}
+
+		SizeT size = file.GetSize();
+		INFO(TESTS_LOGGER, "Size: {}", size);
+
+		Array<Byte, 10> arr;
+		for (SizeT i = 0; i < size / arr.size()-1; i++)
+		{
+			file.ReadArray(arr);
+			INFO(TESTS_LOGGER, "{}{}{}{}{}{}{}{}{}{}"
+				, String::ConverToString((char)arr[0])
+				, String::ConverToString((char)arr[1])
+				, String::ConverToString((char)arr[2])
+				, String::ConverToString((char)arr[3])
+				, String::ConverToString((char)arr[4])
+				, String::ConverToString((char)arr[5])
+				, String::ConverToString((char)arr[6])
+				, String::ConverToString((char)arr[7])
+				, String::ConverToString((char)arr[8])
+				, String::ConverToString((char)arr[9]));
+		}
 
 		char tv = (char)file.Read();
 		while (!file.IsLastByte())
 		{
 			INFO(TESTS_LOGGER, "{}", String::ConverToString(tv));
-			file += 3;
 			tv = (char)file.Read();
 		}
 	}
