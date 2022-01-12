@@ -5,6 +5,8 @@
 #include "Settings.h"
 #include "Group.h"
 
+#include <limits>
+
 namespace Sandbox::Tests
 {	
 	void TestCore()
@@ -160,34 +162,64 @@ namespace Sandbox::Tests
 		DEBUG(TESTS_LOGGER, "Size: {}", file.GetSize());
 	}
 
-	void TestReadAndWrite()
+	void TestBinaryFile()
 	{
 		using namespace NewWorld;
-
-		Time start = Time::Now();
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\binary");
 		Files::BinaryFile file(filePath, true);
 
 		INFO(TESTS_LOGGER, "Test File: {}", filePath);
 
-		SizeT size = file.GetSize();
+		Long size = file.GetSize();
 		DEBUG(TESTS_LOGGER, "Size: {}", size);
 
-		Time write = Time::Now();
-		for (uint i = 0; i < 256 * 256; i++)
+		size = 256 + 1;
+		Long indexToPrint = 0;
+		for (Long i = 0- size; i <= size; i++)
 		{
-			file << i % 256;
-		}
-		Time read = Time::Now();
-		
-		Array<Byte, 256 * 256> arr;
-		file.ReadArray(0, arr);
+			if (i == -10)
+			{
+				indexToPrint = file.GetIndex();
+			}
 
-		DEBUG(TESTS_LOGGER, "Full Time: {}", Time::Now() - start);
-		DEBUG(TESTS_LOGGER, "Init Time: {}", write - start);
-		DEBUG(TESTS_LOGGER, "Write Time: {}", read - write);
-		DEBUG(TESTS_LOGGER, "Read Time: {}", Time::Now() - read);
+			if (false)
+			{
+				file << ((Byte*)&i)[0];
+				file << ((Byte*)&i)[1];
+				file << ((Byte*)&i)[2];
+				file << ((Byte*)&i)[3];
+			}
+			else
+			{
+				file << (int)i;
+			}
+		}
+
+		size = file.GetIndex() / sizeof(int);
+
+		file.SetIndex(indexToPrint);
+		for (Long i = -10; i <= 10; i++)
+		{
+			DEBUG(TESTS_LOGGER, "Get: {}", file.Read<int>());
+		}
+
+		DEBUG(TESTS_LOGGER, "Index: {}", file.GetIndex());
+
+	}
+
+	void TestTextFile()
+	{
+		using namespace NewWorld;
+
+		String filePath = Files::FileManger::GetRootDirectory("files\\text.txt");
+		Files::TextFile file(filePath, true);
+
+		INFO(TESTS_LOGGER, "Test File: {}", filePath);
+
+		Long size = file.GetSize();
+		DEBUG(TESTS_LOGGER, "Size: {}", size);
+
 	}
 
 	void TestsRoot()
@@ -199,7 +231,8 @@ namespace Sandbox::Tests
 		
 		TestOnlyRead();
 		TestOnlyWrite();
-		TestReadAndWrite();
+		TestBinaryFile();
+		TestTextFile();
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");
