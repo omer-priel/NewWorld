@@ -224,14 +224,14 @@ namespace Sandbox::Tests
 
 		file.SetIndex(0);
 		Array<String, 2> firstLines;
-		file.ReadLines(firstLines);
+		file >> firstLines;
 		DEBUG(TESTS_LOGGER, "{}\n{}", firstLines[0], firstLines[1]);
 
 		WARN(TESTS_LOGGER, "Stage: ReadLine");
 		String line;
 		while (!file.IsLastByte())
 		{
-			file.ReadLine(line);
+			file >> line;
 			DEBUG(TESTS_LOGGER, "{}", line);
 		}
 

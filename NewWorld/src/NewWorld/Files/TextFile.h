@@ -62,6 +62,25 @@ namespace NewWorld::Files
 			return lines;
 		}
 
+		TextFile& operator>>(char& output)
+		{
+			m_Stream.read((char*)&output, 1);
+			return *this;
+		}
+
+		TextFile& operator>>(String& output)
+		{
+			ReadLine(output);
+			return *this;
+		}
+
+		template <const SizeT LENGTH>
+		TextFile& operator>>(Array<String, LENGTH>& lines)
+		{
+			ReadLines(lines);
+			return *this;
+		}
+
 		// Write
 	public:
 		void Write(char value);
