@@ -62,7 +62,7 @@ namespace NewWorld::Files
 	}
 
 	// Read
-	Byte File::Read()
+	Byte File::ReadByte()
 	{
 		Byte ret;
 		m_Stream.read((char*)&ret, 1);
@@ -70,7 +70,7 @@ namespace NewWorld::Files
 		return ret;
 	}
 
-	Byte File::Read(Long index)
+	Byte File::ReadByte(Long index)
 	{
 		SetIndex(index);
 

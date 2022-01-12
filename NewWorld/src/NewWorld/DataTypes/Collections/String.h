@@ -29,6 +29,11 @@ namespace NewWorld
 	using Matrix4 = Math::Matrix4;
 }
 
+namespace NewWorld::Files
+{
+	class TextFile;
+}
+
 namespace NewWorld::DataTypes::Collections
 {
 	class String : public IObject
@@ -277,6 +282,10 @@ namespace NewWorld::DataTypes::Collections
 		{
 			return *this;
 		}
+
+		// Friends
+	private:
+		friend class NewWorld::Files::TextFile;
 
 		// Operators
 	public:

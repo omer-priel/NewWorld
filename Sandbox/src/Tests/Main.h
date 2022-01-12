@@ -87,7 +87,7 @@ namespace Sandbox::Tests
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\read.txt");
-		Files::File file(filePath);
+		Files::TextFile file(filePath);
 
 		INFO(TESTS_LOGGER, "Test File: {}", filePath);
 
@@ -117,11 +117,11 @@ namespace Sandbox::Tests
 				, String::ConverToString((char)arr[9]));
 		}
 
-		char tv = (char)file.Read();
+		char tv = file.Read();
 		while (!file.IsLastByte())
 		{
 			DEBUG(TESTS_LOGGER, "{}", String::ConverToString(tv));
-			tv = (char)file.Read();
+			tv = file.Read();
 		}
 	}
 
@@ -208,11 +208,11 @@ namespace Sandbox::Tests
 
 	}
 
-	void TestTextFile()
+	void TestTextFile(NewWorld::String filename = "text.txt")
 	{
 		using namespace NewWorld;
 
-		String filePath = Files::FileManger::GetRootDirectory("files\\text.txt");
+		String filePath = Files::FileManger::GetRootDirectory("files\\" + filename);
 		Files::TextFile file(filePath, true);
 
 		INFO(TESTS_LOGGER, "Test File: {}", filePath);
@@ -220,6 +220,36 @@ namespace Sandbox::Tests
 		Long size = file.GetSize();
 		DEBUG(TESTS_LOGGER, "Size: {}", size);
 
+		WARN(TESTS_LOGGER, "Stage: ReadLines");
+
+		file.SetIndex(0);
+		Array<String, 2> firstLines;
+		file.ReadLines(firstLines);
+		DEBUG(TESTS_LOGGER, "{}\n{}", firstLines[0], firstLines[1]);
+
+		WARN(TESTS_LOGGER, "Stage: ReadLine");
+		String line;
+		while (!file.IsLastByte())
+		{
+			file.ReadLine(line);
+			DEBUG(TESTS_LOGGER, "{}", line);
+		}
+
+		WARN(TESTS_LOGGER, "Stage: ReadAll");
+
+		file.SetIndex(0);
+		String text = file.ReadAll();
+		DEBUG(TESTS_LOGGER, "{}", text);
+
+
+		WARN(TESTS_LOGGER, "Stage: ReadAllLines");
+
+		file.SetIndex(0);
+		DynamicArray<String> lines = file.ReadAllLines();
+		for (String item : lines)
+		{
+			DEBUG(TESTS_LOGGER, "{}", item);
+		}
 	}
 
 	void TestsRoot()
@@ -233,6 +263,7 @@ namespace Sandbox::Tests
 		TestOnlyWrite();
 		TestBinaryFile();
 		TestTextFile();
+		TestTextFile("other.txt");
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

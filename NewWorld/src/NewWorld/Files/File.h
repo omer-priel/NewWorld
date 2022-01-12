@@ -107,7 +107,7 @@ namespace NewWorld::Files
 
 		// Read
 	public:
-		Byte Read();
+		Byte ReadByte();
 
 		template<const SizeT LENGTH>
 		void ReadArray(Array<Byte, LENGTH>& buffer)
@@ -115,7 +115,7 @@ namespace NewWorld::Files
 			m_Stream.read((char*)&buffer, LENGTH);
 		}
 
-		Byte Read(Long index);
+		Byte ReadByte(Long index);
 
 		template<const SizeT LENGTH>
 		void ReadArray(Long index, Array<Byte, LENGTH>& buffer)
