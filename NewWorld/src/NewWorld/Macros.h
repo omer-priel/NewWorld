@@ -26,6 +26,8 @@
 #define NW_CONFIG_RELEASE 0
 #endif
 
+#pragma endregion
+
 // EntryPoint.h
 // ENTRYPOINT_APPLICATION
 

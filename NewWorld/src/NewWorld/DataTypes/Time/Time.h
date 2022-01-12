@@ -45,7 +45,7 @@ namespace NewWorld::DataTypes::Time
 	public:
 		String ToString() const override
 		{
-			return ToString(false);
+			return ToString(true);
 		}
 
 		String ToString(bool withMillisecond) const
