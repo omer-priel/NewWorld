@@ -208,11 +208,11 @@ namespace Sandbox::Tests
 
 	}
 
-	void TestTextFile(NewWorld::String filename = "text.txt")
+	void TestTextFileRead()
 	{
 		using namespace NewWorld;
 
-		String filePath = Files::FileManger::GetRootDirectory("files\\" + filename);
+		String filePath = Files::FileManger::GetRootDirectory("files\\other.txt");
 		Files::TextFile file(filePath, true);
 
 		INFO(TESTS_LOGGER, "Test File: {}", filePath);
@@ -252,6 +252,29 @@ namespace Sandbox::Tests
 		}
 	}
 
+	void TestTextFileWrite()
+	{
+		using namespace NewWorld;
+
+
+		String filePath = Files::FileManger::GetRootDirectory("files\\text.txt");
+		Files::File::Delete(filePath);
+		Files::TextFile file(filePath, true);
+
+		INFO(TESTS_LOGGER, "Test File: {}", filePath);
+
+		Long size = file.GetSize();
+		DEBUG(TESTS_LOGGER, "Size: {}", size);
+
+		file.SetIndex(file.GetSize());
+
+		String chank(1024*50, '.');
+
+		DEBUG(TESTS_LOGGER, "Start");
+
+		file << chank;
+	}
+
 	void TestsRoot()
 	{
 		TestCore();
@@ -262,8 +285,8 @@ namespace Sandbox::Tests
 		TestOnlyRead();
 		TestOnlyWrite();
 		TestBinaryFile();
-		TestTextFile();
-		TestTextFile("other.txt");
+		TestTextFileRead();
+		TestTextFileWrite();
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

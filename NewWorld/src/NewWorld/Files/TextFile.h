@@ -8,7 +8,7 @@ namespace NewWorld::Files
 	// Friend of String
 	class TextFile : public File
 	{
-	NW_CLASS(NewWorld::Files, TextFile)
+		NW_CLASS(NewWorld::Files, TextFile)
 
 	public:
 		TextFile(const String& path, bool create = false, bool readOnly = false)
@@ -83,11 +83,70 @@ namespace NewWorld::Files
 
 		// Write
 	public:
-		void Write(char value);
+		inline void Write(char value)
+		{
+			m_Stream.clear();
+			m_Stream.write((const char*)&value, 1);
+		}
 
-		void Write(const String& value);
+		inline void Write(const String& value)
+		{
+			m_Stream.write(value.GetPointer(), value.GetLength());
+		}
+
+		inline void WriteLine()
+		{
+			Write('\n');
+		}
+		
+		inline void WriteLine(const String& value)
+		{
+			m_Stream.write(value.GetPointer(), value.GetLength());
+			Write('\n');
+		}
 
 		template <const SizeT LENGTH>
-		void Write(const Array<String, LENGTH>& lines);
+		void Write(const Array<String, LENGTH>& lines)
+		{
+			for (String line : lines)
+			{
+				Write(line);
+				WriteLine();
+			}
+		}
+
+		void Write(const DynamicArray<String>& lines)
+		{
+			for (String line : lines)
+			{
+				Write(line);
+				WriteLine();
+			}
+		}
+
+		TextFile& operator<<(char value)
+		{
+			Write(value);
+			return *this;
+		}
+
+		TextFile& operator<<(const String& value)
+		{
+			Write(value);
+			return *this;
+		}
+
+		template <const SizeT LENGTH>
+		TextFile& operator<<(const Array<String, LENGTH>& lines)
+		{
+			Write<LENGTH>(lines);
+			return *this;
+		}
+
+		TextFile& operator<<(const DynamicArray<String>& lines)
+		{
+			Write(lines);
+			return *this;
+		}
 	};
 }

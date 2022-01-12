@@ -270,8 +270,8 @@ namespace NewWorld::DataTypes::Collections
 
 		}
 
-		String(SizeT size)
-			: m_Value(size, '\0')
+		String(SizeT size, char fill = '\0')
+			: m_Value(size, fill)
 		{
 
 		}

@@ -24,7 +24,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Debug)
 			{
-				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now(), loggerName, arg);
+				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now().ToString(true), loggerName, arg);
 				Logger::Log(log, LogLevel::Debug);
 			}
 		}
@@ -34,7 +34,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Debug)
 			{
-				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				String log = String::Format("{} [DEBUG] {}: {}\n", Time::Now().ToString(true), loggerName, String::Format(format, args...));
 				Logger::Log(log, LogLevel::Debug);
 			}
 		}
@@ -44,7 +44,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Info)
 			{
-				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, arg);
+				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now().ToString(true), loggerName, arg);
 				Logger::Log(log, LogLevel::Info);
 			}
 		}
@@ -54,7 +54,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Info)
 			{
-				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				String log = String::Format("{} [INFO]  {}: {}\n", Time::Now().ToString(true), loggerName, String::Format(format, args...));
 				Logger::Log(log, LogLevel::Info);
 			}
 		}
@@ -64,7 +64,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Warning)
 			{
-				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, arg);
+				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now().ToString(true), loggerName, arg);
 				Logger::Log(log, LogLevel::Warning);
 			}
 		}
@@ -74,7 +74,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Warning)
 			{
-				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				String log = String::Format("{} [WARN]  {}: {}\n", Time::Now().ToString(true), loggerName, String::Format(format, args...));
 				Logger::Log(log, LogLevel::Warning);
 			}
 		}
@@ -84,7 +84,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Error)
 			{
-				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, arg);
+				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now().ToString(true), loggerName, arg);
 				Logger::Log(log, LogLevel::Error);
 			}
 		}
@@ -94,7 +94,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Error)
 			{
-				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				String log = String::Format("{} [ERROR] {}: {}\n", Time::Now().ToString(true), loggerName, String::Format(format, args...));
 				Logger::Log(log, LogLevel::Error);
 			}
 		}
@@ -104,7 +104,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Critical)
 			{
-				String log = String::Format("{} [CRITICAL] {}: {}\n", Time::Now(), loggerName, arg);
+				String log = String::Format("{} [CRITICAL] {}: {}\n", Time::Now().ToString(true), loggerName, arg);
 				Logger::Log(log, LogLevel::Critical);
 			}
 		}
@@ -114,7 +114,7 @@ namespace NewWorld::Debug
 		{
 			if (displayLevel >= LogLevel::Critical)
 			{
-				String log = String::Format("{} [CRITICAL] {}: {}\n", Time::Now(), loggerName, String::Format(format, args...));
+				String log = String::Format("{} [CRITICAL] {}: {}\n", Time::Now().ToString(true), loggerName, String::Format(format, args...));
 				Logger::Log(log, LogLevel::Critical);
 			}
 		}

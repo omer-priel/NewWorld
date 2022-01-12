@@ -38,9 +38,7 @@ namespace NewWorld::Files
 					String directoryPath = Directory::GetDirectoryOfFile(path);
 					Directory::Create(directoryPath);
 					
-
 					m_Stream.open(path.GetPointer(), openMode | std::fstream::app);
-					m_Stream.put(0);
 					m_Stream.close();
 				}
 			}
