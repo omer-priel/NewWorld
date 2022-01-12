@@ -41,5 +41,72 @@ namespace NewWorld::Files
 		{
 			return path.Substring(0, path.FindLast('\\') + 1);
 		}
+
+		// Get Directory Entities
+		static void GetDirectories(const String& path, DynamicArray<String>& output)
+		{
+			for (const auto& entry : std::filesystem::directory_iterator(path.GetPointer()))
+			{
+				if (entry.is_directory())
+				{
+					output.push_back(String(entry.path().string().c_str()));
+				}
+			}
+		}
+
+		static void GetDirectoriesNames(const String& path, DynamicArray<String>& output)
+		{
+			for (const auto& entry : std::filesystem::directory_iterator(path.GetPointer()))
+			{
+				if (entry.is_directory())
+				{
+					output.push_back(String(entry.path().filename().string().c_str()));
+				}
+			}
+		}
+
+		static void GetFiles(const String& path, DynamicArray<String>& output)
+		{
+			for (const auto& entry : std::filesystem::directory_iterator(path.GetPointer()))
+			{
+				if (entry.is_regular_file())
+				{
+					output.push_back(String(entry.path().string().c_str()));
+				}
+			}
+		}
+
+		static void GetFilesNames(const String& path, DynamicArray<String>& output)
+		{
+			for (const auto& entry : std::filesystem::directory_iterator(path.GetPointer()))
+			{
+				if (entry.is_regular_file())
+				{
+					output.push_back(String(entry.path().filename().string().c_str()));
+				}
+			}
+		}
+
+		static void GetDirectoriesAndFiles(const String& path, DynamicArray<String>& output)
+		{
+			for (const auto& entry : std::filesystem::directory_iterator(path.GetPointer()))
+			{
+				if (entry.is_directory() || entry.is_regular_file())
+				{
+					output.push_back(String(entry.path().string().c_str()));
+				}
+			}
+		}
+
+		static void GetDirectoriesAndFilesNames(const String& path, DynamicArray<String>& output)
+		{
+			for (const auto& entry : std::filesystem::directory_iterator(path.GetPointer()))
+			{
+				if (entry.is_directory() || entry.is_regular_file())
+				{
+					output.push_back(String(entry.path().filename().string().c_str()));
+				}
+			}
+		}
 	};
 }
