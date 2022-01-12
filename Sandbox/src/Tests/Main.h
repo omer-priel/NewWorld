@@ -13,7 +13,6 @@ namespace Sandbox::Tests
 		DEBUG(TESTS_LOGGER, "Root Directory: {}", NewWorld::Files::FileManger::GetLogsDirectory());
 	}
 
-	/*
 	void Test1()
 	{
 		using namespace NewWorld;
@@ -329,11 +328,10 @@ namespace Sandbox::Tests
 		{
 			DEBUG(TESTS_LOGGER, "{}", line);
 		}
-	}*/
+	}
 
 	void TestsRoot()
 	{
-		/*
 		TestCore();
 		
 		Test1();
@@ -344,7 +342,7 @@ namespace Sandbox::Tests
 		TestBinaryFile();
 		TestTextFileRead();
 		TestTextFileWrite();
-		TestDirectory();*/
+		TestDirectory();
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

@@ -9,14 +9,24 @@
 
 namespace NewWorld::Debug
 {
+	// Members
+	Files::TextFile Logger::s_LogFile;
+
+	// Actions
+	void Logger::Initialize()
+	{
+		s_LogFile.Open(Files::FileManger::GetLogsDirectory(Time::Now().Format("{}_{}_{}.log")), true);
+	}
+
 	// Log
 	void Logger::Log(const String& log, const LogLevel level)
-	{
+	{		
+		// Console
 		Logger::SetColor(level);
 		std::cout.write(log.GetPointer(), log.GetLength());
-
-		Files::File s_LogFile(Files::FileManger::GetRootDirectory("log.log"), true);
-		s_LogFile.Write((Byte)log[0]);
+		
+		// Log File
+		s_LogFile.Write(log);
 	}
 
 
@@ -46,7 +56,4 @@ namespace NewWorld::Debug
 #error TODO
 #endif
 	}
-
-	//Files::TextFile Logger::s_LogFile(Files::FileManger::GetLogsDirectory("log.log"), true);
-	//Files::TextFile Logger::logFile(Files::FileManger::GetLogsDirectory(Time::Now().Format("{}_{}_{}.log")));
 }

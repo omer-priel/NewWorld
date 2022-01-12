@@ -42,6 +42,7 @@ namespace NewWorld
 		void Setup()
 		{
 			Files::FileManger::Initialize();
+			Debug::Logger::Initialize();
 			
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 			

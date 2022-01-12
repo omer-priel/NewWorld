@@ -10,10 +10,23 @@ namespace NewWorld::Files
 	NW_CLASS(NewWorld::Files, BinaryFile)
 
 	public:
-		BinaryFile(const String& path, bool create = false, bool readOnly = false)
-			: File(path, create, false, readOnly)
+		BinaryFile()
+			: File()
 		{
 
+		}
+
+		BinaryFile(const String& path, bool create = false, bool readOnly = false)
+			: File(path, create, readOnly, false)
+		{
+
+		}
+
+		// Actions
+	public:
+		void Open(const String& path, bool create = false, bool readOnly = false)
+		{
+			File::Open(path, create, readOnly, false);
 		}
 
 		// Read

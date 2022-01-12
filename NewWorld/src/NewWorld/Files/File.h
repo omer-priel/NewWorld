@@ -1,7 +1,6 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-
 #include "NewWorld/Files/Directory.h"
 
 #include <filesystem>
@@ -23,12 +22,33 @@ namespace NewWorld::Files
 	protected:
 		std::fstream m_Stream;
 
-	public:
-		File(const String& path, bool create = false, bool textMode = true, bool readOnly = false)
+	protected:
+		File()
 			: m_Stream()
 		{
+
+		}
+		
+	public:
+		File(const String& path, bool create = false, bool readOnly = false, bool textMode = true)
+			: m_Stream()
+		{
+			Open(path, create, readOnly, textMode);
+		}
+
+		virtual ~File()
+		{
+			Close();
+		}
+
+		// Actions
+	protected:
+		void Open(const String& path, bool create = false, bool readOnly = false, bool textMode = true)
+		{
+			Close();
+
 			auto openMode = ((textMode) ? (std::fstream::in) : (std::fstream::in | std::fstream::binary));
-			
+
 			if (!readOnly)
 			{
 				openMode = openMode | std::fstream::out;
@@ -37,7 +57,7 @@ namespace NewWorld::Files
 				{
 					String directoryPath = Directory::GetDirectoryOfFile(path);
 					Directory::Create(directoryPath);
-					
+
 					m_Stream.open(path.GetPointer(), openMode | std::fstream::app);
 					m_Stream.close();
 				}
@@ -48,9 +68,12 @@ namespace NewWorld::Files
 			SetIndex(0);
 		}
 
-		virtual ~File()
+		inline void Close()
 		{
-			Close();
+			if (!IsOpened())
+			{
+				m_Stream.close();
+			}
 		}
 
 		// Getters
@@ -92,16 +115,6 @@ namespace NewWorld::Files
 		void operator--(int);
 
 		void operator-=(Long value);
-
-		// Actions
-	public:
-		inline void Close()
-		{
-			if (!IsOpened())
-			{
-				m_Stream.close();
-			}
-		}
 
 		// Read
 	public:
@@ -154,3 +167,6 @@ namespace NewWorld::Files
 		}
 	};
 }
+
+#include "NewWorld/Files/BinaryFile.h"
+#include "NewWorld/Files/TextFile.h"

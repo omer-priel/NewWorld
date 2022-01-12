@@ -81,7 +81,6 @@ namespace NewWorld::Files
 	}
 
 	// Write
-
 	void File::Write(Byte value)
 	{
 		m_Stream.clear();

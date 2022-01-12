@@ -3,8 +3,6 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Files/Directory.h"
 #include "NewWorld/Files/File.h"
-#include "NewWorld/Files/TextFile.h"
-#include "NewWorld/Files/BinaryFile.h"
 
 namespace NewWorld::Files
 {

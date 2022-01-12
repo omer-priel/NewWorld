@@ -3,7 +3,6 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Debug/Constants.h"
 #include "NewWorld/Debug/LogLevel.h"
-#include "NewWorld/Files/FileManger.h"
 
 namespace NewWorld::Debug
 {
@@ -14,7 +13,16 @@ namespace NewWorld::Debug
 
 		// Members
 	public:
-		//static Files::TextFile s_LogFile;
+		static Files::TextFile s_LogFile;
+
+		// Actions
+	public:
+		static void Initialize();
+
+	private:
+		static void Log(const String& log, const LogLevel level);
+
+		static void SetColor(const LogLevel level);
 
 		// Log Types
 	public:
@@ -117,10 +125,5 @@ namespace NewWorld::Debug
 				Logger::Log(log, LogLevel::Critical);
 			}
 		}
-
-	private:
-		static void Log(const String& log, const LogLevel level);
-
-		static void SetColor(const LogLevel level);
 	};
 }
