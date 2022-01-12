@@ -1,5 +1,13 @@
 #pragma once
 
+// TEMP: Find better place For remove ERROR Define
+#ifdef NW_PLATFORM_WINDOWS
+#include <windows.h>
+	#ifdef ERROR
+	#undef ERROR
+	#endif
+#endif
+
 // Macros
 #include "NewWorld/Macros.h"
 
@@ -64,8 +72,7 @@ namespace NewWorld
 }
 
 // Files
-#include "NewWorld/Files/File.h"
-#include "NewWorld/Files/Formats/Json.h"
+#include "NewWorld/Files/FileManger.h"
 
 // Debug
 #include "NewWorld/Debug/Logger.h"

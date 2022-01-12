@@ -15,133 +15,8 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1641735158765,
-            "children": [
-              {
-                "key": 1641735175524,
-                "children": [
-                  {
-                    "key": 1641735199382,
-                    "children": [],
-                    "todo": {
-                      "content": "Json class",
-                      "id": 1641735199382,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Formats",
-                  "id": 1641735175524,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1641735209739,
-                "children": [
-                  {
-                    "key": 1641735337558,
-                    "children": [],
-                    "todo": {
-                      "content": "Exists",
-                      "id": 1641735337558,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1641735255404,
-                    "children": [],
-                    "todo": {
-                      "content": "Create File",
-                      "id": 1641735255404,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1641735266406,
-                    "children": [],
-                    "todo": {
-                      "content": "Delete File",
-                      "id": 1641735266406,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1641735280218,
-                    "children": [],
-                    "todo": {
-                      "content": "Open File (Create or Append)",
-                      "id": 1641735280218,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "File class",
-                  "id": 1641735209739,
-                  "level": "warning",
-                  "done": false
-                }
-              },
-              {
-                "key": 1641735225432,
-                "children": [],
-                "todo": {
-                  "content": "Directory class",
-                  "id": 1641735225432,
-                  "level": "warning",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "Files",
-              "id": 1641735158765,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
             "key": 1629042438141,
             "children": [
-              {
-                "key": 1629042490497,
-                "children": [
-                  {
-                    "key": 1629973943751,
-                    "children": [
-                      {
-                        "key": 1629974174127,
-                        "children": [],
-                        "todo": {
-                          "content": "Save in .log format",
-                          "id": 1629974174127,
-                          "level": "default",
-                          "done": false
-                        }
-                      }
-                    ],
-                    "todo": {
-                      "content": "Logger class",
-                      "id": 1629973943751,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Log System",
-                  "id": 1629042490497,
-                  "level": "default",
-                  "done": false
-                }
-              },
               {
                 "key": 1629973912329,
                 "children": [
@@ -189,7 +64,7 @@
                 "todo": {
                   "content": "Profile System",
                   "id": 1629973912329,
-                  "level": "default",
+                  "level": "warning",
                   "done": false
                 }
               }
@@ -218,6 +93,38 @@
             "todo": {
               "content": "Application [Debug System]",
               "id": 1629042438599,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1641735158765,
+            "children": [
+              {
+                "key": 1642003369631,
+                "children": [
+                  {
+                    "key": 1642003471827,
+                    "children": [],
+                    "todo": {
+                      "content": "SerializableAsBytes",
+                      "id": 1642003471827,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
+                "todo": {
+                  "content": "Serializable",
+                  "id": 1642003369631,
+                  "level": "secondary",
+                  "done": false
+                }
+              }
+            ],
+            "todo": {
+              "content": "Files",
+              "id": 1641735158765,
               "level": "default",
               "done": false
             }
@@ -372,16 +279,6 @@
               "content": "Math Final",
               "id": 1629042437646,
               "level": "secondary",
-              "done": false
-            }
-          },
-          {
-            "key": 1641735161740,
-            "children": [],
-            "todo": {
-              "content": "edit todo.",
-              "id": 1641735161740,
-              "level": "default",
               "done": false
             }
           }

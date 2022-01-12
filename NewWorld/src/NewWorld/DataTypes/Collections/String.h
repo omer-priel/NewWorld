@@ -29,6 +29,11 @@ namespace NewWorld
 	using Matrix4 = Math::Matrix4;
 }
 
+namespace NewWorld::Files
+{
+	class TextFile;
+}
+
 namespace NewWorld::DataTypes::Collections
 {
 	class String : public IObject
@@ -59,7 +64,9 @@ namespace NewWorld::DataTypes::Collections
 		template <>
 		static String ConverToString(char value)
 		{
-			return String(std::to_string(value).c_str());
+			String str;
+			str.m_Value.push_back(value);
+			return str;
 		}
 
 		template <>
@@ -218,7 +225,7 @@ namespace NewWorld::DataTypes::Collections
 		// Static
 	public:
 		template<typename... Types>
-		static String Format(String format, const Types&... args)
+		static String Format(const String& format, const Types&... args)
 		{
 			Array<String, (SizeT)sizeof...(Types)> values = ConverToStringArray(args...);
 			std::ostringstream stream;
@@ -263,12 +270,22 @@ namespace NewWorld::DataTypes::Collections
 
 		}
 
+		String(SizeT size, char fill = '\0')
+			: m_Value(size, fill)
+		{
+
+		}
+
 		// Override
 	public:
 		virtual String ToString() const override
 		{
 			return *this;
 		}
+
+		// Friends
+	private:
+		friend class NewWorld::Files::TextFile;
 
 		// Operators
 	public:
@@ -315,69 +332,18 @@ namespace NewWorld::DataTypes::Collections
 			m_Value.clear();
 		}
 
-		int Find(char value, SizeT from = 0) const
-		{
-			SizeT to = GetLength();
-			return Find(value, from, to);
-		}
+		int Find(char value, SizeT from = 0) const;
+		int Find(char value, SizeT from, SizeT to) const;
+		int Find(const String& value, SizeT from = 0) const;
+		int Find(const String& value, SizeT from, SizeT to) const;
 
-		int Find(char value, SizeT from, SizeT to) const
-		{
-			to = (to < GetLength()) ? to : GetLength() - 1;
-			for (SizeT i = from; i <= to; i++)
-			{
-				if (m_Value[i] == value)
-				{
-					return i;
-				}
-			}
-			return -1;
-		}
+		int FindLast(char value, SizeT from = 0) const;
+		int FindLast(char value, SizeT from, SizeT to) const;
+		int FindLast(const String& value, SizeT from = 0) const;
+		int FindLast(const String& value, SizeT from, SizeT to) const;
 
-		int Find(const String& value, SizeT from = 0) const
-		{
-			SizeT to = GetLength();
-			return Find(value, from, to);
-		}
-
-		int Find(const String& value, SizeT from, SizeT to) const
-		{
-			to = (to < GetLength()) ? to : GetLength() - 1;
-			to -= value.GetLength() - 1;
-
-			for (SizeT i = from; i <= to; i++)
-			{
-				bool found = m_Value[i] == value[0];
-				for (SizeT j = 1; j < value.GetLength() && found; j++)
-				{
-					found = m_Value[i + j] == value[j];
-				}
-				if (found)
-				{
-					return i;
-				}
-			}
-			return -1;
-		}
-
-		String Substring(SizeT index) const
-		{
-			return Substring(index, GetLength() - index);
-		}
-		
-		String Substring(SizeT index, SizeT count) const
-		{
-			if (count == 0 || index >= GetLength())
-			{
-				return String("");
-			}
-
-			char* ret = new char[count+1];
-			std::memcpy(ret, m_Value.c_str() + index, count);
-			ret[count] = '\0';
-
-			return String(ret);
-		}
+		String Substring(SizeT index) const;
+		String Substring(SizeT index, SizeT count) const;
 	};
 
 	// Static Operators

@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 {
 	NewWorld::Application* application = CreateApplication();
 	
-	application->Init();
+	application->Setup();
 
 	application->Run();
 	
