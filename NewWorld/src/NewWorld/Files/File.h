@@ -124,6 +124,12 @@ namespace NewWorld::Files
 			m_Stream.read((char*)&buffer, LENGTH);
 		}
 
+		File& operator>>(Byte& output)
+		{
+			m_Stream.read((char*)&output, 1);
+			return *this;
+		}
+
 		// Write
 	public:
 		void Write(Byte value);
@@ -141,6 +147,12 @@ namespace NewWorld::Files
 		{
 			SetIndex(index);
 			m_Stream.write((const char*)&buffer, LENGTH);
+		}
+
+		File& operator<<(Byte value)
+		{
+			m_Stream.write((const char*)&value, 1);
+			return *this;
 		}
 	};
 }

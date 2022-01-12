@@ -9,6 +9,13 @@ namespace NewWorld::Files
 	{
 	NW_CLASS(NewWorld::Files, TextFile)
 
+	public:
+		TextFile(const String& path, bool create = false, bool readOnly = false)
+			: File(path, create, true, readOnly)
+		{
+
+		}
+
 		// Open
 	public:
 

@@ -53,7 +53,7 @@ namespace NewWorld::Files
 
 	void File::operator--(int)
 	{
-		m_Stream.seekg(1, std::ios::cur);
+		m_Stream.seekg(-1, std::ios::cur);
 	}
 
 	void File::operator-=(Long value)

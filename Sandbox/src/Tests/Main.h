@@ -1,5 +1,6 @@
 #include <NewWorld.h>
-#include <NewWorld/Math/Vector2.h>
+#include <NewWorld/Files/BinaryFile.h>
+#include <NewWorld/Files/TextFile.h>
 
 #include "Settings.h"
 #include "Group.h"
@@ -163,13 +164,30 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-		String filePath = Files::FileManger::GetRootDirectory("files\\file.txt");
-		Files::File file(filePath, true);
+		Time start = Time::Now();
+
+		String filePath = Files::FileManger::GetRootDirectory("files\\binary");
+		Files::BinaryFile file(filePath, true);
 
 		INFO(TESTS_LOGGER, "Test File: {}", filePath);
 
 		SizeT size = file.GetSize();
 		DEBUG(TESTS_LOGGER, "Size: {}", size);
+
+		Time write = Time::Now();
+		for (uint i = 0; i < 256 * 256; i++)
+		{
+			file << i % 256;
+		}
+		Time read = Time::Now();
+		
+		Array<Byte, 256 * 256> arr;
+		file.ReadArray(0, arr);
+
+		DEBUG(TESTS_LOGGER, "Full Time: {}", Time::Now() - start);
+		DEBUG(TESTS_LOGGER, "Init Time: {}", write - start);
+		DEBUG(TESTS_LOGGER, "Write Time: {}", read - write);
+		DEBUG(TESTS_LOGGER, "Read Time: {}", Time::Now() - read);
 	}
 
 	void TestsRoot()

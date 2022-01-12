@@ -9,6 +9,14 @@ namespace NewWorld::Files
 	{
 	NW_CLASS(NewWorld::Files, BinaryFile)
 
+	public:
+		BinaryFile(const String& path, bool create = false, bool readOnly = false)
+			: File(path, create, false, readOnly)
+		{
+
+		}
+
+
 		// Open
 	public:
 
