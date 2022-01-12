@@ -225,7 +225,7 @@ namespace NewWorld::DataTypes::Collections
 		// Static
 	public:
 		template<typename... Types>
-		static String Format(String format, const Types&... args)
+		static String Format(const String& format, const Types&... args)
 		{
 			Array<String, (SizeT)sizeof...(Types)> values = ConverToStringArray(args...);
 			std::ostringstream stream;

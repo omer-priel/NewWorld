@@ -1,6 +1,4 @@
 #include <NewWorld.h>
-#include <NewWorld/Files/BinaryFile.h>
-#include <NewWorld/Files/TextFile.h>
 
 #include "Settings.h"
 #include "Group.h"
@@ -15,6 +13,7 @@ namespace Sandbox::Tests
 		DEBUG(TESTS_LOGGER, "Root Directory: {}", NewWorld::Files::FileManger::GetLogsDirectory());
 	}
 
+	/*
 	void Test1()
 	{
 		using namespace NewWorld;
@@ -330,12 +329,13 @@ namespace Sandbox::Tests
 		{
 			DEBUG(TESTS_LOGGER, "{}", line);
 		}
-	}
+	}*/
 
 	void TestsRoot()
 	{
+		/*
 		TestCore();
-
+		
 		Test1();
 		Test2();
 		
@@ -344,7 +344,7 @@ namespace Sandbox::Tests
 		TestBinaryFile();
 		TestTextFileRead();
 		TestTextFileWrite();
-		TestDirectory();
+		TestDirectory();*/
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

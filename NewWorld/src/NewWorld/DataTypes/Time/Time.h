@@ -50,33 +50,7 @@ namespace NewWorld::DataTypes::Time
 
 		String ToString(bool withMillisecond) const
 		{
-			String hour = String::ConverToString(GetHour());
-			String minute = String::ConverToString(GetMinute());
-			String secound = String::ConverToString(GetSecound());
-
-			if (hour.GetLength() == 1) {
-				hour = "0" + hour;
-			}
-			if (minute.GetLength() == 1) {
-				minute = "0" + minute;
-			}
-			if (secound.GetLength() == 1) {
-				secound = "0" + secound;
-			}
-
-			if (withMillisecond)
-			{
-				String millisecond = String::ConverToString(GetMillisecond());
-				while (millisecond.GetLength() < 3) {
-					millisecond = "0" + millisecond;
-				}
-
-				return String::Format("{}:{}:{}:{}", hour, minute, secound, millisecond);
-			}
-			else
-			{
-				return String::Format("{}:{}:{}", hour, minute, secound);
-			}
+			return Format((withMillisecond) ? "{}:{}:{}:{}" : "{}:{}:{}", withMillisecond);
 		}
 
 		// Getters and Setters
@@ -124,6 +98,39 @@ namespace NewWorld::DataTypes::Time
 		void SetTime(Byte hour, Byte minute, Byte secound, ushort millisecond)
 		{
 			m_Ticks = (hour * 3600 + minute * 60 + secound) * 100 + millisecond;
+		}
+
+		// Format
+	public:
+		String Format(const String& format, bool withMillisecond = false) const
+		{
+			String hour = String::ConverToString(GetHour());
+			String minute = String::ConverToString(GetMinute());
+			String secound = String::ConverToString(GetSecound());
+
+			if (hour.GetLength() == 1) {
+				hour = "0" + hour;
+			}
+			if (minute.GetLength() == 1) {
+				minute = "0" + minute;
+			}
+			if (secound.GetLength() == 1) {
+				secound = "0" + secound;
+			}
+
+			if (withMillisecond)
+			{
+				String millisecond = String::ConverToString(GetMillisecond());
+				while (millisecond.GetLength() < 3) {
+					millisecond = "0" + millisecond;
+				}
+
+				return String::Format(format, hour, minute, secound, millisecond);
+			}
+			else
+			{
+				return String::Format(format, hour, minute, secound);
+			}
 		}
 
 		// Operators

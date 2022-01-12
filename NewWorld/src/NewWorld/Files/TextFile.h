@@ -5,10 +5,11 @@
 
 namespace NewWorld::Files
 {
+	/*
 	// Friend of String
 	class TextFile : public File
 	{
-		NW_CLASS(NewWorld::Files, TextFile)
+	NW_CLASS(NewWorld::Files, TextFile)
 
 	public:
 		TextFile(const String& path, bool create = false, bool readOnly = false)
@@ -149,4 +150,5 @@ namespace NewWorld::Files
 			return *this;
 		}
 	};
+	*/
 }

@@ -3,22 +3,21 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Debug/Constants.h"
 #include "NewWorld/Debug/LogLevel.h"
-
-#include <iostream>
-
-#if NW_PLATFORM_WINDOWS
-#include <windows.h>
-#endif
+#include "NewWorld/Files/FileManger.h"
 
 namespace NewWorld::Debug
 {
 	// This is Static class
 	class Logger : public Object
 	{
-		NW_CLASS(NewWorld::Debug, Logger)
+	NW_CLASS(NewWorld::Debug, Logger)
 
+		// Members
 	public:
+		//static Files::TextFile s_LogFile;
+
 		// Log Types
+	public:
 		template<typename T>
 		static void Debug(const char* loggerName, const LogLevel displayLevel, const T& arg)
 		{
@@ -120,38 +119,8 @@ namespace NewWorld::Debug
 		}
 
 	private:
-		static inline void Log(const String& log, const LogLevel level)
-		{
-			Logger::SetColor(level);
-			std::cout.write(log.GetPointer(), log.GetLength());
-			// Save Log
-		}
+		static void Log(const String& log, const LogLevel level);
 
-		static inline void SetColor(const LogLevel level)
-		{
-#if NW_PLATFORM_WINDOWS
-			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-			switch (level)
-			{
-			case LogLevel::Critical:
-				SetConsoleTextAttribute(hConsole, 0xF4); // Dark Red on White
-				break;
-			case LogLevel::Error:
-				SetConsoleTextAttribute(hConsole, 0x04); // Dark Red
-				break;
-			case LogLevel::Warning:
-				SetConsoleTextAttribute(hConsole, 0x06); // Orange
-				break;
-			case LogLevel::Info:
-				SetConsoleTextAttribute(hConsole, 0x02); // Dark Green
-				break;
-			case LogLevel::Debug:
-				SetConsoleTextAttribute(hConsole, 0x0F); // White
-				break;
-		}
-#elif NW_PLATFORM_LINUX
-#error TODO
-#endif
-	}
+		static void SetColor(const LogLevel level);
 	};
 }
