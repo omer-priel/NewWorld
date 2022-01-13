@@ -6,6 +6,12 @@ int main(int argc, char** argv);
 
 namespace NewWorld
 {
+	static BOOL WINAPI console_ctrl_handler(DWORD dwCtrlType)
+	{
+		NewWorld::Application::GetApplication().ShutDown();
+		return TRUE;
+	}
+
 	class Application : public Object
 	{
 	NW_CLASS(NewWorld, Application)
@@ -44,6 +50,8 @@ namespace NewWorld
 			Files::FileManger::Initialize();
 			Debug::Logger::Initialize();
 			Debug::Profiler::Initialize();
+
+			SetConsoleCtrlHandler(console_ctrl_handler, TRUE);
 			
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 			
@@ -78,6 +86,10 @@ namespace NewWorld
 		{
 			Debug::Profiler::Finalize();
 		}
+
+		// Events
+	private:
+
 
 		// Action
 	public:
