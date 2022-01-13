@@ -1,18 +1,22 @@
 #include <NewWorld.h>
 #include <NewWorld/EntryPoint.h>
 
+#include "Settings.h"
 #include "Tests/Main.h"
 
 namespace Sandbox
 {
 	class Application : NewWorld::Application
 	{
-		NW_CLASS(Application, Sandbox)
+		NW_CLASS(Sandbox, Application)
 
 	public:
-		Application() { }
+		Application()
+		{
+			
+		}
 
-		void Init() override
+		void Initialize() override
 		{
 			Tests::TestsRoot();
 		}

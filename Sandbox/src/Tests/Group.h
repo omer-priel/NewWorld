@@ -1,12 +1,13 @@
 #include <NewWorld.h>
 
+#include "Settings.h"
 #include "Entity.h"
 
 namespace Sandbox::Tests
 {
 	class Group : public NewWorld::Object
 	{
-		NW_CLASS(Group, Sandbox::Tests)
+		NW_CLASS(Sandbox::Tests, Group)
 	public:
 
 		// Members
@@ -42,16 +43,14 @@ namespace Sandbox::Tests
 	private:
 		void Print(NewWorld::String tabs)
 		{
-			INFO(tabs, m_Name, ":");
+			INFO(MAIN_LOGGER, "{}{}:", tabs, m_Name);
 			tabs += "\t";
 
-			for each (NewWorld::SharedPointer<Entity> entity in m_Entitys)
-			{
-				INFO(tabs, entity);
+			for (auto&& entity : m_Entitys) {
+				INFO(MAIN_LOGGER, "{}{}", tabs, entity);
 			}
 
-			for each (NewWorld::SharedPointer<Group> group in m_SubGroups)
-			{
+			for (auto&& group : m_SubGroups) {
 				group->Print(tabs);
 			}
 		}
