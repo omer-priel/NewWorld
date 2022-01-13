@@ -344,6 +344,8 @@ namespace NewWorld::DataTypes::Collections
 
 		String Substring(SizeT index) const;
 		String Substring(SizeT index, SizeT count) const;
+
+		void Replace(char oldChar, char newChar);
 	};
 
 	// Static Operators

@@ -68,6 +68,7 @@ namespace NewWorld::Files
 			SetIndex(0);
 		}
 
+	public:
 		inline void Close()
 		{
 			if (!IsOpened())

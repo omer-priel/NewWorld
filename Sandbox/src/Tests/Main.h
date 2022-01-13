@@ -9,12 +9,15 @@ namespace Sandbox::Tests
 {	
 	void TestCore()
 	{
+		NW_PROFILE_FUNCTION;
+
 		DEBUG(TESTS_LOGGER, "IDs: {}", NewWorld::DataTypes::Build::c_LastTypeId);
 		DEBUG(TESTS_LOGGER, "Root Directory: {}", NewWorld::Files::FileManger::GetLogsDirectory());
 	}
 
 	void Test1()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		{
@@ -59,6 +62,7 @@ namespace Sandbox::Tests
 	
 	void Test2()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filename = "Sandbox.exe";
@@ -82,6 +86,7 @@ namespace Sandbox::Tests
 
 	void TestOnlyRead()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\read.txt");
@@ -125,6 +130,7 @@ namespace Sandbox::Tests
 
 	void TestOnlyWrite()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		uint id = Files::FileManger::CreateTemporaryDirectory();
@@ -162,6 +168,7 @@ namespace Sandbox::Tests
 
 	void TestBinaryFile()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\binary");
@@ -208,6 +215,7 @@ namespace Sandbox::Tests
 
 	void TestTextFileRead()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\other.txt");
@@ -252,8 +260,8 @@ namespace Sandbox::Tests
 
 	void TestTextFileWrite()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
-
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\text.txt");
 		Files::File::Delete(filePath);
@@ -275,58 +283,63 @@ namespace Sandbox::Tests
 
 	void TestDirectory()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String path = Files::FileManger::GetRootDirectory();
 		
 		DynamicArray<String> arr;
 		
-		WARN(TESTS_LOGGER, "GetDirectoriesAndFiles");
-		arr.clear();
-		Files::Directory::GetDirectoriesAndFiles(path, arr);
-		for (String line : arr)
+		for (size_t i = 0; i < 1; i++)
 		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
 
-		WARN(TESTS_LOGGER, "GetDirectories");
-		arr.clear();
-		Files::Directory::GetDirectories(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetDirectoriesAndFiles");
+			arr.clear();
+			Files::Directory::GetDirectoriesAndFiles(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetFiles");
-		arr.clear();
-		Files::Directory::GetFiles(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetDirectories");
+			arr.clear();
+			Files::Directory::GetDirectories(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetDirectoriesAndFilesNames");
-		arr.clear();
-		Files::Directory::GetDirectoriesAndFilesNames(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetFiles");
+			arr.clear();
+			Files::Directory::GetFiles(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetDirectoriesNames");
-		arr.clear();
-		Files::Directory::GetDirectoriesNames(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetDirectoriesAndFilesNames");
+			arr.clear();
+			Files::Directory::GetDirectoriesAndFilesNames(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetFilesNames");
-		arr.clear();
-		Files::Directory::GetFilesNames(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
+			WARN(TESTS_LOGGER, "GetDirectoriesNames");
+			arr.clear();
+			Files::Directory::GetDirectoriesNames(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
+
+			WARN(TESTS_LOGGER, "GetFilesNames");
+			arr.clear();
+			Files::Directory::GetFilesNames(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 		}
 	}
 
@@ -336,7 +349,6 @@ namespace Sandbox::Tests
 		
 		Test1();
 		Test2();
-		
 		TestOnlyRead();
 		TestOnlyWrite();
 		TestBinaryFile();

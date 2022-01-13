@@ -15,68 +15,6 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1629042438141,
-            "children": [
-              {
-                "key": 1629973912329,
-                "children": [
-                  {
-                    "key": 1629974227234,
-                    "children": [],
-                    "todo": {
-                      "content": "ProfileBlock class",
-                      "id": 1629974227234,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629974245112,
-                    "children": [],
-                    "todo": {
-                      "content": "Open ProfileBlock",
-                      "id": 1629974245112,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629974245895,
-                    "children": [],
-                    "todo": {
-                      "content": "Close ProfileBlock",
-                      "id": 1629974245895,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1629974309233,
-                    "children": [],
-                    "todo": {
-                      "content": "Inline ProfileBlock",
-                      "id": 1629974309233,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Profile System",
-                  "id": 1629973912329,
-                  "level": "warning",
-                  "done": false
-                }
-              }
-            ],
-            "todo": {
-              "content": "Debug",
-              "id": 1629042438141,
-              "level": "default",
-              "done": false
-            }
-          },
-          {
             "key": 1629042438599,
             "children": [
               {
@@ -85,13 +23,13 @@
                 "todo": {
                   "content": "Remove Test function",
                   "id": 1630503190003,
-                  "level": "default",
+                  "level": "warning",
                   "done": false
                 }
               }
             ],
             "todo": {
-              "content": "Application [Debug System]",
+              "content": "Application",
               "id": 1629042438599,
               "level": "default",
               "done": false
@@ -390,7 +328,8 @@
       1629042438141,
       1641735158765,
       1641735175524,
-      1641735209739
+      1641735209739,
+      1629042438599
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L26"
   }
