@@ -15,15 +15,8 @@ namespace NewWorld::Debug
 		Long m_Start;
 
 	public:
-		ProfileBlock(const String& name)
-			: m_Name(name), m_Start(Time::Now().GetTicks())
-		{
+		ProfileBlock(const String& name);
 
-		}
-
-		~ProfileBlock()
-		{
-			Profiler::AddBlock(m_Name, m_Start, Time::Now().GetTicks());
-		}
+		~ProfileBlock();
 	};
 }

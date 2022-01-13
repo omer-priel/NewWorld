@@ -338,7 +338,7 @@ namespace Sandbox::Tests
 		TestCore();
 
 		{
-			NewWorld::Debug::ProfileBlock p("B1");
+			NewWorld::Debug::ProfileBlock p( ,"B1");
 			Test1();
 			Test2();
 		}
