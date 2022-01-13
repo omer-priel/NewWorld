@@ -114,6 +114,20 @@
 
 #pragma endregion
 
+#pragma region Debug::Profiler
+
+#if NW_CONFIG_DEBUG
+#define NW_PROFILE_SCOPE(name) NewWorld::Debug::ProfileScope profileScope##__LINE__(name)
+#define NW_PROFILE_EVENT(name) NewWorld::Debug::Profiler::AddEvent(name)
+#define NW_PROFILE_FUNCTION NewWorld::Debug::ProfileScope profileScope##__LINE__(__FUNCSIG__)
+#else
+#define NW_PROFILE_SCOPE(name)
+#define NW_PROFILE_EVENT(name)
+#define NW_PROFILE_FUNCTION
+#endif
+
+#pragma endregion
+
 #pragma region Constants
 
 #define NW_BUILD_DEFINE_LOGGER(id, name, displayLevel) constexpr char NW_GET_LOGGER_NAME(id)_NAME[] = name;\

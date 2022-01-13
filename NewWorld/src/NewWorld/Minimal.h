@@ -77,4 +77,4 @@ namespace NewWorld
 // Debug
 #include "NewWorld/Debug/Logger.h"
 #include "NewWorld/Debug/Profiler.h"
-#include "NewWorld/Debug/ProfileBlock.h"
+#include "NewWorld/Debug/ProfileScope.h"

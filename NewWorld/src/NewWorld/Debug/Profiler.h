@@ -20,6 +20,6 @@ namespace NewWorld::Debug
 		static void Finalize();
 
 		static void AddEvent(String name);
-		static void AddBlock(String name, Ulong start, Ulong end);
+		static void AddScope(String name, Ulong start, Ulong end);
 	};
 }

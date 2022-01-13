@@ -5,9 +5,9 @@
 
 namespace NewWorld::Debug
 {
-	class ProfileBlock : public Object
+	class ProfileScope : public Object
 	{
-	NW_CLASS(NewWorld::Debug, ProfileBlock)
+	NW_CLASS(NewWorld::Debug, ProfileScope)
 
 		// Members
 	public:
@@ -15,8 +15,8 @@ namespace NewWorld::Debug
 		Long m_Start;
 
 	public:
-		ProfileBlock(const String& name);
+		ProfileScope(const String& name);
 
-		~ProfileBlock();
+		~ProfileScope();
 	};
 }

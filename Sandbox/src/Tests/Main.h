@@ -9,12 +9,15 @@ namespace Sandbox::Tests
 {	
 	void TestCore()
 	{
+		NW_PROFILE_FUNCTION;
+
 		DEBUG(TESTS_LOGGER, "IDs: {}", NewWorld::DataTypes::Build::c_LastTypeId);
 		DEBUG(TESTS_LOGGER, "Root Directory: {}", NewWorld::Files::FileManger::GetLogsDirectory());
 	}
 
 	void Test1()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		{
@@ -59,6 +62,7 @@ namespace Sandbox::Tests
 	
 	void Test2()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filename = "Sandbox.exe";
@@ -82,6 +86,7 @@ namespace Sandbox::Tests
 
 	void TestOnlyRead()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\read.txt");
@@ -125,6 +130,7 @@ namespace Sandbox::Tests
 
 	void TestOnlyWrite()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		uint id = Files::FileManger::CreateTemporaryDirectory();
@@ -162,6 +168,7 @@ namespace Sandbox::Tests
 
 	void TestBinaryFile()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\binary");
@@ -208,6 +215,7 @@ namespace Sandbox::Tests
 
 	void TestTextFileRead()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\other.txt");
@@ -252,6 +260,7 @@ namespace Sandbox::Tests
 
 	void TestTextFileWrite()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String filePath = Files::FileManger::GetRootDirectory("files\\text.txt");
@@ -274,6 +283,7 @@ namespace Sandbox::Tests
 
 	void TestDirectory()
 	{
+		NW_PROFILE_FUNCTION;
 		using namespace NewWorld;
 
 		String path = Files::FileManger::GetRootDirectory();
@@ -336,26 +346,15 @@ namespace Sandbox::Tests
 	void TestsRoot()
 	{
 		TestCore();
-
-		{
-			NewWorld::Debug::ProfileBlock p( ,"B1");
-			Test1();
-			Test2();
-		}
-
-		{
-			NewWorld::Debug::ProfileBlock p("B2");
-			TestOnlyRead();
-			TestOnlyWrite();
-			NewWorld::Debug::Profiler::AddEvent("E1");
-			TestBinaryFile();
-		}
-		{
-			NewWorld::Debug::ProfileBlock p("B3");
-			TestTextFileRead();
-			TestTextFileWrite();
-			TestDirectory();
-		}
+		
+		Test1();
+		Test2();
+		TestOnlyRead();
+		TestOnlyWrite();
+		TestBinaryFile();
+		TestTextFileRead();
+		TestTextFileWrite();
+		TestDirectory();
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

@@ -45,12 +45,12 @@ namespace NewWorld::Debug
 		s_File << String::Format("\"name\":\"{}\",", name);
 		s_File << "\"cat\":\"Event\",";
 		s_File << "\"ph\":\"X\",";
-		s_File << String::Format("\"dur\":50,\"ts\":{},", Time::Now().GetTicks());
+		s_File << String::Format("\"dur\":100,\"ts\":{},", Time::Now().GetTicks());
 		s_File << String::Format("\"pid\":0,\"tid\":{}", threadID);
 		s_File << "}";
 	}
 
-	void Profiler::AddBlock(String name, Ulong start, Ulong end)
+	void Profiler::AddScope(String name, Ulong start, Ulong end)
 	{
 		uint threadID = 0;
 		if (s_IsFirstEvent)
@@ -66,7 +66,7 @@ namespace NewWorld::Debug
 
 		s_File << "{";
 		s_File << String::Format("\"name\":\"{}\",", name);
-		s_File << "\"cat\":\"Block\",";
+		s_File << "\"cat\":\"Scope\",";
 		s_File << "\"ph\":\"X\",";
 		s_File << String::Format("\"dur\":{},\"ts\":{},", end - start, start);
 		s_File << String::Format("\"pid\":0,\"tid\":{}", threadID);
