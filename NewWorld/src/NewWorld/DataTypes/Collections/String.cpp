@@ -1,6 +1,8 @@
 #include "nwpch.h"
 #include "String.h"
 
+#include <algorithm>
+
 namespace NewWorld::DataTypes::Collections
 {
 	int String::Find(char value, SizeT from) const
@@ -110,5 +112,10 @@ namespace NewWorld::DataTypes::Collections
 		ret[count] = '\0';
 
 		return String(ret);
+	}
+
+	void String::Replace(char oldChar, char newChar)
+	{
+		std::replace(m_Value.begin(), m_Value.end(), oldChar, newChar);
 	}
 }

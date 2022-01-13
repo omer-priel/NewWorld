@@ -43,6 +43,7 @@ namespace NewWorld
 		{
 			Files::FileManger::Initialize();
 			Debug::Logger::Initialize();
+			Debug::Profiler::Initialize();
 			
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 			
@@ -68,6 +69,8 @@ namespace NewWorld
 		void Closed()
 		{
 			NW_INFO(NW_LOGGER_CORE, "The Application Closed");
+
+			Debug::Profiler::Finalize();
 		}
 
 		// Action

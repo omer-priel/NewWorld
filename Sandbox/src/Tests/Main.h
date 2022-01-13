@@ -254,7 +254,6 @@ namespace Sandbox::Tests
 	{
 		using namespace NewWorld;
 
-
 		String filePath = Files::FileManger::GetRootDirectory("files\\text.txt");
 		Files::File::Delete(filePath);
 		Files::TextFile file(filePath, true);
@@ -281,68 +280,82 @@ namespace Sandbox::Tests
 		
 		DynamicArray<String> arr;
 		
-		WARN(TESTS_LOGGER, "GetDirectoriesAndFiles");
-		arr.clear();
-		Files::Directory::GetDirectoriesAndFiles(path, arr);
-		for (String line : arr)
+		for (size_t i = 0; i < 1; i++)
 		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
 
-		WARN(TESTS_LOGGER, "GetDirectories");
-		arr.clear();
-		Files::Directory::GetDirectories(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetDirectoriesAndFiles");
+			arr.clear();
+			Files::Directory::GetDirectoriesAndFiles(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetFiles");
-		arr.clear();
-		Files::Directory::GetFiles(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetDirectories");
+			arr.clear();
+			Files::Directory::GetDirectories(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetDirectoriesAndFilesNames");
-		arr.clear();
-		Files::Directory::GetDirectoriesAndFilesNames(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetFiles");
+			arr.clear();
+			Files::Directory::GetFiles(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetDirectoriesNames");
-		arr.clear();
-		Files::Directory::GetDirectoriesNames(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
-		}
+			WARN(TESTS_LOGGER, "GetDirectoriesAndFilesNames");
+			arr.clear();
+			Files::Directory::GetDirectoriesAndFilesNames(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 
-		WARN(TESTS_LOGGER, "GetFilesNames");
-		arr.clear();
-		Files::Directory::GetFilesNames(path, arr);
-		for (String line : arr)
-		{
-			DEBUG(TESTS_LOGGER, "{}", line);
+			WARN(TESTS_LOGGER, "GetDirectoriesNames");
+			arr.clear();
+			Files::Directory::GetDirectoriesNames(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
+
+			WARN(TESTS_LOGGER, "GetFilesNames");
+			arr.clear();
+			Files::Directory::GetFilesNames(path, arr);
+			for (String line : arr)
+			{
+				DEBUG(TESTS_LOGGER, "{}", line);
+			}
 		}
 	}
 
 	void TestsRoot()
 	{
 		TestCore();
-		
-		Test1();
-		Test2();
-		
-		TestOnlyRead();
-		TestOnlyWrite();
-		TestBinaryFile();
-		TestTextFileRead();
-		TestTextFileWrite();
-		TestDirectory();
+
+		{
+			NewWorld::Debug::ProfileBlock p("B1");
+			Test1();
+			Test2();
+		}
+
+		{
+			NewWorld::Debug::ProfileBlock p("B2");
+			TestOnlyRead();
+			TestOnlyWrite();
+			NewWorld::Debug::Profiler::AddEvent("E1");
+			TestBinaryFile();
+		}
+		{
+			NewWorld::Debug::ProfileBlock p("B3");
+			TestTextFileRead();
+			TestTextFileWrite();
+			TestDirectory();
+		}
 
 		// End
 		ERROR(MAIN_LOGGER, "Press any key to continue . . .");

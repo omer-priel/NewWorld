@@ -1,14 +1,29 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+#include "NewWorld/Debug/Profiler.h"
 
 namespace NewWorld::Debug
 {
 	class ProfileBlock : public Object
 	{
-		NW_CLASS(NewWorld::Debug, ProfileBlock)
+	NW_CLASS(NewWorld::Debug, ProfileBlock)
+
+		// Members
+	public:
+		String m_Name;
+		Long m_Start;
 
 	public:
-		// https://www.youtube.com/watch?v=xlAH4dbMVnU&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb&index=81
+		ProfileBlock(const String& name)
+			: m_Name(name), m_Start(Time::Now().GetTicks())
+		{
+
+		}
+
+		~ProfileBlock()
+		{
+			Profiler::AddBlock(m_Name, m_Start, Time::Now().GetTicks());
+		}
 	};
 }
