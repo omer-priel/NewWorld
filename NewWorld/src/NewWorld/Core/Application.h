@@ -62,7 +62,7 @@ namespace NewWorld
 			{
 				NW_PROFILE_SCOPE("Frame");
 				// BeginFrame()
-				ShutDown(); // TEMP
+				
 				// EndFrame()
 			}
 

@@ -87,6 +87,7 @@ project "Sandbox"
 	includedirs
 	{
 		"NewWorld/src",
+        "Sandbox/src",
         "%{DependenciesDir}/GLM"
 	}
 

@@ -2,14 +2,14 @@
 
 #include "Settings.h"
 
-namespace Sandbox::Tests
+namespace Sandbox::Entities
 {
 	static NewWorld::uint s_LastID = 0;
 	static bool s_DebugMode = false;
 
 	class Entity : public NewWorld::Object
 	{
-		NW_CLASS(Sandbox::Tests, Entity)
+	NW_CLASS(Sandbox::Tests, Entity)
 
 	public:
 		using String = NewWorld::String; //const char*;
