@@ -16,6 +16,8 @@ int main(int argc, char* argv[])
 	application->Setup();
 
 	application->Run();
+
+	application->Cleanup();
 	
 	delete application;
 	return 0;

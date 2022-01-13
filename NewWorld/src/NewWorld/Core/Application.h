@@ -47,17 +47,20 @@ namespace NewWorld
 			
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 			
+			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
 		}
 
 		void Run()
 		{
+			NW_PROFILE_SCOPE("Application Run");
 			NW_INFO(NW_LOGGER_CORE, "The Application Start to run.");
 
 			m_Running = true;
 			// The Game Loop
 			while (m_Running)
 			{
+				NW_PROFILE_SCOPE("Frame");
 				// BeginFrame()
 				ShutDown(); // TEMP
 				// EndFrame()
@@ -69,7 +72,10 @@ namespace NewWorld
 		void Closed()
 		{
 			NW_INFO(NW_LOGGER_CORE, "The Application Closed");
+		}
 
+		void Cleanup()
+		{
 			Debug::Profiler::Finalize();
 		}
 
