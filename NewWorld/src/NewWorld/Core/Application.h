@@ -6,12 +6,6 @@ int main(int argc, char** argv);
 
 namespace NewWorld
 {
-	static BOOL WINAPI console_ctrl_handler(DWORD dwCtrlType)
-	{
-		NewWorld::Application::GetApplication().ShutDown();
-		return TRUE;
-	}
-
 	class Application : public Object
 	{
 	NW_CLASS(NewWorld, Application)
@@ -20,6 +14,18 @@ namespace NewWorld
 	public:
 		static RawPointer<Application> s_Application;
 		static inline Application& GetApplication() { return *s_Application; }
+
+	private:
+		static BOOL WINAPI ConsoleCtrlHandler(DWORD type)
+		{
+			if (type == CTRL_CLOSE_EVENT)
+			{
+				NewWorld::Application::GetApplication().ShutDown();
+				ExitThread(0);
+			}
+
+			return TRUE;
+		}
 
 		// Members
 	private:
@@ -51,7 +57,7 @@ namespace NewWorld
 			Debug::Logger::Initialize();
 			Debug::Profiler::Initialize();
 
-			SetConsoleCtrlHandler(console_ctrl_handler, TRUE);
+			SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
 			
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 			
