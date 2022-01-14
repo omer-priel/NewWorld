@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+#include "NewWorld/DataTypes/Threads/Thread.h"
 
 int main(int argc, char** argv);
 
@@ -57,6 +58,7 @@ namespace NewWorld
 			Debug::Logger::Initialize();
 			Debug::Profiler::Initialize();
 
+			// Console Handler
 			SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
 			
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
@@ -75,9 +77,11 @@ namespace NewWorld
 			while (m_Running)
 			{
 				NW_PROFILE_SCOPE("Frame");
-				// BeginFrame()
-				
-				// EndFrame()
+				BeginFrame();
+
+				DataTypes::Threads::Thread::Sleap(500);
+
+				EndFrame();
 			}
 
 			Closed();
@@ -91,6 +95,17 @@ namespace NewWorld
 		void Cleanup()
 		{
 			Debug::Profiler::Finalize();
+		}
+
+	public:
+		void BeginFrame()
+		{
+
+		}
+
+		void EndFrame()
+		{
+
 		}
 
 		// Events
