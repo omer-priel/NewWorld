@@ -60,7 +60,7 @@ namespace NewWorld::Files
 
 		inline String ReadAll()
 		{
-			return ReadString(GetSize() - GetIndex());
+			return ReadString((SizeT)(GetSize() - GetIndex()));
 		}
 
 		DynamicArray<String> ReadAllLines()

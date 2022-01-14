@@ -18,7 +18,7 @@ namespace Sandbox
 
 		void Initialize() override
 		{
-			NewWorld::DataTypes::Threads::Thread::Sleap(500);
+
 		}
 	};
 }

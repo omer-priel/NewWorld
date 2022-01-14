@@ -14,7 +14,7 @@ namespace NewWorld::Files
 
 		// Static Functions
 	public:
-		static inline bool Exists(const String& path);
+		static bool Exists(const String& path);
 
 		static bool Delete(const String& path);
 
