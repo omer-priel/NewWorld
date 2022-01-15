@@ -15,16 +15,6 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1642083344301,
-            "children": [],
-            "todo": {
-              "content": "Fix Console Close Procces",
-              "id": 1642083344301,
-              "level": "warning",
-              "done": false
-            }
-          },
-          {
             "key": 1629042438599,
             "children": [
               {
@@ -85,7 +75,7 @@
                 "todo": {
                   "content": "Events",
                   "id": 1642082763739,
-                  "level": "default",
+                  "level": "warning",
                   "done": false
                 }
               },
@@ -106,7 +96,7 @@
                 "todo": {
                   "content": "Input",
                   "id": 1642082846421,
-                  "level": "default",
+                  "level": "warning",
                   "done": false
                 }
               }

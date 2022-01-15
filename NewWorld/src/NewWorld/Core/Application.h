@@ -3,6 +3,8 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/DataTypes/Threads/Thread.h"
 
+#include "NewWorld/Core/Window.h"
+
 int main(int argc, char** argv);
 
 namespace NewWorld
@@ -31,6 +33,7 @@ namespace NewWorld
 		// Members
 	private:
 		bool m_Running;
+		Core::Window m_Window;
 
 	public:
 		Application()
@@ -61,6 +64,10 @@ namespace NewWorld
 			// Console Handler
 			SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
 			
+			// Create Window
+			m_Window.Init();
+			m_Window.Show();
+
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 			
 			NW_PROFILE_SCOPE("Initialize");
