@@ -18,48 +18,28 @@
             "key": 1629042438599,
             "children": [
               {
+                "key": 1642279365415,
+                "children": [],
+                "todo": {
+                  "content": "Function Class",
+                  "id": 1642279365415,
+                  "level": "warning",
+                  "done": false
+                }
+              },
+              {
+                "key": 1642278804863,
+                "children": [],
+                "todo": {
+                  "content": "Thread Class",
+                  "id": 1642278804863,
+                  "level": "warning",
+                  "done": false
+                }
+              },
+              {
                 "key": 1642082762742,
                 "children": [
-                  {
-                    "key": 1642274330003,
-                    "children": [],
-                    "todo": {
-                      "content": "Fix Window Title",
-                      "id": 1642274330003,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1642274346425,
-                    "children": [],
-                    "todo": {
-                      "content": "Fix Window Loading and Style",
-                      "id": 1642274346425,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1642274368992,
-                    "children": [],
-                    "todo": {
-                      "content": "Window Icon",
-                      "id": 1642274368992,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1642274409125,
-                    "children": [],
-                    "todo": {
-                      "content": "Set Main Window and Shutdown when it close",
-                      "id": 1642274409125,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
                   {
                     "key": 1642274431781,
                     "children": [],
@@ -77,6 +57,26 @@
                       "content": "Understand what is VSync",
                       "id": 1642274495050,
                       "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642274346425,
+                    "children": [],
+                    "todo": {
+                      "content": "Load OpenGL",
+                      "id": 1642274346425,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642274368992,
+                    "children": [],
+                    "todo": {
+                      "content": "Window Icon [Images Support]",
+                      "id": 1642274368992,
+                      "level": "secondary",
                       "done": false
                     }
                   }
@@ -115,6 +115,16 @@
                 "todo": {
                   "content": "Events",
                   "id": 1642082763739,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1642274409125,
+                "children": [],
+                "todo": {
+                  "content": "Set Main Window and Shutdown when it close",
+                  "id": 1642274409125,
                   "level": "default",
                   "done": false
                 }

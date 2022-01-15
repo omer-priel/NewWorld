@@ -24,12 +24,11 @@ namespace NewWorld::Core
 		windowClass.hCursor = LoadCursorW(NULL, IDC_ARROW);
 
 		// Set window Icon
-		//windowClass.hIcon = LoadImageW(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_SHARED);
+		windowClass.hIcon = static_cast<HICON>(LoadImageW(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_SHARED));
 
 		if (!RegisterClassExW(&windowClass))
 		{
 			NW_CRITICAL(NW_LOGGER_GRAPHICS, "Cannot create Window, because failed to register \"window class\"");
-			return;
 		}
 	}
 
