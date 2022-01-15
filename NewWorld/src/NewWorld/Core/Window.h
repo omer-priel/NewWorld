@@ -8,6 +8,13 @@ namespace NewWorld::Core
 	{
 	NW_CLASS(NewWorld::Core, Window)
 
+		// Static
+	public:
+		static void Initialize();
+
+	private:
+		static LRESULT CALLBACK WindowCallbackStatic(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam);
+
 		// Members
 	private:
 		String m_Title;
@@ -17,7 +24,7 @@ namespace NewWorld::Core
 		bool m_VSync;
 
 	private:
-		HWND m_WinHandle;
+		HWND m_WinHandle = nullptr;
 
 	public:
 		Window(const String& title = "New World", uint width = 1280, uint height = 720, bool visible = true, bool vSync = true)
@@ -53,5 +60,9 @@ namespace NewWorld::Core
 		//void AddEventCallback(const EventCallback& callback);
 
 		//void Update()
+
+		// OS Events
+	private:
+		LRESULT WindowCallback(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam);
 	};
 }

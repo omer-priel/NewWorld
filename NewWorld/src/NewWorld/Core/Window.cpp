@@ -3,40 +3,51 @@
 
 namespace NewWorld::Core
 {
-	LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+	// Static
+	void Window::Initialize()
 	{
-		return DefWindowProcW(hwnd, uMsg, wParam, lParam);
-	}
-
-	void Window::Init()
-	{
-		LPCWSTR lpWindowName = (LPCWSTR)m_Title.GetPointer();
-		
 		// Create Windows Class
 		WNDCLASSEXW windowClass;
 		ZeroMemory(&windowClass, sizeof(windowClass));
-		
+
 		windowClass.lpszClassName = L"NewWorld_WindowClass";
 		windowClass.cbSize = sizeof(windowClass);
-		windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-		windowClass.lpfnWndProc = WindowProc;
 		windowClass.hInstance = GetModuleHandleW(NULL);
+
+		windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+		windowClass.lpfnWndProc = Window::WindowCallbackStatic;
+
+		// Set Cursor Icon
 		windowClass.hCursor = LoadCursorW(NULL, IDC_ARROW);
 
+		// Set window Icon
 		//windowClass.hIcon = LoadImageW(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_SHARED);
 
 		if (!RegisterClassExW(&windowClass))
 		{
-			//NW_CRITICAL(NW_LOGGER_GRA, "Win32: Failed to register window class");
+			NW_CRITICAL(NW_LOGGER_GRAPHICS, "Cannot create Window, because failed to register \"window class\"");
+			return;
+		}
+	}
+
+	// Callback of windowClass
+	LRESULT CALLBACK Window::WindowCallbackStatic(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam)
+	{
+		if (WM_NCCREATE == actionType) // Why?
+		{
+			SetWindowLongPtr(winHandle, GWLP_USERDATA, (LONG_PTR)((CREATESTRUCT*)lParam)->lpCreateParams);
+			return TRUE;
 		}
 
-		// Set Cursor Icon
-		LoadIcon(NULL, IDC_ARROW);
+		return ((Window*)GetWindowLongPtr(winHandle, GWLP_USERDATA))->WindowCallback(winHandle, actionType, wParam, lParam);
+	}
+
+	// None-Static
+	void Window::Init()
+	{
+		LPCWSTR lpWindowName = (LPCWSTR)m_Title.GetPointer();
 
 		// Set Window Style
-		// https://docs.microsoft.com/en-us/windows/win32/winmsg/window-styles
-		// https://docs.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles
-
 		DWORD dwStyle = WS_CLIPSIBLINGS | WS_CLIPCHILDREN
 			| WS_CAPTION | WS_SYSMENU
 			| WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME;
@@ -47,24 +58,36 @@ namespace NewWorld::Core
 		// Set Location
 		int x = CW_USEDEFAULT; // Gives the OS to select the postion
 		int y = CW_USEDEFAULT; // Gives the OS to select the postion
-		
-		// Set extra window settings
-		HWND      hWndParent = NULL;
-		HMENU     hMenu = NULL;
-		HINSTANCE hInstance = GetModuleHandleW(NULL);
-		LPVOID    lpParam = NULL;
 
 		// Create the Window
-		m_WinHandle = CreateWindowExW(dwExStyle, windowClass.lpszClassName, lpWindowName, dwStyle,
+		m_WinHandle = CreateWindowExW(dwExStyle, L"NewWorld_WindowClass", lpWindowName, dwStyle,
 			x, y, (int)m_Width, (int)m_Height,
-			hWndParent, hMenu, hInstance, lpParam);
+			NULL, NULL, GetModuleHandleW(NULL), this);
 
 		NW_INFO(NW_LOGGER_CORE, "Window Created {} ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
 	void Window::Show()
 	{
-		// TODO: Show
 		ShowWindow(m_WinHandle, SW_SHOWNA);
+	}
+
+	// Events
+	LRESULT Window::WindowCallback(HWND winHandle, uint actionType, WPARAM wParam, LPARAM lParam)
+	{
+		switch (actionType)
+		{
+			case WM_SIZE:
+			{
+				NW_INFO(NW_LOGGER_CORE, "WM_SIZE");
+			}
+			break;
+			case WM_CLOSE:
+			{
+				NW_INFO(NW_LOGGER_CORE, "WM_CLOSE");
+			}
+			break;
+		}
+		return DefWindowProcW(winHandle, actionType, wParam, lParam);
 	}
 }

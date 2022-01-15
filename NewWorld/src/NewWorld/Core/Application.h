@@ -64,11 +64,17 @@ namespace NewWorld
 			// Console Handler
 			SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
 			
+			Core::Window::Initialize();
+
+			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
+
 			// Create Window
 			m_Window.Init();
 			m_Window.Show();
 
-			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
+			Core::Window window2("Window2", 400, 400);
+			window2.Init();
+			window2.Show();
 			
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -81,14 +87,19 @@ namespace NewWorld
 
 			m_Running = true;
 			// The Game Loop
+			MSG msg;
 			while (m_Running)
 			{
+				//GetMessage(&msg, NULL, 0, 0);
 				NW_PROFILE_SCOPE("Frame");
 				BeginFrame();
 
 				DataTypes::Threads::Thread::Sleap(500);
 
 				EndFrame();
+
+				//TranslateMessage(&msg);
+				//DispatchMessage(&msg);
 			}
 
 			Closed();
