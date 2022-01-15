@@ -73,8 +73,8 @@ namespace NewWorld
 			m_Window.Show();
 
 			Core::Window window2("Window2", 400, 400);
-			window2.Init();
-			window2.Show();
+			//window2.Init();
+			//window2.Show();
 			
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -87,19 +87,22 @@ namespace NewWorld
 
 			m_Running = true;
 			// The Game Loop
-			MSG msg;
 			while (m_Running)
 			{
-				//GetMessage(&msg, NULL, 0, 0);
 				NW_PROFILE_SCOPE("Frame");
+				
+				// TODO: On another thread
+				MSG msg;
+				GetMessage(&msg, NULL, NULL, NULL);
+								
 				BeginFrame();
 
-				DataTypes::Threads::Thread::Sleap(500);
+				//DataTypes::Threads::Thread::Sleap(500);
 
 				EndFrame();
 
-				//TranslateMessage(&msg);
-				//DispatchMessage(&msg);
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
 			}
 
 			Closed();

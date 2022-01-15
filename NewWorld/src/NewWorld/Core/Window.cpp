@@ -14,7 +14,10 @@ namespace NewWorld::Core
 		windowClass.cbSize = sizeof(windowClass);
 		windowClass.hInstance = GetModuleHandleW(NULL);
 
+		// Set Style
 		windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+		
+		// Set Callback
 		windowClass.lpfnWndProc = Window::WindowCallbackStatic;
 
 		// Set Cursor Icon
@@ -33,34 +36,31 @@ namespace NewWorld::Core
 	// Callback of windowClass
 	LRESULT CALLBACK Window::WindowCallbackStatic(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam)
 	{
-		if (WM_NCCREATE == actionType) // Why?
-		{
-			SetWindowLongPtr(winHandle, GWLP_USERDATA, (LONG_PTR)((CREATESTRUCT*)lParam)->lpCreateParams);
-			return TRUE;
-		}
-
 		return ((Window*)GetWindowLongPtr(winHandle, GWLP_USERDATA))->WindowCallback(winHandle, actionType, wParam, lParam);
 	}
 
 	// None-Static
 	void Window::Init()
 	{
-		LPCWSTR lpWindowName = (LPCWSTR)m_Title.GetPointer();
+		// Set Title
+		RawPointer<wchar_t> titleArr = new wchar_t[m_Title.GetLength() + 1];
+		mbstowcs(titleArr, m_Title.GetPointer(), m_Title.GetLength() + 1);
+		LPWSTR title = titleArr;
 
 		// Set Window Style
-		DWORD dwStyle = WS_CLIPSIBLINGS | WS_CLIPCHILDREN
+		DWORD basicStyle = WS_CLIPSIBLINGS | WS_CLIPCHILDREN
 			| WS_CAPTION | WS_SYSMENU
 			| WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME;
 		//| WS_POPUP;
 		
-		DWORD dwExStyle = WS_EX_APPWINDOW;
+		DWORD extraStyle = WS_EX_APPWINDOW;
 
 		// Set Location
 		int x = CW_USEDEFAULT; // Gives the OS to select the postion
 		int y = CW_USEDEFAULT; // Gives the OS to select the postion
 
 		// Create the Window
-		m_WinHandle = CreateWindowExW(dwExStyle, L"NewWorld_WindowClass", lpWindowName, dwStyle,
+		m_WinHandle = CreateWindowExW(extraStyle, L"NewWorld_WindowClass", title, basicStyle,
 			x, y, (int)m_Width, (int)m_Height,
 			NULL, NULL, GetModuleHandleW(NULL), this);
 
@@ -75,6 +75,12 @@ namespace NewWorld::Core
 	// Events
 	LRESULT Window::WindowCallback(HWND winHandle, uint actionType, WPARAM wParam, LPARAM lParam)
 	{
+		if (WM_NCCREATE == actionType) // Why?
+		{
+			SetWindowLongPtr(winHandle, GWLP_USERDATA, (LONG_PTR)((CREATESTRUCT*)lParam)->lpCreateParams);
+			//return TRUE;
+		}
+		
 		switch (actionType)
 		{
 			case WM_SIZE:
