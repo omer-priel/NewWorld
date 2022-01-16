@@ -25,6 +25,7 @@
 #include "NewWorld/DataTypes/Collections/Array.h"
 #include "NewWorld/DataTypes/Collections/DynamicArray.h"
 #include "NewWorld/DataTypes/Time/Time.h"
+#include "NewWorld/DataTypes/Thread.h"
 
 namespace NewWorld
 {

@@ -29,7 +29,7 @@ namespace NewWorld::Debug
 
 	void Profiler::AddEvent(String name)
 	{
-		uint threadID = 0;
+		uint threadID = std::hash<std::thread::id>{}(std::this_thread::get_id());
 		if (s_IsFirstEvent)
 		{
 			s_IsFirstEvent = false;
@@ -52,7 +52,7 @@ namespace NewWorld::Debug
 
 	void Profiler::AddScope(String name, Ulong start, Ulong end)
 	{
-		uint threadID = 0;
+		uint threadID = DataTypes::Thread::GetThisThreadID();
 		if (s_IsFirstEvent)
 		{
 			s_IsFirstEvent = false;

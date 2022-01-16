@@ -1,7 +1,6 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/DataTypes/Thread.h"
 
 #include "NewWorld/Core/Window.h"
 
