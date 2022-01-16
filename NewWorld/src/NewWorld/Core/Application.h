@@ -68,8 +68,8 @@ namespace NewWorld
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
 			// Create Window
-			//m_Window.Init();
-			//m_Window.Show();
+			m_Window.Init();
+			m_Window.Show();
 			
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -85,19 +85,11 @@ namespace NewWorld
 			while (m_Running)
 			{
 				NW_PROFILE_SCOPE("Frame");
-				
-				// TODO: On another thread
-				//MSG msg;
-				//GetMessage(&msg, NULL, NULL, NULL);
-								
 				BeginFrame();
 
 				DataTypes::Thread::Sleap(500);
 
 				EndFrame();
-
-				//TranslateMessage(&msg);
-				//DispatchMessage(&msg);
 			}
 
 			Closed();
@@ -116,7 +108,7 @@ namespace NewWorld
 	public:
 		void BeginFrame()
 		{
-
+			m_Window.HandleEvents();
 		}
 
 		void EndFrame()

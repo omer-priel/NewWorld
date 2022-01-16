@@ -21,14 +21,13 @@ namespace NewWorld::Core
 		uint m_Width;
 		uint m_Height;
 		bool m_Visible;
-		bool m_VSync;
 
 	private:
 		HWND m_WinHandle = nullptr;
 
 	public:
-		Window(const String& title = "New World", uint width = 1280, uint height = 720, bool visible = true, bool vSync = true)
-			: m_Title(title), m_Width(width), m_Height(height), m_Visible(visible), m_VSync(vSync)
+		Window(const String& title = "New World", uint width = 1280, uint height = 720, bool visible = true)
+			: m_Title(title), m_Width(width), m_Height(height), m_Visible(visible)
 		{
 
 		}
@@ -43,12 +42,8 @@ namespace NewWorld::Core
 
 		inline bool IsVisible() const { return m_Visible; };
 
-		inline bool IsVSync() const { return m_VSync; };
-
 		// Setters
 	public:
-		void SetVSync(bool enabled);
-
 		void SetVisible(bool visible);
 
 		// Actions
@@ -57,11 +52,15 @@ namespace NewWorld::Core
 
 		void Show();
 
+		void Hide();
+
+		void Close();
+
+		void HandleEvents();
+
 		//void AddEventCallback(const EventCallback& callback);
 
 		//void Update()
-
-		// OS Events
 	private:
 		LRESULT WindowCallback(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam);
 	};

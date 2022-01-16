@@ -15,18 +15,18 @@
         "key": 1629042386980,
         "children": [
           {
+            "key": 1642355311298,
+            "children": [],
+            "todo": {
+              "content": "Thread Mangment System",
+              "id": 1642355311298,
+              "level": "warning",
+              "done": false
+            }
+          },
+          {
             "key": 1629042438599,
             "children": [
-              {
-                "key": 1642337450521,
-                "children": [],
-                "todo": {
-                  "content": "Fix Loading and Split Window Inputs to other Thread",
-                  "id": 1642337450521,
-                  "level": "warning",
-                  "done": false
-                }
-              },
               {
                 "key": 1642082762742,
                 "children": [
@@ -79,16 +79,6 @@
                 }
               },
               {
-                "key": 1642274659654,
-                "children": [],
-                "todo": {
-                  "content": "Support Mulit Windows",
-                  "id": 1642274659654,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
                 "key": 1642082763739,
                 "children": [
                   {
@@ -110,16 +100,6 @@
                 }
               },
               {
-                "key": 1642274409125,
-                "children": [],
-                "todo": {
-                  "content": "Set Main Window and Shutdown when it close",
-                  "id": 1642274409125,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
                 "key": 1642082846421,
                 "children": [
                   {
@@ -136,6 +116,36 @@
                 "todo": {
                   "content": "Input",
                   "id": 1642082846421,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1642274409125,
+                "children": [],
+                "todo": {
+                  "content": "Set Main Window and Shutdown when it close",
+                  "id": 1642274409125,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1642337450521,
+                "children": [],
+                "todo": {
+                  "content": "Mullti Threads System",
+                  "id": 1642337450521,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1642274659654,
+                "children": [],
+                "todo": {
+                  "content": "Support Mulit Windows",
+                  "id": 1642274659654,
                   "level": "default",
                   "done": false
                 }

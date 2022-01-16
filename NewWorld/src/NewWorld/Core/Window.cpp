@@ -50,7 +50,6 @@ namespace NewWorld::Core
 		DWORD basicStyle = WS_CLIPSIBLINGS | WS_CLIPCHILDREN
 			| WS_CAPTION | WS_SYSMENU
 			| WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME;
-		//| WS_POPUP;
 		
 		DWORD extraStyle = WS_EX_APPWINDOW;
 
@@ -71,6 +70,16 @@ namespace NewWorld::Core
 		ShowWindow(m_WinHandle, SW_SHOWNA);
 	}
 
+	void Window::HandleEvents()
+	{
+		MSG msg;
+		while (PeekMessage(&msg, m_WinHandle, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+	}
+
 	// Events
 	LRESULT Window::WindowCallback(HWND winHandle, uint actionType, WPARAM wParam, LPARAM lParam)
 	{
@@ -82,11 +91,6 @@ namespace NewWorld::Core
 		
 		switch (actionType)
 		{
-			case WM_SIZE:
-			{
-				NW_INFO(NW_LOGGER_CORE, "WM_SIZE");
-			}
-			break;
 			case WM_CLOSE:
 			{
 				NW_INFO(NW_LOGGER_CORE, "WM_CLOSE");
