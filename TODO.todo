@@ -18,11 +18,11 @@
             "key": 1629042438599,
             "children": [
               {
-                "key": 1642278804863,
+                "key": 1642337450521,
                 "children": [],
                 "todo": {
-                  "content": "Thread Class",
-                  "id": 1642278804863,
+                  "content": "Fix Loading and Split Window Inputs to other Thread",
+                  "id": 1642337450521,
                   "level": "warning",
                   "done": false
                 }
