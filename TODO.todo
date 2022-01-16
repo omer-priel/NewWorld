@@ -31,26 +31,6 @@
                 "key": 1642082762742,
                 "children": [
                   {
-                    "key": 1642274431781,
-                    "children": [],
-                    "todo": {
-                      "content": "Create Actions",
-                      "id": 1642274431781,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1642274495050,
-                    "children": [],
-                    "todo": {
-                      "content": "Understand what is VSync",
-                      "id": 1642274495050,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
                     "key": 1642274346425,
                     "children": [],
                     "todo": {
@@ -75,6 +55,37 @@
                   "content": "Window Class",
                   "id": 1642082762742,
                   "level": "warning",
+                  "done": false
+                }
+              },
+              {
+                "key": 1642082763279,
+                "children": [
+                  {
+                    "key": 1642082807385,
+                    "children": [],
+                    "todo": {
+                      "content": "LayerStack",
+                      "id": 1642082807385,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642082808819,
+                    "children": [],
+                    "todo": {
+                      "content": "Layer",
+                      "id": 1642082808819,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
+                "todo": {
+                  "content": "Layers",
+                  "id": 1642082763279,
+                  "level": "default",
                   "done": false
                 }
               },
@@ -146,37 +157,6 @@
                 "todo": {
                   "content": "Support Mulit Windows",
                   "id": 1642274659654,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1642082763279,
-                "children": [
-                  {
-                    "key": 1642082807385,
-                    "children": [],
-                    "todo": {
-                      "content": "LayerStack",
-                      "id": 1642082807385,
-                      "level": "default",
-                      "done": false
-                    }
-                  },
-                  {
-                    "key": 1642082808819,
-                    "children": [],
-                    "todo": {
-                      "content": "Layer",
-                      "id": 1642082808819,
-                      "level": "default",
-                      "done": false
-                    }
-                  }
-                ],
-                "todo": {
-                  "content": "Layers",
-                  "id": 1642082763279,
                   "level": "default",
                   "done": false
                 }

@@ -97,6 +97,8 @@ namespace NewWorld
 
 		void Closed()
 		{
+			m_Window.Close();
+
 			NW_INFO(NW_LOGGER_CORE, "The Application Closed");
 		}
 

@@ -20,14 +20,13 @@ namespace NewWorld::Core
 		String m_Title;
 		uint m_Width;
 		uint m_Height;
-		bool m_Visible;
 
 	private:
 		HWND m_WinHandle = nullptr;
 
 	public:
-		Window(const String& title = "New World", uint width = 1280, uint height = 720, bool visible = true)
-			: m_Title(title), m_Width(width), m_Height(height), m_Visible(visible)
+		Window(const String& title = "New World", uint width = 1280, uint height = 720)
+			: m_Title(title), m_Width(width), m_Height(height)
 		{
 
 		}
@@ -40,11 +39,9 @@ namespace NewWorld::Core
 		
 		inline uint GetHeight() const { return m_Height; };
 
-		inline bool IsVisible() const { return m_Visible; };
+		inline bool IsAlive() const { return m_WinHandle != nullptr; };
 
-		// Setters
-	public:
-		void SetVisible(bool visible);
+		inline bool IsVisible() const { return IsWindowVisible(m_WinHandle); };
 
 		// Actions
 	public:
@@ -58,9 +55,6 @@ namespace NewWorld::Core
 
 		void HandleEvents();
 
-		//void AddEventCallback(const EventCallback& callback);
-
-		//void Update()
 	private:
 		LRESULT WindowCallback(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam);
 	};

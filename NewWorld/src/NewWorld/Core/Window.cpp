@@ -62,12 +62,27 @@ namespace NewWorld::Core
 			x, y, (int)m_Width, (int)m_Height,
 			NULL, NULL, GetModuleHandleW(NULL), this);
 
-		NW_INFO(NW_LOGGER_CORE, "Window Created {} ({}, {}) ", m_Title, m_Width, m_Height);
+		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
 	void Window::Show()
 	{
-		ShowWindow(m_WinHandle, SW_SHOWNA);
+		ShowWindow(m_WinHandle, SW_SHOW);
+	}
+
+	void Window::Hide()
+	{
+		ShowWindow(m_WinHandle, SW_HIDE);
+	}
+
+	void Window::Close()
+	{
+		if (IsAlive())
+		{
+			NW_INFO(NW_LOGGER_CORE, "Window Clossing \"{}\" ", m_Title);
+
+			DestroyWindow(m_WinHandle);
+		}
 	}
 
 	void Window::HandleEvents()
@@ -86,14 +101,18 @@ namespace NewWorld::Core
 		if (WM_NCCREATE == actionType) // Why?
 		{
 			SetWindowLongPtr(winHandle, GWLP_USERDATA, (LONG_PTR)((CREATESTRUCT*)lParam)->lpCreateParams);
-			//return TRUE;
 		}
 		
 		switch (actionType)
 		{
+			case WM_DESTROY:
+			{
+				NW_INFO(NW_LOGGER_CORE, "Window Closed \"{}\" ", m_Title);
+			}
+			break;
 			case WM_CLOSE:
 			{
-				NW_INFO(NW_LOGGER_CORE, "WM_CLOSE");
+				NW_INFO(NW_LOGGER_CORE, "Window Clossing \"{}\" ", m_Title);
 			}
 			break;
 		}
