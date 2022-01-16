@@ -17,6 +17,7 @@
 // DataTypes
 #include "NewWorld/DataTypes/Primitives.h"
 #include "NewWorld/DataTypes/Object.h"
+#include "NewWorld/DataTypes/Function.h"
 #include "NewWorld/DataTypes/Memory/Allocator.h"
 #include "NewWorld/DataTypes/Memory/RawPointer.h"
 #include "NewWorld/DataTypes/Memory/ScopePointer.h"
@@ -24,6 +25,7 @@
 #include "NewWorld/DataTypes/Collections/Array.h"
 #include "NewWorld/DataTypes/Collections/DynamicArray.h"
 #include "NewWorld/DataTypes/Time/Time.h"
+
 namespace NewWorld
 {
 	using Byte = DataTypes::Byte;
@@ -35,6 +37,9 @@ namespace NewWorld
 
 	using IObject = DataTypes::IObject;
 	using Object = DataTypes::Object;
+
+	template <typename ReturnType, typename... ArgsTypes>
+	using Function = DataTypes::Function< ReturnType, ArgsTypes...>;
 
 	template <typename T>
     using RawPointer = DataTypes::Memory::RawPointer<T>;

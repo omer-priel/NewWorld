@@ -1,7 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/DataTypes/Threads/Thread.h"
+#include "NewWorld/DataTypes/Thread.h"
 
 #include "NewWorld/Core/Window.h"
 
@@ -69,8 +69,8 @@ namespace NewWorld
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
 			// Create Window
-			m_Window.Init();
-			m_Window.Show();
+			//m_Window.Init();
+			//m_Window.Show();
 			
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -88,17 +88,17 @@ namespace NewWorld
 				NW_PROFILE_SCOPE("Frame");
 				
 				// TODO: On another thread
-				MSG msg;
-				GetMessage(&msg, NULL, NULL, NULL);
+				//MSG msg;
+				//GetMessage(&msg, NULL, NULL, NULL);
 								
 				BeginFrame();
 
-				//DataTypes::Threads::Thread::Sleap(500);
+				DataTypes::Thread::Sleap(500);
 
 				EndFrame();
 
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
+				//TranslateMessage(&msg);
+				//DispatchMessage(&msg);
 			}
 
 			Closed();

@@ -5,11 +5,11 @@
 
 #include <thread>
 
-namespace NewWorld::DataTypes::Threads
+namespace NewWorld::DataTypes
 {
 	class Thread : public Object
 	{
-	NW_CLASS(NewWorld::DataTypes::Threads, Thread)
+	NW_CLASS(NewWorld::DataTypes, Thread)
 
 		// Static
 	public:

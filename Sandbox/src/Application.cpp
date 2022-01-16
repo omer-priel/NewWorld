@@ -6,6 +6,11 @@
 
 namespace Sandbox
 {
+	void PrintMe(const NewWorld::String& msg)
+	{
+		DEBUG(MAIN_LOGGER, "msg: {}", msg);
+	}
+
 	class Application : NewWorld::Application
 	{
 	NW_CLASS(Sandbox, Application)
@@ -18,7 +23,8 @@ namespace Sandbox
 
 		void Initialize() override
 		{
-
+			NewWorld::DataTypes::Function<void, const NewWorld::String&> func = &PrintMe;
+			func("SO");
 		}
 	};
 }
