@@ -36,7 +36,7 @@
                     "todo": {
                       "content": "Load OpenGL",
                       "id": 1642274346425,
-                      "level": "default",
+                      "level": "warning",
                       "done": false
                     }
                   },
@@ -54,7 +54,7 @@
                 "todo": {
                   "content": "Window Class",
                   "id": 1642082762742,
-                  "level": "warning",
+                  "level": "default",
                   "done": false
                 }
               },
@@ -140,31 +140,41 @@
                   "level": "default",
                   "done": false
                 }
-              },
-              {
-                "key": 1642337450521,
-                "children": [],
-                "todo": {
-                  "content": "Mullti Threads System",
-                  "id": 1642337450521,
-                  "level": "default",
-                  "done": false
-                }
-              },
-              {
-                "key": 1642274659654,
-                "children": [],
-                "todo": {
-                  "content": "Support Mulit Windows",
-                  "id": 1642274659654,
-                  "level": "default",
-                  "done": false
-                }
               }
             ],
             "todo": {
               "content": "Application",
               "id": 1629042438599,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1642362596172,
+            "children": [],
+            "todo": {
+              "content": "Fix remove window from m_Windows when close [Core//Events]",
+              "id": 1642362596172,
+              "level": "danger",
+              "done": false
+            }
+          },
+          {
+            "key": 1642274659654,
+            "children": [],
+            "todo": {
+              "content": "Support Mulit Windows",
+              "id": 1642274659654,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1642337450521,
+            "children": [],
+            "todo": {
+              "content": "Mullti Threads System",
+              "id": 1642337450521,
               "level": "default",
               "done": false
             }

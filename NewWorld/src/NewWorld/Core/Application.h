@@ -3,6 +3,7 @@
 #include "NewWorld/Minimal.h"
 
 #include "NewWorld/Core/Window.h"
+#include "NewWorld/Editor/EditorWindow.h"
 
 int main(int argc, char** argv);
 
@@ -32,7 +33,9 @@ namespace NewWorld
 		// Members
 	private:
 		bool m_Running;
-		Core::Window m_Window;
+		
+		//Core::Window m_Window; NW_CONFIG_RELEASE
+		DynamicArray<Editor::EditorWindow> m_Windows;
 
 	public:
 		Application()
@@ -67,9 +70,11 @@ namespace NewWorld
 
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
+			m_Windows.push_back(Editor::EditorWindow(m_Windows.size()-1));
+
 			// Create Window
-			m_Window.Init();
-			m_Window.Show();
+			m_Windows[0].Init();
+			m_Windows[0].Show();
 			
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -97,7 +102,10 @@ namespace NewWorld
 
 		void Closed()
 		{
-			m_Window.Close();
+			for (Editor::EditorWindow& window : m_Windows)
+			{
+				window.Close();
+			}
 
 			NW_INFO(NW_LOGGER_CORE, "The Application Closed");
 		}
@@ -110,7 +118,11 @@ namespace NewWorld
 	public:
 		void BeginFrame()
 		{
-			m_Window.HandleEvents();
+			// HandleEvents
+			for (Editor::EditorWindow& window : m_Windows)
+			{
+				window.HandleEvents();
+			}
 		}
 
 		void EndFrame()
