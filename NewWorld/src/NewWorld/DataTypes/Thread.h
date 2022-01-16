@@ -36,7 +36,7 @@ namespace NewWorld::DataTypes
 		}
 
 	private:
-		static void FullFunc(uint threadID, Func func);
+		static void FullFunc(Memory::RawPointer<Thread> thread);
 
 		// Members
 	private:
@@ -69,7 +69,7 @@ namespace NewWorld::DataTypes
 			m_ID = s_LastID;
 
 			// Start thread
-			m_Value = std::thread(FullFunc, m_ID, m_Func);
+			m_Value = std::thread(FullFunc, this);
 		}
 
 		inline void Wait()

@@ -8,23 +8,23 @@ namespace Sandbox
 {
 	static int x = 0;
 
-	void A()
+	void TaskA()
 	{
-		while (true)
+		while (x % 10 < 5)
 		{
-			NW_PROFILE_SCOPE("A Loop");
-			DEBUG(MAIN_LOGGER, "A {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
+			NW_PROFILE_SCOPE("TaskA");
+			DEBUG(MAIN_LOGGER, "TaskA {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
 			x += 1;
 			NewWorld::DataTypes::Thread::Sleap(1000);
 		}
 	}
 
-	void B()
+	void TaskB()
 	{
 		while (true)
 		{
-			NW_PROFILE_SCOPE("B Loop");
-			DEBUG(MAIN_LOGGER, "B {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
+			NW_PROFILE_SCOPE("TaskB");
+			DEBUG(MAIN_LOGGER, "TaskB {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
 			x += 1000;
 			NewWorld::DataTypes::Thread::Sleap(2000);
 		}
@@ -40,7 +40,7 @@ namespace Sandbox
 
 	public:
 		Application()
-			: tr(A), tr2(B)
+			: tr(TaskB), tr2(TaskB)
 		{
 			
 		}
@@ -49,6 +49,12 @@ namespace Sandbox
 		{
 			tr.Start();
 			tr2.Start();
+
+			while (true)
+			{
+				DEBUG(MAIN_LOGGER, "T--- {} {}", tr, tr2);
+				NewWorld::DataTypes::Thread::Sleap(2000);
+			}
 		}
 	};
 }

@@ -189,6 +189,12 @@ namespace NewWorld::DataTypes::Collections
 			return obj.ToString();
 		}
 
+		template <>
+		static String ConverToString(const IObject* obj)
+		{
+			return obj->ToString();
+		}
+
 		template<typename... Types>
 		static Array<String, (SizeT)sizeof...(Types)> ConverToStringArray(const Types&... args)
 		{
@@ -206,18 +212,24 @@ namespace NewWorld::DataTypes::Collections
 
 		}
 		
-		template<const SizeT LENGTH, typename T, typename... Types>
+		template<const SizeT LENGTH, typename T, typename... Types,
+		std::enable_if_t<std::is_base_of<IObject, T>::value, bool> = true>
 		static void ConverToStringLoader(Array<String, LENGTH>& arr, const T& arg, const Types&... args)
 		{
 			SizeT index = LENGTH - ((SizeT)sizeof...(Types)) - 1;
-			if (std::is_base_of<IObject, T>::value)
-			{
-				arr[index] = ((const IObject&)arg).ToString();
-			}
-			else
-			{
-				arr[index] = String::ConverToString(arg);
-			}
+
+			arr[index] = ((const IObject&)arg).ToString();
+
+			ConverToStringLoader<LENGTH, Types...>(arr, args...);
+		}
+
+		template<const SizeT LENGTH, typename T, typename... Types,
+			std::enable_if_t<!std::is_base_of<IObject, T>::value, bool> = true>
+			static void ConverToStringLoader(Array<String, LENGTH>& arr, const T& arg, const Types&... args)
+		{
+			SizeT index = LENGTH - ((SizeT)sizeof...(Types)) - 1;
+
+			arr[index] = String::ConverToString(arg);
 
 			ConverToStringLoader<LENGTH, Types...>(arr, args...);
 		}

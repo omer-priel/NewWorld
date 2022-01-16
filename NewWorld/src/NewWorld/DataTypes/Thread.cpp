@@ -15,9 +15,10 @@ namespace NewWorld::DataTypes
 		return s_ThreadID;
 	}
 
-	void Thread::FullFunc(uint threadID, Func func)
+	void Thread::FullFunc(Memory::RawPointer<Thread> thread)
 	{
-		s_ThreadID = threadID;
-		func();
+		s_ThreadID = thread->GetID();
+		thread->m_Func();
+		thread->m_ID = 0;
 	}
 }
