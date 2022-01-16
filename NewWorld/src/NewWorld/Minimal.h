@@ -39,7 +39,7 @@ namespace NewWorld
 	using Object = DataTypes::Object;
 
 	template <typename ReturnType, typename... ArgsTypes>
-	using Function = DataTypes::Function< ReturnType, ArgsTypes...>;
+	using Function = DataTypes::Function<ReturnType, ArgsTypes...>;
 
 	template <typename T>
     using RawPointer = DataTypes::Memory::RawPointer<T>;
