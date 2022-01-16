@@ -6,9 +6,9 @@
 
 namespace Sandbox
 {
-	void PrintMe(const NewWorld::String& msg)
+	void PrintMe()
 	{
-		DEBUG(MAIN_LOGGER, "msg: {}", msg);
+		DEBUG(MAIN_LOGGER, "msg:");
 	}
 
 	class Application : NewWorld::Application
@@ -23,8 +23,8 @@ namespace Sandbox
 
 		void Initialize() override
 		{
-			NewWorld::DataTypes::Function<void, const NewWorld::String&> func = &PrintMe;
-			func("SO");
+			NewWorld::Function<void> func = &PrintMe;
+			func();
 		}
 	};
 }

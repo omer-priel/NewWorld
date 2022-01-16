@@ -3,5 +3,5 @@
 namespace NewWorld::DataTypes
 {
 	template <typename ReturnType, typename... ArgsTypes>
-	using Function = ReturnType(*func)(ArgsTypes...);
+	using Function = ReturnType(*)(ArgsTypes...);
 }
