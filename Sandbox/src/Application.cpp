@@ -8,12 +8,34 @@ namespace Sandbox
 {
 	static int x = 0;
 
+	void TaskA2();
+
 	void TaskA()
 	{
-		while (x % 10 < 5)
+		NW_PROFILE_SCOPE("TaskA");
+		NewWorld::DataTypes::Thread::Sleap(10);
+
+		NewWorld::DataTypes::Thread subTask(TaskA2);
+		while (x % 100 < 5)
 		{
-			NW_PROFILE_SCOPE("TaskA");
+			NW_PROFILE_SCOPE("TaskA Frame");
 			DEBUG(MAIN_LOGGER, "TaskA {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
+			x += 1;
+			NewWorld::DataTypes::Thread::Sleap(1000);
+		}
+		subTask.Start();
+		subTask.Wait();
+	}
+
+	void TaskA2()
+	{
+		NW_PROFILE_SCOPE("TaskA2");
+		NewWorld::DataTypes::Thread::Sleap(10);
+
+		while (x % 100 < 10)
+		{
+			NW_PROFILE_SCOPE("TaskA2 Frame");
+			DEBUG(MAIN_LOGGER, "TaskA2 {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
 			x += 1;
 			NewWorld::DataTypes::Thread::Sleap(1000);
 		}
@@ -21,9 +43,12 @@ namespace Sandbox
 
 	void TaskB()
 	{
-		while (true)
+		NW_PROFILE_SCOPE("TaskB");
+		NewWorld::DataTypes::Thread::Sleap(10);
+
+		while (x / 1000 < 12)
 		{
-			NW_PROFILE_SCOPE("TaskB");
+			NW_PROFILE_SCOPE("TaskB Frame");
 			DEBUG(MAIN_LOGGER, "TaskB {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
 			x += 1000;
 			NewWorld::DataTypes::Thread::Sleap(2000);
@@ -40,7 +65,7 @@ namespace Sandbox
 
 	public:
 		Application()
-			: tr(TaskB), tr2(TaskB)
+			: tr(TaskA), tr2(TaskB)
 		{
 			
 		}
@@ -49,12 +74,6 @@ namespace Sandbox
 		{
 			tr.Start();
 			tr2.Start();
-
-			while (true)
-			{
-				DEBUG(MAIN_LOGGER, "T--- {} {}", tr, tr2);
-				NewWorld::DataTypes::Thread::Sleap(2000);
-			}
 		}
 	};
 }
