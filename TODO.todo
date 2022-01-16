@@ -18,16 +18,6 @@
             "key": 1629042438599,
             "children": [
               {
-                "key": 1642279365415,
-                "children": [],
-                "todo": {
-                  "content": "Function Class",
-                  "id": 1642279365415,
-                  "level": "warning",
-                  "done": false
-                }
-              },
-              {
                 "key": 1642278804863,
                 "children": [],
                 "todo": {

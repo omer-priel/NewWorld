@@ -20,14 +20,10 @@ namespace NewWorld::DataTypes
 		// Static Members
 	private:
 		static uint s_LastID;
-		static thread_local uint s_ID;
 
 		// Static
 	public:
-		static uint GetThisThreadID()
-		{
-			return s_LastID;
-		}
+		static uint GetThisThreadID();
 		
 		static inline void Sleap(Long milliseconds)
 		{
@@ -40,11 +36,7 @@ namespace NewWorld::DataTypes
 		}
 
 	private:
-		static void FullFunc(RawPointer<Thread> thread)
-		{
-			s_ID = thread->m_ID;
-			thread->m_Func();
-		}
+		static void FullFunc(uint threadID, Func func);
 
 		// Members
 	private:
@@ -77,7 +69,7 @@ namespace NewWorld::DataTypes
 			m_ID = s_LastID;
 
 			// Start thread
-			m_Value = std::thread(FullFunc, this);
+			m_Value = std::thread(FullFunc, m_ID, m_Func);
 		}
 
 		inline void Wait()

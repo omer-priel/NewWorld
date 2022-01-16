@@ -29,47 +29,31 @@ namespace NewWorld::Debug
 
 	void Profiler::AddEvent(String name)
 	{
-		uint threadID = std::hash<std::thread::id>{}(std::this_thread::get_id());
+		uint threadID = DataTypes::Thread::GetThisThreadID();
+
+		name.Replace('"', '\'');
+
+		s_File << String::Format("{}{\"name\":\"{}\",\"cat\":\"Event\",\"ph\":\"X\",\"dur\":100,\"ts\":{},\"pid\":0,\"tid\":{}}",
+			s_IsFirstEvent ? "" : ",", name, Time::Now().GetTicks(), threadID);
+
 		if (s_IsFirstEvent)
 		{
 			s_IsFirstEvent = false;
 		}
-		else
-		{
-			s_File << ",";
-		}
-
-		name.Replace('"', '\'');
-
-		s_File << "{";
-		s_File << String::Format("\"name\":\"{}\",", name);
-		s_File << "\"cat\":\"Event\",";
-		s_File << "\"ph\":\"X\",";
-		s_File << String::Format("\"dur\":100,\"ts\":{},", Time::Now().GetTicks());
-		s_File << String::Format("\"pid\":0,\"tid\":{}", threadID);
-		s_File << "}";
 	}
 
 	void Profiler::AddScope(String name, Ulong start, Ulong end)
 	{
 		uint threadID = DataTypes::Thread::GetThisThreadID();
+
+		name.Replace('"', '\'');
+
+		s_File << String::Format("{}{\"name\":\"{}\",\"cat\":\"Scope\",\"ph\":\"X\",\"dur\":{},\"ts\":{},\"pid\":0,\"tid\":{}}",
+			s_IsFirstEvent ? "" : ",", name, end - start, start, threadID);
+
 		if (s_IsFirstEvent)
 		{
 			s_IsFirstEvent = false;
 		}
-		else
-		{
-			s_File << ",";
-		}
-
-		name.Replace('"', '\'');
-
-		s_File << "{";
-		s_File << String::Format("\"name\":\"{}\",", name);
-		s_File << "\"cat\":\"Scope\",";
-		s_File << "\"ph\":\"X\",";
-		s_File << String::Format("\"dur\":{},\"ts\":{},", end - start, start);
-		s_File << String::Format("\"pid\":0,\"tid\":{}", threadID);
-		s_File << "}";
 	}
 }

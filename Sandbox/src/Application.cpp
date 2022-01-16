@@ -12,7 +12,8 @@ namespace Sandbox
 	{
 		while (true)
 		{
-			DEBUG(MAIN_LOGGER, "A {}", x);
+			NW_PROFILE_SCOPE("A Loop");
+			DEBUG(MAIN_LOGGER, "A {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
 			x += 1;
 			NewWorld::DataTypes::Thread::Sleap(1000);
 		}
@@ -22,7 +23,8 @@ namespace Sandbox
 	{
 		while (true)
 		{
-			DEBUG(MAIN_LOGGER, "B {}", x);
+			NW_PROFILE_SCOPE("B Loop");
+			DEBUG(MAIN_LOGGER, "B {} {}", NewWorld::DataTypes::Thread::GetThisThreadID(), x);
 			x += 1000;
 			NewWorld::DataTypes::Thread::Sleap(2000);
 		}
