@@ -1,18 +1,13 @@
 #include "nwpch.h"
 #include "GraphicsAPI.h"
 
-#include <Windows.h>
+#include <GLFW/glfw3.h>
 
 namespace NewWorld::Core::GraphicsAPI
 {
 	void GraphicsAPI::Initialize()
 	{
-		SystemParametersInfoW(SPI_GETFOREGROUNDLOCKTIMEOUT, 0, &_glfw.win32.foregroundLockTimeout, 0);
-		SystemParametersInfoW(SPI_SETFOREGROUNDLOCKTIMEOUT, 0, UIntToPtr(0), SPIF_SENDCHANGE);
-
-		// load Libraries
-		LoadLibraryA("winmm.dll");
-		LoadLibraryA("user32.dll");
-		LoadLibraryA("dinput8.dll");
+		int success = glfwInit();
+		NW_ASSERT(success, "Could not intialize GLFW!");
 	}
 }

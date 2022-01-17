@@ -3,6 +3,8 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Core/GraphicsAPI/GraphicsAPI.h"
 
+class GLFWwindow;
+
 namespace NewWorld::Core
 {
 	class Window : public Object
@@ -23,7 +25,7 @@ namespace NewWorld::Core
 		uint m_Height;
 
 	private:
-		HWND m_WinHandle = nullptr;
+		GLFWwindow* m_WinHandle = nullptr;
 
 	public:
 		Window(const String& title = "New World", uint width = 1280, uint height = 720)
@@ -42,7 +44,7 @@ namespace NewWorld::Core
 
 		inline bool IsAlive() const { return m_WinHandle != nullptr; };
 
-		inline bool IsVisible() const { return IsWindowVisible(m_WinHandle); };
+		bool IsVisible() const;
 
 		// Actions
 	public:

@@ -16,7 +16,6 @@ group "Dependencies"
 group ""
 
 ProjectSettings = {}
-ProjectSettings["LoggersCount"] = "2"
 
 project "NewWorld"
 	location "NewWorld"
@@ -41,17 +40,16 @@ project "NewWorld"
 	includedirs
 	{
 		"%{prj.name}/src",
-        "%{DependenciesDir}/GLM"
+        "%{DependenciesDir}/GLM",
+        "%{DependenciesDir}/GLFW/include"
 	}
 
 	links 
 	{ 
---		"GLFW",
+        "opengl32.lib",
+        "GLFW"
 --		"ImGui",
-		"opengl32.lib"
 	}
-
-    defines {"NW_SETTINGS_LOGGERS_COUNT=%{ProjectSettings.LoggersCount}" }
 
 	filter "system:windows"
 		defines "NW_PLATFORM_WINDOWS"
@@ -95,8 +93,6 @@ project "Sandbox"
 	{
 		"NewWorld"
 	}
-
-    defines {"NW_SETTINGS_LOGGERS_COUNT=%{ProjectSettings.LoggersCount}" }
 
 	filter "system:windows"
 		defines "NW_PLATFORM_WINDOWS"

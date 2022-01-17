@@ -1,80 +1,42 @@
 #include "nwpch.h"
 #include "Window.h"
 
+#include <GLFW/glfw3.h>
+
 namespace NewWorld::Core
 {
 	// Static
 	void Window::Initialize()
 	{
 		GraphicsAPI::GraphicsAPI::Initialize();
-
-		// Create Windows Class
-		WNDCLASSEXW windowClass;
-		ZeroMemory(&windowClass, sizeof(windowClass));
-
-		windowClass.lpszClassName = L"NewWorld_WindowClass";
-		windowClass.cbSize = sizeof(windowClass);
-		windowClass.hInstance = GetModuleHandleW(NULL);
-
-		// Set Style
-		windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-		
-		// Set Callback
-		windowClass.lpfnWndProc = Window::WindowCallbackStatic;
-
-		// Set Cursor Icon
-		windowClass.hCursor = LoadCursorW(NULL, IDC_ARROW);
-
-		// Set window Icon
-		windowClass.hIcon = static_cast<HICON>(LoadImageW(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_SHARED));
-
-		if (!RegisterClassExW(&windowClass))
-		{
-			NW_CRITICAL(NW_LOGGER_GRAPHICS, "Cannot create Window, because failed to register \"window class\"");
-		}
-	}
-
-	// Callback of windowClass
-	LRESULT CALLBACK Window::WindowCallbackStatic(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam)
-	{
-		return ((Window*)GetWindowLongPtr(winHandle, GWLP_USERDATA))->WindowCallback(winHandle, actionType, wParam, lParam);
 	}
 
 	// None-Static
 	void Window::Init()
 	{
-		// Set Title
-		RawPointer<wchar_t> titleArr = new wchar_t[m_Title.GetLength() + 1];
-		mbstowcs(titleArr, m_Title.GetPointer(), m_Title.GetLength() + 1);
-		LPWSTR title = titleArr;
-
-		// Set Window Style
-		DWORD basicStyle = WS_CLIPSIBLINGS | WS_CLIPCHILDREN
-			| WS_CAPTION | WS_SYSMENU
-			| WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME;
-		
-		DWORD extraStyle = WS_EX_APPWINDOW;
-
-		// Set Location
-		int x = CW_USEDEFAULT; // Gives the OS to select the postion
-		int y = CW_USEDEFAULT; // Gives the OS to select the postion
-
-		// Create the Window
-		m_WinHandle = CreateWindowExW(extraStyle, L"NewWorld_WindowClass", title, basicStyle,
-			x, y, (int)m_Width, (int)m_Height,
-			NULL, NULL, GetModuleHandleW(NULL), this);
+		m_WinHandle = glfwCreateWindow((int)m_Width, (int)m_Height, m_Title.GetPointer(), nullptr, nullptr);
+		glfwMakeContextCurrent(m_WinHandle);
+		glfwSetWindowUserPointer(m_WinHandle, this);
+		glfwSwapInterval(1); // Set VSync true
 
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
+	// Getters
+	bool Window::IsVisible() const
+	{
+		return glfwGetWindowAttrib(m_WinHandle, GLFW_VISIBLE) == 1;
+	}
+
+	// Actions
 	void Window::Show()
 	{
-		ShowWindow(m_WinHandle, SW_SHOW);
+		glfwShowWindow(m_WinHandle);
 	}
 
 	void Window::Hide()
 	{
-		ShowWindow(m_WinHandle, SW_HIDE);
+		glfwHideWindow(m_WinHandle);
 	}
 
 	void Window::Close()
@@ -83,18 +45,15 @@ namespace NewWorld::Core
 		{
 			NW_INFO(NW_LOGGER_CORE, "Window Clossing \"{}\" ", m_Title);
 
-			DestroyWindow(m_WinHandle);
+			glfwDestroyWindow(m_WinHandle);
+			m_WinHandle = nullptr;
 		}
 	}
 
 	void Window::HandleEvents()
 	{
-		MSG msg;
-		while (PeekMessage(&msg, m_WinHandle, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
+		glfwPollEvents();
+		glfwSwapBuffers(m_WinHandle);
 	}
 
 	// Events
