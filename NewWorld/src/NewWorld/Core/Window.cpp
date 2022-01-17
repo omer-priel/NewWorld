@@ -6,6 +6,8 @@ namespace NewWorld::Core
 	// Static
 	void Window::Initialize()
 	{
+		GraphicsAPI::GraphicsAPI::Initialize();
+
 		// Create Windows Class
 		WNDCLASSEXW windowClass;
 		ZeroMemory(&windowClass, sizeof(windowClass));

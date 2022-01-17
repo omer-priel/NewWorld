@@ -1,3 +1,8 @@
+// init OpenGL
+SystemParametersInfoW(SPI_GETFOREGROUNDLOCKTIMEOUT, 0, &_glfw.win32.foregroundLockTimeout, 0);
+SystemParametersInfoW(SPI_SETFOREGROUNDLOCKTIMEOUT, 0, UIntToPtr(0), SPIF_SENDCHANGE);
+
+
 WGL
 /// InitWGL
 _glfwInitWGL

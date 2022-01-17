@@ -11,9 +11,6 @@ namespace NewWorld::Core::GraphicsAPI
 
 		// Init
 	public:
-		void Init()
-		{
-
-		}
+		static void Initialize();
 	};
 }
