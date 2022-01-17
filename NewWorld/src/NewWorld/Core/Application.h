@@ -74,7 +74,7 @@ namespace NewWorld
 
 			// Create Window
 			m_Windows[0].Init();
-			
+
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
 		}

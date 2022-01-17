@@ -14,10 +14,6 @@ namespace NewWorld::Core
 		// Static
 	public:
 		static void Initialize();
-
-	private:
-		static LRESULT CALLBACK WindowCallbackStatic(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam);
-
 		// Members
 	private:
 		String m_Title;
@@ -58,7 +54,8 @@ namespace NewWorld::Core
 
 		void HandleEvents();
 
-	private:
-		LRESULT WindowCallback(HWND winHandle, UINT actionType, WPARAM wParam, LPARAM lParam);
+		// Events
+	public:
+
 	};
 }
