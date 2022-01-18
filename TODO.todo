@@ -15,16 +15,6 @@
         "key": 1629042386980,
         "children": [
           {
-            "key": 1642355311298,
-            "children": [],
-            "todo": {
-              "content": "Thread Mangment System",
-              "id": 1642355311298,
-              "level": "warning",
-              "done": false
-            }
-          },
-          {
             "key": 1629042438599,
             "children": [
               {
@@ -135,6 +125,16 @@
             "todo": {
               "content": "Application",
               "id": 1629042438599,
+              "level": "default",
+              "done": false
+            }
+          },
+          {
+            "key": 1642355311298,
+            "children": [],
+            "todo": {
+              "content": "Thread Mangment System",
+              "id": 1642355311298,
               "level": "default",
               "done": false
             }

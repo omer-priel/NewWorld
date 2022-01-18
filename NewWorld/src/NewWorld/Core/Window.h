@@ -3,7 +3,7 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Core/GraphicsAPI/GraphicsAPI.h"
 
-class GLFWwindow;
+struct GLFWwindow;
 
 namespace NewWorld::Core
 {
