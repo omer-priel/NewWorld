@@ -46,6 +46,8 @@ namespace NewWorld::Core
 	public:
 		void Init();
 
+		void InitEvents();
+
 		void Show();
 
 		void Hide();

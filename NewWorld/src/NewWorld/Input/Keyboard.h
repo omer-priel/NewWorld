@@ -2,7 +2,7 @@
 
 #include "NewWorld/Minimal.h"
 
-namespace NewWorld::Core::Input
+namespace NewWorld::Input
 {
 	// This is static class
 	class Keyboard : public Object

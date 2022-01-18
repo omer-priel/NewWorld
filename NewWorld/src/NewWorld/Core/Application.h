@@ -34,7 +34,7 @@ namespace NewWorld
 	private:
 		bool m_Running;
 		
-		//Core::Window m_Window; NW_CONFIG_RELEASE
+		//Core::GameWindow m_Window; NW_CONFIG_RELEASE
 		DynamicArray<Editor::EditorWindow> m_Windows;
 
 	public:
