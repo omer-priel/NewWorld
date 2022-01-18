@@ -41,10 +41,11 @@
 
 // namespaceFullName = namespace,
 // ... = class name
-#define NW_CLASS(namespaceFullName, ...) 	public: static const NewWorld::DataTypes::Type& GetTypeStatic() {\
-												return NewWorld::DataTypes::TypeManager::GetType(NW_TYPE_ID(namespaceFullName::##__VA_ARGS__), #__VA_ARGS__, #namespaceFullName); }\
-												public: const NewWorld::DataTypes::Type& GetType() const override {\
-												return NewWorld::DataTypes::TypeManager::GetType(NW_TYPE_ID(namespaceFullName::##__VA_ARGS__), #__VA_ARGS__, #namespaceFullName); }
+#define NW_CLASS(namespaceFullName, ...) public:\
+											static const NewWorld::DataTypes::Type& GetTypeStatic() {\
+											return NewWorld::DataTypes::TypeManager::GetType(NW_TYPE_ID(namespaceFullName::##__VA_ARGS__), #__VA_ARGS__, #namespaceFullName); }\
+											const NewWorld::DataTypes::Type& GetType() const override {\
+											return NewWorld::DataTypes::TypeManager::GetType(NW_TYPE_ID(namespaceFullName::##__VA_ARGS__), #__VA_ARGS__, #namespaceFullName); }
 
 #pragma endregion
 

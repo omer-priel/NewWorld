@@ -3,7 +3,7 @@
 #include "Settings.h"
 #include "Entity.h"
 
-namespace Sandbox::Tests
+namespace Sandbox::Entities
 {
 	class Group : public NewWorld::Object
 	{

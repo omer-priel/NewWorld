@@ -2,6 +2,9 @@
 
 #include "NewWorld/Minimal.h"
 
+#include "NewWorld/Core/Window.h"
+#include "NewWorld/Editor/EditorWindow.h"
+
 int main(int argc, char** argv);
 
 namespace NewWorld
@@ -15,9 +18,24 @@ namespace NewWorld
 		static RawPointer<Application> s_Application;
 		static inline Application& GetApplication() { return *s_Application; }
 
+	private:
+		static BOOL WINAPI ConsoleCtrlHandler(DWORD type)
+		{
+			if (type == CTRL_CLOSE_EVENT)
+			{
+				NewWorld::Application::GetApplication().ShutDown();
+				ExitThread(0);
+			}
+
+			return TRUE;
+		}
+
 		// Members
 	private:
 		bool m_Running;
+		
+		//Core::GameWindow m_Window; NW_CONFIG_RELEASE
+		DynamicArray<Editor::EditorWindow> m_Windows;
 
 	public:
 		Application()
@@ -44,9 +62,19 @@ namespace NewWorld
 			Files::FileManger::Initialize();
 			Debug::Logger::Initialize();
 			Debug::Profiler::Initialize();
+
+			// Console Handler
+			SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
 			
+			Core::Window::Initialize();
+
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
-			
+
+			m_Windows.push_back(Editor::EditorWindow(m_Windows.size()-1));
+
+			// Create Window
+			m_Windows[0].Init();
+
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
 		}
@@ -61,9 +89,11 @@ namespace NewWorld
 			while (m_Running)
 			{
 				NW_PROFILE_SCOPE("Frame");
-				// BeginFrame()
-				ShutDown(); // TEMP
-				// EndFrame()
+				BeginFrame();
+
+				DataTypes::Thread::Sleap(500);
+
+				EndFrame();
 			}
 
 			Closed();
@@ -71,6 +101,11 @@ namespace NewWorld
 
 		void Closed()
 		{
+			for (Editor::EditorWindow& window : m_Windows)
+			{
+				window.Close();
+			}
+
 			NW_INFO(NW_LOGGER_CORE, "The Application Closed");
 		}
 
@@ -78,6 +113,25 @@ namespace NewWorld
 		{
 			Debug::Profiler::Finalize();
 		}
+
+	public:
+		void BeginFrame()
+		{
+			// HandleEvents
+			for (Editor::EditorWindow& window : m_Windows)
+			{
+				window.HandleEvents();
+			}
+		}
+
+		void EndFrame()
+		{
+
+		}
+
+		// Events
+	private:
+
 
 		// Action
 	public:
