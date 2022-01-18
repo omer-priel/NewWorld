@@ -52,7 +52,7 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event KeyPressed {}, {}, {}", key, scancode, mods);
+					NW_INFO(NW_LOGGER_CORE, "Event KeyReleased {}, {}, {}", key, scancode, mods);
 					break;
 				}
 			}
@@ -73,7 +73,7 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event MouseButtonPressed {}, {}", key, mods);
+					NW_INFO(NW_LOGGER_CORE, "Event MouseButtonReleased {}, {}", key, mods);
 					break;
 				}
 			}
