@@ -8,7 +8,7 @@ namespace NewWorld::Editor
 	{
 	NW_CLASS(NewWorld::Editor, Component)
 
-		// Members
+		// Events
 	public:
 
 	};
