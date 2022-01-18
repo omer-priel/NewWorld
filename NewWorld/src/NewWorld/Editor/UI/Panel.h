@@ -12,7 +12,6 @@ namespace NewWorld::Editor::UI
 		// Members
 	public:
 
-
 		// Override
 	public:
 		virtual void Create() override { }
