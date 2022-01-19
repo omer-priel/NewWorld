@@ -14,7 +14,7 @@ namespace NewWorld::Editor
 	NW_CLASS(NewWorld::Editor, EditorWindow)
 
 		// Members
-	public:
+	private:
 		SizeT m_WindowID;
 		UI::Panel m_MainPanel;
 
@@ -24,5 +24,13 @@ namespace NewWorld::Editor
 		{
 
 		}
+		
+		// Getters
+	public:
+		inline SizeT GetID() const { return m_WindowID; }
+
+		inline const UI::Panel& GetMainPanel() const { return m_MainPanel; }
+
+		inline UI::Panel& GetMainPanel() { return m_MainPanel; }
 	};
 }

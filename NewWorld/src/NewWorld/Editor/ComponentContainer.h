@@ -28,9 +28,9 @@ namespace NewWorld::Editor
 
 		// Pure virtual functions
 	public:
-		virtual void ComponentAdded(Component& component) = 0;
+		virtual void ComponentAdded(Component& component) { }
 
-		virtual void ComponentsRemoved(DynamicArray<Component>& components) = 0;
+		virtual void ComponentsRemoved(DynamicArray<Component>& components) { }
 
 		// Getters
 	public:

@@ -15,16 +15,17 @@ namespace NewWorld::Editor
 		uint m_Width;
 		uint m_Height;
 
+	protected:
 		Component(uint x, uint y, uint width, uint height)
 			: m_X(x), m_Y(y), m_Width(width), m_Height(height)
 		{
 
 		}
 
-		// Pure virtual functions
+		//  Virtual functions
 	public:
-		virtual void Create() = 0;
-		virtual void Destroy() = 0;
+		virtual void Create() { }
+		virtual void Destroy() { }
 
 		// Getters
 	public:

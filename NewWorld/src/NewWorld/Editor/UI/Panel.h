@@ -11,6 +11,7 @@ namespace NewWorld::Editor::UI
 
 		// Members
 	public:
+		
 
 	public:
 		Panel(uint x, uint y, uint width, uint height)
