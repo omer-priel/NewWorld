@@ -60,6 +60,6 @@ namespace NewWorld::Core
 
 		// Events
 	public:
-
+		virtual void OnUpdate();
 	};
 }

@@ -122,6 +122,7 @@ namespace NewWorld
 			for (Editor::EditorWindow& window : m_Windows)
 			{
 				window.HandleEvents();
+				window.OnUpdate();
 			}
 		}
 

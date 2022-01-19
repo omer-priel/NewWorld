@@ -24,25 +24,14 @@ namespace NewWorld::Editor::UI
 
 		// Override
 	public:
-		virtual void Create() override
-		{
+		void Create() override;
+		void Destroy() override;
 
-		}
+		void OnUpdate() override;
 
-		virtual void Destroy() override
-		{
+		void ComponentAdded(Component& component) override;
 
-		}
-
-		virtual void ComponentAdded(Component& component) override
-		{
-
-		}
-
-		virtual void ComponentsRemoved(DynamicArray<Component>& components) override
-		{
-
-		}
+		void ComponentsRemoved(DynamicArray<Component>& components) override;
 
 		// Getters
 	public:

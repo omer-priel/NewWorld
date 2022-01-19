@@ -27,6 +27,8 @@ namespace NewWorld::Editor
 		virtual void Create() { }
 		virtual void Destroy() { }
 
+		virtual void OnUpdate() {}
+
 		// Getters
 	public:
 		inline uint GetX() const { return m_X; }

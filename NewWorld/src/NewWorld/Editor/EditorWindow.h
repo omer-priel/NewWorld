@@ -32,5 +32,9 @@ namespace NewWorld::Editor
 		inline const UI::Panel& GetMainPanel() const { return m_MainPanel; }
 
 		inline UI::Panel& GetMainPanel() { return m_MainPanel; }
+
+		// Events
+	public:
+		void OnUpdate() override;
 	};
 }
