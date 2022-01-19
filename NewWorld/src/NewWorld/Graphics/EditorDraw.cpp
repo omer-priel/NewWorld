@@ -11,14 +11,11 @@ namespace NewWorld::Graphics
 	// Actions
 	void EditorDraw::DrawRectangle(RawPointer<Editor::EditorWindow> window, uint x, uint y, uint width, uint height, const Graphics::Color& color)
 	{
-		Matrix4& proj = window->GetProjectionMatrix();
-
-		glClear(GL_COLOR_BUFFER_BIT);
 		glBegin(GL_QUADS);
 		glColor3f(color.r, color.g, color.b);
 		AddCoordinate(window, x, y);
-		AddCoordinate(window, width, y);
-		AddCoordinate(window, width, y + height);
+		AddCoordinate(window, x + width, y);
+		AddCoordinate(window, x + width, y + height);
 		AddCoordinate(window, x, y + height);
 		glEnd();
 	}
@@ -28,7 +25,7 @@ namespace NewWorld::Graphics
 	{
 		Matrix4 proj = window->GetProjectionMatrix();
 
-		return Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
+		return Vector4(x - window->GetWidth() / 2, (window->GetHeight() - y) - window->GetHeight() / 2, 0, 1) * proj;
 	}
 
 	void EditorDraw::AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)

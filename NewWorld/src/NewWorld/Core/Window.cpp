@@ -63,26 +63,31 @@ namespace NewWorld::Core
 		glfwSetMouseButtonCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int action, int mods) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
+			double xPos;
+			double yPos;
+
+			glfwGetCursorPos(winHandle, &xPos, &yPos);
+
 			switch (action)
 			{
 				case GLFW_PRESS:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}", window.GetID(), key, mods, false);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}, ({}, {})", window.GetID(), key, mods, false, xPos, yPos);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}", window.GetID(), key, mods, true);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}, ({}, {})", window.GetID(), key, mods, true, xPos, yPos);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					SharedPointer<Editor::UI::Panel> newPanel(100, 100, 100, 100, Graphics::Colors::Red);
+					SharedPointer<Editor::UI::Panel> newPanel(xPos - 10, yPos - 10, 20, 20, Graphics::Colors::Red);
 					SharedPointer<Editor::Component> newComp = newPanel;
 
-					//window.GetMainPanel().AddComponent(newComp);
+					window.GetMainPanel().AddComponent(newComp);
 
-					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}", window.GetID(), key, mods);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}, ({}, {})", window.GetID(), key, mods, xPos, yPos);
 					break;
 				}
 			}
