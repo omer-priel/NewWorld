@@ -51,7 +51,8 @@ namespace NewWorld::Editor
 		void AddComponent(Component& component)
 		{
 			m_Components.push_back(component);
-			
+			component.SetWindow(GetWindow());
+
 			ComponentAdded(component);
 		}
 

@@ -2,6 +2,7 @@
 
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Graphics/Color.h"
+#include "NewWorld/Editor/EditorWindow.h"
 
 namespace NewWorld::Graphics
 {
@@ -12,6 +13,6 @@ namespace NewWorld::Graphics
 
 		// Actions
 	public:
-		static void DrawRectangle(uint x, uint y, uint width, uint height, const Graphics::Color& color);
+		static void DrawRectangle(Editor::EditorWindow& window, uint x, uint y, uint width, uint height, const Graphics::Color& color);
 	};
 }

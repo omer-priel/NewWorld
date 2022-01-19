@@ -5,7 +5,7 @@
 
 namespace NewWorld::Graphics
 {
-	void EditorDraw::DrawRectangle(uint x, uint y, uint width, uint height, const Graphics::Color& color)
+	void EditorDraw::DrawRectangle(Editor::EditorWindow& window, uint x, uint y, uint width, uint height, const Graphics::Color& color)
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		//glClearColor(color.r, color.g, color.b, 1);
