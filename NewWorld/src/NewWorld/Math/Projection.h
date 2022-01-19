@@ -7,8 +7,9 @@
 
 namespace NewWorld::Math::Projection
 {
-	inline Matrix4 OrthographicMatrix(uint xMin, uint yMin, uint xMax, uint yMax)
+	inline glm::mat4 OrthographicMatrix(uint xMin, uint yMin, uint xMax, uint yMax)
 	{
-		return glm::ortho(xMin, xMax, yMin, yMax);
+		return glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f);
+		//return glm::ortho((float)xMin, (float)xMax, (float)yMin, (float)yMax, -1.0f, 1.0f);
 	}
 }

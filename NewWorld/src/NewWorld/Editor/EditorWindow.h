@@ -23,9 +23,10 @@ namespace NewWorld::Editor
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
-			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height)
+			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height, Graphics::Colors::Blue)
 		{
-			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0, 0, width, height);
+			m_MainPanel.SetWindow(this);
+			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, 0.0f, (float)width, (float)height);
 		}
 		
 		// Getters
@@ -38,7 +39,7 @@ namespace NewWorld::Editor
 
 		inline const Matrix4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
-		inline Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
+		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
 		// Events
 	public:
 		void Update() override;

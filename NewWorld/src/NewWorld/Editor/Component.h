@@ -4,6 +4,8 @@
 
 namespace NewWorld::Editor
 {
+	class EditorWindow;
+
 	class Component : public Object
 	{
 	NW_CLASS(NewWorld::Editor, Component)
