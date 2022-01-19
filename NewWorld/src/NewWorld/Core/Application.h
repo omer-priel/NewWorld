@@ -72,10 +72,12 @@ namespace NewWorld
 
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
-			m_Windows.push_back(Editor::EditorWindow(m_Windows.size()-1));
+			m_Windows.push_back(m_Windows.size()-1);
 
 			// Create Window
 			m_Windows[0].Create();
+
+			m_Windows[0].GetMainPanel().SetWindow(&m_Windows[0]);
 
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();

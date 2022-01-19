@@ -8,34 +8,31 @@
 
 namespace NewWorld::Graphics
 {
-	void AddCoordinate2(Matrix4& proj, float x, float y)
+	Vector4 GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
 	{
-		//Matrix4 proj2 = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f);
-		//Matrix4 proj2 = Math::Projection::OrthographicMatrix(0, 0, 1280, 720);
-		//Matrix4 proj2 = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, 0.1f, 100.0f);
+		Matrix4 proj = window->GetProjectionMatrix();
 
-		Matrix4 proj2 = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+		return Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
+	}
 
-		Vector4 coordinate = Vector4(x, y, 0, 1) * proj2;
+	void AddCoordinate2(RawPointer<Editor::EditorWindow> window, float x, float y)
+	{
+		Vector4 coordinate = GetCoordinate(window, x, y);
 		glVertex2f(coordinate.x, coordinate.y);
 	}
 
-	void EditorDraw::DrawRectangle(Editor::EditorWindow& window, uint x, uint y, uint width, uint height, const Graphics::Color& color)
+	void EditorDraw::DrawRectangle(RawPointer<Editor::EditorWindow> window, uint x, uint y, uint width, uint height, const Graphics::Color& color)
 	{
 		NW_INFO(NW_LOGGER_CORE, color);
-		Matrix4& proj = window.GetProjectionMatrix();
+		Matrix4& proj = window->GetProjectionMatrix();
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		glBegin(GL_QUADS);
 		glColor3f(color.r, color.g, color.b);
-		//AddCoordinate(proj, x, y);
-		//AddCoordinate(proj, x + width, y);
-		//AddCoordinate(proj, x + width, y + height);
-		//AddCoordinate(proj, x, y + height);
-		AddCoordinate2(proj, -0.9f, -0.9f);
-		AddCoordinate2(proj, 0.9f, -0.9f);
-		AddCoordinate2(proj, 0.9f, 0.9f);
-		AddCoordinate2(proj, -0.9f, 0.9f);
+		AddCoordinate2(window, x, y);
+		AddCoordinate2(window, width, y);
+		AddCoordinate2(window, width, y + height);
+		AddCoordinate2(window, x, y + height);
 		glEnd();
 	}
 

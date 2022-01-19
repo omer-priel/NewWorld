@@ -30,9 +30,9 @@ namespace NewWorld::Core
 	public:
 		inline const String& GetTitle() const { return m_Title; }
 
-		inline uint GetWidth() const { return m_Width; };
+		uint GetWidth() const { return m_Width; };
 		
-		inline uint GetHeight() const { return m_Height; };
+		uint GetHeight() const { return m_Height; };
 
 		inline bool IsAlive() const { return m_WinHandle != nullptr; };
 

@@ -12,7 +12,7 @@ namespace NewWorld::Editor
 
 		// Members
 	private:
-		EditorWindow* m_Window;
+		RawPointer<EditorWindow> m_Window;
 
 	protected:
 		uint m_X;
@@ -36,7 +36,10 @@ namespace NewWorld::Editor
 
 		// Getters
 	public:
-		inline EditorWindow* GetWindow() const { return m_Window; }
+		RawPointer<EditorWindow> GetWindow() const
+		{
+			return m_Window;
+		}
 
 		inline uint GetX() const { return m_X; }
 		inline uint GetY() const { return m_Y; }
@@ -46,6 +49,6 @@ namespace NewWorld::Editor
 
 		// Setters
 	public:
-		void SetWindow(EditorWindow* window) { m_Window = window; }
+		void SetWindow(RawPointer<EditorWindow> window) {m_Window = window; }
 	};
 }
