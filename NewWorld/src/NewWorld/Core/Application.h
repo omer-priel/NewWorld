@@ -72,8 +72,7 @@ namespace NewWorld
 
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
-			SharedPointer<Editor::EditorWindow> window(m_Windows.size());
-			m_Windows.push_back((const SharedPointer<Editor::EditorWindow>&)window);
+			m_Windows.push_back(m_Windows.size());
 
 			// Create Window
 			m_Windows[0]->Create();
