@@ -7,18 +7,6 @@
 
 namespace NewWorld::Core
 {
-	// Static
-	void Window::Initialize()
-	{
-		GraphicsAPI::GraphicsAPI::Initialize();
-	}
-
-
-	void Window::Finalize()
-	{
-		GraphicsAPI::GraphicsAPI::Finalize();
-	}
-
 	// None-Static
 	// Init
 	void Window::Create()

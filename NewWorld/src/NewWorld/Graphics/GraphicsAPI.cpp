@@ -3,7 +3,7 @@
 
 #include <GLFW/glfw3.h>
 
-namespace NewWorld::Core::GraphicsAPI
+namespace NewWorld::Graphics
 {
 	void GraphicsAPI::Initialize()
 	{

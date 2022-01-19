@@ -11,11 +11,6 @@ namespace NewWorld::Core
 	{
 	NW_CLASS(NewWorld::Core, Window)
 
-		// Static
-	public:
-		static void Initialize();
-		static void Finalize();
-
 		// Members
 	private:
 		String m_Title;

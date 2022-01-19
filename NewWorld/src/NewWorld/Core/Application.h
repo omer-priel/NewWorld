@@ -66,7 +66,7 @@ namespace NewWorld
 			// Console Handler
 			SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
 			
-			Core::Window::Initialize();
+            Graphics::GraphicsAPI::Initialize();
 
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
@@ -111,7 +111,7 @@ namespace NewWorld
 
 		void Cleanup()
 		{
-			Core::Window::Finalize();
+			Graphics::GraphicsAPI::Finalize();
 			Debug::Profiler::Finalize();
 		}
 
