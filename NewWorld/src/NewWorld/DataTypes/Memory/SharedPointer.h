@@ -144,12 +144,29 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		template<typename OtherType>
+		SharedPointer(const SharedPointer<OtherType, true>& obj)
+		{
+			m_Value = (T*)obj.m_Value;
+			m_Counter = obj.m_Counter;
+			(*m_Counter)++;
+		}
+
+		template<typename OtherType>
 		SharedPointer(SharedPointer<OtherType, false>& obj)
 		{
 			m_Value = (T*)obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 		}
+
+		template<typename OtherType>
+		SharedPointer(SharedPointer<OtherType, true>& obj)
+		{
+			m_Value = (T*)obj.m_Value;
+			m_Counter = obj.m_Counter;
+			(*m_Counter)++;
+		}
+
 
 		template <typename... Types>
 		SharedPointer(Types... args)
