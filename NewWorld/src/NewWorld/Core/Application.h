@@ -2,6 +2,8 @@
 
 #include "NewWorld/Minimal.h"
 
+#include "NewWorld/Graphics/GraphicsAPI.h"
+
 #include "NewWorld/Core/Window.h"
 #include "NewWorld/Editor/EditorWindow.h"
 

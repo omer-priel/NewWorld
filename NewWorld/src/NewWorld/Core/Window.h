@@ -1,7 +1,6 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Core/GraphicsAPI/GraphicsAPI.h"
 
 struct GLFWwindow;
 
