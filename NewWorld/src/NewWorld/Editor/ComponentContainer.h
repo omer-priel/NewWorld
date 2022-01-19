@@ -13,6 +13,13 @@ namespace NewWorld::Editor
 	private:
 		DynamicArray<Component> m_Components;
 
+	protected:
+		ComponentContainer(uint x, uint y, uint width, uint height)
+			: Component(x, y, width, height)
+		{
+
+		}
+
 	public:
 		virtual ~ComponentContainer()
 		{
