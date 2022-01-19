@@ -19,7 +19,12 @@ namespace NewWorld::Graphics
 		static constexpr Color Green = Color(0, 1, 0);
 		static constexpr Color Blue = Color(0, 0, 1);
 
+		// Simple Colors
+		static constexpr Color Yellow = Color(1, 1, 0);
+		static constexpr Color Magenta = Color(1, 0, 1);
+		static constexpr Color Cyan = Color(0, 1, 1);
+
 		// Editor Colors
-		static constexpr Color EditorBackground = Colors::Red;
+		static constexpr Color EditorBackground = Color(0.2f, 0.2f, 0.2f);
 	};
 }

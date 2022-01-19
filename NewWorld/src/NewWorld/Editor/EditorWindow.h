@@ -23,7 +23,7 @@ namespace NewWorld::Editor
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
-			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0+10, 0+10, width-10, height-30, Graphics::Colors::Blue)
+			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height, Graphics::Colors::EditorBackground)
 		{
 			m_MainPanel.SetWindow(this);
 			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, width, 0.0f, height);
@@ -40,11 +40,6 @@ namespace NewWorld::Editor
 		inline const Matrix4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
-
-		Matrix4 GetProjectionMatrix2()
-		{
-			return Math::Projection::OrthographicMatrix(0.0f, (float)GetWidth(), 0.0f, (float)GetHeight());
-		}
 
 		// Events
 	public:

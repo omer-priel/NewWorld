@@ -17,6 +17,8 @@ namespace NewWorld::Graphics
 
 		// Utilities
 	private:
-		static void AddCoordinate(Matrix4& proj, uint x, uint y);
+		static Vector4 GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y);
+
+		static void AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y);
 	};
 }

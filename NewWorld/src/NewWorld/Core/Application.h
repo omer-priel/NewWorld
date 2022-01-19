@@ -37,7 +37,7 @@ namespace NewWorld
 		bool m_Running;
 		
 		//Core::GameWindow m_Window; NW_CONFIG_RELEASE
-		DynamicArray<Editor::EditorWindow> m_Windows;
+		DynamicArray<SharedPointer<Editor::EditorWindow>> m_Windows;
 
 	public:
 		Application()
@@ -75,9 +75,9 @@ namespace NewWorld
 			m_Windows.push_back(m_Windows.size()-1);
 
 			// Create Window
-			m_Windows[0].Create();
+			m_Windows[0]->Create();
 
-			m_Windows[0].GetMainPanel().SetWindow(&m_Windows[0]);
+			//m_Windows[0].GetMainPanel().SetWindow(&m_Windows[0]);
 
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -105,9 +105,9 @@ namespace NewWorld
 
 		void Closed()
 		{
-			for (Editor::EditorWindow& window : m_Windows)
+			for (SharedPointer<Editor::EditorWindow> window : m_Windows)
 			{
-				window.Close();
+				window->Close();
 			}
 
 			NW_INFO(NW_LOGGER_CORE, "The Application Closed");
@@ -123,10 +123,10 @@ namespace NewWorld
 		void BeginFrame()
 		{
 			// HandleEvents
-			for (Editor::EditorWindow& window : m_Windows)
+			for (SharedPointer<Editor::EditorWindow> window : m_Windows)
 			{
-				window.HandleEvents();
-				window.Update();
+				window->HandleEvents();
+				window->Update();
 			}
 		}
 
