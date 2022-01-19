@@ -11,9 +11,15 @@ namespace NewWorld::Core
 		GraphicsAPI::GraphicsAPI::Initialize();
 	}
 
+
+	void Window::Finalize()
+	{
+		GraphicsAPI::GraphicsAPI::Finalize();
+	}
+
 	// None-Static
 	// Init
-	void Window::Init()
+	void Window::Create()
 	{
 		m_WinHandle = glfwCreateWindow((int)m_Width, (int)m_Height, m_Title.GetPointer(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_WinHandle);
@@ -21,12 +27,12 @@ namespace NewWorld::Core
 		glfwSwapInterval(1); // Set VSync true
 
 		// Register Window Events
-		Window::InitEvents();
+		Window::ReggisterEvents();
 
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
-	void Window::InitEvents()
+	void Window::ReggisterEvents()
 	{
 		// Set GLFW callbacks
 		glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* window) {

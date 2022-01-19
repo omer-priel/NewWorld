@@ -10,4 +10,9 @@ namespace NewWorld::Core::GraphicsAPI
 		int success = glfwInit();
 		NW_ASSERT(success, "Could not intialize GLFW!");
 	}
+
+	void GraphicsAPI::Finalize()
+	{
+		glfwTerminate();
+	}
 }

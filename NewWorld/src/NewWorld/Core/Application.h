@@ -73,7 +73,7 @@ namespace NewWorld
 			m_Windows.push_back(Editor::EditorWindow(m_Windows.size()-1));
 
 			// Create Window
-			m_Windows[0].Init();
+			m_Windows[0].Create();
 
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -111,6 +111,7 @@ namespace NewWorld
 
 		void Cleanup()
 		{
+			Core::Window::Finalize();
 			Debug::Profiler::Finalize();
 		}
 

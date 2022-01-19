@@ -14,6 +14,8 @@ namespace NewWorld::Core
 		// Static
 	public:
 		static void Initialize();
+		static void Finalize();
+
 		// Members
 	private:
 		String m_Title;
@@ -44,9 +46,9 @@ namespace NewWorld::Core
 
 		// Actions
 	public:
-		void Init();
+		void Create();
 
-		void InitEvents();
+		void ReggisterEvents();
 
 		void Show();
 
