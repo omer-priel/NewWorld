@@ -1,6 +1,8 @@
 #include "nwpch.h"
 #include "Window.h"
 
+#include "NewWorld/Editor/EditorWindow.h"
+
 #include <GLFW/glfw3.h>
 
 namespace NewWorld::Core
@@ -35,15 +37,23 @@ namespace NewWorld::Core
 	void Window::ReggisterEvents()
 	{
 		// Set GLFW callbacks
-		glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* window) {
+		glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* winHandle) {
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+
+			NW_DEBUG(NW_LOGGER_CORE, window.GetMainPanel().GetBackgroundColor());
+
 			NW_INFO(NW_LOGGER_CORE ,"Event Close");
 		});
 
-		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* window, int width, int height) {
+		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
+			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+
 			NW_INFO(NW_LOGGER_CORE, "Event SizeChanged ({}, {})", width, height);
 		});
 
-		glfwSetKeyCallback(m_WinHandle, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+		glfwSetKeyCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int scancode, int action, int mods) {
+			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+
 			switch (action)
 			{
 				case GLFW_PRESS:
@@ -64,7 +74,9 @@ namespace NewWorld::Core
 			}
 		});
 
-		glfwSetMouseButtonCallback(m_WinHandle, [](GLFWwindow* window, int key, int action, int mods) {
+		glfwSetMouseButtonCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int action, int mods) {
+			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+
 			switch (action)
 			{
 				case GLFW_PRESS:
@@ -85,11 +97,15 @@ namespace NewWorld::Core
 			}
 		});
 
-		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* window, double xOffset, double yOffset) {
+		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
+			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+
 			NW_INFO(NW_LOGGER_CORE, "Event MouseScrolled ({}, {})", xOffset, yOffset);
 		});
 
-		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* window, double xPos, double yPos) {
+		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* winHandle, double xPos, double yPos) {
+			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+
 			NW_INFO(NW_LOGGER_CORE, "Event MouseMoved ({}, {})", xPos, yPos);
 		});
 	}
