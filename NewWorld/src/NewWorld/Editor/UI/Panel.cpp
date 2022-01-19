@@ -23,12 +23,12 @@ namespace NewWorld::Editor::UI
 		ComponentContainer::Update();
 	}
 
-	void Panel::ComponentAdded(Component& component)
+	void Panel::ComponentAdded(SharedPointer<Component> component)
 	{
 
 	}
 
-	void Panel::ComponentsRemoved(DynamicArray<Component>& components)
+	void Panel::ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components)
 	{
 
 	}

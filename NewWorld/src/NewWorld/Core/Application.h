@@ -72,10 +72,12 @@ namespace NewWorld
 
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
-			m_Windows.push_back(m_Windows.size()-1);
+			m_Windows.push_back(m_Windows.size());
+			m_Windows.push_back(m_Windows.size());
 
 			// Create Window
 			m_Windows[0]->Create();
+			m_Windows[1]->Create();
 
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -91,7 +93,14 @@ namespace NewWorld
 			while (m_Running)
 			{
 				NW_PROFILE_SCOPE("Frame");
+
 				BeginFrame();
+
+				for (SharedPointer<Editor::EditorWindow> window : m_Windows)
+				{
+					window->HandleEvents();
+					window->Update();
+				}
 
 				DataTypes::Thread::Sleap(100);
 
@@ -120,12 +129,7 @@ namespace NewWorld
 	public:
 		void BeginFrame()
 		{
-			// HandleEvents
-			for (SharedPointer<Editor::EditorWindow> window : m_Windows)
-			{
-				window->HandleEvents();
-				window->Update();
-			}
+
 		}
 
 		void EndFrame()

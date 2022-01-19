@@ -29,9 +29,9 @@ namespace NewWorld::Editor::UI
 
 		void Update() override;
 
-		void ComponentAdded(Component& component) override;
+		void ComponentAdded(SharedPointer<Component> component) override;
 
-		void ComponentsRemoved(DynamicArray<Component>& components) override;
+		void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) override;
 
 		// Getters
 	public:

@@ -28,13 +28,13 @@ namespace NewWorld::Core
 		glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* winHandle) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			NW_INFO(NW_LOGGER_CORE ,"Event Close");
+			NW_INFO(NW_LOGGER_CORE ,"Window {} event Close", window.GetID());
 		});
 
 		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			NW_INFO(NW_LOGGER_CORE, "Event SizeChanged ({}, {})", width, height);
+			NW_INFO(NW_LOGGER_CORE, "Window {} event SizeChanged ({}, {})", width, height);
 		});
 
 		glfwSetKeyCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int scancode, int action, int mods) {
@@ -44,17 +44,17 @@ namespace NewWorld::Core
 			{
 				case GLFW_PRESS:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event KeyPressed {}, {}, {}, {}", key, scancode, mods, false);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyPressed {}, {}, {}, {}", window.GetID(), key, scancode, mods, false);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event KeyPressed {}, {}, {}, {}", key, scancode, mods, true);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyPressed {}, {}, {}, {}", window.GetID(), key, scancode, mods, true);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event KeyReleased {}, {}, {}", key, scancode, mods);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
 					break;
 				}
 			}
@@ -67,17 +67,22 @@ namespace NewWorld::Core
 			{
 				case GLFW_PRESS:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event MouseButtonPressed {}, {}, {}", key, mods, false);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}", window.GetID(), key, mods, false);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event MouseButtonPressed {}, {}, {}", key, mods, true);
+					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}", window.GetID(), key, mods, true);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					NW_INFO(NW_LOGGER_CORE, "Event MouseButtonReleased {}, {}", key, mods);
+					SharedPointer<Editor::UI::Panel> newPanel(100, 100, 100, 100, Graphics::Colors::Red);
+					SharedPointer<Editor::Component> newComp = newPanel;
+
+					//window.GetMainPanel().AddComponent(newComp);
+
+					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}", window.GetID(), key, mods);
 					break;
 				}
 			}
@@ -90,7 +95,7 @@ namespace NewWorld::Core
 			color.b += yOffset * 0.03f;
 			window.GetMainPanel().SetBackgroundColor(color);
 
-			NW_INFO(NW_LOGGER_CORE, "Event MouseScrolled ({}, {})", xOffset, yOffset);
+			NW_INFO(NW_LOGGER_CORE, "Window {} event MouseScrolled ({}, {})", window.GetID(), xOffset, yOffset);
 		});
 
 		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* winHandle, double xPos, double yPos) {
@@ -101,7 +106,7 @@ namespace NewWorld::Core
 			color.g = yPos / window.GetHeight();
 			window.GetMainPanel().SetBackgroundColor(color);
 
-			NW_INFO(NW_LOGGER_CORE, "Event MouseMoved ({}, {})", xPos, yPos);
+			NW_INFO(NW_LOGGER_CORE, "Window {} event MouseMoved ({}, {})", window.GetID(), xPos, yPos);
 		});
 	}
 
@@ -142,6 +147,6 @@ namespace NewWorld::Core
 	// Events
 	void Window::Update()
 	{
-
+		glfwMakeContextCurrent(m_WinHandle);
 	}
 }

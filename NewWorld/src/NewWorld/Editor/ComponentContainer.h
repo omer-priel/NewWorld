@@ -11,7 +11,7 @@ namespace NewWorld::Editor
 
 		// Members
 	private:
-		DynamicArray<Component> m_Components;
+		DynamicArray<SharedPointer<Component>> m_Components;
 
 	protected:
 		ComponentContainer(uint x, uint y, uint width, uint height)
@@ -30,28 +30,28 @@ namespace NewWorld::Editor
 	public:
 		virtual void Update() override
 		{
-			for (Component& component : m_Components)
+			for (SharedPointer<Component>& component : m_Components)
 			{
-				component.Update();
+				component->Update();
 			}
 		}
 
 		// Pure virtual functions
 	public:
-		virtual void ComponentAdded(Component& component) { }
+		virtual void ComponentAdded(SharedPointer<Component> component) { }
 
-		virtual void ComponentsRemoved(DynamicArray<Component>& components) { }
+		virtual void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) { }
 
 		// Getters
 	public:
-		inline DynamicArray<Component>& GetComponents() { return m_Components; }
+		inline DynamicArray<SharedPointer<Component>>& GetComponents() { return m_Components; }
 
 		// Actions
 	public:
-		void AddComponent(Component& component)
+		void AddComponent(SharedPointer<Component> component)
 		{
 			m_Components.push_back(component);
-			component.SetWindow(GetWindow());
+			component->SetWindow(GetWindow());
 
 			ComponentAdded(component);
 		}

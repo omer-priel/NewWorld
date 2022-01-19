@@ -13,7 +13,7 @@ namespace NewWorld::DataTypes::Memory
 	template <typename T, const bool NULLABLE>
 	class SharedPointer : public IPointer<T>
 	{
-	NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, true>)
+		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, true>)
 
 	private:
 		T* m_Value = nullptr;
@@ -25,7 +25,7 @@ namespace NewWorld::DataTypes::Memory
 			m_Value = nullptr;
 			m_Counter = new SizeT(0);
 		}
-		
+
 		SharedPointer(const SharedPointer& obj)
 		{
 			m_Value = obj.m_Value;
@@ -39,7 +39,7 @@ namespace NewWorld::DataTypes::Memory
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 		}
-		
+
 		template <typename... Types>
 		SharedPointer(Types... args)
 		{
@@ -76,7 +76,7 @@ namespace NewWorld::DataTypes::Memory
 			{
 				this->~SharedPointer();
 			}
-			m_Value = obj.m_Value;
+			m_Value = (T*)obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 			return *this;
@@ -121,6 +121,10 @@ namespace NewWorld::DataTypes::Memory
 		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, false>)
 
 	private:
+		template<typename OtherT, const bool OtherNULLABLE>
+		friend class SharedPointer;
+
+	private:
 		T* m_Value = nullptr;
 		uint* m_Counter = nullptr;
 
@@ -131,16 +135,18 @@ namespace NewWorld::DataTypes::Memory
 			m_Counter = new SizeT(1);
 		}
 
-		SharedPointer(const SharedPointer& obj)
+		template<typename OtherType>
+		SharedPointer(const SharedPointer<OtherType, false>& obj)
 		{
-			m_Value = obj.m_Value;
+			m_Value = (T*)obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 		}
 
-		SharedPointer(SharedPointer& obj)
+		template<typename OtherType>
+		SharedPointer(SharedPointer<OtherType, false>& obj)
 		{
-			m_Value = obj.m_Value;
+			m_Value = (T*)obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 		}
@@ -175,13 +181,14 @@ namespace NewWorld::DataTypes::Memory
 		}
 
 		// Operators
-		SharedPointer& operator= (const SharedPointer& obj)
+		template<typename OtherType>
+		SharedPointer& operator= (const SharedPointer<OtherType, false>& obj)
 		{
 			if (m_Counter != nullptr)
 			{
 				this->~SharedPointer();
 			}
-			m_Value = obj.m_Value;
+			m_Value = (T*)obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 			return *this;
