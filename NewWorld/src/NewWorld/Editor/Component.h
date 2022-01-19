@@ -27,7 +27,7 @@ namespace NewWorld::Editor
 		virtual void Create() { }
 		virtual void Destroy() { }
 
-		virtual void OnUpdate() {}
+		virtual void Update() {}
 
 		// Getters
 	public:

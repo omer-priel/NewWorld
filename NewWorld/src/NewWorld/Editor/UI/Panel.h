@@ -27,7 +27,7 @@ namespace NewWorld::Editor::UI
 		void Create() override;
 		void Destroy() override;
 
-		void OnUpdate() override;
+		void Update() override;
 
 		void ComponentAdded(Component& component) override;
 

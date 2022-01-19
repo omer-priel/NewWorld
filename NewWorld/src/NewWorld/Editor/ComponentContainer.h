@@ -26,6 +26,13 @@ namespace NewWorld::Editor
 			RemoveComponents();
 		}
 
+		// Override
+	public:
+		virtual void Update() override
+		{
+
+		}
+
 		// Pure virtual functions
 	public:
 		virtual void ComponentAdded(Component& component) { }

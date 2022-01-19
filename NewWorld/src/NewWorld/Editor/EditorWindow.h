@@ -35,6 +35,6 @@ namespace NewWorld::Editor
 
 		// Events
 	public:
-		void OnUpdate() override;
+		void Update() override;
 	};
 }

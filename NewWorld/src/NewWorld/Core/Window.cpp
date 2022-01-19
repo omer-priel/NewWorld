@@ -145,7 +145,7 @@ namespace NewWorld::Core
 	}
 
 	// Events
-	void Window::OnUpdate()
+	void Window::Update()
 	{
 
 	}

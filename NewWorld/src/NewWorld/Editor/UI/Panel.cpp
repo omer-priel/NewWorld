@@ -17,7 +17,7 @@ namespace NewWorld::Editor::UI
 
 	}
 
-	void Panel::OnUpdate()
+	void Panel::Update()
 	{
 		glClearColor(m_BackgroundColor.r, m_BackgroundColor.g, m_BackgroundColor.b, 1);
 		glClear(GL_COLOR_BUFFER_BIT);

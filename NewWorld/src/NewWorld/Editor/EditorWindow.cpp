@@ -3,8 +3,8 @@
 
 namespace NewWorld::Editor
 {
-	void EditorWindow::OnUpdate()
+	void EditorWindow::Update()
 	{
-		m_MainPanel.OnUpdate();
+		m_MainPanel.Update();
 	}
 }
