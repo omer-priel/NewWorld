@@ -30,7 +30,10 @@ namespace NewWorld::Editor
 	public:
 		virtual void Update() override
 		{
-
+			for (Component& component : m_Components)
+			{
+				component.Update();
+			}
 		}
 
 		// Pure virtual functions

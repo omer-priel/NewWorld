@@ -91,7 +91,7 @@ namespace NewWorld
 				NW_PROFILE_SCOPE("Frame");
 				BeginFrame();
 
-				DataTypes::Thread::Sleap(500);
+				DataTypes::Thread::Sleap(100);
 
 				EndFrame();
 			}
