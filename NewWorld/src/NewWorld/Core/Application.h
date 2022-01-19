@@ -77,8 +77,6 @@ namespace NewWorld
 			// Create Window
 			m_Windows[0]->Create();
 
-			//m_Windows[0].GetMainPanel().SetWindow(&m_Windows[0]);
-
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
 		}

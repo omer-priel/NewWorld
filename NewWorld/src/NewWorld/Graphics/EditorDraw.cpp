@@ -11,7 +11,6 @@ namespace NewWorld::Graphics
 	// Actions
 	void EditorDraw::DrawRectangle(RawPointer<Editor::EditorWindow> window, uint x, uint y, uint width, uint height, const Graphics::Color& color)
 	{
-		NW_INFO(NW_LOGGER_CORE, color);
 		Matrix4& proj = window->GetProjectionMatrix();
 
 		glClear(GL_COLOR_BUFFER_BIT);

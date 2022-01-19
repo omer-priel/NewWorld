@@ -28,19 +28,17 @@ namespace NewWorld::Core
 		glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* winHandle) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			NW_DEBUG(NW_LOGGER_CORE, window.GetMainPanel().GetBackgroundColor());
-
 			NW_INFO(NW_LOGGER_CORE ,"Event Close");
 		});
 
 		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
-			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
 			NW_INFO(NW_LOGGER_CORE, "Event SizeChanged ({}, {})", width, height);
 		});
 
 		glfwSetKeyCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int scancode, int action, int mods) {
-			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
 			switch (action)
 			{
@@ -63,7 +61,7 @@ namespace NewWorld::Core
 		});
 
 		glfwSetMouseButtonCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int action, int mods) {
-			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
 			switch (action)
 			{
@@ -86,13 +84,22 @@ namespace NewWorld::Core
 		});
 
 		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
-			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+
+			Graphics::Color color = window.GetMainPanel().GetBackgroundColor();
+			color.b += yOffset * 0.03f;
+			window.GetMainPanel().SetBackgroundColor(color);
 
 			NW_INFO(NW_LOGGER_CORE, "Event MouseScrolled ({}, {})", xOffset, yOffset);
 		});
 
 		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* winHandle, double xPos, double yPos) {
-			Window& window = *(Window*)glfwGetWindowUserPointer(winHandle);
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+
+			Graphics::Color color = window.GetMainPanel().GetBackgroundColor();
+			color.r = xPos / window.GetWidth();
+			color.g = yPos / window.GetHeight();
+			window.GetMainPanel().SetBackgroundColor(color);
 
 			NW_INFO(NW_LOGGER_CORE, "Event MouseMoved ({}, {})", xPos, yPos);
 		});
