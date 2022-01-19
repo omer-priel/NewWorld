@@ -16,8 +16,8 @@ namespace NewWorld::Graphics
 		static constexpr Color White = Color(1, 1, 1);
 
 		static constexpr Color Red = Color(1, 0, 0);
-		static constexpr Color Blue = Color(0, 1, 0);
-		static constexpr Color Green = Color(0, 0, 1);
+		static constexpr Color Green = Color(0, 1, 0);
+		static constexpr Color Blue = Color(0, 0, 1);
 
 		// Editor Colors
 		static constexpr Color EditorBackground = Colors::Red;
