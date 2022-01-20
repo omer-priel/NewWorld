@@ -26,7 +26,7 @@ namespace NewWorld::Editor
 			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height)
 		{
 			m_MainPanel.SetWindow(this);
-			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, width, 0.0f, height);
+			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, width, height, 0.0f);
 		}
 		
 		// Getters

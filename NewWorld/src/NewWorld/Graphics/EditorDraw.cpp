@@ -25,7 +25,7 @@ namespace NewWorld::Graphics
 	{
 		Matrix4 proj = window->GetProjectionMatrix();
 
-		return Vector4(x - window->GetWidth() / 2, (window->GetHeight() - y) - window->GetHeight() / 2, 0, 1) * proj;
+		return Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
 	}
 
 	void EditorDraw::AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
