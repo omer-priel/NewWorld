@@ -100,8 +100,6 @@ namespace NewWorld
 					window->Update();
 				}
 
-				DataTypes::Thread::Sleap(100);
-
 				EndFrame();
 			}
 

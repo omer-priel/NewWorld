@@ -40,6 +40,8 @@ namespace NewWorld::Editor
 	public:
 		virtual void ComponentAdded(SharedPointer<Component> component) { }
 
+		virtual void ComponentRemoved(SharedPointer<Component> component) { }
+
 		virtual void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) { }
 
 		// Getters
@@ -54,6 +56,13 @@ namespace NewWorld::Editor
 			component->SetWindow(GetWindow());
 
 			ComponentAdded(component);
+		}
+
+		void RemoveComponent(SizeT index)
+		{
+			ComponentRemoved(m_Components[index]);
+
+			m_Components.erase(m_Components.begin() + index);
 		}
 
 		void RemoveComponents()

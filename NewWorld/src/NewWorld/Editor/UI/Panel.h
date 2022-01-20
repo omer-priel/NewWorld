@@ -31,6 +31,8 @@ namespace NewWorld::Editor::UI
 
 		void ComponentAdded(SharedPointer<Component> component) override;
 
+		void ComponentRemoved(SharedPointer<Component> component) override;
+
 		void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) override;
 
 		// Getters
@@ -40,9 +42,13 @@ namespace NewWorld::Editor::UI
 		inline Graphics::Color& GetBackgroundColor() { return m_BackgroundColor; }
 
 		// Setters
-		void SetBackgroundColor(const Graphics::Color& backgroundColor)
-		{
-			m_BackgroundColor = backgroundColor;
-		}
+	public:
+		void SetX(uint x) { m_X = x; }
+		void SetY(uint y) { m_Y = y; }
+
+		void SetWidth(uint width) { m_Width = width; }
+		void SetHeight(uint height) { m_Height = height; }
+
+		void SetBackgroundColor(const Graphics::Color& backgroundColor) { m_BackgroundColor = backgroundColor; }
 	};
 }

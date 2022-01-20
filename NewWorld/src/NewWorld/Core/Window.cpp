@@ -54,6 +54,8 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
+					window.GetMainPanel().RemoveComponent((key == GLFW_KEY_SPACE) ? window.GetMainPanel().GetComponents().size() - 1 : 0);
+
 					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
 					break;
 				}
@@ -82,7 +84,8 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					SharedPointer<Editor::UI::Panel> newPanel(xPos - 10, yPos - 10, 20, 20, Graphics::Colors::Red);
+					SharedPointer<Editor::UI::Panel> newPanel(xPos - 10, yPos - 10, 20, 20
+						, (key == GLFW_MOUSE_BUTTON_LEFT) ? Graphics::Colors::Red : Graphics::Colors::Blue);
 					SharedPointer<Editor::Component> newComp = newPanel;
 
 					window.GetMainPanel().AddComponent(newComp);
@@ -96,20 +99,21 @@ namespace NewWorld::Core
 		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			Graphics::Color color = window.GetMainPanel().GetBackgroundColor();
-			color.b += yOffset * 0.03f;
-			window.GetMainPanel().SetBackgroundColor(color);
+			for (auto& comp : window.GetMainPanel().GetComponents())
+			{
+				SharedPointer<Editor::UI::Panel> panel = comp;
+				
+				panel->SetX(panel->GetX() - yOffset * 5);
+				panel->SetY(panel->GetY() - yOffset * 5);
+				panel->SetWidth(panel->GetWidth() + yOffset * 10);
+				panel->SetHeight(panel->GetHeight() + yOffset * 10);
+			}
 
 			NW_INFO(NW_LOGGER_CORE, "Window {} event MouseScrolled ({}, {})", window.GetID(), xOffset, yOffset);
 		});
 
 		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* winHandle, double xPos, double yPos) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
-
-			Graphics::Color color = window.GetMainPanel().GetBackgroundColor();
-			color.r = xPos / window.GetWidth();
-			color.g = yPos / window.GetHeight();
-			window.GetMainPanel().SetBackgroundColor(color);
 
 			NW_INFO(NW_LOGGER_CORE, "Window {} event MouseMoved ({}, {})", window.GetID(), xPos, yPos);
 		});

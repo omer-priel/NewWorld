@@ -28,6 +28,11 @@ namespace NewWorld::Editor::UI
 
 	}
 
+	void Panel::ComponentRemoved(SharedPointer<Component> component)
+	{
+
+	}
+
 	void Panel::ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components)
 	{
 
