@@ -84,11 +84,21 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					SharedPointer<Editor::UI::Panel> newPanel(xPos - 10, yPos - 10, 20, 20
+					SharedPointer<Editor::UI::Panel> newPanel(xPos - 20, yPos - 20, 40, 40
 						, (key == GLFW_MOUSE_BUTTON_LEFT) ? Graphics::Colors::Red : Graphics::Colors::Blue);
-					SharedPointer<Editor::Component> newComp = newPanel;
 
-					window.GetMainPanel().AddComponent(newComp);
+					window.GetMainPanel().AddComponent((SharedPointer<Editor::Component>)newPanel);
+
+					SharedPointer<Editor::UI::Panel> parent = newPanel;
+
+					for (size_t i = 18; i > 2; i -= 2)
+					{
+						SharedPointer<Editor::UI::Panel> childPanel(xPos - i, yPos - i, i*2, i*2
+							, ((i / 2) % 2 == 0) ? Graphics::Colors::Blue : Graphics::Colors::Red);
+
+						parent->AddComponent(childPanel);
+						childPanel = parent;
+					}
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}, ({}, {})", window.GetID(), key, mods, xPos, yPos);
 					break;
