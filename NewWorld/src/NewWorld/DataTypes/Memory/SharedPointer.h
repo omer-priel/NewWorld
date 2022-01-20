@@ -15,6 +15,11 @@ namespace NewWorld::DataTypes::Memory
 	{
 		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, true>)
 
+		// Friends
+	private:
+		template<typename OtherT, const bool OtherNULLABLE>
+		friend class SharedPointer;
+
 	private:
 		T* m_Value = nullptr;
 		uint* m_Counter = nullptr;
@@ -36,6 +41,22 @@ namespace NewWorld::DataTypes::Memory
 		SharedPointer(SharedPointer& obj)
 		{
 			m_Value = obj.m_Value;
+			m_Counter = obj.m_Counter;
+			(*m_Counter)++;
+		}
+
+		template<typename OtherType>
+		SharedPointer(const SharedPointer<OtherType, true>& obj)
+		{
+			m_Value = (T*)obj.m_Value;
+			m_Counter = obj.m_Counter;
+			(*m_Counter)++;
+		}
+
+		template<typename OtherType>
+		SharedPointer(SharedPointer<OtherType, true>& obj)
+		{
+			m_Value = (T*)obj.m_Value;
 			m_Counter = obj.m_Counter;
 			(*m_Counter)++;
 		}
@@ -71,6 +92,20 @@ namespace NewWorld::DataTypes::Memory
 
 		// Operators
 		SharedPointer& operator= (const SharedPointer& obj)
+		{
+			if (m_Counter != nullptr)
+			{
+				this->~SharedPointer();
+			}
+			m_Value = (T*)obj.m_Value;
+			m_Counter = obj.m_Counter;
+			(*m_Counter)++;
+			return *this;
+		}
+
+
+		template<typename OtherType>
+		SharedPointer& operator= (const SharedPointer<OtherType, true>& obj)
 		{
 			if (m_Counter != nullptr)
 			{
@@ -120,6 +155,7 @@ namespace NewWorld::DataTypes::Memory
 	{
 		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, false>)
 
+		// Friends
 	private:
 		template<typename OtherT, const bool OtherNULLABLE>
 		friend class SharedPointer;
