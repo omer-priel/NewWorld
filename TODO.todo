@@ -162,11 +162,52 @@
                     }
                   },
                   {
+                    "key": 1642873952913,
+                    "children": [],
+                    "todo": {
+                      "content": "Label",
+                      "id": 1642873952913,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
                     "key": 1642274636840,
                     "children": [],
                     "todo": {
-                      "content": "Text Box",
+                      "content": "TextBox",
                       "id": 1642274636840,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642873953685,
+                    "children": [],
+                    "todo": {
+                      "content": "CheckBox",
+                      "id": 1642873953685,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642874033830,
+                    "children": [
+                      {
+                        "key": 1642874065862,
+                        "children": [],
+                        "todo": {
+                          "content": "TabPanel",
+                          "id": 1642874065862,
+                          "level": "default",
+                          "done": false
+                        }
+                      }
+                    ],
+                    "todo": {
+                      "content": "RadioButton, RadioButtonGroup",
+                      "id": 1642874033830,
                       "level": "default",
                       "done": false
                     }
@@ -175,6 +216,67 @@
                 "todo": {
                   "content": "UI",
                   "id": 1642274577511,
+                  "level": "default",
+                  "done": false
+                }
+              },
+              {
+                "key": 1642874096047,
+                "children": [
+                  {
+                    "key": 1642874139655,
+                    "children": [],
+                    "todo": {
+                      "content": "DrawLine",
+                      "id": 1642874139655,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642874140478,
+                    "children": [],
+                    "todo": {
+                      "content": "DrawText",
+                      "id": 1642874140478,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642874136715,
+                    "children": [],
+                    "todo": {
+                      "content": "DrawOval",
+                      "id": 1642874136715,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642874243256,
+                    "children": [],
+                    "todo": {
+                      "content": "Transparency",
+                      "id": 1642874243256,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
+                    "key": 1642874210805,
+                    "children": [],
+                    "todo": {
+                      "content": "Fill / Outline option",
+                      "id": 1642874210805,
+                      "level": "default",
+                      "done": false
+                    }
+                  }
+                ],
+                "todo": {
+                  "content": "EditorDraw",
+                  "id": 1642874096047,
                   "level": "default",
                   "done": false
                 }
@@ -668,7 +770,6 @@
       1641735175524,
       1641735209739,
       1642082762742,
-      1642274577511,
       1642082763739,
       1642082846421,
       1629042438599,
@@ -676,7 +777,10 @@
       1642274527091,
       1642337450521,
       1642521617735,
-      1642521485847
+      1642521485847,
+      1642874033830,
+      1642274577511,
+      1642874096047
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L26"
   }
