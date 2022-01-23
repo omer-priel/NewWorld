@@ -1,19 +1,24 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Events/Event.h"
+#include "NewWorld/Editor/Events/Event.h"
 
 #include "NewWorld/Input/Key.h"
 
-namespace NewWorld::Events
+namespace NewWorld::Editor
+{
+	class Component;
+}
+
+namespace NewWorld::Editor::Events
 {
 	class ClickEvent;
 
-	using ClickHandler = Function<void, const ClickEvent&>;
+	using ClickHandler = Function<void, Component&, const ClickEvent&>;
 
 	class ClickEvent : public Event
 	{
-	NW_CLASS(NewWorld::Events, ClickEvent)
+	NW_CLASS(NewWorld::Editor::Events, ClickEvent)
 
 		// Members
 	private:

@@ -81,13 +81,20 @@ namespace NewWorld::Editor
 		{
 			Component::Click(e);
 
-			for (SharedPointer<Component>& item : m_Components)
+			if (!m_Components.empty())
 			{
-				Component& component = *item;
-				if (component.IsIn(e.GetX(), e.GetY()))
+				DynamicArray<SharedPointer<Component>>::iterator iter = m_Components.end();
+				--iter;
+				while (iter != m_Components.begin())
 				{
-					component.Click(e);
-					return;
+					Component& component = *(*iter);
+					if (component.IsIn(e.GetX(), e.GetY()))
+					{
+						component.Click(e);
+						return;
+					}
+
+					--iter;
 				}
 			}
 		}

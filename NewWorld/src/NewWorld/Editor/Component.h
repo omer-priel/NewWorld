@@ -1,7 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Events/ClickEvent.h"
+#include "NewWorld/Editor/Events/ClickEvent.h"
 
 namespace NewWorld::Editor
 {
@@ -13,7 +13,7 @@ namespace NewWorld::Editor
 
 		// Static Empty Events
 	private:
-		static void EmptyClickHandler(const Events::ClickEvent& e) {}
+		static void EmptyClickHandler(Component& sender, const Events::ClickEvent& e) {}
 
 		// Members
 	private:

@@ -66,12 +66,20 @@ namespace NewWorld::Core
 
 					glfwGetCursorPos(winHandle, &xPos, &yPos);
 
-					SharedPointer<Editor::UI::Panel> panel(xPos - 20, yPos - 20, 40, 40, Graphics::Colors::Magenta);
+					SharedPointer<Editor::UI::Panel> newPanel(xPos - 20, yPos - 20, 40, 40, Graphics::Colors::Magenta);
 
-					window.GetMainPanel().AddComponent(panel);
+					window.GetMainPanel().AddComponent(newPanel);
 
-					panel->SetClickHandler([](const Events::ClickEvent& e) {
+					newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
+						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
 						NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
+
+						Graphics::Color color = panel.GetBackgroundColor();
+						color.g += 0.5f;
+
+						SharedPointer<Editor::UI::Panel> newSubPanel(e.GetX() - 5, e.GetY() - 5, 10, 10, color);
+
+						panel.AddComponent(newSubPanel);
 					});
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
@@ -102,7 +110,7 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					window.Click(Events::ClickEvent(ConvertMouseButtonKeyToKey(key), xPos, yPos));
+					window.Click(Editor::Events::ClickEvent(ConvertMouseButtonKeyToKey(key), xPos, yPos));
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}, ({}, {})", window.GetID(), key, mods, xPos, yPos);
 					break;
