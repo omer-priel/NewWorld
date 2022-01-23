@@ -74,5 +74,22 @@ namespace NewWorld::Editor
 				m_Components.clear();
 			}
 		}
+
+		// Override Events
+	public:
+		virtual void Click(const Events::ClickEvent& e) override
+		{
+			Component::Click(e);
+
+			for (SharedPointer<Component>& item : m_Components)
+			{
+				Component& component = *item;
+				if (component.IsIn(e.GetX(), e.GetY()))
+				{
+					component.Click(e);
+					return;
+				}
+			}
+		}
 	};
 }

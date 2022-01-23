@@ -1,12 +1,19 @@
 #include "nwpch.h"
 #include "Window.h"
 
+#include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
 #include <GLFW/glfw3.h>
 
 namespace NewWorld::Core
 {
+	// Utilities
+	static Input::Key ConvertMouseButtonKeyToKey(int key)
+	{
+		return (Input::Key)(key % 8);
+	}
+
 	// None-Static
 	// Init
 	void Window::Create()
@@ -54,7 +61,18 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					window.GetMainPanel().RemoveComponent((key == GLFW_KEY_SPACE) ? window.GetMainPanel().GetComponents().size() - 1 : 0);
+					double xPos;
+					double yPos;
+
+					glfwGetCursorPos(winHandle, &xPos, &yPos);
+
+					SharedPointer<Editor::UI::Panel> panel(xPos - 20, yPos - 20, 40, 40, Graphics::Colors::Magenta);
+
+					window.GetMainPanel().AddComponent(panel);
+
+					panel->SetClickHandler([](const Events::ClickEvent& e) {
+						NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
+					});
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
 					break;
@@ -84,21 +102,7 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					SharedPointer<Editor::UI::Panel> newPanel(xPos - 20, yPos - 20, 40, 40
-						, (key == GLFW_MOUSE_BUTTON_LEFT) ? Graphics::Colors::Red : Graphics::Colors::Blue);
-
-					window.GetMainPanel().AddComponent((SharedPointer<Editor::Component>)newPanel);
-
-					SharedPointer<Editor::UI::Panel> parent = newPanel;
-
-					for (size_t i = 18; i > 2; i -= 2)
-					{
-						SharedPointer<Editor::UI::Panel> childPanel(xPos - i, yPos - i, i*2, i*2
-							, ((i / 2) % 2 == 0) ? Graphics::Colors::Blue : Graphics::Colors::Red);
-
-						parent->AddComponent(childPanel);
-						childPanel = parent;
-					}
+					window.Click(Events::ClickEvent(ConvertMouseButtonKeyToKey(key), xPos, yPos));
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}, ({}, {})", window.GetID(), key, mods, xPos, yPos);
 					break;
@@ -108,16 +112,6 @@ namespace NewWorld::Core
 
 		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
-
-			for (auto& comp : window.GetMainPanel().GetComponents())
-			{
-				SharedPointer<Editor::UI::Panel> panel = comp;
-				
-				panel->SetX(panel->GetX() - yOffset * 5);
-				panel->SetY(panel->GetY() - yOffset * 5);
-				panel->SetWidth(panel->GetWidth() + yOffset * 10);
-				panel->SetHeight(panel->GetHeight() + yOffset * 10);
-			}
 
 			NW_INFO(NW_LOGGER_CORE, "Window {} event MouseScrolled ({}, {})", window.GetID(), xOffset, yOffset);
 		});

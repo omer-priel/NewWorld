@@ -44,5 +44,7 @@ namespace NewWorld::Editor
 		// Events
 	public:
 		void Update() override;
+
+		void Click(const Events::ClickEvent& e);
 	};
 }

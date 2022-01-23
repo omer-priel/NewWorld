@@ -9,4 +9,9 @@ namespace NewWorld::Editor
 
 		m_MainPanel.Update();
 	}
+
+	void EditorWindow::Click(const Events::ClickEvent& e)
+	{
+		m_MainPanel.Click(e);
+	}
 }

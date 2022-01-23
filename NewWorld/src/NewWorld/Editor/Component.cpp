@@ -5,5 +5,9 @@
 
 namespace NewWorld::Editor
 {
-
+	// Events
+	void Component::Click(const Events::ClickEvent& e)
+	{
+		m_ClickHandler(e);
+	}
 }
