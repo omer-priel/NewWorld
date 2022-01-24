@@ -1,8 +1,8 @@
 # New World
 
 New World is just my own World.<br />
-And i hope that this engine will contain all the consepts that real<br />
-game engine need.<br />
+And I hope that this engine will contain all<br />
+the consepts that a real game engine need.<br />
 
 ![Logo](Resources/Logo/Logo128.png)
 
