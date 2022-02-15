@@ -8,7 +8,7 @@ namespace NewWorld::Editor::UI
 	// Override
 	void Panel::Create()
 	{
-
+		ComponentContainer::Create();
 	}
 
 	void Panel::Destroy()
@@ -25,17 +25,17 @@ namespace NewWorld::Editor::UI
 
 	void Panel::ComponentAdded(SharedPointer<Component> component)
 	{
-		component->Create();
+		ComponentContainer::ComponentAdded(component);
 	}
 
 	void Panel::ComponentRemoved(SharedPointer<Component> component)
 	{
-
+		ComponentContainer::ComponentRemoved(component);
 	}
 
 	void Panel::ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components)
 	{
-
+		ComponentContainer::ComponentsRemoved(components);
 	}
 
 	void Panel::Click(const Events::ClickEvent& e)

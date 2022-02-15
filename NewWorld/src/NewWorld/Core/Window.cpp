@@ -70,8 +70,6 @@ namespace NewWorld::Core
 
 					SharedPointer<Editor::UI::Panel> newPanel(xPos - 20, yPos - 20, 40, 40, Graphics::Colors::Magenta);
 
-					window.GetMainPanel().AddComponent(newPanel);
-
 					newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
 						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
 						NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
@@ -84,9 +82,15 @@ namespace NewWorld::Core
 						panel.AddComponent(newSubPanel);
 					});
 
+					newPanel->SetCreateHandler([](Editor::Component& sender) {
+						NW_WARN(NW_LOGGER_CORE, "Create");
+					});
+
 					newPanel->SetDestroyHandler([](Editor::Component& sender) {
 						NW_WARN(NW_LOGGER_CORE, "Destroy");
 					});
+
+					window.GetMainPanel().AddComponent(newPanel);
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
 					break;
