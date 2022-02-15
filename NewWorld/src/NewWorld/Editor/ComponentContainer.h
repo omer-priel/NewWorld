@@ -55,12 +55,16 @@ namespace NewWorld::Editor
 			m_Components.push_back(component);
 			component->SetWindow(GetWindow());
 
+			component->Create();
+
 			ComponentAdded(component);
 		}
 
 		void RemoveComponent(SizeT index)
 		{
 			ComponentRemoved(m_Components[index]);
+
+			m_Components[index]->Destroy();
 
 			m_Components.erase(m_Components.begin() + index);
 		}
@@ -70,6 +74,20 @@ namespace NewWorld::Editor
 			if (!m_Components.empty())
 			{
 				ComponentsRemoved(m_Components);
+
+				if (!m_Components.empty())
+				{
+					DynamicArray<SharedPointer<Component>>::iterator iter = m_Components.begin();
+					++iter;
+					while (iter != m_Components.end())
+					{
+						Component& component = *(*iter);
+
+						component.Destroy();
+
+						++iter;
+					}
+				}
 
 				m_Components.clear();
 			}

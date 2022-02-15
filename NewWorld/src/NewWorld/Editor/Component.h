@@ -38,9 +38,6 @@ namespace NewWorld::Editor
 
 		//  Virtual functions
 	public:
-		virtual void Create() { }
-		virtual void Destroy() { }
-
 		virtual void Update() {}
 
 		// Getters
@@ -69,6 +66,9 @@ namespace NewWorld::Editor
 
 		// Events
 	public:
+		virtual void Create() { }
+		virtual void Destroy() { }
+
 		virtual void Click(const Events::ClickEvent& e);
 	};
 }
