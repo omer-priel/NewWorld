@@ -84,6 +84,10 @@ namespace NewWorld::Core
 						panel.AddComponent(newSubPanel);
 					});
 
+					newPanel->SetDestroyHandler([](Editor::Component& sender) {
+						NW_WARN(NW_LOGGER_CORE, "Destroy");
+					});
+
 					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
 					break;
 				}

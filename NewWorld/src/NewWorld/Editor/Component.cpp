@@ -13,7 +13,7 @@ namespace NewWorld::Editor
 
 	void Component::Destroy()
 	{
-		m_CreateHandler(*this);
+		m_DestroyHandler(*this);
 	}
 	
 	void Component::Click(const Events::ClickEvent& e)

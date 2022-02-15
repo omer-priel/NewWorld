@@ -13,7 +13,7 @@ namespace NewWorld::Editor::UI
 
 	void Panel::Destroy()
 	{
-		
+		ComponentContainer::Destroy();
 	}
 
 	void Panel::Update()
