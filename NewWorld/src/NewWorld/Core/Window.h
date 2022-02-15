@@ -12,10 +12,11 @@ namespace NewWorld::Core
 
 		// Members
 	private:
+		bool m_ShouldToClose = false;
+
 		String m_Title;
 		uint m_Width;
 		uint m_Height;
-		//bool m_Alive = true;
 
 	private:
 		GLFWwindow* m_WinHandle = nullptr;
@@ -35,7 +36,7 @@ namespace NewWorld::Core
 		
 		uint GetHeight() const { return m_Height; }
 
-		inline bool IsAlive() const { return m_WinHandle != nullptr; } //  { return m_Alive; }
+		inline bool IsAlive() const { return m_WinHandle != nullptr; }
 
 		bool IsVisible() const;
 
@@ -50,6 +51,8 @@ namespace NewWorld::Core
 		void Hide();
 
 		virtual void Close();
+
+		bool CloseIfNeed();
 
 		void HandleEvents();
 

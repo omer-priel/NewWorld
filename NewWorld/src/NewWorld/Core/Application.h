@@ -73,9 +73,11 @@ namespace NewWorld
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
 			m_Windows.push_back(m_Windows.size());
+			m_Windows.push_back(m_Windows.size());
 
 			// Create Window
 			m_Windows[0]->Create();
+			m_Windows[1]->Create();
 
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -98,18 +100,17 @@ namespace NewWorld
 				while (index < m_Windows.size())
 				{
 					SharedPointer<Editor::EditorWindow>& window = m_Windows[index];
-					if (window->IsAlive())
+
+					window->HandleEvents();
+					window->Update();
+
+					if (window->CloseIfNeed())
 					{
-						window->HandleEvents();
-						if (window->IsAlive())
-						{
-							window->Update();
-							index++;
-						}
+						m_Windows.erase(m_Windows.begin() + index);
 					}
 					else
 					{
-						m_Windows.erase(m_Windows.begin() + index);
+						index++;
 					}
 				}
 

@@ -37,7 +37,7 @@ namespace NewWorld::Core
 
 			NW_INFO(NW_LOGGER_CORE ,"Window {} event Close", window.GetID());
 			
-			//window.Close();
+			window.Close();
 		});
 
 		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
@@ -152,20 +152,26 @@ namespace NewWorld::Core
 
 	void Window::Close()
 	{
-		if (IsAlive())
-		{
-			NW_INFO(NW_LOGGER_CORE, "Window Clossing \"{}\" ", m_Title);
+		m_ShouldToClose = true;
+	}
 
+	bool Window::CloseIfNeed()
+	{
+		if (m_ShouldToClose)
+		{
 			glfwDestroyWindow(m_WinHandle);
 			m_WinHandle = nullptr;
-			//m_Alive = false;
+
+			NW_INFO(NW_LOGGER_CORE, "The window \"{}\" Clossed", m_Title);
 		}
+
+		return m_ShouldToClose;
 	}
 
 	void Window::HandleEvents()
 	{
-		glfwPollEvents();
 		glfwSwapBuffers(m_WinHandle);
+		glfwPollEvents();
 	}
 
 	// Events
