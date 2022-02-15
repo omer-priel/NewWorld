@@ -43,7 +43,7 @@ namespace NewWorld::Core
 		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			NW_INFO(NW_LOGGER_CORE, "Window {} event SizeChanged ({}, {})", width, height);
+			NW_INFO(NW_LOGGER_CORE, "Window {} event SizeChanged ({}, {})", window.GetID(), width, height);
 		});
 
 		glfwSetKeyCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int scancode, int action, int mods) {
