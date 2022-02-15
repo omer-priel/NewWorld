@@ -15,6 +15,8 @@ namespace NewWorld::Input
 		MouseButtonExtra4,
 		MouseButtonExtra5,
 		Enter,
+		Space,
+		Escape,
 		UpArrow,
 		DownArrow,
 		LeftArrow,

@@ -80,23 +80,6 @@ namespace NewWorld::Editor
 		virtual void Click(const Events::ClickEvent& e) override
 		{
 			Component::Click(e);
-
-			if (!m_Components.empty())
-			{
-				DynamicArray<SharedPointer<Component>>::iterator iter = m_Components.end();
-				--iter;
-				while (iter != m_Components.begin())
-				{
-					Component& component = *(*iter);
-					if (component.IsIn(e.GetX(), e.GetY()))
-					{
-						component.Click(e);
-						return;
-					}
-
-					--iter;
-				}
-			}
 		}
 	};
 }

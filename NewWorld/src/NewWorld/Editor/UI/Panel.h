@@ -22,7 +22,7 @@ namespace NewWorld::Editor::UI
 
 		}
 
-		// Override
+		// Events
 	public:
 		void Create() override;
 		void Destroy() override;
@@ -34,6 +34,8 @@ namespace NewWorld::Editor::UI
 		void ComponentRemoved(SharedPointer<Component> component) override;
 
 		void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) override;
+
+		void Click(const Events::ClickEvent& e) override;
 
 		// Getters
 	public:
