@@ -3,6 +3,13 @@
 
 namespace NewWorld::Editor
 {
+	void EditorWindow::Close()
+	{
+		m_MainPanel.Destroy();
+		
+		Window::Close();
+	}
+
 	void EditorWindow::Update()
 	{
 		Window::Update();

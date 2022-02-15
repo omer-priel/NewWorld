@@ -36,6 +36,8 @@ namespace NewWorld::Core
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
 			NW_INFO(NW_LOGGER_CORE ,"Window {} event Close", window.GetID());
+			
+			//window.Close();
 		});
 
 		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
@@ -156,6 +158,7 @@ namespace NewWorld::Core
 
 			glfwDestroyWindow(m_WinHandle);
 			m_WinHandle = nullptr;
+			//m_Alive = false;
 		}
 	}
 

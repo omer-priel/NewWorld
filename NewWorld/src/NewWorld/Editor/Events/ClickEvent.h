@@ -20,6 +20,10 @@ namespace NewWorld::Editor::Events
 	{
 	NW_CLASS(NewWorld::Editor::Events, ClickEvent)
 
+		// Static
+	public:
+		static void EmptyHandler(Component& sender, const ClickEvent& e) { }
+
 		// Members
 	private:
 		Input::Key m_Key;

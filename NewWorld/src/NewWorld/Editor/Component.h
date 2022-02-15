@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+#include "NewWorld/Editor/Events/Event.h"
 #include "NewWorld/Editor/Events/ClickEvent.h"
 
 namespace NewWorld::Editor
@@ -10,10 +11,6 @@ namespace NewWorld::Editor
 	class Component : public Object
 	{
 	NW_CLASS(NewWorld::Editor, Component)
-
-		// Static Empty Events
-	private:
-		static void EmptyClickHandler(Component& sender, const Events::ClickEvent& e) {}
 
 		// Members
 	private:
@@ -25,13 +22,15 @@ namespace NewWorld::Editor
 		uint m_Width;
 		uint m_Height;
 
-	private:
+		Events::EmptyHandler m_CreateHandler;
+		Events::EmptyHandler m_DestroyHandler;
 		Events::ClickHandler m_ClickHandler;
 
 	protected:
 		Component(uint x, uint y, uint width, uint height)
 			: m_Window(nullptr), m_X(x), m_Y(y), m_Width(width), m_Height(height)
-			, m_ClickHandler(EmptyClickHandler)
+			, m_CreateHandler(Events::Event::EmptyHandler), m_DestroyHandler(Events::Event::EmptyHandler)
+			, m_ClickHandler(Events::ClickEvent::EmptyHandler)
 		{
 
 		}
@@ -62,12 +61,16 @@ namespace NewWorld::Editor
 	public:
 		void SetWindow(RawPointer<EditorWindow> window) {m_Window = window; }
 
+		void SetCreateHandler(Events::EmptyHandler handler) { m_CreateHandler = handler; }
+		void SetDestroyHandler(Events::EmptyHandler handler) { m_DestroyHandler = handler; }
+		
 		void SetClickHandler(Events::ClickHandler handler) { m_ClickHandler = handler; }
 
 		// Events
 	public:
-		virtual void Create() { }
-		virtual void Destroy() { }
+		virtual void Create();
+		
+		virtual void Destroy();
 
 		virtual void Click(const Events::ClickEvent& e);
 	};

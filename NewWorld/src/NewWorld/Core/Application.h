@@ -36,7 +36,7 @@ namespace NewWorld
 	private:
 		bool m_Running;
 		
-		//Core::GameWindow m_Window; NW_CONFIG_RELEASE
+		// TODO: Core::GameWindow m_Window; NW_CONFIG_RELEASE
 		DynamicArray<SharedPointer<Editor::EditorWindow>> m_Windows;
 
 	public:
@@ -94,13 +94,31 @@ namespace NewWorld
 
 				BeginFrame();
 
-				for (SharedPointer<Editor::EditorWindow> window : m_Windows)
+				uint index = 0;
+				while (index < m_Windows.size())
 				{
-					window->HandleEvents();
-					window->Update();
+					SharedPointer<Editor::EditorWindow>& window = m_Windows[index];
+					if (window->IsAlive())
+					{
+						window->HandleEvents();
+						if (window->IsAlive())
+						{
+							window->Update();
+							index++;
+						}
+					}
+					else
+					{
+						m_Windows.erase(m_Windows.begin() + index);
+					}
 				}
 
 				EndFrame();
+
+				if (m_Windows.size() == 0)
+				{
+					ShutDown();
+				}
 			}
 
 			Closed();
@@ -144,6 +162,4 @@ namespace NewWorld
 			m_Running = false;
 		}
 	};
-
-	RawPointer<Application> Application::s_Application = nullptr;
 }

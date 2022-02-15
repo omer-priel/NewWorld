@@ -41,6 +41,10 @@ namespace NewWorld::Editor
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
 
+		// Actions
+	public:
+		void Close() override;
+
 		// Events
 	public:
 		void Update() override;
