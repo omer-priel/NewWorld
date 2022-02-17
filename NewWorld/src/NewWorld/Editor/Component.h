@@ -1,8 +1,8 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Events/Event.h"
-#include "NewWorld/Editor/Events/ClickEvent.h"
+#include "NewWorld/Input/Key.h"
+#include "NewWorld/Editor/Events/Handlers.h"
 
 namespace NewWorld::Editor
 {
@@ -22,15 +22,15 @@ namespace NewWorld::Editor
 		uint m_Width;
 		uint m_Height;
 
-		Events::EmptyHandler m_CreateHandler;
-		Events::EmptyHandler m_DestroyHandler;
-		Events::ClickHandler m_ClickHandler;
+		Events::EventHandler m_CreateHandler;
+		Events::EventHandler m_DestroyHandler;
+		Events::EventHandler m_ClickHandler;
 
 	protected:
 		Component(uint x, uint y, uint width, uint height)
-			: m_Window(nullptr), m_X(x), m_Y(y), m_Width(width), m_Height(height)
-			, m_CreateHandler(Events::Event::EmptyHandler), m_DestroyHandler(Events::Event::EmptyHandler)
-			, m_ClickHandler(Events::ClickEvent::EmptyHandler)
+			: m_Window(nullptr), m_X(x), m_Y(y), m_Width(width), m_Height(height),
+			m_CreateHandler(Events::EmptyEventHandler), m_DestroyHandler(Events::EmptyEventHandler),
+			m_ClickHandler(Events::EmptyEventHandler)
 		{
 
 		}
@@ -61,17 +61,17 @@ namespace NewWorld::Editor
 	public:
 		void SetWindow(RawPointer<EditorWindow> window) {m_Window = window; }
 
-		void SetCreateHandler(Events::EmptyHandler handler) { m_CreateHandler = handler; }
-		void SetDestroyHandler(Events::EmptyHandler handler) { m_DestroyHandler = handler; }
+		void SetCreateHandler(Events::EventHandler handler) { m_CreateHandler = handler; }
+		void SetDestroyHandler(Events::EventHandler handler) { m_DestroyHandler = handler; }
 		
-		void SetClickHandler(Events::ClickHandler handler) { m_ClickHandler = handler; }
-
+		void SetClickHandler(Events::EventHandler handler) { m_ClickHandler = handler; }
+		
 		// Events
 	public:
 		virtual void Create();
 		
 		virtual void Destroy();
 
-		virtual void Click(const Events::ClickEvent& e);
+		virtual void Click(Input::Key key, uint xPos, uint yPos);
 	};
 }

@@ -95,9 +95,9 @@ namespace NewWorld::Editor
 
 		// Override Events
 	public:
-		virtual void Click(const Events::ClickEvent& e) override
+		virtual void Click(Input::Key key, uint xPos, uint yPos) override
 		{
-			Component::Click(e);
+			Component::Click(key, xPos, yPos);
 		}
 	};
 }

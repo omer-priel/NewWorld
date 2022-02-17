@@ -17,8 +17,8 @@ namespace NewWorld::Editor
 		m_MainPanel.Update();
 	}
 
-	void EditorWindow::Click(const Events::ClickEvent& e)
+	void EditorWindow::Click(Input::Key key, uint xPos, uint yPos)
 	{
-		m_MainPanel.Click(e);
+		m_MainPanel.Click(key, xPos, yPos);
 	}
 }

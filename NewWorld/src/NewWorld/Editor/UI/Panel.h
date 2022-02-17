@@ -35,7 +35,7 @@ namespace NewWorld::Editor::UI
 
 		void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) override;
 
-		void Click(const Events::ClickEvent& e) override;
+		void Click(Input::Key key, uint xPos, uint yPos) override;
 
 		// Getters
 	public:

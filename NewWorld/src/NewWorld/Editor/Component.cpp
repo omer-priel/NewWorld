@@ -16,8 +16,8 @@ namespace NewWorld::Editor
 		m_DestroyHandler(*this);
 	}
 	
-	void Component::Click(const Events::ClickEvent& e)
+	void Component::Click(Input::Key key, uint xPos, uint yPos)
 	{
-		m_ClickHandler(*this, e);
+		m_ClickHandler(*this);
 	}
 }

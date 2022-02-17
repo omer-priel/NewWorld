@@ -38,9 +38,9 @@ namespace NewWorld::Editor::UI
 		ComponentContainer::ComponentsRemoved(components);
 	}
 
-	void Panel::Click(const Events::ClickEvent& e)
+	void Panel::Click(Input::Key key, uint xPos, uint yPos)
 	{
-		ComponentContainer::Click(e);
+		ComponentContainer::Click(key, xPos, yPos);
 
 		auto components = this->GetComponents();
 
@@ -51,9 +51,9 @@ namespace NewWorld::Editor::UI
 			while (iter != components.end())
 			{
 				Component& component = *(*iter);
-				if (component.IsIn(e.GetX(), e.GetY()))
+				if (component.IsIn(xPos, yPos))
 				{
-					component.Click(e);
+					component.Click(key, xPos, yPos);
 					return;
 				}
 

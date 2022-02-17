@@ -49,6 +49,6 @@ namespace NewWorld::Editor
 	public:
 		void Update() override;
 
-		void Click(const Events::ClickEvent& e);
+		void Click(Input::Key key, uint xPos, uint yPos);
 	};
 }

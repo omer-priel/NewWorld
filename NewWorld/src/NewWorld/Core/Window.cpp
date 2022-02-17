@@ -11,7 +11,8 @@ namespace NewWorld::Core
 	// Utilities
 	static Input::Key ConvertMouseButtonKeyToKey(int key)
 	{
-		return (Input::Key)(key % 8);
+		NW_ASSERT(key < 8, "Is not Mouse Button!");
+		return (Input::Key)key;
 	}
 
 	// None-Static
@@ -70,7 +71,12 @@ namespace NewWorld::Core
 
 					SharedPointer<Editor::UI::Panel> newPanel(xPos - 20, yPos - 20, 40, 40, Graphics::Colors::Magenta);
 
-					newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
+					newPanel->SetClickHandler([](Editor::Component& sender) {
+						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+						NW_WARN(NW_LOGGER_CORE, "Click");
+					});
+
+					/*newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
 						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
 						NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
 
@@ -80,7 +86,7 @@ namespace NewWorld::Core
 						SharedPointer<Editor::UI::Panel> newSubPanel(e.GetX() - 5, e.GetY() - 5, 10, 10, color);
 
 						panel.AddComponent(newSubPanel);
-					});
+					});*/
 
 					newPanel->SetCreateHandler([](Editor::Component& sender) {
 						NW_WARN(NW_LOGGER_CORE, "Create");
@@ -120,7 +126,7 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					window.Click(Editor::Events::ClickEvent(ConvertMouseButtonKeyToKey(key), xPos, yPos));
+					window.Click(ConvertMouseButtonKeyToKey(key), xPos, yPos);
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}, ({}, {})", window.GetID(), key, mods, xPos, yPos);
 					break;
