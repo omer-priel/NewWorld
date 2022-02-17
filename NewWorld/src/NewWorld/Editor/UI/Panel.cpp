@@ -46,19 +46,17 @@ namespace NewWorld::Editor::UI
 
 		if (!components.empty())
 		{
-			DynamicArray<SharedPointer<Component>>::iterator iter = components.begin();
-			++iter;
-			while (iter != components.end())
+			DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+			do
 			{
+				--iter;
 				Component& component = *(*iter);
 				if (component.IsIn(xPos, yPos))
 				{
-					component.Click(key, xPos, yPos);
+					component.Click(key, xPos - component.GetX(), yPos - component.GetY());
 					return;
 				}
-
-				++iter;
-			}
+			} while (iter != components.begin());
 		}
 	}
 }

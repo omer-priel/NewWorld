@@ -18,6 +18,7 @@ namespace NewWorld::Editor
 	
 	void Component::Click(Input::Key key, uint xPos, uint yPos)
 	{
+		NW_DEBUG(NW_LOGGER_CORE, "{} {}", xPos, yPos);
 		m_ClickHandler(*this);
 	}
 }
