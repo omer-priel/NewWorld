@@ -19,14 +19,14 @@ namespace NewWorld::Editor
 		SizeT m_WindowID;
 		UI::Panel m_MainPanel;
 
-		SharedPointer<Component> m_SelectedComponent;
+		RawPointer<Component> m_SelectedComponent;
 
 		Matrix4 m_ProjectionMatrix;
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
 			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height),
-			m_SelectedComponent(m_MainPanel)
+			m_SelectedComponent(&m_MainPanel)
 		{
 			m_MainPanel.SetWindow(this);
 			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, width, height, 0.0f);
@@ -40,9 +40,17 @@ namespace NewWorld::Editor
 
 		inline UI::Panel& GetMainPanel() { return m_MainPanel; }
 
+		inline Component& GetSelectedComponent() { return *m_SelectedComponent; }
+
+		inline bool IsSelectedComponent(RawPointer<Component> component) { return m_SelectedComponent == component; }
+
 		inline const Matrix4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
+
+		// Setters
+	public:
+		void SetSelectedComponent(RawPointer<Component> component) { m_SelectedComponent = component; }
 
 		// Actions
 	public:

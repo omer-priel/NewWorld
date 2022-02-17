@@ -19,6 +19,10 @@ namespace NewWorld::Editor
 	void Component::Click()
 	{
 		m_ClickHandler(*this);
+		if (!(m_Window->IsSelectedComponent(this))) {
+			NW_DEBUG(NW_LOGGER_CORE, "Clicks Click");
+			m_Window->SetSelectedComponent(this);
+		}
 	}
 
 	void Component::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
@@ -30,6 +34,9 @@ namespace NewWorld::Editor
 	{
 		NW_DEBUG(NW_LOGGER_CORE, "{} {}", xPos, yPos);
 		m_MouseKeyReleasedHandler(*this, key, xPos, yPos);
+		if (key == Input::Key::MouseButtonLeft) {
+			Click();
+		}
 	}
 
 	void Component::MouseHover(uint xPos, uint yPos)
