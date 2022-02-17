@@ -62,4 +62,19 @@ namespace NewWorld::Editor
 	{
 
 	}
+
+	void Component::KeyPressed(Input::Key key)
+	{
+		m_KeyPressedHandler(*this, key);
+	}
+
+	void Component::KeyReleased(Input::Key key)
+	{
+		m_KeyReleasedHandler(*this, key);
+
+		if (key == Input::Key::Enter)
+		{
+			Click();
+		}
+	}
 }

@@ -31,6 +31,9 @@ namespace NewWorld::Editor
 		Events::MouseKeyPressedEventHandler m_MouseKeyPressedHandler;
 		Events::MouseKeyReleasedEventHandler m_MouseKeyReleasedHandler;
 
+		Events::KeyPressedEventHandler m_KeyPressedHandler;
+		Events::KeyReleasedEventHandler m_KeyReleasedHandler;
+
 		Events::EventHandler m_ClickHandler;
 
 	protected:
@@ -42,6 +45,8 @@ namespace NewWorld::Editor
 			m_LeaveHandler(Events::EmptyEventHandler),
 			m_MouseKeyPressedHandler(Events::EmptyMouseKeyPressedEventHandler),
 			m_MouseKeyReleasedHandler(Events::EmptyMouseKeyReleasedEventHandler),
+			m_KeyPressedHandler(Events::EmptyKeyPressedEventHandler),
+			m_KeyReleasedHandler(Events::EmptyKeyReleasedEventHandler),
 			m_ClickHandler(Events::EmptyEventHandler)
 		{
 
@@ -76,11 +81,14 @@ namespace NewWorld::Editor
 		void SetCreateHandler(Events::EventHandler handler) { m_CreateHandler = handler; }
 		void SetDestroyHandler(Events::EventHandler handler) { m_DestroyHandler = handler; }
 		
+		void SetEnterHandler(Events::EventHandler handler) { m_EnterHandler = handler; }
+		void SetLeaveHandler(Events::EventHandler handler) { m_LeaveHandler = handler; }
+
 		void SetMouseKeyPressedHandler(Events::MouseKeyPressedEventHandler handler) { m_MouseKeyPressedHandler = handler; }
 		void SetMouseKeyReleasedHandler(Events::MouseKeyReleasedEventHandler handler) { m_MouseKeyReleasedHandler = handler; }
 
-		void SetEnterHandler(Events::EventHandler handler) { m_EnterHandler = handler; }
-		void SetLeaveHandler(Events::EventHandler handler) { m_LeaveHandler = handler; }
+		void SetKeyPressedHandler(Events::KeyPressedEventHandler handler) { m_KeyPressedHandler = handler; }
+		void SetKeyReleasedHandler(Events::KeyReleasedEventHandler handler) { m_KeyReleasedHandler = handler; }
 
 		void SetClickHandler(Events::EventHandler handler) { m_ClickHandler = handler; }
 
@@ -99,5 +107,8 @@ namespace NewWorld::Editor
 
 		virtual void MouseHover(uint xPos, uint yPos);
 		virtual void MouseScrolled();
+
+		virtual void KeyPressed(Input::Key key);
+		virtual void KeyReleased(Input::Key key);
 	};
 }

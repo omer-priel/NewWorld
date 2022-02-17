@@ -6,6 +6,7 @@ namespace NewWorld::Input
 {
 	enum class Key : Byte
 	{
+		UnSupported,
 		MouseButtonLeft,
 		MouseButtonRight,
 		MouseButtonMiddle,

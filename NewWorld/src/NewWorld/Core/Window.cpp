@@ -12,7 +12,31 @@ namespace NewWorld::Core
 	static Input::Key ConvertMouseButtonKeyToKey(int key)
 	{
 		NW_ASSERT(key < 8, "Is not Mouse Button!");
-		return (Input::Key)key;
+		return (Input::Key)(key + 1);
+	}
+
+	static Input::Key ConvertKeybordKeyToKey(int key)
+	{
+		switch (key)
+		{
+		case GLFW_KEY_ENTER:
+			return Input::Key::Enter;
+		case GLFW_KEY_SPACE:
+			return Input::Key::Space;
+		case GLFW_KEY_ESCAPE:
+			return Input::Key::Escape;
+
+		case GLFW_KEY_UP:
+			return Input::Key::UpArrow;
+		case GLFW_KEY_DOWN:
+			return Input::Key::DownArrow;
+		case GLFW_KEY_LEFT:
+			return Input::Key::LeftArrow;
+		case GLFW_KEY_RIGHT:
+			return Input::Key::RightArrow;
+		}
+
+		return Input::Key::UnSupported;
 	}
 
 	// None-Static
@@ -54,6 +78,8 @@ namespace NewWorld::Core
 			{
 				case GLFW_PRESS:
 				{
+					window.KeyPressed(ConvertKeybordKeyToKey(key));
+
 					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyPressed {}, {}, {}, {}", window.GetID(), key, scancode, mods, false);
 					break;
 				}
@@ -64,54 +90,62 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					double xPos;
-					double yPos;
+					// TEMP: for testing
+					//
+					if (key == GLFW_KEY_SPACE)
+					{
+						double xPos;
+						double yPos;
 
-					glfwGetCursorPos(winHandle, &xPos, &yPos);
+						glfwGetCursorPos(winHandle, &xPos, &yPos);
 
-					SharedPointer<Editor::UI::Panel> newPanel(xPos - 20, yPos - 20, 40, 40, Graphics::Colors::Magenta);
+						SharedPointer<Editor::UI::Panel> newPanel(xPos - 20, yPos - 20, 40, 40, Graphics::Colors::Magenta);
 
-					newPanel->SetClickHandler([](Editor::Component& sender) {
-						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
-						NW_WARN(NW_LOGGER_CORE, "Click");
-					});
+						newPanel->SetClickHandler([](Editor::Component& sender) {
+							Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+							NW_WARN(NW_LOGGER_CORE, "Click");
+							});
 
-					newPanel->SetMouseKeyReleasedHandler([](Editor::Component& sender, Input::Key key, uint xPos, uint yPos) {
-						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
-						NW_WARN(NW_LOGGER_CORE, "Mouse Key Released");
-					});
+						newPanel->SetMouseKeyReleasedHandler([](Editor::Component& sender, Input::Key key, uint xPos, uint yPos) {
+							Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+							NW_WARN(NW_LOGGER_CORE, "Mouse Key Released");
+							});
 
-					newPanel->SetEnterHandler([](Editor::Component& sender) {
-						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
-						NW_WARN(NW_LOGGER_CORE, "Enter");
-					});
+						newPanel->SetEnterHandler([](Editor::Component& sender) {
+							Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+							NW_WARN(NW_LOGGER_CORE, "Enter");
+							});
 
-					newPanel->SetLeaveHandler([](Editor::Component& sender) {
-						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
-						NW_WARN(NW_LOGGER_CORE, "Leave");
-					});
+						newPanel->SetLeaveHandler([](Editor::Component& sender) {
+							Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+							NW_WARN(NW_LOGGER_CORE, "Leave");
+							});
 
-					/*newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
-						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
-						NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
+						/*newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
+							Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+							NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
 
-						Graphics::Color color = panel.GetBackgroundColor();
-						color.g += 0.5f;
+							Graphics::Color color = panel.GetBackgroundColor();
+							color.g += 0.5f;
 
-						SharedPointer<Editor::UI::Panel> newSubPanel(e.GetX() - 5, e.GetY() - 5, 10, 10, color);
+							SharedPointer<Editor::UI::Panel> newSubPanel(e.GetX() - 5, e.GetY() - 5, 10, 10, color);
 
-						panel.AddComponent(newSubPanel);
-					});*/
+							panel.AddComponent(newSubPanel);
+						});*/
 
-					newPanel->SetCreateHandler([](Editor::Component& sender) {
-						NW_WARN(NW_LOGGER_CORE, "Create");
-					});
+						newPanel->SetCreateHandler([](Editor::Component& sender) {
+							NW_WARN(NW_LOGGER_CORE, "Create");
+							});
 
-					newPanel->SetDestroyHandler([](Editor::Component& sender) {
-						NW_WARN(NW_LOGGER_CORE, "Destroy");
-					});
+						newPanel->SetDestroyHandler([](Editor::Component& sender) {
+							NW_WARN(NW_LOGGER_CORE, "Destroy");
+							});
 
-					window.GetMainPanel().AddComponent(newPanel);
+						window.GetMainPanel().AddComponent(newPanel);
+					}
+					//
+
+					window.KeyReleased(ConvertKeybordKeyToKey(key));
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
 					break;

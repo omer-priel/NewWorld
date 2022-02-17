@@ -33,4 +33,15 @@ namespace NewWorld::Editor
 	{
 		m_MainPanel.MouseKeyReleased(key, xPos, yPos);
 	}
+
+
+	void EditorWindow::KeyPressed(Input::Key key)
+	{
+		m_SelectedComponent->KeyPressed(key);
+	}
+
+	void EditorWindow::KeyReleased(Input::Key key)
+	{
+		m_SelectedComponent->KeyReleased(key);
+	}
 }
