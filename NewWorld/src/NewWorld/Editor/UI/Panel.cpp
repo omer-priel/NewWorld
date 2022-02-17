@@ -38,10 +38,8 @@ namespace NewWorld::Editor::UI
 		ComponentContainer::ComponentsRemoved(components);
 	}
 
-	void Panel::Click(Input::Key key, uint xPos, uint yPos)
+	void Panel::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
 	{
-		ComponentContainer::Click(key, xPos, yPos);
-
 		auto components = this->GetComponents();
 
 		if (!components.empty())
@@ -53,10 +51,34 @@ namespace NewWorld::Editor::UI
 				Component& component = *(*iter);
 				if (component.IsIn(xPos, yPos))
 				{
-					component.Click(key, xPos - component.GetX(), yPos - component.GetY());
+					component.MouseKeyPressed(key, xPos - component.GetX(), yPos - component.GetY());
 					return;
 				}
 			} while (iter != components.begin());
 		}
+
+		ComponentContainer::MouseKeyPressed(key, xPos, yPos);
+	}
+
+	void Panel::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
+	{
+		auto components = this->GetComponents();
+
+		if (!components.empty())
+		{
+			DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+			do
+			{
+				--iter;
+				Component& component = *(*iter);
+				if (component.IsIn(xPos, yPos))
+				{
+					component.MouseKeyReleased(key, xPos - component.GetX(), yPos - component.GetY());
+					return;
+				}
+			} while (iter != components.begin());
+		}
+
+		ComponentContainer::MouseKeyReleased(key, xPos, yPos);
 	}
 }

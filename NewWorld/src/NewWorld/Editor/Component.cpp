@@ -16,9 +16,29 @@ namespace NewWorld::Editor
 		m_DestroyHandler(*this);
 	}
 	
-	void Component::Click(Input::Key key, uint xPos, uint yPos)
+	void Component::Click()
+	{
+		m_ClickHandler(*this);
+	}
+
+	void Component::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
+	{
+		m_MouseKeyPressedHandler(*this, key, xPos, yPos);
+	}
+
+	void Component::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
 	{
 		NW_DEBUG(NW_LOGGER_CORE, "{} {}", xPos, yPos);
-		m_ClickHandler(*this);
+		m_MouseKeyReleasedHandler(*this, key, xPos, yPos);
+	}
+
+	void Component::MouseHover(uint xPos, uint yPos)
+	{
+
+	}
+
+	void Component::MouseScrolled()
+	{
+
 	}
 }

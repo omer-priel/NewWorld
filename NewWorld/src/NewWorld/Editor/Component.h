@@ -25,6 +25,9 @@ namespace NewWorld::Editor
 		Events::EventHandler m_CreateHandler;
 		Events::EventHandler m_DestroyHandler;
 
+		Events::MouseKeyPressedEventHandler m_MouseKeyPressedHandler;
+		Events::MouseKeyReleasedEventHandler m_MouseKeyReleasedHandler;
+
 		Events::EventHandler m_EnterHandler;
 		Events::EventHandler m_LeaveHandler;
 
@@ -33,7 +36,12 @@ namespace NewWorld::Editor
 	protected:
 		Component(uint x, uint y, uint width, uint height)
 			: m_Window(nullptr), m_X(x), m_Y(y), m_Width(width), m_Height(height),
-			m_CreateHandler(Events::EmptyEventHandler), m_DestroyHandler(Events::EmptyEventHandler),
+			m_CreateHandler(Events::EmptyEventHandler),
+			m_DestroyHandler(Events::EmptyEventHandler),
+			m_MouseKeyPressedHandler(Events::EmptyMouseKeyPressedEventHandler),
+			m_MouseKeyReleasedHandler(Events::EmptyMouseKeyReleasedEventHandler),
+			m_EnterHandler(Events::EmptyEventHandler),
+			m_LeaveHandler(Events::EmptyEventHandler),
 			m_ClickHandler(Events::EmptyEventHandler)
 		{
 
@@ -68,6 +76,9 @@ namespace NewWorld::Editor
 		void SetCreateHandler(Events::EventHandler handler) { m_CreateHandler = handler; }
 		void SetDestroyHandler(Events::EventHandler handler) { m_DestroyHandler = handler; }
 		
+		void SetMouseKeyPressedHandler(Events::MouseKeyPressedEventHandler handler) { m_MouseKeyPressedHandler = handler; }
+		void SetMouseKeyReleasedHandler(Events::MouseKeyReleasedEventHandler handler) { m_MouseKeyReleasedHandler = handler; }
+
 		void SetEnterHandler(Events::EventHandler handler) { m_EnterHandler = handler; }
 		void SetLeaveHandler(Events::EventHandler handler) { m_LeaveHandler = handler; }
 
@@ -83,12 +94,12 @@ namespace NewWorld::Editor
 		virtual void Create();
 		virtual void Destroy();
 
-		virtual void Click(Input::Key key, uint xPos, uint yPos);
+		virtual void Click();
 
 		virtual void MouseKeyPressed(Input::Key key, uint xPos, uint yPos);
 		virtual void MouseKeyReleased(Input::Key key, uint xPos, uint yPos);
 
-		void MouseHover(uint xPos, uint yPos);
-		void MouseScrolled();
+		virtual void MouseHover(uint xPos, uint yPos);
+		virtual void MouseScrolled();
 	};
 }

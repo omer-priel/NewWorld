@@ -19,11 +19,14 @@ namespace NewWorld::Editor
 		SizeT m_WindowID;
 		UI::Panel m_MainPanel;
 
+		SharedPointer<Component> m_SelectedComponent;
+
 		Matrix4 m_ProjectionMatrix;
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
-			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height)
+			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height),
+			m_SelectedComponent(m_MainPanel)
 		{
 			m_MainPanel.SetWindow(this);
 			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, width, height, 0.0f);
@@ -49,6 +52,7 @@ namespace NewWorld::Editor
 	public:
 		void Update() override;
 
-		void Click(Input::Key key, uint xPos, uint yPos);
+		void MouseKeyPressed(Input::Key key, uint xPos, uint yPos);
+		void MouseKeyReleased(Input::Key key, uint xPos, uint yPos);
 	};
 }

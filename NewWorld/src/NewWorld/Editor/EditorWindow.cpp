@@ -17,8 +17,13 @@ namespace NewWorld::Editor
 		m_MainPanel.Update();
 	}
 
-	void EditorWindow::Click(Input::Key key, uint xPos, uint yPos)
+	void EditorWindow::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
 	{
-		m_MainPanel.Click(key, xPos, yPos);
+		m_MainPanel.MouseKeyPressed(key, xPos, yPos);
+	}
+
+	void EditorWindow::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
+	{
+		m_MainPanel.MouseKeyReleased(key, xPos, yPos);
 	}
 }

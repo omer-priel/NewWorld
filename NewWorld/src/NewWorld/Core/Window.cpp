@@ -76,6 +76,11 @@ namespace NewWorld::Core
 						NW_WARN(NW_LOGGER_CORE, "Click");
 					});
 
+					newPanel->SetMouseKeyReleasedHandler([](Editor::Component& sender, Input::Key key, uint xPos, uint yPos) {
+						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+						NW_WARN(NW_LOGGER_CORE, "Mouse Key Released");
+					});
+
 					/*newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
 						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
 						NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
@@ -116,6 +121,8 @@ namespace NewWorld::Core
 			{
 				case GLFW_PRESS:
 				{
+					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+
 					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}, ({}, {})", window.GetID(), key, mods, false, xPos, yPos);
 					break;
 				}
@@ -126,7 +133,7 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					window.Click(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					window.MouseKeyReleased(ConvertMouseButtonKeyToKey(key), xPos, yPos);
 
 					NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}, ({}, {})", window.GetID(), key, mods, xPos, yPos);
 					break;

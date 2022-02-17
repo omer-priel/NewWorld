@@ -92,12 +92,5 @@ namespace NewWorld::Editor
 				m_Components.clear();
 			}
 		}
-
-		// Override Events
-	public:
-		virtual void Click(Input::Key key, uint xPos, uint yPos) override
-		{
-			Component::Click(key, xPos, yPos);
-		}
 	};
 }
