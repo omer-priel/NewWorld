@@ -24,6 +24,10 @@ namespace NewWorld::Editor
 
 		Events::EventHandler m_CreateHandler;
 		Events::EventHandler m_DestroyHandler;
+
+		Events::EventHandler m_EnterHandler;
+		Events::EventHandler m_LeaveHandler;
+
 		Events::EventHandler m_ClickHandler;
 
 	protected:
@@ -64,14 +68,27 @@ namespace NewWorld::Editor
 		void SetCreateHandler(Events::EventHandler handler) { m_CreateHandler = handler; }
 		void SetDestroyHandler(Events::EventHandler handler) { m_DestroyHandler = handler; }
 		
+		void SetEnterHandler(Events::EventHandler handler) { m_EnterHandler = handler; }
+		void SetLeaveHandler(Events::EventHandler handler) { m_LeaveHandler = handler; }
+
 		void SetClickHandler(Events::EventHandler handler) { m_ClickHandler = handler; }
 		
+		// Actions
+	public:
+		void Enter();
+		void Leave();
+
 		// Events
 	public:
 		virtual void Create();
-		
 		virtual void Destroy();
 
 		virtual void Click(Input::Key key, uint xPos, uint yPos);
+
+		virtual void MouseKeyPressed(Input::Key key, uint xPos, uint yPos);
+		virtual void MouseKeyReleased(Input::Key key, uint xPos, uint yPos);
+
+		void MouseHover(uint xPos, uint yPos);
+		void MouseScrolled();
 	};
 }

@@ -13,6 +13,17 @@ namespace NewWorld::Editor::Events
 	class Event;
 
 	using EventHandler = Function<void, Component&>;
-
 	void EmptyEventHandler(Component& sender);
+
+	using KeyPressedEventHandler = Function<void, Component&, Input::Key>;
+	void EmptyKeyPressedEventHandler(Component& sender, Input::Key key);
+
+	using KeyReleasedEventHandler = Function<void, Component&, Input::Key>;
+	void EmptyKeyReleasedEventHandler(Component& sender, Input::Key key);
+
+	using MouseHoverEventHandler = Function<void, Component&, uint, uint>;
+	void EmptyMouseHoverEventHandler(Component& sender, uint xPos, uint yPos);
+
+	using MouseScrolledEventHandler = Function<void, Component&>;
+	void EmptyMouseScrolledEventHandler(Component& sender);
 }
