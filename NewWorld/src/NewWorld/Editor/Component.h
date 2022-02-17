@@ -25,11 +25,11 @@ namespace NewWorld::Editor
 		Events::EventHandler m_CreateHandler;
 		Events::EventHandler m_DestroyHandler;
 
-		Events::MouseKeyPressedEventHandler m_MouseKeyPressedHandler;
-		Events::MouseKeyReleasedEventHandler m_MouseKeyReleasedHandler;
-
 		Events::EventHandler m_EnterHandler;
 		Events::EventHandler m_LeaveHandler;
+
+		Events::MouseKeyPressedEventHandler m_MouseKeyPressedHandler;
+		Events::MouseKeyReleasedEventHandler m_MouseKeyReleasedHandler;
 
 		Events::EventHandler m_ClickHandler;
 
@@ -38,10 +38,10 @@ namespace NewWorld::Editor
 			: m_Window(nullptr), m_X(x), m_Y(y), m_Width(width), m_Height(height),
 			m_CreateHandler(Events::EmptyEventHandler),
 			m_DestroyHandler(Events::EmptyEventHandler),
-			m_MouseKeyPressedHandler(Events::EmptyMouseKeyPressedEventHandler),
-			m_MouseKeyReleasedHandler(Events::EmptyMouseKeyReleasedEventHandler),
 			m_EnterHandler(Events::EmptyEventHandler),
 			m_LeaveHandler(Events::EmptyEventHandler),
+			m_MouseKeyPressedHandler(Events::EmptyMouseKeyPressedEventHandler),
+			m_MouseKeyReleasedHandler(Events::EmptyMouseKeyReleasedEventHandler),
 			m_ClickHandler(Events::EmptyEventHandler)
 		{
 
@@ -83,16 +83,14 @@ namespace NewWorld::Editor
 		void SetLeaveHandler(Events::EventHandler handler) { m_LeaveHandler = handler; }
 
 		void SetClickHandler(Events::EventHandler handler) { m_ClickHandler = handler; }
-		
-		// Actions
-	public:
-		void Enter();
-		void Leave();
 
 		// Events
 	public:
 		virtual void Create();
 		virtual void Destroy();
+
+		void Enter();
+		void Leave();
 
 		virtual void Click();
 

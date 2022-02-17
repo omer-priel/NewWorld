@@ -48,13 +48,13 @@ namespace NewWorld::Editor
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
 
-		// Setters
-	public:
-		void SetSelectedComponent(RawPointer<Component> component) { m_SelectedComponent = component; }
-
 		// Actions
 	public:
 		void Close() override;
+
+		void ClearSelectedComponent() { ChangeSelectedComponent(&m_MainPanel); }
+
+		void ChangeSelectedComponent(RawPointer<Component> component);
 
 		// Events
 	public:

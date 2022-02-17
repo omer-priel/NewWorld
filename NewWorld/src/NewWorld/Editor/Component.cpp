@@ -14,14 +14,28 @@ namespace NewWorld::Editor
 	void Component::Destroy()
 	{
 		m_DestroyHandler(*this);
+
+		if (m_Window->IsSelectedComponent(this)) {
+			m_Window->ClearSelectedComponent();
+		}
 	}
 	
+	void Component::Enter()
+	{
+		m_EnterHandler(*this);
+	}
+
+	void Component::Leave()
+	{
+		m_LeaveHandler(*this);
+	}
+
 	void Component::Click()
 	{
 		m_ClickHandler(*this);
+		
 		if (!(m_Window->IsSelectedComponent(this))) {
-			NW_DEBUG(NW_LOGGER_CORE, "Clicks Click");
-			m_Window->SetSelectedComponent(this);
+			m_Window->ChangeSelectedComponent(this);
 		}
 	}
 

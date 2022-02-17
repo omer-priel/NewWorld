@@ -10,6 +10,13 @@ namespace NewWorld::Editor
 		Window::Close();
 	}
 
+	void EditorWindow::ChangeSelectedComponent(RawPointer<Component> component)
+	{
+		m_SelectedComponent->Leave();
+		m_SelectedComponent = component;
+		component->Enter();
+	}
+
 	void EditorWindow::Update()
 	{
 		Window::Update();

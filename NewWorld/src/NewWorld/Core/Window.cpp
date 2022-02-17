@@ -81,6 +81,16 @@ namespace NewWorld::Core
 						NW_WARN(NW_LOGGER_CORE, "Mouse Key Released");
 					});
 
+					newPanel->SetEnterHandler([](Editor::Component& sender) {
+						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+						NW_WARN(NW_LOGGER_CORE, "Enter");
+					});
+
+					newPanel->SetLeaveHandler([](Editor::Component& sender) {
+						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+						NW_WARN(NW_LOGGER_CORE, "Leave");
+					});
+
 					/*newPanel->SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
 						Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
 						NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
