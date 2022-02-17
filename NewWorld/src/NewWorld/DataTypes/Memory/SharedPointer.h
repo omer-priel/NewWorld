@@ -123,7 +123,26 @@ namespace NewWorld::DataTypes::Memory
 
 		virtual const T& operator*() const override { return *m_Value; }
 
-		// Actions
+		// Getters
+	public:
+		const bool Equal(T* obj)
+		{
+			return m_Value == obj;
+		}
+
+		const bool Equal(const SharedPointer& obj)
+		{
+			return m_Value == obj.m_Value;
+		}
+
+		template<typename OtherType>
+		const bool Equal(const SharedPointer<OtherType, false>& obj)
+		{
+			return m_Value == obj.m_Value;
+		}
+
+		// Setters
+	public:
 		void SetValue(const SharedPointer& obj)
 		{
 			NW_ASSERT_WITHOUT_LOG(m_Value != nullptr, "This pointer already has allocated!");
@@ -261,5 +280,23 @@ namespace NewWorld::DataTypes::Memory
 		virtual T& operator*() override { return *m_Value; }
 
 		virtual const T& operator*() const override { return *m_Value; }
+
+		// Getters
+	public:
+		const bool Equal(T* obj)
+		{
+			return m_Value == obj;
+		}
+
+		const bool Equal(const SharedPointer& obj)
+		{
+			return m_Value == obj.m_Value;
+		}
+
+		template<typename OtherType>
+		const bool Equal(const SharedPointer<OtherType, false>& obj)
+		{
+			return m_Value == obj.m_Value;
+		}
 	};
 }
