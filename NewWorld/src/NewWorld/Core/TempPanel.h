@@ -71,6 +71,11 @@ namespace Temp
 				NW_WARN(NW_LOGGER_CORE, "{} Hover ({}, {})", panel.m_ID, xPos, yPos);
 				});
 
+			SetMouseScrolledHandler([](Editor::Component& sender, int y) {
+				TempPanel& panel = (TempPanel&)sender;
+				NW_WARN(NW_LOGGER_CORE, "{} Scrolled {}", panel.m_ID, y);
+				});
+
 			SetEnterHandler([](Editor::Component& sender) {
 				TempPanel& panel = (TempPanel&)sender;
 				NW_WARN(NW_LOGGER_CORE, "{} Enter", panel.m_ID);

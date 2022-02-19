@@ -30,6 +30,6 @@ namespace NewWorld::Editor::Events
 	using MouseHoverEventHandler = Function<void, Component&, uint, uint>;
 	void EmptyMouseHoverEventHandler(Component& sender, uint xPos, uint yPos);
 
-	using MouseScrolledEventHandler = Function<void, Component&, uint>;
-	void EmptyMouseScrolledEventHandler(Component& sender, uint y);
+	using MouseScrolledEventHandler = Function<void, Component&, int>;
+	void EmptyMouseScrolledEventHandler(Component& sender, int y);
 }

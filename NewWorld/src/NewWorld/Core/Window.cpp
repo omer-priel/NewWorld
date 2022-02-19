@@ -102,7 +102,6 @@ namespace NewWorld::Core
 						double yPos;
 
 						glfwGetCursorPos(winHandle, &xPos, &yPos);
-
 						SharedPointer<Temp::TempPanel> newPanel(xPos, yPos);
 
 						window.GetMainPanel().AddComponent(newPanel);

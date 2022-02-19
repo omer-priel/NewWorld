@@ -20,5 +20,5 @@ namespace NewWorld::Editor::Events
 
 	void EmptyMouseHoverEventHandler(Component& sender, uint xPos, uint yPos) { }
 
-	void EmptyMouseScrolledEventHandler(Component& sender, uint y) { }
+	void EmptyMouseScrolledEventHandler(Component& sender, int y) { }
 }

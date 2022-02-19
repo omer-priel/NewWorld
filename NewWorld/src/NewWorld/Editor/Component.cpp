@@ -70,10 +70,10 @@ namespace NewWorld::Editor
 
 	void Component::Click()
 	{
-		m_ClickHandler(*this);
-
 		if (!(m_Window->IsSelectedComponent(this))) {
 			m_Window->ChangeSelectedComponent(this);
 		}
+
+		m_ClickHandler(*this);
 	}
 }
