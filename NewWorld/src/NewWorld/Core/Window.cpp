@@ -111,6 +111,11 @@ namespace NewWorld::Core
 							NW_WARN(NW_LOGGER_CORE, "Mouse Key Released");
 							});
 
+						newPanel->SetKeyReleasedHandler([](Editor::Component& sender, Input::Key key) {
+							Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
+							NW_WARN(NW_LOGGER_CORE, "Key Released");
+							});
+
 						newPanel->SetEnterHandler([](Editor::Component& sender) {
 							Editor::UI::Panel& panel = (Editor::UI::Panel&)sender;
 							NW_WARN(NW_LOGGER_CORE, "Enter");
