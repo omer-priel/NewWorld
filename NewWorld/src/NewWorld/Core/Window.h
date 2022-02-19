@@ -1,7 +1,6 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Core/GraphicsAPI/GraphicsAPI.h"
 
 struct GLFWwindow;
 
@@ -11,11 +10,10 @@ namespace NewWorld::Core
 	{
 	NW_CLASS(NewWorld::Core, Window)
 
-		// Static
-	public:
-		static void Initialize();
 		// Members
 	private:
+		bool m_ShouldToClose = false;
+
 		String m_Title;
 		uint m_Width;
 		uint m_Height;
@@ -34,30 +32,32 @@ namespace NewWorld::Core
 	public:
 		inline const String& GetTitle() const { return m_Title; }
 
-		inline uint GetWidth() const { return m_Width; };
+		uint GetWidth() const { return m_Width; }
 		
-		inline uint GetHeight() const { return m_Height; };
+		uint GetHeight() const { return m_Height; }
 
-		inline bool IsAlive() const { return m_WinHandle != nullptr; };
+		inline bool IsAlive() const { return m_WinHandle != nullptr; }
 
 		bool IsVisible() const;
 
 		// Actions
 	public:
-		void Init();
+		void Create();
 
-		void InitEvents();
+		void ReggisterEvents();
 
 		void Show();
 
 		void Hide();
 
-		void Close();
+		virtual void Close();
+
+		bool CloseIfNeed();
 
 		void HandleEvents();
 
 		// Events
 	public:
-
+		virtual void Update();
 	};
 }

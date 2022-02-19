@@ -2,15 +2,16 @@
 
 #include "NewWorld/Minimal.h"
 
-namespace NewWorld::Core::GraphicsAPI
+namespace NewWorld::Graphics
 {
 	// This is static class
 	class GraphicsAPI : public Object
 	{
-	NW_CLASS(NewWorld::Core::GraphicsAPI, GraphicsAPI)
+	NW_CLASS(NewWorld::Graphics, GraphicsAPI)
 
 		// Init
 	public:
 		static void Initialize();
+		static void Finalize();
 	};
 }

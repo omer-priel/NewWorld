@@ -42,8 +42,8 @@ namespace NewWorld::DataTypes::Collections
 
 		// Static Convert To String
 	public:
-		template <typename T>
-		static String ConverToString(T value)
+		template<typename T>
+			static String ConverToString(T value)
 		{
 			throw "Error";
 		}

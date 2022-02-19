@@ -1,19 +1,49 @@
 #include "nwpch.h"
 #include "Window.h"
 
+#include "NewWorld/Input/Key.h"
+#include "NewWorld/Editor/EditorWindow.h"
+
+#include "TempPanel.h"
+
 #include <GLFW/glfw3.h>
 
 namespace NewWorld::Core
 {
-	// Static
-	void Window::Initialize()
+	// Utilities
+	static Input::Key ConvertMouseButtonKeyToKey(int key)
 	{
-		GraphicsAPI::GraphicsAPI::Initialize();
+		NW_ASSERT(key < 8, "Is not Mouse Button!");
+		return (Input::Key)(key + 1);
+	}
+
+	static Input::Key ConvertKeybordKeyToKey(int key)
+	{
+		switch (key)
+		{
+		case GLFW_KEY_ENTER:
+			return Input::Key::Enter;
+		case GLFW_KEY_SPACE:
+			return Input::Key::Space;
+		case GLFW_KEY_ESCAPE:
+			return Input::Key::Escape;
+
+		case GLFW_KEY_UP:
+			return Input::Key::UpArrow;
+		case GLFW_KEY_DOWN:
+			return Input::Key::DownArrow;
+		case GLFW_KEY_LEFT:
+			return Input::Key::LeftArrow;
+		case GLFW_KEY_RIGHT:
+			return Input::Key::RightArrow;
+		}
+
+		return Input::Key::UnSupported;
 	}
 
 	// None-Static
 	// Init
-	void Window::Init()
+	void Window::Create()
 	{
 		m_WinHandle = glfwCreateWindow((int)m_Width, (int)m_Height, m_Title.GetPointer(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_WinHandle);
@@ -21,95 +51,102 @@ namespace NewWorld::Core
 		glfwSwapInterval(1); // Set VSync true
 
 		// Register Window Events
-		InitEvents();
+		Window::ReggisterEvents();
 
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
-	void Window::InitEvents()
+	void Window::ReggisterEvents()
 	{
 		// Set GLFW callbacks
-/*
-glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* window)
-	{
-		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-		WindowCloseEvent event;
-		data.EventCallback(event);
-	});
+		glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* winHandle) {
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+			
+			window.Close();
+		});
 
-glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* window, int width, int height)
-	{
-		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-		data.Width = width;
-		data.Height = height;
+		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-		WindowResizeEvent event(width, height);
-		data.EventCallback(event);
-	});
+			// TODO: Support Size Changed
+		});
 
-glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
-	{
-		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+		glfwSetKeyCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int scancode, int action, int mods) {
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-		switch (action)
-		{
-		case GLFW_PRESS:
-		{
-			KeyPressedEvent event(key, 0);
-			data.EventCallback(event);
-			break;
-		}
-		case GLFW_RELEASE:
-		{
-			KeyReleasedEvent event(key);
-			data.EventCallback(event);
-			break;
-		}
-		case GLFW_REPEAT:
-		{
-			KeyPressedEvent event(key, 1);
-			data.EventCallback(event);
-			break;
-		}
-		}
-	});
+			switch (action)
+			{
+				case GLFW_PRESS:
+				{
+					window.KeyPressed(ConvertKeybordKeyToKey(key));
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					window.KeyPressed(ConvertKeybordKeyToKey(key));
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					// TEMP: for testing
+					//
+					if (key == GLFW_KEY_SPACE)
+					{
+						double xPos;
+						double yPos;
 
-glfwSetMouseButtonCallback(m_WinHandle, [](GLFWwindow* window, int button, int action, int mods)
-	{
-		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+						glfwGetCursorPos(winHandle, &xPos, &yPos);
+						SharedPointer<Temp::TempPanel> newPanel(xPos, yPos);
 
-		switch (action)
-		{
-		case GLFW_PRESS:
-		{
-			MouseButtonPressedEvent event(button);
-			data.EventCallback(event);
-			break;
-		}
-		case GLFW_RELEASE:
-		{
-			MouseButtonReleasedEvent event(button);
-			data.EventCallback(event);
-			break;
-		}
-		}
-	});
+						window.GetMainPanel().AddComponent(newPanel);
+					}
+					//
 
-glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* window, double xOffset, double yOffset)
-	{
-		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+					window.KeyReleased(ConvertKeybordKeyToKey(key));
+					break;
+				}
+			}
+		});
 
-		MouseScrolledEvent event((float)xOffset, (float)yOffset);
-		data.EventCallback(event);
-	});
+		glfwSetMouseButtonCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int action, int mods) {
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* window, double xPos, double yPos)
-	{
-		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			double xPos;
+			double yPos;
 
-		MouseMovedEvent event((float)xPos, (float)yPos);
-		data.EventCallback(event);
-	});*/
+			glfwGetCursorPos(winHandle, &xPos, &yPos);
+
+			switch (action)
+			{
+				case GLFW_PRESS:
+				{
+					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					window.MouseKeyReleased(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					break;
+				}
+			}
+		});
+
+		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* winHandle, double xPos, double yPos) {
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+
+			window.MouseHover(xPos, yPos);
+		});
+
+		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
+			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+
+			window.MouseScrolled(yOffset);
+		});
 	}
 
 	// Getters
@@ -131,21 +168,31 @@ glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* window, double xPos, double
 
 	void Window::Close()
 	{
-		if (IsAlive())
+		m_ShouldToClose = true;
+	}
+
+	bool Window::CloseIfNeed()
+	{
+		if (m_ShouldToClose)
 		{
-			NW_INFO(NW_LOGGER_CORE, "Window Clossing \"{}\" ", m_Title);
+			NW_INFO(NW_LOGGER_CORE, "Clossing the window \"{}\"", m_Title);
 
 			glfwDestroyWindow(m_WinHandle);
 			m_WinHandle = nullptr;
 		}
+
+		return m_ShouldToClose;
 	}
 
 	void Window::HandleEvents()
 	{
-		glfwPollEvents();
 		glfwSwapBuffers(m_WinHandle);
+		glfwPollEvents();
 	}
 
 	// Events
-    
+	void Window::Update()
+	{
+		glfwMakeContextCurrent(m_WinHandle);
+	}
 }

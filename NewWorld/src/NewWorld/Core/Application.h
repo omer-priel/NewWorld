@@ -2,6 +2,8 @@
 
 #include "NewWorld/Minimal.h"
 
+#include "NewWorld/Graphics/GraphicsAPI.h"
+
 #include "NewWorld/Core/Window.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
@@ -34,8 +36,8 @@ namespace NewWorld
 	private:
 		bool m_Running;
 		
-		//Core::GameWindow m_Window; NW_CONFIG_RELEASE
-		DynamicArray<Editor::EditorWindow> m_Windows;
+		// TODO: Core::GameWindow m_Window; NW_CONFIG_RELEASE
+		DynamicArray<SharedPointer<Editor::EditorWindow>> m_Windows;
 
 	public:
 		Application()
@@ -66,14 +68,14 @@ namespace NewWorld
 			// Console Handler
 			SetConsoleCtrlHandler(ConsoleCtrlHandler, TRUE);
 			
-			Core::Window::Initialize();
+            Graphics::GraphicsAPI::Initialize();
 
 			NW_INFO(NW_LOGGER_CORE, "Engine Core Initialized.");
 
-			m_Windows.push_back(Editor::EditorWindow(m_Windows.size()-1));
+			m_Windows.push_back(m_Windows.size());
 
 			// Create Window
-			m_Windows[0].Init();
+			m_Windows[0]->Create();
 
 			NW_PROFILE_SCOPE("Initialize");
 			this->Initialize();
@@ -89,11 +91,33 @@ namespace NewWorld
 			while (m_Running)
 			{
 				NW_PROFILE_SCOPE("Frame");
+
 				BeginFrame();
 
-				DataTypes::Thread::Sleap(500);
+				uint index = 0;
+				while (index < m_Windows.size())
+				{
+					SharedPointer<Editor::EditorWindow>& window = m_Windows[index];
+
+					window->HandleEvents();
+					window->Update();
+
+					if (window->CloseIfNeed())
+					{
+						m_Windows.erase(m_Windows.begin() + index);
+					}
+					else
+					{
+						index++;
+					}
+				}
 
 				EndFrame();
+
+				if (m_Windows.size() == 0)
+				{
+					ShutDown();
+				}
 			}
 
 			Closed();
@@ -101,9 +125,9 @@ namespace NewWorld
 
 		void Closed()
 		{
-			for (Editor::EditorWindow& window : m_Windows)
+			for (SharedPointer<Editor::EditorWindow> window : m_Windows)
 			{
-				window.Close();
+				window->Close();
 			}
 
 			NW_INFO(NW_LOGGER_CORE, "The Application Closed");
@@ -111,17 +135,14 @@ namespace NewWorld
 
 		void Cleanup()
 		{
+			Graphics::GraphicsAPI::Finalize();
 			Debug::Profiler::Finalize();
 		}
 
 	public:
 		void BeginFrame()
 		{
-			// HandleEvents
-			for (Editor::EditorWindow& window : m_Windows)
-			{
-				window.HandleEvents();
-			}
+
 		}
 
 		void EndFrame()
@@ -140,6 +161,4 @@ namespace NewWorld
 			m_Running = false;
 		}
 	};
-
-	RawPointer<Application> Application::s_Application = nullptr;
 }
