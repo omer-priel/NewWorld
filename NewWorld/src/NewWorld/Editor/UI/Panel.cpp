@@ -42,19 +42,17 @@ namespace NewWorld::Editor::UI
 	{
 		auto components = this->GetComponents();
 
-		if (!components.empty())
+		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		while (iter != components.begin())
 		{
-			DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
-			do
+			iter--;
+			Component& component = *(*iter);
+			
+			if (component.IsIn(xPos, yPos))
 			{
-				--iter;
-				Component& component = *(*iter);
-				if (component.IsIn(xPos, yPos))
-				{
-					component.MouseKeyPressed(key, xPos - component.GetX(), yPos - component.GetY());
-					return;
-				}
-			} while (iter != components.begin());
+				component.MouseKeyPressed(key, xPos - component.GetX(), yPos - component.GetY());
+				return;
+			}
 		}
 
 		ComponentContainer::MouseKeyPressed(key, xPos, yPos);
@@ -64,19 +62,17 @@ namespace NewWorld::Editor::UI
 	{
 		auto components = this->GetComponents();
 
-		if (!components.empty())
+		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		while (iter != components.begin())
 		{
-			DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
-			do
+			iter--;
+			Component& component = *(*iter);
+			
+			if (component.IsIn(xPos, yPos))
 			{
-				--iter;
-				Component& component = *(*iter);
-				if (component.IsIn(xPos, yPos))
-				{
-					component.MouseKeyReleased(key, xPos - component.GetX(), yPos - component.GetY());
-					return;
-				}
-			} while (iter != components.begin());
+				component.MouseKeyReleased(key, xPos - component.GetX(), yPos - component.GetY());
+				return;
+			}
 		}
 
 		ComponentContainer::MouseKeyReleased(key, xPos, yPos);
@@ -86,19 +82,17 @@ namespace NewWorld::Editor::UI
 	{
 		auto components = this->GetComponents();
 
-		if (!components.empty())
+		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		while (iter != components.begin())
 		{
-			DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
-			do
+			iter--;
+			Component& component = *(*iter);
+			
+			if (component.IsIn(xPos, yPos))
 			{
-				--iter;
-				Component& component = *(*iter);
-				if (component.IsIn(xPos, yPos))
-				{
-					component.MouseHover(xPos - component.GetX(), yPos - component.GetY());
-					return;
-				}
-			} while (iter != components.begin());
+				component.MouseHover(xPos - component.GetX(), yPos - component.GetY());
+				return;
+			}
 		}
 
 		ComponentContainer::MouseHover(xPos, yPos);

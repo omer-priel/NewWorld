@@ -193,10 +193,10 @@ namespace NewWorld::Core
 	{
 		if (m_ShouldToClose)
 		{
+			NW_INFO(NW_LOGGER_CORE, "Clossing the window \"{}\"", m_Title);
+
 			glfwDestroyWindow(m_WinHandle);
 			m_WinHandle = nullptr;
-
-			NW_INFO(NW_LOGGER_CORE, "The window \"{}\" Clossed", m_Title);
 		}
 
 		return m_ShouldToClose;

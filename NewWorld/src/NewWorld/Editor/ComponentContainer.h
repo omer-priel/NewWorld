@@ -75,18 +75,15 @@ namespace NewWorld::Editor
 			{
 				ComponentsRemoved(m_Components);
 
-				if (!m_Components.empty())
+				DynamicArray<SharedPointer<Component>>::iterator iter = m_Components.begin();
+				++iter;
+				while (iter != m_Components.end())
 				{
-					DynamicArray<SharedPointer<Component>>::iterator iter = m_Components.begin();
+					Component& component = *(*iter);
+
+					component.Destroy();
+
 					++iter;
-					while (iter != m_Components.end())
-					{
-						Component& component = *(*iter);
-
-						component.Destroy();
-
-						++iter;
-					}
 				}
 
 				m_Components.clear();
