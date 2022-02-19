@@ -24,16 +24,7 @@ namespace NewWorld::Editor::UI
 
 		// Events
 	public:
-		void Create() override;
-		void Destroy() override;
-
 		void Update() override;
-
-		void ComponentAdded(SharedPointer<Component> component) override;
-
-		void ComponentRemoved(SharedPointer<Component> component) override;
-
-		void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) override;
 
 		void MouseKeyPressed(Input::Key key, uint xPos, uint yPos) override;
 

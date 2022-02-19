@@ -20,23 +20,26 @@ namespace NewWorld::Editor
 
 		}
 
-	public:
-		virtual ~ComponentContainer()
-		{
-			RemoveComponents();
-		}
-
 		// Override
 	public:
+		virtual void Destroy() override
+		{
+			RemoveComponents();
+
+			Component::Destroy();
+		}
+
 		virtual void Update() override
 		{
 			for (SharedPointer<Component>& component : m_Components)
 			{
 				component->Update();
 			}
+
+			Component::Update();
 		}
 
-		// Pure virtual functions
+		// Virtual functions
 	public:
 		virtual void ComponentAdded(SharedPointer<Component> component) { }
 
