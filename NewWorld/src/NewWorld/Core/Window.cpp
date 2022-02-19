@@ -61,8 +61,6 @@ namespace NewWorld::Core
 		// Set GLFW callbacks
 		glfwSetWindowCloseCallback(m_WinHandle, [](GLFWwindow* winHandle) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
-
-			// NW_INFO(NW_LOGGER_CORE ,"Window {} event Close", window.GetID());
 			
 			window.Close();
 		});
@@ -70,7 +68,7 @@ namespace NewWorld::Core
 		glfwSetWindowSizeCallback(m_WinHandle, [](GLFWwindow* winHandle, int width, int height) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			// NW_INFO(NW_LOGGER_CORE, "Window {} event SizeChanged ({}, {})", window.GetID(), width, height);
+			// TODO: Support Size Changed
 		});
 
 		glfwSetKeyCallback(m_WinHandle, [](GLFWwindow* winHandle, int key, int scancode, int action, int mods) {
@@ -81,15 +79,11 @@ namespace NewWorld::Core
 				case GLFW_PRESS:
 				{
 					window.KeyPressed(ConvertKeybordKeyToKey(key));
-
-					// NW_INFO(NW_LOGGER_CORE, "Window {} event KeyPressed {}, {}, {}, {}", window.GetID(), key, scancode, mods, false);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
 					window.KeyPressed(ConvertKeybordKeyToKey(key));
-
-					// NW_INFO(NW_LOGGER_CORE, "Window {} event KeyPressed {}, {}, {}, {}", window.GetID(), key, scancode, mods, true);
 					break;
 				}
 				case GLFW_RELEASE:
@@ -109,8 +103,6 @@ namespace NewWorld::Core
 					//
 
 					window.KeyReleased(ConvertKeybordKeyToKey(key));
-
-					// NW_INFO(NW_LOGGER_CORE, "Window {} event KeyReleased {}, {}, {}", window.GetID(), key, scancode, mods);
 					break;
 				}
 			}
@@ -129,22 +121,16 @@ namespace NewWorld::Core
 				case GLFW_PRESS:
 				{
 					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
-
-					// NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}, ({}, {})", window.GetID(), key, mods, false, xPos, yPos);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
 					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
-
-					// NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonPressed {}, {}, {}, ({}, {})", window.GetID(), key, mods, true, xPos, yPos);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
 					window.MouseKeyReleased(ConvertMouseButtonKeyToKey(key), xPos, yPos);
-
-					// NW_INFO(NW_LOGGER_CORE, "Window {} event MouseButtonReleased {}, {}, ({}, {})", window.GetID(), key, mods, xPos, yPos);
 					break;
 				}
 			}
@@ -154,16 +140,12 @@ namespace NewWorld::Core
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
 			window.MouseHover(xPos, yPos);
-
-			// NW_INFO(NW_LOGGER_CORE, "Window {} event MouseMoved ({}, {})", window.GetID(), xPos, yPos);
 		});
 
 		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
 			window.MouseScrolled(yOffset);
-
-			// NW_INFO(NW_LOGGER_CORE, "Window {} event MouseScrolled ({}, {})", window.GetID(), xOffset, yOffset);
 		});
 	}
 
