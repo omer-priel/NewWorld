@@ -31,6 +31,9 @@ namespace NewWorld::Editor
 		Events::MouseKeyPressedEventHandler m_MouseKeyPressedHandler;
 		Events::MouseKeyReleasedEventHandler m_MouseKeyReleasedHandler;
 
+		Events::MouseHoverEventHandler m_MouseHoverHandler;
+		Events::MouseScrolledEventHandler m_MouseScrolledHandler;
+
 		Events::KeyPressedEventHandler m_KeyPressedHandler;
 		Events::KeyReleasedEventHandler m_KeyReleasedHandler;
 
@@ -45,6 +48,8 @@ namespace NewWorld::Editor
 			m_LeaveHandler(Events::EmptyEventHandler),
 			m_MouseKeyPressedHandler(Events::EmptyMouseKeyPressedEventHandler),
 			m_MouseKeyReleasedHandler(Events::EmptyMouseKeyReleasedEventHandler),
+			m_MouseHoverHandler(Events::EmptyMouseHoverEventHandler),
+			m_MouseScrolledHandler(Events::EmptyMouseScrolledEventHandler),
 			m_KeyPressedHandler(Events::EmptyKeyPressedEventHandler),
 			m_KeyReleasedHandler(Events::EmptyKeyReleasedEventHandler),
 			m_ClickHandler(Events::EmptyEventHandler)
@@ -87,6 +92,9 @@ namespace NewWorld::Editor
 		void SetMouseKeyPressedHandler(Events::MouseKeyPressedEventHandler handler) { m_MouseKeyPressedHandler = handler; }
 		void SetMouseKeyReleasedHandler(Events::MouseKeyReleasedEventHandler handler) { m_MouseKeyReleasedHandler = handler; }
 
+		void SetMouseHoverHandler(Events::MouseHoverEventHandler handler) { m_MouseHoverHandler = handler; }
+		void SetMouseScrolledHandler(Events::MouseScrolledEventHandler handler) { m_MouseScrolledHandler = handler; }
+
 		void SetKeyPressedHandler(Events::KeyPressedEventHandler handler) { m_KeyPressedHandler = handler; }
 		void SetKeyReleasedHandler(Events::KeyReleasedEventHandler handler) { m_KeyReleasedHandler = handler; }
 
@@ -106,7 +114,7 @@ namespace NewWorld::Editor
 		virtual void MouseKeyReleased(Input::Key key, uint xPos, uint yPos);
 
 		virtual void MouseHover(uint xPos, uint yPos);
-		virtual void MouseScrolled();
+		virtual void MouseScrolled(uint y);
 
 		virtual void KeyPressed(Input::Key key);
 		virtual void KeyReleased(Input::Key key);

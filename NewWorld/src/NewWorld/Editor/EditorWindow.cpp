@@ -34,6 +34,15 @@ namespace NewWorld::Editor
 		m_MainPanel.MouseKeyReleased(key, xPos, yPos);
 	}
 
+	void EditorWindow::MouseHover(uint xPos, uint yPos)
+	{
+		m_MainPanel.MouseHover(xPos, yPos);
+	}
+
+	void EditorWindow::MouseScrolled(uint y)
+	{
+		m_SelectedComponent->MouseScrolled(y);
+	}
 
 	void EditorWindow::KeyPressed(Input::Key key)
 	{

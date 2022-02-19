@@ -30,15 +30,6 @@ namespace NewWorld::Editor
 		m_LeaveHandler(*this);
 	}
 
-	void Component::Click()
-	{
-		m_ClickHandler(*this);
-		
-		if (!(m_Window->IsSelectedComponent(this))) {
-			m_Window->ChangeSelectedComponent(this);
-		}
-	}
-
 	void Component::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
 	{
 		m_MouseKeyPressedHandler(*this, key, xPos, yPos);
@@ -46,7 +37,6 @@ namespace NewWorld::Editor
 
 	void Component::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
 	{
-		NW_DEBUG(NW_LOGGER_CORE, "{} {}", xPos, yPos);
 		m_MouseKeyReleasedHandler(*this, key, xPos, yPos);
 		if (key == Input::Key::MouseButtonLeft) {
 			Click();
@@ -55,12 +45,12 @@ namespace NewWorld::Editor
 
 	void Component::MouseHover(uint xPos, uint yPos)
 	{
-
+		m_MouseHoverHandler(*this, xPos, yPos);
 	}
 
-	void Component::MouseScrolled()
+	void Component::MouseScrolled(uint y)
 	{
-
+		m_MouseScrolledHandler(*this, y);
 	}
 
 	void Component::KeyPressed(Input::Key key)
@@ -75,6 +65,15 @@ namespace NewWorld::Editor
 		if (key == Input::Key::Enter)
 		{
 			Click();
+		}
+	}
+
+	void Component::Click()
+	{
+		m_ClickHandler(*this);
+
+		if (!(m_Window->IsSelectedComponent(this))) {
+			m_Window->ChangeSelectedComponent(this);
 		}
 	}
 }

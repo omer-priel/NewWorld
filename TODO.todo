@@ -163,7 +163,7 @@
                           "content": "Mouse Scroll",
                           "id": 1645112629307,
                           "level": "default",
-                          "done": false
+                          "done": true
                         }
                       },
                       {
@@ -173,7 +173,7 @@
                           "content": "Mouse Hover",
                           "id": 1645112624291,
                           "level": "default",
-                          "done": false
+                          "done": true
                         }
                       }
                     ],

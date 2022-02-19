@@ -81,4 +81,26 @@ namespace NewWorld::Editor::UI
 
 		ComponentContainer::MouseKeyReleased(key, xPos, yPos);
 	}
+
+	void Panel::MouseHover(uint xPos, uint yPos)
+	{
+		auto components = this->GetComponents();
+
+		if (!components.empty())
+		{
+			DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+			do
+			{
+				--iter;
+				Component& component = *(*iter);
+				if (component.IsIn(xPos, yPos))
+				{
+					component.MouseHover(xPos - component.GetX(), yPos - component.GetY());
+					return;
+				}
+			} while (iter != components.begin());
+		}
+
+		ComponentContainer::MouseHover(xPos, yPos);
+	}
 }

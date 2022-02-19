@@ -63,6 +63,9 @@ namespace NewWorld::Editor
 		void MouseKeyPressed(Input::Key key, uint xPos, uint yPos);
 		void MouseKeyReleased(Input::Key key, uint xPos, uint yPos);
 
+		void MouseHover(uint xPos, uint yPos);
+		void MouseScrolled(uint y);
+
 		void KeyPressed(Input::Key key);
 		void KeyReleased(Input::Key key);
 	};

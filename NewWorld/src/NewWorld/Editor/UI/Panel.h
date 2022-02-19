@@ -39,6 +39,8 @@ namespace NewWorld::Editor::UI
 
 		void MouseKeyReleased(Input::Key key, uint xPos, uint yPos) override;
 
+		void MouseHover(uint xPos, uint yPos) override;
+
 		// Getters
 	public:
 		inline const Graphics::Color& GetBackgroundColor() const { return m_BackgroundColor; }
