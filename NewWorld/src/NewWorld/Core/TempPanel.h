@@ -3,18 +3,20 @@
 #include "NewWorld/Minimal.h"
 
 #include "NewWorld/Editor/UI/Panel.h"
+#include "NewWorld/Graphics/EditorDraw.h"
 
 namespace Temp
 {
 	static int s_LastID = 0;
 
 	using namespace NewWorld;
-	class TempPanel : public NewWorld::Editor::UI::Panel
+	class TempPanel : public Editor::UI::Panel
 	{
 		NW_CLASS(Temp, TempPanel)
 
 	private:
 		uint m_ID = 0;
+		bool m_Marked = true;
 
 	public:
 		TempPanel(uint xPos, uint yPos)
@@ -107,6 +109,26 @@ namespace Temp
 				TempPanel& panel = (TempPanel&)sender;
 				NW_WARN(NW_LOGGER_CORE, "{} Destroy", panel.m_ID);
 				});
+		}
+
+		// Events
+	public:
+		void Update() override
+		{
+			Editor::UI::Panel::Update();
+
+			if (m_Marked)
+			{
+				Graphics::EditorDraw::DrawRectangle(GetWindow(), 10, 10, 100, 100, GetBackgroundColor());
+			}
+		}
+
+		void Click() override
+		{
+			Editor::UI::Panel::Click();
+
+			m_Marked = !m_Marked;
+			NW_WARN(NW_LOGGER_CORE, "{} Marked: {}", m_ID, m_Marked);
 		}
 	};
 }
