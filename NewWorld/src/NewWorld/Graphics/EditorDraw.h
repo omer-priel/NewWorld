@@ -11,8 +11,31 @@ namespace NewWorld::Graphics
 	{
 	NW_CLASS(NewWorld::Graphics, EditorDraw)
 
-		// Actions
+		// Sub Classes
 	public:
+		class LocalPainter : public Object
+		{
+			NW_CLASS(NewWorld::Graphics, EditorDraw)
+
+			// Members
+		private:
+			RawPointer<Editor::EditorWindow> m_Window;
+
+			// Getters
+		public:
+			RawPointer<Editor::EditorWindow> GetWindow() const { return m_Window; }
+
+			// Actions
+		public:
+			
+		};
+
+		// Actions Local
+	public:
+		static void DrawRectangle(LocalPainter& localPainter, int x, int y, uint width, uint height, const Graphics::Color& color);
+
+		// Actions Global
+	public: // TODO: private
 		static void DrawRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color);
 
 		// Utilities

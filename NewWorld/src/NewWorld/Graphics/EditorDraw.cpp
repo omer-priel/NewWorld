@@ -8,7 +8,13 @@
 
 namespace NewWorld::Graphics
 {
-	// Actions
+	// Local
+	void EditorDraw::DrawRectangle(LocalPainter& localPainter, int x, int y, uint width, uint height, const Graphics::Color& color)
+	{
+		DrawRectangle(localPainter.GetWindow(), x, y, width, height, color);
+	}
+
+	// Global
 	void EditorDraw::DrawRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color)
 	{
 		glBegin(GL_QUADS);
