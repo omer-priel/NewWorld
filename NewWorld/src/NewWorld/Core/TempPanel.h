@@ -13,10 +13,13 @@ namespace Temp
 	class TempPanel : public Editor::UI::Panel
 	{
 		NW_CLASS(Temp, TempPanel)
+	
+	private:
+		const uint STATES_COUNT = 3;
 
 	private:
 		uint m_ID = 0;
-		bool m_Marked = true;
+		uint m_State = 0;
 
 	public:
 		TempPanel(uint xPos, uint yPos)
@@ -117,9 +120,23 @@ namespace Temp
 		{
 			Editor::UI::Panel::Update();
 
-			if (m_Marked)
+			switch (m_State)
 			{
-				Graphics::EditorDraw::DrawRectangle(GetWindow(), 10, 10, 100, 100, GetBackgroundColor());
+				case 0:
+				{
+					Graphics::EditorDraw::DrawRectangle(GetWindow(), -50, -50, 100, 100, GetBackgroundColor());
+				}
+				break;
+				case 1:
+				{
+					Graphics::EditorDraw::DrawRectangle(GetWindow(), 0, 0, 100, 100, GetBackgroundColor());
+				}
+				break;
+				case 2:
+				{
+					Graphics::EditorDraw::DrawRectangle(GetWindow(), 50, 50, 100, 100, GetBackgroundColor());
+				}
+				break;
 			}
 		}
 
@@ -127,8 +144,8 @@ namespace Temp
 		{
 			Editor::UI::Panel::Click();
 
-			m_Marked = !m_Marked;
-			NW_WARN(NW_LOGGER_CORE, "{} Marked: {}", m_ID, m_Marked);
+			m_State = (m_State + 1) % STATES_COUNT;
+			NW_WARN(NW_LOGGER_CORE, "{} State: {}", m_ID, m_State);
 		}
 	};
 }

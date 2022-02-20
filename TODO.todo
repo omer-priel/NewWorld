@@ -92,6 +92,16 @@
                 "key": 1642874096047,
                 "children": [
                   {
+                    "key": 1645351004187,
+                    "children": [],
+                    "todo": {
+                      "content": "DrawRectangle - add Component option",
+                      "id": 1645351004187,
+                      "level": "default",
+                      "done": false
+                    }
+                  },
+                  {
                     "key": 1642874139655,
                     "children": [],
                     "todo": {
@@ -644,7 +654,8 @@
       1642521783663,
       1645125038780,
       1642082859661,
-      1645306113823
+      1645306113823,
+      1645351004187
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",

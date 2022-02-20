@@ -9,7 +9,7 @@
 namespace NewWorld::Graphics
 {
 	// Actions
-	void EditorDraw::DrawRectangle(RawPointer<Editor::EditorWindow> window, uint x, uint y, uint width, uint height, const Graphics::Color& color)
+	void EditorDraw::DrawRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color)
 	{
 		glBegin(GL_QUADS);
 		glColor3f(color.r, color.g, color.b);
