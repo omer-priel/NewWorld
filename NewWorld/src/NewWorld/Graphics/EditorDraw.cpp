@@ -38,6 +38,8 @@ namespace NewWorld::Graphics
 	// Global
 	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
 	{
+		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
+
 		Vector4 v1 = GetCoordinate(window, x1, y1);
 		Vector4 v2 = GetCoordinate(window, x2, y2);
 
@@ -69,10 +71,12 @@ namespace NewWorld::Graphics
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth)
 	{
+		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
+
 		x += lineWidth / 2;
 		y += lineWidth / 2;
-		//width -= lineWidth / 2;
-		//height -= lineWidth / 2;
+		width -= lineWidth / 2;
+		height -= lineWidth / 2;
 
 		// v1 v2
 		// v3 v4
@@ -95,14 +99,12 @@ namespace NewWorld::Graphics
 			v1.x, v1.y, 0
 		};
 
-		glEnable(GL_LINE_SMOOTH);
 		glLineWidth(lineWidth);
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, lineVertices);
 		glColor3f(color.r, color.g, color.b);
 		glDrawArrays(GL_LINES, 0, 2*4);
 		glDisableClientState(GL_VERTEX_ARRAY);
-		glDisable(GL_LINE_SMOOTH);
 	}
 
 	// Utilities
