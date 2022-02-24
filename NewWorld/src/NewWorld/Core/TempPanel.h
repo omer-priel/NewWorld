@@ -91,18 +91,6 @@ namespace Temp
 				NW_WARN(NW_LOGGER_CORE, "{} Leave", panel.m_ID);
 				});
 
-			/*SetClickHandler([](Editor::Component& sender, const Editor::Events::ClickEvent& e) {
-				TempPanel& panel = (TempPanel&)sender;
-				NW_WARN(NW_LOGGER_CORE, "Click Key: {}, Pos: ({}, {})", (uint)e.GetKey(), e.GetX(), e.GetY());
-
-				Graphics::Color color = panel.GetBackgroundColor();
-				color.g += 0.5f;
-
-				SharedPointer<Editor::UI::Panel> newSubPanel(e.GetX() - 5, e.GetY() - 5, 10, 10, color);
-
-				panel.AddComponent(newSubPanel);
-			});*/
-
 			SetCreateHandler([](Editor::Component& sender) {
 				TempPanel& panel = (TempPanel&)sender;
 				NW_WARN(NW_LOGGER_CORE, "{} Create", panel.m_ID);
