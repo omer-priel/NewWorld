@@ -88,10 +88,39 @@ namespace Temp
 	}
 
 	// Events
+	void TempPanel::Create()
+	{
+		using namespace NewWorld;
+		NewWorld::Editor::UI::Panel::Create();
+
+		SharedPointer<NewWorld::Editor::UI::Panel> panel1(5, 5, 10, 10, Graphics::Colors::Gold);
+		panel1->SetClickHandler([](NewWorld::Editor::Component& sender) {
+			NW_WARN(NW_LOGGER_CORE, "Click 1");
+			});
+
+		SharedPointer<NewWorld::Editor::UI::Panel> panel2(25, 5, 10, 10, Graphics::Colors::Gold);
+		panel2->SetClickHandler([](NewWorld::Editor::Component& sender) {
+			NW_WARN(NW_LOGGER_CORE, "Click 2");
+			});
+
+		SharedPointer<NewWorld::Editor::UI::Panel> panel3(5, 25, 10, 10, Graphics::Colors::Gold);
+		panel3->SetClickHandler([](NewWorld::Editor::Component& sender) {
+			NW_WARN(NW_LOGGER_CORE, "Click 3");
+			});
+
+		SharedPointer<NewWorld::Editor::UI::Panel> panel4(25, 25, 10, 10, Graphics::Colors::Gold);
+		panel4->SetClickHandler([](NewWorld::Editor::Component& sender) {
+			NW_WARN(NW_LOGGER_CORE, "Click 4");
+			});
+
+		AddComponent(panel1);
+		AddComponent(panel2);
+		AddComponent(panel3);
+		AddComponent(panel4);
+	}
+	
 	void TempPanel::Update()
 	{
-		NewWorld::Editor::UI::Panel::Update();
-
 		switch (m_State)
 		{
 		case 0:
@@ -110,6 +139,8 @@ namespace Temp
 		}
 		break;
 		}
+
+		NewWorld::Editor::UI::Panel::Update();
 	}
 
 	void TempPanel::Click()

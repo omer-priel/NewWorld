@@ -37,16 +37,16 @@ namespace NewWorld::Graphics
 			m_Y = 0;
 		}
 
-		static void Enter(RawPointer<Editor::ComponentContainer> component)
+		static void Enter(Editor::ComponentContainer& component)
 		{
-			m_X += component->GetX();
-			m_Y += component->GetY();
+			m_X += component.GetX();
+			m_Y += component.GetY();
 		}
 
-		static void Leave(RawPointer<Editor::ComponentContainer> component)
+		static void Leave(Editor::ComponentContainer& component)
 		{
-			m_X -= component->GetX();
-			m_Y -= component->GetY();
+			m_X -= component.GetX();
+			m_Y -= component.GetY();
 		}
 	};
 }

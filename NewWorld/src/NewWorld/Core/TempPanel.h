@@ -24,6 +24,8 @@ namespace Temp
 
 		// Events
 	public:
+		void Create() override;
+
 		void Update() override;
 
 		void Click() override;

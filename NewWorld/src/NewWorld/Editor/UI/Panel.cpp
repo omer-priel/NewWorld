@@ -8,7 +8,7 @@ namespace NewWorld::Editor::UI
 	// Override
 	void Panel::Update()
 	{
-		Graphics::EditorDraw::DrawRectangle(GetWindow(), m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+		Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
 
 		ComponentContainer::Update();
 	}
