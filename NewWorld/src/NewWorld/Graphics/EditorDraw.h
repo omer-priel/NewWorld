@@ -2,6 +2,7 @@
 
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Graphics/Color.h"
+#include "NewWorld/Graphics/LocalPainter.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
 namespace NewWorld::Graphics
@@ -10,25 +11,6 @@ namespace NewWorld::Graphics
 	class EditorDraw : public Object
 	{
 	NW_CLASS(NewWorld::Graphics, EditorDraw)
-
-		// Sub Classes
-	public:
-		class LocalPainter : public Object
-		{
-			NW_CLASS(NewWorld::Graphics, EditorDraw)
-
-			// Members
-		private:
-			RawPointer<Editor::EditorWindow> m_Window;
-
-			// Getters
-		public:
-			RawPointer<Editor::EditorWindow> GetWindow() const { return m_Window; }
-
-			// Actions
-		public:
-			
-		};
 
 		// Actions Local
 	public:
