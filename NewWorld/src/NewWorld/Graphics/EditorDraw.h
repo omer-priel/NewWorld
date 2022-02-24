@@ -17,7 +17,7 @@ namespace NewWorld::Graphics
 		static void DrawRectangle(int x, int y, uint width, uint height, const Graphics::Color& color);
 
 		// Actions Global
-	public: // TODO: private
+	private:
 		static void DrawRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color);
 
 		// Utilities
