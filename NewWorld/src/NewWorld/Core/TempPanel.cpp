@@ -121,6 +121,7 @@ namespace Temp
 	
 	void TempPanel::Update()
 	{
+		using namespace NewWorld;
 		switch (m_State)
 		{
 		case 0:
@@ -135,7 +136,12 @@ namespace Temp
 		break;
 		case 2:
 		{
-			NewWorld::Graphics::EditorDraw::DrawLine(100, 200, 200, 100, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawLine(100, 10, 200, 10, GetBackgroundColor(), 1);
+			NewWorld::Graphics::EditorDraw::DrawLine(100, 20, 200, 20, GetBackgroundColor(), 2);
+			NewWorld::Graphics::EditorDraw::DrawLine(100, 30, 200, 30, GetBackgroundColor(), 3);
+			NewWorld::Graphics::EditorDraw::DrawLine(100, 40, 200, 40, GetBackgroundColor(), 4);
+			NewWorld::Graphics::EditorDraw::DrawLine(100, 50, 200, 50, GetBackgroundColor(), 5);
+			NewWorld::Graphics::EditorDraw::DrawLine(100, 60, 200, 60, GetBackgroundColor(), 10);
 		}
 		break;
 		}
@@ -145,6 +151,7 @@ namespace Temp
 
 	void TempPanel::Click()
 	{
+		using namespace NewWorld;
 		NewWorld::Editor::UI::Panel::Click();
 
 		m_State = (m_State + 1) % STATES_COUNT;

@@ -17,14 +17,14 @@ namespace NewWorld::Graphics
 		DrawRectangle(LocalPainter::GetWindow(), x, y, width, height, color);
 	}
 
-	void EditorDraw::DrawLine(int x1, int y1, int x2, int y2, const Graphics::Color& color)
+	void EditorDraw::DrawLine(int x1, int y1, int x2, int y2, const Graphics::Color& color, uint width)
 	{
 		x1 += LocalPainter::GetX();
 		y1 += LocalPainter::GetY();
 		x2 += LocalPainter::GetX();
 		y2 += LocalPainter::GetY();
 
-		DrawLine(LocalPainter::GetWindow(), x1, y1, x2, y2, color);
+		DrawLine(LocalPainter::GetWindow(), x1, y1, x2, y2, color, width);
 	}
 
 	// Global
@@ -39,13 +39,26 @@ namespace NewWorld::Graphics
 		glEnd();
 	}
 
-	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, int x1, int y1, int x2, int y2, const Graphics::Color& color)
+	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, int x1, int y1, int x2, int y2, const Graphics::Color& color, uint width)
 	{
-		glBegin(GL_LINES);
+		Matrix4 proj = window->GetProjectionMatrix();
+
+		Vector4 v1 = GetCoordinate(window, x1, y1);
+		Vector4 v2 = GetCoordinate(window, x2, y2);
+
+		GLfloat lineVertices[] = {
+			v1.x, v1.y, 0,
+			v2.x, v2.y, 0
+		};
+
+		glEnable(GL_LINE_SMOOTH);
+		glLineWidth(width);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glVertexPointer(3, GL_FLOAT, 0, lineVertices);
 		glColor3f(color.r, color.g, color.b);
-		AddCoordinate(window, x1, y1);
-		AddCoordinate(window, x2, y2);
-		glEnd();
+		glDrawArrays(GL_LINES, 0, 2);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisable(GL_LINE_SMOOTH);
 	}
 
 	// Utilities
