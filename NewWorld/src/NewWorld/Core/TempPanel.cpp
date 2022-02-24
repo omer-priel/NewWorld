@@ -131,10 +131,15 @@ namespace Temp
 		break;
 		case 1:
 		{
-			NewWorld::Graphics::EditorDraw::DrawLine(100, 100, 200, 200, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(100, 100, 100, 100, GetBackgroundColor(), 10);
 		}
 		break;
 		case 2:
+		{
+			NewWorld::Graphics::EditorDraw::DrawLine(100, 100, 200, 200, GetBackgroundColor());
+		}
+		break;
+		case 3:
 		{
 			NewWorld::Graphics::EditorDraw::DrawLine(100, 10, 200, 10, GetBackgroundColor(), 1);
 			NewWorld::Graphics::EditorDraw::DrawLine(100, 20, 200, 20, GetBackgroundColor(), 2);
@@ -142,6 +147,11 @@ namespace Temp
 			NewWorld::Graphics::EditorDraw::DrawLine(100, 40, 200, 40, GetBackgroundColor(), 4);
 			NewWorld::Graphics::EditorDraw::DrawLine(100, 50, 200, 50, GetBackgroundColor(), 5);
 			NewWorld::Graphics::EditorDraw::DrawLine(100, 60, 200, 60, GetBackgroundColor(), 10);
+		}
+		break;
+		default:
+		{
+
 		}
 		break;
 		}
