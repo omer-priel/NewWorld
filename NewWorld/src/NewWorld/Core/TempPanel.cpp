@@ -149,6 +149,16 @@ namespace Temp
 			NewWorld::Graphics::EditorDraw::DrawLine(100, 60, 200, 60, GetBackgroundColor(), 10);
 		}
 		break;
+		case 4:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(0, 0, 100, 100, GetBackgroundColor(), 10);
+		}
+		break;
+		case 5:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(0, 0, 100, 100, GetBackgroundColor(), 20);
+		}
+		break;
 		default:
 		{
 

@@ -69,6 +69,11 @@ namespace NewWorld::Graphics
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth)
 	{
+		x += lineWidth / 2;
+		y += lineWidth / 2;
+		//width -= lineWidth / 2;
+		//height -= lineWidth / 2;
+
 		// v1 v2
 		// v3 v4
 		Vector4 v1 = GetCoordinate(window, x, y);
