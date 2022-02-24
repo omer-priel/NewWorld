@@ -1,0 +1,122 @@
+#include "nwpch.h"
+#include "TempPanel.h"
+
+#include "NewWorld/Graphics/EditorDraw.h"
+
+namespace Temp
+{
+	TempPanel::TempPanel(int xPos, int yPos)
+		: NewWorld::Editor::UI::Panel(xPos - 20, yPos - 20, 40, 40), m_ID(s_LastID)
+	{
+		using namespace NewWorld;
+
+		switch (m_ID % 8)
+		{
+		case 0:
+			SetBackgroundColor(Graphics::Colors::CobaltBlue);
+			break;
+		case 1:
+			SetBackgroundColor(Graphics::Colors::NavyBlue);
+			break;
+		case 2:
+			SetBackgroundColor(Graphics::Colors::RoyalBlue);
+			break;
+		case 3:
+			SetBackgroundColor(Graphics::Colors::Gold);
+			break;
+		case 4:
+			SetBackgroundColor(Graphics::Colors::Silver);
+			break;
+		case 5:
+			SetBackgroundColor(Graphics::Colors::Coral);
+			break;
+		case 6:
+			SetBackgroundColor(Graphics::Colors::ForestGreen);
+			break;
+		case 7:
+			SetBackgroundColor(Graphics::Colors::DarkRed);
+			break;
+		}
+
+		s_LastID++;
+
+		SetClickHandler([](NewWorld::Editor::Component & sender) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Click", panel.m_ID);
+			});
+
+		SetMouseKeyReleasedHandler([](NewWorld::Editor::Component& sender, Input::Key key, uint xPos, uint yPos) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Mouse Key Released", panel.m_ID);
+			});
+
+		SetKeyReleasedHandler([](NewWorld::Editor::Component& sender, Input::Key key) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Key Released", panel.m_ID);
+			});
+
+
+		SetMouseHoverHandler([](NewWorld::Editor::Component& sender, uint xPos, uint yPos) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Hover ({}, {})", panel.m_ID, xPos, yPos);
+			});
+
+		SetMouseScrolledHandler([](NewWorld::Editor::Component& sender, int y) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Scrolled {}", panel.m_ID, y);
+			});
+
+		SetEnterHandler([](NewWorld::Editor::Component& sender) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Enter", panel.m_ID);
+			});
+
+		SetLeaveHandler([](NewWorld::Editor::Component& sender) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Leave", panel.m_ID);
+			});
+
+		SetCreateHandler([](NewWorld::Editor::Component& sender) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Create", panel.m_ID);
+			});
+
+		SetDestroyHandler([](NewWorld::Editor::Component& sender) {
+			TempPanel& panel = (TempPanel&)sender;
+			NW_WARN(NW_LOGGER_CORE, "{} Destroy", panel.m_ID);
+			});
+	}
+
+	// Events
+	void TempPanel::Update()
+	{
+		NewWorld::Editor::UI::Panel::Update();
+
+		switch (m_State)
+		{
+		case 0:
+		{
+			NewWorld::Graphics::EditorDraw::DrawRectangle(-50, -50, 100, 100, GetBackgroundColor());
+		}
+		break;
+		case 1:
+		{
+			NewWorld::Graphics::EditorDraw::DrawRectangle(0, 0, 100, 100, GetBackgroundColor());
+		}
+		break;
+		case 2:
+		{
+			NewWorld::Graphics::EditorDraw::DrawRectangle(50, 50, 100, 100, GetBackgroundColor());
+		}
+		break;
+		}
+	}
+
+	void TempPanel::Click()
+	{
+		NewWorld::Editor::UI::Panel::Click();
+
+		m_State = (m_State + 1) % STATES_COUNT;
+		NW_WARN(NW_LOGGER_CORE, "{} State: {}", m_ID, m_State);
+	}
+}

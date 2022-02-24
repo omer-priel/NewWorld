@@ -29,15 +29,7 @@ namespace NewWorld::Editor
 			Component::Destroy();
 		}
 
-		virtual void Update() override
-		{
-			for (SharedPointer<Component>& component : m_Components)
-			{
-				component->Update();
-			}
-
-			Component::Update();
-		}
+		virtual void Update() override;
 
 		// Virtual functions
 	public:

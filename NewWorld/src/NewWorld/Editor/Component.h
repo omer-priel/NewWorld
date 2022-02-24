@@ -63,10 +63,7 @@ namespace NewWorld::Editor
 
 		// Getters
 	public:
-		RawPointer<EditorWindow> GetWindow() const
-		{
-			return m_Window;
-		}
+		RawPointer<EditorWindow> GetWindow() const { return m_Window; }
 
 		inline uint GetX() const { return m_X; }
 		inline uint GetY() const { return m_Y; }
@@ -81,7 +78,10 @@ namespace NewWorld::Editor
 
 		// Setters
 	public:
-		void SetWindow(RawPointer<EditorWindow> window) {m_Window = window; }
+		void SetWindow(RawPointer<EditorWindow> window)
+		{
+			m_Window = window;
+		}
 
 		void SetCreateHandler(Events::EventHandler handler) { m_CreateHandler = handler; }
 		void SetDestroyHandler(Events::EventHandler handler) { m_DestroyHandler = handler; }

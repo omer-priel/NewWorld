@@ -9,9 +9,12 @@
 namespace NewWorld::Graphics
 {
 	// Local
-	void EditorDraw::DrawRectangle(LocalPainter& localPainter, int x, int y, uint width, uint height, const Graphics::Color& color)
+	void EditorDraw::DrawRectangle(int x, int y, uint width, uint height, const Graphics::Color& color)
 	{
-		DrawRectangle(localPainter.GetWindow(), x, y, width, height, color);
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawRectangle(LocalPainter::GetWindow(), x, y, width, height, color);
 	}
 
 	// Global

@@ -1,6 +1,8 @@
 #include "nwpch.h"
 #include "EditorWindow.h"
 
+#include "NewWorld/Graphics/LocalPainter.h"
+
 namespace NewWorld::Editor
 {
 	void EditorWindow::Close()
@@ -20,6 +22,8 @@ namespace NewWorld::Editor
 	void EditorWindow::Update()
 	{
 		Window::Update();
+
+		Graphics::LocalPainter::ChangeWindow(this);
 
 		m_MainPanel.Update();
 	}
