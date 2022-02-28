@@ -18,6 +18,12 @@ namespace NewWorld::Graphics
 
 		static void DrawRectangle(int x, int y, uint width, uint height, const Graphics::Color& color);
 		static void DrawOutlineRectangle(int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth = 1);
+		
+		static void DrawEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color);
+		static void DrawOutlineEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth = 1);
+
+		static void DrawOval(int x, int y, uint radius, const Graphics::Color& color);
+		static void DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth = 1);
 
 		// Actions Global
 	private:
@@ -25,6 +31,9 @@ namespace NewWorld::Graphics
 
 		static void DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color);
 		static void DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth);
+
+		static void DrawEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color);
+		static void DrawOutlineEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth = 1);
 
 		// Utilities
 	private:

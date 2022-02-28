@@ -27,7 +27,8 @@ namespace NewWorld::Graphics
 		DrawFillRectangle(LocalPainter::GetWindow(), x, y, width, height, color);
 	}
 
-	void EditorDraw::DrawOutlineRectangle(int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth)
+	void EditorDraw::DrawOutlineRectangle(int x, int y, 
+		uint width, uint height, const Graphics::Color& color, uint lineWidth)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
@@ -35,8 +36,42 @@ namespace NewWorld::Graphics
 		DrawOutlineRectangle(LocalPainter::GetWindow(), x, y, width, height, color, lineWidth);
 	}
 
+	void EditorDraw::DrawEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawEllipse(LocalPainter::GetWindow(), x, y, radiusX, radiusY, color);
+	}
+
+	void EditorDraw::DrawOutlineEllipse(int x, int y,
+		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawOutlineEllipse(LocalPainter::GetWindow(), x, y, radiusX, radiusY, color, lineWidth);
+	}
+
+	void EditorDraw::DrawOval(int x, int y, uint radius, const Graphics::Color& color)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawEllipse(LocalPainter::GetWindow(), x, y, radius, radius, color);
+	}
+
+	void EditorDraw::DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawOutlineEllipse(LocalPainter::GetWindow(), x, y, radius, radius, color, lineWidth);
+	}
+
 	// Global
-	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
+	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, 
+		int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
 	{
 		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
 
@@ -62,7 +97,8 @@ namespace NewWorld::Graphics
 		AfterDraw();
 	}
 
-	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color)
+	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
+		uint width, uint height, const Graphics::Color& color)
 	{
 		Vector4 v1 = GetCoordinate(window, x, y);
 		Vector4 v2 = GetCoordinate(window, x + width, y);
@@ -91,7 +127,8 @@ namespace NewWorld::Graphics
 
 	}
 
-	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth)
+	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
+		uint width, uint height, const Graphics::Color& color, uint lineWidth)
 	{
 		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
 
@@ -133,6 +170,22 @@ namespace NewWorld::Graphics
 		glDisableClientState(GL_VERTEX_ARRAY);
 
 		AfterDraw();
+	}
+
+	void EditorDraw::DrawEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
+		uint radiusX, uint radiusY, const Graphics::Color& color)
+	{
+		BeforeDraw();
+
+
+
+		AfterDraw();
+	}
+
+	void EditorDraw::DrawOutlineEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
+		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth)
+	{
+
 	}
 
 	// Utilities
