@@ -73,30 +73,32 @@ namespace NewWorld::Graphics
 	{
 		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
 
-		x += lineWidth / 2;
-		y += lineWidth / 2;
-		width -= lineWidth / 2;
-		height -= lineWidth / 2;
+		uint halfLineWidth = lineWidth / 2;
 
-		// v1 v2
-		// v3 v4
-		Vector4 v1 = GetCoordinate(window, x, y);
-		Vector4 v2 = GetCoordinate(window, x + width, y);
-		Vector4 v3 = GetCoordinate(window, x, y + height);
-		Vector4 v4 = GetCoordinate(window, x + width, y + height);
+		Vector4 vUp1 = GetCoordinate(window, x, y + halfLineWidth);
+		Vector4 vUp2 = GetCoordinate(window, x + width, y + halfLineWidth);
+
+		Vector4 vDown1 = GetCoordinate(window, x, y + height - halfLineWidth);
+		Vector4 vDown2 = GetCoordinate(window, x + width, y + height - halfLineWidth);
+
+		Vector4 vLeft1 = GetCoordinate(window, x + halfLineWidth, y + lineWidth);
+		Vector4 vLeft2 = GetCoordinate(window, x + halfLineWidth, y + height - lineWidth);
+
+		Vector4 vRight1 = GetCoordinate(window, x + width - halfLineWidth, y + lineWidth);
+		Vector4 vRight2 = GetCoordinate(window, x + width - halfLineWidth, y + height - lineWidth);
 
 		GLfloat lineVertices[] = {
-			v1.x, v1.y, 0,
-			v2.x, v2.y, 0,
+			vUp1.x, vUp1.y, 0,
+			vUp2.x, vUp2.y, 0,
 			
-			v2.x, v2.y, 0,
-			v4.x, v4.y, 0,
+			vDown1.x, vDown1.y, 0,
+			vDown2.x, vDown2.y, 0,
 			
-			v4.x, v4.y, 0,
-			v3.x, v3.y, 0,
+			vLeft1.x, vLeft1.y, 0,
+			vLeft2.x, vLeft2.y, 0,
 
-			v3.x, v3.y, 0,
-			v1.x, v1.y, 0
+			vRight1.x, vRight1.y, 0,
+			vRight2.x, vRight2.y, 0
 		};
 
 		glLineWidth(lineWidth);
