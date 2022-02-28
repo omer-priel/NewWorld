@@ -175,11 +175,33 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint radiusX, uint radiusY, const Graphics::Color& color)
 	{
-		BeforeDraw();
+		uint steps = 50;
+		float radius = 0.5f;
+		float radius2 = 0.25f;
 
+		float angle = 3.141 * 2.0f / steps;
 
+		float prevX = 0, prevY = 0 - radius2;
 
-		AfterDraw();
+		radius = radius * 2;
+		radius2 = radius2 * 2;
+
+		for (uint i = 0; i <= steps; i++)
+		{
+			glBegin(GL_TRIANGLES);
+			glColor4f(color.r, color.g, color.b, color.a);
+			glVertex3f(0, 0, 0);
+			glVertex3f(prevX, prevY, 0);
+			
+			prevX = radius * sin(angle * i);
+			prevY = radius2 * cos(angle * i);
+
+			glVertex3f(prevX, prevY, 0);
+
+			glEnd();
+		}
+
+		//AfterDraw();
 	}
 
 	void EditorDraw::DrawOutlineEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
