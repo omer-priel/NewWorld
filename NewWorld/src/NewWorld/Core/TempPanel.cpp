@@ -173,6 +173,24 @@ namespace Temp
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(0, 0, 100, 100, GetBackgroundColor(), 10);
 		}
 		break;
+		case 9:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(40, 40, 20, 20, Graphics::Colors::Gold, 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(30, 30, 40, 40, Graphics::Colors::Transparency, 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(20, 20, 60, 60, Graphics::Colors::DarkGreen, 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(10, 10, 80, 80, Graphics::Colors::DarkRed, 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(0, 0, 100, 100, GetBackgroundColor(), 10);
+		}
+		break;
+		case 10:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(40, 40, 20, 20, Graphics::Colors::Gold, 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(30, 30, 40, 40, Graphics::ColorFunctions::FromRGB(255, 0, 0, 128), 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(20, 20, 60, 60, Graphics::Colors::DarkGreen, 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(10, 10, 80, 80, Graphics::Colors::DarkRed, 10);
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(0, 0, 100, 100, GetBackgroundColor(), 10);
+		}
+		break;
 		default:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(1, 1, 100, 100, GetBackgroundColor(), 10);

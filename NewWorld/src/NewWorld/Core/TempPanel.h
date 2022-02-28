@@ -13,7 +13,7 @@ namespace Temp
 		NW_CLASS(Temp, TempPanel)
 	
 	private:
-		const NewWorld::uint STATES_COUNT = 10;
+		const NewWorld::uint STATES_COUNT = 20;
 
 	private:
 		NewWorld::uint m_ID = 0;

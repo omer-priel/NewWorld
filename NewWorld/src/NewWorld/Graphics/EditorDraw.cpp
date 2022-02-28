@@ -101,10 +101,12 @@ namespace NewWorld::Graphics
 			vRight2.x, vRight2.y, 0
 		};
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_SRC_COLOR);
 		glLineWidth(lineWidth);
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, lineVertices);
-		glColor3f(color.r, color.g, color.b);
+		glColor4f(color.r, color.g, color.b, color.a);
 		glDrawArrays(GL_LINES, 0, 2*4);
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
