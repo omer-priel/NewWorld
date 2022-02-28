@@ -111,6 +111,27 @@ namespace NewWorld::Graphics
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 
+	void EditorDraw::Test()
+	{
+		auto window = LocalPainter::GetWindow();
+
+		glBegin(GL_QUADS);
+		glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+		AddCoordinate(window, 100, 100);
+		AddCoordinate(window, 400, 100);
+		AddCoordinate(window, 400, 400);
+		AddCoordinate(window, 100, 400);
+		glEnd();
+
+		glBegin(GL_QUADS);
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		AddCoordinate(window, 200, 200);
+		AddCoordinate(window, 300, 200);
+		AddCoordinate(window, 300, 300);
+		AddCoordinate(window, 200, 300);
+		glEnd();
+	}
+
 	// Utilities
 	Vector4 EditorDraw::GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
 	{

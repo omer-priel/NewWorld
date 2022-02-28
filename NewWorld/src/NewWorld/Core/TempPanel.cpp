@@ -126,7 +126,7 @@ namespace Temp
 		{
 		case 0:
 		{
-			NewWorld::Graphics::EditorDraw::DrawRectangle(-50, -50, 100, 100, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::Test();
 		}
 		break;
 		case 1:
