@@ -175,24 +175,27 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint radiusX, uint radiusY, const Graphics::Color& color)
 	{
-		uint steps = 50;
+		uint verticesCount = radiusX;
 		float radius = 0.5f;
 		float radius2 = 0.25f;
 
-		float angle = 3.141 * 2.0f / steps;
+		float c1 = cos(0);
+		float s1 = sin(0);
+
+		float angle = 3.141 * 2.0f / verticesCount;
 
 		float prevX = 0, prevY = 0 - radius2;
 
 		radius = radius * 2;
 		radius2 = radius2 * 2;
 
-		for (uint i = 0; i <= steps; i++)
+		for (uint i = 0; i <= verticesCount; i++)
 		{
 			glBegin(GL_TRIANGLES);
 			glColor4f(color.r, color.g, color.b, color.a);
 			glVertex3f(0, 0, 0);
 			glVertex3f(prevX, prevY, 0);
-			
+
 			prevX = radius * sin(angle * i);
 			prevY = radius2 * cos(angle * i);
 
@@ -207,7 +210,53 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawOutlineEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth)
 	{
+		uint verticesCount = radiusX;
+		float radius = 0.5f;
+		float radius2 = 0.25f;
 
+		float newX = 0.0f;
+		float newY = 0.0f;
+
+		double p = 0 * 3.141 / 180;
+
+		//  Calculate the sine and cosine of the inclination angle.
+		float c1 = cos(p);
+		float s1 = sin(p);
+
+		//  Calculate the parametric increment.
+		p = 2 * 3.141 / verticesCount;
+
+		//  Calculate the sine and cosine of the parametric increment.
+		float c2 = cos(p);
+		float s2 = sin(p);
+
+		//  Initialize the accumulation variables.
+		float c3 = 1;
+		float s3 = 0;
+
+		//  Begin rendering the ellipse.
+		glBegin(GL_LINE_LOOP);
+		for (int m = 0; m <= verticesCount; m++) {
+			//  Calculate increments in X & Y.
+			float x1 = radius * c3;
+			float y1 = radius2 * s3;
+
+			//  Calculate new X & Y.
+			float xm = newX + x1 * c1 - y1 * s1;
+			float ym = newY + x1 * s1 + y1 * c1;
+
+			//  Draw the next line segment.
+			glColor4f(color.r, color.g, color.b, color.a);
+			glVertex3f(xm, ym, 0);
+
+			//  Calculate new angle values.
+			float t1 = c3 * c2 - s3 * s2;
+			s3 = s3 * c2 + c3 * s2;
+			c3 = t1;
+		}
+		glEnd();
+
+		//AfterDraw();
 	}
 
 	// Utilities
