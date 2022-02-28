@@ -48,6 +48,8 @@ namespace NewWorld::Graphics
 			v2.x, v2.y, 0
 		};
 
+		BeforeDraw();
+
 		glEnable(GL_LINE_SMOOTH);
 		glLineWidth(lineWidth);
 		glEnableClientState(GL_VERTEX_ARRAY);
@@ -56,17 +58,37 @@ namespace NewWorld::Graphics
 		glDrawArrays(GL_LINES, 0, 2);
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glDisable(GL_LINE_SMOOTH);
+
+		AfterDraw();
 	}
 
 	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color)
 	{
-		glBegin(GL_QUADS);
-		glColor3f(color.r, color.g, color.b);
-		AddCoordinate(window, x, y);
-		AddCoordinate(window, x + width, y);
-		AddCoordinate(window, x + width, y + height);
-		AddCoordinate(window, x, y + height);
-		glEnd();
+		Vector4 v1 = GetCoordinate(window, x, y);
+		Vector4 v2 = GetCoordinate(window, x + width, y);
+		Vector4 v3 = GetCoordinate(window, x, y + height);
+		Vector4 v4 = GetCoordinate(window, x + width, y + height);
+
+		GLfloat vertices[] = {
+			v1.x, v1.y, 0,
+			v2.x, v2.y, 0,
+			v4.x, v4.y, 0,
+
+			v1.x, v1.y, 0,
+			v3.x, v3.y, 0,
+			v4.x, v4.y, 0
+		};
+
+		BeforeDraw();
+
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glVertexPointer(3, GL_FLOAT, 0, vertices);
+		glColor4f(color.r, color.g, color.b, color.a);
+		glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
+		glDisableClientState(GL_VERTEX_ARRAY);
+
+		AfterDraw();
+
 	}
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth)
@@ -101,38 +123,30 @@ namespace NewWorld::Graphics
 			vRight2.x, vRight2.y, 0
 		};
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_ONE, GL_SRC_COLOR);
+		BeforeDraw();
+
 		glLineWidth(lineWidth);
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, lineVertices);
 		glColor4f(color.r, color.g, color.b, color.a);
 		glDrawArrays(GL_LINES, 0, 2*4);
 		glDisableClientState(GL_VERTEX_ARRAY);
-	}
 
-	void EditorDraw::Test()
-	{
-		auto window = LocalPainter::GetWindow();
-
-		glBegin(GL_QUADS);
-		glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-		AddCoordinate(window, 100, 100);
-		AddCoordinate(window, 400, 100);
-		AddCoordinate(window, 400, 400);
-		AddCoordinate(window, 100, 400);
-		glEnd();
-
-		glBegin(GL_QUADS);
-		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-		AddCoordinate(window, 200, 200);
-		AddCoordinate(window, 300, 200);
-		AddCoordinate(window, 300, 300);
-		AddCoordinate(window, 200, 300);
-		glEnd();
+		AfterDraw();
 	}
 
 	// Utilities
+	void EditorDraw::BeforeDraw()
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+
+	void EditorDraw::AfterDraw()
+	{
+		glDisable(GL_BLEND);
+	}
+
 	Vector4 EditorDraw::GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
 	{
 		Matrix4 proj = window->GetProjectionMatrix();
