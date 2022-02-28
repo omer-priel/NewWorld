@@ -190,7 +190,7 @@ namespace Temp
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(10, 10, 80, 80, Graphics::Colors::DarkRed, 10);
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(0, 0, 100, 100, GetBackgroundColor(), 10);
 
-			NewWorld::Graphics::EditorDraw::DrawRectangle(0, 0, 100, 100, Graphics::ColorFunctions::FromRGB(255, 0, 0, 128));
+			NewWorld::Graphics::EditorDraw::DrawRectangle(0, 0, 100, 100, Graphics::ColorFunctions::FromRGB(255, 255, 255, 128));
 		}
 		break;
 		default:
