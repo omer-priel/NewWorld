@@ -66,6 +66,7 @@ namespace NewWorld
 #include "NewWorld/Math/Matrix3.h"
 #include "NewWorld/Math/Matrix4.h"
 #include "NewWorld/Math/Constants.h"
+#include "NewWorld/Math/Functions.h"
 
 namespace NewWorld
 {

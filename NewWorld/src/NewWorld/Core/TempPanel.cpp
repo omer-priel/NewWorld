@@ -165,6 +165,16 @@ namespace Temp
 		break;
 		case 5:
 		{
+			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(200, 400, 100, 100, Math::DegreesToRadians(60), Math::DegreesToRadians(240), GetBackgroundColor());
+		}
+		break;
+		case 6:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(200, 400, 100, 100, Math::DegreesToRadians(60), Math::DegreesToRadians(240), GetBackgroundColor());
+		}
+		break;
+		case 7:
+		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(100, 100, 100, 100, GetBackgroundColor(), 10);
 		}
 		break;
