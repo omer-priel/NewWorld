@@ -231,7 +231,7 @@ namespace NewWorld::Graphics
 		BeforeDraw();
 
 		glLineWidth(lineWidth);
-		glBegin(GL_LINE_LOOP);
+		glBegin(GL_LINE_STRIP);
 		glColor4f(color.r, color.g, color.b, color.a);
 
 		float angle = angleStart;
