@@ -165,15 +165,66 @@ namespace Temp
 		break;
 		case 5:
 		{
-			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(200, 400, 100, 100, Math::DegreesToRadians(60), Math::DegreesToRadians(240), GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(200, 400, 100, 100, Math::DegreesToRadians(60), Math::DegreesToRadians(180), GetBackgroundColor());
 		}
 		break;
 		case 6:
 		{
-			NewWorld::Graphics::EditorDraw::DrawArc(200, 400, 100, 100, Math::DegreesToRadians(60), Math::DegreesToRadians(240), GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawArc(200, 400, 100, 100, Math::DegreesToRadians(60), Math::DegreesToRadians(180), GetBackgroundColor());
 		}
 		break;
 		case 7:
+		{
+			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(200, 400, 100, 100, 
+				Math::DegreesToRadians(m_dynamicAngle), Math::DegreesToRadians(60), GetBackgroundColor());
+
+			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle), Math::DegreesToRadians(60), Graphics::Colors::DarkRed);
+
+			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle + 120), Math::DegreesToRadians(60), Graphics::Colors::Magenta);
+
+			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle + 240), Math::DegreesToRadians(60), Graphics::Colors::NavyBlue);
+
+			m_dynamicAngle = (m_dynamicAngle+1) % 360;
+		}
+		break;
+		case 8:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(200, 400, 100, 100, 
+				Math::DegreesToRadians(m_dynamicAngle), Math::DegreesToRadians(60), GetBackgroundColor());
+
+			NewWorld::Graphics::EditorDraw::DrawArc(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle), Math::DegreesToRadians(60), Graphics::Colors::DarkRed);
+
+			NewWorld::Graphics::EditorDraw::DrawArc(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle + 120), Math::DegreesToRadians(60), Graphics::Colors::Magenta);
+
+			NewWorld::Graphics::EditorDraw::DrawArc(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle + 240), Math::DegreesToRadians(60), Graphics::Colors::NavyBlue);
+
+			m_dynamicAngle = (m_dynamicAngle + 1) % 360;
+		}
+		break;
+		case 9:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(200, 400, 100, 100,
+				Math::DegreesToRadians(m_dynamicAngle), Math::DegreesToRadians(60), GetBackgroundColor(), 5);
+
+			NewWorld::Graphics::EditorDraw::DrawArc(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle), Math::DegreesToRadians(60), Graphics::Colors::DarkRed, 5);
+
+			NewWorld::Graphics::EditorDraw::DrawArc(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle + 120), Math::DegreesToRadians(60), Graphics::Colors::Magenta, 5);
+
+			NewWorld::Graphics::EditorDraw::DrawArc(600, 400, 200, 200,
+				Math::DegreesToRadians(m_dynamicAngle + 240), Math::DegreesToRadians(60), Graphics::Colors::NavyBlue, 5);
+
+			m_dynamicAngle = (m_dynamicAngle + 1) % 360;
+		}
+		break;
+		case 10:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(100, 100, 100, 100, GetBackgroundColor(), 10);
 		}

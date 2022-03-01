@@ -36,20 +36,20 @@ namespace NewWorld::Graphics
 		DrawOutlineRectangle(LocalPainter::GetWindow(), x, y, width, height, color, lineWidth);
 	}
 
-	void EditorDraw::DrawEllipseSlice(int x, int y, uint radiusX, uint radiusY, float angleStart, float angleEnd, const Graphics::Color& color, uint verticesCount)
+	void EditorDraw::DrawEllipseSlice(int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawEllipseSlice(LocalPainter::GetWindow(), x, y, radiusX, radiusY, angleStart, angleEnd, color, verticesCount);
+		DrawEllipseSlice(LocalPainter::GetWindow(), x, y, radiusX, radiusY, angleStart, angleLength, color, verticesCount);
 	}
 	
-	void EditorDraw::DrawArc(int x, int y, uint radiusX, uint radiusY, float angleStart, float angleEnd, const Graphics::Color& color, uint lineWidth, uint verticesCount)
+	void EditorDraw::DrawArc(int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawArc(LocalPainter::GetWindow(), x, y, radiusX, radiusY, angleStart, angleEnd, color, lineWidth, verticesCount);
+		DrawArc(LocalPainter::GetWindow(), x, y, radiusX, radiusY, angleStart, angleLength, color, lineWidth, verticesCount);
 	}
 
 	void EditorDraw::DrawEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount)
@@ -189,19 +189,19 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y,
-		uint radiusX, uint radiusY, float angleStart, float angleEnd, const Graphics::Color& color, uint verticesCount)
+		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount)
 	{
 		Vector2 center = GetCoordinate(window, x, y);
 		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
-
-		Vector2 prevVertice(center.x, center.y - diameter.y / 2);
 
 		BeforeDraw();
 
 		glColor4f(color.r, color.g, color.b, color.a);
 
 		float angle = angleStart;
-		float angleStep = (angleEnd - angleStart) / verticesCount;
+		float angleStep = angleLength / verticesCount;
+
+		Vector2 prevVertice(center.x + diameter.x * sin(angle), center.y + diameter.y * cos(angle));
 
 		for (uint i = 0; i <= verticesCount; i++)
 		{
@@ -223,7 +223,7 @@ namespace NewWorld::Graphics
 	}
 	
 	void EditorDraw::DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y,
-		uint radiusX, uint radiusY, float angleStart, float angleEnd, const Graphics::Color& color, uint lineWidth, uint verticesCount)
+		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
 		Vector2 center = GetCoordinate(window, x, y);
 		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
@@ -235,7 +235,7 @@ namespace NewWorld::Graphics
 		glColor4f(color.r, color.g, color.b, color.a);
 
 		float angle = angleStart;
-		float angleStep = (angleEnd - angleStart) / verticesCount;
+		float angleStep = angleLength / verticesCount;
 
 		for (uint i = 0; i <= verticesCount; i++)
 		{
