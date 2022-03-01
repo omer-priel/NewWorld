@@ -40,7 +40,7 @@ namespace NewWorld::Graphics
 		static void BeforeDraw();
 		static void AfterDraw();
 		
-		static Vector4 GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y);
+		static Vector2 GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y);
 
 		static void AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y);
 	};

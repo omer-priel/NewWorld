@@ -75,12 +75,12 @@ namespace NewWorld::Graphics
 	{
 		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
 
-		Vector4 v1 = GetCoordinate(window, x1, y1);
-		Vector4 v2 = GetCoordinate(window, x2, y2);
+		Vector2 v1 = GetCoordinate(window, x1, y1);
+		Vector2 v2 = GetCoordinate(window, x2, y2);
 
 		GLfloat lineVertices[] = {
-			v1.x, v1.y, 0,
-			v2.x, v2.y, 0
+			v1.x, v1.y,
+			v2.x, v2.y
 		};
 
 		BeforeDraw();
@@ -88,8 +88,8 @@ namespace NewWorld::Graphics
 		glEnable(GL_LINE_SMOOTH);
 		glLineWidth(lineWidth);
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, lineVertices);
-		glColor3f(color.r, color.g, color.b);
+		glVertexPointer(2, GL_FLOAT, 0, lineVertices);
+		glColor4f(color.r, color.g, color.b, color.a);
 		glDrawArrays(GL_LINES, 0, 2);
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glDisable(GL_LINE_SMOOTH);
@@ -100,25 +100,25 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint width, uint height, const Graphics::Color& color)
 	{
-		Vector4 v1 = GetCoordinate(window, x, y);
-		Vector4 v2 = GetCoordinate(window, x + width, y);
-		Vector4 v3 = GetCoordinate(window, x, y + height);
-		Vector4 v4 = GetCoordinate(window, x + width, y + height);
+		Vector2 v1 = GetCoordinate(window, x, y);
+		Vector2 v2 = GetCoordinate(window, x + width, y);
+		Vector2 v3 = GetCoordinate(window, x, y + height);
+		Vector2 v4 = GetCoordinate(window, x + width, y + height);
 
 		GLfloat vertices[] = {
-			v1.x, v1.y, 0,
-			v2.x, v2.y, 0,
-			v4.x, v4.y, 0,
+			v1.x, v1.y,
+			v2.x, v2.y,
+			v4.x, v4.y,
 
-			v1.x, v1.y, 0,
-			v3.x, v3.y, 0,
-			v4.x, v4.y, 0
+			v1.x, v1.y,
+			v3.x, v3.y,
+			v4.x, v4.y
 		};
 
 		BeforeDraw();
 
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, vertices);
+		glVertexPointer(2, GL_FLOAT, 0, vertices);
 		glColor4f(color.r, color.g, color.b, color.a);
 		glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -134,37 +134,37 @@ namespace NewWorld::Graphics
 
 		uint halfLineWidth = lineWidth / 2;
 
-		Vector4 vUp1 = GetCoordinate(window, x, y + halfLineWidth);
-		Vector4 vUp2 = GetCoordinate(window, x + width, y + halfLineWidth);
+		Vector2 vUp1 = GetCoordinate(window, x, y + halfLineWidth);
+		Vector2 vUp2 = GetCoordinate(window, x + width, y + halfLineWidth);
 
-		Vector4 vDown1 = GetCoordinate(window, x, y + height - halfLineWidth);
-		Vector4 vDown2 = GetCoordinate(window, x + width, y + height - halfLineWidth);
+		Vector2 vDown1 = GetCoordinate(window, x, y + height - halfLineWidth);
+		Vector2 vDown2 = GetCoordinate(window, x + width, y + height - halfLineWidth);
 
-		Vector4 vLeft1 = GetCoordinate(window, x + halfLineWidth, y + lineWidth);
-		Vector4 vLeft2 = GetCoordinate(window, x + halfLineWidth, y + height - lineWidth);
+		Vector2 vLeft1 = GetCoordinate(window, x + halfLineWidth, y + lineWidth);
+		Vector2 vLeft2 = GetCoordinate(window, x + halfLineWidth, y + height - lineWidth);
 
-		Vector4 vRight1 = GetCoordinate(window, x + width - halfLineWidth, y + lineWidth);
-		Vector4 vRight2 = GetCoordinate(window, x + width - halfLineWidth, y + height - lineWidth);
+		Vector2 vRight1 = GetCoordinate(window, x + width - halfLineWidth, y + lineWidth);
+		Vector2 vRight2 = GetCoordinate(window, x + width - halfLineWidth, y + height - lineWidth);
 
 		GLfloat lineVertices[] = {
-			vUp1.x, vUp1.y, 0,
-			vUp2.x, vUp2.y, 0,
+			vUp1.x, vUp1.y,
+			vUp2.x, vUp2.y,
 			
-			vDown1.x, vDown1.y, 0,
-			vDown2.x, vDown2.y, 0,
+			vDown1.x, vDown1.y,
+			vDown2.x, vDown2.y,
 			
-			vLeft1.x, vLeft1.y, 0,
-			vLeft2.x, vLeft2.y, 0,
+			vLeft1.x, vLeft1.y,
+			vLeft2.x, vLeft2.y,
 
-			vRight1.x, vRight1.y, 0,
-			vRight2.x, vRight2.y, 0
+			vRight1.x, vRight1.y,
+			vRight2.x, vRight2.y
 		};
 
 		BeforeDraw();
 
 		glLineWidth(lineWidth);
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, lineVertices);
+		glVertexPointer(2, GL_FLOAT, 0, lineVertices);
 		glColor4f(color.r, color.g, color.b, color.a);
 		glDrawArrays(GL_LINES, 0, 2*4);
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -175,30 +175,32 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount)
 	{
-		float radius = 0.5f;
-		float radius2 = 0.25f;
+		Vector2 center(0, 0);
+		Vector2 radius(0.5f, 0.25f);
 
 		float c1 = cos(0);
 		float s1 = sin(0);
 
 		float angle = 3.141 * 2.0f / verticesCount;
 
-		float prevX = 0, prevY = 0 - radius2;
+		Vector2 firstVertice(center.x, center.y - radius.y);
+		Vector2 prevVertice(firstVertice);
 
-		radius = radius * 2;
-		radius2 = radius2 * 2;
+		radius.x *= 2;
+		radius.y *= 2;
+
+		glColor4f(color.r, color.g, color.b, color.a);
 
 		for (uint i = 0; i <= verticesCount; i++)
 		{
 			glBegin(GL_TRIANGLES);
-			glColor4f(color.r, color.g, color.b, color.a);
-			glVertex3f(0, 0, 0);
-			glVertex3f(prevX, prevY, 0);
+			glVertex2f(0, 0);
+			glVertex2f(prevVertice.x, prevVertice.y);
 
-			prevX = radius * sin(angle * i);
-			prevY = radius2 * cos(angle * i);
+			prevVertice.x = radius.x * sin(angle * i);
+			prevVertice.y = radius.y * cos(angle * i);
 
-			glVertex3f(prevX, prevY, 0);
+			glVertex2f(prevVertice.x, prevVertice.y);
 
 			glEnd();
 		}
@@ -247,7 +249,7 @@ namespace NewWorld::Graphics
 			float ym = newY + x1 * s1 + y1 * c1;
 
 			//  Draw the next line segment.
-			glVertex3f(xm, ym, 0);
+			glVertex2f(xm, ym);
 
 			//  Calculate new angle values.
 			float t1 = c3 * c2 - s3 * s2;
@@ -271,16 +273,16 @@ namespace NewWorld::Graphics
 		glDisable(GL_BLEND);
 	}
 
-	Vector4 EditorDraw::GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
+	Vector2 EditorDraw::GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
 	{
 		Matrix4 proj = window->GetProjectionMatrix();
-
-		return Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
+		Vector4 vec4 = Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
+		return vec4;
 	}
 
 	void EditorDraw::AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
 	{
-		Vector4 coordinate = GetCoordinate(window, x, y);
+		Vector2 coordinate = GetCoordinate(window, x, y);
 		glVertex2f(coordinate.x, coordinate.y);
 	}
 }
