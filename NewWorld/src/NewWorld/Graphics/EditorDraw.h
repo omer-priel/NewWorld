@@ -28,6 +28,8 @@ namespace NewWorld::Graphics
 		static void DrawOval(int x, int y, uint radius, const Graphics::Color& color, uint verticesCount = 64);
 		static void DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
 
+		static void DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text);
+
 		// Actions Global
 	private:
 		static void DrawLine(RawPointer<Editor::EditorWindow> window, int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth);
@@ -38,6 +40,8 @@ namespace NewWorld::Graphics
 		static void DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount = 64);
 		static void DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
 		
+		static void DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text);
+
 		// Utilities
 	private:
 		static void BeforeDraw();

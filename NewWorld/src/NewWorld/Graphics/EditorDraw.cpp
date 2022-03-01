@@ -85,6 +85,14 @@ namespace NewWorld::Graphics
 		DrawArc(LocalPainter::GetWindow(), x, y, radius, radius, 0, NewWorld::Math::PI_2, color, lineWidth, verticesCount);
 	}
 
+	void EditorDraw::DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawString(LocalPainter::GetWindow(), x, y, width, height, color, text);
+	}
+
 	// Global
 	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, 
 		int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
@@ -251,6 +259,16 @@ namespace NewWorld::Graphics
 
 		AfterDraw();
 	}
+
+	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
+	{
+		Vector2 start = GetCoordinate(window, x, y);
+		
+		BeforeDraw();
+		
+		AfterDraw();
+	}
+
 
 	// Utilities
 	void EditorDraw::BeforeDraw()
