@@ -176,18 +176,13 @@ namespace NewWorld::Graphics
 		uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount)
 	{
 		Vector2 center = GetCoordinate(window, x, y);
-		Vector2 radius(radiusX / (float)window->GetWidth(), radiusY / (float)window->GetHeight());
-
-		float c1 = cos(0);
-		float s1 = sin(0);
+		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
 
 		float angle = 3.141 * 2.0f / verticesCount;
 
-		Vector2 firstVertice(center.x, center.y - radius.y);
-		Vector2 prevVertice(firstVertice);
+		Vector2 prevVertice(center.x, center.y - diameter.y/2);
 
-		radius.x *= 2;
-		radius.y *= 2;
+		BeforeDraw();
 
 		glColor4f(color.r, color.g, color.b, color.a);
 
@@ -197,68 +192,42 @@ namespace NewWorld::Graphics
 			glVertex2f(center.x, center.y);
 			glVertex2f(prevVertice.x, prevVertice.y);
 
-			prevVertice.x = center.x + radius.x * sin(angle * i);
-			prevVertice.y = center.y + radius.y * cos(angle * i);
+			prevVertice.x = center.x + diameter.x * sin(angle * i);
+			prevVertice.y = center.y + diameter.y * cos(angle * i);
 
 			glVertex2f(prevVertice.x, prevVertice.y);
-
+			
 			glEnd();
 		}
 
-		//AfterDraw();
+		AfterDraw();
 	}
 
 	void EditorDraw::DrawOutlineEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
-		float radius = 0.5f;
-		float radius2 = 0.25f;
+		Vector2 center = GetCoordinate(window, x, y);
+		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
 
-		float newX = 0.0f;
-		float newY = 0.0f;
+		float angle = 3.141 * 2.0f / verticesCount;
 
-		double p = 0 * 3.141 / 180;
+		BeforeDraw();
 
-		//  Calculate the sine and cosine of the inclination angle.
-		float c1 = cos(p);
-		float s1 = sin(p);
-
-		//  Calculate the parametric increment.
-		p = 2 * 3.141 / verticesCount;
-
-		//  Calculate the sine and cosine of the parametric increment.
-		float c2 = cos(p);
-		float s2 = sin(p);
-
-		//  Initialize the accumulation variables.
-		float c3 = 1;
-		float s3 = 0;
-
-		//  Begin rendering the ellipse.
-		glBegin(GL_LINE_LOOP);
 		glLineWidth(lineWidth);
+		glBegin(GL_LINE_LOOP);
 		glColor4f(color.r, color.g, color.b, color.a);
 
-		for (int m = 0; m <= verticesCount; m++) {
-			//  Calculate increments in X & Y.
-			float x1 = radius * c3;
-			float y1 = radius2 * s3;
+		for (uint i = 0; i <= verticesCount; i++)
+		{
+			float pointX = center.x + diameter.x * sin(angle * i);
+			float pointY = center.y + diameter.y * cos(angle * i);
 
-			//  Calculate new X & Y.
-			float xm = newX + x1 * c1 - y1 * s1;
-			float ym = newY + x1 * s1 + y1 * c1;
-
-			//  Draw the next line segment.
-			glVertex2f(xm, ym);
-
-			//  Calculate new angle values.
-			float t1 = c3 * c2 - s3 * s2;
-			s3 = s3 * c2 + c3 * s2;
-			c3 = t1;
+			glVertex2f(pointX, pointY);
 		}
+
 		glEnd();
 
-		//AfterDraw();
+		AfterDraw();
 	}
 
 	// Utilities
