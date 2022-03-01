@@ -175,8 +175,8 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount)
 	{
-		Vector2 center(0, 0);
-		Vector2 radius(0.5f, 0.25f);
+		Vector2 center = GetCoordinate(window, x, y);
+		Vector2 radius(radiusX / (float)window->GetWidth(), radiusY / (float)window->GetHeight());
 
 		float c1 = cos(0);
 		float s1 = sin(0);
@@ -194,11 +194,11 @@ namespace NewWorld::Graphics
 		for (uint i = 0; i <= verticesCount; i++)
 		{
 			glBegin(GL_TRIANGLES);
-			glVertex2f(0, 0);
+			glVertex2f(center.x, center.y);
 			glVertex2f(prevVertice.x, prevVertice.y);
 
-			prevVertice.x = radius.x * sin(angle * i);
-			prevVertice.y = radius.y * cos(angle * i);
+			prevVertice.x = center.x + radius.x * sin(angle * i);
+			prevVertice.y = center.y + radius.y * cos(angle * i);
 
 			glVertex2f(prevVertice.x, prevVertice.y);
 

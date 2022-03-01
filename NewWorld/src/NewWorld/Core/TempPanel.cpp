@@ -126,7 +126,7 @@ namespace Temp
 		{
 		case 0:
 		{
-			NewWorld::Graphics::EditorDraw::DrawOval(200, 200, 100, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawOval(100, 100, 100, GetBackgroundColor());
 		}
 		break;
 		case 1:
