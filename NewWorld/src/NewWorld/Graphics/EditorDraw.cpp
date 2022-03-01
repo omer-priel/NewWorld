@@ -36,37 +36,37 @@ namespace NewWorld::Graphics
 		DrawOutlineRectangle(LocalPainter::GetWindow(), x, y, width, height, color, lineWidth);
 	}
 
-	void EditorDraw::DrawEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color)
+	void EditorDraw::DrawEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawEllipse(LocalPainter::GetWindow(), x, y, radiusX, radiusY, color);
+		DrawEllipse(LocalPainter::GetWindow(), x, y, radiusX, radiusY, color, verticesCount);
 	}
 
 	void EditorDraw::DrawOutlineEllipse(int x, int y,
-		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth)
+		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawOutlineEllipse(LocalPainter::GetWindow(), x, y, radiusX, radiusY, color, lineWidth);
+		DrawOutlineEllipse(LocalPainter::GetWindow(), x, y, radiusX, radiusY, color, lineWidth, verticesCount);
 	}
 
-	void EditorDraw::DrawOval(int x, int y, uint radius, const Graphics::Color& color)
+	void EditorDraw::DrawOval(int x, int y, uint radius, const Graphics::Color& color, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawEllipse(LocalPainter::GetWindow(), x, y, radius, radius, color);
+		DrawEllipse(LocalPainter::GetWindow(), x, y, radius, radius, color, verticesCount);
 	}
 
-	void EditorDraw::DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth)
+	void EditorDraw::DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawOutlineEllipse(LocalPainter::GetWindow(), x, y, radius, radius, color, lineWidth);
+		DrawOutlineEllipse(LocalPainter::GetWindow(), x, y, radius, radius, color, lineWidth, verticesCount);
 	}
 
 	// Global
@@ -173,9 +173,8 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
-		uint radiusX, uint radiusY, const Graphics::Color& color)
+		uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount)
 	{
-		uint verticesCount = radiusX;
 		float radius = 0.5f;
 		float radius2 = 0.25f;
 
@@ -208,9 +207,8 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawOutlineEllipse(RawPointer<Editor::EditorWindow> window, int x, int y, 
-		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth)
+		uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
-		uint verticesCount = radiusX;
 		float radius = 0.5f;
 		float radius2 = 0.25f;
 
@@ -236,6 +234,9 @@ namespace NewWorld::Graphics
 
 		//  Begin rendering the ellipse.
 		glBegin(GL_LINE_LOOP);
+		glLineWidth(lineWidth);
+		glColor4f(color.r, color.g, color.b, color.a);
+
 		for (int m = 0; m <= verticesCount; m++) {
 			//  Calculate increments in X & Y.
 			float x1 = radius * c3;
@@ -246,7 +247,6 @@ namespace NewWorld::Graphics
 			float ym = newY + x1 * s1 + y1 * c1;
 
 			//  Draw the next line segment.
-			glColor4f(color.r, color.g, color.b, color.a);
 			glVertex3f(xm, ym, 0);
 
 			//  Calculate new angle values.

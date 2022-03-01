@@ -131,10 +131,20 @@ namespace Temp
 		break;
 		case 1:
 		{
-			NewWorld::Graphics::EditorDraw::DrawOutlineOval(200, 200, 100, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawOval(200, 200, 100, GetBackgroundColor(), 16);
 		}
 		break;
 		case 2:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(200, 200, 100, GetBackgroundColor());
+		}
+		break;
+		case 3:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(200, 200, 100, GetBackgroundColor(), 1, 16);
+		}
+		break;
+		case 4:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(100, 100, 100, 100, GetBackgroundColor(), 10);
 		}
