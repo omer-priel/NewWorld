@@ -15,7 +15,7 @@ namespace NewWorldPlugin
 		static public string ApplicationName = "NewWorldPlugin";
 
 		// .nwe file info
-		static public string NewWorldFilePath = null;
+		static public DirectoryInfo NewWorldRootDirectory = null;
 		static public FileInfo NewWorldFile = null;
 
 		// Initialize the Plugin
@@ -31,19 +31,37 @@ namespace NewWorldPlugin
 		// Get subpath of the solution
 		static public string GetPath(string subpath)
 		{
-			return NewWorldFile.DirectoryName + "\\" + subpath;
+			return NewWorldRootDirectory.FullName + "\\" + subpath;
 		}
 
 		// Load .nwe file
-		static public bool LoadNWEFile(string filePath)
+		static public bool LoadNWEFile()
 		{
-			NewWorldFilePath = filePath;
+			DirectoryInfo rootDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+			NewWorldFile = null;
 
-			NewWorldFile = new FileInfo(NewWorldFilePath);
+			while (NewWorldFile == null)
+            {
+				FileInfo[] nwes = rootDirectory.GetFiles("*.nwe");
+				if (nwes.Length > 0)
+                {
+					NewWorldRootDirectory = rootDirectory;
+					NewWorldFile = nwes[0];
+				}
+
+				if (rootDirectory.Parent == null)
+                {
+					Utilities.ShowErrorMessage("Thw .new does not exists!");
+					return false;
+				}
+
+				rootDirectory = rootDirectory.Parent;
+
+			}
 
 			if (!NewWorldFile.Exists)
 			{
-				Utilities.ShowErrorMessage("The path \"" + filePath + "\" does not exists!");
+				//Utilities.ShowErrorMessage("The path \"" + nweFilePath + "\" does not exists!");
 				return false;
 			}
 

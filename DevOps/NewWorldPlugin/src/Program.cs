@@ -17,8 +17,14 @@ namespace NewWorldPlugin
 			
 			if (args.Length == 0)
 			{
-				Utilities.ShowErrorMessage("See NewWorldPlugin --help");
-				return;
+				if (!Plugin.LoadNWEFile())
+				{
+					return;
+				}
+				else
+				{
+					OpenWith();
+				}
 			}
 
 			switch (args[0])
@@ -40,11 +46,7 @@ namespace NewWorldPlugin
 					}
 				case "--generate-projects":
 					{
-						if (args.Length < 2)
-						{
-							Utilities.ShowErrorMessage("The path of the file is missing!");
-						}
-						else if (Plugin.LoadNWEFile(args[1]))
+						if (Plugin.LoadNWEFile())
 						{
 							Commands.GenerateProjects();
 						}
@@ -52,25 +54,12 @@ namespace NewWorldPlugin
 					}
 				case "--build":
 					{
-						if (args.Length < 2)
-						{
-							Utilities.ShowErrorMessage("The path of the file is missing!");
-						}
-						else if (Plugin.LoadNWEFile(args[1]))
+						if (Plugin.LoadNWEFile())
 						{
 							Commands.Build();
 						}
 						return;
 					}
-			}
-
-			if (!Plugin.LoadNWEFile(args[0]))
-			{
-				return;
-			}
-			else
-			{
-				OpenWith();
 			}
 		}
 
