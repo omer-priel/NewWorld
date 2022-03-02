@@ -35,9 +35,9 @@ namespace NewWorldPlugin
 		}
 
 		// Load .nwe file
-		static public bool LoadNWEFile()
+		static public bool LoadNWEFile(string rootPath)
 		{
-			DirectoryInfo rootDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+			DirectoryInfo rootDirectory = new DirectoryInfo(rootPath);
 			NewWorldFile = null;
 
 			while (NewWorldFile == null)
@@ -51,24 +51,12 @@ namespace NewWorldPlugin
 
 				if (rootDirectory.Parent == null)
                 {
-					Utilities.ShowErrorMessage("Thw .new does not exists!");
+					Utilities.ShowErrorMessage("The .new does not exists!");
 					return false;
 				}
 
 				rootDirectory = rootDirectory.Parent;
 
-			}
-
-			if (!NewWorldFile.Exists)
-			{
-				//Utilities.ShowErrorMessage("The path \"" + nweFilePath + "\" does not exists!");
-				return false;
-			}
-
-			if (NewWorldFile.Extension != ".nwe")
-			{
-				Utilities.ShowErrorMessage("This file is not a .nwe file!");
-				return false;
 			}
 
 			return true;

@@ -14,10 +14,51 @@ namespace NewWorldPlugin
 		static void Main(string[] args)
 		{
 			Plugin.Init();
-			
-			if (args.Length == 0)
+
+			string rootPath = Directory.GetCurrentDirectory();
+
+			int index = 0;
+			while (index < args.Length && args[index].StartsWith("--"))
+            {
+				string option = args[index];
+				switch (option)
+				{
+					case "--root-path":
+						{
+							index++;
+							if (index == args.Length)
+                            {
+								Utilities.ShowErrorMessage("Need path as parment!");
+								return;
+							}
+
+							rootPath = args[index];
+
+							if (File.Exists(rootPath) && rootPath.EndsWith(".nwe"))
+                            {
+								rootPath = new FileInfo(rootPath).DirectoryName;
+
+							}
+
+							if (!Directory.Exists(rootPath))
+                            {
+								Utilities.ShowErrorMessage("The path \"" + rootPath + "\" does not exists!");
+								return;
+							}
+						}
+						break;
+					default:
+                        {
+							Utilities.ShowErrorMessage("The option \"" + option + "\" does not exists!");
+							return;
+                        }
+				}
+				index++;
+            }
+
+			if (index == args.Length)
 			{
-				if (!Plugin.LoadNWEFile())
+				if (!Plugin.LoadNWEFile(rootPath))
 				{
 					return;
 				}
@@ -27,34 +68,36 @@ namespace NewWorldPlugin
 				}
 			}
 
-			switch (args[0])
+			string command = args[index];
+
+			switch (command)
 			{
-				case "--help":
+				case "help":
 					{
 						Commands.Help();
 						return;
 					}
-				case "--install-extension":
+				case "install-extension":
 					{
 						Commands.InstallExtension();
 						return;
 					}
-                case "--uninstall-extension":
+                case "uninstall-extension":
 					{
 						Commands.UninstallExtension();
 						return;
 					}
-				case "--generate-projects":
+				case "generate-projects":
 					{
-						if (Plugin.LoadNWEFile())
+						if (Plugin.LoadNWEFile(rootPath))
 						{
 							Commands.GenerateProjects();
 						}
 						return;
 					}
-				case "--build":
+				case "build":
 					{
-						if (Plugin.LoadNWEFile())
+						if (Plugin.LoadNWEFile(rootPath))
 						{
 							Commands.Build();
 						}
