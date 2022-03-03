@@ -5,8 +5,7 @@
 #include "NewWorld/Core/Window.h"
 #include "NewWorld/Math/Projection.h"
 #include "NewWorld/Editor/UI/Panel.h"
-
-int main(int argc, char** argv);
+#include "NewWorld/Editor/Assets/TextureManger.h"
 
 namespace NewWorld::Editor
 {
@@ -17,11 +16,13 @@ namespace NewWorld::Editor
 		// Members
 	private:
 		SizeT m_WindowID;
-		UI::Panel m_MainPanel;
 
+		UI::Panel m_MainPanel;
 		RawPointer<Component> m_SelectedComponent;
 
 		Matrix4 m_ProjectionMatrix;
+
+		Assets::TextureManger m_TextureManger;
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
@@ -47,6 +48,8 @@ namespace NewWorld::Editor
 		inline const Matrix4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
+
+		inline Assets::TextureManger& getTextureManger() { return m_TextureManger; }
 
 		// Actions
 	public:
