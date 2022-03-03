@@ -8,6 +8,7 @@ using System.IO;
 using Microsoft.Win32;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace NewWorldPlugin
 {
@@ -145,33 +146,39 @@ namespace NewWorldPlugin
 			}
 
 			FileInfo fileInfo = new FileInfo(path);
-			if (fileInfo.Extension.ToLower() != ".json")
+			if (fileInfo.Extension != ".json")
 			{
 				Utilities.ShowErrorMessage("Is not .json file!");
 				return;
 			}
 
+			string folder = fileInfo.DirectoryName;
+			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
+			string targetPath = folder + "\\" + fileName + ".nwf";
+
+			// Load the File
 			string json = File.ReadAllText(path);
 
 			dynamic data = JsonConvert.DeserializeObject(json);
 
-			string name;
+			string familyName;
 			uint size;
 			bool bold;
 			bool italic;
 			uint width;
 			uint height;
-			dynamic characters;
+			JObject characters;
 
 			try
 			{
-				name = data.name;
+				familyName = data.name;
 				size = data.size;
 				bold = data.bold;
 				italic = data.italic;
 				width = data.width;
 				height = data.height;
-				data = data.characters;
+
+				characters = data.characters;
 			}
 			catch
 			{
@@ -179,7 +186,34 @@ namespace NewWorldPlugin
 				return;
 			}
 
+			// Create .nwf file
+			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
+			
+			writer.Write(familyName.Length);
+			writer.Write(familyName);
 
+			writer.Write(size);
+			writer.Write(bold);
+			writer.Write(italic);
+			writer.Write(width);
+			writer.Write(height);
+
+			writer.Write(characters.Count);
+
+			foreach (JProperty character in characters.Children())
+			{
+				dynamic value = character.Value;
+				writer.Write(character.Name[0]);
+				writer.Write((int)value.x);
+				writer.Write((int)value.y);
+				writer.Write((int)value.width);
+				writer.Write((int)value.height);
+				writer.Write((int)value.originX);
+				writer.Write((int)value.originY);
+				writer.Write((int)value.advance);
+			}
+
+			writer.Close();
 		}
 	}
 }
