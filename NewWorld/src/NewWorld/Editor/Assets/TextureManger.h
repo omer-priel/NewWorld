@@ -24,8 +24,6 @@ namespace NewWorld::Editor::Assets
 	public:
 		SharedPointer<Texture> LoadTexture(String name);
 		
-		SharedPointer<Texture> LoadPNG(String name);
-
 	public:
 		// Get Texture
 		SharedPointer<Texture> GetTexture(uint id);
