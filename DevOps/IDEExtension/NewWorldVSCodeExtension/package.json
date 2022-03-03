@@ -40,6 +40,11 @@
 				"command": "newworld.build",
 				"category": "New World",
 				"title": "Build"
+			},
+			{
+				"command": "newworld.createFont",
+				"category": "New World",
+				"title": "Create Font"
 			}
 		],
 		"menus": {
@@ -58,6 +63,11 @@
 					"when": "isNewWorldEngine && explorerResourceIsFolder",
 					"command": "newworld.build",
 					"group": "2_workspace@2"
+				},
+				{
+					"when": "isNewWorldEngine && resourceExtname == '.json'",
+					"command": "newworld.createFont",
+					"group": "2_workspace@3"
 				}
 			]
 		}

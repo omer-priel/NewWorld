@@ -126,9 +126,7 @@ export function generateProjects()  {
 		cwd: global.solution.path
 	} as any);
 
-	//terminal.sendText('cd DevOps');
-	//terminal.sendText('GenerateProjects.bat');
-	terminal.sendText('NewWorldPlugin --generate-projects ' + global.solution.getNewWorldEngineFile());
+	terminal.sendText('NewWorldPlugin generate-projects');
 	terminal.show();
 }
 
@@ -140,8 +138,24 @@ export function build() {
 		cwd: global.solution.path
 	} as any);
 
-	//terminal.sendText('cd DevOps');
-	//terminal.sendText('Build.bat');
-	terminal.sendText('NewWorldPlugin --build ' + global.solution.getNewWorldEngineFile());
+	terminal.sendText('NewWorldPlugin build');
+	terminal.show();
+}
+
+export function createFont(path: string) {
+	let terminal = vscode.window.createTerminal({
+		name: "Create Font",
+		cwd: global.solution.path
+	} as any);
+
+	if (path === undefined) {
+	
+		vscode.window.showErrorMessage('Undefined file path!');	
+		return;
+	}
+	
+	let pathUri = vscode.Uri.parse(path).fsPath;
+
+	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
 	terminal.show();
 }
