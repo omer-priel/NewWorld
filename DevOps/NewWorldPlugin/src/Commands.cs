@@ -17,13 +17,14 @@ namespace NewWorldPlugin
 			Console.WriteLine("NewWorldPlugin [options]    - Open in Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin [options] [command]");
 			Console.WriteLine("Commands:");
-			Console.WriteLine("\thelp                   - Show this help");
-			Console.WriteLine("\tinstall-extension      - Install the extension");
-			Console.WriteLine("\tuninstall-extension    - Uninstall the extension");
-			Console.WriteLine("\tgenerate-projects      - Generate Projects");
-			Console.WriteLine("\tbuild                  - Build the applications");
+			Console.WriteLine("\t" + "help                   - Show this help");
+			Console.WriteLine("\t" + "install-extension      - Install the extension");
+			Console.WriteLine("\t" + "uninstall-extension    - Uninstall the extension");
+			Console.WriteLine("\t" + "generate-projects      - Generate Projects");
+			Console.WriteLine("\t" + "build                  - Build the applications");
+			Console.WriteLine("\t" + "create-font path       - Create .nwf from .json");
 			Console.WriteLine("Options");
-			Console.WriteLine("\t--root-path [path]     - Change the nwe directory to use");
+			Console.WriteLine("\t" + "--root-path [path]     - Change the nwe directory to use");
 		}
 
 		static public void InstallExtension()
@@ -131,6 +132,24 @@ namespace NewWorldPlugin
 		static public void Build()
 		{
 			Utilities.CallDevOpsScript("Build");
+		}
+
+		static public void CreateFont(string path)
+		{
+			if (!File.Exists(path))
+			{
+				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
+				return;
+			}
+
+			FileInfo fileInfo = new FileInfo(path);
+			if (fileInfo.Extension.ToLower() != ".json")
+			{
+				Utilities.ShowErrorMessage("Is not .json file!");
+				return;
+			}
+
+			System.Console.WriteLine(File.ReadAllText(path));
 		}
 	}
 }

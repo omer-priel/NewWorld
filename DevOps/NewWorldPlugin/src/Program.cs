@@ -28,7 +28,7 @@ namespace NewWorldPlugin
 							index++;
 							if (index == args.Length)
                             {
-								Utilities.ShowErrorMessage("Need path as parment!");
+								Utilities.ShowErrorMessage("Need path as parament!");
 								return;
 							}
 
@@ -58,7 +58,7 @@ namespace NewWorldPlugin
 
 			if (index == args.Length)
 			{
-				if (!Plugin.LoadNWEFile(rootPath))
+				if (!Plugin.LoadProject(rootPath))
 				{
 					return;
 				}
@@ -75,34 +75,52 @@ namespace NewWorldPlugin
 				case "help":
 					{
 						Commands.Help();
-						return;
 					}
+					break;
 				case "install-extension":
 					{
 						Commands.InstallExtension();
-						return;
 					}
+					break;
                 case "uninstall-extension":
 					{
 						Commands.UninstallExtension();
-						return;
 					}
+					break;
 				case "generate-projects":
 					{
-						if (Plugin.LoadNWEFile(rootPath))
+						if (Plugin.LoadProject(rootPath))
 						{
 							Commands.GenerateProjects();
 						}
-						return;
 					}
+					break;
 				case "build":
 					{
-						if (Plugin.LoadNWEFile(rootPath))
+						if (Plugin.LoadProject(rootPath))
 						{
 							Commands.Build();
 						}
-						return;
 					}
+					break;
+				case "create-font":
+					{
+						index++;
+						if (index == args.Length)
+						{
+							Utilities.ShowErrorMessage("Need path as parament!");
+							return;
+						}
+
+						string path = args[index];
+						Commands.CreateFont(path);
+					}
+					break;
+				default:
+					{
+						Utilities.ShowErrorMessage("The command \"" + command + "\" dos not exists!");
+					}
+					return;
 			}
 		}
 

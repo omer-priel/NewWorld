@@ -76,8 +76,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Help.md" />
-    <None Include="scripts\Install.bat" />
-    <None Include="scripts\Uninstall.bat" />
+    <None Include="scripts\Install-Debug.bat" />
+    <None Include="scripts\Install-Release.bat" />
+    <None Include="scripts\Uninstall-Debug.bat" />
+    <None Include="scripts\Uninstall-Release.bat" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo.ico" />

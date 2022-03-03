@@ -35,7 +35,7 @@ namespace NewWorldPlugin
 		}
 
 		// Load .nwe file
-		static public bool LoadNWEFile(string rootPath)
+		static public bool LoadProject(string rootPath)
 		{
 			DirectoryInfo rootDirectory = new DirectoryInfo(rootPath);
 			NewWorldFile = null;
