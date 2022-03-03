@@ -17,7 +17,7 @@ namespace NewWorldPlugin
 		static public void Help()
 		{
 			Console.WriteLine("");
-			Console.WriteLine("NewWorldPlugin [options]    - Open in Visual Studio Code");
+			Console.WriteLine("NewWorldPlugin [options]      - Open in Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin [options] [command]");
 			Console.WriteLine("Commands:");
 			Console.WriteLine("\t" + "help                   - Show this help");
@@ -25,8 +25,8 @@ namespace NewWorldPlugin
 			Console.WriteLine("\t" + "uninstall-extension    - Uninstall the extension");
 			Console.WriteLine("\t" + "generate-projects      - Generate Projects");
 			Console.WriteLine("\t" + "build                  - Build the applications");
-			Console.WriteLine("\t" + "create-font path       - Create .nwf from .json");
-			Console.WriteLine("Options");
+			Console.WriteLine("\t" + "create-font [path]       - Create .nwf from .json");
+			Console.WriteLine("Options:");
 			Console.WriteLine("\t" + "--root-path [path]     - Change the nwe directory to use");
 		}
 
@@ -56,6 +56,8 @@ namespace NewWorldPlugin
 
 				// Create Keys
 				RegistryKey fileReg = Registry.ClassesRoot.CreateSubKey(@".nwe");
+				RegistryKey fontFileReg = Registry.ClassesRoot.CreateSubKey(@".nwf");
+
 				RegistryKey appReg = Registry.ClassesRoot.CreateSubKey(Plugin.ApplicationName);
 
 				fileReg.SetValue("", Plugin.ApplicationName);
@@ -63,6 +65,9 @@ namespace NewWorldPlugin
 				fileReg.CreateSubKey("OpenWithList\\" + Plugin.ApplicationName).SetValue("", "");
 				fileReg.CreateSubKey("OpenWithProgids").SetValue(Plugin.ApplicationName, 0);
 				fileReg.CreateSubKey("PerceivedType").SetValue("", "Text");
+
+				fontFileReg.SetValue("", "New World Font");
+				fontFileReg.SetValue("Content Type", "application/nwf");
 
 				appReg.SetValue("", "New World Engine");
 				appReg.CreateSubKey("DefualtIcon").SetValue("", logoPath);
@@ -81,6 +86,8 @@ namespace NewWorldPlugin
 				generateProjectsReg.Close();
 
 				fileReg.Close();
+				fontFileReg.Close();
+
 				appReg.Close();
 
 				WindowsAPI.UpdateRegistry();

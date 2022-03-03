@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Help.md" />
+    <Content Include="Help.txt" />
     <None Include="packages.config" />
     <None Include="scripts\Install-Debug.bat" />
     <None Include="scripts\Install-Release.bat" />
