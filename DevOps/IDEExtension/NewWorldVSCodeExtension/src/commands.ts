@@ -123,7 +123,7 @@ export function generateProjects()  {
 	
 	let terminal = global.extension.getTerminal();
 
-	terminal.sendText('NewWorldPlugin -q generate-projects');
+	terminal.sendText('NewWorldPlugin generate-projects');
 	terminal.show();
 }
 
@@ -132,7 +132,7 @@ export function build() {
 
 	let terminal = global.extension.getTerminal();
 
-	terminal.sendText('NewWorldPlugin -q build');
+	terminal.sendText('NewWorldPlugin build');
 	terminal.show();
 }
 
@@ -148,6 +148,6 @@ export function createFont(path: string) {
 	
 	let pathUri = vscode.Uri.parse(path).fsPath;
 
-	terminal.sendText('NewWorldPlugin -q create-font \"' + pathUri + "\"");
+	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
 	terminal.show();
 }
