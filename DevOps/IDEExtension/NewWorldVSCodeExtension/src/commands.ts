@@ -120,33 +120,25 @@ class ClasName
 
 // The "Generate Projects" Command
 export function generateProjects()  {
+	
+	let terminal = global.extension.getTerminal();
 
-	let terminal = vscode.window.createTerminal({
-		name: "Generate Projects",
-		cwd: global.solution.path
-	} as any);
-
-	terminal.sendText('NewWorldPlugin generate-projects');
+	terminal.sendText('NewWorldPlugin -q generate-projects');
 	terminal.show();
 }
 
 // The "Build" Command
 export function build() {
 
-	let terminal = vscode.window.createTerminal({
-		name: "Build",
-		cwd: global.solution.path
-	} as any);
+	let terminal = global.extension.getTerminal();
 
-	terminal.sendText('NewWorldPlugin build');
+	terminal.sendText('NewWorldPlugin -q build');
 	terminal.show();
 }
 
 export function createFont(path: string) {
-	let terminal = vscode.window.createTerminal({
-		name: "Create Font",
-		cwd: global.solution.path
-	} as any);
+
+	let terminal = global.extension.getTerminal();
 
 	if (path === undefined) {
 	
@@ -156,6 +148,6 @@ export function createFont(path: string) {
 	
 	let pathUri = vscode.Uri.parse(path).fsPath;
 
-	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
+	terminal.sendText('NewWorldPlugin -q create-font \"' + pathUri + "\"");
 	terminal.show();
 }
