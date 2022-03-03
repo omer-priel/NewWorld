@@ -260,13 +260,32 @@ namespace NewWorld::Graphics
 		AfterDraw();
 	}
 
+	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
+	{
+		// TODO: Paramenters
+		Vector2 start = GetCoordinate(window, x, y);
+
+		NW_WARN(NW_LOGGER_CORE, "DrawTexture");
+
+		Byte* data = nullptr;
+		uint handle = 0;
+
+		//glGenTextures(1, &handle);
+		//glBindTexture(GL_TEXTURE_2D, &handle);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_INT, data);
+
+		//glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
 	{
-		Vector2 start = GetCoordinate(window, x, y);
-		
-		BeforeDraw();
-		
-		AfterDraw();
+		// TODO: Draw String
+		DrawTexture(window, x, y, width, height);
 	}
 
 

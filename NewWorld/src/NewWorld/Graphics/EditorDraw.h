@@ -40,6 +40,8 @@ namespace NewWorld::Graphics
 		static void DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount = 64);
 		static void DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
 		
+		static void DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height);
+
 		static void DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text);
 
 		// Utilities
