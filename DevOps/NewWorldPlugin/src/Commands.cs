@@ -196,8 +196,8 @@ namespace NewWorldPlugin
 			// Create .nwf file
 			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
 			
-			writer.Write(familyName.Length);
-			writer.Write(familyName);
+			writer.Write(familyName.Length); // FamilyNameLength
+			writer.Write(familyName); // FamilyName
 
 			writer.Write(size);
 			writer.Write(bold);
@@ -205,19 +205,19 @@ namespace NewWorldPlugin
 			writer.Write(width);
 			writer.Write(height);
 
-			writer.Write(characters.Count);
+			writer.Write(characters.Count); // CharactersCount
 
 			foreach (JProperty character in characters.Children())
 			{
 				dynamic value = character.Value;
-				writer.Write(character.Name[0]);
-				writer.Write((int)value.x);
-				writer.Write((int)value.y);
-				writer.Write((int)value.width);
-				writer.Write((int)value.height);
-				writer.Write((int)value.originX);
-				writer.Write((int)value.originY);
-				writer.Write((int)value.advance);
+				writer.Write(character.Name[0]); // Name
+				writer.Write((int)value.x); // AtlasX
+				writer.Write((int)value.y); // AtlasY
+				writer.Write((int)value.width); // Width
+				writer.Write((int)value.height); // Height
+				writer.Write((int)value.originX); // OriginX
+				writer.Write((int)value.originY); // OriginY
+				writer.Write((int)value.advance); // PainterStepX
 			}
 
 			writer.Close();
