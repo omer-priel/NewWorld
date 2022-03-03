@@ -10,7 +10,7 @@ exit /b
 cd /d "%1"
 
 cd ..\bin\Release
-NewWorldPlugin --install-extension
+NewWorldPlugin uninstall-extension
 
 :exit
 exit /b

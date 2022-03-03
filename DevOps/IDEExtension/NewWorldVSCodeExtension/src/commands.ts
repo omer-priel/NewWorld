@@ -120,28 +120,34 @@ class ClasName
 
 // The "Generate Projects" Command
 export function generateProjects()  {
+	
+	let terminal = global.extension.getTerminal();
 
-	let terminal = vscode.window.createTerminal({
-		name: "Generate Projects",
-		cwd: global.solution.path
-	} as any);
-
-	//terminal.sendText('cd DevOps');
-	//terminal.sendText('GenerateProjects.bat');
-	terminal.sendText('NewWorldPlugin --generate-projects ' + global.solution.getNewWorldEngineFile());
+	terminal.sendText('NewWorldPlugin generate-projects');
 	terminal.show();
 }
 
 // The "Build" Command
 export function build() {
 
-	let terminal = vscode.window.createTerminal({
-		name: "Build",
-		cwd: global.solution.path
-	} as any);
+	let terminal = global.extension.getTerminal();
 
-	//terminal.sendText('cd DevOps');
-	//terminal.sendText('Build.bat');
-	terminal.sendText('NewWorldPlugin --build ' + global.solution.getNewWorldEngineFile());
+	terminal.sendText('NewWorldPlugin build');
+	terminal.show();
+}
+
+export function createFont(path: string) {
+
+	let terminal = global.extension.getTerminal();
+
+	if (path === undefined) {
+	
+		vscode.window.showErrorMessage('Undefined file path!');	
+		return;
+	}
+	
+	let pathUri = vscode.Uri.parse(path).fsPath;
+
+	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
 	terminal.show();
 }

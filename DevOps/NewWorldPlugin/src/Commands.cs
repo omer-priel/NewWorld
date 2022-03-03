@@ -7,6 +7,9 @@ using System.Windows.Forms;
 using System.IO;
 using Microsoft.Win32;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace NewWorldPlugin
 {
 	static public class Commands
@@ -14,13 +17,17 @@ namespace NewWorldPlugin
 		static public void Help()
 		{
 			Console.WriteLine("");
-			Console.WriteLine("NewWorldPlugin [option] path");
-			Console.WriteLine("\tpath                     - Open the.nwe with Visual Studio Code");
-			Console.WriteLine("\t--help                   - Show this help");
-			Console.WriteLine("\t--install-extension      - Install the extension");
-			Console.WriteLine("\t--uninstall-extension    - Uninstall the extension");
-			Console.WriteLine("\t--generate-projects path - Generate Projects");
-			Console.WriteLine("\t--build path             - Build the applications");
+			Console.WriteLine("NewWorldPlugin [options]      - Open in Visual Studio Code");
+			Console.WriteLine("NewWorldPlugin [options] [command]");
+			Console.WriteLine("Commands:");
+			Console.WriteLine("\t" + "help                   - Show this help");
+			Console.WriteLine("\t" + "install-extension      - Install the extension");
+			Console.WriteLine("\t" + "uninstall-extension    - Uninstall the extension");
+			Console.WriteLine("\t" + "generate-projects      - Generate Projects");
+			Console.WriteLine("\t" + "build                  - Build the applications");
+			Console.WriteLine("\t" + "create-font [path]       - Create .nwf from .json");
+			Console.WriteLine("Options:");
+			Console.WriteLine("\t" + "--root-path [path]     - Change the nwe directory to use");
 		}
 
 		static public void InstallExtension()
@@ -49,6 +56,8 @@ namespace NewWorldPlugin
 
 				// Create Keys
 				RegistryKey fileReg = Registry.ClassesRoot.CreateSubKey(@".nwe");
+				RegistryKey fontFileReg = Registry.ClassesRoot.CreateSubKey(@".nwf");
+
 				RegistryKey appReg = Registry.ClassesRoot.CreateSubKey(Plugin.ApplicationName);
 
 				fileReg.SetValue("", Plugin.ApplicationName);
@@ -57,23 +66,28 @@ namespace NewWorldPlugin
 				fileReg.CreateSubKey("OpenWithProgids").SetValue(Plugin.ApplicationName, 0);
 				fileReg.CreateSubKey("PerceivedType").SetValue("", "Text");
 
+				fontFileReg.SetValue("", "New World Font");
+				fontFileReg.SetValue("Content Type", "application/nwf");
+
 				appReg.SetValue("", "New World Engine");
 				appReg.CreateSubKey("DefualtIcon").SetValue("", logoPath);
-				appReg.CreateSubKey(@"shell\open\command").SetValue("", pluginPath + " %1");
+				appReg.CreateSubKey(@"shell\open\command").SetValue("", pluginPath + " --root-path %1");
 
 				RegistryKey buildReg = appReg.CreateSubKey(@"shell\Build");
 				buildReg.SetValue("", "Build");
 				buildReg.SetValue("Icon", logoPath);
-				buildReg.CreateSubKey("command").SetValue("", pluginPath + " --build %1");
+				buildReg.CreateSubKey("command").SetValue("", pluginPath + " --root-path %1 build");
 				buildReg.Close();
 
 				RegistryKey generateProjectsReg = appReg.CreateSubKey(@"shell\GenerateProjects");
 				generateProjectsReg.SetValue("", "Generate Projects");
 				generateProjectsReg.SetValue("Icon", logoPath);
-				generateProjectsReg.CreateSubKey("command").SetValue("", pluginPath + " --generate-projects %1");
+				generateProjectsReg.CreateSubKey("command").SetValue("", pluginPath + " --root-path %1 generate-projects");
 				generateProjectsReg.Close();
 
 				fileReg.Close();
+				fontFileReg.Close();
+
 				appReg.Close();
 
 				WindowsAPI.UpdateRegistry();
@@ -128,6 +142,85 @@ namespace NewWorldPlugin
 		static public void Build()
 		{
 			Utilities.CallDevOpsScript("Build");
+		}
+
+		static public void CreateFont(string path)
+		{
+			if (!File.Exists(path))
+			{
+				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
+				return;
+			}
+
+			FileInfo fileInfo = new FileInfo(path);
+			if (fileInfo.Extension != ".json")
+			{
+				Utilities.ShowErrorMessage("Is not .json file!");
+				return;
+			}
+
+			string folder = fileInfo.DirectoryName;
+			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
+			string targetPath = folder + "\\" + fileName + ".nwf";
+
+			// Load the File
+			string json = File.ReadAllText(path);
+
+			dynamic data = JsonConvert.DeserializeObject(json);
+
+			string familyName;
+			uint size;
+			bool bold;
+			bool italic;
+			uint width;
+			uint height;
+			JObject characters;
+
+			try
+			{
+				familyName = data.name;
+				size = data.size;
+				bold = data.bold;
+				italic = data.italic;
+				width = data.width;
+				height = data.height;
+
+				characters = data.characters;
+			}
+			catch
+			{
+				Utilities.ShowErrorMessage("The font is damaged!");
+				return;
+			}
+
+			// Create .nwf file
+			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
+			
+			writer.Write(familyName.Length);
+			writer.Write(familyName);
+
+			writer.Write(size);
+			writer.Write(bold);
+			writer.Write(italic);
+			writer.Write(width);
+			writer.Write(height);
+
+			writer.Write(characters.Count);
+
+			foreach (JProperty character in characters.Children())
+			{
+				dynamic value = character.Value;
+				writer.Write(character.Name[0]);
+				writer.Write((int)value.x);
+				writer.Write((int)value.y);
+				writer.Write((int)value.width);
+				writer.Write((int)value.height);
+				writer.Write((int)value.originX);
+				writer.Write((int)value.originY);
+				writer.Write((int)value.advance);
+			}
+
+			writer.Close();
 		}
 	}
 }

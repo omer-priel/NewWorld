@@ -14,63 +14,113 @@ namespace NewWorldPlugin
 		static void Main(string[] args)
 		{
 			Plugin.Init();
-			
-			if (args.Length == 0)
+
+			string rootPath = Directory.GetCurrentDirectory();
+
+			int index = 0;
+			while (index < args.Length && args[index].StartsWith("--"))
+            {
+				string option = args[index];
+				switch (option)
+				{
+					case "--root-path":
+						{
+							index++;
+							if (index == args.Length)
+                            {
+								Utilities.ShowErrorMessage("Need path as parament!");
+								return;
+							}
+
+							rootPath = args[index];
+
+							if (File.Exists(rootPath) && rootPath.EndsWith(".nwe"))
+                            {
+								rootPath = new FileInfo(rootPath).DirectoryName;
+
+							}
+
+							if (!Directory.Exists(rootPath))
+                            {
+								Utilities.ShowErrorMessage("The path \"" + rootPath + "\" does not exists!");
+								return;
+							}
+						}
+						break;
+					default:
+                        {
+							Utilities.ShowErrorMessage("The option \"" + option + "\" does not exists!");
+							return;
+                        }
+				}
+				index++;
+            }
+
+			if (index == args.Length)
 			{
-				Utilities.ShowErrorMessage("See NewWorldPlugin --help");
-				return;
+				if (!Plugin.LoadProject(rootPath))
+				{
+					return;
+				}
+				else
+				{
+					OpenWith();
+				}
 			}
 
-			switch (args[0])
+			string command = args[index];
+
+			switch (command)
 			{
-				case "--help":
+				case "help":
 					{
 						Commands.Help();
-						return;
 					}
-				case "--install-extension":
+					break;
+				case "install-extension":
 					{
 						Commands.InstallExtension();
-						return;
 					}
-                case "--uninstall-extension":
+					break;
+                case "uninstall-extension":
 					{
 						Commands.UninstallExtension();
-						return;
 					}
-				case "--generate-projects":
+					break;
+				case "generate-projects":
 					{
-						if (args.Length < 2)
-						{
-							Utilities.ShowErrorMessage("The path of the file is missing!");
-						}
-						else if (Plugin.LoadNWEFile(args[1]))
+						if (Plugin.LoadProject(rootPath))
 						{
 							Commands.GenerateProjects();
 						}
-						return;
 					}
-				case "--build":
+					break;
+				case "build":
 					{
-						if (args.Length < 2)
-						{
-							Utilities.ShowErrorMessage("The path of the file is missing!");
-						}
-						else if (Plugin.LoadNWEFile(args[1]))
+						if (Plugin.LoadProject(rootPath))
 						{
 							Commands.Build();
 						}
-						return;
 					}
-			}
+					break;
+				case "create-font":
+					{
+						index++;
+						if (index == args.Length)
+						{
+							Utilities.ShowErrorMessage("Need path as parament!");
+							return;
+						}
 
-			if (!Plugin.LoadNWEFile(args[0]))
-			{
-				return;
-			}
-			else
-			{
-				OpenWith();
+						string path = args[index];
+						Commands.CreateFont(path);
+					}
+					break;
+				default:
+					{
+						Utilities.ShowErrorMessage("The command \"" + command + "\" dos not exists!");
+					}
+					return;
 			}
 		}
 
