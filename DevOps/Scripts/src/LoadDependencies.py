@@ -38,7 +38,7 @@ StartStage('Install NewWorldPlugin')
 MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
 newWorldPlugin = Utilities.GetSubPath('DevOps\\NewWorldPlugin\\bin\\Release')
 
-Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
+Utilities.CMD(f'NewWorldPlugin install-extension', True, newWorldPlugin)
 
 # Install NewWorldVisualStudioExtension
 StartStage('Install NewWorldVisualStudioExtension')
@@ -90,7 +90,6 @@ Utilities.CMD(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dep
 # Generate Projects
 StartStage(f'Generate Projects')
 
-newWorldFilePath = Utilities.GetSubPath('NewWorld.nwe')
-Utilities.CMD(f'NewWorldPlugin --generate-projects {newWorldFilePath}')
+Utilities.CMD(f'NewWorldPlugin generate-projects')
 
 Utilities.PresToConinue()
