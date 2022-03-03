@@ -2,6 +2,8 @@
 
 # NewWorldPlugin
 NewWorldPlugin/obj
+NewWorldPlugin/bin
+NewWorldPlugin/packages
 
 !NewWorldPlugin/*.sln
 !NewWorldPlugin/*.csproj

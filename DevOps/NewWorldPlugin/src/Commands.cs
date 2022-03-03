@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using System.IO;
 using Microsoft.Win32;
 
+using Newtonsoft.Json;
+
 namespace NewWorldPlugin
 {
 	static public class Commands
@@ -149,7 +151,35 @@ namespace NewWorldPlugin
 				return;
 			}
 
-			System.Console.WriteLine(File.ReadAllText(path));
+			string json = File.ReadAllText(path);
+
+			dynamic data = JsonConvert.DeserializeObject(json);
+
+			string name;
+			uint size;
+			bool bold;
+			bool italic;
+			uint width;
+			uint height;
+			dynamic characters;
+
+			try
+			{
+				name = data.name;
+				size = data.size;
+				bold = data.bold;
+				italic = data.italic;
+				width = data.width;
+				height = data.height;
+				data = data.characters;
+			}
+			catch
+			{
+				Utilities.ShowErrorMessage("The font is damaged!");
+				return;
+			}
+
+
 		}
 	}
 }
