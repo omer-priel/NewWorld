@@ -267,37 +267,25 @@ namespace NewWorld::Graphics
 		// TODO: Paramenters
 		Vector2 start = GetCoordinate(window, x, y);
 
-		NW_WARN(NW_LOGGER_CORE, "DrawTexture");
-
-		Byte* data = nullptr;
-		uint handle = 0;
-
-		int textureID = window->GetTextureManger().LoadTexture("Fonts/Basic16.png");
+		int textureID = window->GetTextureManger().LoadTexture("Fonts/Basic32.png");
 		Editor::Assets::Texture texture = *(window->GetTextureManger().GetTexture(textureID));
 
-		NW_INFO(NW_LOGGER_GRAPHICS, "{} {} {} {}", texture.GetWidth(), texture.GetHeight(), texture.GetChannels(), sizeof(texture.GetData()));
+		uint handle = 0;
 
-		int textureID2 = window->GetTextureManger().LoadTexture("Fonts/Basic32.png");
-		Editor::Assets::Texture texture2 = *(window->GetTextureManger().GetTexture(textureID2));
+		glGenTextures(1, &handle);
+		glBindTexture(GL_TEXTURE_2D, handle);
 
-		NW_INFO(NW_LOGGER_GRAPHICS, "{} {} {} {}", texture2.GetWidth(), texture2.GetHeight(), texture2.GetChannels(), sizeof(texture2.GetData()));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
-		int textureID3 = window->GetTextureManger().LoadTexture("Fonts/Basic64.png");
-		Editor::Assets::Texture texture3 = *(window->GetTextureManger().GetTexture(textureID3));
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
-		NW_INFO(NW_LOGGER_GRAPHICS, "{} {} {} {}", texture3.GetWidth(), texture3.GetHeight(), texture3.GetChannels(), sizeof(texture3.GetData()));
+		
 
-		NW_ASSERT(false, "STOP");
-		//glGenTextures(1, &handle);
-		//glBindTexture(GL_TEXTURE_2D, &handle);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_INT, data);
-
-		//glBindTexture(GL_TEXTURE_2D, 0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &handle);
 	}
 
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
