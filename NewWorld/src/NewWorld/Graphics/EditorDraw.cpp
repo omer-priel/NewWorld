@@ -1,6 +1,8 @@
 #include "nwpch.h"
 #include "EditorDraw.h"
 
+#include "NewWorld/Editor/Assets/TextureManger.h"
+
 #include <GLFW/glfw3.h>
 
 #include <GLM/glm.hpp>
@@ -270,6 +272,22 @@ namespace NewWorld::Graphics
 		Byte* data = nullptr;
 		uint handle = 0;
 
+		int textureID = window->GetTextureManger().LoadTexture("Basic16.png");
+		Editor::Assets::Texture texture = *(window->GetTextureManger().GetTexture(textureID));
+
+		NW_INFO(NW_LOGGER_GRAPHICS, "{} {} {} {}", texture.GetWidth(), texture.GetHeight(), texture.GetChannels(), sizeof(texture.GetData()));
+
+		int textureID2 = window->GetTextureManger().LoadTexture("Basic32.png");
+		Editor::Assets::Texture texture2 = *(window->GetTextureManger().GetTexture(textureID2));
+
+		NW_INFO(NW_LOGGER_GRAPHICS, "{} {} {} {}", texture2.GetWidth(), texture2.GetHeight(), texture2.GetChannels(), sizeof(texture2.GetData()));
+
+		int textureID3 = window->GetTextureManger().LoadTexture("Basic64.png");
+		Editor::Assets::Texture texture3 = *(window->GetTextureManger().GetTexture(textureID3));
+
+		NW_INFO(NW_LOGGER_GRAPHICS, "{} {} {} {}", texture3.GetWidth(), texture3.GetHeight(), texture3.GetChannels(), sizeof(texture3.GetData()));
+
+		NW_ASSERT(false, "STOP");
 		//glGenTextures(1, &handle);
 		//glBindTexture(GL_TEXTURE_2D, &handle);
 		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)

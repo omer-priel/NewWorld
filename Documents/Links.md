@@ -23,6 +23,7 @@ https://www.canva.com/design/DAEm07pxUUk/oyicj5ii7maokDOFNL1bdQ/edit
 	Todo List: https://marketplace.visualstudio.com/items?itemName=saber2pr.todolist
 
 * Libraries
-	GLM		: https://github.com/g-truc/glm
-	GLFW	: https://github.com/glfw/glfw
-	ImGui	: https://github.com/ocornut/imgui
+	GLM		 : https://github.com/g-truc/glm
+	GLFW	 : https://github.com/glfw/glfw
+	ImGui	 : https://github.com/ocornut/imgui
+    stb_image: https://github.com/nothings/stb

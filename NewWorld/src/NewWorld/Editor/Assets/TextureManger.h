@@ -22,10 +22,10 @@ namespace NewWorld::Editor::Assets
 
 		// Load Textures
 	public:
-		SharedPointer<Texture> LoadTexture(String name);
+		int LoadTexture(String filepath);
 		
 	public:
 		// Get Texture
-		SharedPointer<Texture> GetTexture(uint id);
+		SharedPointer<Texture> GetTexture(int id);
 	};
 }

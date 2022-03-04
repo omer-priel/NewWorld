@@ -49,7 +49,7 @@ namespace NewWorld::Editor
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
 
-		inline Assets::TextureManger& getTextureManger() { return m_TextureManger; }
+		inline Assets::TextureManger& GetTextureManger() { return m_TextureManger; }
 
 		// Actions
 	public:
