@@ -94,6 +94,11 @@ project "Sandbox"
 		"NewWorld"
 	}
 
+    postbuildcommands
+    {
+        "{COPYDIR} %{wks.location}/Assets %{cfg.targetdir}/assets"
+    }
+
 	filter "system:windows"
 		defines "NW_PLATFORM_WINDOWS"
 		systemversion "latest"
