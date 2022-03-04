@@ -45,6 +45,13 @@ namespace NewWorld::Files
 			return GetRootDirectory("logs\\" + subPath);
 		}
 
+		static String GetAssetPath(const String& asset = "")
+		{
+			String path = GetRootDirectory("assets\\" + asset);
+			path.Replace('/', '\\');
+			return path;
+		}
+
 		static uint CreateTemporaryDirectory()
 		{
 			uint id = s_LastTemporaryDirectoryID;

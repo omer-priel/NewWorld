@@ -3,10 +3,10 @@
 
 namespace NewWorld::Editor::Assets
 {
-	int TextureManger::LoadTexture(String filepath)
+	int TextureManger::LoadTexture(String asset)
 	{
 		SharedPointer<Texture> texture;
-		bool loaded = texture->LoadFromPNGFile(filepath);
+		bool loaded = texture->LoadFromPNGFile(asset);
 		
 		if (loaded)
 		{

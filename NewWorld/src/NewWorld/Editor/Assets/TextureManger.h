@@ -22,7 +22,7 @@ namespace NewWorld::Editor::Assets
 
 		// Load Textures
 	public:
-		int LoadTexture(String filepath);
+		int LoadTexture(String asset);
 		
 	public:
 		// Get Texture

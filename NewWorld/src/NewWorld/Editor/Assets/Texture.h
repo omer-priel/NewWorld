@@ -31,6 +31,6 @@ namespace NewWorld::Editor::Assets
 
 		// Load
 	public:
-		bool LoadFromPNGFile(String filepath);
+		bool LoadFromPNGFile(String asset);
 	};
 }
