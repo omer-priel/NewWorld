@@ -1,7 +1,7 @@
 #include "nwpch.h"
 #include "EditorDraw.h"
 
-#include "NewWorld/Editor/Assets/TextureManger.h"
+#include "NewWorld/Editor/Assets/TextureManager.h"
 
 #include <GLFW/glfw3.h>
 
@@ -267,8 +267,8 @@ namespace NewWorld::Graphics
 		// TODO: Paramenters
 		Vector2 start = GetCoordinate(window, x, y);
 
-		int textureID = window->GetTextureManger().LoadTexture("Fonts/Basic32.png");
-		Editor::Assets::Texture texture = *(window->GetTextureManger().GetTexture(textureID));
+		int textureID = window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
+		Editor::Assets::Texture texture = *(window->GetTextureManager().GetTexture(textureID));
 
 		uint handle = 0;
 

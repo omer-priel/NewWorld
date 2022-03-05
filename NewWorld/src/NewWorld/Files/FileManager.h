@@ -7,9 +7,9 @@
 namespace NewWorld::Files
 {
 	// This is static class
-	class FileManger : public Object
+	class FileManager : public Object
 	{
-	NW_CLASS(NewWorld::Files, FileManger)
+	NW_CLASS(NewWorld::Files, FileManager)
 
 		// Members
 	private:

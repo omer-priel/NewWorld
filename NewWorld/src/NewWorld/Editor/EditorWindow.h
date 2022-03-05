@@ -5,7 +5,7 @@
 #include "NewWorld/Core/Window.h"
 #include "NewWorld/Math/Projection.h"
 #include "NewWorld/Editor/UI/Panel.h"
-#include "NewWorld/Editor/Assets/TextureManger.h"
+#include "NewWorld/Editor/Assets/TextureManager.h"
 
 namespace NewWorld::Editor
 {
@@ -22,7 +22,7 @@ namespace NewWorld::Editor
 
 		Matrix4 m_ProjectionMatrix;
 
-		Assets::TextureManger m_TextureManger;
+		Assets::TextureManager m_TextureManager;
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
@@ -49,7 +49,7 @@ namespace NewWorld::Editor
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
 
-		inline Assets::TextureManger& GetTextureManger() { return m_TextureManger; }
+		inline Assets::TextureManager& GetTextureManager() { return m_TextureManager; }
 
 		// Actions
 	public:

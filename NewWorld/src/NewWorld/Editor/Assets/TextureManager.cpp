@@ -1,9 +1,9 @@
 #include "nwpch.h"
-#include "TextureManger.h"
+#include "TextureManager.h"
 
 namespace NewWorld::Editor::Assets
 {
-	int TextureManger::LoadTexture(String asset)
+	int TextureManager::LoadTexture(String asset)
 	{
 		SharedPointer<Texture> texture;
 		bool loaded = texture->LoadFromPNGFile(asset);
@@ -17,7 +17,7 @@ namespace NewWorld::Editor::Assets
 		return -1;
 	}
 
-	SharedPointer<Texture> TextureManger::GetTexture(int id)
+	SharedPointer<Texture> TextureManager::GetTexture(int id)
 	{
 		NW_ASSERT(0 <= id && id < m_Textures.size(), "The Texture id {} not found!");
 

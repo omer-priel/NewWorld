@@ -5,16 +5,16 @@
 
 namespace NewWorld::Editor::Assets
 {
-	class TextureManger : public Object
+	class TextureManager : public Object
 	{
-	NW_CLASS(NewWorld::Editor::Assets, TextureManger)
+	NW_CLASS(NewWorld::Editor::Assets, TextureManager)
 
 		// Members
 	private:
 		DynamicArray<SharedPointer<Texture>> m_Textures;
 
 	public:
-		TextureManger()
+		TextureManager()
 			: m_Textures()
 		{
 

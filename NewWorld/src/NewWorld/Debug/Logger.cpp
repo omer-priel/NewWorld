@@ -15,7 +15,7 @@ namespace NewWorld::Debug
 	// Actions
 	void Logger::Initialize()
 	{
-		s_LogFile.Open(Files::FileManger::GetLogsDirectory(Time::Now().Format("{}_{}_{}.log")), true);
+		s_LogFile.Open(Files::FileManager::GetLogsDirectory(Time::Now().Format("{}_{}_{}.log")), true);
 	}
 
 	// Log
