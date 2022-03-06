@@ -100,6 +100,8 @@ namespace NewWorld::Core
 						double yPos;
 
 						glfwGetCursorPos(winHandle, &xPos, &yPos);
+						yPos = (double)window.GetHeight() - yPos;
+
 						SharedPointer<Temp::TempPanel> newPanel(xPos, yPos);
 
 						window.GetMainPanel().AddComponent(newPanel);
@@ -119,6 +121,7 @@ namespace NewWorld::Core
 			double yPos;
 
 			glfwGetCursorPos(winHandle, &xPos, &yPos);
+			yPos = (double)window.GetHeight() - yPos;
 
 			switch (action)
 			{
@@ -142,6 +145,8 @@ namespace NewWorld::Core
 
 		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* winHandle, double xPos, double yPos) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+
+			yPos = (double)window.GetHeight() - yPos;
 
 			window.MouseHover(xPos, yPos);
 		});
