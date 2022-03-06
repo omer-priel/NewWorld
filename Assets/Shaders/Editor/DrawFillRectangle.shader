@@ -13,14 +13,17 @@ void main()
 #shader geometry
 #version 330 core
 layout (triangles) in;
-layout (triangle_strip, max_vertices = 3) out;
+layout (triangle_strip, max_vertices = 6) out;
 
 void main() {
 
-	gl_Position = gl_in[i].gl_Position;
-	EmitVertex();    
+	gl_Position = gl_in[0].gl_Position;
+	EmitVertex();
+
+	gl_Position = gl_in[1].gl_Position;
+	EmitVertex();
     
-	EndPrimitive();
+    EndPrimitive();
 }
 
 #shader fragment
