@@ -159,7 +159,6 @@ namespace NewWorld::Graphics
 		};
 
 		// TODO: Draw Fill Rectangle
-
 		// BeforeDraw();
 		
 		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);

@@ -71,9 +71,17 @@ namespace NewWorld::Files
 	public:
 		inline void Close()
 		{
-			if (!IsOpened())
+			if (IsOpened())
 			{
 				m_Stream.close();
+			}
+		}
+
+		inline void Save()
+		{
+			if (IsOpened())
+			{
+				m_Stream.flush();
 			}
 		}
 

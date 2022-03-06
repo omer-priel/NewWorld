@@ -27,6 +27,7 @@ namespace NewWorld::Debug
 		
 		// Log File
 		s_LogFile.Write(log);
+		s_LogFile.Save();
 	}
 
 
