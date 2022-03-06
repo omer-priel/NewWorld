@@ -76,7 +76,7 @@ namespace NewWorld::Editor::Assets
 				String message(length);
 				glGetShaderInfoLog(id, length, &length, (GLchar*)message.GetPointer());
 
-				NW_ERROR(NW_LOGGER_GRAPHICS, "Shader Compile Error:{} {}", id, message);
+				NW_ERROR(NW_LOGGER_GRAPHICS, "Shader Compile Error: {}", message);
 
 				glDeleteShader(id);
 

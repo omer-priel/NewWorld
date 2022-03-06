@@ -10,22 +10,6 @@ void main()
     gl_Position = u_ProjectionMatrix * postion;
 };
 
-#shader geometry
-#version 330 core
-layout (points) in;
-layout (triangle_strip, max_vertices = 3) out;
-
-void main() {
-
-	for (int i = 0; i < 3; i++)
-    {
-    	gl_Position = gl_in[i].gl_Position;
-		EmitVertex();
-    }
-    
-    EndPrimitive();
-}
-
 #shader fragment
 #version 330 core
 

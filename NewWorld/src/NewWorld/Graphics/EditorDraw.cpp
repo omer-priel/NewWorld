@@ -140,19 +140,20 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint width, uint height, const Graphics::Color& color)
 	{
+		x = 100;
+		y = 100;
+		width = 100;
+		height = 100;
+
 		GLfloat vertices[] = {
 			x, y,
 			x + width, y,
-			x + width, y + height,
-
-			x, y,
-			x, y + height,
 			x + width, y + height
 		};
 
 		BeforeDraw();
 
-		glBufferData(GL_ARRAY_BUFFER, 2 * 6 * sizeof(float), vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, 3 * 2 * sizeof(float), vertices, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -161,7 +162,7 @@ namespace NewWorld::Graphics
 		
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
-		glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
+		glDrawArrays(GL_POINTS, 0, 3 * 2);
 
 		AfterDraw();
 	}
