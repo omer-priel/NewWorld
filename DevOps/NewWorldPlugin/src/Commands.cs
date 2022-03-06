@@ -227,9 +227,53 @@ namespace NewWorldPlugin
 
 			string folder = fileInfo.DirectoryName;
 			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
-			string targetPath = folder + "\\" + fileName + ".nwf";
+			string targetPath = folder + "\\" + fileName + ".nws";
 
 			// Load the File
+			string[] shaderPartTypes = {
+				"#shader vertex",
+				"#shader fragment"
+			};
+
+			string[] shaderParts = new string[shaderPartTypes.Length];
+            for (int i = 0; i < shaderParts.Length; i++)
+            {
+				shaderParts[i] = "";
+
+			}
+
+			int index = -1;
+
+			TextReader reader = File.OpenText(path);
+
+			string line;
+			while ((line = reader.ReadLine()) != null)
+            {
+				if (line.StartsWith("#shader"))
+                {
+					index = -1;
+					for (int i = 0; i < shaderPartTypes.Length && index == -1; i++)
+                    {
+						if (line.StartsWith(shaderPartTypes[i]))
+                        {
+							index = i;
+                        }
+                    }
+                }
+				else if (index != -1)
+                {
+					shaderParts[index] += line;
+                }
+            }
+
+			// Create the .nws file
+			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
+
+            foreach (var shaderPart in shaderParts)
+            {
+				writer.Write(shaderPart.Length);
+				writer.Write(shaderPart);
+            }
 		}
 
 		// Utilities
