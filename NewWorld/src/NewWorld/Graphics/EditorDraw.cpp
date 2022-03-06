@@ -274,6 +274,8 @@ namespace NewWorld::Graphics
 		int shaderID = window->GetShaderManager().LoadShader("Shaders/DrawTexture.nws");
 		Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(shaderID));
 
+		// TODO: Move to other place the loading
+
 		uint handle = 0;
 
 		glGenTextures(1, &handle);
@@ -286,7 +288,9 @@ namespace NewWorld::Graphics
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
-		
+		// TODO: Use Shader
+
+		// TODO: Draw Texture
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDeleteTextures(1, &handle);
