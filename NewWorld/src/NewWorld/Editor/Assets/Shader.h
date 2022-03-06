@@ -40,6 +40,8 @@ namespace NewWorld::Editor::Assets
 
 		inline const ShaderSource& GetSource() const { return m_Source; }
 
+		int GetUniformLocation(const String& name);
+
 		// Load
 	public:
 		bool LoadFromFile(String asset);

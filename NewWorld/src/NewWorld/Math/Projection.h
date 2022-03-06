@@ -3,6 +3,7 @@
 #include "NewWorld/Minimal.h"
 
 #include <GLM/glm.hpp>
+#include <GLM/ext.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
 
 namespace NewWorld::Math::Projection

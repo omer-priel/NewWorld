@@ -93,4 +93,9 @@ namespace NewWorld::Editor::Assets
 	{
 		glUseProgram(m_ProgramHandler);
 	}
+
+	int Shader::GetUniformLocation(const String& name)
+	{
+		return glGetUniformLocation(m_ProgramHandler, name.GetPointer());
+	}
 }

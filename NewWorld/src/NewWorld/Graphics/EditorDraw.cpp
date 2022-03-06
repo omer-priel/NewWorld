@@ -20,7 +20,7 @@ namespace NewWorld::Graphics
 
 		// Load basic Editor Shaders
 		window->GetShaderManager().LoadShader("Shaders/Editor/DrawFillRectangle.nws");
-		window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
+		//window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
 
 		// Compile shaders
 		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
@@ -169,7 +169,9 @@ namespace NewWorld::Graphics
 		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
 		shader->Use();
 
-		glUniform4f(0, color.r, color.g, color.b, color.a);
+		//glUniformMatrix4fv(shader->GetUniformLocation("u_ProjectionMatrix"), 1, GL_FALSE, glm::value_ptr(window->GetProjectionMatrix()));
+		
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
 		glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
 	}
