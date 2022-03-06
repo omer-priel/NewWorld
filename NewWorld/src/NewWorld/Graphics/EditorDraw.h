@@ -52,9 +52,5 @@ namespace NewWorld::Graphics
 	private:
 		static void BeforeDraw();
 		static void AfterDraw();
-		
-		static Vector2 GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y);
-
-		static void AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y);
 	};
 }

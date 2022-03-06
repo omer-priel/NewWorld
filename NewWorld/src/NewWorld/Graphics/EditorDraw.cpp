@@ -118,12 +118,9 @@ namespace NewWorld::Graphics
 	{
 		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
 
-		Vector2 v1 = GetCoordinate(window, x1, y1);
-		Vector2 v2 = GetCoordinate(window, x2, y2);
-
 		GLfloat lineVertices[] = {
-			v1.x, v1.y,
-			v2.x, v2.y
+			x1, y1,
+			x2, y2
 		};
 
 		BeforeDraw();
@@ -180,30 +177,18 @@ namespace NewWorld::Graphics
 
 		uint halfLineWidth = lineWidth / 2;
 
-		Vector2 vUp1 = GetCoordinate(window, x, y + halfLineWidth);
-		Vector2 vUp2 = GetCoordinate(window, x + width, y + halfLineWidth);
-
-		Vector2 vDown1 = GetCoordinate(window, x, y + height - halfLineWidth);
-		Vector2 vDown2 = GetCoordinate(window, x + width, y + height - halfLineWidth);
-
-		Vector2 vLeft1 = GetCoordinate(window, x + halfLineWidth, y + lineWidth);
-		Vector2 vLeft2 = GetCoordinate(window, x + halfLineWidth, y + height - lineWidth);
-
-		Vector2 vRight1 = GetCoordinate(window, x + width - halfLineWidth, y + lineWidth);
-		Vector2 vRight2 = GetCoordinate(window, x + width - halfLineWidth, y + height - lineWidth);
-
 		GLfloat lineVertices[] = {
-			vUp1.x, vUp1.y,
-			vUp2.x, vUp2.y,
+			x, y + halfLineWidth,
+			x + width, y + halfLineWidth,
 			
-			vDown1.x, vDown1.y,
-			vDown2.x, vDown2.y,
+			x, y + height - halfLineWidth,
+			x + width, y + height - halfLineWidth,
 			
-			vLeft1.x, vLeft1.y,
-			vLeft2.x, vLeft2.y,
+			x + halfLineWidth, y + lineWidth,
+			x + halfLineWidth, y + height - lineWidth,
 
-			vRight1.x, vRight1.y,
-			vRight2.x, vRight2.y
+			x + width - halfLineWidth, y + lineWidth,
+			x + width - halfLineWidth, y + height - lineWidth
 		};
 		
 		BeforeDraw();
@@ -221,7 +206,7 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y,
 		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount)
 	{
-		Vector2 center = GetCoordinate(window, x, y);
+		Vector2 center(x, y);
 		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
 
 		BeforeDraw();
@@ -255,7 +240,7 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y,
 		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
-		Vector2 center = GetCoordinate(window, x, y);
+		Vector2 center(x, y);
 		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
 
 		BeforeDraw();
@@ -285,7 +270,7 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
 	{
 		// TODO: Paramenters
-		Vector2 start = GetCoordinate(window, x, y);
+		Vector2 start(x, y);
 
 		Editor::Assets::Texture texture = *(window->GetTextureManager().GetTexture(0));
 		Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(0));
@@ -327,19 +312,5 @@ namespace NewWorld::Graphics
 	void EditorDraw::AfterDraw()
 	{
 		// TODO: Modern glDisable(GL_BLEND);
-	}
-
-	Vector2 EditorDraw::GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
-	{
-		Matrix4 proj = window->GetProjectionMatrix();
-		Vector4 vec4 = Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
-		vec4 = Vector4(x, y, 0, 1);
-		return vec4;
-	}
-
-	void EditorDraw::AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
-	{
-		Vector2 coordinate = GetCoordinate(window, x, y);
-		// TODO: Modern glVertex2f(coordinate.x, coordinate.y);
 	}
 }
