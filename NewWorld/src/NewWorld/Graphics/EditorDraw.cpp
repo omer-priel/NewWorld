@@ -169,20 +169,9 @@ namespace NewWorld::Graphics
 		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
 		shader->Use();
 
-		glUniform4f(1, color.r, color.g, color.b, color.a);
+		glUniform4f(0, color.r, color.g, color.b, color.a);
 
-		glDrawArrays(GL_TRIANGLES, 0, 2);
-
-		// BeforeDraw();
-		
-		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
-		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, vertices);
-		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-		glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
-		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
-
-		// AfterDraw();
-
+		glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
 	}
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
