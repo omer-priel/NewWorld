@@ -31,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 	pushVSCodeCommand('generateProjects', commands.generateProjects);
 	pushVSCodeCommand('build', commands.build);
 	pushVSCodeCommand('createFont', commands.createFont);
+    pushVSCodeCommand('createShader', commands.createShader);
 }
 
 // deactivate the Extension

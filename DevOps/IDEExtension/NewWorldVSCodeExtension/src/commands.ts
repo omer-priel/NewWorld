@@ -151,3 +151,21 @@ export function createFont(path: string) {
 	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
 	terminal.show();
 }
+
+export function createShader(path: string) {
+
+    console.log(path);
+
+	let terminal = global.extension.getTerminal();
+
+	if (path === undefined) {
+	
+		vscode.window.showErrorMessage('Undefined file path!');	
+		return;
+	}
+	
+	let pathUri = vscode.Uri.parse(path).fsPath;
+
+	terminal.sendText('NewWorldPlugin create-shader \"' + pathUri + "\"");
+	terminal.show();
+}
