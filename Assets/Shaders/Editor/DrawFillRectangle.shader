@@ -3,9 +3,11 @@
 
 layout(location = 0) in vec4 postion;
 
+uniform mat4 u_ProjectionMatrix;
+
 void main()
 {
-    gl_Position = postion;
+    gl_Position = u_ProjectionMatrix * postion;
 };
 
 #shader fragment

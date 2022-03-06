@@ -32,7 +32,10 @@ namespace NewWorld::Editor
 			m_SelectedComponent(&m_MainPanel)
 		{
 			m_MainPanel.SetWindow(this);
-			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, width, height, 0.0f);
+
+			Matrix4 proj = Math::Projection::OrthographicMatrix(0.0f, width, 0.0f, height);
+			Matrix4 view = glm::translate(Matrix4(1.0f), Vector3(0, 0, 0));;
+			m_ProjectionMatrix = proj * view;
 		}
 		
 		// Getters

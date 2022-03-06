@@ -116,6 +116,7 @@ project "Sandbox"
 
     postbuildcommands
     {
+        "rmdir /S /Q %{wks.location}/Assets %{cfg.targetdir}/assets",
         "{COPYDIR} %{wks.location}/Assets %{cfg.targetdir}/assets"
     }
 

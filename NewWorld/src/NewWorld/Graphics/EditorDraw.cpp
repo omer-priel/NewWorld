@@ -143,20 +143,17 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint width, uint height, const Graphics::Color& color)
 	{
-		Vector2 v1 = GetCoordinate(window, x, y);
-		Vector2 v2 = GetCoordinate(window, x + width, y);
-		Vector2 v3 = GetCoordinate(window, x, y + height);
-		Vector2 v4 = GetCoordinate(window, x + width, y + height);
-
 		GLfloat vertices[] = {
-			v1.x, v1.y,
-			v2.x, v2.y,
-			v4.x, v4.y,
+			x, y,
+			x + width, y,
+			x + width, y + height,
 
-			v1.x, v1.y,
-			v3.x, v3.y,
-			v4.x, v4.y
+			x, y,
+			x, y + height,
+			x + width, y + height
 		};
+
+		glm::mat4 proj = window->GetProjectionMatrix();
 
 		uint buffer;
 		glGenBuffers(1, &buffer);
@@ -169,7 +166,7 @@ namespace NewWorld::Graphics
 		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
 		shader->Use();
 
-		//glUniformMatrix4fv(shader->GetUniformLocation("u_ProjectionMatrix"), 1, GL_FALSE, glm::value_ptr(window->GetProjectionMatrix()));
+		glUniformMatrix4fv(shader->GetUniformLocation("u_ProjectionMatrix"), 1, GL_FALSE, glm::value_ptr(proj));
 		
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
@@ -336,6 +333,7 @@ namespace NewWorld::Graphics
 	{
 		Matrix4 proj = window->GetProjectionMatrix();
 		Vector4 vec4 = Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
+		vec4 = Vector4(x, y, 0, 1);
 		return vec4;
 	}
 
