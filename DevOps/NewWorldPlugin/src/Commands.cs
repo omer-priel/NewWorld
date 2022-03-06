@@ -191,7 +191,7 @@ namespace NewWorldPlugin
 			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
 			
 			writer.Write(familyName.Length); // FamilyNameLength
-			writer.Write(familyName); // FamilyName
+			writer.Write(familyName.ToArray(), 0, familyName.Length); // FamilyName
 
 			writer.Write(size);
 			writer.Write(bold);
@@ -262,7 +262,7 @@ namespace NewWorldPlugin
                 }
 				else if (index != -1)
                 {
-					shaderParts[index] += line;
+					shaderParts[index] += line + "\n";
                 }
             }
 
@@ -272,8 +272,8 @@ namespace NewWorldPlugin
             foreach (var shaderPart in shaderParts)
             {
 				writer.Write(shaderPart.Length);
-				writer.Write(shaderPart);
-            }
+				writer.Write(shaderPart.ToArray(), 0, shaderPart.Length);
+			}
 		}
 
 		// Utilities
