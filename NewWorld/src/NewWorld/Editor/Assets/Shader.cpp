@@ -4,6 +4,8 @@
 #include "NewWorld/Files/FileManager.h"
 #include "NewWorld/Files/BinaryFile.h"
 
+#include <GLFW/glfw3.h>
+
 namespace NewWorld::Editor::Assets
 {
 	bool Shader::LoadFromFile(String asset)
@@ -29,5 +31,10 @@ namespace NewWorld::Editor::Assets
 		m_Loaded = true;
 
 		return IsLoaded();
+	}
+
+	void Shader::Compile()
+	{
+		//m_ProgramHandler = glCreateProgram();
 	}
 }

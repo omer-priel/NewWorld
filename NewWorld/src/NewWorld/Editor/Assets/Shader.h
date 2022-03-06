@@ -28,6 +28,8 @@ namespace NewWorld::Editor::Assets
 		ShaderSource m_Source;
 		bool m_Loaded;
 
+		uint m_ProgramHandler = 0;
+
 	public:
 		Shader()
 		: m_Loaded(false) { }
@@ -41,5 +43,9 @@ namespace NewWorld::Editor::Assets
 		// Load
 	public:
 		bool LoadFromFile(String asset);
+
+		// Actions
+	public:
+		void Compile();
 	};
 }

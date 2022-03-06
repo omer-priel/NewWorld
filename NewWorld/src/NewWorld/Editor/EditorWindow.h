@@ -56,6 +56,8 @@ namespace NewWorld::Editor
 
 		// Actions
 	public:
+		void Create() override;
+
 		void Close() override;
 
 		void ClearSelectedComponent() { ChangeSelectedComponent(&m_MainPanel); }

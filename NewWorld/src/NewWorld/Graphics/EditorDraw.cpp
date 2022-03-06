@@ -4,6 +4,7 @@
 #include "NewWorld/Editor/Assets/TextureManager.h"
 #include "NewWorld/Editor/Assets/ShaderManager.h"
 
+#include <GL/GL.h>
 #include <GLFW/glfw3.h>
 
 #include <GLM/glm.hpp>
@@ -263,18 +264,26 @@ namespace NewWorld::Graphics
 		AfterDraw();
 	}
 
+	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
+	{
+		// Load basic Editor Fonts
+		window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
+		
+		// Load basic Editor Shaders
+		window->GetShaderManager().LoadShader("Shaders/DrawTexture.nws");
+
+		// Compile shaders
+		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
+		shader->Compile();
+	}
+
 	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
 	{
 		// TODO: Paramenters
 		Vector2 start = GetCoordinate(window, x, y);
 
-		int textureID = window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
-		Editor::Assets::Texture texture = *(window->GetTextureManager().GetTexture(textureID));
-
-		int shaderID = window->GetShaderManager().LoadShader("Shaders/DrawTexture.nws");
-		Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(shaderID));
-
-		// TODO: Move to other place the loading
+		Editor::Assets::Texture texture = *(window->GetTextureManager().GetTexture(0));
+		Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(0));
 
 		uint handle = 0;
 
@@ -289,7 +298,7 @@ namespace NewWorld::Graphics
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
 		// TODO: Use Shader
-
+		
 		// TODO: Draw Texture
 
 		glBindTexture(GL_TEXTURE_2D, 0);

@@ -12,6 +12,10 @@ namespace NewWorld::Graphics
 	{
 	NW_CLASS(NewWorld::Graphics, EditorDraw)
 
+		// Initialize Window
+	public:
+		static void InitializeWindow(RawPointer<Editor::EditorWindow> window);
+
 		// Actions Local
 	public:
 		static void DrawLine(int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth = 1);
