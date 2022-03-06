@@ -113,14 +113,14 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 
-		glEnable(GL_LINE_SMOOTH);
-		glLineWidth(lineWidth);
-		//TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
-		//TODO: Modern glVertexPointer(2, GL_FLOAT, 0, lineVertices);
-		//TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-		glDrawArrays(GL_LINES, 0, 2);
-		//TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
-		glDisable(GL_LINE_SMOOTH);
+		// TODO: Modern glEnable(GL_LINE_SMOOTH);
+		// TODO: Modern glLineWidth(lineWidth);
+		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
+		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, lineVertices);
+		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
+		// TODO: Modern glDrawArrays(GL_LINES, 0, 2);
+		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
+		// TODO: Modern glDisable(GL_LINE_SMOOTH);
 
 		AfterDraw();
 	}
@@ -145,11 +145,11 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 
-		//TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
-		//TODO: Modern glVertexPointer(2, GL_FLOAT, 0, vertices);
-		//TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-		glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
-		//TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
+		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
+		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, vertices);
+		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
+		// TODO: Modern glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
+		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
 
 		AfterDraw();
 
@@ -190,12 +190,12 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 
-		glLineWidth(lineWidth);
-		//TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
-		//TODO: Modern glVertexPointer(2, GL_FLOAT, 0, lineVertices);
-		//TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-		glDrawArrays(GL_LINES, 0, 2*4);
-		//TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
+		// TODO: Modern glLineWidth(lineWidth);
+		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
+		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, lineVertices);
+		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
+		// TODO: Modern glDrawArrays(GL_LINES, 0, 2*4);
+		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
 
 		AfterDraw();
 	}
@@ -208,7 +208,7 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 
-		//TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
+		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
 
 		float angle = angleStart;
 		float angleStep = angleLength / verticesCount;
@@ -217,16 +217,16 @@ namespace NewWorld::Graphics
 
 		for (uint i = 0; i <= verticesCount; i++)
 		{
-			//TODO: Modern glBegin(GL_TRIANGLES);
-			//TODO: Modern glVertex2f(center.x, center.y);
-			//TODO: Modern glVertex2f(prevVertice.x, prevVertice.y);
+			// TODO: Modern glBegin(GL_TRIANGLES);
+			// TODO: Modern glVertex2f(center.x, center.y);
+			// TODO: Modern glVertex2f(prevVertice.x, prevVertice.y);
 
 			prevVertice.x = center.x + diameter.x * sin(angle);
 			prevVertice.y = center.y + diameter.y * cos(angle);
 
-			//TODO: Modern glVertex2f(prevVertice.x, prevVertice.y);
+			// TODO: Modern glVertex2f(prevVertice.x, prevVertice.y);
 
-			//TODO: Modern glEnd();
+			// TODO: Modern glEnd();
 
 			angle += angleStep;
 		}
@@ -242,9 +242,9 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 
-		glLineWidth(lineWidth);
-		//TODO: Modern glBegin(GL_LINE_STRIP);
-		//TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
+		// TODO: Modern glLineWidth(lineWidth);
+		// TODO: Modern glBegin(GL_LINE_STRIP);
+		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
 
 		float angle = angleStart;
 		float angleStep = angleLength / verticesCount;
@@ -254,12 +254,12 @@ namespace NewWorld::Graphics
 			float pointX = center.x + diameter.x * sin(angle);
 			float pointY = center.y + diameter.y * cos(angle);
 
-			//TODO: Modern glVertex2f(pointX, pointY);
+			// TODO: Modern glVertex2f(pointX, pointY);
 
 			angle += angleStep;
 		}
 
-		//TODO: Modern glEnd();
+		// TODO: Modern glEnd();
 
 		AfterDraw();
 	}
@@ -287,22 +287,22 @@ namespace NewWorld::Graphics
 
 		uint handle = 0;
 
-		glGenTextures(1, &handle);
-		glBindTexture(GL_TEXTURE_2D, handle);
+		// TODO: Modern glGenTextures(1, &handle);
+		// TODO: Modern glBindTexture(GL_TEXTURE_2D, handle);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		//TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		//TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+		// TODO: Modern glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
 		// TODO: Use Shader
 		
 		// TODO: Draw Texture
 
-		glBindTexture(GL_TEXTURE_2D, 0);
-		glDeleteTextures(1, &handle);
+		// TODO: Modern glBindTexture(GL_TEXTURE_2D, 0);
+		// TODO: Modern glDeleteTextures(1, &handle);
 	}
 
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
@@ -315,13 +315,13 @@ namespace NewWorld::Graphics
 	// Utilities
 	void EditorDraw::BeforeDraw()
 	{
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		// TODO: Modern glEnable(GL_BLEND);
+		// TODO: Modern glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	void EditorDraw::AfterDraw()
 	{
-		glDisable(GL_BLEND);
+		// TODO: Modern glDisable(GL_BLEND);
 	}
 
 	Vector2 EditorDraw::GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
@@ -334,6 +334,6 @@ namespace NewWorld::Graphics
 	void EditorDraw::AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
 	{
 		Vector2 coordinate = GetCoordinate(window, x, y);
-		//TODO: Modern glVertex2f(coordinate.x, coordinate.y);
+		// TODO: Modern glVertex2f(coordinate.x, coordinate.y);
 	}
 }

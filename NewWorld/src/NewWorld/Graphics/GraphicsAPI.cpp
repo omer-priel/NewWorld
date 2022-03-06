@@ -13,13 +13,11 @@ namespace NewWorld::Graphics
 
 	void GraphicsAPI::Initialize()
 	{
-		int success;
-
-		success = glfwInit();
+		int success = glfwInit();
 		NW_ASSERT(success, "Could not intialize GLFW!");
 
-		success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		NW_ASSERT(success, "Could not intialize GLAD!");
+		int faild = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		NW_ASSERT(!faild, "Could not intialize GLAD!");
 
 		glfwSetErrorCallback(error_callback);
 	}
