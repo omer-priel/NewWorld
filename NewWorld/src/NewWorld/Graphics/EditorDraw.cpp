@@ -158,14 +158,25 @@ namespace NewWorld::Graphics
 			v4.x, v4.y
 		};
 
-		
+		uint buffer;
+		glGenBuffers(1, &buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, buffer);
+		glBufferData(GL_ARRAY_BUFFER, 2 * 6 * sizeof(float), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
+		shader->Use();
+
+		glDrawArrays(GL_TRIANGLES, 0, 2);
 
 		// BeforeDraw();
 		
 		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
 		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, vertices);
 		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-		// TODO: Modern glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
+		glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
 		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
 
 		// AfterDraw();
@@ -204,7 +215,7 @@ namespace NewWorld::Graphics
 			vRight1.x, vRight1.y,
 			vRight2.x, vRight2.y
 		};
-
+		
 		BeforeDraw();
 
 		// TODO: Modern glLineWidth(lineWidth);

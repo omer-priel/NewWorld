@@ -48,6 +48,8 @@ namespace NewWorld::Editor::Assets
 	public:
 		void Compile();
 
+		void Use();
+
 		// Actions
 	private:
 		inline uint CompilePart(uint partType, const Byte* partSource, int partLength);

@@ -88,4 +88,9 @@ namespace NewWorld::Editor::Assets
 
 		return 0;
 	}
+
+	void Shader::Use()
+	{
+		glUseProgram(m_ProgramHandler);
+	}
 }
