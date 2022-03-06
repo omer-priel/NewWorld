@@ -158,15 +158,17 @@ namespace NewWorld::Graphics
 			v4.x, v4.y
 		};
 
-		BeforeDraw();
+		// TODO: Draw Fill Rectangle
 
+		// BeforeDraw();
+		
 		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
 		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, vertices);
 		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
 		// TODO: Modern glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
 		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
 
-		AfterDraw();
+		// AfterDraw();
 
 	}
 
