@@ -25,7 +25,8 @@ namespace NewWorldPlugin
 			Console.WriteLine("\t" + "uninstall-extension    - Uninstall the extension");
 			Console.WriteLine("\t" + "generate-projects      - Generate Projects");
 			Console.WriteLine("\t" + "build                  - Build the applications");
-			Console.WriteLine("\t" + "create-font [path]       - Create .nwf from .json");
+			Console.WriteLine("\t" + "create-font [path]     - Create .nwf from .json");
+			Console.WriteLine("\t" + "create-shader [path]   - Create .nws from .shader");
 			Console.WriteLine("Options:");
 			Console.WriteLine("\t" + "--root-path [path]     - Change the nwe directory to use");
 		}
@@ -222,5 +223,29 @@ namespace NewWorldPlugin
 
 			writer.Close();
 		}
+
+		static public void CreateShader(string path)
+        {
+			if (!File.Exists(path))
+			{
+				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
+				return;
+			}
+
+			FileInfo fileInfo = new FileInfo(path);
+			if (fileInfo.Extension != ".shader")
+			{
+				Utilities.ShowErrorMessage("Is not .shader file!");
+				return;
+			}
+
+			string folder = fileInfo.DirectoryName;
+			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
+			string targetPath = folder + "\\" + fileName + ".nwf";
+
+			// Load the File
+		}
+
+		// Utilities functions
 	}
 }
