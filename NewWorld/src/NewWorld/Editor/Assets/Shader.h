@@ -19,6 +19,9 @@ namespace NewWorld::Editor::Assets
 			int VertexPartLength = 0;
 			Byte* VertexPartSource = nullptr;
 
+			int GeometryPartLength = 0;
+			Byte* GeometryPartSource = nullptr;
+
 			int FragmentPartLength = 0;
 			Byte* FragmentPartSource = nullptr;
 		};

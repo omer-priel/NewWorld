@@ -231,6 +231,7 @@ namespace NewWorldPlugin
 			// Load the File
 			string[] shaderPartTypes = {
 				"#shader vertex",
+				"#shader geometry",
 				"#shader fragment"
 			};
 
@@ -238,7 +239,6 @@ namespace NewWorldPlugin
             for (int i = 0; i < shaderParts.Length; i++)
             {
 				shaderParts[i] = "";
-
 			}
 
 			int index = -1;

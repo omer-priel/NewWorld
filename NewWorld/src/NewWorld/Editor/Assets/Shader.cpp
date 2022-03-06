@@ -22,6 +22,13 @@ namespace NewWorld::Editor::Assets
 			reader.Read(m_Source.VertexPartSource, m_Source.VertexPartLength);
 		}
 
+		reader >> m_Source.GeometryPartLength;
+		if (m_Source.GeometryPartLength > 0)
+		{
+			m_Source.GeometryPartSource = new Byte[m_Source.GeometryPartLength];
+			reader.Read(m_Source.GeometryPartSource, m_Source.GeometryPartLength);
+		}
+
 		reader >> m_Source.FragmentPartLength;
 		if (m_Source.FragmentPartLength > 0)
 		{
@@ -39,20 +46,15 @@ namespace NewWorld::Editor::Assets
 		m_ProgramHandler = glCreateProgram();
 
 		uint s1 = CompilePart(GL_VERTEX_SHADER, m_Source.VertexPartSource, m_Source.VertexPartLength);
-		uint s2 = CompilePart(GL_FRAGMENT_SHADER, m_Source.FragmentPartSource, m_Source.FragmentPartLength);
+		uint s2 = CompilePart(GL_GEOMETRY_SHADER, m_Source.GeometryPartSource, m_Source.GeometryPartLength);
+		uint s3 = CompilePart(GL_FRAGMENT_SHADER, m_Source.FragmentPartSource, m_Source.FragmentPartLength);
 
 		glLinkProgram(m_ProgramHandler);
 		glValidateProgram(m_ProgramHandler);
 
-		if (s1)
-		{
-			glDeleteShader(s1);
-		}
-
-		if (s2)
-		{
-			glDeleteShader(s2);
-		}
+		if (s1) { glDeleteShader(s1); }
+		if (s2) { glDeleteShader(s2); }
+		if (s3) { glDeleteShader(s3); }
 	}
 
 	uint Shader::CompilePart(uint partType, const Byte* partSource, int partLength)
