@@ -147,8 +147,8 @@ namespace NewWorld::Graphics
 
 		GLfloat vertices[] = {
 			x, y,
-			x + width, y,
-			x + width, y + height
+			x + width, y + height,
+			x + width, y
 		};
 
 		BeforeDraw();
