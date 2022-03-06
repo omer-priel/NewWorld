@@ -47,5 +47,9 @@ namespace NewWorld::Editor::Assets
 		// Actions
 	public:
 		void Compile();
+
+		// Actions
+	private:
+		inline uint CompilePart(uint partType, const Byte* partSource, int partLength);
 	};
 }

@@ -158,7 +158,8 @@ namespace NewWorld::Graphics
 			v4.x, v4.y
 		};
 
-		// TODO: Draw Fill Rectangle
+		
+
 		// BeforeDraw();
 		
 		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
