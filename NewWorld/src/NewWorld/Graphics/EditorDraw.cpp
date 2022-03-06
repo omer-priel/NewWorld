@@ -150,24 +150,20 @@ namespace NewWorld::Graphics
 			x + width, y + height
 		};
 
-		glm::mat4 proj = window->GetProjectionMatrix();
+		BeforeDraw();
 
-		uint buffer;
-		glGenBuffers(1, &buffer);
-		glBindBuffer(GL_ARRAY_BUFFER, buffer);
 		glBufferData(GL_ARRAY_BUFFER, 2 * 6 * sizeof(float), vertices, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
-		shader->Use();
-
-		glUniformMatrix4fv(shader->GetUniformLocation("u_ProjectionMatrix"), 1, GL_FALSE, glm::value_ptr(proj));
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(0);
 		
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
 		glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
+
+		AfterDraw();
 	}
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
@@ -305,9 +301,26 @@ namespace NewWorld::Graphics
 	// Utilities
 	void EditorDraw::BeforeDraw()
 	{
+		uint buffer;
+		glGenBuffers(1, &buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, buffer);
+
 		// TODO: Modern glEnable(GL_BLEND);
 		// TODO: Modern glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
+
+	SharedPointer<Editor::Assets::Shader> EditorDraw::CreateShader(uint shaderID)
+	{
+		auto window = LocalPainter::GetWindow();
+
+		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(shaderID);
+		shader->Use();
+
+		glUniformMatrix4fv(shader->GetUniformLocation("u_ProjectionMatrix"), 1, GL_FALSE, glm::value_ptr(window->GetProjectionMatrix()));
+
+		return shader;
+	}
+
 
 	void EditorDraw::AfterDraw()
 	{

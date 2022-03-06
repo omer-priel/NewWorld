@@ -51,6 +51,7 @@ namespace NewWorld::Graphics
 		// Utilities
 	private:
 		static void BeforeDraw();
+		static SharedPointer<Editor::Assets::Shader> CreateShader(uint shaderID);
 		static void AfterDraw();
 	};
 }
