@@ -75,6 +75,9 @@ StartStage('Delete "Dependencies"')
 
 Utilities.CMD(f'rd /s /q Dependencies')
 
+Utilities.CMD(f'xcopy /Q /E /Y /I DevOps\RawDependencies\GLAD Dependencies\GLAD')
+Utilities.CMD(f'xcopy /Q /E /Y /I DevOps\RawDependencies\GLAD_Debug Dependencies\GLAD_Debug')
+
 StartStage('Load Submodules')
 Utilities.CMD(f'git submodule init', True)
 Utilities.CMD(f'git submodule update', True)

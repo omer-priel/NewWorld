@@ -19,11 +19,9 @@ https://www.canva.com/design/DAEm07pxUUk/oyicj5ii7maokDOFNL1bdQ/edit
 ## Dependencies
 * Tools
 	Premake	 : https://github.com/premake/premake-core
-* Extensions
-	Todo List: https://marketplace.visualstudio.com/items?itemName=saber2pr.todolist
 
 * Libraries
 	GLM		 : https://github.com/g-truc/glm
 	GLFW	 : https://github.com/glfw/glfw
-	ImGui	 : https://github.com/ocornut/imgui
+    GLAD     : https://glad.dav1d.de/
     stb_image: https://github.com/nothings/stb
