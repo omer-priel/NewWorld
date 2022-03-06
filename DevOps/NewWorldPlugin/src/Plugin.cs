@@ -51,7 +51,7 @@ namespace NewWorldPlugin
 
 				if (rootDirectory.Parent == null)
                 {
-					Utilities.ShowErrorMessage("The .new does not exists!");
+					Utilities.ShowErrorMessage("The .nwe does not exists!");
 					return false;
 				}
 

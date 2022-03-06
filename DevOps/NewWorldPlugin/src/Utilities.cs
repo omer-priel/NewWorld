@@ -20,6 +20,7 @@ namespace NewWorldPlugin
 			else
 			{
 				Console.WriteLine("Error: {0}", message);
+				Console.WriteLine("");
 				Commands.Help();
 			}
 		}

@@ -15,8 +15,7 @@ namespace NewWorldPlugin
 	static public class Commands
 	{
 		static public void Help()
-		{
-			Console.WriteLine("");
+		{	
 			Console.WriteLine("NewWorldPlugin [options]      - Open in Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin [options] [command]");
 			Console.WriteLine("Commands:");
