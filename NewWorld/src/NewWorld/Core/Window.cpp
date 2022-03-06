@@ -6,6 +6,7 @@
 
 #include "TempPanel.h"
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace NewWorld::Core
@@ -46,9 +47,12 @@ namespace NewWorld::Core
 	void Window::Create()
 	{
 		m_WinHandle = glfwCreateWindow((int)m_Width, (int)m_Height, m_Title.GetPointer(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_WinHandle);
+		glfwMakeContextCurrent(m_WinHandle);		
 		glfwSetWindowUserPointer(m_WinHandle, this);
 		glfwSwapInterval(1); // Set VSync true
+
+		int success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		NW_ASSERT(success, "Could not intialize GLAD!");
 
 		// Register Window Events
 		Window::ReggisterEvents();

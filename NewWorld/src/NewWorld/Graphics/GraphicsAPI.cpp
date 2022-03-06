@@ -16,9 +16,6 @@ namespace NewWorld::Graphics
 		int success = glfwInit();
 		NW_ASSERT(success, "Could not intialize GLFW!");
 
-		int faild = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		NW_ASSERT(!faild, "Could not intialize GLAD!");
-
 		glfwSetErrorCallback(error_callback);
 	}
 

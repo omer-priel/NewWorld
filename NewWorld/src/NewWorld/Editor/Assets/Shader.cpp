@@ -36,6 +36,6 @@ namespace NewWorld::Editor::Assets
 
 	void Shader::Compile()
 	{
-		//m_ProgramHandler = glCreateProgram();
+		m_ProgramHandler = glCreateProgram();
 	}
 }

@@ -12,6 +12,21 @@
 
 namespace NewWorld::Graphics
 {
+	// Initialize
+	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
+	{
+		// Load basic Editor Fonts
+		window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
+
+		// Load basic Editor Shaders
+		window->GetShaderManager().LoadShader("Shaders/Editor/DrawRectangle.nws");
+		window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
+
+		// Compile shaders
+		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
+		shader->Compile();
+	}
+
 	// Local
 	void EditorDraw::DrawLine(int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
 	{
@@ -262,19 +277,6 @@ namespace NewWorld::Graphics
 		// TODO: Modern glEnd();
 
 		AfterDraw();
-	}
-
-	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
-	{
-		// Load basic Editor Fonts
-		window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
-		
-		// Load basic Editor Shaders
-		window->GetShaderManager().LoadShader("Shaders/DrawTexture.nws");
-
-		// Compile shaders
-		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
-		shader->Compile();
 	}
 
 	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
