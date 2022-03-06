@@ -21,7 +21,7 @@ namespace NewWorld::Editor::Assets
 		
 		// Getters
 	public:
-		inline bool IsLoaded() const { return m_Data == nullptr; }
+		inline bool IsLoaded() const { return m_Data != nullptr; }
 
 		inline int GetWidth() const { return m_Width; }
 		inline int GetHeight() const { return m_Height; }

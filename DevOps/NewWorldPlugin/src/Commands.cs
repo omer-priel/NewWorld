@@ -260,9 +260,16 @@ namespace NewWorldPlugin
                         }
                     }
                 }
-				else if (index != -1)
+				else if (index != -1 && line.Length > 0)
                 {
-					shaderParts[index] += line + "\n";
+					if (shaderParts[index].Length == 0)
+					{
+						shaderParts[index] = line;
+					}
+					else
+					{
+						shaderParts[index] += "\n" + line;
+					}
                 }
             }
 

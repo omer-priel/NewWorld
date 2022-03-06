@@ -23,6 +23,6 @@ namespace NewWorld::Editor::Assets
 
 #endif
 
-		return !IsLoaded();
+		return IsLoaded();
 	}
 }

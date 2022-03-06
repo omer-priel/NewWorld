@@ -33,13 +33,13 @@ namespace NewWorld::Files
 	public:
 		inline void Read(Byte* output, SizeT length)
 		{
-			m_Stream.read((char*)&output, length);
+			m_Stream.read((char*)output, length);
 		}
 
 		inline void Read(Long index, Byte* output, SizeT length)
 		{
 			SetIndex(index);
-			m_Stream.read((char*)&output, length);
+			m_Stream.read((char*)output, length);
 		}
 
 		template <typename T>
@@ -74,7 +74,7 @@ namespace NewWorld::Files
 		template <typename T>
 		BinaryFile& operator>>(T& output)
 		{
-			m_Stream.read((char*)&output, 1);
+			m_Stream.read((char*)&output, sizeof(T));
 			return *this;
 		}
 

@@ -28,6 +28,6 @@ namespace NewWorld::Editor::Assets
 
 		m_Loaded = true;
 
-		return !IsLoaded();
+		return IsLoaded();
 	}
 }

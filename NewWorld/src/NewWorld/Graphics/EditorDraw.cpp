@@ -2,6 +2,7 @@
 #include "EditorDraw.h"
 
 #include "NewWorld/Editor/Assets/TextureManager.h"
+#include "NewWorld/Editor/Assets/ShaderManager.h"
 
 #include <GLFW/glfw3.h>
 
@@ -269,6 +270,9 @@ namespace NewWorld::Graphics
 
 		int textureID = window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
 		Editor::Assets::Texture texture = *(window->GetTextureManager().GetTexture(textureID));
+
+		int shaderID = window->GetShaderManager().LoadShader("Shaders/DrawTexture.nws");
+		Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(shaderID));
 
 		uint handle = 0;
 
