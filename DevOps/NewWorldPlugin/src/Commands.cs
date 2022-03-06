@@ -147,16 +147,9 @@ namespace NewWorldPlugin
 
 		static public void CreateFont(string path)
 		{
-			if (!File.Exists(path))
+			FileInfo fileInfo = LoadSrcPath(path, ".json");
+			if (fileInfo == null)
 			{
-				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
-				return;
-			}
-
-			FileInfo fileInfo = new FileInfo(path);
-			if (fileInfo.Extension != ".json")
-			{
-				Utilities.ShowErrorMessage("Is not .json file!");
 				return;
 			}
 
@@ -226,18 +219,11 @@ namespace NewWorldPlugin
 
 		static public void CreateShader(string path)
         {
-			if (!File.Exists(path))
-			{
-				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
+			FileInfo fileInfo = LoadSrcPath(path, ".shader");
+			if (fileInfo == null)
+            {
 				return;
-			}
-
-			FileInfo fileInfo = new FileInfo(path);
-			if (fileInfo.Extension != ".shader")
-			{
-				Utilities.ShowErrorMessage("Is not .shader file!");
-				return;
-			}
+            }
 
 			string folder = fileInfo.DirectoryName;
 			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
@@ -246,6 +232,23 @@ namespace NewWorldPlugin
 			// Load the File
 		}
 
-		// Utilities functions
+		// Utilities
+		static FileInfo LoadSrcPath(string path, string needExtension)
+        {
+			if (!File.Exists(path))
+			{
+				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
+				return null;
+			}
+
+			FileInfo fileInfo = new FileInfo(path);
+			if (fileInfo.Extension != needExtension)
+			{
+				Utilities.ShowErrorMessage("Is not " + needExtension + " file!");
+				return null;
+			}
+
+			return fileInfo;
+		}
 	}
 }
