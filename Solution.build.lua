@@ -114,10 +114,9 @@ project "Sandbox"
 		"NewWorld"
 	}
 
-    postbuildcommands
+    prebuildcommands
     {
-        "rmdir /S /Q %{wks.location}/Assets %{cfg.targetdir}/assets",
-        "{COPYDIR} %{wks.location}/Assets %{cfg.targetdir}/assets"
+        "NewWorldPlugin pre-compile %{cfg.targetdir}"
     }
 
 	filter "system:windows"

@@ -166,7 +166,7 @@ namespace NewWorld::Graphics
 		uint width, uint height, const Graphics::Color& color, uint lineWidth)
 	{
 		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
-
+		
 		uint halfLineWidth = lineWidth / 2;
 
 		GLfloat lineVertices[] = {

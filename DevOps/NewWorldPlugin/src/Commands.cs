@@ -229,12 +229,9 @@ namespace NewWorldPlugin
 			CreateShaderFromFile(fileInfo);
 		}
 
-		static public void CreateAllShaders(string folderPath = null)
+		static public void CreateAllShaders()
 		{
-			if (folderPath == null)
-			{
-				folderPath = Plugin.GetPath(@"Assets");
-			}
+			string folderPath = Plugin.GetPath(@"Assets");
 
 			DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
 			FileInfo[] files = directoryInfo.GetFiles("**.shader", SearchOption.AllDirectories);

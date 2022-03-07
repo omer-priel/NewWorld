@@ -152,9 +152,7 @@ export function createFont(path: string) {
 	terminal.show();
 }
 
-export function createShader(path: string) {
-
-    console.log(path);
+export function shaderCreate(path: string) {
 
 	let terminal = global.extension.getTerminal();
 
@@ -166,6 +164,14 @@ export function createShader(path: string) {
 	
 	let pathUri = vscode.Uri.parse(path).fsPath;
 
-	terminal.sendText('NewWorldPlugin create-shader \"' + pathUri + "\"");
+	terminal.sendText('NewWorldPlugin shader create \"' + pathUri + "\"");
+	terminal.show();
+}
+
+export function shaderCreateAll() {
+
+	let terminal = global.extension.getTerminal();
+
+	terminal.sendText('NewWorldPlugin shader create-all');
 	terminal.show();
 }
