@@ -9,7 +9,7 @@ Commands:
 	create-font [path]       - Create .nwf from .json
 	shader create [path]     - Create .nws from .shader
 	shader create-all        - Create all the shaders
-	pre-compile              - Pre Compile Processing
+	pre-compile [target]      - Pre Compile Processing
 
 Options:
 	--root-path [path]     - Change the nwe directory to use

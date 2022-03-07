@@ -27,7 +27,7 @@ namespace NewWorldPlugin
 			Console.WriteLine("\t" + "create-font [path]       - Create .nwf from .json");
 			Console.WriteLine("\t" + "shader create [path]     - Create .nws from .shader");
 			Console.WriteLine("\t" + "shader create-all        - Create all the shaders");
-			Console.WriteLine("\t" + "pre-compile              - Pre Compile Processing");
+			Console.WriteLine("\t" + "pre-compile [target]     - Pre Compile Processing");
 			Console.WriteLine("Options:");
 			Console.WriteLine("\t" + "--root-path [path]     - Change the nwe directory to use");
 		}
@@ -245,8 +245,21 @@ namespace NewWorldPlugin
 			}
 		}
 
+		static public void PreCompile(string target)
+		{
+			string assetsPath = Plugin.GetPath(@"Assets");
+
+			if (!Directory.Exists(target))
+			{
+				target = Plugin.GetPath(target);
+			}
+
+			DeleteDirectory(target + "\\assets");
+			CopyDirectory(assetsPath, target + "\\assets");
+		}
+
 		// Utilities
-		static FileInfo LoadSrcPath(string path, string needExtension)
+		static private FileInfo LoadSrcPath(string path, string needExtension)
         {
 			if (!File.Exists(path))
 			{
@@ -264,7 +277,7 @@ namespace NewWorldPlugin
 			return fileInfo;
 		}
 
-		static public void CreateShaderFromFile(FileInfo fileInfo)
+		static private void CreateShaderFromFile(FileInfo fileInfo)
 		{
 			string folder = fileInfo.DirectoryName;
 			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
@@ -321,6 +334,43 @@ namespace NewWorldPlugin
 			{
 				writer.Write(shaderPart.Length);
 				writer.Write(shaderPart.ToArray(), 0, shaderPart.Length);
+			}
+		}
+
+		static private void DeleteDirectory(string directoryPath)
+		{
+			if (Directory.Exists(directoryPath))
+			{
+				// Delete the files
+				foreach (string path in Directory.GetFiles(directoryPath))
+				{
+					File.Delete(path);
+				}
+
+				// Delete the directories
+				foreach (string path in Directory.GetDirectories(directoryPath))
+				{
+					DeleteDirectory(path);
+				}
+
+				Directory.Delete(directoryPath);
+			}
+		}
+
+		static private void CopyDirectory(string sourcePath, string targetPath)
+		{
+			Directory.CreateDirectory(targetPath);
+
+			// Create all of the directories
+			foreach (string path in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+			{
+				Directory.CreateDirectory(path.Replace(sourcePath, targetPath));
+			}
+
+			// Copy all the files
+			foreach (string path in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+			{
+				File.Copy(path, path.Replace(sourcePath, targetPath), true);
 			}
 		}
 	}

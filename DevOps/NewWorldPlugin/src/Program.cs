@@ -162,6 +162,23 @@ namespace NewWorldPlugin
 						}
 					}
 					break;
+				case "pre-compile":
+					{
+						if (Plugin.LoadProject(rootPath))
+						{
+							index++;
+							if (index == args.Length)
+							{
+								Utilities.ShowErrorMessage("Need target as parament!");
+								return;
+							}
+
+							string target = args[index];
+
+							Commands.PreCompile(target);
+						}
+					}
+					break;
 				default:
 					{
 						Utilities.ShowErrorMessage("The command \"" + command + "\" dos not exists!");
