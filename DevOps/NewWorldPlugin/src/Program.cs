@@ -121,17 +121,45 @@ namespace NewWorldPlugin
 						Commands.CreateFont(path);
 					}
 					break;
-				case "create-shader":
+				case "shader":
 					{
 						index++;
 						if (index == args.Length)
 						{
-							Utilities.ShowErrorMessage("Need path as parament!");
+							Utilities.ShowErrorMessage("Need sub command!");
 							return;
 						}
 
-						string path = args[index];
-						Commands.CreateShader(path);
+						command = args[index];
+						switch (command)
+						{
+							case "create":
+								{
+									index++;
+									if (index == args.Length)
+									{
+										Utilities.ShowErrorMessage("Need path as parament!");
+										return;
+									}
+
+									string path = args[index];
+									Commands.CreateShader(path);
+								}
+								break;
+							case "create-all":
+								{
+									if (Plugin.LoadProject(rootPath))
+									{
+										Commands.CreateAllShaders();
+									}
+								}
+								break;
+							default:
+								{
+									Utilities.ShowErrorMessage("The command \"shader " + command + "\" dos not exists!");
+								}
+								return;
+						}
 					}
 					break;
 				default:

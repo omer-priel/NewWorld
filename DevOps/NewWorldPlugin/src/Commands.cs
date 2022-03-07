@@ -19,13 +19,15 @@ namespace NewWorldPlugin
 			Console.WriteLine("NewWorldPlugin [options]      - Open in Visual Studio Code");
 			Console.WriteLine("NewWorldPlugin [options] [command]");
 			Console.WriteLine("Commands:");
-			Console.WriteLine("\t" + "help                   - Show this help");
-			Console.WriteLine("\t" + "install-extension      - Install the extension");
-			Console.WriteLine("\t" + "uninstall-extension    - Uninstall the extension");
-			Console.WriteLine("\t" + "generate-projects      - Generate Projects");
-			Console.WriteLine("\t" + "build                  - Build the applications");
-			Console.WriteLine("\t" + "create-font [path]     - Create .nwf from .json");
-			Console.WriteLine("\t" + "create-shader [path]   - Create .nws from .shader");
+			Console.WriteLine("\t" + "help                     - Show this help");
+			Console.WriteLine("\t" + "install-extension        - Install the extension");
+			Console.WriteLine("\t" + "uninstall-extension      - Uninstall the extension");
+			Console.WriteLine("\t" + "generate-projects        - Generate Projects");
+			Console.WriteLine("\t" + "build                    - Build the applications");
+			Console.WriteLine("\t" + "create-font [path]       - Create .nwf from .json");
+			Console.WriteLine("\t" + "shader create [path]     - Create .nws from .shader");
+			Console.WriteLine("\t" + "shader create-all        - Create all the shaders");
+			Console.WriteLine("\t" + "pre-compile              - Pre Compile Processing");
 			Console.WriteLine("Options:");
 			Console.WriteLine("\t" + "--root-path [path]     - Change the nwe directory to use");
 		}
@@ -224,61 +226,22 @@ namespace NewWorldPlugin
 				return;
             }
 
-			string folder = fileInfo.DirectoryName;
-			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
-			string targetPath = folder + "\\" + fileName + ".nws";
+			CreateShaderFromFile(fileInfo);
+		}
 
-			// Load the File
-			string[] shaderPartTypes = {
-				"#shader vertex",
-				"#shader geometry",
-				"#shader fragment"
-			};
-
-			string[] shaderParts = new string[shaderPartTypes.Length];
-            for (int i = 0; i < shaderParts.Length; i++)
-            {
-				shaderParts[i] = "";
+		static public void CreateAllShaders(string folderPath = null)
+		{
+			if (folderPath == null)
+			{
+				folderPath = Plugin.GetPath(@"Assets");
 			}
 
-			int index = -1;
+			DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
+			FileInfo[] files = directoryInfo.GetFiles("**.shader", SearchOption.AllDirectories);
 
-			TextReader reader = File.OpenText(path);
-
-			string line;
-			while ((line = reader.ReadLine()) != null)
-            {
-				if (line.StartsWith("#shader"))
-                {
-					index = -1;
-					for (int i = 0; i < shaderPartTypes.Length && index == -1; i++)
-                    {
-						if (line.StartsWith(shaderPartTypes[i]))
-                        {
-							index = i;
-                        }
-                    }
-                }
-				else if (index != -1 && line.Length > 0)
-                {
-					if (shaderParts[index].Length == 0)
-					{
-						shaderParts[index] = line;
-					}
-					else
-					{
-						shaderParts[index] += "\n" + line;
-					}
-                }
-            }
-
-			// Create the .nws file
-			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
-
-            foreach (var shaderPart in shaderParts)
-            {
-				writer.Write(shaderPart.Length);
-				writer.Write(shaderPart.ToArray(), 0, shaderPart.Length);
+			foreach (FileInfo file in files)
+			{
+				CreateShaderFromFile(file);
 			}
 		}
 
@@ -299,6 +262,66 @@ namespace NewWorldPlugin
 			}
 
 			return fileInfo;
+		}
+
+		static public void CreateShaderFromFile(FileInfo fileInfo)
+		{
+			string folder = fileInfo.DirectoryName;
+			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
+			string targetPath = folder + "\\" + fileName + ".nws";
+
+			// Load the File
+			string[] shaderPartTypes = {
+				"#shader vertex",
+				"#shader geometry",
+				"#shader fragment"
+			};
+
+			string[] shaderParts = new string[shaderPartTypes.Length];
+			for (int i = 0; i < shaderParts.Length; i++)
+			{
+				shaderParts[i] = "";
+			}
+
+			int index = -1;
+
+			TextReader reader = File.OpenText(fileInfo.FullName);
+
+			string line;
+			while ((line = reader.ReadLine()) != null)
+			{
+				if (line.StartsWith("#shader"))
+				{
+					index = -1;
+					for (int i = 0; i < shaderPartTypes.Length && index == -1; i++)
+					{
+						if (line.StartsWith(shaderPartTypes[i]))
+						{
+							index = i;
+						}
+					}
+				}
+				else if (index != -1 && line.Length > 0)
+				{
+					if (shaderParts[index].Length == 0)
+					{
+						shaderParts[index] = line;
+					}
+					else
+					{
+						shaderParts[index] += "\n" + line;
+					}
+				}
+			}
+
+			// Create the .nws file
+			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
+
+			foreach (var shaderPart in shaderParts)
+			{
+				writer.Write(shaderPart.Length);
+				writer.Write(shaderPart.ToArray(), 0, shaderPart.Length);
+			}
 		}
 	}
 }
