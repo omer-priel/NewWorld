@@ -142,13 +142,12 @@ namespace NewWorld::Graphics
 	{
 		GLfloat vertices[] = {
 			x, y,
-			x + width, y + height,
-			0, 0
+			x + width, y + height
 		};
 
 		BeforeDraw();
 		
-		glBufferData(GL_ARRAY_BUFFER, 3 * 2 * sizeof(float), vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, 2 * 2 * sizeof(float), vertices, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -157,7 +156,7 @@ namespace NewWorld::Graphics
 		
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_LINES, 0, 2);
 
 		AfterDraw();
 	}
