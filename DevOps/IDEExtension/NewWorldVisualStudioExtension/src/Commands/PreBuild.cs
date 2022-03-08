@@ -85,12 +85,6 @@ namespace NewWorldVisualStudioExtension.Commands
             DTE2 dte = (DTE2)GetService<SDTE>();
             EnvDTE100.Solution4 solution = (EnvDTE100.Solution4)dte.Solution;
 
-            // Get Folder Path
-            string folderPath = new System.IO.FileInfo(solution.FullName).Directory.FullName;
-
-            // Get File Name
-            Utilities.ErrorMessage(this.package, folderPath);
-
             startupNames = solution.SolutionBuild.StartupProjects as object[];
 
             list = new List<VCProject>();

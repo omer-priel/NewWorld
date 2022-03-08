@@ -88,6 +88,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Resources\Icons_Original.png" />
+    <Content Include="Resources\Icons_White.png" />
     <VSCTCompile Include="NewWorldPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
