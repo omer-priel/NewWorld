@@ -205,7 +205,7 @@ namespace NewWorld::Graphics
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
-		glDrawArrays(GL_LINES, 0, 4);
+		glDrawArrays(GL_LINES, 0, 2);
 
 		AfterDraw();
 	}
