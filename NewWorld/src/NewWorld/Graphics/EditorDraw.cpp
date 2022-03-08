@@ -20,11 +20,16 @@ namespace NewWorld::Graphics
 
 		// Load basic Editor Shaders
 		window->GetShaderManager().LoadShader("Shaders/Editor/DrawFillRectangle.nws");
+		window->GetShaderManager().LoadShader("Shaders/Editor/DrawOutlineRectangle.nws");
+		
 		//window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
 
 		// Compile shaders
-		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(0);
-		shader->Compile();
+		for (size_t i = 0; i < 2; i++)
+		{
+			SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(i);
+			shader->Compile();
+		}
 	}
 
 	// Local
@@ -147,7 +152,7 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 		
-		glBufferData(GL_ARRAY_BUFFER, 2 * 2 * sizeof(float), vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -168,7 +173,8 @@ namespace NewWorld::Graphics
 		
 		uint halfLineWidth = lineWidth / 2;
 
-		GLfloat lineVertices[] = {
+		/*
+		GLfloat vertices[] = {
 			x, y + halfLineWidth,
 			x + width, y + halfLineWidth,
 			
@@ -181,15 +187,31 @@ namespace NewWorld::Graphics
 			x + width - halfLineWidth, y + lineWidth,
 			x + width - halfLineWidth, y + height - lineWidth
 		};
+		*/
+		/*GLfloat vertices[] = {
+			x, y,
+			x + width, y
+		};*/
+
+		GLfloat vertices[] = {
+			100, 100,
+			200, 100,
+			200, 200,
+			100, 200
+		};
 		
 		BeforeDraw();
 
-		// TODO: Modern glLineWidth(lineWidth);
-		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
-		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, lineVertices);
-		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-		// TODO: Modern glDrawArrays(GL_LINES, 0, 2*4);
-		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(1);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+
+		glDrawArrays(GL_POINTS, 0, 10);
 
 		AfterDraw();
 	}
