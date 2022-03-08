@@ -82,10 +82,15 @@ namespace NewWorldVisualStudioExtension.Commands
             EnvDTE100.Solution4 solution = (EnvDTE100.Solution4)dte.Solution;
 
             // Get Folder Path
-            string folderPath = new System.IO.FileInfo(solution.FullName).Directory.Parent.FullName;
+            string folderPath = new System.IO.FileInfo(solution.FullName).Directory.FullName;
 
             // Get File Name
             Utilities.ErrorMessage(this.package, folderPath);
+
+            foreach (Project project in solution.Projects)
+            {
+                FindOpendProject(project);
+            }
 
             //Utilities.ErrorMessage(this.package, (solution.SolutionBuild.StartupProjects));
             //solution.SolutionBuild.StartupProjects;
@@ -99,6 +104,29 @@ namespace NewWorldVisualStudioExtension.Commands
                 //Utilities.ErrorMessage(this.package, vcProject.Name);
             }
             */
+        }
+
+        private void FindOpendProject(Project parent)
+		{
+            if (parent != null)
+            {
+                var project = parent.Object as VCProject;
+                var folder = parent.Object as SolutionFolder;
+
+                if (project != null && project.References != null)
+                {
+                    Utilities.ErrorMessage(this.package, project.Name + " - " + project.RootNamespace);
+                }
+                else if (folder != null)
+                {
+                    Utilities.ErrorMessage(this.package, parent.Name + " ? ");
+
+                    foreach (ProjectItem item in parent.ProjectItems)
+                    {
+                        FindOpendProject(item.SubProject);
+                    }
+                }
+            }
         }
     }
 }
