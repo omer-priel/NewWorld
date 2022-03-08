@@ -188,16 +188,10 @@ namespace NewWorld::Graphics
 			x + width - halfLineWidth, y + height - lineWidth
 		};
 		*/
-		/*GLfloat vertices[] = {
-			x, y,
-			x + width, y
-		};*/
 
 		GLfloat vertices[] = {
-			100, 100,
-			200, 100,
-			200, 200,
-			100, 200
+			x, y,
+			x + width, y + height
 		};
 		
 		BeforeDraw();
@@ -211,7 +205,7 @@ namespace NewWorld::Graphics
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
-		glDrawArrays(GL_POINTS, 0, 10);
+		glDrawArrays(GL_LINES, 0, 4);
 
 		AfterDraw();
 	}
