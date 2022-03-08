@@ -82,7 +82,7 @@ namespace NewWorldVisualStudioExtension.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            DTE2 dte = (DTE2)GetService<SDTE>();
+            DTE2 dte = GetDTE();
             EnvDTE100.Solution4 solution = (EnvDTE100.Solution4)dte.Solution;
 
             startupNames = solution.SolutionBuild.StartupProjects as object[];
@@ -98,11 +98,9 @@ namespace NewWorldVisualStudioExtension.Commands
 			{
                 string projectDir = project.ProjectDirectory;
                 string target = project.ActiveConfiguration.OutputDirectory;
-
-                projectDir = projectDir.Remove(projectDir.Length - 1, 1);
-                target = target.Remove(target.Length - 1, 1);
                 
-                target = target.Replace("..", projectDir);
+                target = System.IO.Path.GetFullPath(projectDir + target);
+                target = target.Remove(target.Length - 1, 1);
 
                 System.Diagnostics.Process.Start("NewWorldPlugin", "pre-compile \"" + target + "\"");
             }
