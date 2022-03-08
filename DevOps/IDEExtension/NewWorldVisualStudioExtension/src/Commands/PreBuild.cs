@@ -73,6 +73,10 @@ namespace NewWorldVisualStudioExtension.Commands
             Instance = new PreBuild(package, commandService);
         }
 
+        // Members
+        private List<VCProject> list;
+        private object[] startupNames;
+
         // Execute
         public override void Execute(object sender, EventArgs e)
         {
@@ -87,40 +91,48 @@ namespace NewWorldVisualStudioExtension.Commands
             // Get File Name
             Utilities.ErrorMessage(this.package, folderPath);
 
+            startupNames = solution.SolutionBuild.StartupProjects as object[];
+
+            list = new List<VCProject>();
+
             foreach (Project project in solution.Projects)
             {
                 FindOpendProject(project);
             }
 
-            //Utilities.ErrorMessage(this.package, (solution.SolutionBuild.StartupProjects));
-            //solution.SolutionBuild.StartupProjects;
+			foreach (VCProject project in list)
+			{
+                string projectDir = project.ProjectDirectory;
+                string target = project.ActiveConfiguration.OutputDirectory;
 
-            /*
-            foreach (Project project in solution.Projects)
-            {
-                Microsoft.VisualStudio.VCProjectEngine.VCProject vcProject
-                    = project.Object as Microsoft.VisualStudio.VCProjectEngine.VCProject;
+                projectDir = projectDir.Remove(projectDir.Length - 1, 1);
+                target = target.Remove(target.Length - 1, 1);
+                
+                target = target.Replace("..", projectDir);
 
-                //Utilities.ErrorMessage(this.package, vcProject.Name);
+                System.Diagnostics.Process.Start("NewWorldPlugin", "pre-compile \"" + target + "\"");
             }
-            */
         }
 
         private void FindOpendProject(Project parent)
 		{
-            if (parent != null)
+            if (parent != null && startupNames != null && list != null)
             {
                 var project = parent.Object as VCProject;
                 var folder = parent.Object as SolutionFolder;
 
                 if (project != null && project.References != null)
                 {
-                    Utilities.ErrorMessage(this.package, project.Name + " - " + project.RootNamespace);
+					foreach (object startupName in startupNames)
+					{
+                        if (project.ProjectFile.Contains(startupName.ToString()))
+						{
+                            list.Add(project);
+                        }
+					}
                 }
                 else if (folder != null)
                 {
-                    Utilities.ErrorMessage(this.package, parent.Name + " ? ");
-
                     foreach (ProjectItem item in parent.ProjectItems)
                     {
                         FindOpendProject(item.SubProject);
