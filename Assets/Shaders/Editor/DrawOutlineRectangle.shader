@@ -19,7 +19,7 @@ uniform uint u_LineWidth;
 
 void drawLine(float x1, float y1, float x2, float y2)
 {
-		// line 1
+	// line 1
 	gl_Position = vec4(x1, y1, 0.0, 1.0);
     EmitVertex();
 
@@ -31,17 +31,22 @@ void drawLine(float x1, float y1, float x2, float y2)
 
 void main() {
 
+	float x1 = gl_in[0].gl_Position.x;
+	float y1 = gl_in[0].gl_Position.y;
+	float x2 = gl_in[1].gl_Position.x;
+	float y2 = gl_in[1].gl_Position.y;
+
 	// line 1
-	drawLine(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, gl_in[1].gl_Position.x, gl_in[0].gl_Position.y);
+	drawLine(x1, y1, x2, y1);
 
 	// line 2
-	drawLine(gl_in[1].gl_Position.x, gl_in[0].gl_Position.y, gl_in[1].gl_Position.x, gl_in[1].gl_Position.y);
+	drawLine(x2, y1, x2, y2);
 
 	// line 3
-	drawLine(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y, gl_in[0].gl_Position.x, gl_in[1].gl_Position.y);
+	drawLine(x2, y2, x1, y2);
 
 	// line 4
-	drawLine(gl_in[0].gl_Position.x, gl_in[1].gl_Position.y, gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
+	drawLine(x1, y2, x1, y1);
 };
 
 #shader fragment
