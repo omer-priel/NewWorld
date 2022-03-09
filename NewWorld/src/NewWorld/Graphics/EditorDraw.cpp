@@ -204,6 +204,7 @@ namespace NewWorld::Graphics
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(1);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1ui(shader->GetUniformLocation("u_LineWidth"), lineWidth);
 
 		glDrawArrays(GL_LINES, 0, 2);
 

@@ -15,43 +15,33 @@ void main()
 layout (lines) in;
 layout (line_strip, max_vertices = 8) out;
 
+uniform uint u_LineWidth;
+
+void drawLine(float x1, float y1, float x2, float y2)
+{
+		// line 1
+	gl_Position = vec4(x1, y1, 0.0, 1.0);
+    EmitVertex();
+
+	gl_Position = vec4(x2, y2, 0.0, 1.0);
+    EmitVertex();
+
+	EndPrimitive();
+}
+
 void main() {
 
 	// line 1
-	gl_Position = vec4(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	gl_Position = vec4(gl_in[1].gl_Position.x, gl_in[0].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	EndPrimitive();
+	drawLine(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, gl_in[1].gl_Position.x, gl_in[0].gl_Position.y);
 
 	// line 2
-	gl_Position = vec4(gl_in[1].gl_Position.x, gl_in[0].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	gl_Position = vec4(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	EndPrimitive();
+	drawLine(gl_in[1].gl_Position.x, gl_in[0].gl_Position.y, gl_in[1].gl_Position.x, gl_in[1].gl_Position.y);
 
 	// line 3
-	gl_Position = vec4(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	gl_Position = vec4(gl_in[0].gl_Position.x, gl_in[1].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	EndPrimitive();
+	drawLine(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y, gl_in[0].gl_Position.x, gl_in[1].gl_Position.y);
 
 	// line 4
-	gl_Position = vec4(gl_in[0].gl_Position.x, gl_in[1].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	gl_Position = vec4(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, 0.0, 1.0);
-    EmitVertex();
-
-	EndPrimitive();
+	drawLine(gl_in[0].gl_Position.x, gl_in[1].gl_Position.y, gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
 };
 
 #shader fragment
