@@ -169,26 +169,6 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint width, uint height, const Graphics::Color& color, uint lineWidth)
 	{
-		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
-		
-		uint halfLineWidth = lineWidth / 2;
-
-		/*
-		GLfloat vertices[] = {
-			x, y + halfLineWidth,
-			x + width, y + halfLineWidth,
-			
-			x, y + height - halfLineWidth,
-			x + width, y + height - halfLineWidth,
-			
-			x + halfLineWidth, y + lineWidth,
-			x + halfLineWidth, y + height - lineWidth,
-
-			x + width - halfLineWidth, y + lineWidth,
-			x + width - halfLineWidth, y + height - lineWidth
-		};
-		*/
-
 		GLfloat vertices[] = {
 			x, y,
 			x + width, y + height

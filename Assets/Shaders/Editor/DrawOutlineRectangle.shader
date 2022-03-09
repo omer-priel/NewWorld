@@ -58,13 +58,13 @@ void main() {
 	drawRectangle(x1, y1, x2, y1 + lineWidth.y);
 
 	// line 2
-	drawRectangle(x2, y1, x2 + lineWidth.x, y2);
+	drawRectangle(x2, y1, x2 - lineWidth.x, y2);
 
 	// line 3
 	drawRectangle(x2, y2, x1, y2 + lineWidth.y);
 
 	// line 4
-	drawRectangle(x1, y2, x1 + lineWidth.x, y1);
+	drawRectangle(x1, y2, x1 - lineWidth.x, y1);
 };
 
 #shader fragment
