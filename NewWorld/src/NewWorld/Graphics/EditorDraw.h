@@ -23,14 +23,14 @@ namespace NewWorld::Graphics
 		static void DrawRectangle(int x, int y, uint width, uint height, const Graphics::Color& color);
 		static void DrawOutlineRectangle(int x, int y, uint width, uint height, const Graphics::Color& color, uint lineWidth = 1);
 		
-		static void DrawEllipseSlice(int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount = 64);
-		static void DrawArc(int x, int y, uint radiusX, uint radiusY, float startAngle, float angleLength, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
+		static void DrawEllipseSlice(int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount = 42);
+		static void DrawArc(int x, int y, uint radiusX, uint radiusY, float startAngle, float angleLength, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 42);
 
-		static void DrawEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount = 64);
-		static void DrawOutlineEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
+		static void DrawEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint verticesCount = 42);
+		static void DrawOutlineEllipse(int x, int y, uint radiusX, uint radiusY, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 42);
 
-		static void DrawOval(int x, int y, uint radius, const Graphics::Color& color, uint verticesCount = 64);
-		static void DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
+		static void DrawOval(int x, int y, uint radius, const Graphics::Color& color, uint verticesCount = 42);
+		static void DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 42);
 
 		static void DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text);
 

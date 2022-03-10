@@ -155,37 +155,40 @@ namespace Temp
 		break;
 		case 3:
 		{
-			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
-				50, 50, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+			NewWorld::Graphics::EditorDraw::DrawOutlineEllipse(300, 300, 100, 50,
 				GetBackgroundColor(), 10, 8);
 		}
 		break;
 		case 4:
 		{
-			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
-				50, 50, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(300, 300, 50,
 				GetBackgroundColor(), 10, 16);
 		}
 		break;
 		case 5:
 		{
-			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
-				50, 50, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(300, 300, 50,
 				GetBackgroundColor(), 10, 32);
 		}
 		break;
 		case 6:
 		{
-			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
-				50, 50, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
-				GetBackgroundColor(), 10, 42);
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(300, 300, 50,
+				GetBackgroundColor(), 30);
 		}
 		break;
 		case 7:
 		{
-			NewWorld::Graphics::EditorDraw::DrawArc(50, 50,
-				50, 50, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
-				GetBackgroundColor(), 10, 42);
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
+				GetBackgroundColor(), 30);
+		}
+		break;
+		case 8:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
+				NewWorld::Graphics::ColorFunctions::(), 30);
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
+				NewWorld::Graphics::Colors::Transparency, 30);
 		}
 		break;
 		default:
