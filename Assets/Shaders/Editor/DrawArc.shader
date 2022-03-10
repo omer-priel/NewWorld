@@ -22,7 +22,7 @@ uniform vec2 u_Radius;
 uniform int u_VerticesCount;
 uniform float u_LineWidth;
 
-void drawRectangle(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
+void drawQuadrate(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
 {
 	// triangle 1
 	gl_Position = vec4(v1.x, v1.y, 0.0, 1.0);
@@ -76,7 +76,7 @@ void main() {
 
 		vec2 nowPointOut = vec2(center.x + radius.x * sin(angle), center.y + radius.y * cos(angle));
 		vec2 nowPointIn = vec2(center.x + radiusIn.x * sin(angle), center.y + radiusIn.y * cos(angle));		
-		drawRectangle(backPointOut, nowPointOut, nowPointIn, backPointIn);
+		drawQuadrate(backPointOut, nowPointOut, nowPointIn, backPointIn);
 
 		backPointOut = nowPointOut;
 		backPointIn = nowPointIn;

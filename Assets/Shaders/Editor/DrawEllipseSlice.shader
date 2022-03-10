@@ -12,60 +12,53 @@ void main()
 
 #shader geometry
 #version 330 core
-layout (lines) in;
-layout (triangle_strip, max_vertices = 24) out;
+layout (points) in;
+layout (triangle_strip, max_vertices = 255) out;
 
-uniform float u_LineWidth;
 uniform mat4 u_ProjectionMatrix;
+uniform float u_AngleStart;
+uniform float u_AngleLength;
+uniform vec2 u_Radius;
+uniform int u_VerticesCount;
 
-void drawRectangle(float x1, float y1, float x2, float y2)
+void drawTriangle(vec2 v1, vec2 v2, vec2 v3)
 {
-	// triangle 1
-	gl_Position = vec4(x1, y1, 0.0, 1.0);
+	gl_Position = vec4(v1.x, v1.y, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(x2, y1, 0.0, 1.0);
+	gl_Position = vec4(v2.x, v2.y, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(x2, y2, 0.0, 1.0);
+	gl_Position = vec4(v3.x, v3.y, 0.0, 1.0);
 	EmitVertex();
     
 	EndPrimitive();
-
-	// triangle 2
-	gl_Position = vec4(x1, y1, 0.0, 1.0);
-	EmitVertex();
-
-	gl_Position = vec4(x1, y2, 0.0, 1.0);
-	EmitVertex();
-
-	gl_Position = vec4(x2, y2, 0.0, 1.0);
-	EmitVertex();
-    
-    EndPrimitive();
 }
 
 void main() {
 
-	float x1 = gl_in[0].gl_Position.x;
-	float y1 = gl_in[0].gl_Position.y;
-	float x2 = gl_in[1].gl_Position.x;
-	float y2 = gl_in[1].gl_Position.y;
-	
-	vec4 lineWidth = u_ProjectionMatrix * vec4(u_LineWidth, u_LineWidth, 0.0, 1.0);
-	lineWidth = (lineWidth + 1) / 2;
+	vec2 center = vec2(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
 
-	// left line
-	drawRectangle(x2 - lineWidth.x, y1, x2, y2);
+	vec4 radius = u_ProjectionMatrix * vec4(u_Radius.x, u_Radius.y, 0.0, 1.0);
+	radius = radius + 1;
 
-	// right line
-	drawRectangle(x1, y1, x1 + lineWidth.x, y2);
+	int verticesCount = u_VerticesCount;
 
-	// up line
-	drawRectangle(x1, y2 - lineWidth.y, x2, y2);
+	float angle = u_AngleStart;
+	float angleStep = u_AngleLength / verticesCount;
 
-	// buttom line
-	drawRectangle(x1, y1, x2, y1 + lineWidth.y);
+	// draw arc
+	vec2 backPoint = vec2(center.x + radius.x * sin(angle), center.y + radius.y * cos(angle));
+
+	for (int i = 0; i < verticesCount; i++)
+	{
+		angle += angleStep;
+
+		vec2 nowPoint = vec2(center.x + radius.x * sin(angle), center.y + radius.y * cos(angle));
+		drawTriangle(center, backPoint, nowPoint);
+
+		backPoint = nowPoint;
+	}
 };
 
 #shader fragment

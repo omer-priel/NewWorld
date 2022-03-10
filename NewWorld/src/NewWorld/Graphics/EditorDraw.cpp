@@ -196,33 +196,26 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y,
 		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount)
 	{
-		Vector2 center(x, y);
-		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
+		GLfloat vertices[] = {
+			x, y
+		};
 
 		BeforeDraw();
 
-		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		float angle = angleStart;
-		float angleStep = angleLength / verticesCount;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		Vector2 prevVertice(center.x + diameter.x * sin(angle), center.y + diameter.y * cos(angle));
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(2);
 
-		for (uint i = 0; i <= verticesCount; i++)
-		{
-			// TODO: Modern glBegin(GL_TRIANGLES);
-			// TODO: Modern glVertex2f(center.x, center.y);
-			// TODO: Modern glVertex2f(prevVertice.x, prevVertice.y);
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);
+		glUniform1f(shader->GetUniformLocation("u_AngleLength"), angleLength);
+		glUniform2f(shader->GetUniformLocation("u_Radius"), radiusX, radiusY);
+		glUniform1i(shader->GetUniformLocation("u_VerticesCount"), verticesCount);
 
-			prevVertice.x = center.x + diameter.x * sin(angle);
-			prevVertice.y = center.y + diameter.y * cos(angle);
-
-			// TODO: Modern glVertex2f(prevVertice.x, prevVertice.y);
-
-			// TODO: Modern glEnd();
-
-			angle += angleStep;
-		}
+		glDrawArrays(GL_POINTS, 0, 1);
 
 		AfterDraw();
 	}
