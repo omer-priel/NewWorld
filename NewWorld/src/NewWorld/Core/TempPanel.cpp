@@ -186,9 +186,22 @@ namespace Temp
 		case 8:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
-				NewWorld::Graphics::ColorFunctions::(), 30);
+				GetBackgroundColor(), 30);
+
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 30,
+				NewWorld::Graphics::ColorFunctions::FromRGBA(255, 0, 255, 85), 10);
+
 			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
 				NewWorld::Graphics::Colors::Transparency, 30);
+		}
+		break;
+		case 9:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
+				GetBackgroundColor(), 30);
+
+			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 30,
+				NewWorld::Graphics::Colors::Magenta, 10);
 		}
 		break;
 		default:

@@ -297,8 +297,8 @@ namespace NewWorld::Graphics
 		glGenBuffers(1, &buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
 
-		// TODO: Modern glEnable(GL_BLEND);
-		// TODO: Modern glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	SharedPointer<Editor::Assets::Shader> EditorDraw::CreateShader(uint shaderID)
@@ -316,6 +316,6 @@ namespace NewWorld::Graphics
 
 	void EditorDraw::AfterDraw()
 	{
-		// TODO: Modern glDisable(GL_BLEND);
+		glDisable(GL_BLEND);
 	}
 }
