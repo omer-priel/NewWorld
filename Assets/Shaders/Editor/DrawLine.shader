@@ -55,8 +55,6 @@ void main() {
 
 	vec2 halfLineWidth = vec2(lineWidth.x / 2, lineWidth.y / 2);
 
-	halfLineWidth = vec2(0.05, 0.05);
-
 	// draw line
 	drawQuadrate(v1 - halfLineWidth, v2 - halfLineWidth, v2 + halfLineWidth, v1 + halfLineWidth);
 };

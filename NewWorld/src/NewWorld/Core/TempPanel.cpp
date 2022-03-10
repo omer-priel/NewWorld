@@ -150,6 +150,9 @@ namespace Temp
 		{
 			NewWorld::Graphics::EditorDraw::DrawLine(200, 200, 400, 400, 
 				GetBackgroundColor(), 10);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(800, 200, 600, 400,
+				GetBackgroundColor(), 10);
 		}
 		break;
 		case 20:
