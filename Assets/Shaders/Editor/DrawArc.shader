@@ -67,57 +67,17 @@ void main() {
 	float angle = u_AngleStart;
 	float angleStep = u_AngleLength / verticesCount;
 
-	verticesCount = 5;
-
-	// test
-	//drawRectangle(vec2(-0.1, -0.1), vec2(0.1, -0.1), vec2(0.1, 0.1), vec2(-0.1, 0.1));
-	//drawRectangle(center.x, center.y, center.x + diameter.x + lineWidth.x, center.y + diameter.y + lineWidth.y);
-	vec2 p1 = vec2(0.3 * sin(0),   0.3 * cos(0));
-	vec2 p2 = vec2(0.2 * sin(0),   0.2 * cos(0));	
-	vec2 p3 = vec2(0.3 * sin(0.5), 0.3 * cos(0.5));
-	vec2 p4 = vec2(0.2 * sin(0.5), 0.2 * cos(0.5));		
-	//drawRectangle(p1, p3, p4, p2); // work
-		
-	p1 = vec2(center.x + 0.3 * sin(0),   center.y + 0.3 * cos(0));
-	p2 = vec2(center.x + 0.2 * sin(0),   center.y + 0.2 * cos(0));	
-	p3 = vec2(center.x + 0.3 * sin(0.5), center.y + 0.3 * cos(0.5));
-	p4 = vec2(center.x + 0.2 * sin(0.5), center.y + 0.2 * cos(0.5));
-	//drawRectangle(p1, p3, p4, p2); // work
-
-	p1 = vec2(center.x + diameterOut.x * sin(0),   center.y + diameterOut.x * cos(0));
-	p2 = vec2(center.x + 0.1 * sin(0),   center.y + 0.1 * cos(0));	
-	p3 = vec2(center.x + diameterOut.x * sin(0.5), center.y + diameterOut.x * cos(0.5));
-	p4 = vec2(center.x + 0.1 * sin(0.5), center.y + 0.1 * cos(0.5));		
-	//drawRectangle(p1, p3, p4, p2); // work
-
-	p1 = vec2(center.x + diameterOut.x * sin(0),   center.y + diameterOut.y * cos(0));
-	p2 = vec2(center.x + diameterIn.x * sin(0),   center.y + diameterIn.y * cos(0));	
-	p3 = vec2(center.x + diameterOut.x * sin(0.5), center.y + diameterOut.y * cos(0.5));
-	p4 = vec2(center.x + diameterIn.x * sin(0.5), center.y + diameterIn.y * cos(0.5));		
-	//drawRectangle(p1, p3, p4, p2); // work
-
-	p1 = vec2(center.x + diameterOut.x * sin(angle),   center.y + diameterOut.y * cos(angle));
-	p2 = vec2(center.x + diameterIn.x * sin(angle),   center.y + diameterIn.y * cos(angle));	
-	p3 = vec2(center.x + diameterOut.x * sin(angle + angleStep), center.y + diameterOut.y * cos(angle + angleStep));
-	p4 = vec2(center.x + diameterIn.x * sin(angle + angleStep), center.y + diameterIn.y * cos(angle + angleStep));		
-	//drawRectangle(p1, p3, p4, p2); // work
-
 	// draw arc
 	vec2 backPointOut = vec2(center.x + diameterOut.x * sin(angle), center.y + diameterOut.y * cos(angle));
-	vec2 backPointIn = vec2(center.x + diameterIn.x * sin(angle), center.y + diameterIn.y * cos(angle));
+	vec2 backPointIn = vec2(center.x + diameterIn.x * sin(angle),   center.y + diameterIn.y * cos(angle));
 
 	for (int i = 0; i < verticesCount; i++)
 	{
 		angle += angleStep;
 
 		vec2 nowPointOut = vec2(center.x + diameterOut.x * sin(angle), center.y + diameterOut.y * cos(angle));
-		vec2 nowPointIn = vec2(center.x + diameterIn.x * sin(angle), center.y + diameterIn.y * cos(angle));
-
-		p1 = vec2(center.x + diameterOut.x * sin(angle),   center.y + diameterOut.y * cos(angle));
-		p2 = vec2(center.x + diameterIn.x * sin(angle),   center.y + diameterIn.y * cos(angle));	
-		p3 = vec2(center.x + diameterOut.x * sin(angle + angleStep), center.y + diameterOut.y * cos(angle + angleStep));
-		p4 = vec2(center.x + diameterIn.x * sin(angle + angleStep), center.y + diameterIn.y * cos(angle + angleStep));		
-		drawRectangle(p1, p3, p4, p2);
+		vec2 nowPointIn = vec2(center.x + diameterIn.x * sin(angle), center.y + diameterIn.y * cos(angle));		
+		drawRectangle(backPointOut, nowPointOut, nowPointIn, backPointIn);
 
 		backPointOut = nowPointOut;
 		backPointIn = nowPointIn;

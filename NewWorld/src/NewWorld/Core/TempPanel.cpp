@@ -149,8 +149,36 @@ namespace Temp
 		case 2:
 		{
 			NewWorld::Graphics::EditorDraw::DrawArc(300, 300, 
-				100, 200, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+				100, 200, NewWorld::Math::DegreesToRadians(60), NewWorld::Math::DegreesToRadians(120),
 				GetBackgroundColor(), 10, 8);
+		}
+		break;
+		case 3:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
+				100, 100, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+				GetBackgroundColor(), 10, 8);
+		}
+		break;
+		case 4:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
+				100, 100, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+				GetBackgroundColor(), 10, 16);
+		}
+		break;
+		case 5:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
+				100, 100, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+				GetBackgroundColor(), 10, 32);
+		}
+		break;
+		case 6:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
+				100, 100, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(360),
+				GetBackgroundColor(), 10, 42);
 		}
 		break;
 		default:
