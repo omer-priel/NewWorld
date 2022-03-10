@@ -148,7 +148,13 @@ namespace Temp
 		break;
 		case 2:
 		{
-			NewWorld::Graphics::EditorDraw::DrawArc(300, 300, 
+			NewWorld::Graphics::EditorDraw::DrawLine(200, 200, 400, 400, 
+				GetBackgroundColor(), 10);
+		}
+		break;
+		case 20:
+		{
+			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
 				50, 100, NewWorld::Math::DegreesToRadians(60), NewWorld::Math::DegreesToRadians(120),
 				GetBackgroundColor(), 10, 8);
 		}

@@ -19,6 +19,7 @@ namespace NewWorld::Graphics
 		window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
 
 		// Load basic Editor Shaders
+		window->GetShaderManager().LoadShader("Shaders/Editor/DrawLine.nws");
 		window->GetShaderManager().LoadShader("Shaders/Editor/DrawFillRectangle.nws");
 		window->GetShaderManager().LoadShader("Shaders/Editor/DrawOutlineRectangle.nws");
 		window->GetShaderManager().LoadShader("Shaders/Editor/DrawEllipseSlice.nws");
@@ -27,7 +28,7 @@ namespace NewWorld::Graphics
 		//window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
 
 		// Compile shaders
-		for (size_t i = 0; i < 4; i++)
+		for (size_t i = 0; i < 5; i++)
 		{
 			SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(i);
 			shader->Compile();
@@ -123,23 +124,24 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, 
 		int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
 	{
-		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
-
-		GLfloat lineVertices[] = {
+		GLfloat vertices[] = {
 			x1, y1,
 			x2, y2
 		};
 
 		BeforeDraw();
 
-		// TODO: Modern glEnable(GL_LINE_SMOOTH);
-		// TODO: Modern glLineWidth(lineWidth);
-		// TODO: Modern glEnableClientState(GL_VERTEX_ARRAY);
-		// TODO: Modern glVertexPointer(2, GL_FLOAT, 0, lineVertices);
-		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-		// TODO: Modern glDrawArrays(GL_LINES, 0, 2);
-		// TODO: Modern glDisableClientState(GL_VERTEX_ARRAY);
-		// TODO: Modern glDisable(GL_LINE_SMOOTH);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(0);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
+
+		glDrawArrays(GL_LINES, 0, 2);
 
 		AfterDraw();
 	}
@@ -159,7 +161,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 		
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(0);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(1);
 		
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
@@ -183,7 +185,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(1);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(2);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
@@ -207,7 +209,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(2);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(3);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);
@@ -234,7 +236,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(3);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(4);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);
@@ -254,7 +256,7 @@ namespace NewWorld::Graphics
 		Vector2 start(x, y);
 
 		Editor::Assets::Texture texture = *(window->GetTextureManager().GetTexture(0));
-		Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(0));
+		//Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(5));
 
 		uint handle = 0;
 
