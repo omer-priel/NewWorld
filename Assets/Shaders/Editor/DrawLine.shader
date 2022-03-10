@@ -53,8 +53,12 @@ void main() {
 	vec4 lineWidth = u_ProjectionMatrix * vec4(u_LineWidth, u_LineWidth, 0.0, 1.0);
 	lineWidth = lineWidth + 1;
 
+	vec2 halfLineWidth = vec2(lineWidth.x / 2, lineWidth.y / 2);
+
+	halfLineWidth = vec2(0.05, 0.05);
+
 	// draw line
-	drawQuadrate(v1, v2, v1 + vec2(0.1), v2 + vec2(0.1));
+	drawQuadrate(v1 - halfLineWidth, v2 - halfLineWidth, v2 + halfLineWidth, v1 + halfLineWidth);
 };
 
 #shader fragment
