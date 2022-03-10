@@ -15,31 +15,36 @@ void main()
 layout (lines) in;
 layout (triangle_strip, max_vertices = 6) out;
 
-void main() {
-
+void drawRectangle(float x1, float y1, float x2, float y2)
+{
 	// triangle 1
-	gl_Position = vec4(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, 0.0, 1.0);
+	gl_Position = vec4(x1, y1, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(gl_in[1].gl_Position.x, gl_in[0].gl_Position.y, 0.0, 1.0);
+	gl_Position = vec4(x2, y1, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y, 0.0, 1.0);
+	gl_Position = vec4(x2, y2, 0.0, 1.0);
 	EmitVertex();
     
 	EndPrimitive();
 
 	// triangle 2
-	gl_Position = vec4(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, 0.0, 1.0);
+	gl_Position = vec4(x1, y1, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(gl_in[0].gl_Position.x, gl_in[1].gl_Position.y, 0.0, 1.0);
+	gl_Position = vec4(x1, y2, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y, 0.0, 1.0);
+	gl_Position = vec4(x2, y2, 0.0, 1.0);
 	EmitVertex();
     
     EndPrimitive();
+}
+
+void main() {
+
+	drawRectangle(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, gl_in[1].gl_Position.x, gl_in[1].gl_Position.y);
 }
 
 #shader fragment

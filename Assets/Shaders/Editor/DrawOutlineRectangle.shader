@@ -51,20 +51,21 @@ void main() {
 	float y1 = gl_in[0].gl_Position.y;
 	float x2 = gl_in[1].gl_Position.x;
 	float y2 = gl_in[1].gl_Position.y;
+	
+	vec4 lineWidth = u_ProjectionMatrix * vec4(u_LineWidth, u_LineWidth, 0.0, 1.0);
+	lineWidth = (lineWidth + 1) / 2;
 
-	vec4 lineWidth = vec4(u_LineWidth, u_LineWidth, 0.0, 1.0) * u_ProjectionMatrix;
+	// left line
+	drawRectangle(x2 - lineWidth.x, y1, x2, y2);
 
-	// line 1
+	// right line
+	drawRectangle(x1, y1, x1 + lineWidth.x, y2);
+
+	// up line
+	drawRectangle(x1, y2 - lineWidth.y, x2, y2);
+
+	// buttom line
 	drawRectangle(x1, y1, x2, y1 + lineWidth.y);
-
-	// line 2
-	drawRectangle(x2, y1, x2 - lineWidth.x, y2);
-
-	// line 3
-	drawRectangle(x2, y2, x1, y2 + lineWidth.y);
-
-	// line 4
-	drawRectangle(x1, y2, x1 - lineWidth.x, y1);
 };
 
 #shader fragment
