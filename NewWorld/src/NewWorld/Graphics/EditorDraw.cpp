@@ -230,34 +230,6 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y,
 		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
-		/*
-		Vector2 center(x, y);
-		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
-
-		BeforeDraw();
-
-		// TODO: Modern glLineWidth(lineWidth);
-		// TODO: Modern glBegin(GL_LINE_STRIP);
-		// TODO: Modern glColor4f(color.r, color.g, color.b, color.a);
-
-		float angle = angleStart;
-		float angleStep = angleLength / verticesCount;
-
-		for (uint i = 0; i <= verticesCount; i++)
-		{
-			float pointX = center.x + diameter.x * sin(angle);
-			float pointY = center.y + diameter.y * cos(angle);
-
-			// TODO: Modern glVertex2f(pointX, pointY);
-
-			angle += angleStep;
-		}
-
-		// TODO: Modern glEnd();
-
-		AfterDraw();
-		*/
-
 		GLfloat vertices[] = {
 			x, y
 		};

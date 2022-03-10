@@ -46,14 +46,14 @@ void drawRectangle(float x1, float y1, float x2, float y2)
 }
 
 void main() {
-
+	
 	float x1 = gl_in[0].gl_Position.x;
 	float y1 = gl_in[0].gl_Position.y;
 	float x2 = gl_in[1].gl_Position.x;
 	float y2 = gl_in[1].gl_Position.y;
 	
 	vec4 lineWidth = u_ProjectionMatrix * vec4(u_LineWidth, u_LineWidth, 0.0, 1.0);
-	lineWidth = (lineWidth + 1) / 2;
+	lineWidth = lineWidth + 1;
 
 	// left line
 	drawRectangle(x2 - lineWidth.x, y1, x2, y2);

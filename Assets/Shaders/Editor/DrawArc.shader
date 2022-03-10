@@ -54,13 +54,12 @@ void main() {
 	vec2 center = vec2(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
 	
 	vec4 lineWidth = u_ProjectionMatrix * vec4(u_LineWidth, u_LineWidth, 0.0, 1.0);
-	lineWidth = (lineWidth + 1) / 2;
+	lineWidth = lineWidth + 1;
 
 	vec4 radius = u_ProjectionMatrix * vec4(u_Radius.x, u_Radius.y, 0.0, 1.0);
-	radius = (radius + 1) / 2;
-	
-	vec2 diameterOut = vec2(radius.x * 2, radius.y * 2);
-	vec2 diameterIn = vec2((radius.x - lineWidth.x) * 2, (radius.y - lineWidth.y) * 2);
+	radius = radius + 1;
+
+	vec4 radiusIn = radius - lineWidth;
 
 	int verticesCount = u_VerticesCount;
 
@@ -68,15 +67,15 @@ void main() {
 	float angleStep = u_AngleLength / verticesCount;
 
 	// draw arc
-	vec2 backPointOut = vec2(center.x + diameterOut.x * sin(angle), center.y + diameterOut.y * cos(angle));
-	vec2 backPointIn = vec2(center.x + diameterIn.x * sin(angle),   center.y + diameterIn.y * cos(angle));
+	vec2 backPointOut = vec2(center.x + radius.x * sin(angle), center.y + radius.y * cos(angle));
+	vec2 backPointIn = vec2(center.x + radiusIn.x * sin(angle), center.y + radiusIn.y * cos(angle));
 
 	for (int i = 0; i < verticesCount; i++)
 	{
 		angle += angleStep;
 
-		vec2 nowPointOut = vec2(center.x + diameterOut.x * sin(angle), center.y + diameterOut.y * cos(angle));
-		vec2 nowPointIn = vec2(center.x + diameterIn.x * sin(angle), center.y + diameterIn.y * cos(angle));		
+		vec2 nowPointOut = vec2(center.x + radius.x * sin(angle), center.y + radius.y * cos(angle));
+		vec2 nowPointIn = vec2(center.x + radiusIn.x * sin(angle), center.y + radiusIn.y * cos(angle));		
 		drawRectangle(backPointOut, nowPointOut, nowPointIn, backPointIn);
 
 		backPointOut = nowPointOut;
