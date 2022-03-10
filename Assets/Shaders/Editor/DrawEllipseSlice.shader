@@ -15,8 +15,8 @@ void main()
 layout (lines) in;
 layout (triangle_strip, max_vertices = 24) out;
 
-uniform mat4 u_ProjectionMatrix;
 uniform float u_LineWidth;
+uniform mat4 u_ProjectionMatrix;
 
 void drawRectangle(float x1, float y1, float x2, float y2)
 {

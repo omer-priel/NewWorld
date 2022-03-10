@@ -124,26 +124,33 @@ namespace Temp
 		using namespace NewWorld;
 		switch (m_State)
 		{
-		case 0:
+		case 14:
 		{
 			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200, GetBackgroundColor(), "Hellow World");
+		}
+		break;
+		case 13:
+		{
+			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 200, GetBackgroundColor(), 10);
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200, GetBackgroundColor(), "Hellow World");
+		}
+		break;
+		case 0:
+		{
+			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
 		}
 		break;
 		case 1:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 200, GetBackgroundColor(), 10);
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200, GetBackgroundColor(), "Hellow World");
 		}
 		break;
 		case 2:
 		{
-			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
-		}
-		break;
-		case 3:
-		{
-			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 200, GetBackgroundColor(), 10);
+			NewWorld::Graphics::EditorDraw::DrawArc(300, 300, 
+				100, 200, NewWorld::Math::DegreesToRadians(0), NewWorld::Math::DegreesToRadians(180),
+				GetBackgroundColor(), 10, 5);
 		}
 		break;
 		default:

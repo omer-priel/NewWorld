@@ -21,11 +21,13 @@ namespace NewWorld::Graphics
 		// Load basic Editor Shaders
 		window->GetShaderManager().LoadShader("Shaders/Editor/DrawFillRectangle.nws");
 		window->GetShaderManager().LoadShader("Shaders/Editor/DrawOutlineRectangle.nws");
-		
+		window->GetShaderManager().LoadShader("Shaders/Editor/DrawEllipseSlice.nws");
+		window->GetShaderManager().LoadShader("Shaders/Editor/DrawArc.nws");
+
 		//window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
 
 		// Compile shaders
-		for (size_t i = 0; i < 2; i++)
+		for (size_t i = 0; i < 4; i++)
 		{
 			SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(i);
 			shader->Compile();
@@ -228,6 +230,7 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y,
 		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
+		/*
 		Vector2 center(x, y);
 		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
 
@@ -251,6 +254,31 @@ namespace NewWorld::Graphics
 		}
 
 		// TODO: Modern glEnd();
+
+		AfterDraw();
+		*/
+
+		GLfloat vertices[] = {
+			x, y
+		};
+
+		BeforeDraw();
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(3);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);
+		glUniform1f(shader->GetUniformLocation("u_AngleLength"), angleLength);
+		glUniform2f(shader->GetUniformLocation("u_Radius"), radiusX, radiusY);
+		glUniform1i(shader->GetUniformLocation("u_VerticesCount"), verticesCount);
+		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
+
+		glDrawArrays(GL_POINTS, 0, 1);
 
 		AfterDraw();
 	}
