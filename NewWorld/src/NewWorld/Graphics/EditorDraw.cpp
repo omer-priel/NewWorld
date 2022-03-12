@@ -12,25 +12,36 @@
 
 namespace NewWorld::Graphics
 {
+	static constexpr uint SHADER_LINE = 0;
+	static constexpr uint SHADER_FILL_RECTANGLE = 1;
+	static constexpr uint SHADER_OUTLINE_RECTANGLE = 2;
+	static constexpr uint SHADER_ELLIPSE_SLICE = 3;
+	static constexpr uint SHADER_ARC = 4;
+	static constexpr uint SHADER_TEXTURE = 5;
+
 	// Initialize
 	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
 	{
 		// Load basic Editor Fonts
-		window->GetTextureManager().LoadTexture("Fonts/Basic32.png");
+		auto& textureManager = window->GetTextureManager();
+
+		textureManager.LoadTexture("Fonts/Basic32.png");
 
 		// Load basic Editor Shaders
-		window->GetShaderManager().LoadShader("Shaders/Editor/DrawLine.nws");
-		window->GetShaderManager().LoadShader("Shaders/Editor/DrawFillRectangle.nws");
-		window->GetShaderManager().LoadShader("Shaders/Editor/DrawOutlineRectangle.nws");
-		window->GetShaderManager().LoadShader("Shaders/Editor/DrawEllipseSlice.nws");
-		window->GetShaderManager().LoadShader("Shaders/Editor/DrawArc.nws");
+		auto& shaderManager = window->GetShaderManager();
+
+		shaderManager.LoadShader("Shaders/Editor/DrawLine.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawFillRectangle.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawOutlineRectangle.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawEllipseSlice.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawArc.nws");
 
 		//window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
 
 		// Compile shaders
-		for (size_t i = 0; i < 5; i++)
+		for (size_t i = 0; i < shaderManager.GetShadersCount(); i++)
 		{
-			SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(i);
+			SharedPointer<Editor::Assets::Shader> shader = shaderManager.GetShader(i);
 			shader->Compile();
 		}
 	}
@@ -136,7 +147,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(0);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_LINE);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
@@ -161,7 +172,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 		
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(1);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_FILL_RECTANGLE);
 		
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 
@@ -185,7 +196,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(2);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_OUTLINE_RECTANGLE);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
@@ -209,7 +220,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(3);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_ELLIPSE_SLICE);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);
@@ -236,7 +247,7 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		SharedPointer<Editor::Assets::Shader> shader = CreateShader(4);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_ARC);
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);

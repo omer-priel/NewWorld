@@ -20,12 +20,14 @@ namespace NewWorld::Editor::Assets
 
 		}
 
-		// Load Textures
+		// Getters
+	public:
+		SharedPointer<Shader> GetShader(int id);
+
+		SizeT GetShadersCount() const { return m_Shaders.size(); };
+
+		// Actions
 	public:
 		int LoadShader(String asset);
-
-	public:
-		// Get Texture
-		SharedPointer<Shader> GetShader(int id);
 	};
 }
