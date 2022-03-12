@@ -66,11 +66,26 @@ void main() {
 	vec2 v2 = vec2(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y);
 
 	float lineWidth = u_LineWidth;
-
 	float halfLineWidth = lineWidth / 2;
 
+	float xt = 0;
+	float yt = 0;
+
+	if (v2.y < v1.y) {
+		vec2 temp = v2;
+		v2 = v1;
+		v1 = temp;
+	}
+
+	float len = sqrt((v2.y - v1.y)*(v2.y - v1.y) + (v2.x - v1.x)*(v2.x - v1.x));
+	len = 282.84;
+	halfLineWidth = 5;
+
+	xt =  (halfLineWidth/len) * (v2.y - v1.y);
+	yt =  (halfLineWidth/len) * (v2.x - v1.x);
+
 	// draw line
-	drawTriangle(vec2(0, 0), v2, v1);
+	drawTriangle(v1, v2, vec2(v1.x+xt*10, v1.y-yt*10));
 };
 
 #shader fragment
