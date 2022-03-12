@@ -50,6 +50,22 @@ namespace NewWorld::Editor::Assets
 		uint s3 = CompilePart(GL_FRAGMENT_SHADER, m_Source.FragmentPartSource, m_Source.FragmentPartLength);
 
 		glLinkProgram(m_ProgramHandler);
+
+#if NW_CONFIG_DEBUG
+		int result;
+		glGetProgramiv(m_ProgramHandler, GL_LINK_STATUS, &result);
+		if (result == GL_FALSE)
+		{
+			int length;
+			glGetProgramiv(m_ProgramHandler, GL_INFO_LOG_LENGTH, &length);
+
+			String message(length);
+			glGetProgramInfoLog(m_ProgramHandler, length, &length, (GLchar*)message.GetPointer());
+
+			NW_ERROR(NW_LOGGER_GRAPHICS, "Shader Program Compile Error: {}", message);
+		}
+#endif
+
 		glValidateProgram(m_ProgramHandler);
 
 		if (s1) { glDeleteShader(s1); }

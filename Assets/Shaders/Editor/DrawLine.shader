@@ -7,7 +7,7 @@ uniform mat4 u_ProjectionMatrix;
 
 void main()
 {
-    gl_Position = u_ProjectionMatrix * postion;
+    gl_Position = postion;
 };
 
 #shader geometry
@@ -17,6 +17,21 @@ layout (triangle_strip, max_vertices = 6) out;
 
 uniform mat4 u_ProjectionMatrix;
 uniform float u_LineWidth;
+
+void drawTriangle(vec2 v1, vec2 v2, vec2 v3)
+{
+	// triangle 1
+	gl_Position = u_ProjectionMatrix *  vec4(v1.x, v1.y, 0.0, 1.0);
+	EmitVertex();
+
+	gl_Position = u_ProjectionMatrix * vec4(v2.x, v2.y, 0.0, 1.0);
+	EmitVertex();
+
+	gl_Position = u_ProjectionMatrix * vec4(v3.x, v3.y, 0.0, 1.0);
+	EmitVertex();
+    
+	EndPrimitive();
+}
 
 void drawQuadrate(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
 {
@@ -50,13 +65,12 @@ void main() {
 	vec2 v1 = vec2(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
 	vec2 v2 = vec2(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y);
 
-	vec4 lineWidth = u_ProjectionMatrix * vec4(u_LineWidth, u_LineWidth, 0.0, 1.0);
-	lineWidth = lineWidth + 1;
+	float lineWidth = u_LineWidth;
 
-	vec2 halfLineWidth = vec2(lineWidth.x / 2, lineWidth.y / 2);
+	float halfLineWidth = lineWidth / 2;
 
 	// draw line
-	drawQuadrate(v1 - halfLineWidth, v2 - halfLineWidth, v2 + halfLineWidth, v1 + halfLineWidth);
+	drawTriangle(vec2(0, 0), v2, v1);
 };
 
 #shader fragment
