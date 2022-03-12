@@ -8,6 +8,18 @@
 
 namespace NewWorld::Editor::Assets
 {
+	Texture::~Texture()
+	{
+#if NW_CONFIG_DEBUG
+		if (m_Data)
+		{
+			stbi_image_free(m_Data);
+		}
+#else
+		stbi_image_free(m_Data);
+#endif
+	}
+
 	bool Texture::LoadFromPNGFile(String asset)
 	{
 		String filepath = Files::FileManager::GetAssetPath(asset);

@@ -36,7 +36,7 @@ namespace NewWorld::Graphics
 		shaderManager.LoadShader("Shaders/Editor/DrawEllipseSlice.nws");
 		shaderManager.LoadShader("Shaders/Editor/DrawArc.nws");
 
-		//window->GetShaderManager().LoadShader("Shaders/Editor/DrawTexture.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawTexture.nws");
 
 		// Compile shaders
 		for (size_t i = 0; i < shaderManager.GetShadersCount(); i++)
@@ -264,29 +264,42 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
 	{
 		// TODO: Paramenters
-		Vector2 start(x, y);
+		GLfloat vertices[] = {
+			x, y,
+			x + width, y + height
+		};
 
-		Editor::Assets::Texture texture = *(window->GetTextureManager().GetTexture(0));
-		//Editor::Assets::Shader shader = *(window->GetShaderManager().GetShader(5));
+		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
 
 		uint handle = 0;
 
-		// TODO: Modern glGenTextures(1, &handle);
-		// TODO: Modern glBindTexture(GL_TEXTURE_2D, handle);
+		glGenTextures(1, &handle);
+		glBindTexture(GL_TEXTURE_2D, handle);
 
-		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		// TODO: Modern glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 
-		// TODO: Modern glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
-		// TODO: Use Shader
-		
-		// TODO: Draw Texture
+		BeforeDraw();
 
-		// TODO: Modern glBindTexture(GL_TEXTURE_2D, 0);
-		// TODO: Modern glDeleteTextures(1, &handle);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEXTURE);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), 1, 0, 1, 1);
+
+		glDrawArrays(GL_LINES, 0, 2);
+
+		AfterDraw();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &handle);
 	}
 
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)

@@ -18,6 +18,8 @@ namespace NewWorld::Editor::Assets
 	public:
 		Texture() 
 		: m_Width(0), m_Height(0), m_Channels(0), m_Data(nullptr) {}
+
+		~Texture();
 		
 		// Getters
 	public:
