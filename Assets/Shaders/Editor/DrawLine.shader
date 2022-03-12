@@ -36,25 +36,25 @@ void drawTriangle(vec2 v1, vec2 v2, vec2 v3)
 void drawQuadrate(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
 {
 	// triangle 1
-	gl_Position = vec4(v1.x, v1.y, 0.0, 1.0);
+	gl_Position = u_ProjectionMatrix * vec4(v1.x, v1.y, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(v2.x, v2.y, 0.0, 1.0);
+	gl_Position = u_ProjectionMatrix * vec4(v2.x, v2.y, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(v3.x, v3.y, 0.0, 1.0);
+	gl_Position = u_ProjectionMatrix * vec4(v3.x, v3.y, 0.0, 1.0);
 	EmitVertex();
     
 	EndPrimitive();
 
 	// triangle 2
-	gl_Position = vec4(v1.x, v1.y, 0.0, 1.0);
+	gl_Position = u_ProjectionMatrix * vec4(v1.x, v1.y, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(v4.x, v4.y, 0.0, 1.0);
+	gl_Position = u_ProjectionMatrix * vec4(v4.x, v4.y, 0.0, 1.0);
 	EmitVertex();
 
-	gl_Position = vec4(v3.x, v3.y, 0.0, 1.0);
+	gl_Position = u_ProjectionMatrix * vec4(v3.x, v3.y, 0.0, 1.0);
 	EmitVertex();
     
     EndPrimitive();
@@ -84,8 +84,11 @@ void main() {
 	xt =  (halfLineWidth/len) * (v2.y - v1.y);
 	yt =  (halfLineWidth/len) * (v2.x - v1.x);
 
+	xt *= 1;
+	yt *= 1;
+
 	// draw line
-	drawTriangle(v1, v2, vec2(v1.x+xt*10, v1.y-yt*10));
+	drawQuadrate(vec2(v1.x-xt, v1.y+yt), vec2(v2.x-xt, v2.y+yt), vec2(v2.x+xt, v2.y-yt), vec2(v1.x+xt, v1.y-yt));
 };
 
 #shader fragment
