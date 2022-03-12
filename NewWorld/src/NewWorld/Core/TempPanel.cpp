@@ -124,13 +124,13 @@ namespace Temp
 		using namespace NewWorld;
 		switch (m_State)
 		{
-		case 18:
+		case 19:
 		{
 			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200, GetBackgroundColor(), "Hellow World");
 		}
 		break;
-		case 19:
+		case 20:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 200, GetBackgroundColor(), 10);
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200, GetBackgroundColor(), "Hellow World");
@@ -141,40 +141,79 @@ namespace Temp
 			NewWorld::Graphics::EditorDraw::DrawLine(600, 200, 800, 400,
 				GetBackgroundColor(), 10);
 
-			//NewWorld::Graphics::EditorDraw::DrawLine(800, 200, 600, 400,
-			//	GetBackgroundColor(), 10);
+			NewWorld::Graphics::EditorDraw::DrawLine(800, 200, 600, 400,
+				GetBackgroundColor(), 10);
 
-			//NewWorld::Graphics::EditorDraw::DrawLine(600, 300, 800, 300,
-			//	GetBackgroundColor(), 10);
+			NewWorld::Graphics::EditorDraw::DrawLine(1200, 400, 600, 200,
+				GetBackgroundColor(), 10);
 
-			//NewWorld::Graphics::EditorDraw::DrawLine(700, 200, 700, 400,
-			//	GetBackgroundColor(), 10);
+			NewWorld::Graphics::EditorDraw::DrawLine(600, 300, 800, 300,
+				GetBackgroundColor(), 10);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(700, 200, 700, 400,
+				GetBackgroundColor(), 10);
 		}
 		break;
 		case 1:
 		{
-			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawLine(600, 200, 800, 400,
+				GetBackgroundColor(), 1);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(800, 200, 600, 400,
+				GetBackgroundColor(), 1);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(1200, 400, 600, 200,
+				GetBackgroundColor(), 1);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(600, 300, 800, 300,
+				GetBackgroundColor(), 1);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(700, 200, 700, 400,
+				GetBackgroundColor(), 1);
 		}
 		break;
 		case 2:
 		{
+			NewWorld::Graphics::EditorDraw::DrawLine(600, 200, 800, 400,
+				GetBackgroundColor(), 2);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(800, 200, 600, 400,
+				GetBackgroundColor(), 2);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(1200, 400, 600, 200,
+				GetBackgroundColor(), 2);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(600, 300, 800, 300,
+				GetBackgroundColor(), 2);
+
+			NewWorld::Graphics::EditorDraw::DrawLine(700, 200, 700, 400,
+				GetBackgroundColor(), 2);
+		}
+		break;
+		case 3:
+		{
+			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
+		}
+		break;
+		case 4:
+		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 200, GetBackgroundColor(), 10);
 		}
 		break;
-		case 20:
+		case 5:
 		{
 			NewWorld::Graphics::EditorDraw::DrawArc(300, 300,
 				50, 100, NewWorld::Math::DegreesToRadians(60), NewWorld::Math::DegreesToRadians(120),
 				GetBackgroundColor(), 10, 8);
 		}
 		break;
-		case 4:
+		case 6:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineEllipse(300, 300, 100, 50,
 				GetBackgroundColor(), 10, 8);
 		}
 		break;
-		case 6:
+		case 7:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineOval(300, 300, 50,
 				GetBackgroundColor(), 10, 16);
@@ -186,19 +225,19 @@ namespace Temp
 				GetBackgroundColor(), 10, 32);
 		}
 		break;
-		case 10:
+		case 9:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineOval(300, 300, 50,
 				GetBackgroundColor(), 30);
 		}
 		break;
-		case 12:
+		case 10:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
 				GetBackgroundColor(), 30);
 		}
 		break;
-		case 14:
+		case 11:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
 				GetBackgroundColor(), 30);
@@ -210,7 +249,7 @@ namespace Temp
 				NewWorld::Graphics::Colors::Transparency, 30);
 		}
 		break;
-		case 16:
+		case 12:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineOval(50, 50, 50,
 				GetBackgroundColor(), 30);
@@ -219,32 +258,32 @@ namespace Temp
 				NewWorld::Graphics::Colors::Magenta, 10);
 		}
 		break;
-		case 3:
+		case 13:
 		{
 			NewWorld::Graphics::EditorDraw::DrawEllipseSlice(300, 300,
 				50, 100, NewWorld::Math::DegreesToRadians(60), NewWorld::Math::DegreesToRadians(120),
 				GetBackgroundColor(), 8);
 		}
 		break;
-		case 5:
+		case 14:
 		{
 			NewWorld::Graphics::EditorDraw::DrawEllipse(300, 300, 100, 50,
 				GetBackgroundColor(), 16);
 		}
 		break;
-		case 7:
+		case 15:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOval(300, 300, 50,
 				GetBackgroundColor(), 16);
 		}
 		break;
-		case 13:
+		case 16:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOval(50, 50, 50,
 				GetBackgroundColor(), 32);
 		}
 		break;
-		case 15:
+		case 17:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOval(50, 50, 50,
 				GetBackgroundColor());
@@ -256,7 +295,7 @@ namespace Temp
 				NewWorld::Graphics::Colors::Transparency);
 		}
 		break;
-		case 17:
+		case 18:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOval(50, 50, 50,
 				GetBackgroundColor());
