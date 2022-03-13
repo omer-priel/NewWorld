@@ -275,12 +275,12 @@ namespace NewWorld::Graphics
 		};*/
 
 		GLfloat vertices[] = {
-			0.0f, 0.0f, 0.0f, 0.0f,
-			1.0f, 0.0f, 1.0f, 0.0f,
+			-1.0f, -1.0f, 0.0f, 0.0f,
+			1.0f, -1.0f, 1.0f, 0.0f,
 			1.0f, 1.0f, 1.0f, 1.0f,
 
-			0.0f, 0.0f, 0.0f, 0.0f,
-			0.0f, 1.0f, 0.0f, 1.0f,
+			-1.0f, -1.0f, 0.0f, 0.0f,
+			-1.0f, 1.0f, 0.0f, 1.0f,
 			1.0f, 1.0f, 1.0f, 1.0f
 		};
 
@@ -291,6 +291,7 @@ namespace NewWorld::Graphics
 		// Load the Textures
 		uint handle = 0;
 		glGenTextures(1, &handle);
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, handle);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -298,8 +299,6 @@ namespace NewWorld::Graphics
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, 0);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
 		BeforeDraw();
