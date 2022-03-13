@@ -381,7 +381,7 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
 	{
 		// TODO: Load String
-		DrawTemplateTexture(window, x, y, width, height, 0, Graphics::Colors::Magenta);
+		DrawTemplateTexture(window, x, y, width, height, 0, color);
 	}
 
 
