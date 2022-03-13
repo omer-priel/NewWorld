@@ -32,6 +32,9 @@ namespace NewWorld::Graphics
 		static void DrawOval(int x, int y, uint radius, const Graphics::Color& color, uint verticesCount = 42);
 		static void DrawOutlineOval(int x, int y, uint radius, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 42);
 
+		static void DrawTexture(int x, int y, uint width, uint height, uint textureID);
+		static void DrawTemplateTexture(int x, int y, uint width, uint height, uint textureID, const Graphics::Color& color);
+		
 		static void DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text);
 
 		// Actions Global
@@ -44,8 +47,9 @@ namespace NewWorld::Graphics
 		static void DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount = 64);
 		static void DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y, uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
 		
-		static void DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height);
-
+		static void DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, uint textureID);
+		static void DrawTemplateTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, uint textureID, const Graphics::Color& color);
+		
 		static void DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text);
 
 		// Utilities

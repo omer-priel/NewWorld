@@ -18,6 +18,7 @@ namespace NewWorld::Graphics
 	static constexpr uint SHADER_ELLIPSE_SLICE = 3;
 	static constexpr uint SHADER_ARC = 4;
 	static constexpr uint SHADER_TEXTURE = 5;
+	static constexpr uint SHADER_TEMPLATE_TEXTURE = 6;
 
 	// Initialize
 	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
@@ -37,6 +38,7 @@ namespace NewWorld::Graphics
 		shaderManager.LoadShader("Shaders/Editor/DrawArc.nws");
 
 		shaderManager.LoadShader("Shaders/Editor/DrawTexture.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawTamplateTexture.nws");
 
 		// Compile shaders
 		for (size_t i = 0; i < shaderManager.GetShadersCount(); i++)
@@ -122,7 +124,23 @@ namespace NewWorld::Graphics
 
 		DrawArc(LocalPainter::GetWindow(), x, y, radius, radius, 0, NewWorld::Math::PI_2, color, lineWidth, verticesCount);
 	}
+	
+	void EditorDraw::DrawTexture(int x, int y, uint width, uint height, uint textureID)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
 
+		DrawTexture(LocalPainter::GetWindow(), x, y, width, height, textureID);
+	}
+
+	void EditorDraw::DrawTemplateTexture(int x, int y, uint width, uint height, uint textureID, const Graphics::Color& color)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawTemplateTexture(LocalPainter::GetWindow(), x, y, width, height, textureID, color);
+	}
+		
 	void EditorDraw::DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text)
 	{
 		x += LocalPainter::GetX();
@@ -261,15 +279,14 @@ namespace NewWorld::Graphics
 		AfterDraw();
 	}
 
-	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
+	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, uint textureID)
 	{
-		// TODO: Paramenters
 		float vertices[] = {
 			x, y, 0.0f, 0.0f,
 			x + width, y + height, 1.0f, 1.0f
 		};
 
-		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
+		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(textureID));
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEXTURE);
 
@@ -311,10 +328,60 @@ namespace NewWorld::Graphics
 		glDeleteTextures(1, &handle);
 	}
 
+	void EditorDraw::DrawTemplateTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, uint textureID, const Graphics::Color& color)
+	{
+		float vertices[] = {
+			x, y, 0.0f, 0.0f,
+			x + width, y + height, 1.0f, 1.0f
+		};
+
+		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(textureID));
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
+
+		// Load the Textures
+		uint handle = 0;
+		glGenTextures(1, &handle);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+
+		BeforeDraw();
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		uint offset = 0;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		offset += 2 * sizeof(float);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+
+		glDrawArrays(GL_LINES, 0, 32);
+
+		AfterDraw();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &handle);
+	}
+
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
 	{
-		// TODO: Draw String
-		DrawTexture(window, x, y, width, height);
+		// TODO: Load String
+		DrawTemplateTexture(window, x, y, width, height, 0, Graphics::Colors::Magenta);
 	}
 
 

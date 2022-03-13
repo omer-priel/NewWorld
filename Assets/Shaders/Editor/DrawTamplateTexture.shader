@@ -82,9 +82,11 @@ in DATA
 	vec2 textureCood;
 } vertex_in;
 
+uniform vec4 u_Color;
 uniform sampler2D u_Texture;
 
 void main()
 {
-	color = texture(u_Texture, vertex_in.textureCood);
+	vec4 textureColor = texture(u_Texture, vertex_in.textureCood);
+	color = vec4(u_Color.r, u_Color.g, u_Color.b, textureColor.a);
 };
