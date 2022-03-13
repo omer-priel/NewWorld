@@ -32,7 +32,6 @@ namespace NewWorld::Editor::Assets
 		{
 			NW_ERROR(NW_LOGGER_GRAPHICS, "stbi failure: {}", stbi_failure_reason());
 		}
-
 #endif
 
 		return IsLoaded();
