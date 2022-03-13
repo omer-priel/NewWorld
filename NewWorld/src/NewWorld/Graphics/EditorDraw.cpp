@@ -265,27 +265,16 @@ namespace NewWorld::Graphics
 	{
 		// TODO: Paramenters
 		GLfloat vertices[] = {
-			x, y, 0, 0,
-			x + width, y, 1, 0,
-			x + width, y + height, 1, 1,
-			x, y + height, 0, 1
+			x, y,
+			x + width, y,
+			x + width, y + height,
+
+			x, y,
+			x, y + height,
+			x + width, y + height
 		};
 
 		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
-
-		uint handle = 0;
-
-		glGenTextures(1, &handle);
-		glBindTexture(GL_TEXTURE_2D, handle);
-		glActiveTexture(0);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
-		glGenerateMipmap(GL_TEXTURE_2D);
 
 		BeforeDraw();
 
@@ -293,11 +282,29 @@ namespace NewWorld::Graphics
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+		//glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEXTURE);
 
-		glDrawArrays(GL_TRIANGLES, 0, 4);
+		// Load the Textures
+		uint handle = 0;
+		glGenTextures(1, &handle);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+		
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+		
+		//glGenerateMipmap(GL_TEXTURE_2D);
+
+		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		AfterDraw();
 

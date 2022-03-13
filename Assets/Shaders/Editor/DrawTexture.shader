@@ -2,16 +2,16 @@
 #version 330 core
 
 layout(location = 0) in vec4 postion;
-layout(location = 1) in vec2 textureCood;
+//layout(location = 1) in vec2 textureCood;
 
-out vec2 v_textureCood;
+out vec2 v_TextureCood;
 
 uniform mat4 u_ProjectionMatrix;
 
 void main()
 {
     gl_Position = u_ProjectionMatrix * postion;
-    v_textureCood = textureCood;
+    //v_TextureCood = textureCood;
 };
 
 #shader fragment
@@ -19,11 +19,11 @@ void main()
 
 layout(location = 0) out vec4 color;
 
-in vec2 v_textureCood;
+in vec2 v_TextureCood;
 
-in vec2 v_textureCood;
+uniform sampler2D u_Texture;
 
 void main()
 {
-    color = texture(sampler2D(0), v_textureCood);
+    color = vec4(0, 1, 1, 1); //texture(u_Texture, v_TextureCood);
 };
