@@ -264,25 +264,27 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
 	{
 		// TODO: Paramenters
-		GLfloat vertices[] = {
-			x, y,
-			x + width, y,
-			x + width, y + height,
+		/*GLfloat vertices[] = {
+			x, y, 0.0f, 0.0f,
+			x + width, y, 1.0f, 0.0f,
+			x + width, y + height, 1.0f, 1.0f,
 
-			x, y,
-			x, y + height,
-			x + width, y + height
+			x, y, 0.0f, 0.0f,
+			x, y + height, 0.0f, 1.0f,
+			x + width, y + height, 1.0f, 1.0f
+		};*/
+
+		GLfloat vertices[] = {
+			0.0f, 0.0f, 0.0f, 0.0f,
+			1.0f, 0.0f, 1.0f, 0.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+
+			0.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 1.0f, 0.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f
 		};
 
 		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
-
-		BeforeDraw();
-
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-		//glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEXTURE);
 
@@ -295,16 +297,29 @@ namespace NewWorld::Graphics
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-		
+
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+
+		BeforeDraw();
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		uint offset = 0;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
 		
-		//glGenerateMipmap(GL_TEXTURE_2D);
+		offset += 2 * sizeof(float);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
 
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
 
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glDrawArrays(GL_TRIANGLES, 0, 32);
 
 		AfterDraw();
 
