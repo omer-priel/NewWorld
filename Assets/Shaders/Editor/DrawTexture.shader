@@ -47,11 +47,26 @@ void main() {
 	EmitVertex();
 
 	gl_Position = vec4(v2.x, v1.y, 0.0, 1.0);
-	//v2_TextureCood = gl_in[0].v_TextureCood;
+	vertex_out.textureCood = vec2(vertex_in[1].textureCood.x, vertex_in[0].textureCood.y);
 	EmitVertex();
 
 	gl_Position = vec4(v2.x, v2.y, 0.0, 1.0);
-	//v2_TextureCood = gl_in[0].v_TextureCood;
+	vertex_out.textureCood = vertex_in[1].textureCood;
+	EmitVertex();
+    
+	EndPrimitive();
+
+	// triangle 2
+	gl_Position = vec4(v1.x, v1.y, 0.0, 1.0);
+	vertex_out.textureCood = vertex_in[0].textureCood;
+	EmitVertex();
+
+	gl_Position = vec4(v1.x, v2.y, 0.0, 1.0);
+	vertex_out.textureCood = vec2(vertex_in[0].textureCood.x, vertex_in[1].textureCood.y);
+	EmitVertex();
+
+	gl_Position = vec4(v2.x, v2.y, 0.0, 1.0);
+	vertex_out.textureCood = vertex_in[1].textureCood;
 	EmitVertex();
     
 	EndPrimitive();
