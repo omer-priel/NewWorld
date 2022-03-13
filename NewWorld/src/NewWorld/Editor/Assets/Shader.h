@@ -57,6 +57,6 @@ namespace NewWorld::Editor::Assets
 
 		// Actions
 	private:
-		inline uint CompilePart(uint partType, const Byte* partSource, int partLength);
+		inline uint CompilePart(uint partID, uint partType, const Byte* partSource, int partLength);
 	};
 }

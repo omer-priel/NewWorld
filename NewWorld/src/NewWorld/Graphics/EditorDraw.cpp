@@ -264,24 +264,9 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height)
 	{
 		// TODO: Paramenters
-		/*GLfloat vertices[] = {
+		float vertices[] = {
 			x, y, 0.0f, 0.0f,
-			x + width, y, 1.0f, 0.0f,
-			x + width, y + height, 1.0f, 1.0f,
-
-			x, y, 0.0f, 0.0f,
-			x, y + height, 0.0f, 1.0f,
 			x + width, y + height, 1.0f, 1.0f
-		};*/
-
-		GLfloat vertices[] = {
-			-1.0f, -1.0f, 0.0f, 0.0f,
-			1.0f, -1.0f, 1.0f, 0.0f,
-			1.0f, 1.0f, 1.0f, 1.0f,
-
-			-1.0f, -1.0f, 0.0f, 0.0f,
-			-1.0f, 1.0f, 0.0f, 1.0f,
-			1.0f, 1.0f, 1.0f, 1.0f
 		};
 
 		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
@@ -318,7 +303,7 @@ namespace NewWorld::Graphics
 
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
 
-		glDrawArrays(GL_TRIANGLES, 0, 32);
+		glDrawArrays(GL_LINES, 0, 32);
 
 		AfterDraw();
 

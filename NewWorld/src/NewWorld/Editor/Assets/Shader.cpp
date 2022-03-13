@@ -45,9 +45,9 @@ namespace NewWorld::Editor::Assets
 	{
 		m_ProgramHandler = glCreateProgram();
 
-		uint s1 = CompilePart(GL_VERTEX_SHADER, m_Source.VertexPartSource, m_Source.VertexPartLength);
-		uint s2 = CompilePart(GL_GEOMETRY_SHADER, m_Source.GeometryPartSource, m_Source.GeometryPartLength);
-		uint s3 = CompilePart(GL_FRAGMENT_SHADER, m_Source.FragmentPartSource, m_Source.FragmentPartLength);
+		uint s1 = CompilePart(0, GL_VERTEX_SHADER, m_Source.VertexPartSource, m_Source.VertexPartLength);
+		uint s2 = CompilePart(1, GL_GEOMETRY_SHADER, m_Source.GeometryPartSource, m_Source.GeometryPartLength);
+		uint s3 = CompilePart(2, GL_FRAGMENT_SHADER, m_Source.FragmentPartSource, m_Source.FragmentPartLength);
 
 		glLinkProgram(m_ProgramHandler);
 
@@ -73,7 +73,7 @@ namespace NewWorld::Editor::Assets
 		if (s3) { glDeleteShader(s3); }
 	}
 
-	uint Shader::CompilePart(uint partType, const Byte* partSource, int partLength)
+	uint Shader::CompilePart(uint partID, uint partType, const Byte* partSource, int partLength)
 	{
 		if (partLength > 0)
 		{
@@ -92,7 +92,7 @@ namespace NewWorld::Editor::Assets
 				String message(length);
 				glGetShaderInfoLog(id, length, &length, (GLchar*)message.GetPointer());
 
-				NW_ERROR(NW_LOGGER_GRAPHICS, "Shader Compile Error: {}", message);
+				NW_ERROR(NW_LOGGER_GRAPHICS, "Shader {} Compile Error: {}", partID, message);
 
 				glDeleteShader(id);
 
