@@ -21,10 +21,7 @@ namespace NewWorld::Editor::Assets
 
 		m_FamilyName.Resize(familyNameLength);
 
-		Byte a;
-		file >> a >> a >> a >> a >> a;
-
-		//file.Read((Byte*)m_FamilyName.GetPointer(), familyNameLength);
+		file.Read((Byte*)m_FamilyName.GetPointer(), familyNameLength);
 
 		file >> m_Size;
 		file >> m_Bold >> m_Italic;

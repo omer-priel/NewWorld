@@ -19,7 +19,7 @@ namespace NewWorld::Editor::Assets
 			// Members
 		public:
 			char Name;
-			char AtlasX;
+			int AtlasX;
 			int AtlasY;
 			int Width;
 			int Height;
@@ -54,6 +54,8 @@ namespace NewWorld::Editor::Assets
 		inline bool IsItalic() const { return m_Italic; }
 		inline uint GetWidth() const { return m_Width; }
 		inline uint GetHeight() const { return m_Height; }
+
+		inline const Texture& GetTexture() const { return m_Texture; }
 
 		inline const Character& GetCharacterByID(uint id) const
 		{

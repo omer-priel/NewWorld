@@ -409,12 +409,13 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
 	{
 		// TODO: Load String
-		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
+		Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
+		const Editor::Assets::Texture& texture = font.GetTexture();
 
-		float sampleX = 0;
-		float sampleY = 0;
-		float sampleWidth = 33;
-		float sampleHeight = 31;
+		float sampleX = font.GetCharacterByID(0).AtlasX;
+		float sampleY = font.GetCharacterByID(0).AtlasY;
+		float sampleWidth = font.GetCharacterByID(0).Width;
+		float sampleHeight = font.GetCharacterByID(0).Height;
 
 		sampleY = texture.GetHeight() - sampleY - sampleHeight;
 

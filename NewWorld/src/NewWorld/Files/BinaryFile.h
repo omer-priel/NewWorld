@@ -74,7 +74,6 @@ namespace NewWorld::Files
 		template <typename T>
 		BinaryFile& operator>>(T& output)
 		{
-			int i = sizeof(T);
 			m_Stream.read((char*)&output, sizeof(T));
 			return *this;
 		}
