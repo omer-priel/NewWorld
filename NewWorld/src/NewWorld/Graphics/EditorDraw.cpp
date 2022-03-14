@@ -20,9 +20,6 @@ namespace NewWorld::Graphics
 	static constexpr uint SHADER_TEXTURE = 5;
 	static constexpr uint SHADER_TEMPLATE_TEXTURE = 6;
 
-	// Static Members
-	Array<float, EditorDraw::MAX_VERTICES_BUFFER_SIZE> EditorDraw::s_VerticesBuffer;
-
 	// Initialize
 	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
 	{
@@ -415,11 +412,6 @@ namespace NewWorld::Graphics
 		Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
 		const Editor::Assets::Texture& texture = font.GetTexture();
 
-		const uint LINE_SIZE = 2 * 4;
-
-		uint verticesLength = LINE_SIZE * text.GetLength();
-		float* vertices = s_VerticesBuffer.data();
-
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
 		// Load the Textures
@@ -437,7 +429,7 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 
-		glBufferData(GL_ARRAY_BUFFER, verticesLength, vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), nullptr, GL_STATIC_DRAW);
 
 		uint offset = 0;
 		glEnableVertexAttribArray(0);
@@ -460,11 +452,8 @@ namespace NewWorld::Graphics
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
 		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
-		float* vertice = vertices;
-
 		for (SizeT i = 0; i < text.GetLength(); i++)
 		{
-			vertice = vertices;
 			auto& character = font.GetCharacter(text[i]);
 
 			float sampleX = character.AtlasX;
@@ -473,22 +462,16 @@ namespace NewWorld::Graphics
 			float sampleHeight = character.Height;
 
 			sampleY = texture.GetHeight() - sampleY - sampleHeight;
-
-			*(vertice++) = x;
-			*(vertice++) = y;
-			*(vertice++) = sampleX;
-			*(vertice++) = sampleY;
-
-			*(vertice++) = x + sampleWidth;
-			*(vertice++) = y + sampleHeight;
-			*(vertice++) = sampleX + sampleWidth;
-			*(vertice++) = sampleY + sampleHeight;
-
 			
-			glBufferData(GL_ARRAY_BUFFER, verticesLength, vertices, GL_STATIC_DRAW);
+			float vertices[] = {
+				x, y, sampleX, sampleY,
+				x + sampleWidth, y + sampleHeight, sampleX + sampleWidth, sampleY + sampleHeight
+			};
+
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 			glDrawArrays(GL_LINES, 0, 2);
 
-			x += character.PainterStepX + 50;
+			x += character.PainterStepX;
 		}
 
 		AfterDraw();
