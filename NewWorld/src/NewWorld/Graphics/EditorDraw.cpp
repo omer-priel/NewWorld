@@ -417,7 +417,9 @@ namespace NewWorld::Graphics
 
 		float vertices[] = {
 			x, y, sampleX, sampleY,
-			x + width, y + height, sampleX + sampleWidth, sampleY + sampleHeight
+			x + width, y + height, sampleX + sampleWidth, sampleY + sampleHeight,
+			x+200, y+200, sampleX, sampleY,
+			x+200 + width, y+200 + height, sampleX + sampleWidth, sampleY + sampleHeight
 		};
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
