@@ -125,20 +125,44 @@ namespace NewWorld::Graphics
 		DrawArc(LocalPainter::GetWindow(), x, y, radius, radius, 0, NewWorld::Math::PI_2, color, lineWidth, verticesCount);
 	}
 	
-	void EditorDraw::DrawTexture(int x, int y, uint width, uint height, uint textureID)
+	void EditorDraw::DrawTexture(int x, int y, uint width, uint height, Editor::Assets::Texture& texture)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawTexture(LocalPainter::GetWindow(), x, y, width, height, textureID);
+		DrawTexture(LocalPainter::GetWindow(), x, y, width, height, texture,
+			0, 0, texture.GetWidth(), texture.GetHeight());
 	}
 
-	void EditorDraw::DrawTemplateTexture(int x, int y, uint width, uint height, uint textureID, const Graphics::Color& color)
+	void EditorDraw::DrawTexture(int x, int y, uint width, uint height, Editor::Assets::Texture& texture,
+		uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawTemplateTexture(LocalPainter::GetWindow(), x, y, width, height, textureID, color);
+		DrawTexture(LocalPainter::GetWindow(), x, y, width, height, texture, 
+			sampleX, sampleY, sampleWidth, sampleHeight);
+	}
+
+	void EditorDraw::DrawTemplateTexture(int x, int y, uint width, uint height, 
+		Editor::Assets::Texture& texture, const Graphics::Color& color)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawTemplateTexture(LocalPainter::GetWindow(), x, y, width, height, texture, color,
+			0, 0, texture.GetWidth(), texture.GetHeight());
+	}
+
+	void EditorDraw::DrawTemplateTexture(int x, int y, uint width, uint height,
+		Editor::Assets::Texture& texture, const Graphics::Color& color,
+		uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawTemplateTexture(LocalPainter::GetWindow(), x, y, width, height, texture, color,
+			sampleX, sampleY, sampleWidth, sampleHeight);
 	}
 		
 	void EditorDraw::DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text)
@@ -279,14 +303,13 @@ namespace NewWorld::Graphics
 		AfterDraw();
 	}
 
-	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, uint textureID)
+	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height,
+		Editor::Assets::Texture& texture, uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
 	{
 		float vertices[] = {
-			x, y, 0.0f, 0.0f,
-			x + width, y + height, 1.0f, 1.0f
+			x, y, sampleX, sampleY,
+			x + width, y + height, sampleX + sampleWidth, sampleY + sampleHeight
 		};
-
-		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(textureID));
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEXTURE);
 
@@ -319,6 +342,7 @@ namespace NewWorld::Graphics
 		glBindTexture(GL_TEXTURE_2D, handle);
 
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
 		glDrawArrays(GL_LINES, 0, 32);
 
@@ -328,14 +352,14 @@ namespace NewWorld::Graphics
 		glDeleteTextures(1, &handle);
 	}
 
-	void EditorDraw::DrawTemplateTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, uint textureID, const Graphics::Color& color)
+	void EditorDraw::DrawTemplateTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, 
+		Editor::Assets::Texture& texture, const Graphics::Color& color, 
+		uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
 	{
 		float vertices[] = {
-			x, y, 0.0f, 0.0f,
-			x + width, y + height, 1.0f, 1.0f
+			x, y, sampleX, sampleY,
+			x + width, y + height, sampleX + sampleWidth, sampleY + sampleHeight
 		};
-
-		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(textureID));
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
@@ -369,6 +393,7 @@ namespace NewWorld::Graphics
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
 		glDrawArrays(GL_LINES, 0, 32);
 
@@ -381,7 +406,9 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
 	{
 		// TODO: Load String
-		DrawTemplateTexture(window, x, y, width, height, 0, color);
+		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
+
+		DrawTemplateTexture(window, x, y, width, height, texture, color, 100, 0, 100, 200);
 	}
 
 

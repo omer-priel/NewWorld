@@ -12,11 +12,12 @@ out DATA
 out vec2 v_TextureCood;
 
 uniform mat4 u_ProjectionMatrix;
+uniform vec2 u_TextureSize;
 
 void main()
 {
     gl_Position = u_ProjectionMatrix * postion;
-    vertex_out.textureCood = textureCood;
+    vertex_out.textureCood = textureCood / u_TextureSize;
 };
 
 #shader geometry
@@ -86,10 +87,7 @@ uniform vec4 u_Color;
 uniform sampler2D u_Texture;
 
 void main()
-{
-	
-	ivec2 size = textureSize(u_Texture);
-	
-	vec4 textureColor = texture(u_Texture, vertex_in.textureCood / size);
+{	
+	vec4 textureColor = texture(u_Texture, vertex_in.textureCood);
 	color = vec4(u_Color.r, u_Color.g, u_Color.b, textureColor.a);
 };
