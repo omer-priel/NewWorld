@@ -6,7 +6,7 @@ Commands:
 	uninstall-extension      - Uninstall the extension
 	generate-projects        - Generate Projects
 	build                    - Build the applications
-	create-font [path]       - Create .nwf from .json
+	create-font [path]       - Create .nwf
 	shader create [path]     - Create .nws from .shader
 	shader create-all        - Create all the shaders
 	pre-compile [target]      - Pre Compile Processing

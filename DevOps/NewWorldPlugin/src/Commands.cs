@@ -24,7 +24,7 @@ namespace NewWorldPlugin
 			Console.WriteLine("\t" + "uninstall-extension      - Uninstall the extension");
 			Console.WriteLine("\t" + "generate-projects        - Generate Projects");
 			Console.WriteLine("\t" + "build                    - Build the applications");
-			Console.WriteLine("\t" + "create-font [path]       - Create .nwf from .json");
+			Console.WriteLine("\t" + "create-font [path]       - Create .nwf");
 			Console.WriteLine("\t" + "shader create [path]     - Create .nws from .shader");
 			Console.WriteLine("\t" + "shader create-all        - Create all the shaders");
 			Console.WriteLine("\t" + "pre-compile [target]     - Pre Compile Processing");
@@ -148,38 +148,38 @@ namespace NewWorldPlugin
 
 		static public void CreateFont(string path)
 		{
-			FileInfo fileInfo = LoadSrcPath(path, ".json");
-			if (fileInfo == null)
+			string[] dataFilesPaths = { path + ".json", path + "Bold.json", path + "Iltalic.json", path + "BoldIltalic.json" };
+			string[] textureFilesPaths = { path + ".png", path + "Bold.png", path + "Iltalic.png", path + "BoldIltalic.png" };
+			string targetPath = path + ".nwf";
+
+			if (!File.Exists(dataFilesPaths[0]))
 			{
+				Utilities.ShowErrorMessage("The file \"" + dataFilesPaths[0] + "\" not exists!");
 				return;
 			}
 
-			string folder = fileInfo.DirectoryName;
-			string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
-			string targetPath = folder + "\\" + fileName + ".nwf";
+			if (!File.Exists(textureFilesPaths[0]))
+			{
+				Utilities.ShowErrorMessage("The file \"" + textureFilesPaths[0] + "\" not exists!");
+				return;
+			}
 
-			// Load the File
-			string json = File.ReadAllText(path);
+			// Create the Font
+			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
+
+			// create header
+			string json = File.ReadAllText(dataFilesPaths[0]);
 
 			dynamic data = JsonConvert.DeserializeObject(json);
 
 			string familyName;
 			uint size;
-			bool bold;
-			bool italic;
-			uint width;
-			uint height;
 			JObject characters;
 
 			try
 			{
 				familyName = data.name;
 				size = data.size;
-				bold = data.bold;
-				italic = data.italic;
-				width = data.width;
-				height = data.height;
-
 				characters = data.characters;
 			}
 			catch
@@ -188,33 +188,57 @@ namespace NewWorldPlugin
 				return;
 			}
 
-			// Create .nwf file
-			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
-
 			byte[] familyNameAsBytes = Encoding.ASCII.GetBytes(familyName);
 
 			writer.Write(familyNameAsBytes.Length); // FamilyNameLength
 			writer.Write(familyNameAsBytes, 0, familyNameAsBytes.Length); // FamilyName
 
 			writer.Write(size);
-			writer.Write(bold);
-			writer.Write(italic);
-			writer.Write(width);
-			writer.Write(height);
-
 			writer.Write(characters.Count); // CharactersCount
 
-			foreach (JProperty character in characters.Children())
+			// crate the body
+			for (int i = 0; i < dataFilesPaths.Length; i++)
 			{
-				dynamic value = character.Value;
-				writer.Write(character.Name[0]); // Name
-				writer.Write((int)value.x); // AtlasX
-				writer.Write((int)value.y); // AtlasY
-				writer.Write((int)value.width); // Width
-				writer.Write((int)value.height); // Height
-				writer.Write((int)value.originX); // OriginX
-				writer.Write((int)value.originY); // OriginY
-				writer.Write((int)value.advance); // PainterStepX
+				string dataPath = dataFilesPaths[i];
+				string texturePath = textureFilesPaths[i];
+
+				if (!File.Exists(dataPath) || !File.Exists(texturePath))
+				{
+					dataPath = dataFilesPaths[0];
+					texturePath = textureFilesPaths[0];
+				}
+
+				// Load the Data File
+				json = File.ReadAllText(dataPath);
+
+				data = JsonConvert.DeserializeObject(json);
+
+				try
+				{
+					characters = data.characters;
+				}
+				catch
+				{
+					Utilities.ShowErrorMessage("The font is damaged!");
+					return;
+				}
+
+				// Append to .nwf
+				foreach (JProperty character in characters.Children())
+				{
+					dynamic value = character.Value;
+					writer.Write(character.Name[0]); // Name
+					writer.Write((int)value.x); // AtlasX
+					writer.Write((int)value.y); // AtlasY
+					writer.Write((int)value.width); // Width
+					writer.Write((int)value.height); // Height
+					writer.Write((int)value.originX); // OriginX
+					writer.Write((int)value.originY); // OriginY
+					writer.Write((int)value.advance); // PainterStepX
+				}
+
+				// Append the to the texture
+
 			}
 
 			writer.Close();
