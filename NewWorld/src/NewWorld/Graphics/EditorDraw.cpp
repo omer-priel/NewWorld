@@ -476,8 +476,6 @@ namespace NewWorld::Graphics
 
 		AfterDraw();
 
-		//glDeleteBuffers(1, &indicesBuffer);
-
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDeleteTextures(1, &handle);
 	}
