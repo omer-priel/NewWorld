@@ -126,12 +126,18 @@ namespace Temp
 		{
 		case 0:
 		{
-			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200,
 				NewWorld::Graphics::Colors::NavyBlue, "Hello World");
 		}
 		break;
 		case 1:
+		{
+			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 200, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200,
+				NewWorld::Graphics::Colors::NavyBlue, "Hello World");
+		}
+		break;
+		case 2:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 200, GetBackgroundColor(), 10);
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 200,
