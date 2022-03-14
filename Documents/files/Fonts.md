@@ -17,8 +17,8 @@ To create this file use "NewWorldPlugin create-font" command
 * uint Size
 * bool Bold
 * bool Italic
-* bool Width
-* bool Height
+* uint Width
+* uint Height
 * uint CharactersCount:
 * array of Character
 

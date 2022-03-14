@@ -6,6 +6,7 @@
 #include "NewWorld/Math/Projection.h"
 #include "NewWorld/Editor/UI/Panel.h"
 #include "NewWorld/Editor/Assets/TextureManager.h"
+#include "NewWorld/Editor/Assets/FontManager.h"
 #include "NewWorld/Editor/Assets/ShaderManager.h"
 
 namespace NewWorld::Editor
@@ -24,6 +25,7 @@ namespace NewWorld::Editor
 		Matrix4 m_ProjectionMatrix;
 
 		Assets::TextureManager m_TextureManager;
+		Assets::FontManager m_FontManager;
 		Assets::ShaderManager m_ShaderManager;
 
 	public:
@@ -55,6 +57,7 @@ namespace NewWorld::Editor
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
 
 		inline Assets::TextureManager& GetTextureManager() { return m_TextureManager; }
+		inline Assets::FontManager& GetFontManager() { return m_FontManager; }
 		inline Assets::ShaderManager& GetShaderManager() { return m_ShaderManager; }
 
 		// Actions

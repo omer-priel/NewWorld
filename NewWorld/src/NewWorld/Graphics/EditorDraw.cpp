@@ -23,10 +23,13 @@ namespace NewWorld::Graphics
 	// Initialize
 	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
 	{
-		// Load basic Editor Fonts
+		// Load basic Editor Textures
 		auto& textureManager = window->GetTextureManager();
 
-		textureManager.LoadTexture("Fonts/Basic32.png");
+		// Load basic Editor Fonts
+		auto& fontManager = window->GetFontManager();
+
+		fontManager.LoadFont("Fonts/Basic32.png", "Fonts/Basic32.nwf");
 
 		// Load basic Editor Shaders
 		auto& shaderManager = window->GetShaderManager();
