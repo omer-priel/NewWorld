@@ -20,6 +20,9 @@ namespace NewWorld::Graphics
 	static constexpr uint SHADER_TEXTURE = 5;
 	static constexpr uint SHADER_TEMPLATE_TEXTURE = 6;
 
+	// Static Members
+	Array<float, EditorDraw::MAX_VERTICES_BUFFER_SIZE> EditorDraw::s_VerticesBuffer;
+
 	// Initialize
 	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
 	{
@@ -412,17 +415,35 @@ namespace NewWorld::Graphics
 		Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
 		const Editor::Assets::Texture& texture = font.GetTexture();
 
-		float sampleX = font.GetCharacterByID(0).AtlasX;
-		float sampleY = font.GetCharacterByID(0).AtlasY;
-		float sampleWidth = font.GetCharacterByID(0).Width;
-		float sampleHeight = font.GetCharacterByID(0).Height;
+		const uint LINE_SIZE = 2 * 4;
 
-		sampleY = texture.GetHeight() - sampleY - sampleHeight;
+		uint verticesLength = LINE_SIZE * text.GetLength();
+		float* vertices = &s_VerticesBuffer[0];
+		float* vertice = vertices;
 
-		float vertices[] = {
-			x, y, sampleX, sampleY,
-			x + sampleWidth, y + sampleHeight, sampleX + sampleWidth, sampleY + sampleHeight
-		};
+		for (SizeT i = 0; i < text.GetLength(); i++)
+		{
+			auto& character = font.GetCharacter(text[i]);
+
+			float sampleX = character.AtlasX;
+			float sampleY = character.AtlasY;
+			float sampleWidth = character.Width;
+			float sampleHeight = character.Height;
+
+			sampleY = texture.GetHeight() - sampleY - sampleHeight;
+
+			*(vertice + 0) = x;
+			*(vertice + 1) = y;
+			*(vertice + 2) = sampleX;
+			*(vertice + 3) = sampleY;
+
+			*(vertice + 4) = x + sampleWidth;
+			*(vertice + 5) = y + sampleHeight;
+			*(vertice + 6) = sampleX + sampleWidth;
+			*(vertice + 7) = sampleY + sampleHeight;
+
+			vertice += LINE_SIZE;
+		}
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
@@ -441,7 +462,7 @@ namespace NewWorld::Graphics
 
 		BeforeDraw();
 
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, verticesLength, vertices, GL_STATIC_DRAW);
 
 		uint offset = 0;
 		glEnableVertexAttribArray(0);
@@ -458,7 +479,7 @@ namespace NewWorld::Graphics
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
 		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
-		glDrawArrays(GL_LINES, 0, 32);
+		glDrawArrays(GL_LINES, 0, text.GetLength() * 2);
 
 		AfterDraw();
 

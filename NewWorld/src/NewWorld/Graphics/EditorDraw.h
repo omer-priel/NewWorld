@@ -12,6 +12,13 @@ namespace NewWorld::Graphics
 	{
 	NW_CLASS(NewWorld::Graphics, EditorDraw)
 
+		// Static General Members
+	public:
+		static constexpr uint MAX_VERTICES_BUFFER_SIZE = 1024;
+
+	private:
+		static Array<float, MAX_VERTICES_BUFFER_SIZE> s_VerticesBuffer;
+
 		// Initialize Window
 	public:
 		static void InitializeWindow(RawPointer<Editor::EditorWindow> window);

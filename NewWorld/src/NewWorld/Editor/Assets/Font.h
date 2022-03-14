@@ -9,7 +9,7 @@ namespace NewWorld::Editor::Assets
 	class Font : public Object
 	{
 	NW_CLASS(NewWorld::Editor::Assets, Font)
-
+		
 		// Subclasses
 	public:
 		class Character : public Object
@@ -28,9 +28,13 @@ namespace NewWorld::Editor::Assets
 			int PainterStepX;
 		};
 
-		// Static
+		// Constants
 	public:
 		static constexpr uint CHARACTERS_COUNT = 95;
+
+		// Static
+	public:
+		static uint GetCharacterID(char character);
 
 		// Members
 	private:
@@ -62,6 +66,11 @@ namespace NewWorld::Editor::Assets
 			NW_ASSERT(id < CHARACTERS_COUNT, "The character id not exists!");
 
 			return m_Characters[id];
+		}
+
+		inline const Character& GetCharacter(char character) const
+		{
+			return m_Characters[GetCharacterID(character)];
 		}
 	};
 }
