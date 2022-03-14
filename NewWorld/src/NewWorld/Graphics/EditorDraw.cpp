@@ -418,7 +418,7 @@ namespace NewWorld::Graphics
 		const uint LINE_SIZE = 2 * 4;
 
 		uint verticesLength = LINE_SIZE * text.GetLength();
-		float* vertices = &s_VerticesBuffer[0];
+		float* vertices = s_VerticesBuffer.data();
 		float* vertice = vertices;
 
 		for (SizeT i = 0; i < text.GetLength(); i++)
@@ -432,17 +432,17 @@ namespace NewWorld::Graphics
 
 			sampleY = texture.GetHeight() - sampleY - sampleHeight;
 
-			*(vertice + 0) = x;
-			*(vertice + 1) = y;
-			*(vertice + 2) = sampleX;
-			*(vertice + 3) = sampleY;
+			*(vertice++) = x;
+			*(vertice++) = y;
+			*(vertice++) = sampleX;
+			*(vertice++) = sampleY;
 
-			*(vertice + 4) = x + sampleWidth;
-			*(vertice + 5) = y + sampleHeight;
-			*(vertice + 6) = sampleX + sampleWidth;
-			*(vertice + 7) = sampleY + sampleHeight;
+			*(vertice++) = x + sampleWidth;
+			*(vertice++) = y + sampleHeight;
+			*(vertice++) = sampleX + sampleWidth;
+			*(vertice++) = sampleY + sampleHeight;
 
-			vertice += LINE_SIZE;
+			x += character.PainterStepX + 50;
 		}
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
@@ -479,7 +479,10 @@ namespace NewWorld::Graphics
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
 		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
-		glDrawArrays(GL_LINES, 0, text.GetLength() * 2);
+		for (SizeT i = 0; i < text.GetLength(); i++)
+		{
+			glDrawArrays(GL_LINES, i, 2);
+		}
 
 		AfterDraw();
 
@@ -499,6 +502,11 @@ namespace NewWorld::Graphics
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
+	void EditorDraw::AfterDraw()
+	{
+		glDisable(GL_BLEND);
+	}
+
 	SharedPointer<Editor::Assets::Shader> EditorDraw::CreateShader(uint shaderID)
 	{
 		auto window = LocalPainter::GetWindow();
@@ -509,11 +517,5 @@ namespace NewWorld::Graphics
 		glUniformMatrix4fv(shader->GetUniformLocation("u_ProjectionMatrix"), 1, GL_FALSE, glm::value_ptr(window->GetProjectionMatrix()));
 
 		return shader;
-	}
-
-
-	void EditorDraw::AfterDraw()
-	{
-		glDisable(GL_BLEND);
 	}
 }

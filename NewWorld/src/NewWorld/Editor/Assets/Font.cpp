@@ -17,7 +17,7 @@ namespace NewWorld::Editor::Assets
 		}
 		if ('a' <= character && character <= 'z')
 		{
-			return 46 + (uint)(character - 'a');
+			return 37 + (uint)(character - 'a');
 		}
 
 		switch (character)
