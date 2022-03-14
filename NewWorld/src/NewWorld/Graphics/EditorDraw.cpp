@@ -408,7 +408,58 @@ namespace NewWorld::Graphics
 		// TODO: Load String
 		Editor::Assets::Texture& texture = *(window->GetTextureManager().GetTexture(0));
 
-		DrawTemplateTexture(window, x, y, width, height, texture, color, 100, 0, 100, 200);
+		float sampleX = 0;
+		float sampleY = 0;
+		float sampleWidth = 33;
+		float sampleHeight = 31;
+
+		sampleY = texture.GetHeight() - sampleY - sampleHeight;
+
+		float vertices[] = {
+			x, y, sampleX, sampleY,
+			x + width, y + height, sampleX + sampleWidth, sampleY + sampleHeight
+		};
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
+
+		// Load the Textures
+		uint handle = 0;
+		glGenTextures(1, &handle);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+
+		BeforeDraw();
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		uint offset = 0;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		offset += 2 * sizeof(float);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
+
+		glDrawArrays(GL_LINES, 0, 32);
+
+		AfterDraw();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &handle);
 	}
 
 
