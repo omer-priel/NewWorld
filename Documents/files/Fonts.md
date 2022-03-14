@@ -15,12 +15,8 @@ To create this file use "NewWorldPlugin create-font" command
 * uint FamilyNameLength
 * String FamilyName
 * uint Size
-* bool Bold
-* bool Italic
-* uint Width
-* uint Height
-* uint CharactersCount:
-* array of Character
+* uint CharactersCount
+* 4 arraies of Character
 
 Character:
 * char Name

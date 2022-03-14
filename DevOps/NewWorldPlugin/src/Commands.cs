@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using System.IO;
+using System.Drawing;
+
 using Microsoft.Win32;
 
 using Newtonsoft.Json;
@@ -150,7 +153,11 @@ namespace NewWorldPlugin
 		{
 			string[] dataFilesPaths = { path + ".json", path + "Bold.json", path + "Iltalic.json", path + "BoldIltalic.json" };
 			string[] textureFilesPaths = { path + ".png", path + "Bold.png", path + "Iltalic.png", path + "BoldIltalic.png" };
-			string targetPath = path + ".nwf";
+
+			Image[] textures = new Image[textureFilesPaths.Length];
+
+			string targetDataPath = path + ".nwf";
+			string targetTexturePath = path + ".nwf.png";
 
 			if (!File.Exists(dataFilesPaths[0]))
 			{
@@ -164,8 +171,50 @@ namespace NewWorldPlugin
 				return;
 			}
 
+			if (File.Exists(targetDataPath))
+            {
+				File.Delete(targetDataPath);
+            }
+
+			if (File.Exists(targetTexturePath))
+			{
+				File.Delete(targetTexturePath);
+			}
+
 			// Create the Font
-			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
+			BinaryWriter writer = new BinaryWriter(new FileStream(targetDataPath, FileMode.Create));
+
+			// Load general data
+			Size textureStyle = new Size(0, 0);
+
+			for (int i = 0; i < textures.Length; i++)
+			{
+				string texturePath = textureFilesPaths[i];
+
+				if (File.Exists(texturePath))
+				{
+					textures[i] = Image.FromFile(textureFilesPaths[i]);
+
+					if (textureStyle.Width < textures[i].Width)
+                    {
+						textureStyle.Width = textures[i].Width;
+					}
+
+					if (textureStyle.Height < textures[i].Height)
+					{
+						textureStyle.Height = textures[i].Height;
+					}
+				}
+				else
+                {
+					textures[i] = null;
+				}
+			}
+
+			Bitmap fontTexture = new Bitmap(textureStyle.Height * 2, textureStyle.Height * 2);
+			Graphics graphics = Graphics.FromImage(fontTexture);
+
+			graphics.FillRectangle(Brushes.Transparent, 0, 0, fontTexture.Width, fontTexture.Height);
 
 			// create header
 			string json = File.ReadAllText(dataFilesPaths[0]);
@@ -200,12 +249,12 @@ namespace NewWorldPlugin
 			for (int i = 0; i < dataFilesPaths.Length; i++)
 			{
 				string dataPath = dataFilesPaths[i];
-				string texturePath = textureFilesPaths[i];
+				Image texture = textures[i];
 
-				if (!File.Exists(dataPath) || !File.Exists(texturePath))
+				if (!File.Exists(dataPath) || texture == null)
 				{
 					dataPath = dataFilesPaths[0];
-					texturePath = textureFilesPaths[0];
+					texture = textures[0];
 				}
 
 				// Load the Data File
@@ -241,7 +290,12 @@ namespace NewWorldPlugin
 
 			}
 
+			// Save the Files
 			writer.Close();
+
+			graphics.Dispose();
+			fontTexture.Save(targetTexturePath, System.Drawing.Imaging.ImageFormat.Png);
+			fontTexture.Dispose();
 		}
 
 		static public void CreateShader(string path)
