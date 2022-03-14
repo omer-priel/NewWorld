@@ -190,9 +190,11 @@ namespace NewWorldPlugin
 
 			// Create .nwf file
 			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
-			
-			writer.Write(familyName.Length); // FamilyNameLength
-			writer.Write(familyName.ToArray(), 0, familyName.Length); // FamilyName
+
+			byte[] familyNameAsBytes = Encoding.ASCII.GetBytes(familyName);
+
+			writer.Write(familyNameAsBytes.Length); // FamilyNameLength
+			writer.Write(familyNameAsBytes, 0, familyNameAsBytes.Length); // FamilyName
 
 			writer.Write(size);
 			writer.Write(bold);
