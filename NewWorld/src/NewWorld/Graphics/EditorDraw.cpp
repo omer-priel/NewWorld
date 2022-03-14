@@ -419,31 +419,6 @@ namespace NewWorld::Graphics
 
 		uint verticesLength = LINE_SIZE * text.GetLength();
 		float* vertices = s_VerticesBuffer.data();
-		float* vertice = vertices;
-
-		for (SizeT i = 0; i < text.GetLength(); i++)
-		{
-			auto& character = font.GetCharacter(text[i]);
-
-			float sampleX = character.AtlasX;
-			float sampleY = character.AtlasY;
-			float sampleWidth = character.Width;
-			float sampleHeight = character.Height;
-
-			sampleY = texture.GetHeight() - sampleY - sampleHeight;
-
-			*(vertice++) = x;
-			*(vertice++) = y;
-			*(vertice++) = sampleX;
-			*(vertice++) = sampleY;
-
-			*(vertice++) = x + sampleWidth;
-			*(vertice++) = y + sampleHeight;
-			*(vertice++) = sampleX + sampleWidth;
-			*(vertice++) = sampleY + sampleHeight;
-
-			x += character.PainterStepX + 50;
-		}
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
@@ -472,6 +447,12 @@ namespace NewWorld::Graphics
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
 
+		ushort indices[] = { 0, 1};
+		uint indicesBuffer;
+		glGenBuffers(1, &indicesBuffer);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesBuffer);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, handle);
 
@@ -479,12 +460,40 @@ namespace NewWorld::Graphics
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
 		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
+		float* vertice = vertices;
+
 		for (SizeT i = 0; i < text.GetLength(); i++)
 		{
-			glDrawArrays(GL_LINES, i, 2);
+			vertice = vertices;
+			auto& character = font.GetCharacter(text[i]);
+
+			float sampleX = character.AtlasX;
+			float sampleY = character.AtlasY;
+			float sampleWidth = character.Width;
+			float sampleHeight = character.Height;
+
+			sampleY = texture.GetHeight() - sampleY - sampleHeight;
+
+			*(vertice++) = x;
+			*(vertice++) = y;
+			*(vertice++) = sampleX;
+			*(vertice++) = sampleY;
+
+			*(vertice++) = x + sampleWidth;
+			*(vertice++) = y + sampleHeight;
+			*(vertice++) = sampleX + sampleWidth;
+			*(vertice++) = sampleY + sampleHeight;
+
+			
+			glBufferData(GL_ARRAY_BUFFER, verticesLength, vertices, GL_STATIC_DRAW);
+			glDrawArrays(GL_LINES, 0, 2);
+
+			x += character.PainterStepX + 50;
 		}
 
 		AfterDraw();
+
+		//glDeleteBuffers(1, &indicesBuffer);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDeleteTextures(1, &handle);
