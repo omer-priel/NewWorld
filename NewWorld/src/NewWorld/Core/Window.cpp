@@ -4,8 +4,6 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
-#include "TempPanel.h"
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -101,10 +99,6 @@ namespace NewWorld::Core
 
 						glfwGetCursorPos(winHandle, &xPos, &yPos);
 						yPos = (double)window.GetHeight() - yPos;
-
-						SharedPointer<Temp::TempPanel> newPanel(xPos, yPos);
-
-						window.GetMainPanel().AddComponent(newPanel);
 					}
 					//
 
