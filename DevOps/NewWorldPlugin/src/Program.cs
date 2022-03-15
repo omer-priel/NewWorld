@@ -15,11 +15,16 @@ namespace NewWorldPlugin
 		{
 			Plugin.Init();
 
+			CallCommand(args);
+		}
+
+		static void CallCommand(string[] args)
+        {
 			string rootPath = Directory.GetCurrentDirectory();
 
 			int index = 0;
 			while (index < args.Length && args[index].StartsWith("--"))
-            {
+			{
 				string option = args[index];
 				switch (option)
 				{
@@ -27,7 +32,7 @@ namespace NewWorldPlugin
 						{
 							index++;
 							if (index == args.Length)
-                            {
+							{
 								Utilities.ShowErrorMessage("Need path as parament!");
 								return;
 							}
@@ -35,26 +40,26 @@ namespace NewWorldPlugin
 							rootPath = args[index];
 
 							if (File.Exists(rootPath) && rootPath.EndsWith(".nwe"))
-                            {
+							{
 								rootPath = new FileInfo(rootPath).DirectoryName;
 
 							}
 
 							if (!Directory.Exists(rootPath))
-                            {
+							{
 								Utilities.ShowErrorMessage("The path \"" + rootPath + "\" does not exists!");
 								return;
 							}
 						}
 						break;
 					default:
-                        {
+						{
 							Utilities.ShowErrorMessage("The option \"" + option + "\" does not exists!");
 							return;
-                        }
+						}
 				}
 				index++;
-            }
+			}
 
 			if (index == args.Length)
 			{
@@ -82,7 +87,7 @@ namespace NewWorldPlugin
 						Commands.InstallExtension();
 					}
 					break;
-                case "uninstall-extension":
+				case "uninstall-extension":
 					{
 						Commands.UninstallExtension();
 					}
@@ -116,6 +121,64 @@ namespace NewWorldPlugin
 						Commands.CreateFont(path);
 					}
 					break;
+				case "shader":
+					{
+						index++;
+						if (index == args.Length)
+						{
+							Utilities.ShowErrorMessage("Need sub command!");
+							return;
+						}
+
+						command = args[index];
+						switch (command)
+						{
+							case "create":
+								{
+									index++;
+									if (index == args.Length)
+									{
+										Utilities.ShowErrorMessage("Need path as parament!");
+										return;
+									}
+
+									string path = args[index];
+									Commands.CreateShader(path);
+								}
+								break;
+							case "create-all":
+								{
+									if (Plugin.LoadProject(rootPath))
+									{
+										Commands.CreateAllShaders();
+									}
+								}
+								break;
+							default:
+								{
+									Utilities.ShowErrorMessage("The command \"shader " + command + "\" dos not exists!");
+								}
+								return;
+						}
+					}
+					break;
+				case "pre-compile":
+					{
+						if (Plugin.LoadProject(rootPath))
+						{
+							index++;
+							if (index == args.Length)
+							{
+								Utilities.ShowErrorMessage("Need target as parament!");
+								return;
+							}
+
+							string target = args[index];
+
+							Commands.PreCompile(target);
+						}
+					}
+					break;
 				default:
 					{
 						Utilities.ShowErrorMessage("The command \"" + command + "\" dos not exists!");
@@ -124,7 +187,6 @@ namespace NewWorldPlugin
 			}
 		}
 
-		// Open .nwe file
 		static void OpenWith()
 		{
 			try

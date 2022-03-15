@@ -136,7 +136,27 @@ export function build() {
 	terminal.show();
 }
 
-export function createFont(path: string) {
+export function createFont(asset: string) {
+
+	let terminal = global.extension.getTerminal();
+
+	if (asset === undefined) {
+	
+		vscode.window.showErrorMessage('Undefined asset path!');	
+		return;
+	}
+	
+	let pathUri = vscode.Uri.parse(asset).fsPath;
+	
+	if (pathUri.endsWith('.json')) {
+		pathUri = pathUri.substring(0, pathUri.length - 5);
+	}
+
+	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
+	terminal.show();
+}
+
+export function shaderCreate(path: string) {
 
 	let terminal = global.extension.getTerminal();
 
@@ -148,6 +168,14 @@ export function createFont(path: string) {
 	
 	let pathUri = vscode.Uri.parse(path).fsPath;
 
-	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
+	terminal.sendText('NewWorldPlugin shader create \"' + pathUri + "\"");
+	terminal.show();
+}
+
+export function shaderCreateAll() {
+
+	let terminal = global.extension.getTerminal();
+
+	terminal.sendText('NewWorldPlugin shader create-all');
 	terminal.show();
 }

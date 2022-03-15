@@ -1,13 +1,14 @@
 #include "nwpch.h"
 #include "GraphicsAPI.h"
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace NewWorld::Graphics
 {
 	void error_callback(int error, const char* description)
 	{
-		NW_ERROR(NW_LOGGER_CORE, "{}", description);
+		NW_ERROR(NW_LOGGER_CORE, "OpenGL General Error: {}", description);
 	}
 
 	void GraphicsAPI::Initialize()

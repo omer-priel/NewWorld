@@ -6,6 +6,7 @@
 
 #include "TempPanel.h"
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace NewWorld::Core
@@ -46,9 +47,12 @@ namespace NewWorld::Core
 	void Window::Create()
 	{
 		m_WinHandle = glfwCreateWindow((int)m_Width, (int)m_Height, m_Title.GetPointer(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_WinHandle);
+		glfwMakeContextCurrent(m_WinHandle);		
 		glfwSetWindowUserPointer(m_WinHandle, this);
 		glfwSwapInterval(1); // Set VSync true
+
+		int success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		NW_ASSERT(success, "Could not intialize GLAD!");
 
 		// Register Window Events
 		Window::ReggisterEvents();
@@ -96,6 +100,8 @@ namespace NewWorld::Core
 						double yPos;
 
 						glfwGetCursorPos(winHandle, &xPos, &yPos);
+						yPos = (double)window.GetHeight() - yPos;
+
 						SharedPointer<Temp::TempPanel> newPanel(xPos, yPos);
 
 						window.GetMainPanel().AddComponent(newPanel);
@@ -115,6 +121,7 @@ namespace NewWorld::Core
 			double yPos;
 
 			glfwGetCursorPos(winHandle, &xPos, &yPos);
+			yPos = (double)window.GetHeight() - yPos;
 
 			switch (action)
 			{
@@ -138,6 +145,8 @@ namespace NewWorld::Core
 
 		glfwSetCursorPosCallback(m_WinHandle, [](GLFWwindow* winHandle, double xPos, double yPos) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
+
+			yPos = (double)window.GetHeight() - yPos;
 
 			window.MouseHover(xPos, yPos);
 		});

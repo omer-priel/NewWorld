@@ -28,6 +28,14 @@
 
 #pragma endregion
 
+#pragma region Build Dependencies Flags
+
+#if NW_PLATFORM_WINDOWS
+#define GLFW_INCLUDE_NONE
+#endif
+
+#pragma endregion
+
 // EntryPoint.h
 // ENTRYPOINT_APPLICATION
 

@@ -60,10 +60,30 @@ project "NewWorld"
 		runtime "Debug"
 		symbols "on"
 
+        includedirs
+        {
+            "%{DependenciesDir}/GLAD_Debug/include"
+        }
+
+        links 
+	    {
+            "GLAD_Debug"
+        }
+
 	filter "configurations:Release"
 		defines "NW_CONFIG_RELEASE"
 		runtime "Release"
 		optimize "on"
+
+        includedirs
+        {
+            "%{DependenciesDir}/GLAD/include"
+        }
+
+        links 
+	    {
+            "GLAD"
+        }
 
 project "Sandbox"
 	location "Sandbox"
@@ -93,6 +113,11 @@ project "Sandbox"
 	{
 		"NewWorld"
 	}
+
+    prebuildcommands
+    {
+        "NewWorldPlugin pre-compile %{cfg.targetdir}"
+    }
 
 	filter "system:windows"
 		defines "NW_PLATFORM_WINDOWS"

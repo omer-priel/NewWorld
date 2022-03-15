@@ -61,7 +61,7 @@ namespace NewWorld
 	private:
 		void Setup()
 		{
-			Files::FileManger::Initialize();
+			Files::FileManager::Initialize();
 			Debug::Logger::Initialize();
 			Debug::Profiler::Initialize();
 

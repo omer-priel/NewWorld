@@ -5,6 +5,8 @@
 bin
 Dependencies/bin
 Dependencies/Workspace
+Dependencies/GLAD
+Dependencies/GLAD_Debug
 
 __pycache__
 env

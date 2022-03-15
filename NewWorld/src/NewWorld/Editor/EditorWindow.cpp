@@ -2,9 +2,17 @@
 #include "EditorWindow.h"
 
 #include "NewWorld/Graphics/LocalPainter.h"
+#include "NewWorld/Graphics/EditorDraw.h"
 
 namespace NewWorld::Editor
 {
+	void EditorWindow::Create()
+	{
+		Window::Create();
+
+		Graphics::EditorDraw::InitializeWindow(this);
+	}
+
 	void EditorWindow::Close()
 	{
 		m_MainPanel.Destroy();

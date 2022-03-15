@@ -1,12 +1,15 @@
 NewWorldPlugin [options]      - Open in Visual Studio Code
 NewWorldPlugin [options] [command]
 Commands:
-	help                   - Show this help
-	install-extension      - Install the extension
-	uninstall-extension    - Uninstall the extension
-	generate-projects path - Generate Projects
-	build path             - Build the applications
-	create-font [path]       - Create .nwf from .json
+	help                     - Show this help
+	install-extension        - Install the extension
+	uninstall-extension      - Uninstall the extension
+	generate-projects        - Generate Projects
+	build                    - Build the applications
+	create-font [path]       - Create .nwf
+	shader create [path]     - Create .nws from .shader
+	shader create-all        - Create all the shaders
+	pre-compile [target]      - Pre Compile Processing
 
 Options:
 	--root-path [path]     - Change the nwe directory to use

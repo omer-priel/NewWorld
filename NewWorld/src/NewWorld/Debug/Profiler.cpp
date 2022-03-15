@@ -12,7 +12,7 @@ namespace NewWorld::Debug
 	{
 		s_IsFirstEvent = true;
 
-		String path = Files::FileManger::GetRootDirectory("profile.json");
+		String path = Files::FileManager::GetRootDirectory("profile.json");
 
 		Files::File::Delete(path);
 		s_File.Open(path, true);

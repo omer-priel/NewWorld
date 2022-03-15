@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+
+using EnvDTE;
+using EnvDTE80;
 
 namespace NewWorldVisualStudioExtension
 {
@@ -13,6 +17,8 @@ namespace NewWorldVisualStudioExtension
 		public string Name;
 		public bool OnlyOnNewWorldEngine;
 		protected readonly AsyncPackage package;
+
+		private MenuCommand MenuCommand;
 
 		public Command(string name, bool onlyOnNewWorldEngine, AsyncPackage package, OleMenuCommandService commandService, int CommandId, Guid CommandSet)
 		{
@@ -24,17 +30,27 @@ namespace NewWorldVisualStudioExtension
 
 			var menuCommandID = new CommandID(CommandSet, CommandId);
 
-			if (!onlyOnNewWorldEngine || Utilities.IsNewWorldSolution(package))
+			MenuCommand = new MenuCommand(this.FullExecte, menuCommandID);
+
+			SolutionEvents_Opened();
+
+			DTE2 dte = GetDTE();
+			dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+
+			commandService.AddCommand(MenuCommand);
+		}
+
+		private void SolutionEvents_Opened()
+		{
+			MenuCommand.Visible = !this.OnlyOnNewWorldEngine || Utilities.IsNewWorldSolution(package);
+		}
+
+		// Actions
+		public void FullExecte(object sender, EventArgs e)
+		{
+			if (MenuCommand.Visible)
 			{
-				var menuItem = new MenuCommand(this.Execute, menuCommandID);
-				menuItem.Visible = true;
-				commandService.AddCommand(menuItem);
-			}
-			else
-			{
-				var menuItem = new MenuCommand(Utilities.EmptyExecute, menuCommandID);
-				menuItem.Visible = false;
-				commandService.AddCommand(menuItem);
+				Execute(sender, e);
 			}
 		}
 
@@ -49,5 +65,11 @@ namespace NewWorldVisualStudioExtension
 
             return (T)task.Result;
         }
+
+		public DTE2 GetDTE()
+		{
+			DTE2 dte = (DTE2)GetService<SDTE>();
+			return dte;
+		}
 	}
 }

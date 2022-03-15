@@ -273,7 +273,7 @@ namespace NewWorld::DataTypes::Collections
 		String()
 			: m_Value("")
 		{
-
+			
 		}
 
 		String(const char* value)
@@ -342,6 +342,11 @@ namespace NewWorld::DataTypes::Collections
 		void Clear()
 		{
 			m_Value.clear();
+		}
+
+		void Resize(SizeT length, char fill = '\0')
+		{
+			m_Value.resize(length, fill);
 		}
 
 		int Find(char value, SizeT from = 0) const;

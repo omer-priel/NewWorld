@@ -1,7 +1,7 @@
 {
 	"name": "newworld",
 	"displayName": "New World",
-	"version": "0.0.9",
+	"version": "0.0.12",
 	"description": "VSCode Extension for New World Engine",
 	"publisher": "NewWorld",
 	"license": "MIT",
@@ -45,6 +45,16 @@
 				"command": "newworld.createFont",
 				"category": "New World",
 				"title": "Create Font"
+			},
+			{
+				"command": "newworld.shaderCreate",
+				"category": "New World",
+				"title": "Create Shader"
+			},
+			{
+				"command": "newworld.shaderCreateAll",
+				"category": "New World",
+				"title": "Create Shaders"
 			}
 		],
 		"menus": {
@@ -68,6 +78,16 @@
 					"when": "isNewWorldEngine && resourceExtname == '.json'",
 					"command": "newworld.createFont",
 					"group": "2_workspace@3"
+				},
+				{
+					"when": "isNewWorldEngine && resourceExtname == '.shader'",
+					"command": "newworld.shaderCreate",
+					"group": "2_workspace@4"
+				},
+				{
+					"when": "isNewWorldEngine && explorerResourceIsFolder",
+					"command": "newworld.shaderCreateAll",
+					"group": "2_workspace@5"
 				}
 			]
 		}

@@ -80,7 +80,7 @@ namespace NewWorld
 }
 
 // Files
-#include "NewWorld/Files/FileManger.h"
+#include "NewWorld/Files/FileManager.h"
 
 // Debug
 #include "NewWorld/Debug/Logger.h"

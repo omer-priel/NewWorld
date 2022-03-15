@@ -35,10 +35,18 @@
           <ButtonText>Open With VSCode</ButtonText>
         </Strings>
       </Button>
+			<Button guid="NewWorld_PackageCmdSet" id="NewWorld_PreBuild" priority="0x0100" type="Button">
+        <Parent guid="NewWorld_PackageCmdSet" id="NewWorld_MenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Icon guid="NewWorld_Icons" id="PreBuild" />
+        <Strings>
+          <ButtonText>New World Pre-Build</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <Bitmaps>
-      <Bitmap guid="NewWorld_Icons" href="Resources\Icons.png" usedList="CPP, NewFile, NewClass, OpenWithVSCode" />
+      <Bitmap guid="NewWorld_Icons" href="Resources\Icons.png" usedList="CPP, NewFile, NewClass, OpenWithVSCode, PreBuild" />
     </Bitmaps>
   </Commands>
 
@@ -62,6 +70,7 @@
       <IDSymbol name="NewWorld_NewFile" value="0x0100" />
       <IDSymbol name="NewWorld_NewClass" value="0x0101" />
       <IDSymbol name="NewWorld_OpenWithVSCode" value="0x0102" />
+		  <IDSymbol name="NewWorld_PreBuild" value="0x0103" />
     </GuidSymbol>
 
     <GuidSymbol name="NewWorld_Icons" value="{99ed8989-9f9a-459d-b056-5ea899f0fef5}">
@@ -69,6 +78,7 @@
       <IDSymbol name="NewFile" value="2" />
       <IDSymbol name="NewClass" value="3" />
       <IDSymbol name="OpenWithVSCode" value="4" />
+		  <IDSymbol name="PreBuild" value="5" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

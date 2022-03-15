@@ -1,6 +1,10 @@
 #include "nwpch.h"
 #include "EditorDraw.h"
 
+#include "NewWorld/Editor/Assets/TextureManager.h"
+#include "NewWorld/Editor/Assets/ShaderManager.h"
+
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <GLM/glm.hpp>
@@ -8,6 +12,45 @@
 
 namespace NewWorld::Graphics
 {
+	static constexpr uint SHADER_LINE = 0;
+	static constexpr uint SHADER_FILL_RECTANGLE = 1;
+	static constexpr uint SHADER_OUTLINE_RECTANGLE = 2;
+	static constexpr uint SHADER_ELLIPSE_SLICE = 3;
+	static constexpr uint SHADER_ARC = 4;
+	static constexpr uint SHADER_TEXTURE = 5;
+	static constexpr uint SHADER_TEMPLATE_TEXTURE = 6;
+
+	// Initialize
+	void EditorDraw::InitializeWindow(RawPointer<Editor::EditorWindow> window)
+	{
+		// Load basic Editor Textures
+		auto& textureManager = window->GetTextureManager();
+
+		// Load basic Editor Fonts
+		auto& fontManager = window->GetFontManager();
+
+		fontManager.LoadFont("Fonts/Arial256.nwf", "Fonts/Arial256.nwf.png");
+		
+		// Load basic Editor Shaders
+		auto& shaderManager = window->GetShaderManager();
+
+		shaderManager.LoadShader("Shaders/Editor/DrawLine.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawFillRectangle.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawOutlineRectangle.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawEllipseSlice.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawArc.nws");
+
+		shaderManager.LoadShader("Shaders/Editor/DrawTexture.nws");
+		shaderManager.LoadShader("Shaders/Editor/DrawTamplateTexture.nws");
+
+		// Compile shaders
+		for (size_t i = 0; i < shaderManager.GetShadersCount(); i++)
+		{
+			SharedPointer<Editor::Assets::Shader> shader = shaderManager.GetShader(i);
+			shader->Compile();
+		}
+	}
+
 	// Local
 	void EditorDraw::DrawLine(int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
 	{
@@ -84,39 +127,78 @@ namespace NewWorld::Graphics
 
 		DrawArc(LocalPainter::GetWindow(), x, y, radius, radius, 0, NewWorld::Math::PI_2, color, lineWidth, verticesCount);
 	}
-
-	void EditorDraw::DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text)
+	
+	void EditorDraw::DrawTexture(int x, int y, uint width, uint height, Editor::Assets::Texture& texture)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawString(LocalPainter::GetWindow(), x, y, width, height, color, text);
+		DrawTexture(LocalPainter::GetWindow(), x, y, width, height, texture,
+			0, 0, texture.GetWidth(), texture.GetHeight());
+	}
+
+	void EditorDraw::DrawTexture(int x, int y, uint width, uint height, Editor::Assets::Texture& texture,
+		uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawTexture(LocalPainter::GetWindow(), x, y, width, height, texture, 
+			sampleX, sampleY, sampleWidth, sampleHeight);
+	}
+
+	void EditorDraw::DrawTemplateTexture(int x, int y, uint width, uint height, 
+		Editor::Assets::Texture& texture, const Graphics::Color& color)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawTemplateTexture(LocalPainter::GetWindow(), x, y, width, height, texture, color,
+			0, 0, texture.GetWidth(), texture.GetHeight());
+	}
+
+	void EditorDraw::DrawTemplateTexture(int x, int y, uint width, uint height,
+		Editor::Assets::Texture& texture, const Graphics::Color& color,
+		uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawTemplateTexture(LocalPainter::GetWindow(), x, y, width, height, texture, color,
+			sampleX, sampleY, sampleWidth, sampleHeight);
+	}
+		
+	void EditorDraw::DrawString(int x, int y, String text,
+		const Graphics::Color& color, uint fontSize, bool bold, bool italic)
+	{
+		x += LocalPainter::GetX();
+		y += LocalPainter::GetY();
+
+		DrawString(LocalPainter::GetWindow(), x, y, text, color, fontSize, bold, italic);
 	}
 
 	// Global
 	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, 
 		int x1, int y1, int x2, int y2, const Graphics::Color& color, uint lineWidth)
 	{
-		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
-
-		Vector2 v1 = GetCoordinate(window, x1, y1);
-		Vector2 v2 = GetCoordinate(window, x2, y2);
-
-		GLfloat lineVertices[] = {
-			v1.x, v1.y,
-			v2.x, v2.y
+		GLfloat vertices[] = {
+			x1, y1,
+			x2, y2
 		};
 
 		BeforeDraw();
 
-		glEnable(GL_LINE_SMOOTH);
-		glLineWidth(lineWidth);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(2, GL_FLOAT, 0, lineVertices);
-		glColor4f(color.r, color.g, color.b, color.a);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_LINE);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
+
 		glDrawArrays(GL_LINES, 0, 2);
-		glDisableClientState(GL_VERTEX_ARRAY);
-		glDisable(GL_LINE_SMOOTH);
 
 		AfterDraw();
 	}
@@ -124,74 +206,48 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint width, uint height, const Graphics::Color& color)
 	{
-		Vector2 v1 = GetCoordinate(window, x, y);
-		Vector2 v2 = GetCoordinate(window, x + width, y);
-		Vector2 v3 = GetCoordinate(window, x, y + height);
-		Vector2 v4 = GetCoordinate(window, x + width, y + height);
-
 		GLfloat vertices[] = {
-			v1.x, v1.y,
-			v2.x, v2.y,
-			v4.x, v4.y,
-
-			v1.x, v1.y,
-			v3.x, v3.y,
-			v4.x, v4.y
+			x, y,
+			x + width, y + height
 		};
 
 		BeforeDraw();
+		
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(2, GL_FLOAT, 0, vertices);
-		glColor4f(color.r, color.g, color.b, color.a);
-		glDrawArrays(GL_TRIANGLES, 0, 3 * 2);
-		glDisableClientState(GL_VERTEX_ARRAY);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+		
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_FILL_RECTANGLE);
+		
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+
+		glDrawArrays(GL_LINES, 0, 2);
 
 		AfterDraw();
-
 	}
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
 		uint width, uint height, const Graphics::Color& color, uint lineWidth)
 	{
-		NW_ASSERT(lineWidth <= 10, "Line Width cant be over 10.");
-
-		uint halfLineWidth = lineWidth / 2;
-
-		Vector2 vUp1 = GetCoordinate(window, x, y + halfLineWidth);
-		Vector2 vUp2 = GetCoordinate(window, x + width, y + halfLineWidth);
-
-		Vector2 vDown1 = GetCoordinate(window, x, y + height - halfLineWidth);
-		Vector2 vDown2 = GetCoordinate(window, x + width, y + height - halfLineWidth);
-
-		Vector2 vLeft1 = GetCoordinate(window, x + halfLineWidth, y + lineWidth);
-		Vector2 vLeft2 = GetCoordinate(window, x + halfLineWidth, y + height - lineWidth);
-
-		Vector2 vRight1 = GetCoordinate(window, x + width - halfLineWidth, y + lineWidth);
-		Vector2 vRight2 = GetCoordinate(window, x + width - halfLineWidth, y + height - lineWidth);
-
-		GLfloat lineVertices[] = {
-			vUp1.x, vUp1.y,
-			vUp2.x, vUp2.y,
-			
-			vDown1.x, vDown1.y,
-			vDown2.x, vDown2.y,
-			
-			vLeft1.x, vLeft1.y,
-			vLeft2.x, vLeft2.y,
-
-			vRight1.x, vRight1.y,
-			vRight2.x, vRight2.y
+		GLfloat vertices[] = {
+			x, y,
+			x + width, y + height
 		};
-
+		
 		BeforeDraw();
 
-		glLineWidth(lineWidth);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(2, GL_FLOAT, 0, lineVertices);
-		glColor4f(color.r, color.g, color.b, color.a);
-		glDrawArrays(GL_LINES, 0, 2*4);
-		glDisableClientState(GL_VERTEX_ARRAY);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_OUTLINE_RECTANGLE);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
+
+		glDrawArrays(GL_LINES, 0, 2);
 
 		AfterDraw();
 	}
@@ -199,33 +255,26 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y,
 		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount)
 	{
-		Vector2 center = GetCoordinate(window, x, y);
-		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
+		GLfloat vertices[] = {
+			x, y
+		};
 
 		BeforeDraw();
 
-		glColor4f(color.r, color.g, color.b, color.a);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		float angle = angleStart;
-		float angleStep = angleLength / verticesCount;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		Vector2 prevVertice(center.x + diameter.x * sin(angle), center.y + diameter.y * cos(angle));
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_ELLIPSE_SLICE);
 
-		for (uint i = 0; i <= verticesCount; i++)
-		{
-			glBegin(GL_TRIANGLES);
-			glVertex2f(center.x, center.y);
-			glVertex2f(prevVertice.x, prevVertice.y);
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);
+		glUniform1f(shader->GetUniformLocation("u_AngleLength"), angleLength);
+		glUniform2f(shader->GetUniformLocation("u_Radius"), radiusX, radiusY);
+		glUniform1i(shader->GetUniformLocation("u_VerticesCount"), verticesCount);
 
-			prevVertice.x = center.x + diameter.x * sin(angle);
-			prevVertice.y = center.y + diameter.y * cos(angle);
-
-			glVertex2f(prevVertice.x, prevVertice.y);
-
-			glEnd();
-
-			angle += angleStep;
-		}
+		glDrawArrays(GL_POINTS, 0, 1);
 
 		AfterDraw();
 	}
@@ -233,46 +282,217 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y,
 		uint radiusX, uint radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
 	{
-		Vector2 center = GetCoordinate(window, x, y);
-		Vector2 diameter(radiusX / (float)window->GetWidth() * 2, radiusY / (float)window->GetHeight() * 2);
+		GLfloat vertices[] = {
+			x, y
+		};
 
 		BeforeDraw();
 
-		glLineWidth(lineWidth);
-		glBegin(GL_LINE_STRIP);
-		glColor4f(color.r, color.g, color.b, color.a);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		float angle = angleStart;
-		float angleStep = angleLength / verticesCount;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		for (uint i = 0; i <= verticesCount; i++)
-		{
-			float pointX = center.x + diameter.x * sin(angle);
-			float pointY = center.y + diameter.y * cos(angle);
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_ARC);
 
-			glVertex2f(pointX, pointY);
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1f(shader->GetUniformLocation("u_AngleStart"), angleStart);
+		glUniform1f(shader->GetUniformLocation("u_AngleLength"), angleLength);
+		glUniform2f(shader->GetUniformLocation("u_Radius"), radiusX, radiusY);
+		glUniform1i(shader->GetUniformLocation("u_VerticesCount"), verticesCount);
+		glUniform1f(shader->GetUniformLocation("u_LineWidth"), lineWidth);
 
-			angle += angleStep;
-		}
-
-		glEnd();
+		glDrawArrays(GL_POINTS, 0, 1);
 
 		AfterDraw();
 	}
 
-	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
+	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height,
+		Editor::Assets::Texture& texture, uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
 	{
-		Vector2 start = GetCoordinate(window, x, y);
-		
+		float vertices[] = {
+			x, y, sampleX, sampleY,
+			x + width, y + height, sampleX + sampleWidth, sampleY + sampleHeight
+		};
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEXTURE);
+
+		// Load the Textures
+		uint handle = 0;
+		glGenTextures(1, &handle);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+
 		BeforeDraw();
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		uint offset = 0;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
 		
+		offset += 2 * sizeof(float);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
+
+		glDrawArrays(GL_LINES, 0, 32);
+
 		AfterDraw();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &handle);
+	}
+
+	void EditorDraw::DrawTemplateTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, 
+		Editor::Assets::Texture& texture, const Graphics::Color& color, 
+		uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight)
+	{
+		float vertices[] = {
+			x, y, sampleX, sampleY,
+			x + width, y + height, sampleX + sampleWidth, sampleY + sampleHeight
+		};
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
+
+		// Load the Textures
+		uint handle = 0;
+		glGenTextures(1, &handle);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+
+		BeforeDraw();
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		uint offset = 0;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		offset += 2 * sizeof(float);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
+
+		glDrawArrays(GL_LINES, 0, 32);
+
+		AfterDraw();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &handle);
+	}
+
+	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, String text,
+		const Graphics::Color& color, uint fontSize, bool bold, bool italic)
+	{
+		const Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
+
+		const Editor::Assets::Font::Style& fontStyle = font.GetStyle(bold, italic);
+		const Editor::Assets::Texture& texture = font.GetTexture();
+		const uint originSize = font.GetSize();
+
+		float sizeRatio = ((float)fontSize * 5.0f/3.0f) / ((float)originSize);
+
+		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
+
+		// Load the Textures
+		uint handle = 0;
+		glGenTextures(1, &handle);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
+
+		BeforeDraw();
+
+		glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), nullptr, GL_STATIC_DRAW);
+
+		uint offset = 0;
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		offset += 2 * sizeof(float);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * 2 * sizeof(float), (const void*)offset);
+
+		ushort indices[] = { 0, 1};
+		uint indicesBuffer;
+		glGenBuffers(1, &indicesBuffer);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesBuffer);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, handle);
+
+		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
+		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
+
+		// Draw the text
+		for (SizeT i = 0; i < text.GetLength(); i++)
+		{
+			auto& character = fontStyle.GetCharacter(text[i]);
+
+			float sampleX = character.AtlasX;
+			float sampleY = character.AtlasY;
+			float sampleWidth = character.Width;
+			float sampleHeight = character.Height;
+			
+			float vertices[] = {
+				x, y, sampleX, sampleY,
+				x + sampleWidth * sizeRatio, y + sampleHeight * sizeRatio, sampleX + sampleWidth, sampleY + sampleHeight
+			};
+
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+			glDrawArrays(GL_LINES, 0, 2);
+
+			x += character.PainterStepX * sizeRatio;
+		}
+
+		AfterDraw();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &handle);
 	}
 
 
 	// Utilities
 	void EditorDraw::BeforeDraw()
 	{
+		uint buffer;
+		glGenBuffers(1, &buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, buffer);
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
@@ -282,16 +502,15 @@ namespace NewWorld::Graphics
 		glDisable(GL_BLEND);
 	}
 
-	Vector2 EditorDraw::GetCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
+	SharedPointer<Editor::Assets::Shader> EditorDraw::CreateShader(uint shaderID)
 	{
-		Matrix4 proj = window->GetProjectionMatrix();
-		Vector4 vec4 = Vector4(x - window->GetWidth() / 2, y - window->GetHeight() / 2, 0, 1) * proj;
-		return vec4;
-	}
+		auto window = LocalPainter::GetWindow();
 
-	void EditorDraw::AddCoordinate(RawPointer<Editor::EditorWindow> window, float x, float y)
-	{
-		Vector2 coordinate = GetCoordinate(window, x, y);
-		glVertex2f(coordinate.x, coordinate.y);
+		SharedPointer<Editor::Assets::Shader> shader = window->GetShaderManager().GetShader(shaderID);
+		shader->Use();
+
+		glUniformMatrix4fv(shader->GetUniformLocation("u_ProjectionMatrix"), 1, GL_FALSE, glm::value_ptr(window->GetProjectionMatrix()));
+
+		return shader;
 	}
 }

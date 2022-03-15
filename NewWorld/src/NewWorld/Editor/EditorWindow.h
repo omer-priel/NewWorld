@@ -5,8 +5,9 @@
 #include "NewWorld/Core/Window.h"
 #include "NewWorld/Math/Projection.h"
 #include "NewWorld/Editor/UI/Panel.h"
-
-int main(int argc, char** argv);
+#include "NewWorld/Editor/Assets/TextureManager.h"
+#include "NewWorld/Editor/Assets/FontManager.h"
+#include "NewWorld/Editor/Assets/ShaderManager.h"
 
 namespace NewWorld::Editor
 {
@@ -17,11 +18,15 @@ namespace NewWorld::Editor
 		// Members
 	private:
 		SizeT m_WindowID;
-		UI::Panel m_MainPanel;
 
+		UI::Panel m_MainPanel;
 		RawPointer<Component> m_SelectedComponent;
 
 		Matrix4 m_ProjectionMatrix;
+
+		Assets::TextureManager m_TextureManager;
+		Assets::FontManager m_FontManager;
+		Assets::ShaderManager m_ShaderManager;
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
@@ -29,7 +34,10 @@ namespace NewWorld::Editor
 			m_SelectedComponent(&m_MainPanel)
 		{
 			m_MainPanel.SetWindow(this);
-			m_ProjectionMatrix = Math::Projection::OrthographicMatrix(0.0f, width, height, 0.0f);
+
+			Matrix4 proj = Math::Projection::OrthographicMatrix(0.0f, width, 0.0f, height);
+			Matrix4 view = glm::translate(Matrix4(1.0f), Vector3(0, 0, 0));;
+			m_ProjectionMatrix = proj * view;
 		}
 		
 		// Getters
@@ -48,8 +56,14 @@ namespace NewWorld::Editor
 
 		Matrix4& GetProjectionMatrix() { return m_ProjectionMatrix; }
 
+		inline Assets::TextureManager& GetTextureManager() { return m_TextureManager; }
+		inline Assets::FontManager& GetFontManager() { return m_FontManager; }
+		inline Assets::ShaderManager& GetShaderManager() { return m_ShaderManager; }
+
 		// Actions
 	public:
+		void Create() override;
+
 		void Close() override;
 
 		void ClearSelectedComponent() { ChangeSelectedComponent(&m_MainPanel); }

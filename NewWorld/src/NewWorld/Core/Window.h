@@ -42,7 +42,7 @@ namespace NewWorld::Core
 
 		// Actions
 	public:
-		void Create();
+		virtual void Create();
 
 		void ReggisterEvents();
 
