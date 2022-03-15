@@ -356,7 +356,6 @@ namespace NewWorldPlugin
 				dynamic value = character.Value;
 				writer.Write(character.Name[0]); // Name
 
-				//  texture.GetHeight() - sampleY - sampleHeight;
 				short atlasX = (short)(xStart + (short)value.x);
 				short atlasY = (short)(yStart + (short)value.y);
 
