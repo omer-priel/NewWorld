@@ -370,6 +370,7 @@ namespace NewWorldPlugin
 				short originX = (short)value.originX;
 				short originY = (short)value.originY;
 
+				originX *= -1;
 				originY -= (short)value.height; // flip y
 
 				writer.Write(originX); // OriginX

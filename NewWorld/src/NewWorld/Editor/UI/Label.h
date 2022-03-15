@@ -13,7 +13,7 @@ namespace NewWorld::Editor::UI
 
 		// Constants
 	public:
-		static const uint LABEL_HEIGHT = 26;
+		static const uint LABEL_HEIGHT = 30;
 		
 		// Members
 	private:
@@ -30,7 +30,7 @@ namespace NewWorld::Editor::UI
 		Label(uint x, uint y, const String& text, uint width = 0,
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
-			uint fontSize = 12)
+			uint fontSize = 14)
 			: Component(x, y, width, LABEL_HEIGHT), m_Text(text), m_FontSize(fontSize),
 			m_Bold(false), m_Italic(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)

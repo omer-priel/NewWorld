@@ -105,8 +105,8 @@ namespace NewWorld::Core
 						using namespace NewWorld::Editor::UI;
 
 						// Create new UI Component						
-						SharedPointer<Label> label(xPos, yPos, "Hello - World _=-_*", 300, 
-							Graphics::Colors::Red, Graphics::Colors::Blue, 10);
+						SharedPointer<Label> label(xPos, yPos, "Hello World =*-+", 200, 
+							Graphics::Colors::Magenta, Graphics::Colors::Blue, 14);
 
 						window.GetMainPanel().AddComponent(label);
 					}

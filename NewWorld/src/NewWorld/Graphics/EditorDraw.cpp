@@ -29,7 +29,7 @@ namespace NewWorld::Graphics
 		// Load basic Editor Fonts
 		auto& fontManager = window->GetFontManager();
 
-		fontManager.LoadFont("Fonts/Arial32.nwf", "Fonts/Arial32.nwf.png");
+		fontManager.LoadFont("Fonts/Arial256.nwf", "Fonts/Arial256.nwf.png");
 		
 		// Load basic Editor Shaders
 		auto& shaderManager = window->GetShaderManager();
@@ -423,11 +423,7 @@ namespace NewWorld::Graphics
 		const Editor::Assets::Texture& texture = font.GetTexture();
 		const uint originSize = font.GetSize();
 
-		float sizeRatio = ((float)fontSize) / ((float)originSize);
-		float sizeFontRatio = ((float)fontSize * 5.0f / 3.0f) / ((float)originSize);
-
-		sizeRatio = 1;
-		sizeFontRatio = 1;
+		float sizeRatio = ((float)fontSize * 5.0f / 3.0f) / ((float)originSize);
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
@@ -485,23 +481,23 @@ namespace NewWorld::Graphics
 			float distanceFromY = character.OriginY * sizeRatio;
 
 			if (maxWidth > 0) {
-				inBound = (panintedX + sampleWidth * sizeFontRatio) <= maxWidth;
+				inBound = (panintedX + sampleWidth * sizeRatio) <= maxWidth;
 			}
 
 			inBound = true;
 			if (inBound)
 			{
 				float vertices[] = {
-					x + panintedX - distanceFromX, y + distanceFromY,
+					x + panintedX + distanceFromX, y + distanceFromY,
 					sampleX, sampleY,
-					x + panintedX - distanceFromX + sampleWidth * sizeFontRatio, y + distanceFromY + sampleHeight * sizeFontRatio,
+					x + panintedX + distanceFromX + sampleWidth * sizeRatio, y + distanceFromY + sampleHeight * sizeRatio,
 					sampleX + sampleWidth, sampleY + sampleHeight
 				};
 
 				glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 				glDrawArrays(GL_LINES, 0, 2);
 
-				panintedX += character.PainterStepX * sizeFontRatio;
+				panintedX += character.PainterStepX * sizeRatio;
 			}
 		}
 
