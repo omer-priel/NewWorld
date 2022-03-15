@@ -127,45 +127,43 @@ namespace Temp
 		{
 		case 0:
 		{
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200,
 				"Hello World", NewWorld::Graphics::Colors::NavyBlue, 14);
 		}
 		break;
 		case 1:
 		{
-			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 100, GetBackgroundColor());
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200,
 				"Hello World", NewWorld::Graphics::Colors::NavyBlue, 14);
 		}
 		break;
 		case 2:
 		{
-			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 100, GetBackgroundColor(), 10);
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200,
 				"Hello World", GetBackgroundColor(), 18);
 		}
 		break;
 		case 3:
 		{
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200,
 				"Hello World", GetBackgroundColor(), 18, false, false);
 		}
 		break;
 		case 4:
 		{
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200,
 				"Hello World", GetBackgroundColor(), 18, true, false);
 		}
 		break;
 		case 5:
 		{
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200,
 				"Hello World", GetBackgroundColor(), 18, false, true);
 		}
 		break;
 		case 6:
 		{
-			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200,
 				"Hello World", GetBackgroundColor(), 18, true, true);
 		}
 		break;

@@ -29,7 +29,7 @@ namespace NewWorld::Graphics
 		// Load basic Editor Fonts
 		auto& fontManager = window->GetFontManager();
 
-		fontManager.LoadFont("Fonts/Basic32.nwf", "Fonts/Basic32.nwf.png");
+		fontManager.LoadFont("Fonts/Arial256.nwf", "Fonts/Arial256.nwf.png");
 		
 		// Load basic Editor Shaders
 		auto& shaderManager = window->GetShaderManager();
@@ -168,14 +168,13 @@ namespace NewWorld::Graphics
 			sampleX, sampleY, sampleWidth, sampleHeight);
 	}
 		
-	void EditorDraw::DrawString(int x, int y, uint width, uint height, 
-		String text, const Graphics::Color& color, uint fontSize, bool bold, bool italic)
+	void EditorDraw::DrawString(int x, int y, String text,
+		const Graphics::Color& color, uint fontSize, bool bold, bool italic)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawString(LocalPainter::GetWindow(), x, y, width, height,
-			text, color, fontSize, bold, italic);
+		DrawString(LocalPainter::GetWindow(), x, y, text, color, fontSize, bold, italic);
 	}
 
 	// Global
@@ -408,8 +407,8 @@ namespace NewWorld::Graphics
 		glDeleteTextures(1, &handle);
 	}
 
-	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, 
-		String text, const Graphics::Color& color, uint fontSize, bool bold, bool italic)
+	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, String text,
+		const Graphics::Color& color, uint fontSize, bool bold, bool italic)
 	{
 		const Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
 
@@ -459,6 +458,7 @@ namespace NewWorld::Graphics
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
 		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
+		// Draw the text
 		for (SizeT i = 0; i < text.GetLength(); i++)
 		{
 			auto& character = fontStyle.GetCharacter(text[i]);

@@ -41,8 +41,8 @@ namespace NewWorld::Graphics
 		static void DrawTemplateTexture(int x, int y, uint width, uint height, Editor::Assets::Texture& texture,
 			const Graphics::Color& color, uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight);
 
-		static void DrawString(int x, int y, uint width, uint height, 
-			String text, const Graphics::Color& color, uint fontSize, bool bold = false, bool italic = false);
+		static void DrawString(int x, int y, String text,
+			const Graphics::Color& color, uint fontSize, bool bold = false, bool italic = false);
 
 		// Actions Global
 	private:
@@ -60,8 +60,8 @@ namespace NewWorld::Graphics
 		static void DrawTemplateTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height,
 			Editor::Assets::Texture& texture, const Graphics::Color& color, uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight);
 		
-		static void DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, 
-			String text, const Graphics::Color& color, uint fontSize, bool bold, bool italic);
+		static void DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, String text,
+			const Graphics::Color& color, uint fontSize, bool bold, bool italic);
 
 		// Utilities
 	private:
