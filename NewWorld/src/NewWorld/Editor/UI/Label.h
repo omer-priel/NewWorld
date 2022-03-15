@@ -13,8 +13,10 @@ namespace NewWorld::Editor::UI
 
 		// Constants
 	public:
-		static const uint LABEL_HEIGHT = 30;
-		
+		static const uint LABEL_DEFUALT_HEIGHT = 32;
+		static const uint LABEL_DEFUALT_FONT_SIZE = 14;
+		static const uint LABEL_DEFUALT_MARGIN_SIZE = 6;
+
 		// Members
 	private:
 		String m_Text;
@@ -30,12 +32,12 @@ namespace NewWorld::Editor::UI
 		Label(uint x, uint y, const String& text, uint width = 0,
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
-			uint fontSize = 14)
-			: Component(x, y, width, LABEL_HEIGHT), m_Text(text), m_FontSize(fontSize),
+			uint fontSize = LABEL_DEFUALT_FONT_SIZE)
+			: Component(x, y, width, LABEL_DEFUALT_HEIGHT), m_Text(text), m_FontSize(fontSize),
 			m_Bold(false), m_Italic(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{
-			
+			SetFontSize(fontSize);
 		}
 
 		// Events
@@ -62,7 +64,12 @@ namespace NewWorld::Editor::UI
 
 		void SetText(const String& text) { m_Text = text; }
 
-		void SetFontSize(uint fontSize) { m_FontSize = fontSize; }
+		void SetFontSize(uint fontSize)
+		{
+			m_FontSize = fontSize;
+			m_Height = ((float)m_FontSize / (float)LABEL_DEFUALT_FONT_SIZE) * (float)LABEL_DEFUALT_HEIGHT;
+		}
+
 		void SetBold(bool value) { m_Bold = value; }
 		void SetItalic(bool value) { m_Italic = value; }
 

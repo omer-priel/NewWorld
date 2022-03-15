@@ -29,7 +29,7 @@ namespace NewWorld::Graphics
 		// Load basic Editor Fonts
 		auto& fontManager = window->GetFontManager();
 
-		fontManager.LoadFont("Fonts/Arial256.nwf", "Fonts/Arial256.nwf.png");
+		fontManager.LoadFont("Fonts/Arial128.nwf", "Fonts/Arial128.nwf.png");
 		
 		// Load basic Editor Shaders
 		auto& shaderManager = window->GetShaderManager();
@@ -484,7 +484,6 @@ namespace NewWorld::Graphics
 				inBound = (panintedX + sampleWidth * sizeRatio) <= maxWidth;
 			}
 
-			inBound = true;
 			if (inBound)
 			{
 				float vertices[] = {
