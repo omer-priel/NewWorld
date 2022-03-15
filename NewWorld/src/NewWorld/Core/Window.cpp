@@ -4,7 +4,7 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
-#include "NewWorld/Editor/UI/Panel.h"
+#include "NewWorld/Editor/UI/Label.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -105,9 +105,9 @@ namespace NewWorld::Core
 						using namespace NewWorld::Editor::UI;
 
 						// Create new UI Component
-						SharedPointer<Panel> panel(xPos - 40, yPos - 20, 80, 40, Graphics::Colors::Red);
+						SharedPointer<Label> label(xPos, yPos, 80, "Hello World", Graphics::Colors::Red);
 
-						window.GetMainPanel().AddComponent(panel);
+						window.GetMainPanel().AddComponent(label);
 					}
 					//
 
