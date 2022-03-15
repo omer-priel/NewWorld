@@ -168,12 +168,14 @@ namespace NewWorld::Graphics
 			sampleX, sampleY, sampleWidth, sampleHeight);
 	}
 		
-	void EditorDraw::DrawString(int x, int y, uint width, uint height, const Graphics::Color& color, String text)
+	void EditorDraw::DrawString(int x, int y, uint width, uint height, 
+		String text, const Graphics::Color& color, bool bold, bool italic)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawString(LocalPainter::GetWindow(), x, y, width, height, color, text);
+		DrawString(LocalPainter::GetWindow(), x, y, width, height,
+			text, color, bold, italic);
 	}
 
 	// Global
@@ -406,12 +408,12 @@ namespace NewWorld::Graphics
 		glDeleteTextures(1, &handle);
 	}
 
-	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
+	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, 
+		String text, const Graphics::Color& color, bool bold, bool italic)
 	{
-		// TODO: Load String
 		const Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
 
-		const Editor::Assets::Font::Style& fontStyle = font.GetStyle(true, false);
+		const Editor::Assets::Font::Style& fontStyle = font.GetStyle(bold, italic);
 		const Editor::Assets::Texture& texture = font.GetTexture();
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);

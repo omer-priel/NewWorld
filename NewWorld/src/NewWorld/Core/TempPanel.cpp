@@ -127,29 +127,53 @@ namespace Temp
 		case 0:
 		{
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				NewWorld::Graphics::Colors::NavyBlue, "Hello World");
+				"Hello World", NewWorld::Graphics::Colors::NavyBlue);
 		}
 		break;
 		case 1:
 		{
 			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 100, GetBackgroundColor());
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				NewWorld::Graphics::Colors::NavyBlue, "Hello World");
+				"Hello World", NewWorld::Graphics::Colors::NavyBlue);
 		}
 		break;
 		case 2:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 100, GetBackgroundColor(), 10);
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				GetBackgroundColor(), "Hello World");
+				"Hello World", GetBackgroundColor());
 		}
 		break;
 		case 3:
 		{
-			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 100, GetBackgroundColor());
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+				"Hello World", GetBackgroundColor(), false, false);
 		}
 		break;
 		case 4:
+		{
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+				"Hello World", GetBackgroundColor(), true, false);
+		}
+		break;
+		case 5:
+		{
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+				"Hello World", GetBackgroundColor(), false, true);
+		}
+		break;
+		case 6:
+		{
+			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
+				"Hello World", GetBackgroundColor(), true, true);
+		}
+		break;
+		case 7:
+		{
+			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 100, GetBackgroundColor());
+		}
+		break;
+		case 8:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 100, GetBackgroundColor(), 10);
 		}

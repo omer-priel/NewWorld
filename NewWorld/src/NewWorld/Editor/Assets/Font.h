@@ -29,13 +29,13 @@ namespace NewWorld::Editor::Assets
 			// Members
 		public:
 			char Name;
-			int AtlasX;
-			int AtlasY;
-			int Width;
-			int Height;
-			int OriginX;
-			int OriginY;
-			int PainterStepX;
+			short AtlasX;
+			short AtlasY;
+			short Width;
+			short Height;
+			short OriginX;
+			short OriginY;
+			short PainterStepX;
 		};
 
 	public:
