@@ -122,50 +122,52 @@ namespace Temp
 	void TempPanel::Update()
 	{
 		using namespace NewWorld;
+
+		uint fontSize = 14;
 		switch (m_State)
 		{
 		case 0:
 		{
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				"Hello World", NewWorld::Graphics::Colors::NavyBlue);
+				"Hello World", NewWorld::Graphics::Colors::NavyBlue, fontSize);
 		}
 		break;
 		case 1:
 		{
 			NewWorld::Graphics::EditorDraw::DrawRectangle(400, 200, 400, 100, GetBackgroundColor());
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				"Hello World", NewWorld::Graphics::Colors::NavyBlue);
+				"Hello World", NewWorld::Graphics::Colors::NavyBlue, fontSize);
 		}
 		break;
 		case 2:
 		{
 			NewWorld::Graphics::EditorDraw::DrawOutlineRectangle(400, 200, 400, 100, GetBackgroundColor(), 10);
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				"Hello World", GetBackgroundColor());
+				"Hello World", GetBackgroundColor(), fontSize);
 		}
 		break;
 		case 3:
 		{
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				"Hello World", GetBackgroundColor(), false, false);
+				"Hello World", GetBackgroundColor(), fontSize, false, false);
 		}
 		break;
 		case 4:
 		{
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				"Hello World", GetBackgroundColor(), true, false);
+				"Hello World", GetBackgroundColor(), fontSize, true, false);
 		}
 		break;
 		case 5:
 		{
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				"Hello World", GetBackgroundColor(), false, true);
+				"Hello World", GetBackgroundColor(), fontSize, false, true);
 		}
 		break;
 		case 6:
 		{
 			NewWorld::Graphics::EditorDraw::DrawString(400, 200, 400, 100,
-				"Hello World", GetBackgroundColor(), true, true);
+				"Hello World", GetBackgroundColor(), fontSize, true, true);
 		}
 		break;
 		case 7:

@@ -169,13 +169,13 @@ namespace NewWorld::Graphics
 	}
 		
 	void EditorDraw::DrawString(int x, int y, uint width, uint height, 
-		String text, const Graphics::Color& color, bool bold, bool italic)
+		String text, const Graphics::Color& color, uint fontSize, bool bold, bool italic)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
 		DrawString(LocalPainter::GetWindow(), x, y, width, height,
-			text, color, bold, italic);
+			text, color, fontSize, bold, italic);
 	}
 
 	// Global
@@ -409,12 +409,15 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, 
-		String text, const Graphics::Color& color, bool bold, bool italic)
+		String text, const Graphics::Color& color, uint fontSize, bool bold, bool italic)
 	{
 		const Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
 
 		const Editor::Assets::Font::Style& fontStyle = font.GetStyle(bold, italic);
 		const Editor::Assets::Texture& texture = font.GetTexture();
+		const uint originSize = font.GetSize();
+
+		float sizeRatio = ((float)fontSize) / ((float)originSize);
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
@@ -467,13 +470,13 @@ namespace NewWorld::Graphics
 			
 			float vertices[] = {
 				x, y, sampleX, sampleY,
-				x + sampleWidth, y + sampleHeight, sampleX + sampleWidth, sampleY + sampleHeight
+				x + sampleWidth * sizeRatio, y + sampleHeight * sizeRatio, sampleX + sampleWidth, sampleY + sampleHeight
 			};
 
 			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 			glDrawArrays(GL_LINES, 0, 2);
 
-			x += character.PainterStepX;
+			x += character.PainterStepX * sizeRatio;
 		}
 
 		AfterDraw();
