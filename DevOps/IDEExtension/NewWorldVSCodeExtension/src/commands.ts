@@ -136,17 +136,21 @@ export function build() {
 	terminal.show();
 }
 
-export function createFont(path: string) {
+export function createFont(asset: string) {
 
 	let terminal = global.extension.getTerminal();
 
-	if (path === undefined) {
+	if (asset === undefined) {
 	
-		vscode.window.showErrorMessage('Undefined file path!');	
+		vscode.window.showErrorMessage('Undefined asset path!');	
 		return;
 	}
 	
-	let pathUri = vscode.Uri.parse(path).fsPath;
+	let pathUri = vscode.Uri.parse(asset).fsPath;
+	
+	if (pathUri.endsWith('.json')) {
+		pathUri = pathUri.substring(0, pathUri.length - 5);
+	}
 
 	terminal.sendText('NewWorldPlugin create-font \"' + pathUri + "\"");
 	terminal.show();

@@ -4,12 +4,12 @@ For example:
 Basic16.png
 Basic16.nwf
 
-## Atlas Font (.png)
-Transparent image that save the font.
-
 ## New World Font (.nwf)
 Custom file that save the data about the font.
 To create this file use "NewWorldPlugin create-font" command
+
+## Atlas Font (.nwf.png)
+Transparent image that save the font.
 
 ### Format:
 * uint FamilyNameLength
