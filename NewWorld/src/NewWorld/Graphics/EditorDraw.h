@@ -42,7 +42,7 @@ namespace NewWorld::Graphics
 			const Graphics::Color& color, uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight);
 
 		static void DrawString(int x, int y, String text,
-			const Graphics::Color& color, uint fontSize, bool bold = false, bool italic = false);
+			const Graphics::Color& color, uint fontSize, uint maxWidth = 0, bool bold = false, bool italic = false);
 
 		// Actions Global
 	private:
@@ -61,7 +61,7 @@ namespace NewWorld::Graphics
 			Editor::Assets::Texture& texture, const Graphics::Color& color, uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight);
 		
 		static void DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, String text,
-			const Graphics::Color& color, uint fontSize, bool bold, bool italic);
+			const Graphics::Color& color, uint fontSize, uint maxWidth, bool bold, bool italic);
 
 		// Utilities
 	private:

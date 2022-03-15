@@ -29,7 +29,7 @@ namespace NewWorld::Graphics
 		// Load basic Editor Fonts
 		auto& fontManager = window->GetFontManager();
 
-		fontManager.LoadFont("Fonts/Arial256.nwf", "Fonts/Arial256.nwf.png");
+		fontManager.LoadFont("Fonts/Arial128.nwf", "Fonts/Arial128.nwf.png");
 		
 		// Load basic Editor Shaders
 		auto& shaderManager = window->GetShaderManager();
@@ -169,12 +169,12 @@ namespace NewWorld::Graphics
 	}
 		
 	void EditorDraw::DrawString(int x, int y, String text,
-		const Graphics::Color& color, uint fontSize, bool bold, bool italic)
+		const Graphics::Color& color, uint fontSize, uint maxWidth, bool bold, bool italic)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
 
-		DrawString(LocalPainter::GetWindow(), x, y, text, color, fontSize, bold, italic);
+		DrawString(LocalPainter::GetWindow(), x, y, text, color, fontSize, maxWidth, bold, italic);
 	}
 
 	// Global
@@ -415,7 +415,7 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, String text,
-		const Graphics::Color& color, uint fontSize, bool bold, bool italic)
+		const Graphics::Color& color, uint fontSize, uint maxWidth, bool bold, bool italic)
 	{
 		const Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
 
@@ -423,7 +423,7 @@ namespace NewWorld::Graphics
 		const Editor::Assets::Texture& texture = font.GetTexture();
 		const uint originSize = font.GetSize();
 
-		float sizeRatio = ((float)fontSize * 5.0f/3.0f) / ((float)originSize);
+		float sizeRatio = ((float)fontSize * 5.0f / 3.0f) / ((float)originSize);
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
@@ -467,7 +467,9 @@ namespace NewWorld::Graphics
 		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
 
 		// Draw the text
-		for (SizeT i = 0; i < text.GetLength(); i++)
+		bool inBound = true;
+		int panintedX = 0;
+		for (SizeT i = 0; i < text.GetLength() && inBound; i++)
 		{
 			auto& character = fontStyle.GetCharacter(text[i]);
 
@@ -475,16 +477,27 @@ namespace NewWorld::Graphics
 			float sampleY = character.AtlasY;
 			float sampleWidth = character.Width;
 			float sampleHeight = character.Height;
-			
-			float vertices[] = {
-				x, y, sampleX, sampleY,
-				x + sampleWidth * sizeRatio, y + sampleHeight * sizeRatio, sampleX + sampleWidth, sampleY + sampleHeight
-			};
+			float distanceFromX = character.OriginX * sizeRatio;
+			float distanceFromY = character.OriginY * sizeRatio;
 
-			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-			glDrawArrays(GL_LINES, 0, 2);
+			if (maxWidth > 0) {
+				inBound = (panintedX + sampleWidth * sizeRatio) <= maxWidth;
+			}
 
-			x += character.PainterStepX * sizeRatio;
+			if (inBound)
+			{
+				float vertices[] = {
+					x + panintedX + distanceFromX, y + distanceFromY,
+					sampleX, sampleY,
+					x + panintedX + distanceFromX + sampleWidth * sizeRatio, y + distanceFromY + sampleHeight * sizeRatio,
+					sampleX + sampleWidth, sampleY + sampleHeight
+				};
+
+				glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+				glDrawArrays(GL_LINES, 0, 2);
+
+				panintedX += character.PainterStepX * sizeRatio;
+			}
 		}
 
 		AfterDraw(&buffer);

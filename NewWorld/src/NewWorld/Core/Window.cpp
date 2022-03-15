@@ -4,6 +4,8 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
+#include "NewWorld/Editor/UI/Label.h"
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -90,8 +92,8 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					// TEMP: for testing
-					//
+					// TODO: remove
+					// Testing unit
 					if (key == GLFW_KEY_SPACE)
 					{
 						double xPos;
@@ -99,6 +101,18 @@ namespace NewWorld::Core
 
 						glfwGetCursorPos(winHandle, &xPos, &yPos);
 						yPos = (double)window.GetHeight() - yPos;
+
+						using namespace NewWorld::Editor::UI;
+
+						// Create new UI Component					
+
+						for (size_t i = 0; i < 5; i++)
+						{
+							SharedPointer<Label> label(xPos, yPos + i * 50, "Hello World_=*-+", 300,
+								Graphics::Colors::Black, Graphics::Colors::DarkGreen, 10 + i * 5);
+
+							window.GetMainPanel().AddComponent(label);
+						}
 					}
 					//
 
