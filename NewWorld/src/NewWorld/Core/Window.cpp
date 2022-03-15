@@ -4,6 +4,8 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
+#include "NewWorld/Editor/UI/Panel.h"
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -90,8 +92,8 @@ namespace NewWorld::Core
 				}
 				case GLFW_RELEASE:
 				{
-					// TEMP: for testing
-					//
+					// TODO: remove
+					// Testing unit
 					if (key == GLFW_KEY_SPACE)
 					{
 						double xPos;
@@ -99,6 +101,13 @@ namespace NewWorld::Core
 
 						glfwGetCursorPos(winHandle, &xPos, &yPos);
 						yPos = (double)window.GetHeight() - yPos;
+
+						using namespace NewWorld::Editor::UI;
+
+						// Create new UI Component
+						SharedPointer<Panel> panel(xPos - 40, yPos - 20, 80, 40, Graphics::Colors::Red);
+
+						window.GetMainPanel().AddComponent(panel);
 					}
 					//
 
