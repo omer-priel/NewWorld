@@ -186,7 +186,8 @@ namespace NewWorld::Graphics
 			x2, y2
 		};
 
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -200,7 +201,7 @@ namespace NewWorld::Graphics
 
 		glDrawArrays(GL_LINES, 0, 2);
 
-		AfterDraw();
+		AfterDraw(&buffer);
 	}
 
 	void EditorDraw::DrawFillRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
@@ -211,7 +212,8 @@ namespace NewWorld::Graphics
 			x + width, y + height
 		};
 
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 		
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -224,7 +226,7 @@ namespace NewWorld::Graphics
 
 		glDrawArrays(GL_LINES, 0, 2);
 
-		AfterDraw();
+		AfterDraw(&buffer);
 	}
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, int x, int y, 
@@ -235,7 +237,8 @@ namespace NewWorld::Graphics
 			x + width, y + height
 		};
 		
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -249,7 +252,7 @@ namespace NewWorld::Graphics
 
 		glDrawArrays(GL_LINES, 0, 2);
 
-		AfterDraw();
+		AfterDraw(&buffer);
 	}
 
 	void EditorDraw::DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, int x, int y,
@@ -259,7 +262,8 @@ namespace NewWorld::Graphics
 			x, y
 		};
 
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -276,7 +280,7 @@ namespace NewWorld::Graphics
 
 		glDrawArrays(GL_POINTS, 0, 1);
 
-		AfterDraw();
+		AfterDraw(&buffer);
 	}
 	
 	void EditorDraw::DrawArc(RawPointer<Editor::EditorWindow> window, int x, int y,
@@ -286,7 +290,8 @@ namespace NewWorld::Graphics
 			x, y
 		};
 
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -304,7 +309,7 @@ namespace NewWorld::Graphics
 
 		glDrawArrays(GL_POINTS, 0, 1);
 
-		AfterDraw();
+		AfterDraw(&buffer);
 	}
 
 	void EditorDraw::DrawTexture(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height,
@@ -330,7 +335,8 @@ namespace NewWorld::Graphics
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -350,7 +356,7 @@ namespace NewWorld::Graphics
 
 		glDrawArrays(GL_LINES, 0, 32);
 
-		AfterDraw();
+		AfterDraw(&buffer);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDeleteTextures(1, &handle);
@@ -380,7 +386,8 @@ namespace NewWorld::Graphics
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -401,7 +408,7 @@ namespace NewWorld::Graphics
 
 		glDrawArrays(GL_LINES, 0, 32);
 
-		AfterDraw();
+		AfterDraw(&buffer);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDeleteTextures(1, &handle);
@@ -433,7 +440,8 @@ namespace NewWorld::Graphics
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.GetWidth(), texture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.GetData());
 
-		BeforeDraw();
+		uint buffer;
+		BeforeDraw(&buffer);
 
 		glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), nullptr, GL_STATIC_DRAW);
 
@@ -479,7 +487,7 @@ namespace NewWorld::Graphics
 			x += character.PainterStepX * sizeRatio;
 		}
 
-		AfterDraw();
+		AfterDraw(&buffer);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDeleteTextures(1, &handle);
@@ -487,19 +495,20 @@ namespace NewWorld::Graphics
 
 
 	// Utilities
-	void EditorDraw::BeforeDraw()
+	void EditorDraw::BeforeDraw(uint* buffer)
 	{
-		uint buffer;
-		glGenBuffers(1, &buffer);
-		glBindBuffer(GL_ARRAY_BUFFER, buffer);
+		glGenBuffers(1, buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, *buffer);
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	void EditorDraw::AfterDraw()
+	void EditorDraw::AfterDraw(uint* buffer)
 	{
 		glDisable(GL_BLEND);
+
+		glDeleteBuffers(1, buffer);
 	}
 
 	SharedPointer<Editor::Assets::Shader> EditorDraw::CreateShader(uint shaderID)
