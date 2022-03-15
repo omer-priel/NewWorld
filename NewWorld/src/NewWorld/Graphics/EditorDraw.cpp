@@ -30,7 +30,7 @@ namespace NewWorld::Graphics
 		auto& fontManager = window->GetFontManager();
 
 		fontManager.LoadFont("Fonts/Basic32.nwf", "Fonts/Basic32.nwf.png");
-
+		
 		// Load basic Editor Shaders
 		auto& shaderManager = window->GetShaderManager();
 
@@ -417,7 +417,7 @@ namespace NewWorld::Graphics
 		const Editor::Assets::Texture& texture = font.GetTexture();
 		const uint originSize = font.GetSize();
 
-		float sizeRatio = ((float)fontSize) / ((float)originSize);
+		float sizeRatio = ((float)fontSize * 5.0f/3.0f) / ((float)originSize);
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 
