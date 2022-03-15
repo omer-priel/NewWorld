@@ -4,7 +4,7 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
-#include "NewWorld/Editor/UI/Label.h"
+#include "NewWorld/Editor/UI/BordedLabel.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -105,13 +105,16 @@ namespace NewWorld::Core
 						using namespace NewWorld::Editor::UI;
 
 						// Create new UI Component					
-
 						for (size_t i = 0; i < 5; i++)
 						{
 							SharedPointer<Label> label(xPos, yPos + i * 50, "Hello World_=*-+", 300,
-								Graphics::Colors::Black, Graphics::Colors::DarkGreen, 10 + i * 5);
+								Graphics::Colors::Transparency, Graphics::Colors::White, 10 + i * 5);
+
+							SharedPointer<BordedLabel> bordedLabel(xPos + 400, yPos + i * 50, "Hello World_=*-+", 300,
+								Graphics::Colors::Transparency, Graphics::Colors::White, Graphics::Colors::Black, 10 + i * 5);
 
 							window.GetMainPanel().AddComponent(label);
+							window.GetMainPanel().AddComponent(bordedLabel);
 						}
 					}
 					//
