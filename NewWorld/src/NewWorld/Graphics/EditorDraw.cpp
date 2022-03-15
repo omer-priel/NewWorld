@@ -482,7 +482,7 @@ namespace NewWorld::Graphics
 			float sampleWidth = character.Width;
 			float sampleHeight = character.Height;
 			float distanceFromX = character.OriginX * sizeRatio;
-			float distanceFromY = (character.Height - character.OriginY) * sizeRatio;
+			float distanceFromY = character.OriginY * sizeRatio;
 
 			if (maxWidth > 0) {
 				inBound = (panintedX + sampleWidth * sizeFontRatio) <= maxWidth;
@@ -492,9 +492,9 @@ namespace NewWorld::Graphics
 			if (inBound)
 			{
 				float vertices[] = {
-					x + panintedX - distanceFromX, y - distanceFromY,
+					x + panintedX - distanceFromX, y + distanceFromY,
 					sampleX, sampleY,
-					x + panintedX - distanceFromX + sampleWidth * sizeFontRatio, y - distanceFromY + sampleHeight * sizeFontRatio,
+					x + panintedX - distanceFromX + sampleWidth * sizeFontRatio, y + distanceFromY + sampleHeight * sizeFontRatio,
 					sampleX + sampleWidth, sampleY + sampleHeight
 				};
 
