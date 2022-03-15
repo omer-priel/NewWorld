@@ -1,3 +1,3 @@
 # Tokens
 
-Azure DevOps - Personal Access Token: ww2snk6xhgbz77odp3m5ql4buc2cyod6km2d2bwwpcr5qlmydmsa
+Azure DevOps - Personal Access Token: cab2ffw5q46oxn6vy2l4tluew3tgr7lalxxyerfgnjink43doo7a
