@@ -10,6 +10,16 @@ namespace NewWorld::Editor::Assets
 	{
 	NW_CLASS(NewWorld::Editor::Assets, Font)
 		
+		// Constants
+	public:
+		static constexpr uint CHARACTERS_COUNT = 95;
+
+		static constexpr uint DEFUALT_CHARACTER_ID = 75;
+		static constexpr char DEFUALT_CHARACTER_CHAR = '?';
+
+	private:
+		static constexpr uint STYLES_COUNT = 4;
+
 		// Subclasses
 	public:
 		class Character : public Object
@@ -28,9 +38,58 @@ namespace NewWorld::Editor::Assets
 			int PainterStepX;
 		};
 
-		// Constants
 	public:
-		static constexpr uint CHARACTERS_COUNT = 95;
+		using Characters = Array<Character, CHARACTERS_COUNT>;
+
+	public:
+		class Style : public Object
+		{
+		NW_CLASS(NewWorld::Editor::Assets::Font, Style)
+
+			// Members
+		private:
+			bool m_Bold;
+			bool m_Italic;
+
+			Characters m_Characters;
+
+		public:
+			Style(bool bold, bool italic)
+				: m_Bold(bold), m_Italic(italic) { }
+
+			// Getters
+		public:
+			inline bool IsBold() const { return m_Bold; }
+			inline bool IsItalic() const { return m_Italic; }
+
+			inline const Character& GetCharacterByID(uint id) const
+			{				
+				if (id >= CHARACTERS_COUNT)
+				{
+					NW_WARN(NW_LOGGER_GRAPHICS, "The character id {} not exists!", id);
+
+					id = DEFUALT_CHARACTER_ID;
+				}
+
+				return m_Characters[id];
+			}
+
+			inline const Character& GetCharacter(char character) const
+			{
+#if NW_CONFIG_DEBUG
+				if (character != DEFUALT_CHARACTER_CHAR && GetCharacterID(character) == DEFUALT_CHARACTER_ID)
+				{
+					NW_WARN(NW_LOGGER_GRAPHICS, "The character \'{}\' not supported!", character);
+				}
+#endif
+				return m_Characters[GetCharacterID(character)];
+			}
+
+			inline Characters& GetCharacters() { return m_Characters; }
+		};
+
+	public:
+		using Styles = Array<Style, STYLES_COUNT>;
 
 		// Static
 	public:
@@ -40,37 +99,33 @@ namespace NewWorld::Editor::Assets
 	private:
 		String m_FamilyName;
 		uint m_Size;
-		bool m_Bold;
-		bool m_Italic;
-		uint m_Width;
-		uint m_Height;
-		Array<Character, CHARACTERS_COUNT> m_Characters;
 
 		Texture m_Texture;
 
+		Styles m_Styles;
+
 	public:
-		Font(String textureAsset, String dataAsset);
+		Font(String dataAsset, String textureAsset);
 		
 		// Getters
 	public:
 		inline uint GetSize() const { return m_Size; }
-		inline bool IsBold() const { return m_Bold; }
-		inline bool IsItalic() const { return m_Italic; }
-		inline uint GetWidth() const { return m_Width; }
-		inline uint GetHeight() const { return m_Height; }
 
 		inline const Texture& GetTexture() const { return m_Texture; }
 
-		inline const Character& GetCharacterByID(uint id) const
+		inline const Style& GetStyle(bool bold, bool italic) const
 		{
-			NW_ASSERT(id < CHARACTERS_COUNT, "The character id not exists!");
-
-			return m_Characters[id];
+			return m_Styles[bold + italic * 2];
 		}
 
-		inline const Character& GetCharacter(char character) const
+		inline const Character& GetCharacterByID(uint id, bool bold, bool italic) const
 		{
-			return m_Characters[GetCharacterID(character)];
+			return GetStyle(bold, italic).GetCharacterByID(id);
+		}
+
+		inline const Character& GetCharacter(char character, bool bold, bool italic) const
+		{
+			return GetStyle(bold, italic).GetCharacter(character);
 		}
 	};
 }

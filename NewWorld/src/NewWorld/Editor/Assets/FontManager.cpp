@@ -3,9 +3,9 @@
 
 namespace NewWorld::Editor::Assets
 {
-	int FontManager::LoadFont(String textureAsset, String dataAsset)
+	int FontManager::LoadFont(String dataAsset, String textureAsset)
 	{
-		SharedPointer<Font> font(textureAsset, dataAsset);
+		SharedPointer<Font> font(dataAsset, textureAsset);
 		
 		m_Fonts.push_back(font);
 

@@ -185,7 +185,7 @@ namespace NewWorldPlugin
 			BinaryWriter writer = new BinaryWriter(new FileStream(targetDataPath, FileMode.Create));
 
 			// Load general data
-			Size textureStyle = new Size(0, 0);
+			Size textureStyleSize = new Size(0, 0);
 
 			for (int i = 0; i < textures.Length; i++)
 			{
@@ -195,14 +195,14 @@ namespace NewWorldPlugin
 				{
 					textures[i] = Image.FromFile(textureFilesPaths[i]);
 
-					if (textureStyle.Width < textures[i].Width)
+					if (textureStyleSize.Width < textures[i].Width)
                     {
-						textureStyle.Width = textures[i].Width;
+						textureStyleSize.Width = textures[i].Width;
 					}
 
-					if (textureStyle.Height < textures[i].Height)
+					if (textureStyleSize.Height < textures[i].Height)
 					{
-						textureStyle.Height = textures[i].Height;
+						textureStyleSize.Height = textures[i].Height;
 					}
 				}
 				else
@@ -211,10 +211,12 @@ namespace NewWorldPlugin
 				}
 			}
 
-			Bitmap fontTexture = new Bitmap(textureStyle.Height * 2, textureStyle.Height * 2);
+			Bitmap fontTexture = new Bitmap(textureStyleSize.Width * 2, textureStyleSize.Height * 2);
 			Graphics graphics = Graphics.FromImage(fontTexture);
 
 			graphics.FillRectangle(Brushes.Transparent, 0, 0, fontTexture.Width, fontTexture.Height);
+
+			graphics.Dispose();
 
 			// create header
 			string json = File.ReadAllText(dataFilesPaths[0]);
@@ -246,7 +248,8 @@ namespace NewWorldPlugin
 			writer.Write(characters.Count); // CharactersCount
 
 			// crate the body
-			for (int i = 0; i < dataFilesPaths.Length; i++)
+			bool success = true;
+			for (int i = 0; i < dataFilesPaths.Length && success; i++)
 			{
 				string dataPath = dataFilesPaths[i];
 				Image texture = textures[i];
@@ -257,43 +260,12 @@ namespace NewWorldPlugin
 					texture = textures[0];
 				}
 
-				// Load the Data File
-				json = File.ReadAllText(dataPath);
-
-				data = JsonConvert.DeserializeObject(json);
-
-				try
-				{
-					characters = data.characters;
-				}
-				catch
-				{
-					Utilities.ShowErrorMessage("The font is damaged!");
-					return;
-				}
-
-				// Append to .nwf
-				foreach (JProperty character in characters.Children())
-				{
-					dynamic value = character.Value;
-					writer.Write(character.Name[0]); // Name
-					writer.Write((int)value.x); // AtlasX
-					writer.Write((int)value.y); // AtlasY
-					writer.Write((int)value.width); // Width
-					writer.Write((int)value.height); // Height
-					writer.Write((int)value.originX); // OriginX
-					writer.Write((int)value.originY); // OriginY
-					writer.Write((int)value.advance); // PainterStepX
-				}
-
-				// Append the to the texture
-
+				success = AddFontStyleToFont(writer, fontTexture, textureStyleSize, i, dataPath, texture);
 			}
 
 			// Save the Files
 			writer.Close();
 
-			graphics.Dispose();
 			fontTexture.Save(targetTexturePath, System.Drawing.Imaging.ImageFormat.Png);
 			fontTexture.Dispose();
 		}
@@ -335,25 +307,75 @@ namespace NewWorldPlugin
 			CopyDirectory(assetsPath, target + "\\assets");
 		}
 
-		// Utilities
-		static private FileInfo LoadSrcPath(string path, string needExtension)
-        {
-			if (!File.Exists(path))
+		// Hellpers
+		// Create Font Hellpers
+		static private bool AddFontStyleToFont(BinaryWriter writer, Bitmap fontTexture, Size textureStyleSize, int styleID, string dataPath, Image texture)
+		{
+			bool bold = (styleID % 2) == 1;
+			bool italic = ((styleID % 4) / 2) == 1;
+
+			// Load the Data File
+			string json = File.ReadAllText(dataPath);
+
+			dynamic data = JsonConvert.DeserializeObject(json);
+
+			JObject characters;
+
+			try
 			{
-				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
-				return null;
+				characters = data.characters;
+			}
+			catch
+			{
+				Utilities.ShowErrorMessage("The font is damaged!");
+				return false;
 			}
 
-			FileInfo fileInfo = new FileInfo(path);
-			if (fileInfo.Extension != needExtension)
+			// Append the to the texture
+			int xStart = 0;
+			int yStart = 0;
+
+			if (bold)
 			{
-				Utilities.ShowErrorMessage("Is not " + needExtension + " file!");
-				return null;
+				xStart += textureStyleSize.Width;
 			}
 
-			return fileInfo;
+			if (italic)
+			{
+				yStart += textureStyleSize.Height;
+			}
+
+			Graphics graphics = Graphics.FromImage(fontTexture);
+			graphics.DrawImage(texture, xStart, yStart);
+
+			graphics.Dispose();
+
+			// Append to .nwf
+			foreach (JProperty character in characters.Children())
+			{
+				dynamic value = character.Value;
+				writer.Write(character.Name[0]); // Name
+
+				//  texture.GetHeight() - sampleY - sampleHeight;
+				short atlasX = (short)(xStart + (short)value.x);
+				short atlasY = (short)(yStart + (short)value.y);
+
+				atlasY = (short)(fontTexture.Height - atlasY - (short)value.height); // flip y
+
+				writer.Write(atlasX); // AtlasX
+				writer.Write(atlasY); // AtlasY
+
+				writer.Write((short)value.width); // Width
+				writer.Write((short)value.height); // Height
+				writer.Write((short)value.originX); // OriginX
+				writer.Write((short)value.originY); // OriginY
+				writer.Write((short)value.advance); // PainterStepX
+			}
+
+			return true;
 		}
 
+		// Create Shader Hellpers
 		static private void CreateShaderFromFile(FileInfo fileInfo)
 		{
 			string folder = fileInfo.DirectoryName;
@@ -412,6 +434,25 @@ namespace NewWorldPlugin
 				writer.Write(shaderPart.Length);
 				writer.Write(shaderPart.ToArray(), 0, shaderPart.Length);
 			}
+		}
+
+		// Utilities
+		static private FileInfo LoadSrcPath(string path, string needExtension)
+        {
+			if (!File.Exists(path))
+			{
+				Utilities.ShowErrorMessage("The file \"" + path + "\" not exists!");
+				return null;
+			}
+
+			FileInfo fileInfo = new FileInfo(path);
+			if (fileInfo.Extension != needExtension)
+			{
+				Utilities.ShowErrorMessage("Is not " + needExtension + " file!");
+				return null;
+			}
+
+			return fileInfo;
 		}
 
 		static private void DeleteDirectory(string directoryPath)

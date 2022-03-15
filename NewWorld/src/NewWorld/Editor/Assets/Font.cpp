@@ -59,11 +59,12 @@ namespace NewWorld::Editor::Assets
 
 		NW_WARN(NW_LOGGER_GRAPHICS, "The character \'{}\' not supported!", character);
 		
-		return GetCharacterID('?');
+		return DEFUALT_CHARACTER_ID;
 	}
 
 	// Non-Static
-	Font::Font(String textureAsset, String dataAsset)
+	Font::Font(String dataAsset, String textureAsset)
+		: m_Styles({ Style(false, false), Style(true, false), Style(false, true), Style(true, true) })
 	{
 		// Load the Texture
 		m_Texture.LoadFromPNGFile(textureAsset);
@@ -84,18 +85,20 @@ namespace NewWorld::Editor::Assets
 		file.Read((Byte*)m_FamilyName.GetPointer(), familyNameLength);
 
 		file >> m_Size;
-		file >> m_Bold >> m_Italic;
-		file >> m_Width >> m_Height;
 
 		file += sizeof(uint);
 
-		for (size_t i = 0; i < CHARACTERS_COUNT; i++)
+		for (size_t styleID = 0; styleID < STYLES_COUNT; styleID++)
 		{
-			file >> m_Characters[i].Name;
-			file >> m_Characters[i].AtlasX >> m_Characters[i].AtlasY;
-			file >> m_Characters[i].Width >> m_Characters[i].Height;
-			file >> m_Characters[i].OriginX >> m_Characters[i].OriginY;
-			file >> m_Characters[i].PainterStepX;
+			Characters& characters = m_Styles[styleID].GetCharacters();
+			for (size_t i = 0; i < CHARACTERS_COUNT; i++)
+			{
+				file >> characters[i].Name;
+				file >> characters[i].AtlasX >> characters[i].AtlasY;
+				file >> characters[i].Width >> characters[i].Height;
+				file >> characters[i].OriginX >> characters[i].OriginY;
+				file >> characters[i].PainterStepX;
+			}
 		}
 	}
 

@@ -22,7 +22,7 @@ namespace NewWorld::Editor::Assets
 
 		// Load
 	public:
-		int LoadFont(String textureAsset, String dataAsset);
+		int LoadFont(String dataAsset, String textureAsset);
 		
 		// Getters
 	public:

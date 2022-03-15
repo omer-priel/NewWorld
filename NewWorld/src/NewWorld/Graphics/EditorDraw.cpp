@@ -29,7 +29,7 @@ namespace NewWorld::Graphics
 		// Load basic Editor Fonts
 		auto& fontManager = window->GetFontManager();
 
-		fontManager.LoadFont("Fonts/Basic32.png", "Fonts/Basic32.nwf");
+		fontManager.LoadFont("Fonts/Basic32.nwf", "Fonts/Basic32.nwf.png");
 
 		// Load basic Editor Shaders
 		auto& shaderManager = window->GetShaderManager();
@@ -409,7 +409,9 @@ namespace NewWorld::Graphics
 	void EditorDraw::DrawString(RawPointer<Editor::EditorWindow> window, int x, int y, uint width, uint height, const Graphics::Color& color, String text)
 	{
 		// TODO: Load String
-		Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
+		const Editor::Assets::Font& font = *(window->GetFontManager().GetFont(0));
+
+		const Editor::Assets::Font::Style& fontStyle = font.GetStyle(true, false);
 		const Editor::Assets::Texture& texture = font.GetTexture();
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
@@ -454,14 +456,12 @@ namespace NewWorld::Graphics
 
 		for (SizeT i = 0; i < text.GetLength(); i++)
 		{
-			auto& character = font.GetCharacter(text[i]);
+			auto& character = fontStyle.GetCharacter(text[i]);
 
 			float sampleX = character.AtlasX;
 			float sampleY = character.AtlasY;
 			float sampleWidth = character.Width;
 			float sampleHeight = character.Height;
-
-			sampleY = texture.GetHeight() - sampleY - sampleHeight;
 			
 			float vertices[] = {
 				x, y, sampleX, sampleY,
