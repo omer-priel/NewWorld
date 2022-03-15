@@ -48,12 +48,6 @@ namespace NewWorldVisualStudioExtension
             return false;
         }
 
-        // If is not New World Solution this command run
-        static public void EmptyExecute(object sender, EventArgs e)
-        {
-
-        }
-
         // Get Path of the file NewWorld.nwe
         static public string GetNewWorldFilePath(AsyncPackage package)
 		{

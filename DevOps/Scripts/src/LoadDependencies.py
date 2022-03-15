@@ -38,7 +38,7 @@ StartStage('Install NewWorldPlugin')
 MSBuild.Rebuild(Utilities.GetSubPath('DevOps\\NewWorldPlugin\\NewWorldPlugin.sln'), 'Release')
 newWorldPlugin = Utilities.GetSubPath('DevOps\\NewWorldPlugin\\bin\\Release')
 
-Utilities.CMD(f'NewWorldPlugin --install-extension', True, newWorldPlugin)
+Utilities.CMD(f'NewWorldPlugin install-extension', True, newWorldPlugin)
 
 # Install NewWorldVisualStudioExtension
 StartStage('Install NewWorldVisualStudioExtension')
@@ -75,6 +75,9 @@ StartStage('Delete "Dependencies"')
 
 Utilities.CMD(f'rd /s /q Dependencies')
 
+Utilities.CMD(f'xcopy /Q /E /Y /I DevOps\RawDependencies\GLAD Dependencies\GLAD')
+Utilities.CMD(f'xcopy /Q /E /Y /I DevOps\RawDependencies\GLAD_Debug Dependencies\GLAD_Debug')
+
 StartStage('Load Submodules')
 Utilities.CMD(f'git submodule init', True)
 Utilities.CMD(f'git submodule update', True)
@@ -90,7 +93,6 @@ Utilities.CMD(f'copy /y "Dependencies\\Premake\\bin\\release\\premake5.exe" "Dep
 # Generate Projects
 StartStage(f'Generate Projects')
 
-newWorldFilePath = Utilities.GetSubPath('NewWorld.nwe')
-Utilities.CMD(f'NewWorldPlugin --generate-projects {newWorldFilePath}')
+Utilities.CMD(f'NewWorldPlugin generate-projects')
 
 Utilities.PresToConinue()

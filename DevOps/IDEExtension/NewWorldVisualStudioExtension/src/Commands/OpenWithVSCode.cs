@@ -78,12 +78,7 @@ namespace NewWorldVisualStudioExtension.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            string filePath = Utilities.GetNewWorldFilePath(package);
-
-            if (filePath != null)
-			{
-                System.Diagnostics.Process.Start("NewWorldPlugin", filePath);
-            }
+            System.Diagnostics.Process.Start("NewWorldPlugin");
         }
     }
 }

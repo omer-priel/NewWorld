@@ -1,5 +1,4 @@
 DependenciesDir = "Dependencies"
-
 --include "%{DependenciesDir}/ImGui"
 
 project "GLM"
@@ -57,5 +56,47 @@ project "GLFW"
             "_CRT_SECURE_NO_WARNINGS"
 		}
         
+    filter { "system:windows", "configurations:Release" }
+        buildoptions "/MT"
+
+project "GLAD"
+    location "%{DependenciesDir}/Workspace"
+    kind "StaticLib"
+    language "C"
+    systemversion "latest"
+    staticruntime "On"
+
+	files
+    {
+        "%{DependenciesDir}/GLAD/**.c",
+        "%{DependenciesDir}/GLAD/**.h"
+    }
+
+    includedirs
+    {
+        "%{DependenciesDir}/GLAD/include"
+    }
+
+    filter { "system:windows", "configurations:Release" }
+        buildoptions "/MT"
+
+project "GLAD_Debug"
+    location "%{DependenciesDir}/Workspace"
+    kind "StaticLib"
+    language "C"
+    systemversion "latest"
+    staticruntime "On"
+
+	files
+    {
+        "%{DependenciesDir}/GLAD_Debug/**.c",
+        "%{DependenciesDir}/GLAD_Debug/**.h"
+    }
+
+    includedirs
+    {
+        "%{DependenciesDir}/GLAD_Debug/include"
+    }
+
     filter { "system:windows", "configurations:Release" }
         buildoptions "/MT"

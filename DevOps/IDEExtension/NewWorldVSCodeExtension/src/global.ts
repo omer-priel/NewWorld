@@ -33,11 +33,13 @@ export class Extension {
     title: String;
     name: String;
     contextData: vscode.ExtensionContext | null;
+	terminal: any;
 
     constructor() {
 		this.title = '';
         this.name = '';
 		this.contextData = null;
+		this.terminal = null;
     }
 
 	setContext(context: vscode.ExtensionContext) {
@@ -54,6 +56,20 @@ export class Extension {
 
 	context(): vscode.ExtensionContext {
 		return this.contextData as vscode.ExtensionContext;
+	}
+
+	getTerminal(): any {
+		let index = vscode.window.terminals.indexOf(this.terminal);
+		
+		if (index === -1) {
+
+			this.terminal = vscode.window.createTerminal({
+				name: this.title,
+				cwd: solution.path
+			} as any);
+		}
+
+		return this.terminal;
 	}
 }
 

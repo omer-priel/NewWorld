@@ -15,7 +15,7 @@ namespace NewWorld::Debug
 	// Actions
 	void Logger::Initialize()
 	{
-		s_LogFile.Open(Files::FileManger::GetLogsDirectory(Time::Now().Format("{}_{}_{}.log")), true);
+		s_LogFile.Open(Files::FileManager::GetLogsDirectory(Time::Now().Format("{}_{}_{}.log")), true);
 	}
 
 	// Log
@@ -27,6 +27,7 @@ namespace NewWorld::Debug
 		
 		// Log File
 		s_LogFile.Write(log);
+		s_LogFile.Save();
 	}
 
 

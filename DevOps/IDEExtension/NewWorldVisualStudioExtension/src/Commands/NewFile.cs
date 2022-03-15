@@ -76,7 +76,7 @@ namespace NewWorldVisualStudioExtension.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            DTE2 dte = (DTE2)GetService<SDTE>();
+            DTE2 dte = GetDTE();
 
             // Get Folder Path
             string folderPath = new System.IO.FileInfo(dte.Solution.FullName).Directory.Parent.FullName;

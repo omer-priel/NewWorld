@@ -14,67 +14,179 @@ namespace NewWorldPlugin
 		static void Main(string[] args)
 		{
 			Plugin.Init();
-			
-			if (args.Length == 0)
+
+			CallCommand(args);
+		}
+
+		static void CallCommand(string[] args)
+        {
+			string rootPath = Directory.GetCurrentDirectory();
+
+			int index = 0;
+			while (index < args.Length && args[index].StartsWith("--"))
 			{
-				Utilities.ShowErrorMessage("See NewWorldPlugin --help");
-				return;
+				string option = args[index];
+				switch (option)
+				{
+					case "--root-path":
+						{
+							index++;
+							if (index == args.Length)
+							{
+								Utilities.ShowErrorMessage("Need path as parament!");
+								return;
+							}
+
+							rootPath = args[index];
+
+							if (File.Exists(rootPath) && rootPath.EndsWith(".nwe"))
+							{
+								rootPath = new FileInfo(rootPath).DirectoryName;
+
+							}
+
+							if (!Directory.Exists(rootPath))
+							{
+								Utilities.ShowErrorMessage("The path \"" + rootPath + "\" does not exists!");
+								return;
+							}
+						}
+						break;
+					default:
+						{
+							Utilities.ShowErrorMessage("The option \"" + option + "\" does not exists!");
+							return;
+						}
+				}
+				index++;
 			}
 
-			switch (args[0])
+			if (index == args.Length)
 			{
-				case "--help":
+				if (!Plugin.LoadProject(rootPath))
+				{
+					return;
+				}
+				else
+				{
+					OpenWith();
+				}
+			}
+
+			string command = args[index];
+
+			switch (command)
+			{
+				case "help":
 					{
 						Commands.Help();
-						return;
 					}
-				case "--install-extension":
+					break;
+				case "install-extension":
 					{
 						Commands.InstallExtension();
-						return;
 					}
-                case "--uninstall-extension":
+					break;
+				case "uninstall-extension":
 					{
 						Commands.UninstallExtension();
-						return;
 					}
-				case "--generate-projects":
+					break;
+				case "generate-projects":
 					{
-						if (args.Length < 2)
-						{
-							Utilities.ShowErrorMessage("The path of the file is missing!");
-						}
-						else if (Plugin.LoadNWEFile(args[1]))
+						if (Plugin.LoadProject(rootPath))
 						{
 							Commands.GenerateProjects();
 						}
-						return;
 					}
-				case "--build":
+					break;
+				case "build":
 					{
-						if (args.Length < 2)
-						{
-							Utilities.ShowErrorMessage("The path of the file is missing!");
-						}
-						else if (Plugin.LoadNWEFile(args[1]))
+						if (Plugin.LoadProject(rootPath))
 						{
 							Commands.Build();
 						}
-						return;
 					}
-			}
+					break;
+				case "create-font":
+					{
+						index++;
+						if (index == args.Length)
+						{
+							Utilities.ShowErrorMessage("Need path as parament!");
+							return;
+						}
 
-			if (!Plugin.LoadNWEFile(args[0]))
-			{
-				return;
-			}
-			else
-			{
-				OpenWith();
+						string path = args[index];
+						Commands.CreateFont(path);
+					}
+					break;
+				case "shader":
+					{
+						index++;
+						if (index == args.Length)
+						{
+							Utilities.ShowErrorMessage("Need sub command!");
+							return;
+						}
+
+						command = args[index];
+						switch (command)
+						{
+							case "create":
+								{
+									index++;
+									if (index == args.Length)
+									{
+										Utilities.ShowErrorMessage("Need path as parament!");
+										return;
+									}
+
+									string path = args[index];
+									Commands.CreateShader(path);
+								}
+								break;
+							case "create-all":
+								{
+									if (Plugin.LoadProject(rootPath))
+									{
+										Commands.CreateAllShaders();
+									}
+								}
+								break;
+							default:
+								{
+									Utilities.ShowErrorMessage("The command \"shader " + command + "\" dos not exists!");
+								}
+								return;
+						}
+					}
+					break;
+				case "pre-compile":
+					{
+						if (Plugin.LoadProject(rootPath))
+						{
+							index++;
+							if (index == args.Length)
+							{
+								Utilities.ShowErrorMessage("Need target as parament!");
+								return;
+							}
+
+							string target = args[index];
+
+							Commands.PreCompile(target);
+						}
+					}
+					break;
+				default:
+					{
+						Utilities.ShowErrorMessage("The command \"" + command + "\" dos not exists!");
+					}
+					return;
 			}
 		}
 
-		// Open .nwe file
 		static void OpenWith()
 		{
 			try

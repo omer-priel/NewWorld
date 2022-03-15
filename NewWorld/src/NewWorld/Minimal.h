@@ -65,6 +65,8 @@ namespace NewWorld
 #include "NewWorld/Math/Matrix2.h"
 #include "NewWorld/Math/Matrix3.h"
 #include "NewWorld/Math/Matrix4.h"
+#include "NewWorld/Math/Constants.h"
+#include "NewWorld/Math/Functions.h"
 
 namespace NewWorld
 {
@@ -78,7 +80,7 @@ namespace NewWorld
 }
 
 // Files
-#include "NewWorld/Files/FileManger.h"
+#include "NewWorld/Files/FileManager.h"
 
 // Debug
 #include "NewWorld/Debug/Logger.h"

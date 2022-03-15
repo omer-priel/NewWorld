@@ -8,6 +8,7 @@ MSBuildPath = '\"' + MSBuildFolder + r'\MSBuild.exe' + '\"'
 
 # Rebuild Solution or project
 def Rebuild(projectPath, configurationName):
+    Utilities.CMD(f'{MSBuildPath} {projectPath} -p:RestorePackagesConfig=true -t:restore', True)
     Utilities.CMD(f'{MSBuildPath} {projectPath} -t:Rebuild -p:Configuration={configurationName}', True)
 
 # Build Solution or project
@@ -16,6 +17,7 @@ def Clean(projectPath, configurationName):
 
 # Build Solution or project
 def Build(projectPath, configurationName):
+    Utilities.CMD(f'{MSBuildPath} {projectPath} -p:RestorePackagesConfig=true -t:restore', True)
     Utilities.CMD(f'{MSBuildPath} {projectPath} -t:Build -p:Configuration={configurationName}', True)
 
 # Run Solution target or project target

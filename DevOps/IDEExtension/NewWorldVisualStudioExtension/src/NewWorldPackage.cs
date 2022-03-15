@@ -36,6 +36,8 @@ namespace NewWorldVisualStudioExtension
             await Commands.NewFile.InitializeAsync(this);
             await Commands.NewClass.InitializeAsync(this);
             await Commands.OpenWithVSCode.InitializeAsync(this);
+            await Commands.PreBuild.InitializeAsync(this);
+            
         }
 
         #endregion
