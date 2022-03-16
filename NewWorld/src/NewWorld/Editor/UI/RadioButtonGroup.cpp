@@ -9,7 +9,7 @@ namespace NewWorld::Editor::UI
 	{
 		m_RadioButtons.push_back(radioButton);
 		
-		//radioButton->m_Group = this;
+		radioButton->m_Group = this;
 		radioButton->m_Checked = false;
 	}
 
@@ -17,6 +17,6 @@ namespace NewWorld::Editor::UI
 	{
 		m_RadioButtons.erase(m_RadioButtons.begin() + index);
 
-		//m_RadioButtons[index]->m_Group = nullptr;
+		m_RadioButtons[index]->m_Group = nullptr;
 	}
 }

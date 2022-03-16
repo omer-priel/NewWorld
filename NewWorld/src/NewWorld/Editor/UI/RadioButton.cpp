@@ -10,7 +10,7 @@ namespace NewWorld::Editor::UI
 		const Graphics::Color& backgroundColor,
 		const Graphics::Color& foregroundColor,
 		const Graphics::Color& foregroundCheckedColor)
-		: Component(x, y, 16, 16), m_Checked(false),
+		: Component(x, y, 16, 16), m_Checked(false), m_Group(nullptr),
 		m_BackgroundColor(backgroundColor),
 		m_ForegroundColor(foregroundColor), m_ForegroundCheckedColor(foregroundCheckedColor)
 	{
@@ -45,13 +45,13 @@ namespace NewWorld::Editor::UI
 	// Getters
 	bool RadioButton::HasGoup()
 	{
-		return !(m_Group.Equal(nullptr));
+		return m_Group != nullptr;
 	}
 
 	// Actions
 	void RadioButton::Toggle()
 	{
-		if (m_Group.Equal(nullptr))
+		if (m_Group == nullptr)
 		{
 			m_Checked = !m_Checked;
 		}
@@ -60,6 +60,12 @@ namespace NewWorld::Editor::UI
 			if (!m_Checked)
 			{
 				m_Checked = true;
+				if (m_Group->m_CheckedRadioButton != nullptr)
+				{
+					m_Group->m_CheckedRadioButton->m_Checked = false;
+				}
+
+				m_Group->m_CheckedRadioButton = this;
 			}
 		}
 	}

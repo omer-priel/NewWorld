@@ -1,12 +1,13 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+#include "NewWorld/Editor/Component.h"
 
 namespace NewWorld::Editor::UI
 {
 	class RadioButton;
 	
-	class RadioButtonGroup : public Object
+	class RadioButtonGroup : public Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, RadioButtonGroup)
 
@@ -17,18 +18,18 @@ namespace NewWorld::Editor::UI
 		// Members
 	private:
 		DynamicArray<SharedPointer<RadioButton>> m_RadioButtons;
-		//SharedPointer<RadioButton, true> m_Checked;
+		RawPointer<RadioButton> m_CheckedRadioButton;
 
 	public:
 		RadioButtonGroup()
-			//: m_Checked(nullptr)
+			: Component(0, 0, 0, 0), m_CheckedRadioButton(nullptr)
 		{
 
 		}
 
 		// Getters
 	public:
-		//inline SharedPointer<RadioButton, true> GetChecked() const { return m_Checked; }
+		inline RawPointer<RadioButton> GetCheckedRadioButton() const { return m_CheckedRadioButton; }
 
 		inline const DynamicArray<SharedPointer<RadioButton>>& GetRadioButtons() const { return m_RadioButtons; }
 

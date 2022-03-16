@@ -20,14 +20,14 @@ namespace NewWorld::Editor::UI
 		// Members
 	private:
 		bool m_Checked;
-		SharedPointer<RadioButtonGroup, true> m_Group; // Controlled by RadioButtonGroup
+		RawPointer<RadioButtonGroup> m_Group; // Controlled by RadioButtonGroup
 
 		Graphics::Color m_BackgroundColor;
 		Graphics::Color m_ForegroundColor;
 		Graphics::Color m_ForegroundCheckedColor;
 
 	public:
-		RadioButton(uint x, uint y,
+		RadioButton(uint x, uint y, 
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorLightInputBackground,
 			const Graphics::Color& foregroundColor = Graphics::Colors::EditorDarkValue,
 			const Graphics::Color& foregroundCheckedColor = Graphics::Colors::EditorBlueValue);

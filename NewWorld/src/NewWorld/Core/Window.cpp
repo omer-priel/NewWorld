@@ -136,13 +136,111 @@ namespace NewWorld::Core
 
 						window.GetMainPanel().AddComponent(radioButton01);
 
-						SharedPointer<RadioButton> radioButton11(xPos + 300, yPos - 30);
-						SharedPointer<RadioButton> radioButton12(xPos + 300, yPos - 7);
-						SharedPointer<RadioButton> radioButton13(xPos + 300, yPos + 14);
+						SharedPointer<RadioButtonGroup> radioButtonGroup1;
+
+						window.GetMainPanel().AddComponent(radioButtonGroup1);
+
+						SharedPointer<RadioButton> radioButton11(xPos + 250, yPos - 30);
+						SharedPointer<RadioButton> radioButton12(xPos + 250, yPos - 7);
+						SharedPointer<RadioButton> radioButton13(xPos + 250, yPos + 14);
+
+						radioButtonGroup1->AddRadioButton(radioButton11);
+						radioButtonGroup1->AddRadioButton(radioButton12);
+						radioButtonGroup1->AddRadioButton(radioButton13);
 
 						window.GetMainPanel().AddComponent(radioButton11);
 						window.GetMainPanel().AddComponent(radioButton12);
 						window.GetMainPanel().AddComponent(radioButton13);
+
+						SharedPointer<RadioButtonGroup> radioButtonGroup2;
+
+						window.GetMainPanel().AddComponent(radioButtonGroup2);
+
+						SharedPointer<RadioButton> radioButton21(xPos + 300, yPos - 30,
+							Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+							Graphics::Colors::LimeGreen);
+						SharedPointer<RadioButton> radioButton22(xPos + 300, yPos - 7,
+							Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+							Graphics::Colors::Orange);
+						SharedPointer<RadioButton> radioButton23(xPos + 300, yPos + 14,
+							Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+							Graphics::Colors::Red);
+
+						radioButtonGroup2->AddRadioButton(radioButton21);
+						radioButtonGroup2->AddRadioButton(radioButton22);
+						radioButtonGroup2->AddRadioButton(radioButton23);
+
+						window.GetMainPanel().AddComponent(radioButton21);
+						window.GetMainPanel().AddComponent(radioButton22);
+						window.GetMainPanel().AddComponent(radioButton23);
+
+						// RadioButton all the Colors
+						SharedPointer<RadioButtonGroup> radioButtonGroupAllColors;
+
+						window.GetMainPanel().AddComponent(radioButtonGroupAllColors);
+
+						class ColorWithName
+						{
+						public:
+							String Name;
+							Graphics::Color Color;
+
+							ColorWithName(const String& name, const Graphics::Color& color)
+								: Name(name), Color(color) {}
+						};
+
+						Array<ColorWithName, 32> colors = {
+							ColorWithName("Black", Graphics::Colors::Black),
+							ColorWithName("White", Graphics::Colors::White),
+							ColorWithName("Red", Graphics::Colors::Red),
+							ColorWithName("Green", Graphics::Colors::Green),
+							ColorWithName("Blue", Graphics::Colors::Blue),
+							ColorWithName("Cyan", Graphics::Colors::Cyan),
+							ColorWithName("Magenta", Graphics::Colors::Magenta),
+							ColorWithName("Yellow", Graphics::Colors::Yellow),
+							ColorWithName("Gray", Graphics::Colors::Gray),
+							ColorWithName("Orange", Graphics::Colors::Orange),
+							ColorWithName("Pink", Graphics::Colors::Pink),
+							ColorWithName("Gold", Graphics::Colors::Gold),
+							ColorWithName("DarkRed", Graphics::Colors::DarkRed),
+							ColorWithName("Ruby", Graphics::Colors::Ruby),
+							ColorWithName("NeonRed", Graphics::Colors::NeonRed),
+							ColorWithName("RoseRed", Graphics::Colors::RoseRed),
+							ColorWithName("Coral", Graphics::Colors::Coral),
+							ColorWithName("DarkGreen", Graphics::Colors::DarkGreen),
+							ColorWithName("ForestGreen", Graphics::Colors::ForestGreen),
+							ColorWithName("LimeGreen", Graphics::Colors::LimeGreen),
+							ColorWithName("KellyGreen", Graphics::Colors::KellyGreen),
+							ColorWithName("LightGreen", Graphics::Colors::LightGreen),
+							ColorWithName("NavyBlue", Graphics::Colors::NavyBlue),
+							ColorWithName("CobaltBlue", Graphics::Colors::CobaltBlue),
+							ColorWithName("RoyalBlue", Graphics::Colors::RoyalBlue),
+							ColorWithName("LightBlue", Graphics::Colors::LightBlue),
+							ColorWithName("Turquoise", Graphics::Colors::Turquoise),
+							ColorWithName("DarkGray", Graphics::Colors::DarkGray),
+							ColorWithName("LightGray", Graphics::Colors::LightGray),
+							ColorWithName("Charcoal", Graphics::Colors::Charcoal),
+							ColorWithName("SlateGray", Graphics::Colors::SlateGray),
+							ColorWithName("Silver", Graphics::Colors::Silver)
+						};
+
+						for (size_t i = 0; i < colors.size(); i++)
+						{
+							SharedPointer<RadioButton> radioButtonColor(
+								xPos + 350 + (i / 10) * 200, yPos + 200 + 5 - (i % 10) * 40,
+								Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+								colors[i].Color);
+
+							SharedPointer<BordedLabel> labelColor(
+								xPos + 350 + (i / 10) * 200 + 25, yPos + 200 - (i % 10) * 40,
+								colors[i].Name, 150, Graphics::Colors::Transparency, colors[i].Color,
+								Graphics::Colors::Transparency);
+
+							radioButtonGroupAllColors->AddRadioButton(radioButtonColor);
+							
+							window.GetMainPanel().AddComponent(radioButtonColor);
+							window.GetMainPanel().AddComponent(labelColor);
+						}
 
 						// Changes
 						CheckBox& selected0 = (CheckBox&)*(window.GetMainPanel().GetComponents()[0]);
