@@ -7,29 +7,30 @@
 
 namespace NewWorld::Editor::UI
 {
-	class ToggleButton : public Component
+	class RadioButtonGroup;
+
+	class RadioButton : public Component
 	{
-	NW_CLASS(NewWorld::Editor::UI, ToggleButton)
+	NW_CLASS(NewWorld::Editor::UI, RadioButton)
+
+		// Friends
+	private:
+		friend class NewWorld::Editor::UI::RadioButtonGroup;
 
 		// Members
 	private:
 		bool m_Checked;
+		//SharedPointer<RadioButtonGroup, true> m_Group; // Controlled by RadioButtonGroup
 
 		Graphics::Color m_BackgroundColor;
-		Graphics::Color m_BackgroundCheckedColor;
 		Graphics::Color m_ForegroundColor;
+		Graphics::Color m_ForegroundCheckedColor;
 
 	public:
-		ToggleButton(uint x, uint y, bool checked = false,
+		RadioButton(uint x, uint y, //SharedPointer<RadioButtonGroup> group,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
-			const Graphics::Color& backgroundCheckedColor = Graphics::Colors::EditorBlueInputBackground,
-			const Graphics::Color& foregroundColor = Graphics::Colors::EditorLightValue)
-			: Component(x, y, 30, 14), m_Checked(checked),
-			m_BackgroundColor(backgroundColor), m_BackgroundCheckedColor(backgroundCheckedColor),
-			m_ForegroundColor(foregroundColor)
-		{
-
-		}
+			const Graphics::Color& foregroundColor = Graphics::Colors::EditorDarkValue,
+			const Graphics::Color& foregroundCheckedColor = Graphics::Colors::EditorBlueValue);
 
 		// Events
 	public:
@@ -42,22 +43,21 @@ namespace NewWorld::Editor::UI
 		inline bool IsChecked() const  { return m_Checked; }
 
 		inline const Graphics::Color& GetBackgroundColor() const { return m_BackgroundColor; }
-		inline const Graphics::Color& GetBackgroundCheckedColor() const { return m_BackgroundCheckedColor; }
 		inline const Graphics::Color& GetForegroundColor() const { return m_ForegroundColor; }
+		inline const Graphics::Color& GetForegroundCheckedColor() const { return m_ForegroundCheckedColor; }
 
 		// Setters
 	public:
 		void SetX(uint x) { m_X = x; }
 		void SetY(uint y) { m_Y = y; }
 
-		void SetChecked(bool checked) { m_Checked = checked; }
-
+	public:
 		void SetBackgroundColor(const Graphics::Color& color) { m_BackgroundColor = color; }
-		void SetBackgroundCheckedColor(const Graphics::Color& color) { m_BackgroundCheckedColor = color; }
 		void SetForegroundColor(const Graphics::Color& color) { m_ForegroundColor = color; }
+		void SetForegroundCheckedColor(const Graphics::Color& color) { m_ForegroundCheckedColor = color; }
 
 		// Actions
 	public:
-		void Toggle() { m_Checked = !m_Checked; }
+		void Checked();
 	};
 }

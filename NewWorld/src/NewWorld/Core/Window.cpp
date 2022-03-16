@@ -7,6 +7,8 @@
 #include "NewWorld/Editor/UI/BordedLabel.h"
 #include "NewWorld/Editor/UI/CheckBox.h"
 #include "NewWorld/Editor/UI/ToggleButton.h"
+#include "NewWorld/Editor/UI/RadioButton.h"
+#include "NewWorld/Editor/UI/RadioButtonGroup.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
