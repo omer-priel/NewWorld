@@ -12,14 +12,23 @@ namespace NewWorld::Editor::UI
 
 		if (m_Checked)
 		{
-			Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor + Graphics::ColorFunctions::FromRGBA(50, 50, 50, 0));
-			
-			Graphics::EditorDraw::DrawLine(m_X + 8, m_Y + 2, m_X + 3, m_Y + 7, m_ForegroundColor, 2);
-			Graphics::EditorDraw::DrawLine(m_X + 6, m_Y + 2, m_X + 11, m_Y + 11, m_ForegroundColor, 2);
+			Graphics::EditorDraw::DrawRectangle(m_X + 7, m_Y, 16, m_Height, m_BackgroundCheckedColor);
+			Graphics::EditorDraw::DrawEllipseSlice(m_X + 7, m_Y + 7, 7, 7, 
+				Math::PI, Math::PI, m_BackgroundCheckedColor, 12);
+			Graphics::EditorDraw::DrawEllipseSlice(m_X + m_Width - 7, m_Y + 7, 7, 7, 
+				0, Math::PI, m_BackgroundCheckedColor, 12);
+
+			Graphics::EditorDraw::DrawOval(m_X + m_Width - 7, m_Y + 7, 4, m_ForegroundColor);
 		}
 		else
 		{
-			Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+			Graphics::EditorDraw::DrawRectangle(m_X + 7, m_Y, 16, m_Height, m_BackgroundColor);
+			Graphics::EditorDraw::DrawEllipseSlice(m_X + 7, m_Y + 7, 7, 7,
+				Math::PI, Math::PI, m_BackgroundColor, 12);
+			Graphics::EditorDraw::DrawEllipseSlice(m_X + m_Width - 7, m_Y + 7, 7, 7,
+				0, Math::PI, m_BackgroundColor, 12);
+
+			Graphics::EditorDraw::DrawOval(m_X + 7, m_Y + 7, 4, m_ForegroundColor);
 		}
 	}
 
