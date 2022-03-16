@@ -6,6 +6,7 @@
 
 #include "NewWorld/Editor/UI/BordedLabel.h"
 #include "NewWorld/Editor/UI/CheckBox.h"
+#include "NewWorld/Editor/UI/ToggleButton.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -115,6 +116,16 @@ namespace NewWorld::Core
 						window.GetMainPanel().AddComponent(checkBox2);
 						window.GetMainPanel().AddComponent(checkBox3);
 						window.GetMainPanel().AddComponent(checkBox4);
+
+						SharedPointer<ToggleButton> toggleButton1(xPos + 100 - 24, yPos - 24);
+						SharedPointer<ToggleButton> toggleButton2(xPos + 100 + 10, yPos - 24, true);
+						SharedPointer<ToggleButton> toggleButton3(xPos + 100 - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+						SharedPointer<ToggleButton> toggleButton4(xPos + 100 + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+
+						window.GetMainPanel().AddComponent(toggleButton1);
+						window.GetMainPanel().AddComponent(toggleButton2);
+						window.GetMainPanel().AddComponent(toggleButton3);
+						window.GetMainPanel().AddComponent(toggleButton4);
 					
 						CheckBox& selected0 = (CheckBox&)*(window.GetMainPanel().GetComponents()[0]);
 						CheckBox& selected1 = (CheckBox&)*(window.GetMainPanel().GetComponents()[1]);
@@ -125,6 +136,16 @@ namespace NewWorld::Core
 						selected1.Toggle();
 						selected2.Toggle();
 						selected3.Toggle();
+
+						ToggleButton& selected4 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[4]);
+						ToggleButton& selected5 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[5]);
+						ToggleButton& selected6 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[6]);
+						ToggleButton& selected7 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[7]);
+
+						selected4.Toggle();
+						selected5.Toggle();
+						selected6.Toggle();
+						selected7.Toggle();
 					}
 					//
 
