@@ -170,6 +170,8 @@ namespace NewWorld::Core
 						radioButtonGroup2->AddRadioButton(radioButton22);
 						radioButtonGroup2->AddRadioButton(radioButton23);
 
+						radioButton23->Toggle();
+
 						window.GetMainPanel().AddComponent(radioButton21);
 						window.GetMainPanel().AddComponent(radioButton22);
 						window.GetMainPanel().AddComponent(radioButton23);
