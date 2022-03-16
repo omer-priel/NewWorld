@@ -56,5 +56,11 @@ namespace NewWorld::Graphics
 
 		// Editor Colors
 		static constexpr Color EditorBackground = Color(0.2f, 0.2f, 0.2f, 1);
+
+		static constexpr Color EditorLightInputBackground = ColorFunctions::FromRGBA(220, 220, 220);
+		static constexpr Color EditorDarkInputBackground = ColorFunctions::FromRGBA(170, 170, 170);
+
+		static constexpr Color EditorLightValue = Colors::White;
+		static constexpr Color EditorDarkValue = ColorFunctions::FromRGBA(102, 102, 102);
 	};
 }

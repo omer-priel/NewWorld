@@ -5,6 +5,7 @@
 #include "NewWorld/Editor/EditorWindow.h"
 
 #include "NewWorld/Editor/UI/BordedLabel.h"
+#include "NewWorld/Editor/UI/CheckBox.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -105,17 +106,25 @@ namespace NewWorld::Core
 						using namespace NewWorld::Editor::UI;
 
 						// Create new UI Component					
-						for (size_t i = 0; i < 5; i++)
-						{
-							SharedPointer<Label> label(xPos, yPos + i * 50, "Hello World_=*-+", 300,
-								Graphics::Colors::Transparency, Graphics::Colors::White, 10 + i * 5);
+						SharedPointer<CheckBox> checkBox1(xPos - 24, yPos - 24);
+						SharedPointer<CheckBox> checkBox2(xPos + 10, yPos - 24, true);
+						SharedPointer<CheckBox> checkBox3(xPos - 24, yPos + 10 , false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+						SharedPointer<CheckBox> checkBox4(xPos + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
 
-							SharedPointer<BordedLabel> bordedLabel(xPos + 400, yPos + i * 50, "Hello World_=*-+", 300,
-								Graphics::Colors::Transparency, Graphics::Colors::White, Graphics::Colors::Black, 10 + i * 5);
-
-							window.GetMainPanel().AddComponent(label);
-							window.GetMainPanel().AddComponent(bordedLabel);
-						}
+						window.GetMainPanel().AddComponent(checkBox1);
+						window.GetMainPanel().AddComponent(checkBox2);
+						window.GetMainPanel().AddComponent(checkBox3);
+						window.GetMainPanel().AddComponent(checkBox4);
+					
+						CheckBox& selected0 = (CheckBox&)*(window.GetMainPanel().GetComponents()[0]);
+						CheckBox& selected1 = (CheckBox&)*(window.GetMainPanel().GetComponents()[1]);
+						CheckBox& selected2 = (CheckBox&)*(window.GetMainPanel().GetComponents()[2]);
+						CheckBox& selected3 = (CheckBox&)*(window.GetMainPanel().GetComponents()[3]);
+						
+						selected0.Toggle();
+						selected1.Toggle();
+						selected2.Toggle();
+						selected3.Toggle();
 					}
 					//
 
