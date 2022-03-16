@@ -20,15 +20,15 @@ namespace NewWorld::Editor::UI
 		// Members
 	private:
 		bool m_Checked;
-		//SharedPointer<RadioButtonGroup, true> m_Group; // Controlled by RadioButtonGroup
+		SharedPointer<RadioButtonGroup, true> m_Group; // Controlled by RadioButtonGroup
 
 		Graphics::Color m_BackgroundColor;
 		Graphics::Color m_ForegroundColor;
 		Graphics::Color m_ForegroundCheckedColor;
 
 	public:
-		RadioButton(uint x, uint y, //SharedPointer<RadioButtonGroup> group,
-			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
+		RadioButton(uint x, uint y,
+			const Graphics::Color& backgroundColor = Graphics::Colors::EditorLightInputBackground,
 			const Graphics::Color& foregroundColor = Graphics::Colors::EditorDarkValue,
 			const Graphics::Color& foregroundCheckedColor = Graphics::Colors::EditorBlueValue);
 
@@ -41,6 +41,7 @@ namespace NewWorld::Editor::UI
 		// Getters
 	public:
 		inline bool IsChecked() const  { return m_Checked; }
+		bool HasGoup();
 
 		inline const Graphics::Color& GetBackgroundColor() const { return m_BackgroundColor; }
 		inline const Graphics::Color& GetForegroundColor() const { return m_ForegroundColor; }
@@ -58,6 +59,6 @@ namespace NewWorld::Editor::UI
 
 		// Actions
 	public:
-		void Checked();
+		void Toggle();
 	};
 }

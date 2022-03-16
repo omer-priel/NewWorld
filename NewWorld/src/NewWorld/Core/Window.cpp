@@ -108,7 +108,8 @@ namespace NewWorld::Core
 
 						using namespace NewWorld::Editor::UI;
 
-						// Create new UI Component					
+						// Create new UI Component
+						// CheckBox
 						SharedPointer<CheckBox> checkBox1(xPos - 24, yPos - 24);
 						SharedPointer<CheckBox> checkBox2(xPos + 10, yPos - 24, true);
 						SharedPointer<CheckBox> checkBox3(xPos - 24, yPos + 10 , false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
@@ -119,6 +120,7 @@ namespace NewWorld::Core
 						window.GetMainPanel().AddComponent(checkBox3);
 						window.GetMainPanel().AddComponent(checkBox4);
 
+						// ToggleButton
 						SharedPointer<ToggleButton> toggleButton1(xPos + 100 - 24, yPos - 24);
 						SharedPointer<ToggleButton> toggleButton2(xPos + 100 + 10, yPos - 24, true);
 						SharedPointer<ToggleButton> toggleButton3(xPos + 100 - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
@@ -129,6 +131,20 @@ namespace NewWorld::Core
 						window.GetMainPanel().AddComponent(toggleButton3);
 						window.GetMainPanel().AddComponent(toggleButton4);
 					
+						// RadioButton
+						SharedPointer<RadioButton> radioButton01(xPos + 200, yPos - 7);
+
+						window.GetMainPanel().AddComponent(radioButton01);
+
+						SharedPointer<RadioButton> radioButton11(xPos + 300, yPos - 30);
+						SharedPointer<RadioButton> radioButton12(xPos + 300, yPos - 7);
+						SharedPointer<RadioButton> radioButton13(xPos + 300, yPos + 14);
+
+						window.GetMainPanel().AddComponent(radioButton11);
+						window.GetMainPanel().AddComponent(radioButton12);
+						window.GetMainPanel().AddComponent(radioButton13);
+
+						// Changes
 						CheckBox& selected0 = (CheckBox&)*(window.GetMainPanel().GetComponents()[0]);
 						CheckBox& selected1 = (CheckBox&)*(window.GetMainPanel().GetComponents()[1]);
 						CheckBox& selected2 = (CheckBox&)*(window.GetMainPanel().GetComponents()[2]);
