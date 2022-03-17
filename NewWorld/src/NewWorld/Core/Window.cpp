@@ -4,6 +4,7 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
+#include "NewWorld/Editor/UI/Button.h"
 #include "NewWorld/Editor/UI/BordedLabel.h"
 #include "NewWorld/Editor/UI/CheckBox.h"
 #include "NewWorld/Editor/UI/ToggleButton.h"
@@ -227,18 +228,46 @@ namespace NewWorld::Core
 
 	static void test2(Editor::EditorWindow& window, uint xPos, uint yPos)
 	{
+		using namespace NewWorld::Graphics;
+		using namespace NewWorld::Editor;
 		using namespace NewWorld::Editor::UI;
 
-		// CheckBox
-		SharedPointer<CheckBox> checkBox1(xPos - 24, yPos - 24);
-		SharedPointer<CheckBox> checkBox2(xPos + 10, yPos - 24, true);
-		SharedPointer<CheckBox> checkBox3(xPos - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
-		SharedPointer<CheckBox> checkBox4(xPos + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+		// Button
+		SharedPointer<Button> button1(xPos + 10, yPos + 35, 100, 30, "Test 1");
+		SharedPointer<Button> button2(xPos + 10, yPos - 15, 100, 30, "Test 2");
+		SharedPointer<Button> button3(xPos + 10, yPos - 65, 100, 30, "Test 3");
 
-		window.GetMainPanel().AddComponent(checkBox1);
-		window.GetMainPanel().AddComponent(checkBox2);
-		window.GetMainPanel().AddComponent(checkBox3);
-		window.GetMainPanel().AddComponent(checkBox4);
+		button1->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			Color temp = button.GetBackgroundColor();
+			button.SetBackgroundColor(button.GetTextColor());
+			button.SetTextColor(temp);
+			});
+
+		button2->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static int clicks = 0;
+
+			clicks++;
+
+			button.SetText(String::ConverToString(clicks));
+			});
+
+		button3->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static int clicks = 0;
+
+			clicks++;
+
+			button.SetText(String::Format("{} Clicks", clicks));
+			});
+
+		window.GetMainPanel().AddComponent(button1);
+		window.GetMainPanel().AddComponent(button2);
+		window.GetMainPanel().AddComponent(button3);
 
 	}
 
