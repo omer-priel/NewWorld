@@ -68,6 +68,22 @@ namespace NewWorld::Editor::UI
 		Component::KeyReleased(key);
 
 		NW_DEBUG(NW_LOGGER_CORE, "Key Code: {}", (uint)key);
+
+		if (m_Value.GetLength() < m_MaxLength)
+		{
+			if (key == Input::Key::Space)
+			{
+				m_Value = m_Value + ' ';
+			}
+			else if (Input::Key::D0 <= key && key <= Input::Key::D9)
+			{
+				m_Value = m_Value + (char)((uint)'0' + (uint)key - (uint)Input::Key::D0);
+			}
+			else if (Input::Key::A <= key && key <= Input::Key::Z)
+			{
+				m_Value = m_Value + (char)((uint)'a' + (uint)key - (uint)Input::Key::A);
+			}
+		}
 	}
 
 	void TextBox::KeyReleased(Input::Key key)

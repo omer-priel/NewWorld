@@ -331,11 +331,12 @@ namespace NewWorld::Core
 
 		SharedPointer<TextBox> textBox2(
 			xPos, yPos,
-			"A", 150);
+			"A", 150, 10);
 
 		SharedPointer<TextBox> textBox3(
 			xPos, yPos - 50,
-			"B", 150);
+			"B", 150, 5);
+
 
 		window.GetMainPanel().AddComponent(textBox1);
 		window.GetMainPanel().AddComponent(textBox2);
@@ -381,7 +382,7 @@ namespace NewWorld::Core
 				{
 					// TODO: remove
 					// Testing unit
-					if (key == GLFW_KEY_SPACE)
+					if (key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT)
 					{
 						double xPos;
 						double yPos;

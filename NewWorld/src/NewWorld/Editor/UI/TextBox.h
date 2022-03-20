@@ -21,6 +21,7 @@ namespace NewWorld::Editor::UI
 		// Members
 	private:
 		String m_Value;
+		uint m_MaxLength;
 		TextAlign m_TextAlign;
 
 		bool m_Selected;
@@ -29,14 +30,14 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_TextColor;
 
 	public:
-		TextBox(float x, float y, const String& defaltValue, float width, TextAlign textAlign = TextAlign::Left,
+		TextBox(float x, float y, const String& defaltValue, float width, uint maxLength = 50, TextAlign textAlign = TextAlign::Left,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorLightInputBackground,
 			const Graphics::Color& textColor = Graphics::Colors::EditorDarkValue)
-			: Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_TextAlign(textAlign),
+			: Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_MaxLength(maxLength), m_TextAlign(textAlign),
 			m_Selected(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{
-			
+
 		}
 
 		// Events
@@ -52,6 +53,8 @@ namespace NewWorld::Editor::UI
 		// Getters
 	public:
 		inline String& GetValue() { return m_Value; }
+		
+		inline uint GetMaxLength() const { return m_MaxLength; }
 
 		inline TextAlign GetTextAlign() const { return m_TextAlign; }
 
