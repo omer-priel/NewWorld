@@ -13,7 +13,7 @@ namespace NewWorld::Editor::UI
 		ComponentContainer::Update();
 	}
 
-	void Panel::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
+	void Panel::MouseKeyPressed(Input::Key key, float xPos, float yPos)
 	{
 		auto components = this->GetComponents();
 
@@ -33,7 +33,7 @@ namespace NewWorld::Editor::UI
 		ComponentContainer::MouseKeyPressed(key, xPos, yPos);
 	}
 
-	void Panel::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
+	void Panel::MouseKeyReleased(Input::Key key, float xPos, float yPos)
 	{
 		auto components = this->GetComponents();
 
@@ -53,7 +53,7 @@ namespace NewWorld::Editor::UI
 		ComponentContainer::MouseKeyReleased(key, xPos, yPos);
 	}
 
-	void Panel::MouseHover(uint xPos, uint yPos)
+	void Panel::MouseHover(float xPos, float yPos)
 	{
 		auto components = this->GetComponents();
 

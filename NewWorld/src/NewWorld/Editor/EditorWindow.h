@@ -74,10 +74,10 @@ namespace NewWorld::Editor
 	public:
 		void Update() override;
 
-		void MouseKeyPressed(Input::Key key, uint xPos, uint yPos);
-		void MouseKeyReleased(Input::Key key, uint xPos, uint yPos);
+		void MouseKeyPressed(Input::Key key, float xPos, float yPos);
+		void MouseKeyReleased(Input::Key key, float xPos, float yPos);
 
-		void MouseHover(uint xPos, uint yPos);
+		void MouseHover(float xPos, float yPos);
 		void MouseScrolled(uint y);
 
 		void KeyPressed(Input::Key key);

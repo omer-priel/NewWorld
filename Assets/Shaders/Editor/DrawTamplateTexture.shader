@@ -89,5 +89,5 @@ uniform sampler2D u_Texture;
 void main()
 {	
 	vec4 textureColor = texture(u_Texture, vertex_in.textureCood);
-	color = vec4(u_Color.r, u_Color.g, u_Color.b, textureColor.a);
+	color = vec4(u_Color.r, u_Color.g, u_Color.b, u_Color.a * textureColor.a);
 };

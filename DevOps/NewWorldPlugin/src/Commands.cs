@@ -356,7 +356,6 @@ namespace NewWorldPlugin
 				dynamic value = character.Value;
 				writer.Write(character.Name[0]); // Name
 
-				//  texture.GetHeight() - sampleY - sampleHeight;
 				short atlasX = (short)(xStart + (short)value.x);
 				short atlasY = (short)(yStart + (short)value.y);
 
@@ -367,8 +366,16 @@ namespace NewWorldPlugin
 
 				writer.Write((short)value.width); // Width
 				writer.Write((short)value.height); // Height
-				writer.Write((short)value.originX); // OriginX
-				writer.Write((short)value.originY); // OriginY
+
+				short originX = (short)value.originX;
+				short originY = (short)value.originY;
+
+				originX *= -1;
+				originY -= (short)value.height; // flip y
+
+				writer.Write(originX); // OriginX
+				writer.Write(originY); // OriginY
+				
 				writer.Write((short)value.advance); // PainterStepX
 			}
 

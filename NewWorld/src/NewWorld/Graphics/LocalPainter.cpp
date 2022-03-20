@@ -7,6 +7,6 @@ namespace NewWorld::Graphics
 {
 	RawPointer<Editor::EditorWindow> LocalPainter::m_Window = nullptr;
 	
-	int LocalPainter::m_X = 0;
-	int LocalPainter::m_Y = 0;
+	float LocalPainter::m_X = 0;
+	float LocalPainter::m_Y = 0;
 }
