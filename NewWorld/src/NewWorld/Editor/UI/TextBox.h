@@ -21,27 +21,30 @@ namespace NewWorld::Editor::UI
 		// Members
 	private:
 		String m_Value;
-
 		TextAlign m_TextAlign;
+
+		bool m_Selected;
 
 		Graphics::Color m_BackgroundColor;
 		Graphics::Color m_TextColor;
-		Graphics::Color m_BordedColor;
 
 	public:
 		TextBox(float x, float y, const String& defaltValue, float width, TextAlign textAlign = TextAlign::Left,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorLightInputBackground,
-			const Graphics::Color& textColor = Graphics::Colors::EditorDarkValue,
-			const Graphics::Color& bordedColor = Graphics::Colors::EditorDarkValue)
+			const Graphics::Color& textColor = Graphics::Colors::EditorDarkValue)
 			: Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_TextAlign(textAlign),
-			m_BackgroundColor(backgroundColor), m_TextColor(textColor), m_BordedColor(bordedColor)
+			m_Selected(false),
+			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{
-
+			
 		}
 
 		// Events
 	public:
 		void Update() override;
+
+		void Enter() override;
+		void Leave() override;
 
 		void KeyPressed(Input::Key key) override;
 		void KeyReleased(Input::Key key) override;
