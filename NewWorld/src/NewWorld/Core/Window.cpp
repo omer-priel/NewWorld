@@ -28,21 +28,63 @@ namespace NewWorld::Core
 	{
 		switch (key)
 		{
-		case GLFW_KEY_ENTER:
-			return Input::Key::Enter;
-		case GLFW_KEY_SPACE:
-			return Input::Key::Space;
-		case GLFW_KEY_ESCAPE:
-			return Input::Key::Escape;
+		case GLFW_KEY_ENTER: return Input::Key::Enter;
+		case GLFW_KEY_SPACE: return Input::Key::Space;
+		case GLFW_KEY_ESCAPE: return Input::Key::Escape;
 
-		case GLFW_KEY_UP:
-			return Input::Key::UpArrow;
-		case GLFW_KEY_DOWN:
-			return Input::Key::DownArrow;
-		case GLFW_KEY_LEFT:
-			return Input::Key::LeftArrow;
-		case GLFW_KEY_RIGHT:
-			return Input::Key::RightArrow;
+		case GLFW_KEY_UP: return Input::Key::UpArrow;
+		case GLFW_KEY_DOWN: return Input::Key::DownArrow;
+		case GLFW_KEY_LEFT: return Input::Key::LeftArrow;
+		case GLFW_KEY_RIGHT: return Input::Key::RightArrow;
+
+		case GLFW_KEY_0: return Input::Key::D0;
+		case GLFW_KEY_1: return Input::Key::D1;
+		case GLFW_KEY_2: return Input::Key::D2;
+		case GLFW_KEY_3: return Input::Key::D3;
+		case GLFW_KEY_4: return Input::Key::D4;
+		case GLFW_KEY_5: return Input::Key::D5;
+		case GLFW_KEY_6: return Input::Key::D6;
+		case GLFW_KEY_7: return Input::Key::D7;
+		case GLFW_KEY_8: return Input::Key::D8;
+		case GLFW_KEY_9: return Input::Key::D9;
+
+		case GLFW_KEY_KP_0: return Input::Key::D0;
+		case GLFW_KEY_KP_1: return Input::Key::D1;
+		case GLFW_KEY_KP_2: return Input::Key::D2;
+		case GLFW_KEY_KP_3: return Input::Key::D3;
+		case GLFW_KEY_KP_4: return Input::Key::D4;
+		case GLFW_KEY_KP_5: return Input::Key::D5;
+		case GLFW_KEY_KP_6: return Input::Key::D6;
+		case GLFW_KEY_KP_7: return Input::Key::D7;
+		case GLFW_KEY_KP_8: return Input::Key::D8;
+		case GLFW_KEY_KP_9: return Input::Key::D9;
+
+		case GLFW_KEY_A: return Input::Key::A;
+		case GLFW_KEY_B: return Input::Key::B;
+		case GLFW_KEY_C: return Input::Key::C;
+		case GLFW_KEY_D: return Input::Key::D;
+		case GLFW_KEY_E: return Input::Key::E;
+		case GLFW_KEY_F: return Input::Key::F;
+		case GLFW_KEY_G: return Input::Key::G;
+		case GLFW_KEY_H: return Input::Key::H;
+		case GLFW_KEY_I: return Input::Key::I;
+		case GLFW_KEY_J: return Input::Key::J;
+		case GLFW_KEY_K: return Input::Key::K;
+		case GLFW_KEY_L: return Input::Key::L;
+		case GLFW_KEY_M: return Input::Key::M;
+		case GLFW_KEY_N: return Input::Key::N;
+		case GLFW_KEY_O: return Input::Key::O;
+		case GLFW_KEY_P: return Input::Key::P;
+		case GLFW_KEY_Q: return Input::Key::Q;
+		case GLFW_KEY_R: return Input::Key::R;
+		case GLFW_KEY_S: return Input::Key::S;
+		case GLFW_KEY_T: return Input::Key::T;
+		case GLFW_KEY_U: return Input::Key::U;
+		case GLFW_KEY_V: return Input::Key::V;
+		case GLFW_KEY_W: return Input::Key::W;
+		case GLFW_KEY_X: return Input::Key::X;
+		case GLFW_KEY_Y: return Input::Key::Y;
+		case GLFW_KEY_Z: return Input::Key::Z;
 		}
 
 		return Input::Key::UnSupported;

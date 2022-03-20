@@ -54,7 +54,7 @@ namespace NewWorld::Editor
 			m_KeyReleasedHandler(Events::EmptyKeyReleasedEventHandler),
 			m_ClickHandler(Events::EmptyEventHandler)
 		{
-
+			
 		}
 
 		//  Virtual functions
