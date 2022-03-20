@@ -10,6 +10,7 @@
 #include "NewWorld/Editor/UI/ToggleButton.h"
 #include "NewWorld/Editor/UI/RadioButton.h"
 #include "NewWorld/Editor/UI/RadioButtonGroup.h"
+#include "NewWorld/Editor/UI/TextBox.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -70,6 +71,7 @@ namespace NewWorld::Core
 		using namespace NewWorld::Graphics;
 		using namespace NewWorld::Editor;
 		using namespace NewWorld::Editor::UI;
+		
 		// CheckBox
 		SharedPointer<CheckBox> checkBox1(xPos - 24, yPos - 24);
 		SharedPointer<CheckBox> checkBox2(xPos + 10, yPos - 24, true);
@@ -281,12 +283,26 @@ namespace NewWorld::Core
 		using namespace NewWorld::Editor;
 		using namespace NewWorld::Editor::UI;
 
+		SharedPointer<TextBox> textBox1(
+			xPos, yPos + 50,
+			"", 150);
 
+		SharedPointer<TextBox> textBox2(
+			xPos, yPos,
+			"A", 150);
+
+		SharedPointer<TextBox> textBox3(
+			xPos, yPos - 50,
+			"B", 150);
+
+		window.GetMainPanel().AddComponent(textBox1);
+		window.GetMainPanel().AddComponent(textBox2);
+		window.GetMainPanel().AddComponent(textBox3);
 	}
 
 	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
 	{
-		test1(window, xPos, yPos);
+		test2(window, xPos, yPos);
 	}
 
 	void Window::ReggisterEvents()
