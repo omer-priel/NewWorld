@@ -4,6 +4,7 @@
 #include "NewWorld/Editor/Component.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
+#include "NewWorld/Editor/UI/TextAlign.h"
 
 namespace NewWorld::Editor::UI
 {
@@ -21,6 +22,8 @@ namespace NewWorld::Editor::UI
 	private:
 		String m_Text;
 
+		TextAlign m_TextAlign;
+
 		uint m_FontSize;
 		bool m_Bold;
 		bool m_Italic;
@@ -29,11 +32,11 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_TextColor;
 
 	public:
-		Label(float x, float y, const String& text, float width = 0,
+		Label(float x, float y, const String& text, float width = 0, TextAlign textAlign = TextAlign::Center,
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
 			uint fontSize = LABEL_DEFUALT_FONT_SIZE)
-			: Component(x, y, width, LABEL_DEFUALT_HEIGHT), m_Text(text), m_FontSize(fontSize),
+			: Component(x, y, width, LABEL_DEFUALT_HEIGHT), m_Text(text), m_TextAlign(textAlign), m_FontSize(fontSize),
 			m_Bold(false), m_Italic(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{
@@ -47,6 +50,8 @@ namespace NewWorld::Editor::UI
 		// Getters
 	public:
 		inline String& GetText() { return m_Text; }
+
+		inline TextAlign GetTextAlign() const { return m_TextAlign; }
 
 		inline uint GetFontSize() const { return m_FontSize; }
 		inline bool GetBold() const { return m_Bold; }
@@ -63,6 +68,8 @@ namespace NewWorld::Editor::UI
 		void SetWidth(float width) { m_Width = width; }
 
 		void SetText(const String& text) { m_Text = text; }
+
+		void SetText(const TextAlign& textAlign) { m_TextAlign = textAlign; }
 
 		void SetFontSize(uint fontSize)
 		{

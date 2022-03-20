@@ -243,8 +243,9 @@ namespace NewWorld::Core
 
 			SharedPointer<BordedLabel> labelColor(
 				xPos + 350 + (i / 10) * 200 + 25, yPos + 200 - (i % 10) * 40,
-				colors[i].Name, 150, Colors::Transparency, colors[i].Color,
-				Colors::Transparency);
+				colors[i].Name, 150, (TextAlign)((i / 10) % 3),
+				Colors::Transparency, colors[i].Color,
+				Colors::Black);
 
 			radioButtonGroupAllColors->AddRadioButton(radioButtonColor);
 

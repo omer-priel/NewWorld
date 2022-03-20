@@ -23,12 +23,12 @@ namespace NewWorld::Editor::UI
 		
 		const Editor::Assets::Font& font = *(GetWindow()->GetFontManager().GetFont(0));
 
-		Vector4 bounds = font.GetDrawBounds(m_Text, m_FontSize, m_Bold, m_Italic, m_Width);
+		Vector4 bounds = font.GetDrawBounds(m_Text, m_FontSize, m_Bold, m_Italic, m_Width - 12);
 
-		float newX = m_X + (m_Width - bounds.z + bounds.x) / 2;
+		float newX = m_X + ((m_Width - bounds.z + bounds.x) / 2);
 
 		Graphics::EditorDraw::DrawString(newX, m_Y + 6,
-			m_Text, m_TextColor, m_FontSize, m_Width, m_Bold, m_Italic);
+			m_Text, m_TextColor, m_FontSize, m_Width - 12, m_Bold, m_Italic);
 	}
 
 	void Button::MouseKeyPressed(Input::Key key, float xPos, float yPos)

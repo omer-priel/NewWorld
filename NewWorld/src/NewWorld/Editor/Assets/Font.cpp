@@ -102,7 +102,7 @@ namespace NewWorld::Editor::Assets
 		}
 	}
 
-	Vector4 Font::GetDrawBounds(const String& text, uint fontSize, bool bold, bool italic, uint maxWidth) const
+	Vector4 Font::GetDrawBounds(const String& text, uint fontSize, bool bold, bool italic, float maxWidth) const
 	{
 		const Style& style = GetStyle(bold, italic);
 		float sizeRatio = GetSizeRatio(fontSize);
@@ -120,7 +120,7 @@ namespace NewWorld::Editor::Assets
 		bounds.z = bounds.x + firstCharacter.Width;
 		bounds.w = bounds.y + firstCharacter.Height;
 
-		int panintedX = firstCharacter.PainterStepX;
+		float panintedX = firstCharacter.PainterStepX;
 
 		for (SizeT i = 1; i < text.GetLength(); i++)
 		{

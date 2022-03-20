@@ -135,6 +135,6 @@ namespace NewWorld::Editor::Assets
 			return ((float)fontSize * 5.0f / 3.0f) / ((float)m_Size);
 		}
 
-		Vector4 GetDrawBounds(const String& text, uint fontSize, bool bold, bool italic, uint maxWidth) const;
+		Vector4 GetDrawBounds(const String& text, uint fontSize, bool bold, bool italic, float maxWidth) const;
 	};
 }
