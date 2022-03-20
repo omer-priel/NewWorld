@@ -271,6 +271,11 @@ namespace NewWorld::Core
 
 	}
 
+	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
+	{
+		test1(window, xPos, yPos);
+	}
+
 	void Window::ReggisterEvents()
 	{
 		// Set GLFW callbacks
@@ -314,7 +319,7 @@ namespace NewWorld::Core
 						yPos = (double)window.GetHeight() - yPos;
 
 						// Create new UI Components
-						test2(window, (uint)xPos, (uint)yPos);
+						test(window, (uint)xPos, (uint)yPos);
 					}
 					//
 
