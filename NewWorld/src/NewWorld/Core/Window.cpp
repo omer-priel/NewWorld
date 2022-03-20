@@ -4,6 +4,7 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
+#include "NewWorld/Editor/UI/Button.h"
 #include "NewWorld/Editor/UI/BordedLabel.h"
 #include "NewWorld/Editor/UI/CheckBox.h"
 #include "NewWorld/Editor/UI/ToggleButton.h"
@@ -64,6 +65,227 @@ namespace NewWorld::Core
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
+	static void test1(Editor::EditorWindow& window, uint xPos, uint yPos)
+	{
+		using namespace NewWorld::Editor::UI;
+
+		// CheckBox
+		SharedPointer<CheckBox> checkBox1(xPos - 24, yPos - 24);
+		SharedPointer<CheckBox> checkBox2(xPos + 10, yPos - 24, true);
+		SharedPointer<CheckBox> checkBox3(xPos - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+		SharedPointer<CheckBox> checkBox4(xPos + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+
+		window.GetMainPanel().AddComponent(checkBox1);
+		window.GetMainPanel().AddComponent(checkBox2);
+		window.GetMainPanel().AddComponent(checkBox3);
+		window.GetMainPanel().AddComponent(checkBox4);
+
+		// ToggleButton
+		SharedPointer<ToggleButton> toggleButton1(xPos + 100 - 24, yPos - 24);
+		SharedPointer<ToggleButton> toggleButton2(xPos + 100 + 10, yPos - 24, true);
+		SharedPointer<ToggleButton> toggleButton3(xPos + 100 - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+		SharedPointer<ToggleButton> toggleButton4(xPos + 100 + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+
+		window.GetMainPanel().AddComponent(toggleButton1);
+		window.GetMainPanel().AddComponent(toggleButton2);
+		window.GetMainPanel().AddComponent(toggleButton3);
+		window.GetMainPanel().AddComponent(toggleButton4);
+
+		// RadioButton
+		SharedPointer<RadioButton> radioButton01(xPos + 200, yPos - 7);
+
+		window.GetMainPanel().AddComponent(radioButton01);
+
+		SharedPointer<RadioButtonGroup> radioButtonGroup1;
+
+		window.GetMainPanel().AddComponent(radioButtonGroup1);
+
+		SharedPointer<RadioButton> radioButton11(xPos + 250, yPos - 30);
+		SharedPointer<RadioButton> radioButton12(xPos + 250, yPos - 7);
+		SharedPointer<RadioButton> radioButton13(xPos + 250, yPos + 14);
+
+		radioButtonGroup1->AddRadioButton(radioButton11);
+		radioButtonGroup1->AddRadioButton(radioButton12);
+		radioButtonGroup1->AddRadioButton(radioButton13);
+
+		window.GetMainPanel().AddComponent(radioButton11);
+		window.GetMainPanel().AddComponent(radioButton12);
+		window.GetMainPanel().AddComponent(radioButton13);
+
+		SharedPointer<RadioButtonGroup> radioButtonGroup2;
+
+		window.GetMainPanel().AddComponent(radioButtonGroup2);
+
+		SharedPointer<RadioButton> radioButton21(xPos + 300, yPos - 30,
+			Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+			Graphics::Colors::LimeGreen);
+		SharedPointer<RadioButton> radioButton22(xPos + 300, yPos - 7,
+			Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+			Graphics::Colors::Orange);
+		SharedPointer<RadioButton> radioButton23(xPos + 300, yPos + 14,
+			Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+			Graphics::Colors::Red);
+
+		radioButtonGroup2->AddRadioButton(radioButton21);
+		radioButtonGroup2->AddRadioButton(radioButton22);
+		radioButtonGroup2->AddRadioButton(radioButton23);
+
+		radioButton23->Toggle();
+
+		window.GetMainPanel().AddComponent(radioButton21);
+		window.GetMainPanel().AddComponent(radioButton22);
+		window.GetMainPanel().AddComponent(radioButton23);
+
+		// RadioButton all the Colors
+		SharedPointer<RadioButtonGroup> radioButtonGroupAllColors;
+
+		window.GetMainPanel().AddComponent(radioButtonGroupAllColors);
+
+		class ColorWithName
+		{
+		public:
+			String Name;
+			Graphics::Color Color;
+
+			ColorWithName(const String& name, const Graphics::Color& color)
+				: Name(name), Color(color) {}
+		};
+
+		Array<ColorWithName, 32> colors = {
+			ColorWithName("Black", Graphics::Colors::Black),
+			ColorWithName("White", Graphics::Colors::White),
+			ColorWithName("Red", Graphics::Colors::Red),
+			ColorWithName("Green", Graphics::Colors::Green),
+			ColorWithName("Blue", Graphics::Colors::Blue),
+			ColorWithName("Cyan", Graphics::Colors::Cyan),
+			ColorWithName("Magenta", Graphics::Colors::Magenta),
+			ColorWithName("Yellow", Graphics::Colors::Yellow),
+			ColorWithName("Gray", Graphics::Colors::Gray),
+			ColorWithName("Orange", Graphics::Colors::Orange),
+			ColorWithName("Pink", Graphics::Colors::Pink),
+			ColorWithName("Gold", Graphics::Colors::Gold),
+			ColorWithName("DarkRed", Graphics::Colors::DarkRed),
+			ColorWithName("Ruby", Graphics::Colors::Ruby),
+			ColorWithName("NeonRed", Graphics::Colors::NeonRed),
+			ColorWithName("RoseRed", Graphics::Colors::RoseRed),
+			ColorWithName("Coral", Graphics::Colors::Coral),
+			ColorWithName("DarkGreen", Graphics::Colors::DarkGreen),
+			ColorWithName("ForestGreen", Graphics::Colors::ForestGreen),
+			ColorWithName("LimeGreen", Graphics::Colors::LimeGreen),
+			ColorWithName("KellyGreen", Graphics::Colors::KellyGreen),
+			ColorWithName("LightGreen", Graphics::Colors::LightGreen),
+			ColorWithName("NavyBlue", Graphics::Colors::NavyBlue),
+			ColorWithName("CobaltBlue", Graphics::Colors::CobaltBlue),
+			ColorWithName("RoyalBlue", Graphics::Colors::RoyalBlue),
+			ColorWithName("LightBlue", Graphics::Colors::LightBlue),
+			ColorWithName("Turquoise", Graphics::Colors::Turquoise),
+			ColorWithName("DarkGray", Graphics::Colors::DarkGray),
+			ColorWithName("LightGray", Graphics::Colors::LightGray),
+			ColorWithName("Charcoal", Graphics::Colors::Charcoal),
+			ColorWithName("SlateGray", Graphics::Colors::SlateGray),
+			ColorWithName("Silver", Graphics::Colors::Silver)
+		};
+
+		for (size_t i = 0; i < colors.size(); i++)
+		{
+			SharedPointer<RadioButton> radioButtonColor(
+				xPos + 350 + (i / 10) * 200, yPos + 200 + 5 - (i % 10) * 40,
+				Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+				colors[i].Color);
+
+			SharedPointer<BordedLabel> labelColor(
+				xPos + 350 + (i / 10) * 200 + 25, yPos + 200 - (i % 10) * 40,
+				colors[i].Name, 150, Graphics::Colors::Transparency, colors[i].Color,
+				Graphics::Colors::Transparency);
+
+			radioButtonGroupAllColors->AddRadioButton(radioButtonColor);
+
+			window.GetMainPanel().AddComponent(radioButtonColor);
+			window.GetMainPanel().AddComponent(labelColor);
+		}
+
+		// Changes
+		CheckBox& selected0 = (CheckBox&)*(window.GetMainPanel().GetComponents()[0]);
+		CheckBox& selected1 = (CheckBox&)*(window.GetMainPanel().GetComponents()[1]);
+		CheckBox& selected2 = (CheckBox&)*(window.GetMainPanel().GetComponents()[2]);
+		CheckBox& selected3 = (CheckBox&)*(window.GetMainPanel().GetComponents()[3]);
+
+		selected0.Toggle();
+		selected1.Toggle();
+		selected2.Toggle();
+		selected3.Toggle();
+
+		ToggleButton& selected4 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[4]);
+		ToggleButton& selected5 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[5]);
+		ToggleButton& selected6 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[6]);
+		ToggleButton& selected7 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[7]);
+
+		selected4.Toggle();
+		selected5.Toggle();
+		selected6.Toggle();
+		selected7.Toggle();
+	}
+
+	static void test2(Editor::EditorWindow& window, uint xPos, uint yPos)
+	{
+		using namespace NewWorld::Graphics;
+		using namespace NewWorld::Editor;
+		using namespace NewWorld::Editor::UI;
+
+		// Button
+		SharedPointer<Button> button1(xPos + 10, yPos + 35, 100, 30, "Test 1", Graphics::Colors::CobaltBlue);
+		SharedPointer<Button> button2(xPos + 10, yPos - 15, 100, 30, "Test 2");
+		SharedPointer<Button> button3(xPos + 10, yPos - 65, 100, 30, "Test 3");
+
+		button1->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static bool flag = false;
+
+			flag = !flag;
+
+			if (!flag)
+			{
+				button.SetBackgroundColor(Graphics::Colors::CobaltBlue);
+			}
+			else
+			{
+				button.SetBackgroundColor(Graphics::Colors::LightBlue);
+			}
+
+			});
+
+		button2->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static int clicks = 0;
+
+			clicks++;
+
+			button.SetText(String::ConverToString(clicks));
+			});
+
+		button3->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static int clicks = 0;
+
+			clicks++;
+
+			button.SetText(String::Format("{} Clicks", clicks));
+			});
+
+		window.GetMainPanel().AddComponent(button1);
+		window.GetMainPanel().AddComponent(button2);
+		window.GetMainPanel().AddComponent(button3);
+
+	}
+
+	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
+	{
+		test2(window, xPos, yPos);
+	}
+
 	void Window::ReggisterEvents()
 	{
 		// Set GLFW callbacks
@@ -106,164 +328,8 @@ namespace NewWorld::Core
 						glfwGetCursorPos(winHandle, &xPos, &yPos);
 						yPos = (double)window.GetHeight() - yPos;
 
-						using namespace NewWorld::Editor::UI;
-
-						// Create new UI Component
-						// CheckBox
-						SharedPointer<CheckBox> checkBox1(xPos - 24, yPos - 24);
-						SharedPointer<CheckBox> checkBox2(xPos + 10, yPos - 24, true);
-						SharedPointer<CheckBox> checkBox3(xPos - 24, yPos + 10 , false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
-						SharedPointer<CheckBox> checkBox4(xPos + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
-
-						window.GetMainPanel().AddComponent(checkBox1);
-						window.GetMainPanel().AddComponent(checkBox2);
-						window.GetMainPanel().AddComponent(checkBox3);
-						window.GetMainPanel().AddComponent(checkBox4);
-
-						// ToggleButton
-						SharedPointer<ToggleButton> toggleButton1(xPos + 100 - 24, yPos - 24);
-						SharedPointer<ToggleButton> toggleButton2(xPos + 100 + 10, yPos - 24, true);
-						SharedPointer<ToggleButton> toggleButton3(xPos + 100 - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
-						SharedPointer<ToggleButton> toggleButton4(xPos + 100 + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
-
-						window.GetMainPanel().AddComponent(toggleButton1);
-						window.GetMainPanel().AddComponent(toggleButton2);
-						window.GetMainPanel().AddComponent(toggleButton3);
-						window.GetMainPanel().AddComponent(toggleButton4);
-					
-						// RadioButton
-						SharedPointer<RadioButton> radioButton01(xPos + 200, yPos - 7);
-
-						window.GetMainPanel().AddComponent(radioButton01);
-
-						SharedPointer<RadioButtonGroup> radioButtonGroup1;
-
-						window.GetMainPanel().AddComponent(radioButtonGroup1);
-
-						SharedPointer<RadioButton> radioButton11(xPos + 250, yPos - 30);
-						SharedPointer<RadioButton> radioButton12(xPos + 250, yPos - 7);
-						SharedPointer<RadioButton> radioButton13(xPos + 250, yPos + 14);
-
-						radioButtonGroup1->AddRadioButton(radioButton11);
-						radioButtonGroup1->AddRadioButton(radioButton12);
-						radioButtonGroup1->AddRadioButton(radioButton13);
-
-						window.GetMainPanel().AddComponent(radioButton11);
-						window.GetMainPanel().AddComponent(radioButton12);
-						window.GetMainPanel().AddComponent(radioButton13);
-
-						SharedPointer<RadioButtonGroup> radioButtonGroup2;
-
-						window.GetMainPanel().AddComponent(radioButtonGroup2);
-
-						SharedPointer<RadioButton> radioButton21(xPos + 300, yPos - 30,
-							Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
-							Graphics::Colors::LimeGreen);
-						SharedPointer<RadioButton> radioButton22(xPos + 300, yPos - 7,
-							Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
-							Graphics::Colors::Orange);
-						SharedPointer<RadioButton> radioButton23(xPos + 300, yPos + 14,
-							Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
-							Graphics::Colors::Red);
-
-						radioButtonGroup2->AddRadioButton(radioButton21);
-						radioButtonGroup2->AddRadioButton(radioButton22);
-						radioButtonGroup2->AddRadioButton(radioButton23);
-
-						radioButton23->Toggle();
-
-						window.GetMainPanel().AddComponent(radioButton21);
-						window.GetMainPanel().AddComponent(radioButton22);
-						window.GetMainPanel().AddComponent(radioButton23);
-
-						// RadioButton all the Colors
-						SharedPointer<RadioButtonGroup> radioButtonGroupAllColors;
-
-						window.GetMainPanel().AddComponent(radioButtonGroupAllColors);
-
-						class ColorWithName
-						{
-						public:
-							String Name;
-							Graphics::Color Color;
-
-							ColorWithName(const String& name, const Graphics::Color& color)
-								: Name(name), Color(color) {}
-						};
-
-						Array<ColorWithName, 32> colors = {
-							ColorWithName("Black", Graphics::Colors::Black),
-							ColorWithName("White", Graphics::Colors::White),
-							ColorWithName("Red", Graphics::Colors::Red),
-							ColorWithName("Green", Graphics::Colors::Green),
-							ColorWithName("Blue", Graphics::Colors::Blue),
-							ColorWithName("Cyan", Graphics::Colors::Cyan),
-							ColorWithName("Magenta", Graphics::Colors::Magenta),
-							ColorWithName("Yellow", Graphics::Colors::Yellow),
-							ColorWithName("Gray", Graphics::Colors::Gray),
-							ColorWithName("Orange", Graphics::Colors::Orange),
-							ColorWithName("Pink", Graphics::Colors::Pink),
-							ColorWithName("Gold", Graphics::Colors::Gold),
-							ColorWithName("DarkRed", Graphics::Colors::DarkRed),
-							ColorWithName("Ruby", Graphics::Colors::Ruby),
-							ColorWithName("NeonRed", Graphics::Colors::NeonRed),
-							ColorWithName("RoseRed", Graphics::Colors::RoseRed),
-							ColorWithName("Coral", Graphics::Colors::Coral),
-							ColorWithName("DarkGreen", Graphics::Colors::DarkGreen),
-							ColorWithName("ForestGreen", Graphics::Colors::ForestGreen),
-							ColorWithName("LimeGreen", Graphics::Colors::LimeGreen),
-							ColorWithName("KellyGreen", Graphics::Colors::KellyGreen),
-							ColorWithName("LightGreen", Graphics::Colors::LightGreen),
-							ColorWithName("NavyBlue", Graphics::Colors::NavyBlue),
-							ColorWithName("CobaltBlue", Graphics::Colors::CobaltBlue),
-							ColorWithName("RoyalBlue", Graphics::Colors::RoyalBlue),
-							ColorWithName("LightBlue", Graphics::Colors::LightBlue),
-							ColorWithName("Turquoise", Graphics::Colors::Turquoise),
-							ColorWithName("DarkGray", Graphics::Colors::DarkGray),
-							ColorWithName("LightGray", Graphics::Colors::LightGray),
-							ColorWithName("Charcoal", Graphics::Colors::Charcoal),
-							ColorWithName("SlateGray", Graphics::Colors::SlateGray),
-							ColorWithName("Silver", Graphics::Colors::Silver)
-						};
-
-						for (size_t i = 0; i < colors.size(); i++)
-						{
-							SharedPointer<RadioButton> radioButtonColor(
-								xPos + 350 + (i / 10) * 200, yPos + 200 + 5 - (i % 10) * 40,
-								Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
-								colors[i].Color);
-
-							SharedPointer<BordedLabel> labelColor(
-								xPos + 350 + (i / 10) * 200 + 25, yPos + 200 - (i % 10) * 40,
-								colors[i].Name, 150, Graphics::Colors::Transparency, colors[i].Color,
-								Graphics::Colors::Transparency);
-
-							radioButtonGroupAllColors->AddRadioButton(radioButtonColor);
-							
-							window.GetMainPanel().AddComponent(radioButtonColor);
-							window.GetMainPanel().AddComponent(labelColor);
-						}
-
-						// Changes
-						CheckBox& selected0 = (CheckBox&)*(window.GetMainPanel().GetComponents()[0]);
-						CheckBox& selected1 = (CheckBox&)*(window.GetMainPanel().GetComponents()[1]);
-						CheckBox& selected2 = (CheckBox&)*(window.GetMainPanel().GetComponents()[2]);
-						CheckBox& selected3 = (CheckBox&)*(window.GetMainPanel().GetComponents()[3]);
-						
-						selected0.Toggle();
-						selected1.Toggle();
-						selected2.Toggle();
-						selected3.Toggle();
-
-						ToggleButton& selected4 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[4]);
-						ToggleButton& selected5 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[5]);
-						ToggleButton& selected6 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[6]);
-						ToggleButton& selected7 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[7]);
-
-						selected4.Toggle();
-						selected5.Toggle();
-						selected6.Toggle();
-						selected7.Toggle();
+						// Create new UI Components
+						test(window, (uint)xPos, (uint)yPos);
 					}
 					//
 
