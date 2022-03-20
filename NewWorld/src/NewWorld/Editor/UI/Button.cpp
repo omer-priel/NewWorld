@@ -10,7 +10,16 @@ namespace NewWorld::Editor::UI
 	{
 		Component::Update();
 
-		Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+		if (m_Clicked)
+		{
+			Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+			Graphics::EditorDraw::DrawRectangle(m_X+2, m_Y+2, m_Width-4, m_Height-4,
+				m_BackgroundColor + Graphics::ColorFunctions::FromRGBA(25, 25, 25, 255));
+		}
+		else
+		{
+			Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+		}
 		
 		const Editor::Assets::Font& font = *(GetWindow()->GetFontManager().GetFont(0));
 
@@ -20,5 +29,25 @@ namespace NewWorld::Editor::UI
 
 		Graphics::EditorDraw::DrawString(newX, m_Y + 6,
 			m_Text, m_TextColor, m_FontSize, m_Width, m_Bold, m_Italic);
+	}
+
+	void Button::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
+	{
+		Component::MouseKeyPressed(key, xPos, yPos);
+
+		if (key == Input::Key::MouseButtonLeft)
+		{
+			m_Clicked = true;
+		}
+	}
+
+	void Button::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
+	{
+		Component::MouseKeyReleased(key, xPos, yPos);
+
+		if (key == Input::Key::MouseButtonLeft)
+		{
+			m_Clicked = false;
+		}
 	}
 }

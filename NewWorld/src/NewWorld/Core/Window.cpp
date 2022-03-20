@@ -233,16 +233,26 @@ namespace NewWorld::Core
 		using namespace NewWorld::Editor::UI;
 
 		// Button
-		SharedPointer<Button> button1(xPos + 10, yPos + 35, 100, 30, "Test 1");
+		SharedPointer<Button> button1(xPos + 10, yPos + 35, 100, 30, "Test 1", Graphics::Colors::CobaltBlue);
 		SharedPointer<Button> button2(xPos + 10, yPos - 15, 100, 30, "Test 2");
 		SharedPointer<Button> button3(xPos + 10, yPos - 65, 100, 30, "Test 3");
 
 		button1->SetClickHandler([](Component& sender) {
 			Button& button = (Button&)sender;
 
-			Color temp = button.GetBackgroundColor();
-			button.SetBackgroundColor(button.GetTextColor());
-			button.SetTextColor(temp);
+			static bool flag = false;
+
+			flag = !flag;
+
+			if (!flag)
+			{
+				button.SetBackgroundColor(Graphics::Colors::CobaltBlue);
+			}
+			else
+			{
+				button.SetBackgroundColor(Graphics::Colors::LightBlue);
+			}
+
 			});
 
 		button2->SetClickHandler([](Component& sender) {

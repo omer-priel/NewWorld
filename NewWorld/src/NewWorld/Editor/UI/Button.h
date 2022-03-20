@@ -21,6 +21,8 @@ namespace NewWorld::Editor::UI
 
 		Graphics::Color m_BackgroundColor;
 		Graphics::Color m_TextColor;
+	
+		bool m_Clicked = false;
 
 	public:
 		Button(uint x, uint y, uint width, uint height, const String& text,
@@ -37,6 +39,10 @@ namespace NewWorld::Editor::UI
 		// Events
 	public:
 		void Update() override;
+
+		void MouseKeyPressed(Input::Key key, uint xPos, uint yPos) override;
+		void MouseKeyReleased(Input::Key key, uint xPos, uint yPos) override;
+
 
 		// Getters
 	public:
