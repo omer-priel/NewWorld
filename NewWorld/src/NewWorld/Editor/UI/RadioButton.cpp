@@ -6,7 +6,7 @@
 
 namespace NewWorld::Editor::UI
 {
-	RadioButton::RadioButton(uint x, uint y,
+	RadioButton::RadioButton(float x, float y,
 		const Graphics::Color& backgroundColor,
 		const Graphics::Color& foregroundColor,
 		const Graphics::Color& foregroundCheckedColor)

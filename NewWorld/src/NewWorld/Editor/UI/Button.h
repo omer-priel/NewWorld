@@ -25,7 +25,7 @@ namespace NewWorld::Editor::UI
 		bool m_Clicked = false;
 
 	public:
-		Button(uint x, uint y, uint width, uint height, const String& text,
+		Button(float x, float y, float width, float height, const String& text,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
 			const Graphics::Color& textColor = Graphics::Colors::EditorLightValue,
 			uint fontSize = 14)
@@ -40,8 +40,8 @@ namespace NewWorld::Editor::UI
 	public:
 		void Update() override;
 
-		void MouseKeyPressed(Input::Key key, uint xPos, uint yPos) override;
-		void MouseKeyReleased(Input::Key key, uint xPos, uint yPos) override;
+		void MouseKeyPressed(Input::Key key, float xPos, float yPos) override;
+		void MouseKeyReleased(Input::Key key, float xPos, float yPos) override;
 
 
 		// Getters
@@ -57,10 +57,11 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(uint x) { m_X = x; }
-		void SetY(uint y) { m_Y = y; }
+		void SetX(float x) { m_X = x; }
+		void SetY(float y) { m_Y = y; }
 
-		void SetWidth(uint width) { m_Width = width; }
+		void SetWidth(float width) { m_Width = width; }
+		void SetHeight(float height) { m_Height = height; }
 
 		void SetText(const String& text) { m_Text = text; }
 

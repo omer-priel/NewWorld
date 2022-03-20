@@ -27,7 +27,7 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_ForegroundCheckedColor;
 
 	public:
-		RadioButton(uint x, uint y, 
+		RadioButton(float x, float y,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorLightInputBackground,
 			const Graphics::Color& foregroundColor = Graphics::Colors::EditorDarkValue,
 			const Graphics::Color& foregroundCheckedColor = Graphics::Colors::EditorBlueValue);
@@ -49,8 +49,8 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(uint x) { m_X = x; }
-		void SetY(uint y) { m_Y = y; }
+		void SetX(float x) { m_X = x; }
+		void SetY(float y) { m_Y = y; }
 
 	public:
 		void SetBackgroundColor(const Graphics::Color& color) { m_BackgroundColor = color; }

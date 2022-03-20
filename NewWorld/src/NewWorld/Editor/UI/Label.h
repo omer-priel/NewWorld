@@ -29,7 +29,7 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_TextColor;
 
 	public:
-		Label(uint x, uint y, const String& text, uint width = 0,
+		Label(float x, float y, const String& text, float width = 0,
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
 			uint fontSize = LABEL_DEFUALT_FONT_SIZE)
@@ -57,10 +57,10 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(uint x) { m_X = x; }
-		void SetY(uint y) { m_Y = y; }
+		void SetX(float x) { m_X = x; }
+		void SetY(float y) { m_Y = y; }
 
-		void SetWidth(uint width) { m_Width = width; }
+		void SetWidth(float width) { m_Width = width; }
 
 		void SetText(const String& text) { m_Text = text; }
 

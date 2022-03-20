@@ -21,14 +21,14 @@ namespace NewWorld::Editor::Events
 	using KeyReleasedEventHandler = Function<void, Component&, Input::Key>;
 	void EmptyKeyReleasedEventHandler(Component& sender, Input::Key key);
 
-	using MouseKeyPressedEventHandler = Function<void, Component&, Input::Key, uint, uint>;
-	void EmptyMouseKeyPressedEventHandler(Component& sender, Input::Key key, uint xPos, uint yPos);
+	using MouseKeyPressedEventHandler = Function<void, Component&, Input::Key, float, float>;
+	void EmptyMouseKeyPressedEventHandler(Component& sender, Input::Key key, float xPos, float yPos);
 
-	using MouseKeyReleasedEventHandler = Function<void, Component&, Input::Key, uint, uint>;
-	void EmptyMouseKeyReleasedEventHandler(Component& sender, Input::Key key, uint xPos, uint yPos);
+	using MouseKeyReleasedEventHandler = Function<void, Component&, Input::Key, float, float>;
+	void EmptyMouseKeyReleasedEventHandler(Component& sender, Input::Key key, float xPos, float yPos);
 
-	using MouseHoverEventHandler = Function<void, Component&, uint, uint>;
-	void EmptyMouseHoverEventHandler(Component& sender, uint xPos, uint yPos);
+	using MouseHoverEventHandler = Function<void, Component&, float, float>;
+	void EmptyMouseHoverEventHandler(Component& sender, float xPos, float yPos);
 
 	using MouseScrolledEventHandler = Function<void, Component&, int>;
 	void EmptyMouseScrolledEventHandler(Component& sender, int y);

@@ -467,7 +467,7 @@ namespace NewWorld::Graphics
 
 		// Draw the text
 		bool inBound = true;
-		int panintedX = 0;
+		float panintedX = 0;
 		for (SizeT i = 0; i < text.GetLength() && inBound; i++)
 		{
 			auto& character = fontStyle.GetCharacter(text[i]);

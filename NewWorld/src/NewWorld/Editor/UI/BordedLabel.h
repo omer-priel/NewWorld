@@ -14,7 +14,7 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_BordedColor;
 
 	public:
-		BordedLabel(uint x, uint y, const String& text, uint width = 0,
+		BordedLabel(float x, float y, const String& text, float width = 0,
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
 			const Graphics::Color& bordedColor = Graphics::Colors::Black,

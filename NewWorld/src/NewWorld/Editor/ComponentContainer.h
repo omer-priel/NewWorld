@@ -14,7 +14,7 @@ namespace NewWorld::Editor
 		DynamicArray<SharedPointer<Component>> m_Components;
 
 	protected:
-		ComponentContainer(uint x, uint y, uint width, uint height)
+		ComponentContainer(float x, float y, float width, float height)
 			: Component(x, y, width, height)
 		{
 

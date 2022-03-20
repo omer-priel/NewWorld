@@ -20,7 +20,7 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_ForegroundColor;
 
 	public:
-		ToggleButton(uint x, uint y, bool checked = false,
+		ToggleButton(float x, float y, bool checked = false,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
 			const Graphics::Color& backgroundCheckedColor = Graphics::Colors::EditorBlueInputBackground,
 			const Graphics::Color& foregroundColor = Graphics::Colors::EditorLightValue)
@@ -47,8 +47,8 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(uint x) { m_X = x; }
-		void SetY(uint y) { m_Y = y; }
+		void SetX(float x) { m_X = x; }
+		void SetY(float y) { m_Y = y; }
 
 		void SetChecked(bool checked) { m_Checked = checked; }
 

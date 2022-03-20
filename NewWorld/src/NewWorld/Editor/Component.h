@@ -17,10 +17,10 @@ namespace NewWorld::Editor
 		RawPointer<EditorWindow> m_Window;
 
 	protected:
-		uint m_X;
-		uint m_Y;
-		uint m_Width;
-		uint m_Height;
+		float m_X;
+		float m_Y;
+		float m_Width;
+		float m_Height;
 
 		Events::EventHandler m_CreateHandler;
 		Events::EventHandler m_DestroyHandler;
@@ -40,7 +40,7 @@ namespace NewWorld::Editor
 		Events::EventHandler m_ClickHandler;
 
 	protected:
-		Component(uint x, uint y, uint width, uint height)
+		Component(float x, float y, float width, float height)
 			: m_Window(nullptr), m_X(x), m_Y(y), m_Width(width), m_Height(height),
 			m_CreateHandler(Events::EmptyEventHandler),
 			m_DestroyHandler(Events::EmptyEventHandler),
@@ -65,13 +65,13 @@ namespace NewWorld::Editor
 	public:
 		RawPointer<EditorWindow> GetWindow() const { return m_Window; }
 
-		inline uint GetX() const { return m_X; }
-		inline uint GetY() const { return m_Y; }
+		inline float GetX() const { return m_X; }
+		inline float GetY() const { return m_Y; }
 
-		inline uint GetWidth() const { return m_Width; }
-		inline uint GetHeight() const { return m_Height; }
+		inline float GetWidth() const { return m_Width; }
+		inline float GetHeight() const { return m_Height; }
 
-		inline bool IsIn(uint x, uint y) const
+		inline bool IsIn(float x, float y) const
 		{
 			return (m_X <= x && x <= m_X + m_Width) && (m_Y <= y && y <= m_Y + m_Height);
 		}
@@ -110,10 +110,10 @@ namespace NewWorld::Editor
 
 		virtual void Click();
 
-		virtual void MouseKeyPressed(Input::Key key, uint xPos, uint yPos);
-		virtual void MouseKeyReleased(Input::Key key, uint xPos, uint yPos);
+		virtual void MouseKeyPressed(Input::Key key, float xPos, float yPos);
+		virtual void MouseKeyReleased(Input::Key key, float xPos, float yPos);
 
-		virtual void MouseHover(uint xPos, uint yPos);
+		virtual void MouseHover(float xPos, float yPos);
 		virtual void MouseScrolled(uint y);
 
 		virtual void KeyPressed(Input::Key key);
