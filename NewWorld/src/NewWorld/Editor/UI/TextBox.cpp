@@ -65,11 +65,14 @@ namespace NewWorld::Editor::UI
 
 	void TextBox::KeyPressed(Input::Key key)
 	{
-		Component::KeyReleased(key);
-
-		NW_DEBUG(NW_LOGGER_CORE, "Key Code: {}", (uint)key);
-
-		if (m_Value.GetLength() < m_MaxLength)
+		if (key == Input::Key::BackSpace)
+		{
+			if (m_Value.GetLength() > 0)
+			{
+				m_Value = m_Value.Substring(0, m_Value.GetLength() - 1);
+			}
+		}
+		else if (m_Value.GetLength() < m_MaxLength)
 		{
 			if (key == Input::Key::Space)
 			{
@@ -84,6 +87,8 @@ namespace NewWorld::Editor::UI
 				m_Value = m_Value + (char)((uint)'a' + (uint)key - (uint)Input::Key::A);
 			}
 		}
+
+		Component::KeyPressed(key);
 	}
 
 	void TextBox::KeyReleased(Input::Key key)

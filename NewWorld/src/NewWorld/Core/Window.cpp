@@ -31,6 +31,7 @@ namespace NewWorld::Core
 		case GLFW_KEY_ENTER: return Input::Key::Enter;
 		case GLFW_KEY_SPACE: return Input::Key::Space;
 		case GLFW_KEY_ESCAPE: return Input::Key::Escape;
+		case GLFW_KEY_BACKSPACE: return Input::Key::BackSpace;
 
 		case GLFW_KEY_UP: return Input::Key::UpArrow;
 		case GLFW_KEY_DOWN: return Input::Key::DownArrow;
@@ -137,9 +138,9 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(toggleButton4);
 
 		// Button
-		SharedPointer<Button> button1(xPos + 100 - 24, yPos + 150 + 100, 80, 26, "Test 1", Colors::CobaltBlue);
-		SharedPointer<Button> button2(xPos + 100 - 24, yPos + 150 + 50, 80, 26, "Test 2");
-		SharedPointer<Button> button3(xPos + 100 - 24, yPos + 150 + 0, 80, 26, "Test 3");
+		SharedPointer<Button> button1(xPos + 50 - 24, yPos + 150 + 100, 80, 26, "Test 1", Colors::CobaltBlue);
+		SharedPointer<Button> button2(xPos + 50 - 24, yPos + 150 + 50, 80, 26, "Test 2");
+		SharedPointer<Button> button3(xPos + 50 - 24, yPos + 150 + 0, 80, 26, "Test 3");
 
 		button1->SetClickHandler([](Component& sender) {
 			Button& button = (Button&)sender;
@@ -182,6 +183,40 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(button1);
 		window.GetMainPanel().AddComponent(button2);
 		window.GetMainPanel().AddComponent(button3);
+
+		// TextBox
+		auto textBoxDebug = [](Component& sender, Input::Key key) {
+			TextBox& textBox = (TextBox&)sender;
+
+			static uint lastLength = 0;
+
+			if (textBox.GetValue().GetLength() == lastLength)
+			{
+				return;
+			}
+			lastLength = textBox.GetValue().GetLength();
+		};
+
+		SharedPointer<TextBox> textBox1(
+			xPos + 170, yPos + 150 + 100,
+			"", 250);
+
+		SharedPointer<TextBox> textBox2(
+			xPos + 170, yPos + 150 + 50,
+			"A", 150, 10, TextAlign::Center,
+			Colors::LightBlue, Colors::CobaltBlue);
+
+		SharedPointer<TextBox> textBox3(
+			xPos + 170, yPos + 150 + 0,
+			"B", 80, 5, TextAlign::Center);
+
+		textBox1->SetKeyPressedHandler(textBoxDebug);
+		textBox2->SetKeyPressedHandler(textBoxDebug);
+		textBox3->SetKeyPressedHandler(textBoxDebug);
+
+		window.GetMainPanel().AddComponent(textBox1);
+		window.GetMainPanel().AddComponent(textBox2);
+		window.GetMainPanel().AddComponent(textBox3);
 
 		// RadioButton
 		SharedPointer<RadioButton> radioButton01(xPos + 200, yPos - 7);
@@ -325,27 +360,12 @@ namespace NewWorld::Core
 		using namespace NewWorld::Editor;
 		using namespace NewWorld::Editor::UI;
 
-		SharedPointer<TextBox> textBox1(
-			xPos, yPos + 50,
-			"", 150);
-
-		SharedPointer<TextBox> textBox2(
-			xPos, yPos,
-			"A", 150, 10);
-
-		SharedPointer<TextBox> textBox3(
-			xPos, yPos - 50,
-			"B", 150, 5);
-
-
-		window.GetMainPanel().AddComponent(textBox1);
-		window.GetMainPanel().AddComponent(textBox2);
-		window.GetMainPanel().AddComponent(textBox3);
+		
 	}
 
 	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
 	{
-		test2(window, xPos, yPos);
+		test1(window, xPos, yPos);
 	}
 
 	void Window::ReggisterEvents()

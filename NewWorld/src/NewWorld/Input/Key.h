@@ -18,6 +18,7 @@ namespace NewWorld::Input
 		Enter,
 		Space,
 		Escape,
+		BackSpace,
 		UpArrow,
 		DownArrow,
 		LeftArrow,
