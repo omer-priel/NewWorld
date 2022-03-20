@@ -14,12 +14,12 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_BordedColor;
 
 	public:
-		BordedLabel(float x, float y, const String& text, float width = 0,
+		BordedLabel(float x, float y, const String& text, float width = 0, TextAlign textAlign = TextAlign::Center,
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
 			const Graphics::Color& bordedColor = Graphics::Colors::Black,
 			uint fontSize = LABEL_DEFUALT_FONT_SIZE)
-			: Label(x, y, text, width, backgroundColor, textColor, fontSize), m_BordedColor(bordedColor)
+			: Label(x, y, text, width, textAlign, backgroundColor, textColor, fontSize), m_BordedColor(bordedColor)
 		{
 
 		}

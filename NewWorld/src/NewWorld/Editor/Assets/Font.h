@@ -132,9 +132,9 @@ namespace NewWorld::Editor::Assets
 	public:
 		inline float GetSizeRatio(uint fontSize) const
 		{
-			return ((float)fontSize * 5.0f / 3.0f) / ((float)m_Size);
+			return ((float)fontSize * 19.0f / 14.0f) / ((float)m_Size);
 		}
 
-		Vector4 GetDrawBounds(const String& text, uint fontSize, bool bold, bool italic, uint maxWidth) const;
+		Vector4 GetDrawBounds(const String& text, uint fontSize, bool bold, bool italic, float maxWidth) const;
 	};
 }

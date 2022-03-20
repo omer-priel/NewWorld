@@ -33,7 +33,7 @@ namespace NewWorld::Editor::UI
 			m_Bold(false), m_Italic(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{
-			SetFontSize(fontSize);
+
 		}
 
 		// Events
