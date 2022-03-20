@@ -67,13 +67,14 @@ namespace NewWorld::Core
 
 	static void test1(Editor::EditorWindow& window, uint xPos, uint yPos)
 	{
+		using namespace NewWorld::Graphics;
+		using namespace NewWorld::Editor;
 		using namespace NewWorld::Editor::UI;
-
 		// CheckBox
 		SharedPointer<CheckBox> checkBox1(xPos - 24, yPos - 24);
 		SharedPointer<CheckBox> checkBox2(xPos + 10, yPos - 24, true);
-		SharedPointer<CheckBox> checkBox3(xPos - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
-		SharedPointer<CheckBox> checkBox4(xPos + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+		SharedPointer<CheckBox> checkBox3(xPos - 24, yPos + 10, false, Colors::LightBlue, Colors::CobaltBlue);
+		SharedPointer<CheckBox> checkBox4(xPos + 10, yPos + 10, true, Colors::LightBlue, Colors::CobaltBlue);
 
 		window.GetMainPanel().AddComponent(checkBox1);
 		window.GetMainPanel().AddComponent(checkBox2);
@@ -83,13 +84,60 @@ namespace NewWorld::Core
 		// ToggleButton
 		SharedPointer<ToggleButton> toggleButton1(xPos + 100 - 24, yPos - 24);
 		SharedPointer<ToggleButton> toggleButton2(xPos + 100 + 10, yPos - 24, true);
-		SharedPointer<ToggleButton> toggleButton3(xPos + 100 - 24, yPos + 10, false, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
-		SharedPointer<ToggleButton> toggleButton4(xPos + 100 + 10, yPos + 10, true, Graphics::Colors::LightBlue, Graphics::Colors::CobaltBlue);
+		SharedPointer<ToggleButton> toggleButton3(xPos + 100 - 24, yPos + 10, false, Colors::LightBlue, Colors::CobaltBlue);
+		SharedPointer<ToggleButton> toggleButton4(xPos + 100 + 10, yPos + 10, true, Colors::LightBlue, Colors::CobaltBlue);
 
 		window.GetMainPanel().AddComponent(toggleButton1);
 		window.GetMainPanel().AddComponent(toggleButton2);
 		window.GetMainPanel().AddComponent(toggleButton3);
 		window.GetMainPanel().AddComponent(toggleButton4);
+
+		// Button
+		SharedPointer<Button> button1(xPos + 100 - 24, yPos + 150 + 100, 100, 30, "Test 1", Colors::CobaltBlue);
+		SharedPointer<Button> button2(xPos + 100 - 24, yPos + 150 + 50, 100, 30, "Test 2");
+		SharedPointer<Button> button3(xPos + 100 - 24, yPos + 150 + 0, 100, 30, "Test 3");
+
+		button1->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static bool flag = false;
+
+			flag = !flag;
+
+			if (!flag)
+			{
+				button.SetBackgroundColor(Colors::CobaltBlue);
+			}
+			else
+			{
+				button.SetBackgroundColor(Colors::LightBlue);
+			}
+
+			});
+
+		button2->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static int clicks = 0;
+
+			clicks++;
+
+			button.SetText(String::ConverToString(clicks));
+			});
+
+		button3->SetClickHandler([](Component& sender) {
+			Button& button = (Button&)sender;
+
+			static int clicks = 0;
+
+			clicks++;
+
+			button.SetText(String::Format("{} Clicks", clicks));
+			});
+
+		window.GetMainPanel().AddComponent(button1);
+		window.GetMainPanel().AddComponent(button2);
+		window.GetMainPanel().AddComponent(button3);
 
 		// RadioButton
 		SharedPointer<RadioButton> radioButton01(xPos + 200, yPos - 7);
@@ -117,14 +165,14 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(radioButtonGroup2);
 
 		SharedPointer<RadioButton> radioButton21(xPos + 300, yPos - 30,
-			Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
-			Graphics::Colors::LimeGreen);
+			Colors::Transparency, Colors::EditorDarkValue,
+			Colors::LimeGreen);
 		SharedPointer<RadioButton> radioButton22(xPos + 300, yPos - 7,
-			Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
-			Graphics::Colors::Orange);
+			Colors::Transparency, Colors::EditorDarkValue,
+			Colors::Orange);
 		SharedPointer<RadioButton> radioButton23(xPos + 300, yPos + 14,
-			Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
-			Graphics::Colors::Red);
+			Colors::Transparency, Colors::EditorDarkValue,
+			Colors::Red);
 
 		radioButtonGroup2->AddRadioButton(radioButton21);
 		radioButtonGroup2->AddRadioButton(radioButton22);
@@ -145,58 +193,58 @@ namespace NewWorld::Core
 		{
 		public:
 			String Name;
-			Graphics::Color Color;
+			Color Color;
 
 			ColorWithName(const String& name, const Graphics::Color& color)
 				: Name(name), Color(color) {}
 		};
 
 		Array<ColorWithName, 32> colors = {
-			ColorWithName("Black", Graphics::Colors::Black),
-			ColorWithName("White", Graphics::Colors::White),
-			ColorWithName("Red", Graphics::Colors::Red),
-			ColorWithName("Green", Graphics::Colors::Green),
-			ColorWithName("Blue", Graphics::Colors::Blue),
-			ColorWithName("Cyan", Graphics::Colors::Cyan),
-			ColorWithName("Magenta", Graphics::Colors::Magenta),
-			ColorWithName("Yellow", Graphics::Colors::Yellow),
-			ColorWithName("Gray", Graphics::Colors::Gray),
-			ColorWithName("Orange", Graphics::Colors::Orange),
-			ColorWithName("Pink", Graphics::Colors::Pink),
-			ColorWithName("Gold", Graphics::Colors::Gold),
-			ColorWithName("DarkRed", Graphics::Colors::DarkRed),
-			ColorWithName("Ruby", Graphics::Colors::Ruby),
-			ColorWithName("NeonRed", Graphics::Colors::NeonRed),
-			ColorWithName("RoseRed", Graphics::Colors::RoseRed),
-			ColorWithName("Coral", Graphics::Colors::Coral),
-			ColorWithName("DarkGreen", Graphics::Colors::DarkGreen),
-			ColorWithName("ForestGreen", Graphics::Colors::ForestGreen),
-			ColorWithName("LimeGreen", Graphics::Colors::LimeGreen),
-			ColorWithName("KellyGreen", Graphics::Colors::KellyGreen),
-			ColorWithName("LightGreen", Graphics::Colors::LightGreen),
-			ColorWithName("NavyBlue", Graphics::Colors::NavyBlue),
-			ColorWithName("CobaltBlue", Graphics::Colors::CobaltBlue),
-			ColorWithName("RoyalBlue", Graphics::Colors::RoyalBlue),
-			ColorWithName("LightBlue", Graphics::Colors::LightBlue),
-			ColorWithName("Turquoise", Graphics::Colors::Turquoise),
-			ColorWithName("DarkGray", Graphics::Colors::DarkGray),
-			ColorWithName("LightGray", Graphics::Colors::LightGray),
-			ColorWithName("Charcoal", Graphics::Colors::Charcoal),
-			ColorWithName("SlateGray", Graphics::Colors::SlateGray),
-			ColorWithName("Silver", Graphics::Colors::Silver)
+			ColorWithName("Black", Colors::Black),
+			ColorWithName("White", Colors::White),
+			ColorWithName("Red", Colors::Red),
+			ColorWithName("Green", Colors::Green),
+			ColorWithName("Blue", Colors::Blue),
+			ColorWithName("Cyan", Colors::Cyan),
+			ColorWithName("Magenta", Colors::Magenta),
+			ColorWithName("Yellow", Colors::Yellow),
+			ColorWithName("Gray", Colors::Gray),
+			ColorWithName("Orange", Colors::Orange),
+			ColorWithName("Pink", Colors::Pink),
+			ColorWithName("Gold", Colors::Gold),
+			ColorWithName("DarkRed", Colors::DarkRed),
+			ColorWithName("Ruby", Colors::Ruby),
+			ColorWithName("NeonRed", Colors::NeonRed),
+			ColorWithName("RoseRed", Colors::RoseRed),
+			ColorWithName("Coral", Colors::Coral),
+			ColorWithName("DarkGreen", Colors::DarkGreen),
+			ColorWithName("ForestGreen", Colors::ForestGreen),
+			ColorWithName("LimeGreen", Colors::LimeGreen),
+			ColorWithName("KellyGreen", Colors::KellyGreen),
+			ColorWithName("LightGreen", Colors::LightGreen),
+			ColorWithName("NavyBlue", Colors::NavyBlue),
+			ColorWithName("CobaltBlue", Colors::CobaltBlue),
+			ColorWithName("RoyalBlue", Colors::RoyalBlue),
+			ColorWithName("LightBlue", Colors::LightBlue),
+			ColorWithName("Turquoise", Colors::Turquoise),
+			ColorWithName("DarkGray", Colors::DarkGray),
+			ColorWithName("LightGray", Colors::LightGray),
+			ColorWithName("Charcoal", Colors::Charcoal),
+			ColorWithName("SlateGray", Colors::SlateGray),
+			ColorWithName("Silver", Colors::Silver)
 		};
 
 		for (size_t i = 0; i < colors.size(); i++)
 		{
 			SharedPointer<RadioButton> radioButtonColor(
 				xPos + 350 + (i / 10) * 200, yPos + 200 + 5 - (i % 10) * 40,
-				Graphics::Colors::Transparency, Graphics::Colors::EditorDarkValue,
+				Colors::Transparency, Colors::EditorDarkValue,
 				colors[i].Color);
 
 			SharedPointer<BordedLabel> labelColor(
 				xPos + 350 + (i / 10) * 200 + 25, yPos + 200 - (i % 10) * 40,
-				colors[i].Name, 150, Graphics::Colors::Transparency, colors[i].Color,
-				Graphics::Colors::Transparency);
+				colors[i].Name, 150, Colors::Transparency, colors[i].Color,
+				Colors::Transparency);
 
 			radioButtonGroupAllColors->AddRadioButton(radioButtonColor);
 
@@ -232,58 +280,12 @@ namespace NewWorld::Core
 		using namespace NewWorld::Editor;
 		using namespace NewWorld::Editor::UI;
 
-		// Button
-		SharedPointer<Button> button1(xPos + 10, yPos + 35, 100, 30, "Test 1", Graphics::Colors::CobaltBlue);
-		SharedPointer<Button> button2(xPos + 10, yPos - 15, 100, 30, "Test 2");
-		SharedPointer<Button> button3(xPos + 10, yPos - 65, 100, 30, "Test 3");
-
-		button1->SetClickHandler([](Component& sender) {
-			Button& button = (Button&)sender;
-
-			static bool flag = false;
-
-			flag = !flag;
-
-			if (!flag)
-			{
-				button.SetBackgroundColor(Graphics::Colors::CobaltBlue);
-			}
-			else
-			{
-				button.SetBackgroundColor(Graphics::Colors::LightBlue);
-			}
-
-			});
-
-		button2->SetClickHandler([](Component& sender) {
-			Button& button = (Button&)sender;
-
-			static int clicks = 0;
-
-			clicks++;
-
-			button.SetText(String::ConverToString(clicks));
-			});
-
-		button3->SetClickHandler([](Component& sender) {
-			Button& button = (Button&)sender;
-
-			static int clicks = 0;
-
-			clicks++;
-
-			button.SetText(String::Format("{} Clicks", clicks));
-			});
-
-		window.GetMainPanel().AddComponent(button1);
-		window.GetMainPanel().AddComponent(button2);
-		window.GetMainPanel().AddComponent(button3);
 
 	}
 
 	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
 	{
-		test2(window, xPos, yPos);
+		test1(window, xPos, yPos);
 	}
 
 	void Window::ReggisterEvents()
