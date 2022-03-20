@@ -31,12 +31,12 @@ namespace NewWorld::Editor
 		m_LeaveHandler(*this);
 	}
 
-	void Component::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
+	void Component::MouseKeyPressed(Input::Key key, float xPos, float yPos)
 	{
 		m_MouseKeyPressedHandler(*this, key, xPos, yPos);
 	}
 
-	void Component::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
+	void Component::MouseKeyReleased(Input::Key key, float xPos, float yPos)
 	{
 		m_MouseKeyReleasedHandler(*this, key, xPos, yPos);
 		if (key == Input::Key::MouseButtonLeft) {
@@ -44,7 +44,7 @@ namespace NewWorld::Editor
 		}
 	}
 
-	void Component::MouseHover(uint xPos, uint yPos)
+	void Component::MouseHover(float xPos, float yPos)
 	{
 		m_MouseHoverHandler(*this, xPos, yPos);
 	}

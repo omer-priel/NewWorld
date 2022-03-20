@@ -25,13 +25,13 @@ namespace NewWorld::Editor::UI
 
 		Vector4 bounds = font.GetDrawBounds(m_Text, m_FontSize, m_Bold, m_Italic, m_Width);
 
-		float newX = m_X + (((float)m_Width - bounds.z + bounds.x) / 2);
+		float newX = m_X + (m_Width - bounds.z + bounds.x) / 2;
 
 		Graphics::EditorDraw::DrawString(newX, m_Y + 6,
 			m_Text, m_TextColor, m_FontSize, m_Width, m_Bold, m_Italic);
 	}
 
-	void Button::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
+	void Button::MouseKeyPressed(Input::Key key, float xPos, float yPos)
 	{
 		Component::MouseKeyPressed(key, xPos, yPos);
 
@@ -41,7 +41,7 @@ namespace NewWorld::Editor::UI
 		}
 	}
 
-	void Button::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
+	void Button::MouseKeyReleased(Input::Key key, float xPos, float yPos)
 	{
 		Component::MouseKeyReleased(key, xPos, yPos);
 

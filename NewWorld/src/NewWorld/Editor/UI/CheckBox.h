@@ -23,7 +23,7 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_ForegroundColor;
 
 	public:
-		CheckBox(uint x, uint y, bool checked = false,
+		CheckBox(float x, float y, bool checked = false,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
 			const Graphics::Color& foregroundColor = Graphics::Colors::EditorDarkValue)
 			: Component(x, y, CHECKBOX_SIZE, CHECKBOX_SIZE), m_Checked(checked),
@@ -47,8 +47,8 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(uint x) { m_X = x; }
-		void SetY(uint y) { m_Y = y; }
+		void SetX(float x) { m_X = x; }
+		void SetY(float y) { m_Y = y; }
 
 		void SetChecked(bool checked) { m_Checked = checked; }
 

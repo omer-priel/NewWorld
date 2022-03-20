@@ -16,7 +16,7 @@ namespace NewWorld::Editor::UI
 		Graphics::Color m_BackgroundColor;
 
 	public:
-		Panel(uint x, uint y, uint width, uint height, const Graphics::Color& backgroundColor = Graphics::Colors::EditorBackground)
+		Panel(float x, float y, float width, float height, const Graphics::Color& backgroundColor = Graphics::Colors::EditorBackground)
 			: ComponentContainer(x, y, width, height), m_BackgroundColor(backgroundColor)
 		{
 
@@ -26,11 +26,11 @@ namespace NewWorld::Editor::UI
 	public:
 		void Update() override;
 
-		void MouseKeyPressed(Input::Key key, uint xPos, uint yPos) override;
+		void MouseKeyPressed(Input::Key key, float xPos, float yPos) override;
 
-		void MouseKeyReleased(Input::Key key, uint xPos, uint yPos) override;
+		void MouseKeyReleased(Input::Key key, float xPos, float yPos) override;
 
-		void MouseHover(uint xPos, uint yPos) override;
+		void MouseHover(float xPos, float yPos) override;
 
 		// Getters
 	public:
@@ -40,11 +40,11 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(uint x) { m_X = x; }
-		void SetY(uint y) { m_Y = y; }
+		void SetX(float x) { m_X = x; }
+		void SetY(float y) { m_Y = y; }
 
-		void SetWidth(uint width) { m_Width = width; }
-		void SetHeight(uint height) { m_Height = height; }
+		void SetWidth(float width) { m_Width = width; }
+		void SetHeight(float height) { m_Height = height; }
 
 		void SetBackgroundColor(const Graphics::Color& backgroundColor) { m_BackgroundColor = backgroundColor; }
 	};

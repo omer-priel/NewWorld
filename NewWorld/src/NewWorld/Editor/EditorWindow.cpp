@@ -36,17 +36,17 @@ namespace NewWorld::Editor
 		m_MainPanel.Update();
 	}
 
-	void EditorWindow::MouseKeyPressed(Input::Key key, uint xPos, uint yPos)
+	void EditorWindow::MouseKeyPressed(Input::Key key, float xPos, float yPos)
 	{
 		m_MainPanel.MouseKeyPressed(key, xPos, yPos);
 	}
 
-	void EditorWindow::MouseKeyReleased(Input::Key key, uint xPos, uint yPos)
+	void EditorWindow::MouseKeyReleased(Input::Key key, float xPos, float yPos)
 	{
 		m_MainPanel.MouseKeyReleased(key, xPos, yPos);
 	}
 
-	void EditorWindow::MouseHover(uint xPos, uint yPos)
+	void EditorWindow::MouseHover(float xPos, float yPos)
 	{
 		m_MainPanel.MouseHover(xPos, yPos);
 	}
