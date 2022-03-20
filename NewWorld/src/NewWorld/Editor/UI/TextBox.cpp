@@ -34,7 +34,8 @@ namespace NewWorld::Editor::UI
 		}
 
 		// draw
-		Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+		Graphics::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, m_BordedColor, 1);
+		Graphics::EditorDraw::DrawRectangle(m_X+1, m_Y+1, m_Width-2, m_Height-2, m_BackgroundColor);
 
 		Graphics::EditorDraw::DrawString(x, m_Y + marginSize,
 			m_Value, m_TextColor, TEXT_BOX_DEFUALT_FONT_SIZE, m_Width - marginSize * 2, false, false);

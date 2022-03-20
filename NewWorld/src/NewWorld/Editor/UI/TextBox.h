@@ -14,7 +14,7 @@ namespace NewWorld::Editor::UI
 
 		// Constants
 	public:
-		static const uint TEXT_BOX_DEFUALT_HEIGHT = 32;
+		static const uint TEXT_BOX_DEFUALT_HEIGHT = 26;
 		static const uint TEXT_BOX_DEFUALT_FONT_SIZE = 14;
 		static const uint TEXT_BOX_DEFUALT_MARGIN_SIZE = 6;
 
@@ -26,13 +26,15 @@ namespace NewWorld::Editor::UI
 
 		Graphics::Color m_BackgroundColor;
 		Graphics::Color m_TextColor;
+		Graphics::Color m_BordedColor;
 
 	public:
 		TextBox(float x, float y, const String& defaltValue, float width, TextAlign textAlign = TextAlign::Left,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorLightInputBackground,
-			const Graphics::Color& textColor = Graphics::Colors::EditorDarkValue)
+			const Graphics::Color& textColor = Graphics::Colors::EditorDarkValue,
+			const Graphics::Color& bordedColor = Graphics::Colors::EditorDarkValue)
 			: Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_TextAlign(textAlign),
-			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
+			m_BackgroundColor(backgroundColor), m_TextColor(textColor), m_BordedColor(bordedColor)
 		{
 
 		}

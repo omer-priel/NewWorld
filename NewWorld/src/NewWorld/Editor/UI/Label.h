@@ -14,7 +14,7 @@ namespace NewWorld::Editor::UI
 
 		// Constants
 	public:
-		static const uint LABEL_DEFUALT_HEIGHT = 32;
+		static const uint LABEL_DEFUALT_HEIGHT = 26;
 		static const uint LABEL_DEFUALT_FONT_SIZE = 14;
 		static const uint LABEL_DEFUALT_MARGIN_SIZE = 6;
 

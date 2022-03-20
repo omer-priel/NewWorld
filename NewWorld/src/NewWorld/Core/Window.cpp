@@ -95,9 +95,9 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(toggleButton4);
 
 		// Button
-		SharedPointer<Button> button1(xPos + 100 - 24, yPos + 150 + 100, 100, 30, "Test 1", Colors::CobaltBlue);
-		SharedPointer<Button> button2(xPos + 100 - 24, yPos + 150 + 50, 100, 30, "Test 2");
-		SharedPointer<Button> button3(xPos + 100 - 24, yPos + 150 + 0, 100, 30, "Test 3");
+		SharedPointer<Button> button1(xPos + 100 - 24, yPos + 150 + 100, 80, 26, "Test 1", Colors::CobaltBlue);
+		SharedPointer<Button> button2(xPos + 100 - 24, yPos + 150 + 50, 80, 26, "Test 2");
+		SharedPointer<Button> button3(xPos + 100 - 24, yPos + 150 + 0, 80, 26, "Test 3");
 
 		button1->SetClickHandler([](Component& sender) {
 			Button& button = (Button&)sender;
