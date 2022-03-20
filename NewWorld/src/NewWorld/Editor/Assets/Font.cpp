@@ -114,26 +114,31 @@ namespace NewWorld::Editor::Assets
 			return bounds;
 		}
 
-		float x = 0;
-		bounds.x = style.GetCharacter(text[0]).OriginX;
+		auto& firstCharacter = style.GetCharacter(text[0]);
+		bounds.x = firstCharacter.OriginX;
+		bounds.y = firstCharacter.OriginY;
+		bounds.z = bounds.x + firstCharacter.Width;
+		bounds.w = bounds.y + firstCharacter.Height;
+
+		int panintedX = firstCharacter.PainterStepX;
 
 		for (SizeT i = 1; i < text.GetLength(); i++)
 		{
 			auto& character = style.GetCharacter(text[i]);
 
-			x += (character.OriginX + character.Width) * sizeRatio;
+			float x = character.OriginX + character.Width;
 			
-			float y1 = character.OriginY * sizeRatio;
-			float y2 = y1 + character.Height * sizeRatio;
+			float y1 = character.OriginY;
+			float y2 = character.OriginY + character.Height;
 
 			if (maxWidth > 0) {
-				if (x >= maxWidth)
+				if ((panintedX + x) * sizeRatio > maxWidth)
 				{
-					return bounds;
+					return bounds * sizeRatio;
 				}
 			}
 
-			bounds.z = x;
+			bounds.z = panintedX + x;
 
 			if (bounds.y > y1)
 			{
@@ -145,10 +150,10 @@ namespace NewWorld::Editor::Assets
 				bounds.w = y2;
 			}
 
-			x += character.PainterStepX * sizeRatio;
+			panintedX += character.PainterStepX;
 		}
 
-		return bounds;
+		return bounds * sizeRatio;
 	}
 
 }
