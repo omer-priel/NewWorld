@@ -36,7 +36,7 @@ namespace NewWorld::Editor::UI
 		// draw
 		if (m_Selected)
 		{
-			Graphics::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, Graphics::Colors::EditorBlueValue, 1);
+			Graphics::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, Graphics::Colors::EditorBlueInputBackground, 1);
 		}
 		else
 		{
