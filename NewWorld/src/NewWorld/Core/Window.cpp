@@ -331,7 +331,7 @@ namespace NewWorld::Core
 						yPos = (double)window.GetHeight() - yPos;
 
 						// Create new UI Components
-						test(window, (uint)xPos, (uint)yPos);
+						test(window, xPos, yPos);
 					}
 					//
 
