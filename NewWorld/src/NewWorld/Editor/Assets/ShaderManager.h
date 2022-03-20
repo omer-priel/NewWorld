@@ -24,7 +24,7 @@ namespace NewWorld::Editor::Assets
 	public:
 		SharedPointer<Shader> GetShader(int id);
 
-		SizeT GetShadersCount() const { return m_Shaders.size(); };
+		SizeT GetShadersCount() const { return (SizeT)m_Shaders.size(); };
 
 		// Actions
 	public:

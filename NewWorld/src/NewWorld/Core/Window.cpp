@@ -109,7 +109,7 @@ namespace NewWorld::Core
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
-	static void test1(Editor::EditorWindow& window, uint xPos, uint yPos)
+	static void test1(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		using namespace NewWorld::Graphics;
 		using namespace NewWorld::Editor;
@@ -188,7 +188,7 @@ namespace NewWorld::Core
 		auto textBoxDebug = [](Component& sender, Input::Key key) {
 			TextBox& textBox = (TextBox&)sender;
 
-			static uint lastLength = 0;
+			static SizeT lastLength = 0;
 
 			if (textBox.GetValue().GetLength() == lastLength)
 			{
@@ -354,7 +354,7 @@ namespace NewWorld::Core
 		selected7.Toggle();
 	}
 
-	static void test2(Editor::EditorWindow& window, uint xPos, uint yPos)
+	static void test2(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		using namespace NewWorld::Graphics;
 		using namespace NewWorld::Editor;
@@ -363,7 +363,7 @@ namespace NewWorld::Core
 		
 	}
 
-	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
+	static void test(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		test1(window, xPos, yPos);
 	}
@@ -411,7 +411,7 @@ namespace NewWorld::Core
 						yPos = (double)window.GetHeight() - yPos;
 
 						// Create new UI Components
-						test(window, xPos, yPos);
+						test(window, (float)xPos, (float)yPos);
 					}
 					//
 
@@ -434,17 +434,17 @@ namespace NewWorld::Core
 			{
 				case GLFW_PRESS:
 				{
-					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), (float)xPos, (float)yPos);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), (float)xPos, (float)yPos);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					window.MouseKeyReleased(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					window.MouseKeyReleased(ConvertMouseButtonKeyToKey(key), (float)xPos, (float)yPos);
 					break;
 				}
 			}
@@ -455,13 +455,13 @@ namespace NewWorld::Core
 
 			yPos = (double)window.GetHeight() - yPos;
 
-			window.MouseHover(xPos, yPos);
+			window.MouseHover((float)xPos, (float)yPos);
 		});
 
 		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			window.MouseScrolled(yOffset);
+			window.MouseScrolled((uint)yOffset);
 		});
 	}
 

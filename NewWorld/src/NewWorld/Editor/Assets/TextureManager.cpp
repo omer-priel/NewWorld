@@ -11,7 +11,7 @@ namespace NewWorld::Editor::Assets
 		if (loaded)
 		{
 			m_Textures.push_back(texture);
-			return m_Textures.size() - 1;
+			return (int)(m_Textures.size() - 1);
 		}
 
 		return -1;

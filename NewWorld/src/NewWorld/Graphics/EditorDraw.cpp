@@ -44,7 +44,7 @@ namespace NewWorld::Graphics
 		shaderManager.LoadShader("Shaders/Editor/DrawTamplateTexture.nws");
 
 		// Compile shaders
-		for (size_t i = 0; i < shaderManager.GetShadersCount(); i++)
+		for (SizeT i = 0; i < shaderManager.GetShadersCount(); i++)
 		{
 			SharedPointer<Editor::Assets::Shader> shader = shaderManager.GetShader(i);
 			shader->Compile();
@@ -352,7 +352,7 @@ namespace NewWorld::Graphics
 		glBindTexture(GL_TEXTURE_2D, handle);
 
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
-		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), (float)texture.GetWidth(), (float)texture.GetHeight());
 
 		glDrawArrays(GL_LINES, 0, 32);
 
@@ -404,7 +404,7 @@ namespace NewWorld::Graphics
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
-		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), (float)texture.GetWidth(), (float)texture.GetHeight());
 
 		glDrawArrays(GL_LINES, 0, 32);
 
@@ -463,7 +463,7 @@ namespace NewWorld::Graphics
 
 		glUniform4f(shader->GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a);
 		glUniform1i(shader->GetUniformLocation("u_Texture"), 0);
-		glUniform2f(shader->GetUniformLocation("u_TextureSize"), texture.GetWidth(), texture.GetHeight());
+		glUniform2f(shader->GetUniformLocation("u_TextureSize"), (float)texture.GetWidth(), (float)texture.GetHeight());
 
 		// Draw the text
 		bool inBound = true;

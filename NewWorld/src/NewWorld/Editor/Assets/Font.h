@@ -28,14 +28,14 @@ namespace NewWorld::Editor::Assets
 
 			// Members
 		public:
-			char Name;
-			short AtlasX;
-			short AtlasY;
-			short Width;
-			short Height;
-			short OriginX;
-			short OriginY;
-			short PainterStepX;
+			char Name = '\0';
+			short AtlasX = 0;
+			short AtlasY = 0;
+			short Width = 0;
+			short Height = 0;
+			short OriginX = 0;
+			short OriginY = 0;
+			short PainterStepX = 0;
 		};
 
 	public:

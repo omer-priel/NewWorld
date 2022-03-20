@@ -18,7 +18,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			if (m_Value[i] == value)
 			{
-				return i;
+				return (int)i;
 			}
 		}
 		return -1;
@@ -44,7 +44,7 @@ namespace NewWorld::DataTypes::Collections
 			}
 			if (found)
 			{
-				return i;
+				return (int)i;
 			}
 		}
 		return -1;
@@ -63,7 +63,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			if (m_Value[i] == value)
 			{
-				return i;
+				return (int)i;
 			}
 		}
 		return -1;
@@ -89,7 +89,7 @@ namespace NewWorld::DataTypes::Collections
 			}
 			if (found)
 			{
-				return i;
+				return (int)i;
 			}
 		}
 		return -1;

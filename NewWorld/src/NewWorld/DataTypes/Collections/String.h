@@ -122,7 +122,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			// Remove the zeros before the first numbers
 			String str = String(std::to_string(value).c_str());
-			int firstNumber = str.GetLength() - 1;
+			int firstNumber = (int)(str.GetLength() - 1);
 			while (str[firstNumber-1] != '.' && str[firstNumber] == '0')
 			{
 				firstNumber--;
@@ -136,7 +136,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			// Remove the zeros before the first numbers
 			String str = String(std::to_string(value).c_str());
-			int firstNumber = str.GetLength() - 1;
+			int firstNumber = (int)(str.GetLength() - 1);
 			while (str[firstNumber - 1] != '.' && str[firstNumber] == '0')
 			{
 				firstNumber--;

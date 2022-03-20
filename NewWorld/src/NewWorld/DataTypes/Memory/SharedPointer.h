@@ -22,7 +22,7 @@ namespace NewWorld::DataTypes::Memory
 
 	private:
 		T* m_Value = nullptr;
-		uint* m_Counter = nullptr;
+		SizeT* m_Counter = nullptr;
 
 	public:
 		SharedPointer()
@@ -181,7 +181,7 @@ namespace NewWorld::DataTypes::Memory
 
 	private:
 		T* m_Value = nullptr;
-		uint* m_Counter = nullptr;
+		SizeT* m_Counter = nullptr;
 
 	public:
 		SharedPointer()

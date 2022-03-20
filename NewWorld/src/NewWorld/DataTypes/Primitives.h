@@ -12,5 +12,5 @@ namespace NewWorld::DataTypes
 	using Long = long long;
 	using Ulong = unsigned long long;
 
-	using SizeT = uint;
+	using SizeT = Ulong;
 }

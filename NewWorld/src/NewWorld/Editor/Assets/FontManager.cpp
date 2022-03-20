@@ -9,7 +9,7 @@ namespace NewWorld::Editor::Assets
 		
 		m_Fonts.push_back(font);
 
-		return m_Fonts.size() - 1;
+		return (int)(m_Fonts.size() - 1);
 	}
 
 	SharedPointer<Font> FontManager::GetFont(int id)

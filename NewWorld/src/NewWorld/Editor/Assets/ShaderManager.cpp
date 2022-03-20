@@ -5,7 +5,7 @@
 
 namespace NewWorld::Editor::Assets
 {
-		int ShaderManager::LoadShader(String asset)
+	int ShaderManager::LoadShader(String asset)
 	{
 		SharedPointer<Shader> shader;
 		bool loaded = shader->LoadFromFile(asset);
@@ -13,7 +13,7 @@ namespace NewWorld::Editor::Assets
 		if (loaded)
 		{
 			m_Shaders.push_back(shader);
-			return m_Shaders.size() - 1;
+			return (int)(m_Shaders.size() - 1);
 		}
 
 		return -1;

@@ -30,12 +30,12 @@ namespace NewWorld::Editor
 
 	public:
 		EditorWindow(SizeT m_WindowID, const String& title = "New World", uint width = 1280, uint height = 720)
-			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, width, height),
+			: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, (float)width, (float)height),
 			m_SelectedComponent(&m_MainPanel)
 		{
 			m_MainPanel.SetWindow(this);
 
-			Matrix4 proj = Math::Projection::OrthographicMatrix(0.0f, width, 0.0f, height);
+			Matrix4 proj = Math::Projection::OrthographicMatrix(0.0f, (float)width, 0.0f, (float)height);
 			Matrix4 view = glm::translate(Matrix4(1.0f), Vector3(0, 0, 0));;
 			m_ProjectionMatrix = proj * view;
 		}
