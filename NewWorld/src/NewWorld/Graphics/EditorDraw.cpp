@@ -421,9 +421,8 @@ namespace NewWorld::Graphics
 
 		const Editor::Assets::Font::Style& fontStyle = font.GetStyle(bold, italic);
 		const Editor::Assets::Texture& texture = font.GetTexture();
-		const uint originSize = font.GetSize();
-
-		float sizeRatio = ((float)fontSize * 5.0f / 3.0f) / ((float)originSize);
+		
+		float sizeRatio = font.GetSizeRatio(fontSize);
 
 		SharedPointer<Editor::Assets::Shader> shader = CreateShader(SHADER_TEMPLATE_TEXTURE);
 

@@ -273,7 +273,7 @@ namespace NewWorld::Core
 
 	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
 	{
-		test1(window, xPos, yPos);
+		test2(window, xPos, yPos);
 	}
 
 	void Window::ReggisterEvents()

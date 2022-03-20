@@ -102,4 +102,53 @@ namespace NewWorld::Editor::Assets
 		}
 	}
 
+	Vector4 Font::GetDrawBounds(const String& text, uint fontSize, bool bold, bool italic, uint maxWidth) const
+	{
+		const Style& style = GetStyle(bold, italic);
+		float sizeRatio = GetSizeRatio(fontSize);
+
+		Vector4 bounds(0.0f);
+
+		if (text.GetLength() == 0)
+		{
+			return bounds;
+		}
+
+		float x = 0;
+		bounds.x = style.GetCharacter(text[0]).OriginX;
+
+		for (SizeT i = 1; i < text.GetLength(); i++)
+		{
+			auto& character = style.GetCharacter(text[i]);
+
+			x += (character.OriginX + character.Width) * sizeRatio;
+			
+			float y1 = character.OriginY * sizeRatio;
+			float y2 = y1 + character.Height * sizeRatio;
+
+			if (maxWidth > 0) {
+				if (x >= maxWidth)
+				{
+					return bounds;
+				}
+			}
+
+			bounds.z = x;
+
+			if (bounds.y > y1)
+			{
+				bounds.y = y1;
+			}
+
+			if (bounds.w < y2)
+			{
+				bounds.w = y2;
+			}
+
+			x += character.PainterStepX * sizeRatio;
+		}
+
+		return bounds;
+	}
+
 }
