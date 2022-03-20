@@ -18,15 +18,15 @@ namespace NewWorld::Graphics
 		// Members
 	private:
 		static RawPointer<Editor::EditorWindow> m_Window;
-		static int m_X;
-		static int m_Y;
+		static float m_X;
+		static float m_Y;
 
 		// Getters
 	public:
 		static RawPointer<Editor::EditorWindow> GetWindow() { return m_Window; }
 
-		static int GetX() { return m_X; }
-		static int GetY() { return m_Y; }
+		static float GetX() { return m_X; }
+		static float GetY() { return m_Y; }
 
 		// Actions
 	public:
