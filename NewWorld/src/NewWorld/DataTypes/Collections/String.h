@@ -122,13 +122,13 @@ namespace NewWorld::DataTypes::Collections
 		{
 			// Remove the zeros before the first numbers
 			String str = String(std::to_string(value).c_str());
-			int firstNumber = (int)(str.GetLength() - 1);
-			while (str[firstNumber-1] != '.' && str[firstNumber] == '0')
+			SizeT firstNumber = str.GetLength() - 1;
+			while (str[firstNumber - 1] != '.' && str[firstNumber] == '0')
 			{
 				firstNumber--;
 			}
 
-			return str.Substring(0, firstNumber+1);
+			return str.Substring(0, firstNumber + 1);
 		}
 
 		template <>
@@ -136,7 +136,7 @@ namespace NewWorld::DataTypes::Collections
 		{
 			// Remove the zeros before the first numbers
 			String str = String(std::to_string(value).c_str());
-			int firstNumber = (int)(str.GetLength() - 1);
+			SizeT firstNumber = str.GetLength() - 1;
 			while (str[firstNumber - 1] != '.' && str[firstNumber] == '0')
 			{
 				firstNumber--;
@@ -241,9 +241,9 @@ namespace NewWorld::DataTypes::Collections
 		{
 			Array<String, (SizeT)sizeof...(Types)> values = ConverToStringArray(args...);
 			std::ostringstream stream;
-			uint index = 0;
-			uint valuesIndex = 0;
-			uint nextArg = 0;
+			SizeT index = 0;
+			SizeT valuesIndex = 0;
+			SizeT nextArg = 0;
 			while (index < format.GetLength() && nextArg != -1) {
 				nextArg = format.Find("{}", index);
 				if (nextArg != -1)

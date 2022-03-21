@@ -115,7 +115,7 @@ namespace NewWorld::Editor::Assets
 
 		inline const Style& GetStyle(bool bold, bool italic) const
 		{
-			return m_Styles[bold + italic * 2];
+			return m_Styles[(SizeT)bold + (SizeT)italic * 2];
 		}
 
 		inline const Character& GetCharacterByID(uint id, bool bold, bool italic) const
