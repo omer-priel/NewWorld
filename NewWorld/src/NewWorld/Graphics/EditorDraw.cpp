@@ -46,7 +46,7 @@ namespace NewWorld::Graphics
 		// Compile shaders
 		for (SizeT i = 0; i < shaderManager.GetShadersCount(); i++)
 		{
-			SharedPointer<Editor::Assets::Shader> shader = shaderManager.GetShader(i);
+			SharedPointer<Editor::Assets::Shader> shader = shaderManager.GetShader((uint)i);
 			shader->Compile();
 		}
 	}

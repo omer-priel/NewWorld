@@ -138,9 +138,9 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(toggleButton4);
 
 		// Button
-		SharedPointer<Button> button1(xPos + 50 - 24, yPos + 150 + 100, 80, 26, "Test 1", Colors::CobaltBlue);
-		SharedPointer<Button> button2(xPos + 50 - 24, yPos + 150 + 50, 80, 26, "Test 2");
-		SharedPointer<Button> button3(xPos + 50 - 24, yPos + 150 + 0, 80, 26, "Test 3");
+		SharedPointer<Button> button1(xPos + 50 - 24, yPos + 150 + 100, 80.0f, 26.0f, "Test 1", Colors::CobaltBlue);
+		SharedPointer<Button> button2(xPos + 50 - 24, yPos + 150 + 50, 80.0f, 26.0f, "Test 2");
+		SharedPointer<Button> button3(xPos + 50 - 24, yPos + 150 + 0, 80.0f, 26.0f, "Test 3");
 
 		button1->SetClickHandler([](Component& sender) {
 			Button& button = (Button&)sender;
@@ -199,16 +199,16 @@ namespace NewWorld::Core
 
 		SharedPointer<TextBox> textBox1(
 			xPos + 170, yPos + 150 + 100,
-			"", 250);
+			"", 250.0f);
 
 		SharedPointer<TextBox> textBox2(
 			xPos + 170, yPos + 150 + 50,
-			"A", 150, 10, TextAlign::Center,
+			"A", 150.0f, 10, TextAlign::Center,
 			Colors::LightBlue, Colors::CobaltBlue);
 
 		SharedPointer<TextBox> textBox3(
 			xPos + 170, yPos + 150 + 0,
-			"B", 80, 5, TextAlign::Center);
+			"B", 80.0f, 5, TextAlign::Center);
 
 		textBox1->SetKeyPressedHandler(textBoxDebug);
 		textBox2->SetKeyPressedHandler(textBoxDebug);
@@ -322,7 +322,7 @@ namespace NewWorld::Core
 
 			SharedPointer<BordedLabel> labelColor(
 				xPos + 350 + (i / 10) * 200 + 25, yPos + 200 - (i % 10) * 40,
-				colors[i].Name, 150, (TextAlign)((i / 10) % 3),
+				colors[i].Name, 150.0f, (TextAlign)((i / 10) % 3),
 				Colors::Transparency, colors[i].Color,
 				Colors::Black);
 
