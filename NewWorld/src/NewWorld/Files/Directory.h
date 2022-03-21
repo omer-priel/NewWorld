@@ -39,7 +39,7 @@ namespace NewWorld::Files
 
 		static String GetDirectoryOfFile(const String& path)
 		{
-			return path.Substring(0, path.FindLast('\\') + 1);
+			return path.Substring(0, (SizeT)(path.FindLast('\\') + 1));
 		}
 
 		// Get Directory Entities
