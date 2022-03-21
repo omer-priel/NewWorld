@@ -18,19 +18,19 @@ namespace NewWorld::Graphics
 
 		// Actions Local
 	public:
-		static void DrawLine(float x1, float y1, float x2, float y2, const Graphics::Color& color, uint lineWidth = 1);
+		static void DrawLine(float x1, float y1, float x2, float y2, const Graphics::Color& color, float lineWidth = 1.0f);
 
 		static void DrawRectangle(float x, float y, float width, float height, const Graphics::Color& color);
-		static void DrawOutlineRectangle(float x, float y, float width, float height, const Graphics::Color& color, uint lineWidth = 1);
+		static void DrawOutlineRectangle(float x, float y, float width, float height, const Graphics::Color& color, float lineWidth = 1.0f);
 		
 		static void DrawEllipseSlice(float x, float y, float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount = 42);
-		static void DrawArc(float x, float y, float radiusX, float radiusY, float startAngle, float angleLength, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 42);
+		static void DrawArc(float x, float y, float radiusX, float radiusY, float startAngle, float angleLength, const Graphics::Color& color, float lineWidth = 1.0f, uint verticesCount = 42);
 
 		static void DrawEllipse(float x, float y, float radiusX, float radiusY, const Graphics::Color& color, uint verticesCount = 42);
-		static void DrawOutlineEllipse(float x, float y, float radiusX, float radiusY, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 42);
+		static void DrawOutlineEllipse(float x, float y, float radiusX, float radiusY, const Graphics::Color& color, float lineWidth = 1.0f, uint verticesCount = 42);
 
 		static void DrawOval(float x, float y, float radius, const Graphics::Color& color, uint verticesCount = 42);
-		static void DrawOutlineOval(float x, float y, float radius, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 42);
+		static void DrawOutlineOval(float x, float y, float radius, const Graphics::Color& color, float lineWidth = 1.0f, uint verticesCount = 42);
 
 		static void DrawTexture(float x, float y, float width, float height, Editor::Assets::Texture& texture);
 		static void DrawTexture(float x, float y, float width, float height, Editor::Assets::Texture& texture,
@@ -46,13 +46,13 @@ namespace NewWorld::Graphics
 
 		// Actions Global
 	private:
-		static void DrawLine(RawPointer<Editor::EditorWindow> window, float x1, float y1, float x2, float y2, const Graphics::Color& color, uint lineWidth);
+		static void DrawLine(RawPointer<Editor::EditorWindow> window, float x1, float y1, float x2, float y2, const Graphics::Color& color, float lineWidth);
 
 		static void DrawFillRectangle(RawPointer<Editor::EditorWindow> window, float x, float y, float width, float height, const Graphics::Color& color);
-		static void DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, float x, float y, float width, float height, const Graphics::Color& color, uint lineWidth);
+		static void DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, float x, float y, float width, float height, const Graphics::Color& color, float lineWidth);
 
 		static void DrawEllipseSlice(RawPointer<Editor::EditorWindow> window, float x, float y, float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint verticesCount = 64);
-		static void DrawArc(RawPointer<Editor::EditorWindow> window, float x, float y, float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth = 1, uint verticesCount = 64);
+		static void DrawArc(RawPointer<Editor::EditorWindow> window, float x, float y, float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, float lineWidth = 1.0f, uint verticesCount = 64);
 		
 		static void DrawTexture(RawPointer<Editor::EditorWindow> window, float x, float y, float width, float height,
 			Editor::Assets::Texture& texture, uint sampleX, uint sampleY, uint sampleWidth, uint sampleHeight);

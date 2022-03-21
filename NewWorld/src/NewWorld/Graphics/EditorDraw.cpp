@@ -52,7 +52,7 @@ namespace NewWorld::Graphics
 	}
 
 	// Local
-	void EditorDraw::DrawLine(float x1, float y1, float x2, float y2, const Graphics::Color& color, uint lineWidth)
+	void EditorDraw::DrawLine(float x1, float y1, float x2, float y2, const Graphics::Color& color, float lineWidth)
 	{
 		x1 += LocalPainter::GetX();
 		y1 += LocalPainter::GetY();
@@ -71,7 +71,7 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawOutlineRectangle(float x, float y,
-		float width, float height, const Graphics::Color& color, uint lineWidth)
+		float width, float height, const Graphics::Color& color, float lineWidth)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
@@ -87,7 +87,7 @@ namespace NewWorld::Graphics
 		DrawEllipseSlice(LocalPainter::GetWindow(), x, y, radiusX, radiusY, angleStart, angleLength, color, verticesCount);
 	}
 	
-	void EditorDraw::DrawArc(float x, float y, float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
+	void EditorDraw::DrawArc(float x, float y, float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, float lineWidth, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
@@ -104,7 +104,7 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawOutlineEllipse(float x, float y,
-		float radiusX, float radiusY, const Graphics::Color& color, uint lineWidth, uint verticesCount)
+		float radiusX, float radiusY, const Graphics::Color& color, float lineWidth, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
@@ -120,7 +120,7 @@ namespace NewWorld::Graphics
 		DrawEllipseSlice(LocalPainter::GetWindow(), x, y, radius, radius, 0, NewWorld::Math::PI_2, color, verticesCount);
 	}
 
-	void EditorDraw::DrawOutlineOval(float x, float y, float radius, const Graphics::Color& color, uint lineWidth, uint verticesCount)
+	void EditorDraw::DrawOutlineOval(float x, float y, float radius, const Graphics::Color& color, float lineWidth, uint verticesCount)
 	{
 		x += LocalPainter::GetX();
 		y += LocalPainter::GetY();
@@ -179,7 +179,7 @@ namespace NewWorld::Graphics
 
 	// Global
 	void EditorDraw::DrawLine(RawPointer<Editor::EditorWindow> window, 
-		float x1, float y1, float x2, float y2, const Graphics::Color& color, uint lineWidth)
+		float x1, float y1, float x2, float y2, const Graphics::Color& color, float lineWidth)
 	{
 		GLfloat vertices[] = {
 			x1, y1,
@@ -230,7 +230,7 @@ namespace NewWorld::Graphics
 	}
 
 	void EditorDraw::DrawOutlineRectangle(RawPointer<Editor::EditorWindow> window, float x, float y, 
-		float width, float height, const Graphics::Color& color, uint lineWidth)
+		float width, float height, const Graphics::Color& color, float lineWidth)
 	{
 		GLfloat vertices[] = {
 			x, y,
@@ -284,7 +284,7 @@ namespace NewWorld::Graphics
 	}
 	
 	void EditorDraw::DrawArc(RawPointer<Editor::EditorWindow> window, float x, float y,
-		float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, uint lineWidth, uint verticesCount)
+		float radiusX, float radiusY, float angleStart, float angleLength, const Graphics::Color& color, float lineWidth, uint verticesCount)
 	{
 		GLfloat vertices[] = {
 			x, y
