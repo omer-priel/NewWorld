@@ -1,5 +1,12 @@
-#shader vertex
+#header
 #version 330 core
+
+uniform mat4 u_ProjectionMatrix;
+uniform vec2 u_TextureSize;
+uniform sampler2D u_Texture;
+
+
+#shader vertex
 
 layout(location = 0) in vec4 postion;
 layout(location = 1) in vec2 textureCood;
@@ -11,9 +18,6 @@ out DATA
 
 out vec2 v_TextureCood;
 
-uniform mat4 u_ProjectionMatrix;
-uniform vec2 u_TextureSize;
-
 void main()
 {
     gl_Position = u_ProjectionMatrix * postion;
@@ -21,7 +25,7 @@ void main()
 };
 
 #shader geometry
-#version 330 core
+
 layout (lines) in;
 layout (triangle_strip, max_vertices = 6) out;
 
@@ -74,7 +78,6 @@ void main() {
 };
 
 #shader fragment
-#version 330 core
 
 layout(location = 0) out vec4 color;
 
@@ -82,8 +85,6 @@ in DATA
 {
 	vec2 textureCood;
 } vertex_in;
-
-uniform sampler2D u_Texture;
 
 void main()
 {

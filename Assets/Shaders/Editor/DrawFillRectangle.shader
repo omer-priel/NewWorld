@@ -1,9 +1,13 @@
-#shader vertex
+#header
 #version 330 core
 
-layout(location = 0) in vec4 postion;
-
 uniform mat4 u_ProjectionMatrix;
+
+uniform vec4 u_Color;
+
+#shader vertex
+
+layout(location = 0) in vec4 postion;
 
 void main()
 {
@@ -11,7 +15,7 @@ void main()
 };
 
 #shader geometry
-#version 330 core
+
 layout (lines) in;
 layout (triangle_strip, max_vertices = 6) out;
 
@@ -48,11 +52,8 @@ void main() {
 }
 
 #shader fragment
-#version 330 core
 
 layout(location = 0) out vec4 color;
-
-uniform vec4 u_Color;
 
 void main()
 {

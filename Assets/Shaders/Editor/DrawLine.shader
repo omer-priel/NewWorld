@@ -1,5 +1,14 @@
-#shader vertex
+#header
 #version 330 core
+
+uniform mat4 u_ProjectionMatrix;
+
+uniform float u_LineWidth;
+
+uniform vec4 u_Color;
+
+
+#shader vertex
 
 layout(location = 0) in vec4 postion;
 
@@ -9,12 +18,9 @@ void main()
 };
 
 #shader geometry
-#version 330 core
+
 layout (lines) in;
 layout (triangle_strip, max_vertices = 6) out;
-
-uniform mat4 u_ProjectionMatrix;
-uniform float u_LineWidth;
 
 void drawQuadrate(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
 {
@@ -60,11 +66,8 @@ void main() {
 };
 
 #shader fragment
-#version 330 core
 
 layout(location = 0) out vec4 color;
-
-uniform vec4 u_Color;
 
 void main()
 {
