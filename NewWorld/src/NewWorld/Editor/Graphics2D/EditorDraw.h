@@ -2,17 +2,17 @@
 
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Graphics/Color.h"
-#include "NewWorld/Editor/Graphics/LocalPainter.h"
+#include "NewWorld/Editor/Graphics2D/LocalPainter.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
-namespace NewWorld::Editor::Graphics
+namespace NewWorld::Editor::Graphics2D
 {
-	using Color = NewWorld::Graphics::Color;
+	using Color = Graphics::Color;
 
 	// This is static class
 	class EditorDraw : public Object
 	{
-	NW_CLASS(NewWorld::Editor::Graphics, EditorDraw)
+	NW_CLASS(NewWorld::Editor::Graphics2D, EditorDraw)
 
 		// Initialize Window
 	public:

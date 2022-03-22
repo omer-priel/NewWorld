@@ -1,21 +1,21 @@
 #include "nwpch.h"
 #include "ComponentContainer.h"
 
-#include "NewWorld/Editor/Graphics/LocalPainter.h"
+#include "NewWorld/Editor/Graphics2D/LocalPainter.h"
 
 namespace NewWorld::Editor
 {
 	// Override
 	void ComponentContainer::Update()
 	{
-		Editor::Graphics::LocalPainter::Enter(*this);
+		Graphics2D::LocalPainter::Enter(*this);
 
 		for (SharedPointer<Component>& component : m_Components)
 		{
 			component->Update();
 		}
 
-		Editor::Graphics::LocalPainter::Leave(*this);
+		Graphics2D::LocalPainter::Leave(*this);
 
 		Component::Update();
 	}

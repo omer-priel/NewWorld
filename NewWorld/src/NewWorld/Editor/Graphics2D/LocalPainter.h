@@ -8,12 +8,12 @@ namespace Editor
 	class ComponentContainer;
 }
 
-namespace NewWorld::Editor::Graphics
+namespace NewWorld::Editor::Graphics2D
 {
 	// This is static class
 	class LocalPainter : public Object
 	{
-	NW_CLASS(NewWorld::Editor::Graphics, LocalPainter)
+	NW_CLASS(NewWorld::Editor::Graphics2D, LocalPainter)
 			
 		// Members
 	private:

@@ -10,7 +10,7 @@
 #include <GLM/glm.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
 
-namespace NewWorld::Editor::Graphics
+namespace NewWorld::Editor::Graphics2D
 {
 	static constexpr uint SHADER_LINE = 0;
 	static constexpr uint SHADER_FILL_RECTANGLE = 1;

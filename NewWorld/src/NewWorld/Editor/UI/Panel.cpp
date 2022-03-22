@@ -1,14 +1,14 @@
 #include "nwpch.h"
 #include "Panel.h"
 
-#include "NewWorld/Editor/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics2D/EditorDraw.h"
 
 namespace NewWorld::Editor::UI
 {
 	// Override
 	void Panel::Update()
 	{
-		Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+		Graphics2D::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
 
 		ComponentContainer::Update();
 	}

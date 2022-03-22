@@ -2,7 +2,7 @@
 #include "RadioButton.h"
 
 #include "NewWorld/Editor/UI/RadioButtonGroup.h"
-#include "NewWorld/Editor/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics2D/EditorDraw.h"
 
 namespace NewWorld::Editor::UI
 {
@@ -24,14 +24,14 @@ namespace NewWorld::Editor::UI
 
 		if (m_Checked)
 		{
-			Graphics::EditorDraw::DrawOval(m_X + 8, m_Y + 8, 3, m_ForegroundCheckedColor, 32);
-			Graphics::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 6, m_BackgroundColor, 3, 32);
-			Graphics::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 8, m_ForegroundCheckedColor, 2, 32);
+			Graphics2D::EditorDraw::DrawOval(m_X + 8, m_Y + 8, 3, m_ForegroundCheckedColor, 32);
+			Graphics2D::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 6, m_BackgroundColor, 3, 32);
+			Graphics2D::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 8, m_ForegroundCheckedColor, 2, 32);
 		}
 		else
 		{
-			Graphics::EditorDraw::DrawOval(m_X + 8, m_Y + 8, 6, m_BackgroundColor, 32);
-			Graphics::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 8, m_ForegroundColor, 2, 32);
+			Graphics2D::EditorDraw::DrawOval(m_X + 8, m_Y + 8, 6, m_BackgroundColor, 32);
+			Graphics2D::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 8, m_ForegroundColor, 2, 32);
 		}
 	}
 

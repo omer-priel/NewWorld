@@ -1,7 +1,7 @@
 #include "nwpch.h"
 #include "ToggleButton.h"
 
-#include "NewWorld/Editor/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics2D/EditorDraw.h"
 
 namespace NewWorld::Editor::UI
 {
@@ -12,23 +12,23 @@ namespace NewWorld::Editor::UI
 
 		if (m_Checked)
 		{
-			Graphics::EditorDraw::DrawRectangle(m_X + 7, m_Y, 16.0f, m_Height, m_BackgroundCheckedColor);
-			Graphics::EditorDraw::DrawEllipseSlice(m_X + 7, m_Y + 7, 7.0f, 7.0f,
+			Graphics2D::EditorDraw::DrawRectangle(m_X + 7, m_Y, 16.0f, m_Height, m_BackgroundCheckedColor);
+			Graphics2D::EditorDraw::DrawEllipseSlice(m_X + 7, m_Y + 7, 7.0f, 7.0f,
 				Math::PI, Math::PI, m_BackgroundCheckedColor, 12);
-			Graphics::EditorDraw::DrawEllipseSlice(m_X + m_Width - 7, m_Y + 7, 7.0f, 7.0f,
+			Graphics2D::EditorDraw::DrawEllipseSlice(m_X + m_Width - 7, m_Y + 7, 7.0f, 7.0f,
 				0, Math::PI, m_BackgroundCheckedColor, 12);
 
-			Graphics::EditorDraw::DrawOval(m_X + m_Width - 7, m_Y + 7, 4.0f, m_ForegroundColor);
+			Graphics2D::EditorDraw::DrawOval(m_X + m_Width - 7, m_Y + 7, 4.0f, m_ForegroundColor);
 		}
 		else
 		{
-			Graphics::EditorDraw::DrawRectangle(m_X + 7, m_Y, 16.0f, m_Height, m_BackgroundColor);
-			Graphics::EditorDraw::DrawEllipseSlice(m_X + 7, m_Y + 7, 7.0f, 7.0f,
+			Graphics2D::EditorDraw::DrawRectangle(m_X + 7, m_Y, 16.0f, m_Height, m_BackgroundColor);
+			Graphics2D::EditorDraw::DrawEllipseSlice(m_X + 7, m_Y + 7, 7.0f, 7.0f,
 				Math::PI, Math::PI, m_BackgroundColor, 12);
-			Graphics::EditorDraw::DrawEllipseSlice(m_X + m_Width - 7, m_Y + 7, 7.0f, 7.0f,
+			Graphics2D::EditorDraw::DrawEllipseSlice(m_X + m_Width - 7, m_Y + 7, 7.0f, 7.0f,
 				0, Math::PI, m_BackgroundColor, 12);
 
-			Graphics::EditorDraw::DrawOval(m_X + 7, m_Y + 7, 4.0f, m_ForegroundColor);
+			Graphics2D::EditorDraw::DrawOval(m_X + 7, m_Y + 7, 4.0f, m_ForegroundColor);
 		}
 	}
 

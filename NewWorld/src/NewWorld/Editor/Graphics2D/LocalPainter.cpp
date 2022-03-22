@@ -3,7 +3,7 @@
 
 #include "NewWorld/Editor/ComponentContainer.h"
 
-namespace NewWorld::Editor::Graphics
+namespace NewWorld::Editor::Graphics2D
 {
 	RawPointer<EditorWindow> LocalPainter::m_Window = nullptr;
 	
