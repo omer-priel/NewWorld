@@ -1,5 +1,5 @@
 #header
-#version 330 core
+#version 460 core
 
 uniform mat4 u_ProjectionMatrix;
 uniform float u_LineWidth;

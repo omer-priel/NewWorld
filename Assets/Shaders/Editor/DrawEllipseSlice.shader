@@ -1,5 +1,5 @@
 #header
-#version 330 core
+#version 460 core
 
 uniform mat4 u_ProjectionMatrix;
 
@@ -9,7 +9,6 @@ uniform vec2 u_Radius;
 uniform int u_VerticesCount;
 
 uniform vec4 u_Color;
-
 
 #shader vertex
 

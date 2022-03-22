@@ -1,10 +1,9 @@
 #header
-#version 330 core
+#version 460 core
 
 uniform mat4 u_ProjectionMatrix;
 uniform vec2 u_TextureSize;
 uniform sampler2D u_Texture;
-
 
 #shader vertex
 
