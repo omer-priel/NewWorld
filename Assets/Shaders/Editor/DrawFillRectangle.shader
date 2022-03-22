@@ -46,8 +46,8 @@ void drawRectangle(float x1, float y1, float x2, float y2)
     EndPrimitive();
 }
 
-void main() {
-
+void main()
+{
 	drawRectangle(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y, gl_in[1].gl_Position.x, gl_in[1].gl_Position.y);
 }
 

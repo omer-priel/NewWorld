@@ -38,8 +38,8 @@ out DATA
 	vec2 textureCood;
 } vertex_out;
 
-void main() {
-
+void main()
+{
 	vec4 v1 = gl_in[0].gl_Position;
 	vec4 v2 = gl_in[1].gl_Position;
 

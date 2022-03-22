@@ -52,8 +52,8 @@ void drawQuadrate(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
     EndPrimitive();
 }
 
-void main() {
-
+void main()
+{
 	vec2 center = vec2(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
 	
 	vec4 lineWidth = u_ProjectionMatrix * vec4(u_LineWidth, u_LineWidth, 0.0, 1.0);
