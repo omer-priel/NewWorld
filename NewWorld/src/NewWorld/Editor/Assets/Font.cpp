@@ -126,10 +126,10 @@ namespace NewWorld::Editor::Assets
 		{
 			auto& character = style.GetCharacter(text[i]);
 
-			float x = character.OriginX + character.Width;
+			float x = (float)(character.OriginX + character.Width);
 			
-			float y1 = character.OriginY;
-			float y2 = character.OriginY + character.Height;
+			float y1 = (float)character.OriginY;
+			float y2 = (float)(character.OriginY + character.Height);
 
 			if (maxWidth > 0) {
 				if ((panintedX + x) * sizeRatio > maxWidth)

@@ -5,7 +5,7 @@
 
 namespace NewWorld::Editor::Assets
 {
-		int ShaderManager::LoadShader(String asset)
+	int ShaderManager::LoadShader(String asset)
 	{
 		SharedPointer<Shader> shader;
 		bool loaded = shader->LoadFromFile(asset);
@@ -13,15 +13,15 @@ namespace NewWorld::Editor::Assets
 		if (loaded)
 		{
 			m_Shaders.push_back(shader);
-			return m_Shaders.size() - 1;
+			return (int)(m_Shaders.size() - 1);
 		}
 
 		return -1;
 	}
 
-	SharedPointer<Shader> ShaderManager::GetShader(int id)
+	SharedPointer<Shader> ShaderManager::GetShader(uint id)
 	{
-		NW_ASSERT(0 <= id && id < m_Shaders.size(), "The Shader id {} not found!");
+		NW_ASSERT(id < m_Shaders.size(), "The Shader id {} not found!");
 
 		return m_Shaders[id];
 	}

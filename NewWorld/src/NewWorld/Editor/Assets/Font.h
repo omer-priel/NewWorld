@@ -28,14 +28,14 @@ namespace NewWorld::Editor::Assets
 
 			// Members
 		public:
-			char Name;
-			short AtlasX;
-			short AtlasY;
-			short Width;
-			short Height;
-			short OriginX;
-			short OriginY;
-			short PainterStepX;
+			char Name = '\0';
+			short AtlasX = 0;
+			short AtlasY = 0;
+			short Width = 0;
+			short Height = 0;
+			short OriginX = 0;
+			short OriginY = 0;
+			short PainterStepX = 0;
 		};
 
 	public:
@@ -115,7 +115,7 @@ namespace NewWorld::Editor::Assets
 
 		inline const Style& GetStyle(bool bold, bool italic) const
 		{
-			return m_Styles[bold + italic * 2];
+			return m_Styles[(SizeT)bold + (SizeT)italic * 2];
 		}
 
 		inline const Character& GetCharacterByID(uint id, bool bold, bool italic) const

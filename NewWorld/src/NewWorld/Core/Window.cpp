@@ -109,7 +109,7 @@ namespace NewWorld::Core
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
 
-	static void test1(Editor::EditorWindow& window, uint xPos, uint yPos)
+	static void test1(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		using namespace NewWorld::Graphics;
 		using namespace NewWorld::Editor;
@@ -138,9 +138,9 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(toggleButton4);
 
 		// Button
-		SharedPointer<Button> button1(xPos + 50 - 24, yPos + 150 + 100, 80, 26, "Test 1", Colors::CobaltBlue);
-		SharedPointer<Button> button2(xPos + 50 - 24, yPos + 150 + 50, 80, 26, "Test 2");
-		SharedPointer<Button> button3(xPos + 50 - 24, yPos + 150 + 0, 80, 26, "Test 3");
+		SharedPointer<Button> button1(xPos + 50 - 24, yPos + 150 + 100, 80.0f, 26.0f, "Test 1", Colors::CobaltBlue);
+		SharedPointer<Button> button2(xPos + 50 - 24, yPos + 150 + 50, 80.0f, 26.0f, "Test 2");
+		SharedPointer<Button> button3(xPos + 50 - 24, yPos + 150 + 0, 80.0f, 26.0f, "Test 3");
 
 		button1->SetClickHandler([](Component& sender) {
 			Button& button = (Button&)sender;
@@ -188,7 +188,7 @@ namespace NewWorld::Core
 		auto textBoxDebug = [](Component& sender, Input::Key key) {
 			TextBox& textBox = (TextBox&)sender;
 
-			static uint lastLength = 0;
+			static SizeT lastLength = 0;
 
 			if (textBox.GetValue().GetLength() == lastLength)
 			{
@@ -199,16 +199,16 @@ namespace NewWorld::Core
 
 		SharedPointer<TextBox> textBox1(
 			xPos + 170, yPos + 150 + 100,
-			"", 250);
+			"", 250.0f);
 
 		SharedPointer<TextBox> textBox2(
 			xPos + 170, yPos + 150 + 50,
-			"A", 150, 10, TextAlign::Center,
+			"A", 150.0f, 10, TextAlign::Center,
 			Colors::LightBlue, Colors::CobaltBlue);
 
 		SharedPointer<TextBox> textBox3(
 			xPos + 170, yPos + 150 + 0,
-			"B", 80, 5, TextAlign::Center);
+			"B", 80.0f, 5, TextAlign::Center);
 
 		textBox1->SetKeyPressedHandler(textBoxDebug);
 		textBox2->SetKeyPressedHandler(textBoxDebug);
@@ -322,7 +322,7 @@ namespace NewWorld::Core
 
 			SharedPointer<BordedLabel> labelColor(
 				xPos + 350 + (i / 10) * 200 + 25, yPos + 200 - (i % 10) * 40,
-				colors[i].Name, 150, (TextAlign)((i / 10) % 3),
+				colors[i].Name, 150.0f, (TextAlign)((i / 10) % 3),
 				Colors::Transparency, colors[i].Color,
 				Colors::Black);
 
@@ -354,7 +354,7 @@ namespace NewWorld::Core
 		selected7.Toggle();
 	}
 
-	static void test2(Editor::EditorWindow& window, uint xPos, uint yPos)
+	static void test2(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		using namespace NewWorld::Graphics;
 		using namespace NewWorld::Editor;
@@ -363,7 +363,7 @@ namespace NewWorld::Core
 		
 	}
 
-	static void test(Editor::EditorWindow& window, uint xPos, uint yPos)
+	static void test(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		test1(window, xPos, yPos);
 	}
@@ -411,7 +411,7 @@ namespace NewWorld::Core
 						yPos = (double)window.GetHeight() - yPos;
 
 						// Create new UI Components
-						test(window, xPos, yPos);
+						test(window, (float)xPos, (float)yPos);
 					}
 					//
 
@@ -434,17 +434,17 @@ namespace NewWorld::Core
 			{
 				case GLFW_PRESS:
 				{
-					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), (float)xPos, (float)yPos);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					window.MouseKeyPressed(ConvertMouseButtonKeyToKey(key), (float)xPos, (float)yPos);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					window.MouseKeyReleased(ConvertMouseButtonKeyToKey(key), xPos, yPos);
+					window.MouseKeyReleased(ConvertMouseButtonKeyToKey(key), (float)xPos, (float)yPos);
 					break;
 				}
 			}
@@ -455,13 +455,13 @@ namespace NewWorld::Core
 
 			yPos = (double)window.GetHeight() - yPos;
 
-			window.MouseHover(xPos, yPos);
+			window.MouseHover((float)xPos, (float)yPos);
 		});
 
 		glfwSetScrollCallback(m_WinHandle, [](GLFWwindow* winHandle, double xOffset, double yOffset) {
 			Editor::EditorWindow& window = *(Editor::EditorWindow*)glfwGetWindowUserPointer(winHandle);
 
-			window.MouseScrolled(yOffset);
+			window.MouseScrolled((uint)yOffset);
 		});
 	}
 
