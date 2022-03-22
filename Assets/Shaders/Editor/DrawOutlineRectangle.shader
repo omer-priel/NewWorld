@@ -1,9 +1,14 @@
-#shader vertex
-#version 330 core
-
-layout(location = 0) in vec4 postion;
+#header
+#version 460 core
 
 uniform mat4 u_ProjectionMatrix;
+uniform float u_LineWidth;
+
+uniform vec4 u_Color;
+
+#shader vertex
+
+layout(location = 0) in vec4 postion;
 
 void main()
 {
@@ -11,12 +16,9 @@ void main()
 };
 
 #shader geometry
-#version 330 core
+
 layout (lines) in;
 layout (triangle_strip, max_vertices = 24) out;
-
-uniform mat4 u_ProjectionMatrix;
-uniform float u_LineWidth;
 
 void drawRectangle(float x1, float y1, float x2, float y2)
 {
@@ -45,8 +47,8 @@ void drawRectangle(float x1, float y1, float x2, float y2)
     EndPrimitive();
 }
 
-void main() {
-	
+void main()
+{	
 	float x1 = gl_in[0].gl_Position.x;
 	float y1 = gl_in[0].gl_Position.y;
 	float x2 = gl_in[1].gl_Position.x;
@@ -69,11 +71,8 @@ void main() {
 };
 
 #shader fragment
-#version 330 core
 
 layout(location = 0) out vec4 color;
-
-uniform vec4 u_Color;
 
 void main()
 {

@@ -390,16 +390,20 @@ namespace NewWorldPlugin
 			string targetPath = folder + "\\" + fileName + ".nws";
 
 			// Load the File
+			string[] generalPartTypes = {
+				"#header",
+			};
+
 			string[] shaderPartTypes = {
 				"#shader vertex",
 				"#shader geometry",
 				"#shader fragment"
 			};
 
-			string[] shaderParts = new string[shaderPartTypes.Length];
-			for (int i = 0; i < shaderParts.Length; i++)
+			string[] parts = new string[generalPartTypes.Length + shaderPartTypes.Length];
+			for (int i = 0; i < parts.Length; i++)
 			{
-				shaderParts[i] = "";
+				parts[i] = "";
 			}
 
 			int index = -1;
@@ -409,26 +413,41 @@ namespace NewWorldPlugin
 			string line;
 			while ((line = reader.ReadLine()) != null)
 			{
-				if (line.StartsWith("#shader"))
+				if (line.StartsWith("#shader") || line.StartsWith("#header"))
 				{
 					index = -1;
+					for (int i = 0; i < generalPartTypes.Length && index == -1; i++)
+					{
+						if (line.StartsWith(generalPartTypes[i]))
+						{
+							index = i;
+						}
+					}
+
 					for (int i = 0; i < shaderPartTypes.Length && index == -1; i++)
 					{
 						if (line.StartsWith(shaderPartTypes[i]))
 						{
-							index = i;
+							index = generalPartTypes.Length + i;
 						}
 					}
 				}
 				else if (index != -1 && line.Length > 0)
 				{
-					if (shaderParts[index].Length == 0)
+					while (line.Contains("//"))
 					{
-						shaderParts[index] = line;
+						line = line.Substring(0, line.IndexOf("//"));
 					}
-					else
+					if (line.Replace(" ", "").Replace("\t", "").Length > 0)
 					{
-						shaderParts[index] += "\n" + line;
+						if (parts[index].Length == 0)
+						{
+							parts[index] = line;
+						}
+						else
+						{
+							parts[index] += "\n" + line;
+						}
 					}
 				}
 			}
@@ -436,8 +455,17 @@ namespace NewWorldPlugin
 			// Create the .nws file
 			BinaryWriter writer = new BinaryWriter(new FileStream(targetPath, FileMode.Create));
 
-			foreach (var shaderPart in shaderParts)
+			string header = parts[0];
+
+			for (int i = generalPartTypes.Length; i < parts.Length; i++)
 			{
+				string shaderPart = parts[i];
+
+				if (header.Length > 0 && shaderPart.Length > 0)
+				{
+					shaderPart = header + "\n" + shaderPart;
+				}
+
 				writer.Write(shaderPart.Length);
 				writer.Write(shaderPart.ToArray(), 0, shaderPart.Length);
 			}

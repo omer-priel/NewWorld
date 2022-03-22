@@ -1,9 +1,18 @@
-#shader vertex
-#version 330 core
-
-layout(location = 0) in vec4 postion;
+#header
+#version 460 core
 
 uniform mat4 u_ProjectionMatrix;
+
+uniform float u_AngleStart;
+uniform float u_AngleLength;
+uniform vec2 u_Radius;
+uniform int u_VerticesCount;
+
+uniform vec4 u_Color;
+
+#shader vertex
+
+layout(location = 0) in vec4 postion;
 
 void main()
 {
@@ -11,15 +20,9 @@ void main()
 };
 
 #shader geometry
-#version 330 core
+
 layout (points) in;
 layout (triangle_strip, max_vertices = 255) out;
-
-uniform mat4 u_ProjectionMatrix;
-uniform float u_AngleStart;
-uniform float u_AngleLength;
-uniform vec2 u_Radius;
-uniform int u_VerticesCount;
 
 void drawTriangle(vec2 v1, vec2 v2, vec2 v3)
 {
@@ -35,8 +38,8 @@ void drawTriangle(vec2 v1, vec2 v2, vec2 v3)
 	EndPrimitive();
 }
 
-void main() {
-
+void main()
+{
 	vec2 center = vec2(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
 
 	vec4 radius = u_ProjectionMatrix * vec4(u_Radius.x, u_Radius.y, 0.0, 1.0);
@@ -62,11 +65,8 @@ void main() {
 };
 
 #shader fragment
-#version 330 core
 
 layout(location = 0) out vec4 color;
-
-uniform vec4 u_Color;
 
 void main()
 {

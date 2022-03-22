@@ -1,20 +1,25 @@
+#header
+#version 460 core
+
+uniform mat4 u_ProjectionMatrix;
+
+uniform float u_LineWidth;
+
+uniform vec4 u_Color;
+
 #shader vertex
-#version 330 core
 
 layout(location = 0) in vec4 postion;
 
 void main()
 {
-    gl_Position = postion;
+	gl_Position = postion;
 };
 
 #shader geometry
-#version 330 core
+
 layout (lines) in;
 layout (triangle_strip, max_vertices = 6) out;
-
-uniform mat4 u_ProjectionMatrix;
-uniform float u_LineWidth;
 
 void drawQuadrate(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
 {
@@ -43,8 +48,8 @@ void drawQuadrate(vec2 v1, vec2 v2, vec2 v3, vec2 v4)
     EndPrimitive();
 }
 
-void main() {
-
+void main()
+{
 	vec2 v1 = vec2(gl_in[0].gl_Position.x, gl_in[0].gl_Position.y);
 	vec2 v2 = vec2(gl_in[1].gl_Position.x, gl_in[1].gl_Position.y);
 
@@ -60,11 +65,8 @@ void main() {
 };
 
 #shader fragment
-#version 330 core
 
 layout(location = 0) out vec4 color;
-
-uniform vec4 u_Color;
 
 void main()
 {
