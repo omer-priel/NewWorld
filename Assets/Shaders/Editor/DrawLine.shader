@@ -14,7 +14,7 @@ layout(location = 0) in vec4 postion;
 
 void main()
 {
-    gl_Position = postion;
+	gl_Position = postion;
 };
 
 #shader geometry
