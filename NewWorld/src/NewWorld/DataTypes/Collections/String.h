@@ -251,7 +251,8 @@ namespace NewWorld::DataTypes::Collections
 					stream.write(&(format[index]), nextArg - index);
 					if (valuesIndex < values.size())
 					{
-						stream.write(values[valuesIndex].GetPointer(), values[valuesIndex].GetLength());
+						String& value = values[valuesIndex];
+						stream.write(value.GetPointer(), value.GetLength());
 						valuesIndex++;
 					}
 					index = nextArg + 2;
