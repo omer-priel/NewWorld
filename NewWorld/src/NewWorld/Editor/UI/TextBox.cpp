@@ -1,7 +1,7 @@
 #include "nwpch.h"
 #include "TextBox.h"
 
-#include "NewWorld/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics/EditorDraw.h"
 
 namespace NewWorld::Editor::UI
 {
@@ -36,11 +36,11 @@ namespace NewWorld::Editor::UI
 		// draw
 		if (m_Selected)
 		{
-			Graphics::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, Graphics::Colors::EditorBlueInputBackground, 1);
+			Graphics::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, NewWorld::Graphics::Colors::EditorBlueInputBackground, 1);
 		}
 		else
 		{
-			Graphics::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, Graphics::Colors::EditorDarkValue, 1);
+			Graphics::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, NewWorld::Graphics::Colors::EditorDarkValue, 1);
 		}
 
 		Graphics::EditorDraw::DrawRectangle(m_X+1, m_Y+1, m_Width-2, m_Height-2, m_BackgroundColor);

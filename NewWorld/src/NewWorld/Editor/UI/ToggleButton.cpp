@@ -1,7 +1,7 @@
 #include "nwpch.h"
 #include "ToggleButton.h"
 
-#include "NewWorld/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics/EditorDraw.h"
 
 namespace NewWorld::Editor::UI
 {

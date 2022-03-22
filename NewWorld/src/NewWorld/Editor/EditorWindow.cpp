@@ -1,8 +1,8 @@
 #include "nwpch.h"
 #include "EditorWindow.h"
 
-#include "NewWorld/Graphics/LocalPainter.h"
-#include "NewWorld/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics/LocalPainter.h"
+#include "NewWorld/Editor/Graphics/EditorDraw.h"
 
 namespace NewWorld::Editor
 {

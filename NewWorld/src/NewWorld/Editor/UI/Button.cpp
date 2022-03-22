@@ -1,7 +1,7 @@
 #include "nwpch.h"
 #include "Button.h"
 
-#include "NewWorld/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics/EditorDraw.h"
 
 namespace NewWorld::Editor::UI
 {
@@ -12,22 +12,22 @@ namespace NewWorld::Editor::UI
 
 		if (m_Clicked)
 		{
-			Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
-			Graphics::EditorDraw::DrawRectangle(m_X+2, m_Y+2, m_Width-4, m_Height-4,
-				m_BackgroundColor + Graphics::ColorFunctions::FromRGBA(25, 25, 25, 255));
+			Editor::Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+			Editor::Graphics::EditorDraw::DrawRectangle(m_X+2, m_Y+2, m_Width-4, m_Height-4,
+				m_BackgroundColor + NewWorld::Graphics::ColorFunctions::FromRGBA(25, 25, 25, 255));
 		}
 		else
 		{
-			Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+			Editor::Graphics::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
 		}
 		
-		const Editor::Assets::Font& font = *(GetWindow()->GetFontManager().GetFont(0));
+		const Assets::Font& font = *(GetWindow()->GetFontManager().GetFont(0));
 
 		Vector4 bounds = font.GetDrawBounds(m_Text, m_FontSize, m_Bold, m_Italic, m_Width - 12);
 
 		float newX = m_X + ((m_Width - bounds.z + bounds.x) / 2);
 
-		Graphics::EditorDraw::DrawString(newX, m_Y + 6,
+		Editor::Graphics::EditorDraw::DrawString(newX, m_Y + 6,
 			m_Text, m_TextColor, m_FontSize, m_Width - 12, m_Bold, m_Italic);
 	}
 

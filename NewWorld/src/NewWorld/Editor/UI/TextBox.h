@@ -31,8 +31,8 @@ namespace NewWorld::Editor::UI
 
 	public:
 		TextBox(float x, float y, const String& defaltValue, float width, uint maxLength = 50, TextAlign textAlign = TextAlign::Left,
-			const Graphics::Color& backgroundColor = Graphics::Colors::EditorLightInputBackground,
-			const Graphics::Color& textColor = Graphics::Colors::EditorDarkValue)
+			const Graphics::Color& backgroundColor = NewWorld::Graphics::Colors::EditorLightInputBackground,
+			const Graphics::Color& textColor = NewWorld::Graphics::Colors::EditorDarkValue)
 			: Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_MaxLength(maxLength), m_TextAlign(textAlign),
 			m_Selected(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)

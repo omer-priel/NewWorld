@@ -2,7 +2,7 @@
 #include "RadioButton.h"
 
 #include "NewWorld/Editor/UI/RadioButtonGroup.h"
-#include "NewWorld/Graphics/EditorDraw.h"
+#include "NewWorld/Editor/Graphics/EditorDraw.h"
 
 namespace NewWorld::Editor::UI
 {
