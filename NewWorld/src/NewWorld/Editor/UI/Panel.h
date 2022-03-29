@@ -1,13 +1,13 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/ComponentContainer.h"
+#include "NewWorld/Editor/Components/ComponentContainer.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 
 namespace NewWorld::Editor::UI
 {
-	class Panel : public ComponentContainer
+	class Panel : public Components::ComponentContainer
 	{
 	NW_CLASS(NewWorld::Editor::UI, Panel)
 
@@ -17,7 +17,7 @@ namespace NewWorld::Editor::UI
 
 	public:
 		Panel(float x, float y, float width, float height, const Graphics::Color& backgroundColor = Graphics::Colors::EditorBackground)
-			: ComponentContainer(x, y, width, height), m_BackgroundColor(backgroundColor)
+			: Components::ComponentContainer(x, y, width, height), m_BackgroundColor(backgroundColor)
 		{
 
 		}

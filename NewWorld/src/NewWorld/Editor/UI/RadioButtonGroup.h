@@ -1,13 +1,13 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 
 namespace NewWorld::Editor::UI
 {
 	class RadioButton;
 	
-	class RadioButtonGroup : public Component
+	class RadioButtonGroup : public Components::Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, RadioButtonGroup)
 
@@ -22,7 +22,7 @@ namespace NewWorld::Editor::UI
 
 	public:
 		RadioButtonGroup()
-			: Component(0, 0, 0, 0), m_CheckedRadioButton(nullptr)
+			: Components::Component(0, 0, 0, 0), m_CheckedRadioButton(nullptr)
 		{
 
 		}

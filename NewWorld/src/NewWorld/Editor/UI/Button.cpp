@@ -5,6 +5,7 @@
 
 namespace NewWorld::Editor::UI
 {
+	using namespace NewWorld::Editor::Components;
 	// Override
 	void Button::Update()
 	{

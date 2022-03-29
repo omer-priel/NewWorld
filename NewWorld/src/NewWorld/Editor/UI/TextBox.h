@@ -1,14 +1,14 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 #include "NewWorld/Editor/UI/TextAlign.h"
 
 namespace NewWorld::Editor::UI
 {
-	class TextBox : public Component
+	class TextBox : public Components::Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, TextBox)
 
@@ -33,7 +33,7 @@ namespace NewWorld::Editor::UI
 		TextBox(float x, float y, const String& defaltValue, float width, uint maxLength = 50, TextAlign textAlign = TextAlign::Left,
 			const Graphics::Color& backgroundColor = NewWorld::Graphics::Colors::EditorLightInputBackground,
 			const Graphics::Color& textColor = NewWorld::Graphics::Colors::EditorDarkValue)
-			: Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_MaxLength(maxLength), m_TextAlign(textAlign),
+			: Components::Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_MaxLength(maxLength), m_TextAlign(textAlign),
 			m_Selected(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{

@@ -1,13 +1,13 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 
 namespace NewWorld::Editor::UI
 {
-	class Button : public Component
+	class Button : public Components::Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, Button)
 
@@ -29,7 +29,7 @@ namespace NewWorld::Editor::UI
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
 			const Graphics::Color& textColor = Graphics::Colors::EditorLightValue,
 			uint fontSize = 14)
-			: Component(x, y, width, height), m_Text(text), m_FontSize(fontSize),
+			: Components::Component(x, y, width, height), m_Text(text), m_FontSize(fontSize),
 			m_Bold(false), m_Italic(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{

@@ -1,13 +1,13 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 
-namespace NewWorld::Editor
+namespace NewWorld::Editor::Components
 {
 	class ComponentContainer : public Component
 	{
-	NW_CLASS(NewWorld::Editor, ComponentContainer)
+	NW_CLASS(NewWorld::Editor::Components, ComponentContainer)
 
 		// Members
 	private:

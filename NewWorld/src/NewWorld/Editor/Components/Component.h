@@ -7,10 +7,13 @@
 namespace NewWorld::Editor
 {
 	class EditorWindow;
+}
 
+namespace NewWorld::Editor::Components
+{
 	class Component : public Object
 	{
-	NW_CLASS(NewWorld::Editor, Component)
+	NW_CLASS(NewWorld::Editor::Components, Component)
 
 		// Members
 	private:

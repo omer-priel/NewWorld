@@ -1,13 +1,13 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 
 namespace NewWorld::Editor::UI
 {
-	class CheckBox : public Component
+	class CheckBox : public Components::Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, CheckBox)
 
@@ -26,7 +26,7 @@ namespace NewWorld::Editor::UI
 		CheckBox(float x, float y, bool checked = false,
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
 			const Graphics::Color& foregroundColor = Graphics::Colors::EditorDarkValue)
-			: Component(x, y, CHECKBOX_SIZE, CHECKBOX_SIZE), m_Checked(checked),
+			: Components::Component(x, y, CHECKBOX_SIZE, CHECKBOX_SIZE), m_Checked(checked),
 			m_BackgroundColor(backgroundColor), m_ForegroundColor(foregroundColor)
 		{
 

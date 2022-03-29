@@ -3,7 +3,7 @@
 
 #include "NewWorld/Editor/Graphics2D/LocalPainter.h"
 
-namespace NewWorld::Editor
+namespace NewWorld::Editor::Components
 {
 	// Override
 	void ComponentContainer::Update()

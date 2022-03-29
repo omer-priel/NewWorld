@@ -3,7 +3,7 @@
 #include "NewWorld/Minimal.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
-namespace Editor
+namespace Editor::Components
 {
 	class ComponentContainer;
 }
@@ -37,13 +37,13 @@ namespace NewWorld::Editor::Graphics2D
 			m_Y = 0;
 		}
 
-		static void Enter(ComponentContainer& component)
+		static void Enter(Components::ComponentContainer& component)
 		{
 			m_X += component.GetX();
 			m_Y += component.GetY();
 		}
 
-		static void Leave(ComponentContainer& component)
+		static void Leave(Components::ComponentContainer& component)
 		{
 			m_X -= component.GetX();
 			m_Y -= component.GetY();

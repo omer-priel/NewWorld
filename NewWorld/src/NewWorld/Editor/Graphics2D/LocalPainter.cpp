@@ -1,7 +1,7 @@
 #include "nwpch.h"
 #include "LocalPainter.h"
 
-#include "NewWorld/Editor/ComponentContainer.h"
+#include "NewWorld/Editor/Components/ComponentContainer.h"
 
 namespace NewWorld::Editor::Graphics2D
 {

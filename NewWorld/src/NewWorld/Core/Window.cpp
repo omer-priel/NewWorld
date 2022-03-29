@@ -17,6 +17,8 @@
 
 namespace NewWorld::Core
 {
+	using namespace Editor::Components;
+
 	// Utilities
 	static Input::Key ConvertMouseButtonKeyToKey(int key)
 	{

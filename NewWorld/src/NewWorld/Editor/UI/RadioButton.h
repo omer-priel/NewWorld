@@ -1,7 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 
@@ -9,7 +9,7 @@ namespace NewWorld::Editor::UI
 {
 	class RadioButtonGroup;
 
-	class RadioButton : public Component
+	class RadioButton : public Components::Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, RadioButton)
 

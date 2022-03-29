@@ -1,13 +1,13 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 
 namespace NewWorld::Editor::UI
 {
-	class ToggleButton : public Component
+	class ToggleButton : public Components::Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, ToggleButton)
 
@@ -24,7 +24,7 @@ namespace NewWorld::Editor::UI
 			const Graphics::Color& backgroundColor = Graphics::Colors::EditorDarkInputBackground,
 			const Graphics::Color& backgroundCheckedColor = Graphics::Colors::EditorBlueInputBackground,
 			const Graphics::Color& foregroundColor = Graphics::Colors::EditorLightValue)
-			: Component(x, y, 30, 14), m_Checked(checked),
+			: Components::Component(x, y, 30, 14), m_Checked(checked),
 			m_BackgroundColor(backgroundColor), m_BackgroundCheckedColor(backgroundCheckedColor),
 			m_ForegroundColor(foregroundColor)
 		{

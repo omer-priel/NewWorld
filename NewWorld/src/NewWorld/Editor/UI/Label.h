@@ -1,14 +1,14 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Component.h"
+#include "NewWorld/Editor/Components/Component.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 #include "NewWorld/Editor/UI/TextAlign.h"
 
 namespace NewWorld::Editor::UI
 {
-	class Label : public Component
+	class Label : public Components::Component
 	{
 	NW_CLASS(NewWorld::Editor::UI, Label)
 
@@ -36,7 +36,7 @@ namespace NewWorld::Editor::UI
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
 			uint fontSize = LABEL_DEFUALT_FONT_SIZE)
-			: Component(x, y, width, LABEL_DEFUALT_HEIGHT), m_Text(text), m_TextAlign(textAlign), m_FontSize(fontSize),
+			: Components::Component(x, y, width, LABEL_DEFUALT_HEIGHT), m_Text(text), m_TextAlign(textAlign), m_FontSize(fontSize),
 			m_Bold(false), m_Italic(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{

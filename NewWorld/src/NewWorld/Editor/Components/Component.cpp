@@ -2,9 +2,9 @@
 #include "Component.h"
 
 #include "NewWorld/Editor/EditorWindow.h"
-#include "NewWorld/Editor/ComponentContainer.h"
+#include "NewWorld/Editor/Components/ComponentContainer.h"
 
-namespace NewWorld::Editor
+namespace NewWorld::Editor::Components
 {
 	// Events
 	void Component::Create()

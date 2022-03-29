@@ -6,6 +6,17 @@
 
 namespace NewWorld::Editor
 {
+	EditorWindow::EditorWindow(SizeT m_WindowID, const String& title, uint width, uint height)
+		: Window(title, width, height), m_WindowID(m_WindowID), m_MainPanel(0, 0, (float)width, (float)height),
+		m_SelectedComponent(&m_MainPanel)
+	{
+		m_MainPanel.SetWindow(this);
+
+		Matrix4 proj = Math::Projection::OrthographicMatrix(0.0f, (float)width, 0.0f, (float)height);
+		Matrix4 view = glm::translate(Matrix4(1.0f), Vector3(0, 0, 0));;
+		m_ProjectionMatrix = proj * view;
+	}
+
 	void EditorWindow::Create()
 	{
 		Window::Create();
@@ -20,7 +31,7 @@ namespace NewWorld::Editor
 		Window::Close();
 	}
 
-	void EditorWindow::ChangeSelectedComponent(RawPointer<Component> component)
+	void EditorWindow::ChangeSelectedComponent(RawPointer<Components::Component> component)
 	{
 		m_SelectedComponent->Leave();
 		m_SelectedComponent = component;
