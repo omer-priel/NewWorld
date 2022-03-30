@@ -10,7 +10,7 @@ namespace NewWorld::Editor::UI
 	// Override
 	void Panel::Update()
 	{
-		Graphics2D::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
+		Graphics2D::EditorDraw::DrawRectangle(GetX(), GetY(), GetWidth(), GetHeight(), m_BackgroundColor);
 
 		Component::Update();
 	}

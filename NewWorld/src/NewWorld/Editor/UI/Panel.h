@@ -1,14 +1,14 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Components/Component.h"
+#include "NewWorld/Editor/Components/ResizableComponent.h"
 #include "NewWorld/Editor/Components/IContainerComponent.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 
 namespace NewWorld::Editor::UI
 {
-	class Panel : public Components::Component, virtual public Components::IContainerComponent
+	class Panel : public Components::ResizableComponent, virtual public Components::IContainerComponent
 	{
 	NW_CLASS(NewWorld::Editor::UI, Panel)
 
@@ -20,7 +20,7 @@ namespace NewWorld::Editor::UI
 
 	public:
 		Panel(float x, float y, float width, float height, const Graphics::Color& backgroundColor = Graphics::Colors::EditorBackground)
-			: Components::Component(x, y, width, height), m_BackgroundColor(backgroundColor)
+			: Components::ResizableComponent(x, y, width, height), m_BackgroundColor(backgroundColor)
 		{
 
 		}
@@ -35,12 +35,6 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(float x) { m_X = x; }
-		void SetY(float y) { m_Y = y; }
-
-		void SetWidth(float width) { m_Width = width; }
-		void SetHeight(float height) { m_Height = height; }
-
 		void SetBackgroundColor(const Graphics::Color& backgroundColor) { m_BackgroundColor = backgroundColor; }
 
 		// Events

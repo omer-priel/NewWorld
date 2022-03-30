@@ -11,7 +11,12 @@ namespace NewWorld::Editor::Components
 
 		// Getters
 	public:
-		inline float GetWidth() const;
-		inline float GetHeight() const;
+		virtual inline float GetWidth() const = 0;
+		virtual inline float GetHeight() const = 0;
+
+		virtual bool IsIn(float x, float y) const override
+		{
+			return (GetX() <= x && x <= GetX() + GetWidth()) && (GetY() <= y && y <= GetY() + GetHeight());
+		}
 	};
 }

@@ -20,11 +20,6 @@ namespace NewWorld::Editor::Components
 		RawPointer<EditorWindow> m_Window;
 
 	protected:
-		float m_X;
-		float m_Y;
-		float m_Width;
-		float m_Height;
-
 		Events::EventHandler m_CreateHandler;
 		Events::EventHandler m_DestroyHandler;
 
@@ -43,8 +38,8 @@ namespace NewWorld::Editor::Components
 		Events::EventHandler m_ClickHandler;
 
 	protected:
-		Component(float x, float y, float width, float height)
-			: m_Window(nullptr), m_X(x), m_Y(y), m_Width(width), m_Height(height),
+		Component()
+			: m_Window(nullptr),
 			m_CreateHandler(Events::EmptyEventHandler),
 			m_DestroyHandler(Events::EmptyEventHandler),
 			m_EnterHandler(Events::EmptyEventHandler),
@@ -68,18 +63,7 @@ namespace NewWorld::Editor::Components
 	public:
 		RawPointer<EditorWindow> GetWindow() const { return m_Window; }
 
-		inline float GetX() const override { return m_X; }
-		inline float GetY() const override { return m_Y; }
-
 		virtual bool IsSelectable() const { return true; }
-
-		virtual bool IsIn(float x, float y) const override
-		{
-			return (m_X <= x && x <= m_X + m_Width) && (m_Y <= y && y <= m_Y + m_Height);
-		}
-
-		inline float GetWidth() const { return m_Width; }
-		inline float GetHeight() const { return m_Height; }
 
 		// Setters
 	public:

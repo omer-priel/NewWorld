@@ -11,7 +11,7 @@ namespace NewWorld::Editor::Components
 
 		// Setters
 	public:
-		virtual void SetWidth(float width);
-		virtual void SetHeight(float height);
+		virtual void SetWidth(float width) = 0;
+		virtual void SetHeight(float height) = 0;
 	};
 }
