@@ -1,7 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Input/Key.h"
+#include "NewWorld/Editor/Components/IComponent.h"
 #include "NewWorld/Editor/Events/Handlers.h"
 
 namespace NewWorld::Editor
@@ -11,7 +11,7 @@ namespace NewWorld::Editor
 
 namespace NewWorld::Editor::Components
 {
-	class Component : public Object
+	class Component : public Object, virtual public IComponent
 	{
 	NW_CLASS(NewWorld::Editor::Components, Component)
 
@@ -68,20 +68,20 @@ namespace NewWorld::Editor::Components
 	public:
 		RawPointer<EditorWindow> GetWindow() const { return m_Window; }
 
-		inline float GetX() const { return m_X; }
-		inline float GetY() const { return m_Y; }
+		inline float GetX() const override { return m_X; }
+		inline float GetY() const override { return m_Y; }
 
-		inline float GetWidth() const { return m_Width; }
-		inline float GetHeight() const { return m_Height; }
-
-		inline bool IsIn(float x, float y) const
+		bool IsIn(float x, float y) const override
 		{
 			return (m_X <= x && x <= m_X + m_Width) && (m_Y <= y && y <= m_Y + m_Height);
 		}
 
+		inline float GetWidth() const { return m_Width; }
+		inline float GetHeight() const { return m_Height; }
+
 		// Setters
 	public:
-		void SetWindow(RawPointer<EditorWindow> window)
+		void SetWindow(RawPointer<EditorWindow> window) override
 		{
 			m_Window = window;
 		}
@@ -105,21 +105,21 @@ namespace NewWorld::Editor::Components
 
 		// Events
 	public:
-		virtual void Create();
-		virtual void Destroy();
+		virtual void Create() override;
+		virtual void Destroy() override;
 
-		virtual void Enter();
-		virtual void Leave();
+		virtual void Enter() override;
+		virtual void Leave() override;
 
-		virtual void Click();
+		virtual void Click() override;
 
-		virtual void MouseKeyPressed(Input::Key key, float xPos, float yPos);
-		virtual void MouseKeyReleased(Input::Key key, float xPos, float yPos);
+		virtual void MouseKeyPressed(Input::Key key, float xPos, float yPos) override;
+		virtual void MouseKeyReleased(Input::Key key, float xPos, float yPos) override;
 
-		virtual void MouseHover(float xPos, float yPos);
-		virtual void MouseScrolled(uint y);
+		virtual void MouseHover(float xPos, float yPos) override;
+		virtual void MouseScrolled(uint y) override;
 
-		virtual void KeyPressed(Input::Key key);
-		virtual void KeyReleased(Input::Key key);
+		virtual void KeyPressed(Input::Key key) override;
+		virtual void KeyReleased(Input::Key key) override;
 	};
 }

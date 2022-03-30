@@ -2,7 +2,6 @@
 #include "Component.h"
 
 #include "NewWorld/Editor/EditorWindow.h"
-#include "NewWorld/Editor/Components/ComponentContainer.h"
 
 namespace NewWorld::Editor::Components
 {

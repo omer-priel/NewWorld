@@ -9,23 +9,30 @@ namespace NewWorld::Editor::Components
 	{
 	NW_CLASS(NewWorld::Editor::Components, IContainerComponent)
 
-		// Actions
+		// Override
+	public:
+		void Destroy() override
+		{
+			RemoveComponents();
+		}
+
+		// Getters
+	public:
+		virtual inline DynamicArray<SharedPointer<IComponent>>& GetSubComponents() = 0;
+
+		// Events
 	public:
 		virtual void ComponentAdded(SharedPointer<IComponent> component) { }
 
 		virtual void ComponentRemoved(SharedPointer<IComponent> component) { }
 
-		virtual void ComponentsRemoved(DynamicArray<SharedPointer<IComponent>>& components) { }
-
-		// Getters
-	public:
-		virtual inline DynamicArray<SharedPointer<IComponent>>& GetComponents() = 0;
+		virtual void ComponentsRemoved() { }
 
 		// Actions
 	public:
 		void AddComponent(SharedPointer<IComponent> component)
 		{
-			GetComponents().push_back(component);
+			GetSubComponents().push_back(component);
 			component->SetWindow(GetWindow());
 
 			component->Create();
@@ -35,7 +42,7 @@ namespace NewWorld::Editor::Components
 
 		void RemoveComponent(SizeT index)
 		{
-			auto& components = GetComponents();
+			auto& components = GetSubComponents();
 			ComponentRemoved(components[index]);
 
 			components[index]->Destroy();
@@ -45,10 +52,10 @@ namespace NewWorld::Editor::Components
 
 		void RemoveComponents()
 		{
-			auto& components = GetComponents();
+			auto& components = GetSubComponents();
 			if (!components.empty())
 			{
-				ComponentsRemoved(components);
+				ComponentsRemoved();
 
 				DynamicArray<SharedPointer<IComponent>>::iterator iter = components.begin();
 				++iter;

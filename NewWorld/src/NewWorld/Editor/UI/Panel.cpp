@@ -12,18 +12,24 @@ namespace NewWorld::Editor::UI
 	{
 		Graphics2D::EditorDraw::DrawRectangle(m_X, m_Y, m_Width, m_Height, m_BackgroundColor);
 
-		ComponentContainer::Update();
+		Component::Update();
+	}
+
+	void Panel::Destroy()
+	{
+		IContainerComponent::Destroy();
+		Component::Destroy();
 	}
 
 	void Panel::MouseKeyPressed(Input::Key key, float xPos, float yPos)
 	{
-		auto components = this->GetComponents();
+		auto& components = this->GetSubComponents();
 
-		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		DynamicArray<SharedPointer<IComponent>>::iterator iter = components.end();
 		while (iter != components.begin())
 		{
 			iter--;
-			Component& component = *(*iter);
+			IComponent& component = *(*iter);
 			
 			if (component.IsIn(xPos, yPos))
 			{
@@ -32,18 +38,18 @@ namespace NewWorld::Editor::UI
 			}
 		}
 
-		ComponentContainer::MouseKeyPressed(key, xPos, yPos);
+		Component::Update();
 	}
 
 	void Panel::MouseKeyReleased(Input::Key key, float xPos, float yPos)
 	{
-		auto components = this->GetComponents();
+		auto& components = this->GetSubComponents();
 
-		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		DynamicArray<SharedPointer<IComponent>>::iterator iter = components.end();
 		while (iter != components.begin())
 		{
 			iter--;
-			Component& component = *(*iter);
+			IComponent& component = *(*iter);
 			
 			if (component.IsIn(xPos, yPos))
 			{
@@ -52,18 +58,18 @@ namespace NewWorld::Editor::UI
 			}
 		}
 
-		ComponentContainer::MouseKeyReleased(key, xPos, yPos);
+		Component::MouseKeyReleased(key, xPos, yPos);
 	}
 
 	void Panel::MouseHover(float xPos, float yPos)
 	{
-		auto components = this->GetComponents();
+		auto& components = this->GetSubComponents();
 
-		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		DynamicArray<SharedPointer<IComponent>>::iterator iter = components.end();
 		while (iter != components.begin())
 		{
 			iter--;
-			Component& component = *(*iter);
+			IComponent& component = *(*iter);
 			
 			if (component.IsIn(xPos, yPos))
 			{
@@ -72,6 +78,6 @@ namespace NewWorld::Editor::UI
 			}
 		}
 
-		ComponentContainer::MouseHover(xPos, yPos);
+		Component::MouseHover(xPos, yPos);
 	}
 }

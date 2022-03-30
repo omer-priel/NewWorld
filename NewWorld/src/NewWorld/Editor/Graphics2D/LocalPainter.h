@@ -37,13 +37,13 @@ namespace NewWorld::Editor::Graphics2D
 			m_Y = 0;
 		}
 
-		static void Enter(Components::ComponentContainer& component)
+		static void Enter(Components::IContainerComponent& component)
 		{
 			m_X += component.GetX();
 			m_Y += component.GetY();
 		}
 
-		static void Leave(Components::ComponentContainer& component)
+		static void Leave(Components::IContainerComponent& component)
 		{
 			m_X -= component.GetX();
 			m_Y -= component.GetY();
