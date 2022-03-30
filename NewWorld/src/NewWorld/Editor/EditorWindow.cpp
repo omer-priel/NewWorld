@@ -31,11 +31,14 @@ namespace NewWorld::Editor
 		Window::Close();
 	}
 
-	void EditorWindow::ChangeSelectedComponent(RawPointer<Components::Component> component)
+	void EditorWindow::ChangeSelectedComponent(RawPointer<Components::IComponent> component)
 	{
-		m_SelectedComponent->Leave();
-		m_SelectedComponent = component;
-		component->Enter();
+		if (component->IsSelectable())
+		{
+			m_SelectedComponent->Leave();
+			m_SelectedComponent = component;
+			component->Enter();
+		}
 	}
 
 	void EditorWindow::Update()

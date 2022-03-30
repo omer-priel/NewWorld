@@ -21,6 +21,8 @@ namespace NewWorld::Editor::Components
 		virtual inline float GetX() const = 0;
 		virtual inline float GetY() const = 0;
 
+		virtual bool IsSelectable() const = 0;
+
 		virtual bool IsIn(float x, float y) const = 0;
 
 		// Setters

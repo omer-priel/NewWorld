@@ -71,7 +71,9 @@ namespace NewWorld::Editor::Components
 		inline float GetX() const override { return m_X; }
 		inline float GetY() const override { return m_Y; }
 
-		bool IsIn(float x, float y) const override
+		virtual bool IsSelectable() const { return true; }
+
+		virtual bool IsIn(float x, float y) const override
 		{
 			return (m_X <= x && x <= m_X + m_Width) && (m_Y <= y && y <= m_Y + m_Height);
 		}
