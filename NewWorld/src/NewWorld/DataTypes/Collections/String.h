@@ -36,7 +36,7 @@ namespace NewWorld::Files
 
 namespace NewWorld::DataTypes::Collections
 {
-	class String : virtual public IObject
+	class String : public IObject
 	{
 	NW_CLASS(NewWorld::DataTypes::Collections, String)
 
