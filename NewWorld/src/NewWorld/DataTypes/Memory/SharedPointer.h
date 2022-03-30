@@ -13,7 +13,7 @@ namespace NewWorld::DataTypes::Memory
 	template <typename T, const bool NULLABLE>
 	class SharedPointer : public Pointer<T>
 	{
-		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, true>)
+	NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, true>)
 
 		// Friends
 	private:
@@ -172,7 +172,7 @@ namespace NewWorld::DataTypes::Memory
 	template <typename T>
 	class SharedPointer<T, false> : public Pointer<T>
 	{
-		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, false>)
+	NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, false>)
 
 		// Friends
 	private:

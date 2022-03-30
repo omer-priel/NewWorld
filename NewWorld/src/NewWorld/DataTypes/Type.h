@@ -10,7 +10,7 @@ namespace NewWorld::DataTypes
 		class String;
 	}
 
-	class Type : public IObject
+	class Type : virtual public IObject
 	{	
 	public:
 		const NewWorld::DataTypes::Type& GetType() const override;
