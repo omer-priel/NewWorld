@@ -4,6 +4,7 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
+/*
 #include "NewWorld/Editor/UI/Button.h"
 #include "NewWorld/Editor/UI/BordedLabel.h"
 #include "NewWorld/Editor/UI/CheckBox.h"
@@ -11,6 +12,7 @@
 #include "NewWorld/Editor/UI/RadioButton.h"
 #include "NewWorld/Editor/UI/RadioButtonGroup.h"
 #include "NewWorld/Editor/UI/TextBox.h"
+*/
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -110,7 +112,7 @@ namespace NewWorld::Core
 
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
-
+	/*
 	static void test1(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		using namespace NewWorld::Graphics;
@@ -364,10 +366,10 @@ namespace NewWorld::Core
 
 		
 	}
-
+	*/
 	static void test(Editor::EditorWindow& window, float xPos, float yPos)
 	{
-		test1(window, xPos, yPos);
+		//test1(window, xPos, yPos);
 	}
 
 	void Window::ReggisterEvents()
