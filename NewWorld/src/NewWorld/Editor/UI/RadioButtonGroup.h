@@ -22,7 +22,7 @@ namespace NewWorld::Editor::UI
 
 	public:
 		RadioButtonGroup()
-			: Components::Component(0, 0, 0, 0), m_CheckedRadioButton(nullptr)
+			: Components::Component(), m_CheckedRadioButton(nullptr)
 		{
 
 		}

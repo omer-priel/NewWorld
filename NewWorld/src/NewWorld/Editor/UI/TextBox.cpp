@@ -10,11 +10,11 @@ namespace NewWorld::Editor::UI
 	// Override
 	void TextBox::Update()
 	{
-		Component::Update();
+		ResizableComponent::Update();
 		
 		const float marginSize = (float)TEXT_BOX_DEFUALT_MARGIN_SIZE;
 
-		float x = m_X;
+		float x = GetX();
 
 		if (m_TextAlign == TextAlign::Left)
 		{
@@ -23,32 +23,32 @@ namespace NewWorld::Editor::UI
 		else
 		{
 			const Editor::Assets::Font& font = *(GetWindow()->GetFontManager().GetFont(0));
-			Vector4 bounds = font.GetDrawBounds(m_Value, TEXT_BOX_DEFUALT_FONT_SIZE, false, false, m_Width - marginSize * 2);
+			Vector4 bounds = font.GetDrawBounds(m_Value, TEXT_BOX_DEFUALT_FONT_SIZE, false, false, GetWidth() - marginSize * 2);
 
 			if (m_TextAlign == TextAlign::Center)
 			{
-				x += (m_Width - bounds.z) / 2;
+				x += (GetWidth() - bounds.z) / 2;
 			}
 			else
 			{
-				x += m_Width - bounds.z - marginSize;
+				x += GetWidth() - bounds.z - marginSize;
 			}
 		}
 
 		// draw
 		if (m_Selected)
 		{
-			Graphics2D::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, NewWorld::Graphics::Colors::EditorBlueInputBackground, 1);
+			Graphics2D::EditorDraw::DrawOutlineRectangle(GetX(), GetY(), GetWidth(), GetHeight(), NewWorld::Graphics::Colors::EditorBlueInputBackground, 1);
 		}
 		else
 		{
-			Graphics2D::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, NewWorld::Graphics::Colors::EditorDarkValue, 1);
+			Graphics2D::EditorDraw::DrawOutlineRectangle(GetX(), GetY(), GetWidth(), GetHeight(), NewWorld::Graphics::Colors::EditorDarkValue, 1);
 		}
 
-		Graphics2D::EditorDraw::DrawRectangle(m_X+1, m_Y+1, m_Width-2, m_Height-2, m_BackgroundColor);
+		Graphics2D::EditorDraw::DrawRectangle(GetX() + 1, GetY() + 1, GetWidth() - 2, GetHeight() - 2, m_BackgroundColor);
 
-		Graphics2D::EditorDraw::DrawString(x, m_Y + marginSize,
-			m_Value, m_TextColor, TEXT_BOX_DEFUALT_FONT_SIZE, m_Width - marginSize * 2, false, false);
+		Graphics2D::EditorDraw::DrawString(x, GetY() + marginSize,
+			m_Value, m_TextColor, TEXT_BOX_DEFUALT_FONT_SIZE, GetWidth() - marginSize * 2, false, false);
 	}
 
 	void TextBox::Enter()

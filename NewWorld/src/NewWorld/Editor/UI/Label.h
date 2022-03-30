@@ -1,14 +1,14 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Components/Component.h"
+#include "NewWorld/Editor/Components/ResizableComponent.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 #include "NewWorld/Editor/UI/TextAlign.h"
 
 namespace NewWorld::Editor::UI
 {
-	class Label : public Components::Component
+	class Label : public Components::ResizableComponent
 	{
 	NW_CLASS(NewWorld::Editor::UI, Label)
 
@@ -36,7 +36,7 @@ namespace NewWorld::Editor::UI
 			const Graphics::Color& backgroundColor = Graphics::Colors::Transparency,
 			const Graphics::Color& textColor = Graphics::Colors::White,
 			uint fontSize = LABEL_DEFUALT_FONT_SIZE)
-			: Components::Component(x, y, width, LABEL_DEFUALT_HEIGHT), m_Text(text), m_TextAlign(textAlign), m_FontSize(fontSize),
+			: Components::ResizableComponent(x, y, width, LABEL_DEFUALT_HEIGHT), m_Text(text), m_TextAlign(textAlign), m_FontSize(fontSize),
 			m_Bold(false), m_Italic(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{
@@ -62,11 +62,6 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(float x) { m_X = x; }
-		void SetY(float y) { m_Y = y; }
-
-		void SetWidth(float width) { m_Width = width; }
-
 		void SetText(const String& text) { m_Text = text; }
 
 		void SetText(const TextAlign& textAlign) { m_TextAlign = textAlign; }
@@ -74,7 +69,7 @@ namespace NewWorld::Editor::UI
 		void SetFontSize(uint fontSize)
 		{
 			m_FontSize = fontSize;
-			m_Height = ((float)m_FontSize / (float)LABEL_DEFUALT_FONT_SIZE) * (float)LABEL_DEFUALT_HEIGHT;
+			SetWidth(((float)m_FontSize / (float)LABEL_DEFUALT_FONT_SIZE) * (float)LABEL_DEFUALT_HEIGHT);
 		}
 
 		void SetBold(bool value) { m_Bold = value; }

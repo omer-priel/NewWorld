@@ -12,7 +12,7 @@ namespace NewWorld::Editor::UI
 		const Graphics::Color& backgroundColor,
 		const Graphics::Color& foregroundColor,
 		const Graphics::Color& foregroundCheckedColor)
-		: Component(x, y, 16, 16), m_Checked(false), m_Group(nullptr),
+		: ResizableComponent(x, y, 16, 16), m_Checked(false), m_Group(nullptr),
 		m_BackgroundColor(backgroundColor),
 		m_ForegroundColor(foregroundColor), m_ForegroundCheckedColor(foregroundCheckedColor)
 	{
@@ -22,24 +22,24 @@ namespace NewWorld::Editor::UI
 	// Override
 	void RadioButton::Update()
 	{
-		Component::Update();
+		ResizableComponent::Update();
 
 		if (m_Checked)
 		{
-			Graphics2D::EditorDraw::DrawOval(m_X + 8, m_Y + 8, 3, m_ForegroundCheckedColor, 32);
-			Graphics2D::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 6, m_BackgroundColor, 3, 32);
-			Graphics2D::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 8, m_ForegroundCheckedColor, 2, 32);
+			Graphics2D::EditorDraw::DrawOval(GetX() + 8, GetY() + 8, 3, m_ForegroundCheckedColor, 32);
+			Graphics2D::EditorDraw::DrawOutlineOval(GetX() + 8, GetY() + 8, 6, m_BackgroundColor, 3, 32);
+			Graphics2D::EditorDraw::DrawOutlineOval(GetX() + 8, GetY() + 8, 8, m_ForegroundCheckedColor, 2, 32);
 		}
 		else
 		{
-			Graphics2D::EditorDraw::DrawOval(m_X + 8, m_Y + 8, 6, m_BackgroundColor, 32);
-			Graphics2D::EditorDraw::DrawOutlineOval(m_X + 8, m_Y + 8, 8, m_ForegroundColor, 2, 32);
+			Graphics2D::EditorDraw::DrawOval(GetX() + 8, GetY() + 8, 6, m_BackgroundColor, 32);
+			Graphics2D::EditorDraw::DrawOutlineOval(GetX() + 8, GetY() + 8, 8, m_ForegroundColor, 2, 32);
 		}
 	}
 
 	void RadioButton::Click()
 	{
-		Component::Click();
+		ResizableComponent::Click();
 
 		Toggle();
 	}

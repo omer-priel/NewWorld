@@ -1,7 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Components/Component.h"
+#include "NewWorld/Editor/Components/ResizableComponent.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 
@@ -9,7 +9,7 @@ namespace NewWorld::Editor::UI
 {
 	class RadioButtonGroup;
 
-	class RadioButton : public Components::Component
+	class RadioButton : public Components::ResizableComponent
 	{
 	NW_CLASS(NewWorld::Editor::UI, RadioButton)
 
@@ -48,10 +48,6 @@ namespace NewWorld::Editor::UI
 		inline const Graphics::Color& GetForegroundCheckedColor() const { return m_ForegroundCheckedColor; }
 
 		// Setters
-	public:
-		void SetX(float x) { m_X = x; }
-		void SetY(float y) { m_Y = y; }
-
 	public:
 		void SetBackgroundColor(const Graphics::Color& color) { m_BackgroundColor = color; }
 		void SetForegroundColor(const Graphics::Color& color) { m_ForegroundColor = color; }

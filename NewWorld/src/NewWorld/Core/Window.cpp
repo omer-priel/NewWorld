@@ -4,7 +4,6 @@
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/EditorWindow.h"
 
-/*
 #include "NewWorld/Editor/UI/Button.h"
 #include "NewWorld/Editor/UI/BordedLabel.h"
 #include "NewWorld/Editor/UI/CheckBox.h"
@@ -12,7 +11,6 @@
 #include "NewWorld/Editor/UI/RadioButton.h"
 #include "NewWorld/Editor/UI/RadioButtonGroup.h"
 #include "NewWorld/Editor/UI/TextBox.h"
-*/
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -100,7 +98,7 @@ namespace NewWorld::Core
 	void Window::Create()
 	{
 		m_WinHandle = glfwCreateWindow((int)m_Width, (int)m_Height, m_Title.GetPointer(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_WinHandle);		
+		glfwMakeContextCurrent(m_WinHandle);
 		glfwSetWindowUserPointer(m_WinHandle, this);
 		glfwSwapInterval(1); // Set VSync true
 
@@ -112,7 +110,7 @@ namespace NewWorld::Core
 
 		NW_INFO(NW_LOGGER_CORE, "Window Created \"{}\" ({}, {}) ", m_Title, m_Width, m_Height);
 	}
-	/*
+
 	static void test1(Editor::EditorWindow& window, float xPos, float yPos)
 	{
 		using namespace NewWorld::Graphics;
@@ -146,8 +144,8 @@ namespace NewWorld::Core
 		SharedPointer<Button> button2(xPos + 50 - 24, yPos + 150 + 50, 80.0f, 26.0f, "Test 2");
 		SharedPointer<Button> button3(xPos + 50 - 24, yPos + 150 + 0, 80.0f, 26.0f, "Test 3");
 
-		button1->SetClickHandler([](Component& sender) {
-			Button& button = (Button&)sender;
+		button1->SetClickHandler([](IComponent& sender) {
+			Button& button = dynamic_cast<Button&>(sender);
 
 			static bool flag = false;
 
@@ -164,8 +162,8 @@ namespace NewWorld::Core
 
 			});
 
-		button2->SetClickHandler([](Component& sender) {
-			Button& button = (Button&)sender;
+		button2->SetClickHandler([](IComponent& sender) {
+			Button& button = dynamic_cast<Button&>(sender);
 
 			static int clicks = 0;
 
@@ -174,8 +172,8 @@ namespace NewWorld::Core
 			button.SetText(String::ConverToString(clicks));
 			});
 
-		button3->SetClickHandler([](Component& sender) {
-			Button& button = (Button&)sender;
+		button3->SetClickHandler([](IComponent& sender) {
+			Button& button = dynamic_cast<Button&>(sender);
 
 			static int clicks = 0;
 
@@ -189,8 +187,8 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(button3);
 
 		// TextBox
-		auto textBoxDebug = [](Component& sender, Input::Key key) {
-			TextBox& textBox = (TextBox&)sender;
+		auto textBoxDebug = [](IComponent& sender, Input::Key key) {
+			TextBox& textBox = dynamic_cast<TextBox&>(sender);
 
 			static SizeT lastLength = 0;
 
@@ -337,20 +335,20 @@ namespace NewWorld::Core
 		}
 
 		// Changes
-		CheckBox& selected0 = (CheckBox&)*(window.GetMainPanel().GetComponents()[0]);
-		CheckBox& selected1 = (CheckBox&)*(window.GetMainPanel().GetComponents()[1]);
-		CheckBox& selected2 = (CheckBox&)*(window.GetMainPanel().GetComponents()[2]);
-		CheckBox& selected3 = (CheckBox&)*(window.GetMainPanel().GetComponents()[3]);
+		CheckBox& selected0 = dynamic_cast<CheckBox&>(*(window.GetMainPanel().GetSubComponents()[0]));
+		CheckBox& selected1 = dynamic_cast<CheckBox&>(*(window.GetMainPanel().GetSubComponents()[1]));
+		CheckBox& selected2 = dynamic_cast<CheckBox&>(*(window.GetMainPanel().GetSubComponents()[2]));
+		CheckBox& selected3 = dynamic_cast<CheckBox&>(*(window.GetMainPanel().GetSubComponents()[3]));
 
 		selected0.Toggle();
 		selected1.Toggle();
 		selected2.Toggle();
 		selected3.Toggle();
 
-		ToggleButton& selected4 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[4]);
-		ToggleButton& selected5 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[5]);
-		ToggleButton& selected6 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[6]);
-		ToggleButton& selected7 = (ToggleButton&)*(window.GetMainPanel().GetComponents()[7]);
+		ToggleButton& selected4 = dynamic_cast<ToggleButton&>(*(window.GetMainPanel().GetSubComponents()[4]));
+		ToggleButton& selected5 = dynamic_cast<ToggleButton&>(*(window.GetMainPanel().GetSubComponents()[5]));
+		ToggleButton& selected6 = dynamic_cast<ToggleButton&>(*(window.GetMainPanel().GetSubComponents()[6]));
+		ToggleButton& selected7 = dynamic_cast<ToggleButton&>(*(window.GetMainPanel().GetSubComponents()[7]));
 
 		selected4.Toggle();
 		selected5.Toggle();
@@ -366,10 +364,10 @@ namespace NewWorld::Core
 
 		
 	}
-	*/
+
 	static void test(Editor::EditorWindow& window, float xPos, float yPos)
 	{
-		//test1(window, xPos, yPos);
+		test1(window, xPos, yPos);
 	}
 
 	void Window::ReggisterEvents()

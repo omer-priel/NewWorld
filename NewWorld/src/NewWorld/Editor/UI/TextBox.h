@@ -1,14 +1,14 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
-#include "NewWorld/Editor/Components/Component.h"
+#include "NewWorld/Editor/Components/ResizableComponent.h"
 #include "NewWorld/Graphics/Color.h"
 #include "NewWorld/Graphics/Colors.h"
 #include "NewWorld/Editor/UI/TextAlign.h"
 
 namespace NewWorld::Editor::UI
 {
-	class TextBox : public Components::Component
+	class TextBox : public Components::ResizableComponent
 	{
 	NW_CLASS(NewWorld::Editor::UI, TextBox)
 
@@ -33,7 +33,7 @@ namespace NewWorld::Editor::UI
 		TextBox(float x, float y, const String& defaltValue, float width, uint maxLength = 50, TextAlign textAlign = TextAlign::Left,
 			const Graphics::Color& backgroundColor = NewWorld::Graphics::Colors::EditorLightInputBackground,
 			const Graphics::Color& textColor = NewWorld::Graphics::Colors::EditorDarkValue)
-			: Components::Component(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_MaxLength(maxLength), m_TextAlign(textAlign),
+			: Components::ResizableComponent(x, y, width, TEXT_BOX_DEFUALT_HEIGHT), m_Value(defaltValue), m_MaxLength(maxLength), m_TextAlign(textAlign),
 			m_Selected(false),
 			m_BackgroundColor(backgroundColor), m_TextColor(textColor)
 		{
@@ -63,11 +63,6 @@ namespace NewWorld::Editor::UI
 
 		// Setters
 	public:
-		void SetX(float x) { m_X = x; }
-		void SetY(float y) { m_Y = y; }
-
-		void SetWidth(float width) { m_Width = width; }
-
 		void SetValue(const String& value) { m_Value = value; }
 
 		void SetText(const TextAlign& textAlign) { m_TextAlign = textAlign; }

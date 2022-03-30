@@ -10,6 +10,6 @@ namespace NewWorld::Editor::UI
 	{
 		Label::Update();
 
-		Graphics2D::EditorDraw::DrawOutlineRectangle(m_X, m_Y, m_Width, m_Height, m_BordedColor, 2);
+		Graphics2D::EditorDraw::DrawOutlineRectangle(GetX(), GetY(), GetWidth(), GetHeight(), m_BordedColor, 2);
 	}
 }
