@@ -67,10 +67,7 @@ namespace NewWorld::Editor::Components
 
 		// Setters
 	public:
-		void SetWindow(RawPointer<EditorWindow> window) override
-		{
-			m_Window = window;
-		}
+		void SetWindow(RawPointer<EditorWindow> window) override { m_Window = window; }
 
 		void SetCreateHandler(Events::EventHandler handler) { m_CreateHandler = handler; }
 		void SetDestroyHandler(Events::EventHandler handler) { m_DestroyHandler = handler; }

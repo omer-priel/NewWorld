@@ -70,9 +70,7 @@ namespace NewWorld::Editor::Components
 
 	void Component::Click()
 	{
-		if (!(m_Window->IsSelectedComponent(this))) {
-			m_Window->ChangeSelectedComponent(this);
-		}
+		m_Window->SelectComponent(this);
 
 		m_ClickHandler(*this);
 	}

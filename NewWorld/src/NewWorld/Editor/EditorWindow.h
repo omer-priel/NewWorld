@@ -59,9 +59,9 @@ namespace NewWorld::Editor
 
 		void Close() override;
 
-		void ClearSelectedComponent() { ChangeSelectedComponent(&m_MainPanel); }
+		void ClearSelectedComponent() { SelectComponent(&m_MainPanel); }
 
-		void ChangeSelectedComponent(RawPointer<Components::IComponent> component);
+		void SelectComponent(RawPointer<Components::IComponent> component);
 
 		// Events
 	public:

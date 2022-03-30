@@ -31,9 +31,9 @@ namespace NewWorld::Editor
 		Window::Close();
 	}
 
-	void EditorWindow::ChangeSelectedComponent(RawPointer<Components::IComponent> component)
+	void EditorWindow::SelectComponent(RawPointer<Components::IComponent> component)
 	{
-		if (component->IsSelectable())
+		if (component->IsSelectable() && component != m_SelectedComponent)
 		{
 			m_SelectedComponent->Leave();
 			m_SelectedComponent = component;
