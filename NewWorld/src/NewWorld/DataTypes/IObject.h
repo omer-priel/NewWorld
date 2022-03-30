@@ -15,7 +15,7 @@ namespace NewWorld::DataTypes
 	}
 
 	// IObject
-	class IObject abstract
+	class IObject
 	{
 		// Pure virtual functions
 	public:

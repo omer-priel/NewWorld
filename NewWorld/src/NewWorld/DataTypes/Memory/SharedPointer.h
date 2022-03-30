@@ -1,6 +1,6 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Memory/IPointer.h"
+#include "NewWorld/DataTypes/Memory/Pointer.h"
 #include "NewWorld/DataTypes/Memory/Allocator.h"
 
 #include <type_traits>
@@ -11,7 +11,7 @@ namespace NewWorld::DataTypes::Memory
 {
 	// nullable SharedPointer
 	template <typename T, const bool NULLABLE>
-	class SharedPointer : public IPointer<T>
+	class SharedPointer : public Pointer<T>
 	{
 		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, true>)
 
@@ -170,7 +170,7 @@ namespace NewWorld::DataTypes::Memory
 
 	// non-nullable SharedPointer (defualt)
 	template <typename T>
-	class SharedPointer<T, false> : public IPointer<T>
+	class SharedPointer<T, false> : public Pointer<T>
 	{
 		NW_CLASS(NewWorld::DataTypes::Memory, SharedPointer<T, false>)
 

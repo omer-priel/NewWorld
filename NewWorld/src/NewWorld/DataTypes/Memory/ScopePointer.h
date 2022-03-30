@@ -1,12 +1,12 @@
 #pragma once
 
-#include "NewWorld/DataTypes/Memory/IPointer.h"
+#include "NewWorld/DataTypes/Memory/Pointer.h"
 #include "NewWorld/DataTypes/Memory/Allocator.h"
 
 namespace NewWorld::DataTypes::Memory
 {
 	template <typename T>
-	class ScopePointer : public IPointer<T>
+	class ScopePointer : public Pointer<T>
 	{
 	NW_CLASS(NewWorld::DataTypes::Memory, ScopePointer<T>)
 
