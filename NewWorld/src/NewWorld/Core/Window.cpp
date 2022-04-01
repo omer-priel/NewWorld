@@ -144,7 +144,7 @@ namespace NewWorld::Core
 		SharedPointer<Button> button2(xPos + 50 - 24, yPos + 150 + 50, 80.0f, 26.0f, "Test 2");
 		SharedPointer<Button> button3(xPos + 50 - 24, yPos + 150 + 0, 80.0f, 26.0f, "Test 3");
 
-		button1->SetClickHandler([](Component& sender) {
+		button1->SetClickHandler([](IComponent& sender) {
 			Button& button = (Button&)sender;
 
 			static bool flag = false;
@@ -162,7 +162,7 @@ namespace NewWorld::Core
 
 			});
 
-		button2->SetClickHandler([](Component& sender) {
+		button2->SetClickHandler([](IComponent& sender) {
 			Button& button = (Button&)sender;
 
 			static int clicks = 0;
@@ -172,7 +172,7 @@ namespace NewWorld::Core
 			button.SetText(String::ConverToString(clicks));
 			});
 
-		button3->SetClickHandler([](Component& sender) {
+		button3->SetClickHandler([](IComponent& sender) {
 			Button& button = (Button&)sender;
 
 			static int clicks = 0;
@@ -187,7 +187,7 @@ namespace NewWorld::Core
 		window.GetMainPanel().AddComponent(button3);
 
 		// TextBox
-		auto textBoxDebug = [](Component& sender, Input::Key key) {
+		auto textBoxDebug = [](IComponent& sender, Input::Key key) {
 			TextBox& textBox = (TextBox&)sender;
 
 			static SizeT lastLength = 0;

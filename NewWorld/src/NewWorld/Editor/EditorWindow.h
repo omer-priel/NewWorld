@@ -20,7 +20,7 @@ namespace NewWorld::Editor
 		SizeT m_WindowID;
 
 		UI::Panel m_MainPanel;
-		RawPointer<Components::Component> m_SelectedComponent;
+		RawPointer<Components::IComponent> m_SelectedComponent;
 
 		Matrix4 m_ProjectionMatrix;
 
@@ -39,9 +39,9 @@ namespace NewWorld::Editor
 
 		inline UI::Panel& GetMainPanel() { return m_MainPanel; }
 
-		inline Components::Component& GetSelectedComponent() { return *m_SelectedComponent; }
+		inline Components::IComponent& GetSelectedComponent() { return *m_SelectedComponent; }
 
-		inline bool IsSelectedComponent(RawPointer<Components::Component> component) { return m_SelectedComponent == component; }
+		inline bool IsSelectedComponent(RawPointer<Components::IComponent> component) { return m_SelectedComponent == component; }
 
 		inline const Matrix4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
@@ -59,7 +59,7 @@ namespace NewWorld::Editor
 
 		void ClearSelectedComponent() { ChangeSelectedComponent(&m_MainPanel); }
 
-		void ChangeSelectedComponent(RawPointer<Components::Component> component);
+		void ChangeSelectedComponent(RawPointer<Components::IComponent> component);
 
 		// Events
 	public:

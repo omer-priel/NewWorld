@@ -11,7 +11,7 @@ namespace NewWorld::Editor::Components
 
 		// Members
 	private:
-		DynamicArray<SharedPointer<Component>> m_Components;
+		DynamicArray<SharedPointer<IComponent>> m_Components;
 
 	protected:
 		ComponentContainer(float x, float y, float width, float height)
@@ -33,56 +33,22 @@ namespace NewWorld::Editor::Components
 
 		// Virtual functions
 	public:
-		virtual void ComponentAdded(SharedPointer<Component> component) { }
+		virtual void ComponentAdded(SharedPointer<IComponent> component) { }
 
-		virtual void ComponentRemoved(SharedPointer<Component> component) { }
+		virtual void ComponentRemoved(SharedPointer<IComponent> component) { }
 
-		virtual void ComponentsRemoved(DynamicArray<SharedPointer<Component>>& components) { }
+		virtual void ComponentsRemoved(DynamicArray<SharedPointer<IComponent>>& components) { }
 
 		// Getters
 	public:
-		inline DynamicArray<SharedPointer<Component>>& GetComponents() { return m_Components; }
+		inline DynamicArray<SharedPointer<IComponent>>& GetComponents() { return m_Components; }
 
 		// Actions
 	public:
-		void AddComponent(SharedPointer<Component> component)
-		{
-			m_Components.push_back(component);
-			component->SetWindow(GetWindow());
+		void AddComponent(SharedPointer<IComponent> component);
 
-			component->Create();
+		void RemoveComponent(SizeT index);
 
-			ComponentAdded(component);
-		}
-
-		void RemoveComponent(SizeT index)
-		{
-			ComponentRemoved(m_Components[index]);
-
-			m_Components[index]->Destroy();
-
-			m_Components.erase(m_Components.begin() + index);
-		}
-
-		void RemoveComponents()
-		{
-			if (!m_Components.empty())
-			{
-				ComponentsRemoved(m_Components);
-
-				DynamicArray<SharedPointer<Component>>::iterator iter = m_Components.begin();
-				++iter;
-				while (iter != m_Components.end())
-				{
-					Component& component = *(*iter);
-
-					component.Destroy();
-
-					++iter;
-				}
-
-				m_Components.clear();
-			}
-		}
+		void RemoveComponents();
 	};
 }
