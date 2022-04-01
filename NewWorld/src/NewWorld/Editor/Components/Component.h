@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+#include "NewWorld/Editor/Components/IComponent.h"
 #include "NewWorld/Input/Key.h"
 #include "NewWorld/Editor/Events/Handlers.h"
 
@@ -11,7 +12,7 @@ namespace NewWorld::Editor
 
 namespace NewWorld::Editor::Components
 {
-	class Component : public Object
+	class Component : public Object, virtual public IComponent
 	{
 	NW_CLASS(NewWorld::Editor::Components, Component)
 
