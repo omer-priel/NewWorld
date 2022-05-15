@@ -1,24 +1,24 @@
 #include "nwpch.h"
 #include "Handlers.h"
 
-#include "NewWorld/Editor/Components/Component.h"
+#include "NewWorld/Editor/Components/IComponent.h"
 
 namespace NewWorld::Editor::Events
 {
 	// General
-	void EmptyEventHandler(Components::Component& sender) { }
+	void EmptyEventHandler(Components::IComponent& sender) { }
 
 	// Keybord
-	void EmptyKeyPressedEventHandler(Components::Component& sender, Input::Key key) { }
+	void EmptyKeyPressedEventHandler(Components::IComponent& sender, Input::Key key) { }
 
-	void EmptyKeyReleasedEventHandler(Components::Component& sender, Input::Key key) { }
+	void EmptyKeyReleasedEventHandler(Components::IComponent& sender, Input::Key key) { }
 
 	// Mouse
-	void EmptyMouseKeyPressedEventHandler(Components::Component& sender, Input::Key key, float xPos, float yPos) { }
+	void EmptyMouseKeyPressedEventHandler(Components::IComponent& sender, Input::Key key, float xPos, float yPos) { }
 
-	void EmptyMouseKeyReleasedEventHandler(Components::Component& sender, Input::Key key, float xPos, float yPos) { }
+	void EmptyMouseKeyReleasedEventHandler(Components::IComponent& sender, Input::Key key, float xPos, float yPos) { }
 
-	void EmptyMouseHoverEventHandler(Components::Component& sender, float xPos, float yPos) { }
+	void EmptyMouseHoverEventHandler(Components::IComponent& sender, float xPos, float yPos) { }
 
-	void EmptyMouseScrolledEventHandler(Components::Component& sender, int y) { }
+	void EmptyMouseScrolledEventHandler(Components::IComponent& sender, int y) { }
 }

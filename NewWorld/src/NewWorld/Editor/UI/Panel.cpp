@@ -19,11 +19,11 @@ namespace NewWorld::Editor::UI
 	{
 		auto components = this->GetComponents();
 
-		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		DynamicArray<SharedPointer<IComponent>>::iterator iter = components.end();
 		while (iter != components.begin())
 		{
 			iter--;
-			Component& component = *(*iter);
+			IComponent& component = *(*iter);
 			
 			if (component.IsIn(xPos, yPos))
 			{
@@ -39,11 +39,11 @@ namespace NewWorld::Editor::UI
 	{
 		auto components = this->GetComponents();
 
-		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		DynamicArray<SharedPointer<IComponent>>::iterator iter = components.end();
 		while (iter != components.begin())
 		{
 			iter--;
-			Component& component = *(*iter);
+			IComponent& component = *(*iter);
 			
 			if (component.IsIn(xPos, yPos))
 			{
@@ -59,11 +59,11 @@ namespace NewWorld::Editor::UI
 	{
 		auto components = this->GetComponents();
 
-		DynamicArray<SharedPointer<Component>>::iterator iter = components.end();
+		DynamicArray<SharedPointer<IComponent>>::iterator iter = components.end();
 		while (iter != components.begin())
 		{
 			iter--;
-			Component& component = *(*iter);
+			IComponent& component = *(*iter);
 			
 			if (component.IsIn(xPos, yPos))
 			{

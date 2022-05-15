@@ -1,17 +1,21 @@
 #pragma once
 
 #include "NewWorld/Minimal.h"
+<<<<<<< HEAD
 #include "NewWorld/Input/Key.h"
 
 namespace NewWorld::Editor
 {
 	class EditorWindow;
 }
+=======
+>>>>>>> f4231638f18c23456d8fdb595a5bd44ad706ce32
 
 namespace NewWorld::Editor::Components
 {
 	class IComponent : virtual public IObject
 	{
+<<<<<<< HEAD
 		// Getters
 	public:
 		virtual inline RawPointer<EditorWindow> GetWindow() const = 0;
@@ -48,5 +52,8 @@ namespace NewWorld::Editor::Components
 
 		virtual void KeyPressed(Input::Key key) = 0;
 		virtual void KeyReleased(Input::Key key) = 0;
+=======
+
+>>>>>>> f4231638f18c23456d8fdb595a5bd44ad706ce32
 	};
 }
